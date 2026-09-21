@@ -1,0 +1,20 @@
+name = "english-level-api"
+main = "src/index.ts"
+compatibility_date = "2024-09-25"
+
+# Default (unnamed) environment = local development, used by `wrangler dev`.
+[dev]
+port = 8787
+
+# Deployed via `wrangler deploy --env preview`.
+[env.preview]
+name = "english-level-api-preview"
+
+# Deployed via `wrangler deploy --env production`.
+[env.production]
+name = "english-level-api-production"
+
+# No vars/secrets are needed for Phase 0. When they're added:
+# - non-secret config -> `vars = { ... }` under the relevant [env.*] block
+# - secrets (API keys, tokens) -> `wrangler secret put <NAME> --env <env>`,
+#   never committed to this file.

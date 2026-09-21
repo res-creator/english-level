@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.wrangler/
+
+# .env / .env.development / .env.preview / .env.production hold non-secret
+# defaults and are committed. Only local overrides and secrets are ignored.
+.env.local
+.env.*.local
+
+*.log
+.DS_Store
