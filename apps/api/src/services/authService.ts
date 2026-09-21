@@ -1,0 +1,115 @@
+import { validateTelegramInitData } from "@english-level/shared";
+import type { Db, UserRow } from "../db/types.ts";
+import {
+  createUser,
+  findUserById,
+  findUserByTelegramUserId,
+  syncTelegramProfile,
+} from "../repositories/usersRepository.ts";
+import { createDefaultUserSettings } from "../repositories/userSettingsRepository.ts";
+import {
+  createSession,
+  deleteSessionByToken,
+  findValidSessionByToken,
+  touchSession,
+} from "../repositories/sessionsRepository.ts";
+
+export type NavigationIntent = "onboarding" | "today";
+
+export interface TelegramLoginOptions {
+  initData: string;
+  botToken: string;
+  maxAgeSeconds: number;
+  sessionTtlSeconds: number;
+}
+
+export interface TelegramLoginResult {
+  user: UserRow;
+  next: NavigationIntent;
+  sessionToken: string;
+}
+
+export type TelegramLoginFailure = { code: "invalid_telegram_auth" };
+
+/**
+ * The whole Telegram Mini App login flow, decoupled from HTTP: validates
+ * `initData`, creates or syncs the user, creates a session. Framework-free
+ * (only depends on `Db`) so it runs unmodified against a real D1 binding
+ * or an in-memory `node:sqlite` database in tests.
+ */
+export async function loginWithTelegramInitData(
+  db: Db,
+  options: TelegramLoginOptions,
+): Promise<
+  | { ok: true; result: TelegramLoginResult }
+  | { ok: false; error: TelegramLoginFailure }
+> {
+  const validation = await validateTelegramInitData(
+    options.initData,
+    options.botToken,
+    options.maxAgeSeconds,
+  );
+  if (!validation.ok) {
+    return { ok: false, error: { code: "invalid_telegram_auth" } };
+  }
+
+  const telegramUser = validation.user;
+  const existing = await findUserByTelegramUserId(db, telegramUser.id);
+
+  let user: UserRow;
+  let next: NavigationIntent;
+
+  if (!existing) {
+    user = await createUser(db, {
+      telegramUserId: telegramUser.id,
+      firstName: telegramUser.first_name,
+      lastName: telegramUser.last_name,
+      username: telegramUser.username,
+      interfaceLanguage: telegramUser.language_code ?? "en",
+    });
+    await createDefaultUserSettings(db, user.id);
+    next = "onboarding";
+  } else {
+    user = await syncTelegramProfile(db, existing.id, {
+      firstName: telegramUser.first_name,
+      lastName: telegramUser.last_name ?? null,
+      username: telegramUser.username ?? null,
+      interfaceLanguage: telegramUser.language_code,
+    });
+    next = user.onboarding_completed === 1 ? "today" : "onboarding";
+  }
+
+  const { token } = await createSession(db, user.id, options.sessionTtlSeconds);
+
+  return { ok: true, result: { user, next, sessionToken: token } };
+}
+
+/**
+ * Resolves the current user from a raw session token (as read from the
+ * session cookie), or null if there isn't a valid session. Touches
+ * `last_used_at` on the session as a side effect of a successful lookup.
+ */
+export async function resolveCurrentUser(
+  db: Db,
+  sessionToken: string | undefined,
+): Promise<UserRow | null> {
+  if (!sessionToken) return null;
+
+  const session = await findValidSessionByToken(db, sessionToken);
+  if (!session) return null;
+
+  const user = await findUserById(db, session.user_id);
+  if (!user || user.status !== "active") return null;
+
+  await touchSession(db, session.id);
+  return user;
+}
+
+/** Invalidates the session for this raw token, if any. Always safe to call. */
+export async function logout(
+  db: Db,
+  sessionToken: string | undefined,
+): Promise<void> {
+  if (!sessionToken) return;
+  await deleteSessionByToken(db, sessionToken);
+}

@@ -5,5 +5,12 @@
     "types": ["node"]
   },
   "include": [".", "../src"],
-  "exclude": ["../src/index.ts", "../src/env.ts", "../src/db/d1Adapter.ts"]
+  "exclude": [
+    "../src/index.ts",
+    "../src/env.ts",
+    "../src/db/d1Adapter.ts",
+    "../src/types/appEnv.ts",
+    "../src/auth/middleware.ts",
+    "../src/routes"
+  ]
 }

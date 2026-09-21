@@ -1,19 +1,34 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { HealthResponseSchema } from "@english-level/contracts";
+import {
+  HealthResponseSchema,
+  MeResponseSchema,
+} from "@english-level/contracts";
 import { APP_NAME } from "@english-level/shared";
-import type { Env } from "./env";
+import type { AppEnv } from "./types/appEnv.ts";
+import authRoutes from "./routes/auth.ts";
+import { requireAuth } from "./auth/middleware.ts";
+import { toPublicUser } from "./dto/userDto.ts";
 
-const app = new Hono<{ Bindings: Env }>();
+const app = new Hono<AppEnv>();
 
-// Phase 0: permissive CORS so the local Vite dev server can call the API.
-// Tighten this once real endpoints carry user data (see CLAUDE.md principle 2).
-app.use("*", cors());
+// Phase 2: auth uses cookies, so CORS must name explicit origins and allow
+// credentials — `origin: "*"` is rejected by browsers for credentialed
+// requests. Add the deployed Mini App origin here once it exists.
+const ALLOWED_ORIGINS = ["http://localhost:5173"];
+app.use("*", cors({ origin: ALLOWED_ORIGINS, credentials: true }));
 
-const v1 = new Hono<{ Bindings: Env }>();
+const v1 = new Hono<AppEnv>();
 
 v1.get("/health", (c) => {
   const body = HealthResponseSchema.parse({ status: "ok" });
+  return c.json(body);
+});
+
+v1.route("/auth", authRoutes);
+
+v1.get("/me", requireAuth, (c) => {
+  const body = MeResponseSchema.parse(toPublicUser(c.get("currentUser")));
   return c.json(body);
 });
 

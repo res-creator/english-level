@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { getHealth } from "../lib/apiClient";
 import { useTelegram } from "../telegram/useTelegram";
+import { useAuth } from "../auth/useAuth";
 
 type ApiStatus =
   { state: "loading" } | { state: "ok" } | { state: "error"; message: string };
 
 export function Today() {
   const { user, isMock } = useTelegram();
+  const auth = useAuth();
   const [apiStatus, setApiStatus] = useState<ApiStatus>({ state: "loading" });
 
   useEffect(() => {
@@ -29,6 +31,12 @@ export function Today() {
         API status: {apiStatus.state === "loading" && "checking..."}
         {apiStatus.state === "ok" && "ok"}
         {apiStatus.state === "error" && `unreachable (${apiStatus.message})`}
+      </p>
+      <p>
+        Auth status: {auth.status}
+        {auth.status === "authenticated" &&
+          ` (${auth.user?.firstName}, next: ${auth.next})`}
+        {auth.status === "error" && ` (${auth.error})`}
       </p>
     </section>
   );

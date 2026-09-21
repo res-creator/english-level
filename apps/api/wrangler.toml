@@ -18,6 +18,16 @@ database_name = "english-level-db-local"
 database_id = "00000000-0000-0000-0000-000000000000"
 migrations_dir = "../../migrations"
 
+# Local-only dev fixture, NOT a real Telegram bot token — it only has to
+# match apps/web/src/auth/devTelegramFixture.ts's DEV_TELEGRAM_BOT_TOKEN, so
+# the frontend's Telegram mock can sign an initData the backend accepts,
+# through the exact same validation path real Telegram traffic goes
+# through. See docs/authentication.md. Never set this in [env.preview] or
+# [env.production] — those must get a real token via `wrangler secret put
+# TELEGRAM_BOT_TOKEN --env <env>`, never committed here.
+[vars]
+TELEGRAM_BOT_TOKEN = "dev-fixture-telegram-bot-token-000000"
+
 # Deployed via `wrangler deploy --env preview`.
 [env.preview]
 name = "english-level-api-preview"

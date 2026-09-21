@@ -64,3 +64,12 @@ export interface LevelRow {
   description: string | null;
   is_active: number;
 }
+
+export interface SessionRow {
+  id: string;
+  user_id: string;
+  token_hash: string;
+  created_at: string;
+  expires_at: string;
+  last_used_at: string | null;
+}
