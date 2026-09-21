@@ -3,13 +3,15 @@
 Telegram Mini App for structured English learning. This repo currently
 covers **Phase 0** (monorepo/app shell), **Phase 1** (database foundation
 
-- basic user data model), and **Phase 2** (Telegram Mini App
-  authentication + `GET /api/v1/me`) — no product features (onboarding,
-  lessons, SRS, streaks, Duo, ...) yet. See [`CLAUDE.md`](./CLAUDE.md) for
+- basic user data model), **Phase 2** (Telegram Mini App authentication +
+  `GET /api/v1/me`), and **Phase 3** (onboarding preference collection,
+  ending at a placement handoff) — no curriculum, lessons, SRS, streaks,
+  Duo, or an actual placement test yet. See [`CLAUDE.md`](./CLAUDE.md) for
   the full product brief and architecture principles,
-  [`docs/database.md`](./docs/database.md) for the Phase 1 schema, and
+  [`docs/database.md`](./docs/database.md) for the Phase 1 schema,
   [`docs/authentication.md`](./docs/authentication.md) for the Phase 2 auth
-  flow.
+  flow, and [`docs/onboarding.md`](./docs/onboarding.md) for the Phase 3
+  onboarding flow.
 
 ## Project structure
 
@@ -19,25 +21,31 @@ apps/
     src/telegram/      Phase 0/1: Telegram WebApp wrapper + browser dev mock
     src/auth/          Phase 2: auth bootstrap (AuthProvider), auth API client,
                         dev-only signed-initData fixture
+    src/onboarding/    Phase 3: onboarding API client, resume/stage-routing
+                        logic, goal/level labels (not a full i18n system)
+    src/routes/onboarding/ Phase 3: the 4 onboarding step pages
   api/                 Cloudflare Worker backend (Hono)
     src/db/            D1 binding types, Db interface, D1 adapter, ID helper
     src/repositories/  typed data-access layer (users, settings, acquisition,
                         levels, sessions)
-    src/services/      framework-free business logic (authService)
+    src/services/      framework-free business logic (authService, onboardingService)
     src/auth/          session cookie config, token hashing, requireAuth middleware
-    src/routes/        Hono route modules (auth)
-    test/              data-layer + auth-service tests (node:sqlite + node:test)
+    src/routes/        Hono route modules (auth, onboarding)
+    test/              data-layer + service tests (node:sqlite + node:test)
 packages/
   contracts/           Zod schemas shared between web and api
   shared/               Cross-cutting types/constants + Telegram initData
                          validation/signing (packages/shared/src/telegram.ts)
   learning-engine/      Curriculum/mastery/SRS domain logic (empty stub)
 migrations/            D1 schema migrations:
-                          0001_init.sql    — levels, users, user_settings, user_acquisition
+                          0001_init.sql     — levels, users, user_settings, user_acquisition
                           0002_sessions.sql — sessions (Phase 2 auth)
+                          0003_onboarding.sql — users.onboarding_stage,
+                                                users.self_reported_cefr_level
 seeds/                 Seed data for local/dev D1 (empty for now — the only
                         seed data so far is the levels rows in 0001_init.sql)
-docs/                  database.md (Phase 1 schema), authentication.md (Phase 2 auth)
+docs/                  database.md (Phase 1 schema), authentication.md (Phase 2
+                        auth), onboarding.md (Phase 3 onboarding flow)
 ```
 
 `apps/web` depends on `packages/contracts` and `packages/shared` via pnpm
@@ -99,6 +107,9 @@ the repo-root `migrations/` folder, applied in order:
   [`docs/database.md`](./docs/database.md) for what's in it and why.
 - `migrations/0002_sessions.sql` — `sessions`, for Phase 2 auth. See
   [`docs/authentication.md`](./docs/authentication.md).
+- `migrations/0003_onboarding.sql` — adds `users.onboarding_stage` and
+  `users.self_reported_cefr_level` for Phase 3 onboarding. See
+  [`docs/onboarding.md`](./docs/onboarding.md).
 
 **How migrations will eventually be applied:** once `wrangler dev` can run
 on a given machine (or in CI), migrations are applied with:
@@ -171,6 +182,25 @@ one. `POST /api/v1/auth/logout` clears it.
   cannot authenticate against preview/production, which require a real
   bot token set as a secret.
 
+## Onboarding
+
+After a successful Telegram login, `next` in the auth response (and
+`GET /api/v1/me`'s implied state) routes an authenticated user to
+`/onboarding` if their preferences aren't fully collected yet, or
+`/placement` once they are. See
+[`docs/onboarding.md`](./docs/onboarding.md) for the full flow, stage
+model, and resume behavior — in short:
+
+- `GET /api/v1/onboarding`, `PUT /api/v1/onboarding/{goals,daily-time,level}`
+  (all behind the same `requireAuth` middleware Phase 2 introduced) collect
+  goals, daily study time, and a self-reported (unverified) level guess.
+- The backend owns progression via `users.onboarding_stage` — a client
+  can't skip a step by calling a later endpoint directly, and going back
+  to edit an earlier answer never resets later progress.
+- This phase ends at `placement_required`, routing to a static
+  `/placement` placeholder. No placement test, scoring, or curriculum
+  logic exists yet.
+
 ## Running both locally
 
 ```
@@ -239,19 +269,27 @@ replacing it — see "Authentication" above.
 
 Run from the repo root (they fan out to all workspace packages):
 
-| Script              | What it does                                                                                                                                       |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm dev`          | run api + web dev servers together                                                                                                                 |
-| `pnpm dev:web`      | run only the frontend dev server                                                                                                                   |
-| `pnpm dev:api`      | run only the backend dev server                                                                                                                    |
-| `pnpm build`        | typecheck + build every package                                                                                                                    |
-| `pnpm typecheck`    | `tsc --noEmit` in every package                                                                                                                    |
-| `pnpm test`         | run tests in every package that defines one (currently: `packages/shared`'s Telegram initData tests, `apps/api`'s data-layer + auth-service tests) |
-| `pnpm format`       | format the repo with Prettier                                                                                                                      |
-| `pnpm format:check` | check formatting without writing                                                                                                                   |
+| Script              | What it does                                                                                                                                                  |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev`          | run api + web dev servers together                                                                                                                            |
+| `pnpm dev:web`      | run only the frontend dev server                                                                                                                              |
+| `pnpm dev:api`      | run only the backend dev server                                                                                                                               |
+| `pnpm build`        | typecheck + build every package                                                                                                                               |
+| `pnpm typecheck`    | `tsc --noEmit` in every package                                                                                                                               |
+| `pnpm test`         | run tests in every package that defines one (currently: `packages/shared`'s Telegram initData tests, `apps/api`'s data-layer + auth/onboarding-service tests) |
+| `pnpm format`       | format the repo with Prettier                                                                                                                                 |
+| `pnpm format:check` | check formatting without writing                                                                                                                              |
 
 ## Routes (placeholders only)
 
-`/`, `/today`, `/learn`, `/review`, `/friends`, `/profile` — `/` redirects
-to `/today`. All five nav destinations render a bottom navigation bar and a
-placeholder page; no real content yet.
+`/`, `/today`, `/learn`, `/review`, `/friends`, `/profile` — `/` routes by
+auth state (see "Onboarding" above) and otherwise falls back to `/today`.
+All five nav destinations render a bottom navigation bar and a placeholder
+page; no real content yet.
+
+`/onboarding` (resolves to whichever step is current),
+`/onboarding/{goals,time,level,ready}`, and `/placement` are Phase 3's
+onboarding flow — real screens, but `/placement` itself is a static
+placeholder (see [`docs/onboarding.md`](./docs/onboarding.md)). These
+render full-screen, without the bottom nav, and require an authenticated
+session.

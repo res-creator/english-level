@@ -47,3 +47,90 @@ body {
   color: #1a1a1a;
   font-weight: 600;
 }
+
+/* Onboarding (Phase 3) — deliberately plain, mobile-first, no branding. */
+
+.onboarding-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.onboarding-progress {
+  color: #888;
+  font-size: 13px;
+  margin: 0;
+}
+
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  font-size: 16px;
+  text-align: left;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.option-button--selected {
+  border-color: #1a1a1a;
+  font-weight: 600;
+}
+
+.option-button__hint {
+  color: #888;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.onboarding-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.button-primary,
+.button-secondary {
+  min-height: 48px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-primary {
+  flex: 1;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.button-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.button-secondary {
+  background: transparent;
+  color: #1a1a1a;
+  border: 1px solid #ccc;
+}
+
+.onboarding-error {
+  color: #b00020;
+  font-size: 14px;
+}

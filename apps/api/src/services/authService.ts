@@ -14,7 +14,13 @@ import {
   touchSession,
 } from "../repositories/sessionsRepository.ts";
 
-export type NavigationIntent = "onboarding" | "today";
+export type NavigationIntent = "onboarding" | "placement" | "today";
+
+function navigationIntentFor(user: UserRow): NavigationIntent {
+  if (user.onboarding_completed === 1) return "today";
+  if (user.onboarding_stage === "placement_required") return "placement";
+  return "onboarding";
+}
 
 export interface TelegramLoginOptions {
   initData: string;
@@ -68,7 +74,7 @@ export async function loginWithTelegramInitData(
       interfaceLanguage: telegramUser.language_code ?? "en",
     });
     await createDefaultUserSettings(db, user.id);
-    next = "onboarding";
+    next = navigationIntentFor(user);
   } else {
     user = await syncTelegramProfile(db, existing.id, {
       firstName: telegramUser.first_name,
@@ -76,7 +82,7 @@ export async function loginWithTelegramInitData(
       username: telegramUser.username ?? null,
       interfaceLanguage: telegramUser.language_code,
     });
-    next = user.onboarding_completed === 1 ? "today" : "onboarding";
+    next = navigationIntentFor(user);
   }
 
   const { token } = await createSession(db, user.id, options.sessionTtlSeconds);

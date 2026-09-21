@@ -11,6 +11,11 @@ export interface Db {
 
 export type UserStatus = "active" | "archived";
 
+/** Phase 3 onboarding progress. Stops at "placement_required" until a
+ * future phase implements placement and sets "completed". */
+export type OnboardingStageRow =
+  "goals" | "daily_time" | "level_choice" | "placement_required" | "completed";
+
 export interface UserRow {
   id: string;
   telegram_user_id: number;
@@ -25,6 +30,10 @@ export interface UserRow {
   created_at: string;
   updated_at: string;
   last_active_at: string | null;
+  /** Self-assessment collected during onboarding — never a verified level.
+   * Distinct from `current_cefr_level`, which stays null until placement. */
+  self_reported_cefr_level: string | null;
+  onboarding_stage: OnboardingStageRow;
 }
 
 export interface UserSettingsRow {

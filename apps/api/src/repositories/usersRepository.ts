@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Db, UserRow } from "../db/types.ts";
+import type { Db, OnboardingStageRow, UserRow } from "../db/types.ts";
 import { generateId } from "../db/ids.ts";
 
 export const CreateUserInputSchema = z.object({
@@ -107,6 +107,42 @@ export async function syncTelegramProfile(
   const updated = await findUserById(db, userId);
   if (!updated) {
     throw new Error(`User ${userId} not found after profile sync`);
+  }
+  return updated;
+}
+
+/** Advances (or otherwise sets) `onboarding_stage`. Onboarding-internal —
+ * callers should go through `onboardingService`, not call this directly. */
+export async function setOnboardingStage(
+  db: Db,
+  userId: string,
+  stage: OnboardingStageRow,
+): Promise<UserRow> {
+  await db.run(
+    "UPDATE users SET onboarding_stage = ?, updated_at = ? WHERE id = ?",
+    [stage, new Date().toISOString(), userId],
+  );
+  const updated = await findUserById(db, userId);
+  if (!updated) {
+    throw new Error(`User ${userId} not found after onboarding stage update`);
+  }
+  return updated;
+}
+
+/** Sets the user's self-reported (unverified) CEFR level, or null for
+ * "I don't know". Never touches `current_cefr_level`. */
+export async function setSelfReportedCefrLevel(
+  db: Db,
+  userId: string,
+  level: "A1" | "A2" | "B1" | "B2" | null,
+): Promise<UserRow> {
+  await db.run(
+    "UPDATE users SET self_reported_cefr_level = ?, updated_at = ? WHERE id = ?",
+    [level, new Date().toISOString(), userId],
+  );
+  const updated = await findUserById(db, userId);
+  if (!updated) {
+    throw new Error(`User ${userId} not found after level update`);
   }
   return updated;
 }

@@ -34,12 +34,46 @@ test("migration creates the expected tables and columns", () => {
     "last_active_at",
     "last_name",
     "onboarding_completed",
+    "onboarding_stage",
+    "self_reported_cefr_level",
     "status",
     "telegram_user_id",
     "timezone",
     "updated_at",
     "username",
   ]);
+});
+
+test("onboarding_stage defaults to goals and rejects unknown values", () => {
+  const { sqlite } = createTestDb();
+
+  sqlite
+    .prepare(
+      "INSERT INTO users (id, telegram_user_id, first_name) VALUES (?, ?, ?)",
+    )
+    .run("usr_stage_default", 999001, "Test");
+  const row = sqlite
+    .prepare(
+      "SELECT onboarding_stage, self_reported_cefr_level FROM users WHERE id = ?",
+    )
+    .get("usr_stage_default") as {
+    onboarding_stage: string;
+    self_reported_cefr_level: string | null;
+  };
+  assert.equal(row.onboarding_stage, "goals");
+  assert.equal(row.self_reported_cefr_level, null);
+
+  assert.throws(() => {
+    sqlite
+      .prepare("UPDATE users SET onboarding_stage = ? WHERE id = ?")
+      .run("bogus_stage", "usr_stage_default");
+  }, /CHECK constraint failed/);
+
+  assert.throws(() => {
+    sqlite
+      .prepare("UPDATE users SET self_reported_cefr_level = ? WHERE id = ?")
+      .run("C1", "usr_stage_default");
+  }, /CHECK constraint failed/);
 });
 
 test("sessions table has the expected columns and a unique token_hash", () => {
