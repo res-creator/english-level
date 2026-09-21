@@ -6,15 +6,39 @@ compatibility_date = "2024-09-25"
 [dev]
 port = 8787
 
+# D1 binding, available in the Worker as `env.DB`.
+# `database_id` is an obvious placeholder — local `wrangler dev` doesn't
+# validate it against Cloudflare, it just uses a local SQLite file. Replace
+# it with a real ID (from `wrangler d1 create ...`) before deploying for
+# real. Migrations live in the repo-root `migrations/` folder, applied via
+# `wrangler d1 migrations apply DB` (see README.md).
+[[d1_databases]]
+binding = "DB"
+database_name = "english-level-db-local"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "../../migrations"
+
 # Deployed via `wrangler deploy --env preview`.
 [env.preview]
 name = "english-level-api-preview"
+
+[[env.preview.d1_databases]]
+binding = "DB"
+database_name = "english-level-db-preview"
+database_id = "REPLACE_WITH_PREVIEW_D1_DATABASE_ID"
+migrations_dir = "../../migrations"
 
 # Deployed via `wrangler deploy --env production`.
 [env.production]
 name = "english-level-api-production"
 
-# No vars/secrets are needed for Phase 0. When they're added:
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "english-level-db-production"
+database_id = "REPLACE_WITH_PRODUCTION_D1_DATABASE_ID"
+migrations_dir = "../../migrations"
+
+# No other vars/secrets are needed for Phase 1. When they're added:
 # - non-secret config -> `vars = { ... }` under the relevant [env.*] block
 # - secrets (API keys, tokens) -> `wrangler secret put <NAME> --env <env>`,
 #   never committed to this file.

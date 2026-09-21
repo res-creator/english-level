@@ -1,0 +1,9 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": [".", "../src"],
+  "exclude": ["../src/index.ts", "../src/env.ts", "../src/db/d1Adapter.ts"]
+}

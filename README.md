@@ -1,9 +1,11 @@
 # English Level
 
-Telegram Mini App for structured English learning. This is **Phase 0**:
-technical foundation only — a working monorepo shell with no real product
-features yet. See [`CLAUDE.md`](./CLAUDE.md) for the full product brief and
-architecture principles.
+Telegram Mini App for structured English learning. This repo currently
+covers **Phase 0** (monorepo/app shell) and **Phase 1** (database
+foundation + basic user data model) — no product features (onboarding,
+lessons, SRS, streaks, Duo, ...) yet. See [`CLAUDE.md`](./CLAUDE.md) for
+the full product brief and architecture principles, and
+[`docs/database.md`](./docs/database.md) for the Phase 1 schema.
 
 ## Project structure
 
@@ -11,13 +13,16 @@ architecture principles.
 apps/
   web/                 React + Vite frontend (the Telegram Mini App)
   api/                 Cloudflare Worker backend (Hono)
+    src/db/            D1 binding types, Db interface, D1 adapter, ID helper
+    src/repositories/  typed data-access layer (users, settings, acquisition, levels)
+    test/              Phase 1 data-layer tests (node:sqlite + node:test)
 packages/
   contracts/           Zod schemas shared between web and api
   shared/               Cross-cutting types/constants
   learning-engine/      Curriculum/mastery/SRS domain logic (empty stub)
-migrations/            D1 schema migrations (empty for now)
-seeds/                 Seed data for local/dev D1 (empty for now)
-docs/                  Design notes (empty for now)
+migrations/            D1 schema migrations (0001_init.sql: levels, users, user_settings, user_acquisition)
+seeds/                 Seed data for local/dev D1 (empty for now — Phase 1's only seed data is the levels rows in the migration itself)
+docs/                  database.md (Phase 1 schema); more to come
 ```
 
 `apps/web` depends on `packages/contracts` and `packages/shared` via pnpm
@@ -64,6 +69,51 @@ Starts the Worker locally via `wrangler dev` at http://localhost:8787.
 > environment constraint, not a code issue — the route logic itself can
 > still be exercised directly (e.g. `app.request("/api/v1/health")` from
 > Node), or deploy to a preview environment to test against a real Worker.
+> The same limitation means `wrangler d1 migrations apply` can't be run
+> against local D1 on this machine either — see "Database" below for how
+> the Phase 1 schema is validated instead.
+
+## Database
+
+The API is configured for a D1 binding named **`DB`** (`apps/api/wrangler.toml`),
+available in the Worker as `env.DB`. Schema changes are plain SQL files in
+the repo-root `migrations/` folder, applied in order:
+
+- `migrations/0001_init.sql` — `levels` (seeded A1–C1), `users`,
+  `user_settings`, `user_acquisition`. See
+  [`docs/database.md`](./docs/database.md) for what's in it and why.
+
+**How migrations will eventually be applied:** once `wrangler dev` can run
+on a given machine (or in CI), migrations are applied with:
+
+```
+wrangler d1 migrations apply DB --local        # local dev D1
+wrangler d1 migrations apply DB --env preview  # preview
+wrangler d1 migrations apply DB --env production
+```
+
+**Configuring a real D1 database later:** `wrangler.toml` currently has
+placeholder `database_id`s (`00000000-...` for local, `REPLACE_WITH_...`
+for preview/production) — these are never valid Cloudflare resources.
+To point at a real D1 database:
+
+1. `wrangler d1 create english-level-db` (repeat per environment as needed)
+2. copy the returned `database_id` into the matching `[[d1_databases]]` /
+   `[[env.<name>.d1_databases]]` block in `apps/api/wrangler.toml`
+3. run the `wrangler d1 migrations apply` commands above
+
+No real D1 database or Cloudflare credentials are required to work on
+Phase 1 locally — see the next paragraph.
+
+**Local-runtime limitation and how Phase 1 was actually validated:** on
+this machine, `wrangler dev`/`wrangler d1` can't run at all (see the note
+above). Since D1 is SQLite under the hood, the Phase 1 data layer is
+instead tested by running the exact same `0001_init.sql` against an
+in-memory database via Node's built-in `node:sqlite` module (`apps/api/test/`),
+using Node's built-in test runner (`node --test`) — no extra dependencies,
+no native builds. This validates the schema and repository logic
+directly; it does not substitute for eventually running the same
+migration through real `wrangler d1` once available.
 
 ## Running both locally
 
@@ -105,7 +155,7 @@ the API is reachable.
   uncommitted `.env.preview.local` / `.env.production.local` file) rather
   than committing real URLs here.
 
-No secrets are required to run Phase 0 locally.
+No secrets are required to run Phase 0 or Phase 1 locally.
 
 ## Telegram mock mode
 
@@ -128,16 +178,16 @@ lets the app run normally in a browser during development.
 
 Run from the repo root (they fan out to all workspace packages):
 
-| Script              | What it does                                                 |
-| ------------------- | ------------------------------------------------------------ |
-| `pnpm dev`          | run api + web dev servers together                           |
-| `pnpm dev:web`      | run only the frontend dev server                             |
-| `pnpm dev:api`      | run only the backend dev server                              |
-| `pnpm build`        | typecheck + build every package                              |
-| `pnpm typecheck`    | `tsc --noEmit` in every package                              |
-| `pnpm test`         | run tests in any package that defines one (none yet — no-op) |
-| `pnpm format`       | format the repo with Prettier                                |
-| `pnpm format:check` | check formatting without writing                             |
+| Script              | What it does                                                                                   |
+| ------------------- | ---------------------------------------------------------------------------------------------- |
+| `pnpm dev`          | run api + web dev servers together                                                             |
+| `pnpm dev:web`      | run only the frontend dev server                                                               |
+| `pnpm dev:api`      | run only the backend dev server                                                                |
+| `pnpm build`        | typecheck + build every package                                                                |
+| `pnpm typecheck`    | `tsc --noEmit` in every package                                                                |
+| `pnpm test`         | run tests in every package that defines one (currently: `apps/api`'s Phase 1 data-layer tests) |
+| `pnpm format`       | format the repo with Prettier                                                                  |
+| `pnpm format:check` | check formatting without writing                                                               |
 
 ## Routes (placeholders only)
 
