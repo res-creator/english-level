@@ -23,5 +23,12 @@ export function createD1Db(d1: D1Database): Db {
         .first<T>();
       return row ?? null;
     },
+    async batch(statements) {
+      // D1's batch() runs every statement as a single transaction —
+      // real atomicity, not sequential best-effort calls.
+      await d1.batch(
+        statements.map((s) => d1.prepare(s.sql).bind(...(s.params ?? []))),
+      );
+    },
   };
 }

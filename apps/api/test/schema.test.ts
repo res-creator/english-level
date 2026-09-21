@@ -14,6 +14,10 @@ test("migration creates the expected tables and columns", () => {
 
   assert.deepEqual(tables, [
     "levels",
+    "placement_answers",
+    "placement_attempts",
+    "placement_passages",
+    "placement_questions",
     "sessions",
     "user_acquisition",
     "user_settings",

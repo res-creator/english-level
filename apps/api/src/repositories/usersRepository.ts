@@ -1,5 +1,10 @@
 import { z } from "zod";
-import type { Db, OnboardingStageRow, UserRow } from "../db/types.ts";
+import type {
+  Db,
+  DbStatement,
+  OnboardingStageRow,
+  UserRow,
+} from "../db/types.ts";
 import { generateId } from "../db/ids.ts";
 
 export const CreateUserInputSchema = z.object({
@@ -143,6 +148,51 @@ export async function setSelfReportedCefrLevel(
   const updated = await findUserById(db, userId);
   if (!updated) {
     throw new Error(`User ${userId} not found after level update`);
+  }
+  return updated;
+}
+
+/**
+ * Builds (without executing) the statement that sets `current_cefr_level`
+ * and completes onboarding — the one legitimate way those fields change.
+ * Pure, so `placementService.finalizeAttempt` can combine it with the
+ * matching `placement_attempts` completion statement in a single
+ * `db.batch()` transaction: both rows change together or neither does.
+ */
+export function completeOnboardingWithVerifiedLevelStatement(
+  userId: string,
+  verifiedLevel: "A1" | "A2" | "B1" | "B2",
+  now: string,
+): DbStatement {
+  return {
+    sql: `UPDATE users
+     SET current_cefr_level = ?, onboarding_stage = 'completed', onboarding_completed = 1, updated_at = ?
+     WHERE id = ?`,
+    params: [verifiedLevel, now, userId],
+  };
+}
+
+/**
+ * Executes the same update as `completeOnboardingWithVerifiedLevelStatement`
+ * directly (not batched). Used only to *repair* a user row that's fallen
+ * out of sync with an already-completed, already-scored attempt — see
+ * `placementService.repairUserStateIfNeeded`. The normal completion path
+ * goes through the batch, not this.
+ */
+export async function completeOnboardingWithVerifiedLevel(
+  db: Db,
+  userId: string,
+  verifiedLevel: "A1" | "A2" | "B1" | "B2",
+): Promise<UserRow> {
+  const statement = completeOnboardingWithVerifiedLevelStatement(
+    userId,
+    verifiedLevel,
+    new Date().toISOString(),
+  );
+  await db.run(statement.sql, statement.params);
+  const updated = await findUserById(db, userId);
+  if (!updated) {
+    throw new Error(`User ${userId} not found after placement completion`);
   }
   return updated;
 }

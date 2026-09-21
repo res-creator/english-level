@@ -78,9 +78,10 @@ export const DAILY_MINUTES_OPTIONS = DailyMinutesSchema.options.map(
   (l) => l.value,
 );
 
-export const SelfReportedCefrLevelSchema = z
-  .enum(["A1", "A2", "B1", "B2"])
-  .nullable();
+export const CefrLevelSchema = z.enum(["A1", "A2", "B1", "B2"]);
+export type CefrLevel = z.infer<typeof CefrLevelSchema>;
+
+export const SelfReportedCefrLevelSchema = CefrLevelSchema.nullable();
 export type SelfReportedCefrLevel = z.infer<typeof SelfReportedCefrLevelSchema>;
 
 export const OnboardingStageSchema = z.enum([
@@ -124,3 +125,105 @@ export const UpdateLevelRequestSchema = z.object({
   level: SelfReportedCefrLevelSchema,
 });
 export type UpdateLevelRequest = z.infer<typeof UpdateLevelRequestSchema>;
+
+// ---------------------------------------------------------------------------
+// Placement test (Phase 4) — adaptive test producing a *verified* CEFR level,
+// distinct from the self-report collected in onboarding. See
+// docs/placement-test.md for the algorithm. DTOs here never carry answer
+// keys, internal difficulty metadata, or raw DB rows.
+// ---------------------------------------------------------------------------
+
+export const PlacementSkillSchema = z.enum([
+  "vocabulary",
+  "grammar",
+  "reading",
+  "active_english",
+]);
+export type PlacementSkill = z.infer<typeof PlacementSkillSchema>;
+
+export const PlacementQuestionTypeSchema = z.enum([
+  "multiple_choice",
+  "fill_gap_choice",
+  "reading_multiple_choice",
+  "typed_short_answer",
+]);
+export type PlacementQuestionType = z.infer<typeof PlacementQuestionTypeSchema>;
+
+export const PlacementProgressSchema = z.object({
+  answered: z.number().int().nonnegative(),
+  estimatedTotal: z.number().int().positive(),
+});
+export type PlacementProgress = z.infer<typeof PlacementProgressSchema>;
+
+/** What the client is allowed to see about a question — no correct answer,
+ * no CEFR difficulty band, no discrimination/internal metadata. */
+export const PlacementQuestionDTOSchema = z.object({
+  id: z.string(),
+  type: PlacementQuestionTypeSchema,
+  skill: PlacementSkillSchema,
+  prompt: z.string(),
+  passage: z.string().nullable(),
+  options: z.array(z.string()).nullable(),
+});
+export type PlacementQuestionDTO = z.infer<typeof PlacementQuestionDTOSchema>;
+
+export const PlacementStartResponseSchema = z.object({
+  attemptId: z.string(),
+  question: PlacementQuestionDTOSchema,
+  progress: PlacementProgressSchema,
+});
+export type PlacementStartResponse = z.infer<
+  typeof PlacementStartResponseSchema
+>;
+
+export const PlacementCurrentResponseSchema = z.discriminatedUnion("status", [
+  z.object({ status: z.literal("none") }),
+  z.object({
+    status: z.literal("in_progress"),
+    attemptId: z.string(),
+    question: PlacementQuestionDTOSchema,
+    progress: PlacementProgressSchema,
+  }),
+  z.object({ status: z.literal("completed"), attemptId: z.string() }),
+]);
+export type PlacementCurrentResponse = z.infer<
+  typeof PlacementCurrentResponseSchema
+>;
+
+export const PlacementAnswerRequestSchema = z.object({
+  questionId: z.string().min(1),
+  answer: z.string(),
+  responseTimeMs: z.number().int().nonnegative().optional(),
+  attemptIdempotencyKey: z.string().optional(),
+});
+export type PlacementAnswerRequest = z.infer<
+  typeof PlacementAnswerRequestSchema
+>;
+
+export const PlacementAnswerResponseSchema = z.discriminatedUnion("status", [
+  z.object({
+    status: z.literal("continue"),
+    question: PlacementQuestionDTOSchema,
+    progress: PlacementProgressSchema,
+  }),
+  z.object({ status: z.literal("completed"), attemptId: z.string() }),
+]);
+export type PlacementAnswerResponse = z.infer<
+  typeof PlacementAnswerResponseSchema
+>;
+
+export const PlacementResultResponseSchema = z.object({
+  level: CefrLevelSchema,
+  scores: z.object({
+    vocabulary: z.number().int(),
+    grammar: z.number().int(),
+    reading: z.number().int(),
+    activeEnglish: z.number().int(),
+  }),
+  strongestSkill: PlacementSkillSchema,
+  weakestSkill: PlacementSkillSchema,
+  selfReportedLevel: SelfReportedCefrLevelSchema,
+});
+export type PlacementResultResponse = z.infer<
+  typeof PlacementResultResponseSchema
+>;

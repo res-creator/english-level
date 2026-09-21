@@ -134,3 +134,67 @@ body {
   color: #b00020;
   font-size: 14px;
 }
+
+/* Placement test (Phase 4) — reuses the onboarding-screen/option/button
+   classes above; these are just the additional pieces it needs. */
+
+.placement-progress-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #eee;
+  overflow: hidden;
+}
+
+.placement-progress-fill {
+  height: 100%;
+  background: #1a1a1a;
+  transition: width 0.2s ease;
+}
+
+.placement-passage {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #f2f2f2;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.text-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+}
+
+.result-level {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.result-skill {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-skill-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.result-skill-track {
+  height: 8px;
+  border-radius: 4px;
+  background: #eee;
+  overflow: hidden;
+}
+
+.result-skill-fill {
+  height: 100%;
+  background: #1a1a1a;
+}

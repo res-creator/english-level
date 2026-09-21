@@ -14,5 +14,17 @@ export function createSqliteDb(sqlite: DatabaseSync): Db {
       const row = sqlite.prepare(sql).get(...(params as never[]));
       return (row ?? null) as T | null;
     },
+    async batch(statements) {
+      sqlite.exec("BEGIN");
+      try {
+        for (const s of statements) {
+          sqlite.prepare(s.sql).run(...((s.params ?? []) as never[]));
+        }
+        sqlite.exec("COMMIT");
+      } catch (err) {
+        sqlite.exec("ROLLBACK");
+        throw err;
+      }
+    },
   };
 }

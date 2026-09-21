@@ -10,6 +10,7 @@ import { Review } from "./routes/Review";
 import { Friends } from "./routes/Friends";
 import { Profile } from "./routes/Profile";
 import { Placement } from "./routes/Placement";
+import { PlacementResult } from "./routes/PlacementResult";
 import { OnboardingIndex } from "./routes/onboarding/OnboardingIndex";
 import { GoalsStep } from "./routes/onboarding/GoalsStep";
 import { DailyTimeStep } from "./routes/onboarding/DailyTimeStep";
@@ -41,6 +42,10 @@ export function App() {
               <Route path="/onboarding/level" element={<LevelStep />} />
               <Route path="/onboarding/ready" element={<ReadyStep />} />
               <Route path="/placement" element={<Placement />} />
+              <Route
+                path="/placement/result/:attemptId"
+                element={<PlacementResult />}
+              />
             </Route>
           </Routes>
         </BrowserRouter>

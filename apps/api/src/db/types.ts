@@ -3,10 +3,24 @@
  * this, never on `D1Database` directly, so they can run unmodified against
  * either a real D1 binding or a `node:sqlite` instance in tests.
  */
+export interface DbStatement {
+  sql: string;
+  params?: unknown[];
+}
+
 export interface Db {
   run(sql: string, params?: unknown[]): Promise<void>;
   all<T = unknown>(sql: string, params?: unknown[]): Promise<T[]>;
   first<T = unknown>(sql: string, params?: unknown[]): Promise<T | null>;
+  /**
+   * Executes multiple statements as a single atomic transaction — all
+   * succeed or all fail together. Used where two related tables must
+   * change in lockstep (e.g. placement completion: the attempt row and
+   * the user row). Backed by D1's real `batch()` (a genuine transaction)
+   * against a live binding, and `BEGIN`/`COMMIT`/`ROLLBACK` against
+   * `node:sqlite` in tests.
+   */
+  batch(statements: DbStatement[]): Promise<void>;
 }
 
 export type UserStatus = "active" | "archived";
@@ -81,4 +95,78 @@ export interface SessionRow {
   created_at: string;
   expires_at: string;
   last_used_at: string | null;
+}
+
+// ---------------------------------------------------------------------------
+// Phase 4: placement test
+// ---------------------------------------------------------------------------
+
+export type PlacementSkillRow =
+  "vocabulary" | "grammar" | "reading" | "active_english";
+
+export type CefrLevelRow = "A1" | "A2" | "B1" | "B2";
+
+export type PlacementQuestionTypeRow =
+  | "multiple_choice"
+  | "fill_gap_choice"
+  | "reading_multiple_choice"
+  | "typed_short_answer";
+
+export interface PlacementPassageRow {
+  id: string;
+  cefr_level: CefrLevelRow;
+  title: string | null;
+  body: string;
+}
+
+export interface PlacementQuestionRow {
+  id: string;
+  test_version: string;
+  skill: PlacementSkillRow;
+  cefr_level: CefrLevelRow;
+  question_type: PlacementQuestionTypeRow;
+  prompt: string;
+  passage_id: string | null;
+  /** JSON array of option strings; null for typed_short_answer. */
+  options_json: string | null;
+  /** JSON array — the correct option (choice types) or accepted normalized
+   * answer variants (typed_short_answer). Never sent to the client. */
+  accepted_answers_json: string;
+  status: "active" | "archived";
+  created_at: string;
+}
+
+export type PlacementAttemptStatusRow =
+  "in_progress" | "completed" | "abandoned";
+
+export interface PlacementAttemptRow {
+  id: string;
+  user_id: string;
+  test_version: string;
+  status: PlacementAttemptStatusRow;
+  started_at: string;
+  completed_at: string | null;
+  result_level: CefrLevelRow | null;
+  vocabulary_score: number | null;
+  grammar_score: number | null;
+  reading_score: number | null;
+  active_english_score: number | null;
+  strongest_skill: PlacementSkillRow | null;
+  weakest_skill: PlacementSkillRow | null;
+  /** Adaptive engine's internal sampling state — see docs/placement-test.md. */
+  current_level_pointer: CefrLevelRow;
+  consecutive_correct: number;
+  consecutive_incorrect: number;
+  answers_since_level_change: number;
+  current_question_id: string | null;
+}
+
+export interface PlacementAnswerRow {
+  id: string;
+  attempt_id: string;
+  question_id: string;
+  answer: string;
+  is_correct: number;
+  response_time_ms: number | null;
+  created_at: string;
 }
