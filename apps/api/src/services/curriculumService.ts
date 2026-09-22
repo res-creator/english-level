@@ -2,6 +2,7 @@ import type {
   CurriculumPathResponse,
   LessonContentDTO,
   LessonContentEntry,
+  LessonProgressStatus,
   CefrLevel,
 } from "@english-level/contracts";
 import type { Db } from "../db/types.ts";
@@ -23,6 +24,7 @@ import {
   findGrammarPatternLocalization,
   findPublishedGrammarPatternById,
 } from "../repositories/grammarRepository.ts";
+import { listProgressForLessons } from "../repositories/userLessonProgressRepository.ts";
 
 /** Only Russian is seeded for V1 — no language negotiation yet. */
 const CONTENT_LANGUAGE = "ru";
@@ -84,14 +86,22 @@ export type ModuleDetailResult =
           type: string;
           order: number;
           estimatedMinutes: number | null;
+          progressStatus: LessonProgressStatus;
         }[];
       };
     }
   | { ok: false; error: { code: "not_found"; message: string } };
 
+/**
+ * `userId` is used only to annotate each lesson with the user's own
+ * `user_lesson_progress` status (Phase 6) — not_started/in_progress/
+ * completed. No mastery/knowledge is inferred or invented; a lesson with
+ * no progress row is simply "not_started".
+ */
 export async function getModuleDetail(
   db: Db,
   moduleId: string,
+  userId: string,
 ): Promise<ModuleDetailResult> {
   const module_ = await findPublishedModuleById(db, moduleId);
   if (!module_) {
@@ -103,6 +113,11 @@ export async function getModuleDetail(
 
   const level = await findLevelById(db, module_.level_id);
   const lessons = await listPublishedLessonsByModule(db, moduleId);
+  const progressByLesson = await listProgressForLessons(
+    db,
+    userId,
+    lessons.map((l) => l.id),
+  );
 
   return {
     ok: true,
@@ -118,6 +133,7 @@ export async function getModuleDetail(
         type: l.lesson_type,
         order: l.order_index,
         estimatedMinutes: l.estimated_minutes,
+        progressStatus: progressByLesson.get(l.id)?.status ?? "not_started",
       })),
     },
   };

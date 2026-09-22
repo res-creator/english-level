@@ -17,6 +17,12 @@ const LESSON_TYPE_LABELS: Record<string, string> = {
   checkpoint: "Checkpoint",
 };
 
+const PROGRESS_LABELS: Record<string, string> = {
+  completed: "Completed ✓",
+  in_progress: "In progress",
+  not_started: "Available",
+};
+
 export function ModuleDetail() {
   const { moduleId } = useParams<{ moduleId: string }>();
   const [state, setState] = useState<State>({ status: "loading" });
@@ -59,6 +65,8 @@ export function ModuleDetail() {
             {l.title}
             <span className="option-button__hint">
               {LESSON_TYPE_LABELS[l.type] ?? l.type}
+              {" · "}
+              {PROGRESS_LABELS[l.progressStatus] ?? l.progressStatus}
             </span>
           </Link>
         ))}

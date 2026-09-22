@@ -278,12 +278,22 @@ export type CurriculumPathResponse = z.infer<
   typeof CurriculumPathResponseSchema
 >;
 
+/** Whether the current user has started/finished a lesson — from
+ * `user_lesson_progress` (Phase 6). Never invents mastery/knowledge. */
+export const LessonProgressStatusSchema = z.enum([
+  "not_started",
+  "in_progress",
+  "completed",
+]);
+export type LessonProgressStatus = z.infer<typeof LessonProgressStatusSchema>;
+
 export const CurriculumLessonSummaryDTOSchema = z.object({
   id: z.string(),
   title: z.string(),
   type: LessonTypeSchema,
   order: z.number().int(),
   estimatedMinutes: z.number().int().nullable(),
+  progressStatus: LessonProgressStatusSchema,
 });
 export type CurriculumLessonSummaryDTO = z.infer<
   typeof CurriculumLessonSummaryDTOSchema
@@ -344,3 +354,166 @@ export const LessonContentDTOSchema = z.object({
   content: z.array(LessonContentEntrySchema),
 });
 export type LessonContentDTO = z.infer<typeof LessonContentDTOSchema>;
+
+// ---------------------------------------------------------------------------
+// Lesson execution engine (Phase 6) — sessions, activities, answers, results.
+// Content (above) and execution (below) stay separate layers. An ActivityDTO
+// never exposes the correct answer, or any answer key, before it is
+// answered — the backend is the only source of truth for correctness,
+// completion, and position.
+// ---------------------------------------------------------------------------
+
+export const ActivityKindSchema = z.enum([
+  "info_card",
+  "grammar_card",
+  "multiple_choice",
+  "fill_gap_choice",
+  "typed_recall",
+  "sentence_build",
+]);
+export type ActivityKind = z.infer<typeof ActivityKindSchema>;
+
+export const ActivityOptionDTOSchema = z.object({
+  id: z.string(),
+  text: z.string(),
+});
+export type ActivityOptionDTO = z.infer<typeof ActivityOptionDTOSchema>;
+
+export const ActivityProgressSchema = z.object({
+  current: z.number().int().positive(),
+  total: z.number().int().positive(),
+});
+export type ActivityProgress = z.infer<typeof ActivityProgressSchema>;
+
+const activityBase = { id: z.string(), progress: ActivityProgressSchema };
+
+/** The single current activity for a session — never the whole plan, and
+ * never with a correct-answer field, until after it has been answered. */
+export const ActivityDTOSchema = z.discriminatedUnion("kind", [
+  z.object({
+    ...activityBase,
+    kind: z.literal("info_card"),
+    content: z.object({
+      displayForm: z.string(),
+      translation: z.string(),
+      ipa: z.string().nullable(),
+      example: z.string().nullable(),
+      pattern: z.string().nullable(),
+    }),
+  }),
+  z.object({
+    ...activityBase,
+    kind: z.literal("grammar_card"),
+    content: z.object({
+      title: z.string(),
+      formula: z.string().nullable(),
+      explanation: z.string(),
+    }),
+  }),
+  z.object({
+    ...activityBase,
+    kind: z.literal("multiple_choice"),
+    prompt: z.string(),
+    content: z.object({ text: z.string() }),
+    options: z.array(ActivityOptionDTOSchema),
+  }),
+  z.object({
+    ...activityBase,
+    kind: z.literal("fill_gap_choice"),
+    prompt: z.string(),
+    content: z.object({ sentence: z.string() }),
+    options: z.array(ActivityOptionDTOSchema),
+  }),
+  z.object({
+    ...activityBase,
+    kind: z.literal("typed_recall"),
+    prompt: z.string(),
+    content: z.object({ text: z.string() }),
+  }),
+  z.object({
+    ...activityBase,
+    kind: z.literal("sentence_build"),
+    prompt: z.string(),
+    content: z.object({ tokens: z.array(z.string()) }),
+  }),
+]);
+export type ActivityDTO = z.infer<typeof ActivityDTOSchema>;
+
+export const LessonSessionStatusSchema = z.enum([
+  "in_progress",
+  "completed",
+  "abandoned",
+]);
+export type LessonSessionStatus = z.infer<typeof LessonSessionStatusSchema>;
+
+/** Shared shape for both "start a lesson" and "resume a session" — a
+ * session is trivially resumable because this is all the client needs. */
+export const LessonSessionDTOSchema = z.object({
+  sessionId: z.string(),
+  status: LessonSessionStatusSchema,
+  lesson: z.object({ id: z.string(), title: z.string() }),
+  currentActivity: ActivityDTOSchema.nullable(),
+});
+export type LessonSessionDTO = z.infer<typeof LessonSessionDTOSchema>;
+
+export const StartLessonResponseSchema = LessonSessionDTOSchema;
+export type StartLessonResponse = z.infer<typeof StartLessonResponseSchema>;
+
+export const AnswerActivityRequestSchema = z.object({
+  activityId: z.string(),
+  answer: z.string(),
+  responseTimeMs: z.number().int().nonnegative().optional(),
+  /** Client-generated idempotency key. A repeated request with the same
+   * attemptId must not double-grade, double-count, or skip an activity. */
+  attemptId: z.string().min(1),
+});
+export type AnswerActivityRequest = z.infer<typeof AnswerActivityRequestSchema>;
+
+export const AnswerFeedbackSchema = z.discriminatedUnion("correct", [
+  z.object({ correct: z.literal(true) }),
+  z.object({
+    correct: z.literal(false),
+    correctAnswer: z.string(),
+    explanation: z.string().nullable(),
+  }),
+]);
+export type AnswerFeedback = z.infer<typeof AnswerFeedbackSchema>;
+
+/**
+ * Only what actually exists, and only ever for a session that has really
+ * completed — every field here is reconstructable from persisted
+ * `learning_sessions`/`user_lesson_progress` data. No streak, no
+ * mastery, no "words learned", no XP, no level progress — those systems
+ * don't exist yet. This is also what `GET /api/v1/sessions/:id/result`
+ * returns, so a page reload can reconstruct the same result the answer
+ * response originally carried.
+ */
+export const LessonResultDTOSchema = z.object({
+  sessionId: z.string(),
+  lessonId: z.string(),
+  lessonTitle: z.string(),
+  status: z.literal("completed"),
+  correctCount: z.number().int().nonnegative(),
+  wrongCount: z.number().int().nonnegative(),
+  scoredAttempts: z.number().int().nonnegative(),
+  accuracy: z.number().int().min(0).max(100),
+  completedAt: z.string(),
+});
+export type LessonResultDTO = z.infer<typeof LessonResultDTOSchema>;
+
+export const AnswerActivityResponseSchema = z.object({
+  feedback: AnswerFeedbackSchema,
+  session: z.discriminatedUnion("status", [
+    z.object({
+      status: z.literal("in_progress"),
+      nextActivity: ActivityDTOSchema,
+    }),
+    z.object({
+      status: z.literal("completed"),
+      result: LessonResultDTOSchema,
+    }),
+  ]),
+});
+export type AnswerActivityResponse = z.infer<
+  typeof AnswerActivityResponseSchema
+>;

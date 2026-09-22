@@ -24,3 +24,19 @@ export function findGrammarPatternLocalization(
     [patternId, language],
   );
 }
+
+/** Fallback distractor source for the "which pattern is this?" check —
+ * other published patterns at the same level, deterministically ordered. */
+export function listOtherPublishedGrammarPatterns(
+  db: Db,
+  levelId: string,
+  excludePatternId: string,
+  limit: number,
+): Promise<GrammarPatternRow[]> {
+  return db.all<GrammarPatternRow>(
+    `SELECT * FROM grammar_patterns
+     WHERE level_id = ? AND status = 'published' AND id != ?
+     ORDER BY id ASC LIMIT ?`,
+    [levelId, excludePatternId, limit],
+  );
+}

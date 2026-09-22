@@ -198,3 +198,66 @@ body {
   height: 100%;
   background: #1a1a1a;
 }
+
+/* Lesson session (Phase 6) — reuses onboarding-screen/option/button/
+   placement-passage classes above; these are the additional pieces. */
+
+.activity-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.activity-ipa {
+  color: #888;
+  margin: -8px 0 0;
+}
+
+.activity-feedback {
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.activity-feedback--correct {
+  background: #e6f4ea;
+  color: #1e7a34;
+}
+
+.activity-feedback--wrong {
+  background: #fdecea;
+  color: #b00020;
+}
+
+.sentence-build-target {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px;
+  border: 2px dashed #e0e0e0;
+  border-radius: 10px;
+}
+
+.sentence-build-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sentence-token {
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+  cursor: pointer;
+}
+
+.sentence-token--placed {
+  border-color: #1a1a1a;
+  background: #f2f2f2;
+}

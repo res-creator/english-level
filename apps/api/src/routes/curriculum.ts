@@ -28,7 +28,11 @@ curriculum.get("/path", async (c) => {
 
 curriculum.get("/modules/:moduleId", async (c) => {
   const db = createD1Db(c.env.DB);
-  const result = await getModuleDetail(db, c.req.param("moduleId"));
+  const result = await getModuleDetail(
+    db,
+    c.req.param("moduleId"),
+    c.get("currentUser").id,
+  );
   if (!result.ok) {
     return c.json({ error: result.error.message }, 404);
   }

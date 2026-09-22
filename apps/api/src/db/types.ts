@@ -300,3 +300,66 @@ export interface LessonItemRow {
   order_index: number;
   required: number;
 }
+
+// ---------------------------------------------------------------------------
+// Phase 6: lesson execution engine
+// ---------------------------------------------------------------------------
+
+export type LearningSessionStatusRow =
+  "in_progress" | "completed" | "abandoned";
+
+export interface LearningSessionRow {
+  id: string;
+  user_id: string;
+  lesson_id: string;
+  session_type: "lesson";
+  status: LearningSessionStatusRow;
+  started_at: string;
+  completed_at: string | null;
+  current_position: number;
+  correct_count: number;
+  wrong_count: number;
+  /** JSON-serialized StoredActivity[] — see lessonEngine/activityTypes.ts. */
+  activities_json: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export type ExerciseTypeRow =
+  | "info_card"
+  | "grammar_card"
+  | "multiple_choice"
+  | "fill_gap_choice"
+  | "typed_recall"
+  | "sentence_build";
+
+export interface ExerciseAttemptRow {
+  id: string;
+  user_id: string;
+  session_id: string;
+  activity_id: string;
+  activity_index: number;
+  target_type: LessonItemContentTypeRow;
+  target_id: string;
+  exercise_type: ExerciseTypeRow;
+  answer: string;
+  is_correct: number;
+  response_time_ms: number | null;
+  attempt_key: string;
+  created_at: string;
+}
+
+export type UserLessonProgressStatusRow =
+  "not_started" | "in_progress" | "completed";
+
+export interface UserLessonProgressRow {
+  user_id: string;
+  lesson_id: string;
+  status: UserLessonProgressStatusRow;
+  started_at: string | null;
+  completed_at: string | null;
+  attempt_count: number;
+  last_session_id: string | null;
+  accuracy: number | null;
+  updated_at: string;
+}

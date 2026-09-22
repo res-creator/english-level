@@ -6,17 +6,21 @@ covers **Phase 0** (monorepo/app shell), **Phase 1** (database foundation
 - basic user data model), **Phase 2** (Telegram Mini App authentication +
   `GET /api/v1/me`), **Phase 3** (onboarding preference collection, ending
   at a placement handoff), **Phase 4** (a real, semi-adaptive placement test
-  producing a verified CEFR level), and **Phase 5** (a curriculum/content
-  data model with a small original A1/A2 sample and read-only APIs) — no
-  lesson execution, mastery, SRS, streaks, or Duo yet. See
-  [`CLAUDE.md`](./CLAUDE.md) for the full product brief and architecture
-  principles, [`docs/database.md`](./docs/database.md) for the Phase 1
-  schema, [`docs/authentication.md`](./docs/authentication.md) for the
-  Phase 2 auth flow, [`docs/onboarding.md`](./docs/onboarding.md) for the
-  Phase 3 onboarding flow, [`docs/placement-test.md`](./docs/placement-test.md)
-  for the Phase 4 placement test, and [`docs/curriculum.md`](./docs/curriculum.md)
-- [`docs/content-authoring.md`](./docs/content-authoring.md) for the Phase 5
-  curriculum/content model.
+  producing a verified CEFR level), **Phase 5** (a curriculum/content
+  data model with a small original A1/A2 sample and read-only APIs), and
+  **Phase 6** (a lesson execution engine: sessions, generated activities,
+  server-side grading, lesson completion) — no mastery, SRS, streaks, or
+  Duo yet. See [`CLAUDE.md`](./CLAUDE.md) for the full product brief and
+  architecture principles, [`docs/database.md`](./docs/database.md) for
+  the Phase 1 schema, [`docs/authentication.md`](./docs/authentication.md)
+  for the Phase 2 auth flow, [`docs/onboarding.md`](./docs/onboarding.md)
+  for the Phase 3 onboarding flow,
+  [`docs/placement-test.md`](./docs/placement-test.md) for the Phase 4
+  placement test, [`docs/curriculum.md`](./docs/curriculum.md) and
+  [`docs/content-authoring.md`](./docs/content-authoring.md) for the
+  Phase 5 curriculum/content model, and
+  [`docs/lesson-engine.md`](./docs/lesson-engine.md) for the Phase 6
+  lesson execution engine.
 
 ## Project structure
 
@@ -33,17 +37,27 @@ apps/
     src/routes/{Placement,PlacementResult}.tsx Phase 4: the test + result screens
     src/curriculum/    Phase 5: curriculum API client
     src/routes/{Learn,ModuleDetail,LessonPreview}.tsx Phase 5: path/module/lesson screens
+    src/lessonEngine/  Phase 6: lesson-session API client + the six activity
+                        components + ActivityRenderer (kind -> component)
+    src/routes/{LessonSession,LessonResult}.tsx Phase 6: the lesson-session
+                        and result screens
   api/                 Cloudflare Worker backend (Hono)
     src/db/            D1 binding types, Db interface, D1 adapter, ID helper
     src/repositories/  typed data-access layer (users, settings, acquisition,
                         levels, sessions, placement questions/attempts/answers,
-                        curriculum modules/lessons, learning items, grammar)
+                        curriculum modules/lessons, learning items, grammar,
+                        learning sessions, exercise attempts, lesson progress)
     src/services/      framework-free business logic (authService,
-                        onboardingService, placementService, curriculumService)
+                        onboardingService, placementService, curriculumService,
+                        lessonSessionService)
     src/auth/          session cookie config, token hashing, requireAuth middleware
-    src/routes/        Hono route modules (auth, onboarding, placement, curriculum)
+    src/routes/        Hono route modules (auth, onboarding, placement,
+                        curriculum, lessonSessions)
     src/content/        Phase 5: seed-content Zod schemas, loader/validator,
                         upsert-statement builder, seed applier
+    src/lessonEngine/   Phase 6: activity plan generation, answer grading,
+                        internal-to-public DTO mapping — see
+                        docs/lesson-engine.md
     scripts/            Phase 5: generateSeedSql.ts (content -> a .sql file
                         for `wrangler d1 execute`)
     test/              data-layer + service tests (node:sqlite + node:test)
@@ -51,8 +65,11 @@ packages/
   contracts/           Zod schemas shared between web and api
   shared/               Cross-cutting types/constants + Telegram initData
                          validation/signing (packages/shared/src/telegram.ts)
-  learning-engine/      Lesson-execution/mastery/SRS domain logic (empty stub —
-                         Phase 5 is curriculum *content*, not execution)
+  learning-engine/      still an empty stub — mastery/SRS domain logic still
+                         doesn't exist. Phase 6's lesson *execution* logic
+                         lives in apps/api/src/lessonEngine instead (app-local,
+                         like src/content/), since it's tightly coupled to the
+                         repositories/services layer, not shared with the web app.
 migrations/            D1 schema migrations:
                           0001_init.sql     — levels, users, user_settings, user_acquisition
                           0002_sessions.sql — sessions (Phase 2 auth)
@@ -67,13 +84,19 @@ migrations/            D1 schema migrations:
                                                 (+ localizations/relations),
                                                 lesson_items — schema only, no
                                                 content rows (see seeds/content/)
+                          0006_lesson_sessions.sql — learning_sessions,
+                                                exercise_attempts,
+                                                user_lesson_progress (Phase 6
+                                                lesson execution — see
+                                                docs/lesson-engine.md)
 seeds/
   content/              Phase 5 curriculum/content source data (JSON), imported
                         via apps/api/src/content/ — see docs/content-authoring.md
 docs/                  database.md (Phase 1 schema), authentication.md (Phase 2
                         auth), onboarding.md (Phase 3 onboarding flow),
                         placement-test.md (Phase 4 placement algorithm),
-                        curriculum.md + content-authoring.md (Phase 5)
+                        curriculum.md + content-authoring.md (Phase 5),
+                        lesson-engine.md (Phase 6 lesson execution engine)
 ```
 
 `apps/web` depends on `packages/contracts` and `packages/shared` via pnpm
@@ -145,6 +168,9 @@ the repo-root `migrations/` folder, applied in order:
 - `migrations/0005_curriculum.sql` — the curriculum/content schema
   (schema only, no seed rows — see "Curriculum" below). See
   [`docs/curriculum.md`](./docs/curriculum.md).
+- `migrations/0006_lesson_sessions.sql` — `learning_sessions`,
+  `exercise_attempts`, `user_lesson_progress`, for Phase 6 lesson
+  execution. See [`docs/lesson-engine.md`](./docs/lesson-engine.md).
 
 **How migrations will eventually be applied:** once `wrangler dev` can run
 on a given machine (or in CI), migrations are applied with:
@@ -285,6 +311,33 @@ policy: [`docs/curriculum.md`](./docs/curriculum.md) and
   `/today`, since Learn has real data to show and Today is still a
   placeholder.
 
+## Lesson execution
+
+`/learn/lessons/:lessonId` now has a real "Start Lesson" button. Full
+design (session lifecycle, activity generation, grading, idempotency,
+retry behavior, replay): [`docs/lesson-engine.md`](./docs/lesson-engine.md).
+In short:
+
+- **Sessions, not static exercise rows**: starting a lesson generates a
+  full, deterministic activity plan once (`ActivityKind` = `info_card`,
+  `grammar_card`, `multiple_choice`, `fill_gap_choice`, `typed_recall`,
+  `sentence_build`) and stores it on one `learning_sessions` row. The
+  backend is the only source of truth for correctness, position, and
+  completion — the frontend never decides any of that.
+- **APIs** (all behind `requireAuth`): `POST /api/v1/lessons/:lessonId/start`
+  (starts or resumes), `GET /api/v1/sessions/:sessionId` (resume after
+  reopening the Mini App), `POST /api/v1/sessions/:sessionId/answer`
+  (server-side grading, idempotent on a client-generated `attemptId`),
+  `GET /api/v1/sessions/:sessionId/result` (the completed result,
+  reconstructed from persisted data — survives a page reload).
+- **Completion** updates `user_lesson_progress` (Completed ✓ / In
+  progress / Available, now shown on the Module screen) in the same
+  transaction as the session completion — same `Db.batch()` integrity
+  pattern Phase 4 used for placement finalization.
+- Still **no mastery, SRS, Review, Today Engine, streaks, or Duo** — this
+  phase is execution of existing content, not a knowledge/retention
+  system.
+
 ## Running both locally
 
 ```
@@ -353,16 +406,16 @@ replacing it — see "Authentication" above.
 
 Run from the repo root (they fan out to all workspace packages):
 
-| Script              | What it does                                                                                                                                                                                    |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm dev`          | run api + web dev servers together                                                                                                                                                              |
-| `pnpm dev:web`      | run only the frontend dev server                                                                                                                                                                |
-| `pnpm dev:api`      | run only the backend dev server                                                                                                                                                                 |
-| `pnpm build`        | typecheck + build every package                                                                                                                                                                 |
-| `pnpm typecheck`    | `tsc --noEmit` in every package                                                                                                                                                                 |
-| `pnpm test`         | run tests in every package that defines one (currently: `packages/shared`'s Telegram initData tests, `apps/api`'s data-layer + auth/onboarding/placement/curriculum-service + content-QA tests) |
-| `pnpm format`       | format the repo with Prettier                                                                                                                                                                   |
-| `pnpm format:check` | check formatting without writing                                                                                                                                                                |
+| Script              | What it does                                                                                                                                                                                                   |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev`          | run api + web dev servers together                                                                                                                                                                             |
+| `pnpm dev:web`      | run only the frontend dev server                                                                                                                                                                               |
+| `pnpm dev:api`      | run only the backend dev server                                                                                                                                                                                |
+| `pnpm build`        | typecheck + build every package                                                                                                                                                                                |
+| `pnpm typecheck`    | `tsc --noEmit` in every package                                                                                                                                                                                |
+| `pnpm test`         | run tests in every package that defines one (currently: `packages/shared`'s Telegram initData tests, `apps/api`'s data-layer + auth/onboarding/placement/curriculum/lesson-session-service + content-QA tests) |
+| `pnpm format`       | format the repo with Prettier                                                                                                                                                                                  |
+| `pnpm format:check` | check formatting without writing                                                                                                                                                                               |
 
 ## Routes
 
@@ -378,5 +431,7 @@ curriculum data (see "Curriculum" above); `/today`, `/review`, `/friends`,
 [`docs/onboarding.md`](./docs/onboarding.md)). `/placement` and
 `/placement/result/:attemptId` are Phase 4's real placement test and
 result screen (see [`docs/placement-test.md`](./docs/placement-test.md)).
-All of these render full-screen, without the bottom nav, and require an
-authenticated session.
+`/learn/lessons/:lessonId/session` and `/learn/lessons/:lessonId/result`
+are Phase 6's real lesson session and result screens (see "Lesson
+execution" above). All of these render full-screen, without the bottom
+nav, and require an authenticated session.

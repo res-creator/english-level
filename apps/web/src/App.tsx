@@ -8,6 +8,8 @@ import { Today } from "./routes/Today";
 import { Learn } from "./routes/Learn";
 import { ModuleDetail } from "./routes/ModuleDetail";
 import { LessonPreview } from "./routes/LessonPreview";
+import { LessonSession } from "./routes/LessonSession";
+import { LessonResult } from "./routes/LessonResult";
 import { Review } from "./routes/Review";
 import { Friends } from "./routes/Friends";
 import { Profile } from "./routes/Profile";
@@ -55,6 +57,16 @@ export function App() {
               <Route
                 path="/placement/result/:attemptId"
                 element={<PlacementResult />}
+              />
+              {/* Lesson execution (Phase 6) also renders full-screen,
+                  focused on one activity at a time, without the bottom nav. */}
+              <Route
+                path="/learn/lessons/:lessonId/session"
+                element={<LessonSession />}
+              />
+              <Route
+                path="/learn/lessons/:lessonId/result/:sessionId"
+                element={<LessonResult />}
               />
             </Route>
           </Routes>

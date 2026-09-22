@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import type { LessonContentDTO } from "@english-level/contracts";
 import { getLessonContent } from "../curriculum/curriculumClient.ts";
 
@@ -10,6 +10,7 @@ type State =
 
 export function LessonPreview() {
   const { lessonId } = useParams<{ lessonId: string }>();
+  const navigate = useNavigate();
   const [state, setState] = useState<State>({ status: "loading" });
 
   useEffect(() => {
@@ -73,9 +74,15 @@ export function LessonPreview() {
         )}
       </div>
 
-      <p className="onboarding-progress">
-        Lesson practice will be added in the next phase.
-      </p>
+      <div className="onboarding-actions">
+        <button
+          type="button"
+          className="button-primary"
+          onClick={() => navigate(`/learn/lessons/${lesson.id}/session`)}
+        >
+          Start Lesson
+        </button>
+      </div>
     </section>
   );
 }

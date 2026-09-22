@@ -80,7 +80,7 @@ test("path never invents progress/completion data", async () => {
 
 test("module detail returns metadata and an ordered lesson list", async () => {
   const { db } = await seeded();
-  const result = await getModuleDetail(db, "mod_a1_01");
+  const result = await getModuleDetail(db, "mod_a1_01", "usr_test");
   assert.equal(result.ok, true);
   if (!result.ok) return;
 
@@ -95,14 +95,14 @@ test("module detail returns metadata and an ordered lesson list", async () => {
 
 test("module lesson order is deterministic across repeated calls", async () => {
   const { db } = await seeded();
-  const first = await getModuleDetail(db, "mod_a2_02");
-  const second = await getModuleDetail(db, "mod_a2_02");
+  const first = await getModuleDetail(db, "mod_a2_02", "usr_test");
+  const second = await getModuleDetail(db, "mod_a2_02", "usr_test");
   assert.deepEqual(first, second);
 });
 
 test("an unknown module id returns not_found", async () => {
   const { db } = await seeded();
-  const result = await getModuleDetail(db, "mod_does_not_exist");
+  const result = await getModuleDetail(db, "mod_does_not_exist", "usr_test");
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.error.code, "not_found");
 });
@@ -112,7 +112,7 @@ test("an archived module is not returned", async () => {
   sqlite
     .prepare("UPDATE modules SET status = 'archived' WHERE id = ?")
     .run("mod_a1_02");
-  const result = await getModuleDetail(db, "mod_a1_02");
+  const result = await getModuleDetail(db, "mod_a1_02", "usr_test");
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.error.code, "not_found");
 });
@@ -232,7 +232,7 @@ test("reading curriculum content does not mutate any table (no progress/completi
 
   const before = snapshot();
   await getCurriculumPath(db, "A1");
-  await getModuleDetail(db, "mod_a1_01");
+  await getModuleDetail(db, "mod_a1_01", "usr_test");
   await getLessonContent(db, "les_a1_01_01");
   await getLessonContent(db, "les_a1_01_04");
   const after = snapshot();
