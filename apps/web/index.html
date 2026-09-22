@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>English Level</title>
+    <!-- Must load before any app script: this is what actually defines
+         window.Telegram.WebApp inside a real Telegram client. Without it,
+         window.Telegram is undefined even when genuinely running inside
+         Telegram, and apps/web/src/telegram/webapp.ts falls back to the
+         dev mock. See docs/authentication.md. -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
   </head>
   <body>
     <div id="root"></div>

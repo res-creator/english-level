@@ -219,6 +219,9 @@ importers:
         specifier: ^6.26.0
         version: 6.30.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
+      '@types/node':
+        specifier: ^22.7.0
+        version: 22.20.4
       '@types/react':
         specifier: ^18.3.0
         version: 18.3.31

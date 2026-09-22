@@ -42,16 +42,13 @@ name = "english-level-api-preview"
 [[env.preview.d1_databases]]
 binding = "DB"
 database_name = "english-level-db-preview"
-database_id = "REPLACE_WITH_PREVIEW_D1_DATABASE_ID"
+database_id = "ec925c1d-745c-4d71-b46f-0ece4e3fee3a"
 migrations_dir = "../../migrations"
 
-# Real value = the deployed apps/web preview Worker's origin, e.g.
-# "https://english-level-web-preview.<your-subdomain>.workers.dev" — only
-# knowable after that Worker is first deployed (see docs/deployment.md).
 # TELEGRAM_BOT_TOKEN is intentionally NOT set here: it must be a secret,
 # set once via `wrangler secret put TELEGRAM_BOT_TOKEN --env preview`.
 [env.preview.vars]
-ALLOWED_ORIGINS = "https://REPLACE_WITH_PREVIEW_WEB_ORIGIN.workers.dev"
+ALLOWED_ORIGINS = "https://english-level-web-preview.res-creator.workers.dev"
 
 # Deployed via `wrangler deploy --env production`. See docs/deployment.md.
 [env.production]

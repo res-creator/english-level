@@ -133,6 +133,19 @@ Crucially, **the backend has exactly one validation code path** —
 `validateTelegramInitData` — used for both real and dev-fixture traffic.
 There is no `if (isDev) skip validation` branch anywhere.
 
+**`window.Telegram.WebApp` only exists if `telegram-web-app.js` is
+loaded.** This is the actual mechanism the mock-vs-real detection above
+depends on: Telegram does not inject this object into a Mini App page on
+its own — the page itself must load Telegram's own script
+(`https://telegram.org/js/telegram-web-app.js`, in `apps/web/index.html`,
+before the app's own bundle). If that script is ever missing,
+`window.Telegram` is `undefined` even when genuinely running inside a
+real Telegram client, so `resolveTelegramWebApp()`
+(`apps/web/src/telegram/webapp.ts`) always falls back to the dev mock —
+this exact gap shipped in the first deployment and was caught by testing
+the real deployed Mini App inside Telegram Desktop (local dev never
+surfaces it, since a plain browser tab is _supposed_ to use the mock).
+
 ## Security assumptions
 
 - `TELEGRAM_BOT_TOKEN` is a server-only secret. It's never sent to the

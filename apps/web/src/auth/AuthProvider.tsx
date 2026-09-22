@@ -4,7 +4,7 @@ import type {
   TelegramAuthResponse,
 } from "@english-level/contracts";
 import { useTelegram } from "../telegram/useTelegram.ts";
-import { buildDevInitData } from "./devTelegramFixture.ts";
+import { resolveInitData } from "./resolveInitData.ts";
 import { getMe, telegramLogin } from "./authClient.ts";
 
 export type AuthStatus =
@@ -33,11 +33,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     async function bootstrap() {
       try {
-        const initData = isMock
-          ? import.meta.env.DEV && webApp.initDataUnsafe.user
-            ? await buildDevInitData(webApp.initDataUnsafe.user)
-            : null
-          : webApp.initData || null;
+        const initData = await resolveInitData(
+          webApp,
+          isMock,
+          import.meta.env.DEV,
+        );
 
         if (!initData) {
           // No real Telegram session and no dev fixture available (e.g. a

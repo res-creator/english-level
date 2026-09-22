@@ -46,6 +46,31 @@ test("first valid authentication creates a user", async () => {
   assert.ok(login.result.sessionToken.length > 0);
 });
 
+test("real Telegram payloads with an empty last_name/username (not omitted) do not crash login — regression for the real-deployment 500", async () => {
+  const { db } = createTestDb();
+  // Real Telegram clients sometimes send last_name/username as "" rather
+  // than omitting the key, unlike every other fixture in this file (and
+  // unlike the dev mock) — this reproduces exactly that shape.
+  const initData = await buildValidInitData({
+    id: 999,
+    first_name: "Татьяна",
+    last_name: "",
+    username: "",
+    language_code: "ru",
+  });
+
+  const login = await loginWithTelegramInitData(db, {
+    ...LOGIN_OPTIONS_BASE,
+    initData,
+  });
+
+  assert.equal(login.ok, true);
+  if (!login.ok) return;
+  assert.equal(login.result.user.first_name, "Татьяна");
+  assert.equal(login.result.user.last_name, null);
+  assert.equal(login.result.user.username, null);
+});
+
 test("first valid authentication creates default user_settings", async () => {
   const { db } = createTestDb();
   const initData = await buildValidInitData({ id: 222, first_name: "Anna" });

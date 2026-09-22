@@ -38,6 +38,20 @@ export interface TelegramLoginResult {
 export type TelegramLoginFailure = { code: "invalid_telegram_auth" };
 
 /**
+ * Real Telegram clients sometimes send an empty string for an optional
+ * field (observed: `last_name: ""` for a user with no last name) instead
+ * of omitting the key entirely, the way every test fixture and the dev
+ * mock always did. `createUser`/`syncTelegramProfile`'s schemas treat
+ * "present but empty" as invalid (`min(1)`), which is correct for
+ * directly-supplied input elsewhere — but for Telegram-sourced data,
+ * empty and absent both mean "not set" and must be normalized here, at
+ * the Telegram-data boundary, before either schema ever sees it.
+ */
+function emptyToUndefined(value: string | undefined): string | undefined {
+  return value ? value : undefined;
+}
+
+/**
  * The whole Telegram Mini App login flow, decoupled from HTTP: validates
  * `initData`, creates or syncs the user, creates a session. Framework-free
  * (only depends on `Db`) so it runs unmodified against a real D1 binding
@@ -69,8 +83,8 @@ export async function loginWithTelegramInitData(
     user = await createUser(db, {
       telegramUserId: telegramUser.id,
       firstName: telegramUser.first_name,
-      lastName: telegramUser.last_name,
-      username: telegramUser.username,
+      lastName: emptyToUndefined(telegramUser.last_name),
+      username: emptyToUndefined(telegramUser.username),
       interfaceLanguage: telegramUser.language_code ?? "en",
     });
     await createDefaultUserSettings(db, user.id);
@@ -78,8 +92,8 @@ export async function loginWithTelegramInitData(
   } else {
     user = await syncTelegramProfile(db, existing.id, {
       firstName: telegramUser.first_name,
-      lastName: telegramUser.last_name ?? null,
-      username: telegramUser.username ?? null,
+      lastName: emptyToUndefined(telegramUser.last_name) ?? null,
+      username: emptyToUndefined(telegramUser.username) ?? null,
       interfaceLanguage: telegramUser.language_code,
     });
     next = navigationIntentFor(user);
