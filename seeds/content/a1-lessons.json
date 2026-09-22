@@ -1,0 +1,98 @@
+[
+  {
+    "id": "les_a1_01_01",
+    "moduleId": "mod_a1_01",
+    "title": "Vocabulary",
+    "lessonType": "vocabulary",
+    "order": 1,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_01_02",
+    "moduleId": "mod_a1_01",
+    "title": "Useful Phrases",
+    "lessonType": "vocabulary",
+    "order": 2,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_01_03",
+    "moduleId": "mod_a1_01",
+    "title": "Grammar",
+    "lessonType": "grammar",
+    "order": 3,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_01_04",
+    "moduleId": "mod_a1_01",
+    "title": "Mixed Practice",
+    "lessonType": "mixed",
+    "order": 4,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_02_01",
+    "moduleId": "mod_a1_02",
+    "title": "Vocabulary",
+    "lessonType": "vocabulary",
+    "order": 1,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_02_02",
+    "moduleId": "mod_a1_02",
+    "title": "Useful Phrases",
+    "lessonType": "vocabulary",
+    "order": 2,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_02_03",
+    "moduleId": "mod_a1_02",
+    "title": "Grammar",
+    "lessonType": "grammar",
+    "order": 3,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_02_04",
+    "moduleId": "mod_a1_02",
+    "title": "Mixed Practice",
+    "lessonType": "mixed",
+    "order": 4,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_03_01",
+    "moduleId": "mod_a1_03",
+    "title": "Vocabulary",
+    "lessonType": "vocabulary",
+    "order": 1,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_03_02",
+    "moduleId": "mod_a1_03",
+    "title": "Useful Phrases",
+    "lessonType": "vocabulary",
+    "order": 2,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_03_03",
+    "moduleId": "mod_a1_03",
+    "title": "Grammar",
+    "lessonType": "grammar",
+    "order": 3,
+    "estimatedMinutes": 5
+  },
+  {
+    "id": "les_a1_03_04",
+    "moduleId": "mod_a1_03",
+    "title": "Checkpoint",
+    "lessonType": "checkpoint",
+    "order": 4,
+    "estimatedMinutes": 10
+  }
+]

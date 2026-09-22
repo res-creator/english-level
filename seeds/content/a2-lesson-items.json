@@ -1,0 +1,632 @@
+[
+  {
+    "id": "li_les_a2_01_01_01",
+    "lessonId": "les_a2_01_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_commute",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_01_02",
+    "lessonId": "les_a2_01_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_appointment",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_01_03",
+    "lessonId": "les_a2_01_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_schedule",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_01_04",
+    "lessonId": "les_a2_01_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_deadline",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_01_05",
+    "lessonId": "les_a2_01_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_habit",
+    "role": "introduce",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_01_06",
+    "lessonId": "les_a2_01_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_chores",
+    "role": "introduce",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_01_07",
+    "lessonId": "les_a2_01_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_run_errands",
+    "role": "introduce",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_02_01",
+    "lessonId": "les_a2_01_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_im_running_late",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_02_02",
+    "lessonId": "les_a2_01_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_catch_up_on",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_02_03",
+    "lessonId": "les_a2_01_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_make_time_for",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_02_04",
+    "lessonId": "les_a2_01_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_get_used_to",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_02_05",
+    "lessonId": "les_a2_01_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_put_off",
+    "role": "introduce",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_02_06",
+    "lessonId": "les_a2_01_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_on_time",
+    "role": "introduce",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_02_07",
+    "lessonId": "les_a2_01_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_im_exhausted",
+    "role": "introduce",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_03_01",
+    "lessonId": "les_a2_01_03",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_positive",
+    "role": "target",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_03_02",
+    "lessonId": "les_a2_01_03",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_questions",
+    "role": "target",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_03_03",
+    "lessonId": "les_a2_01_03",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_negative",
+    "role": "target",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_01_04_01",
+    "lessonId": "les_a2_01_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_commute",
+    "role": "review",
+    "order": 1,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_01_04_02",
+    "lessonId": "les_a2_01_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_schedule",
+    "role": "review",
+    "order": 2,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_01_04_03",
+    "lessonId": "les_a2_01_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_im_running_late",
+    "role": "review",
+    "order": 3,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_01_04_04",
+    "lessonId": "les_a2_01_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_make_time_for",
+    "role": "review",
+    "order": 4,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_01_04_05",
+    "lessonId": "les_a2_01_04",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_positive",
+    "role": "practice",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_01_04_06",
+    "lessonId": "les_a2_01_04",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_questions",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_01_04_07",
+    "lessonId": "les_a2_01_04",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_negative",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_02_01_01",
+    "lessonId": "les_a2_02_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_platform",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_01_02",
+    "lessonId": "les_a2_02_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_delay",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_01_03",
+    "lessonId": "les_a2_02_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_fare",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_01_04",
+    "lessonId": "les_a2_02_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_luggage",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_01_05",
+    "lessonId": "les_a2_02_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_boarding_pass",
+    "role": "introduce",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_01_06",
+    "lessonId": "les_a2_02_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_round_trip",
+    "role": "introduce",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_01_07",
+    "lessonId": "les_a2_02_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_check_in",
+    "role": "introduce",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_02_01",
+    "lessonId": "les_a2_02_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_how_do_i_get_to",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_02_02",
+    "lessonId": "les_a2_02_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_is_this_seat_taken",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_02_03",
+    "lessonId": "les_a2_02_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_miss_the_bus",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_02_04",
+    "lessonId": "les_a2_02_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_catch_a_flight",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_02_05",
+    "lessonId": "les_a2_02_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_get_lost",
+    "role": "introduce",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_02_06",
+    "lessonId": "les_a2_02_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_set_off",
+    "role": "introduce",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_02_07",
+    "lessonId": "les_a2_02_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_book_a_ticket",
+    "role": "introduce",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_03_01",
+    "lessonId": "les_a2_02_03",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_comparatives",
+    "role": "target",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_03_02",
+    "lessonId": "les_a2_02_03",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_going_to_future",
+    "role": "target",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_02_04_01",
+    "lessonId": "les_a2_02_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_platform",
+    "role": "review",
+    "order": 1,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_02_04_02",
+    "lessonId": "les_a2_02_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_fare",
+    "role": "review",
+    "order": 2,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_02_04_03",
+    "lessonId": "les_a2_02_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_how_do_i_get_to",
+    "role": "review",
+    "order": 3,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_02_04_04",
+    "lessonId": "les_a2_02_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_miss_the_bus",
+    "role": "review",
+    "order": 4,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_02_04_05",
+    "lessonId": "les_a2_02_04",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_comparatives",
+    "role": "practice",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_02_04_06",
+    "lessonId": "les_a2_02_04",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_going_to_future",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_03_01_01",
+    "lessonId": "les_a2_03_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_conversation",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_01_02",
+    "lessonId": "les_a2_03_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_message",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_01_03",
+    "lessonId": "les_a2_03_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_reply",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_01_04",
+    "lessonId": "les_a2_03_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_apologize",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_01_05",
+    "lessonId": "les_a2_03_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_opinion",
+    "role": "introduce",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_01_06",
+    "lessonId": "les_a2_03_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_misunderstanding",
+    "role": "introduce",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_01_07",
+    "lessonId": "les_a2_03_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_get_in_touch",
+    "role": "introduce",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_02_01",
+    "lessonId": "les_a2_03_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_can_you_repeat_that",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_02_02",
+    "lessonId": "les_a2_03_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_what_do_you_mean",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_02_03",
+    "lessonId": "les_a2_03_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_i_see_what_you_mean",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_02_04",
+    "lessonId": "les_a2_03_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_to_be_honest",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_02_05",
+    "lessonId": "les_a2_03_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_let_me_know",
+    "role": "introduce",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_02_06",
+    "lessonId": "les_a2_03_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_get_back_to_you",
+    "role": "introduce",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_02_07",
+    "lessonId": "les_a2_03_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_sort_out",
+    "role": "introduce",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_03_01",
+    "lessonId": "les_a2_03_03",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_should",
+    "role": "target",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_03_02",
+    "lessonId": "les_a2_03_03",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_must_have_to",
+    "role": "target",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_03_03",
+    "lessonId": "les_a2_03_03",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_present_perfect_intro",
+    "role": "target",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_les_a2_03_04_01",
+    "lessonId": "les_a2_03_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_conversation",
+    "role": "review",
+    "order": 1,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_03_04_02",
+    "lessonId": "les_a2_03_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_reply",
+    "role": "review",
+    "order": 2,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_03_04_03",
+    "lessonId": "les_a2_03_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_can_you_repeat_that",
+    "role": "review",
+    "order": 3,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_03_04_04",
+    "lessonId": "les_a2_03_04",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_i_see_what_you_mean",
+    "role": "review",
+    "order": 4,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_03_04_05",
+    "lessonId": "les_a2_03_04",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_should",
+    "role": "practice",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_03_04_06",
+    "lessonId": "les_a2_03_04",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_must_have_to",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_les_a2_03_04_07",
+    "lessonId": "les_a2_03_04",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_present_perfect_intro",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  }
+]

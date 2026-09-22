@@ -1,0 +1,916 @@
+[
+  {
+    "id": "itm_a2_commute",
+    "itemType": "word",
+    "lemma": "commute",
+    "displayForm": "commute",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "routines",
+    "ru": {
+      "translation": "добираться до работы",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_commute_01",
+        "text": "My commute takes 40 minutes.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_appointment",
+    "itemType": "word",
+    "lemma": "appointment",
+    "displayForm": "appointment",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "routines",
+    "ru": {
+      "translation": "встреча / приём (по записи)",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_appointment_01",
+        "text": "I have a doctor's appointment.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_schedule",
+    "itemType": "word",
+    "lemma": "schedule",
+    "displayForm": "schedule",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "routines",
+    "ru": {
+      "translation": "расписание",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_schedule_01",
+        "text": "My schedule is very full this week.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_deadline",
+    "itemType": "word",
+    "lemma": "deadline",
+    "displayForm": "deadline",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "routines",
+    "ru": {
+      "translation": "крайний срок",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_deadline_01",
+        "text": "The deadline is Friday.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_habit",
+    "itemType": "word",
+    "lemma": "habit",
+    "displayForm": "habit",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "routines",
+    "ru": {
+      "translation": "привычка",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_habit_01",
+        "text": "Checking my phone is a bad habit.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_chores",
+    "itemType": "word",
+    "lemma": "chores",
+    "displayForm": "chores",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "routines",
+    "ru": {
+      "translation": "домашние дела",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_chores_01",
+        "text": "I do the chores on Saturday.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_run_errands",
+    "itemType": "collocation",
+    "lemma": "run errands",
+    "displayForm": "run errands",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "routines",
+    "ru": {
+      "translation": "заниматься делами (по хозяйству)",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_run_errands_01",
+        "text": "I need to run some errands.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_im_running_late",
+    "itemType": "functional_phrase",
+    "lemma": "I'm running late",
+    "displayForm": "I'm running late.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "routines",
+    "ru": {
+      "translation": "Я опаздываю.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_im_running_late_01",
+        "text": "Sorry, I'm running late - the bus was delayed.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_catch_up_on",
+    "itemType": "phrasal_verb",
+    "lemma": "catch up on",
+    "displayForm": "catch up on",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "routines",
+    "ru": {
+      "translation": "наверстать / нагнать (напр. сон, работу)",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_catch_up_on_01",
+        "text": "I need to catch up on sleep.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": [
+      {
+        "id": "pat_itm_a2_catch_up_on_01",
+        "patternText": "catch up on + noun",
+        "correctExample": "I need to catch up on work.",
+        "incorrectExample": "I need to catch up work.",
+        "order": 1
+      }
+    ]
+  },
+  {
+    "id": "itm_a2_make_time_for",
+    "itemType": "collocation",
+    "lemma": "make time for",
+    "displayForm": "make time for",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "routines",
+    "ru": {
+      "translation": "находить время для",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_make_time_for_01",
+        "text": "I try to make time for exercise.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_get_used_to",
+    "itemType": "collocation",
+    "lemma": "get used to",
+    "displayForm": "get used to",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "routines",
+    "ru": {
+      "translation": "привыкать к",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_get_used_to_01",
+        "text": "I'm getting used to the new schedule.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": [
+      {
+        "id": "pat_itm_a2_get_used_to_01",
+        "patternText": "get used to + verb-ing / noun",
+        "correctExample": "I'm getting used to waking up early.",
+        "incorrectExample": "I'm getting used to wake up early.",
+        "order": 1
+      }
+    ]
+  },
+  {
+    "id": "itm_a2_put_off",
+    "itemType": "phrasal_verb",
+    "lemma": "put off",
+    "displayForm": "put off",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "routines",
+    "ru": {
+      "translation": "откладывать",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_put_off_01",
+        "text": "Don't put off your homework.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": [
+      {
+        "id": "pat_itm_a2_put_off_01",
+        "patternText": "put off + verb-ing",
+        "correctExample": "Don't put off doing your homework.",
+        "incorrectExample": "Don't put off to do your homework.",
+        "order": 1
+      }
+    ]
+  },
+  {
+    "id": "itm_a2_on_time",
+    "itemType": "phrase",
+    "lemma": "on time",
+    "displayForm": "on time",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "routines",
+    "ru": {
+      "translation": "вовремя",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_on_time_01",
+        "text": "The train arrived on time.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_im_exhausted",
+    "itemType": "functional_phrase",
+    "lemma": "I'm exhausted",
+    "displayForm": "I'm exhausted.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "routines",
+    "ru": {
+      "translation": "Я вымотан(а).",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_im_exhausted_01",
+        "text": "I'm exhausted after that meeting.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_platform",
+    "itemType": "word",
+    "lemma": "platform",
+    "displayForm": "platform",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "travel",
+    "ru": {
+      "translation": "платформа / перрон",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_platform_01",
+        "text": "The train leaves from platform 3.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_delay",
+    "itemType": "word",
+    "lemma": "delay",
+    "displayForm": "delay",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "travel",
+    "ru": {
+      "translation": "задержка",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_delay_01",
+        "text": "There's a delay on this line.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_fare",
+    "itemType": "word",
+    "lemma": "fare",
+    "displayForm": "fare",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "travel",
+    "ru": {
+      "translation": "стоимость проезда",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_fare_01",
+        "text": "The bus fare is two dollars.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_luggage",
+    "itemType": "word",
+    "lemma": "luggage",
+    "displayForm": "luggage",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "travel",
+    "ru": {
+      "translation": "багаж",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_luggage_01",
+        "text": "My luggage is very heavy.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_boarding_pass",
+    "itemType": "phrase",
+    "lemma": "boarding pass",
+    "displayForm": "boarding pass",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "посадочный талон",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_boarding_pass_01",
+        "text": "Don't forget your boarding pass.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_round_trip",
+    "itemType": "phrase",
+    "lemma": "round trip",
+    "displayForm": "round trip",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "билет туда и обратно",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_round_trip_01",
+        "text": "I bought a round-trip ticket.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_check_in",
+    "itemType": "phrasal_verb",
+    "lemma": "check in",
+    "displayForm": "check in",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "регистрироваться (на рейс / в отель)",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_check_in_01",
+        "text": "We checked in two hours early.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_how_do_i_get_to",
+    "itemType": "functional_phrase",
+    "lemma": "how do I get to",
+    "displayForm": "How do I get to the station?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "Как мне добраться до вокзала?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_how_do_i_get_to_01",
+        "text": "\"How do I get to the station?\" \"Take bus 12.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_is_this_seat_taken",
+    "itemType": "functional_phrase",
+    "lemma": "is this seat taken",
+    "displayForm": "Is this seat taken?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "Это место занято?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_is_this_seat_taken_01",
+        "text": "\"Is this seat taken?\" \"No, go ahead.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_miss_the_bus",
+    "itemType": "collocation",
+    "lemma": "miss the bus",
+    "displayForm": "miss the bus",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "опоздать на автобус",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_miss_the_bus_01",
+        "text": "I missed the bus this morning.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_catch_a_flight",
+    "itemType": "collocation",
+    "lemma": "catch a flight",
+    "displayForm": "catch a flight",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "успеть на рейс",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_catch_a_flight_01",
+        "text": "We need to catch our flight.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_get_lost",
+    "itemType": "collocation",
+    "lemma": "get lost",
+    "displayForm": "get lost",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "заблудиться",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_get_lost_01",
+        "text": "We got lost in the old town.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_set_off",
+    "itemType": "phrasal_verb",
+    "lemma": "set off",
+    "displayForm": "set off",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "отправляться (в путь)",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_set_off_01",
+        "text": "We set off early in the morning.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_book_a_ticket",
+    "itemType": "collocation",
+    "lemma": "book a ticket",
+    "displayForm": "book a ticket",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "travel",
+    "ru": {
+      "translation": "забронировать билет",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_book_a_ticket_01",
+        "text": "I booked a ticket online.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_conversation",
+    "itemType": "word",
+    "lemma": "conversation",
+    "displayForm": "conversation",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "communication",
+    "ru": {
+      "translation": "разговор",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_conversation_01",
+        "text": "We had a long conversation.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_message",
+    "itemType": "word",
+    "lemma": "message",
+    "displayForm": "message",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "communication",
+    "ru": {
+      "translation": "сообщение",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_message_01",
+        "text": "I sent you a message.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_reply",
+    "itemType": "word",
+    "lemma": "reply",
+    "displayForm": "reply",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "communication",
+    "ru": {
+      "translation": "ответ",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_reply_01",
+        "text": "I haven't got a reply yet.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_apologize",
+    "itemType": "word",
+    "lemma": "apologize",
+    "displayForm": "apologize",
+    "levelCode": "A2",
+    "partOfSpeech": "verb",
+    "topic": "communication",
+    "ru": {
+      "translation": "извиняться",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_apologize_01",
+        "text": "He apologized for being late.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_opinion",
+    "itemType": "word",
+    "lemma": "opinion",
+    "displayForm": "opinion",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "communication",
+    "ru": {
+      "translation": "мнение",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_opinion_01",
+        "text": "In my opinion, it's a good idea.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_misunderstanding",
+    "itemType": "word",
+    "lemma": "misunderstanding",
+    "displayForm": "misunderstanding",
+    "levelCode": "A2",
+    "partOfSpeech": "noun",
+    "topic": "communication",
+    "ru": {
+      "translation": "недопонимание",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_misunderstanding_01",
+        "text": "There was a misunderstanding.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_get_in_touch",
+    "itemType": "collocation",
+    "lemma": "get in touch",
+    "displayForm": "get in touch",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "communication",
+    "ru": {
+      "translation": "связаться (с кем-то)",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_get_in_touch_01",
+        "text": "I'll get in touch next week.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": [
+      {
+        "id": "pat_itm_a2_get_in_touch_01",
+        "patternText": "get in touch with + someone",
+        "correctExample": "I'll get in touch with the manager.",
+        "incorrectExample": "I'll get in touch the manager.",
+        "order": 1
+      }
+    ]
+  },
+  {
+    "id": "itm_a2_can_you_repeat_that",
+    "itemType": "functional_phrase",
+    "lemma": "can you repeat that",
+    "displayForm": "Can you repeat that, please?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "communication",
+    "ru": {
+      "translation": "Повторите, пожалуйста?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_can_you_repeat_that_01",
+        "text": "\"Can you repeat that, please?\" \"Sure - I said the meeting is at 3pm.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_what_do_you_mean",
+    "itemType": "functional_phrase",
+    "lemma": "what do you mean",
+    "displayForm": "What do you mean?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "communication",
+    "ru": {
+      "translation": "Что ты имеешь в виду?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_what_do_you_mean_01",
+        "text": "\"It's complicated.\" \"What do you mean?\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_i_see_what_you_mean",
+    "itemType": "functional_phrase",
+    "lemma": "I see what you mean",
+    "displayForm": "I see what you mean.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "communication",
+    "ru": {
+      "translation": "Понимаю, о чём ты.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_i_see_what_you_mean_01",
+        "text": "\"It's just too far to walk.\" \"Ah, I see what you mean.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_to_be_honest",
+    "itemType": "phrase",
+    "lemma": "to be honest",
+    "displayForm": "to be honest",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "communication",
+    "ru": {
+      "translation": "честно говоря",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_to_be_honest_01",
+        "text": "To be honest, I don't agree.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_let_me_know",
+    "itemType": "functional_phrase",
+    "lemma": "let me know",
+    "displayForm": "Let me know.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "communication",
+    "ru": {
+      "translation": "Дай мне знать.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_let_me_know_01",
+        "text": "Let me know if you need anything.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_get_back_to_you",
+    "itemType": "collocation",
+    "lemma": "get back to you",
+    "displayForm": "get back to you",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "communication",
+    "ru": {
+      "translation": "связаться с тобой позже (с ответом)",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_get_back_to_you_01",
+        "text": "I'll get back to you tomorrow.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_sort_out",
+    "itemType": "phrasal_verb",
+    "lemma": "sort out",
+    "displayForm": "sort out",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "communication",
+    "ru": {
+      "translation": "разобраться (в чём-то), уладить",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_sort_out_01",
+        "text": "Let's sort out the details.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  }
+]

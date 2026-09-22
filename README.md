@@ -5,15 +5,18 @@ covers **Phase 0** (monorepo/app shell), **Phase 1** (database foundation
 
 - basic user data model), **Phase 2** (Telegram Mini App authentication +
   `GET /api/v1/me`), **Phase 3** (onboarding preference collection, ending
-  at a placement handoff), and **Phase 4** (a real, semi-adaptive placement
-  test producing a verified CEFR level) — no curriculum, lessons, SRS,
-  streaks, or Duo yet. See [`CLAUDE.md`](./CLAUDE.md) for the full product
-  brief and architecture principles, [`docs/database.md`](./docs/database.md)
-  for the Phase 1 schema, [`docs/authentication.md`](./docs/authentication.md)
-  for the Phase 2 auth flow, [`docs/onboarding.md`](./docs/onboarding.md) for
-  the Phase 3 onboarding flow, and
-  [`docs/placement-test.md`](./docs/placement-test.md) for the Phase 4
-  placement test.
+  at a placement handoff), **Phase 4** (a real, semi-adaptive placement test
+  producing a verified CEFR level), and **Phase 5** (a curriculum/content
+  data model with a small original A1/A2 sample and read-only APIs) — no
+  lesson execution, mastery, SRS, streaks, or Duo yet. See
+  [`CLAUDE.md`](./CLAUDE.md) for the full product brief and architecture
+  principles, [`docs/database.md`](./docs/database.md) for the Phase 1
+  schema, [`docs/authentication.md`](./docs/authentication.md) for the
+  Phase 2 auth flow, [`docs/onboarding.md`](./docs/onboarding.md) for the
+  Phase 3 onboarding flow, [`docs/placement-test.md`](./docs/placement-test.md)
+  for the Phase 4 placement test, and [`docs/curriculum.md`](./docs/curriculum.md)
+- [`docs/content-authoring.md`](./docs/content-authoring.md) for the Phase 5
+  curriculum/content model.
 
 ## Project structure
 
@@ -28,20 +31,28 @@ apps/
     src/routes/onboarding/ Phase 3: the 4 onboarding step pages
     src/placement/     Phase 4: placement API client
     src/routes/{Placement,PlacementResult}.tsx Phase 4: the test + result screens
+    src/curriculum/    Phase 5: curriculum API client
+    src/routes/{Learn,ModuleDetail,LessonPreview}.tsx Phase 5: path/module/lesson screens
   api/                 Cloudflare Worker backend (Hono)
     src/db/            D1 binding types, Db interface, D1 adapter, ID helper
     src/repositories/  typed data-access layer (users, settings, acquisition,
-                        levels, sessions, placement questions/attempts/answers)
+                        levels, sessions, placement questions/attempts/answers,
+                        curriculum modules/lessons, learning items, grammar)
     src/services/      framework-free business logic (authService,
-                        onboardingService, placementService)
+                        onboardingService, placementService, curriculumService)
     src/auth/          session cookie config, token hashing, requireAuth middleware
-    src/routes/        Hono route modules (auth, onboarding, placement)
+    src/routes/        Hono route modules (auth, onboarding, placement, curriculum)
+    src/content/        Phase 5: seed-content Zod schemas, loader/validator,
+                        upsert-statement builder, seed applier
+    scripts/            Phase 5: generateSeedSql.ts (content -> a .sql file
+                        for `wrangler d1 execute`)
     test/              data-layer + service tests (node:sqlite + node:test)
 packages/
   contracts/           Zod schemas shared between web and api
   shared/               Cross-cutting types/constants + Telegram initData
                          validation/signing (packages/shared/src/telegram.ts)
-  learning-engine/      Curriculum/mastery/SRS domain logic (empty stub)
+  learning-engine/      Lesson-execution/mastery/SRS domain logic (empty stub —
+                         Phase 5 is curriculum *content*, not execution)
 migrations/            D1 schema migrations:
                           0001_init.sql     — levels, users, user_settings, user_acquisition
                           0002_sessions.sql — sessions (Phase 2 auth)
@@ -50,12 +61,19 @@ migrations/            D1 schema migrations:
                           0004_placement.sql — placement_{questions,passages,
                                                 attempts,answers} + the
                                                 placement_v1 question bank
-seeds/                 Seed data for local/dev D1 (empty for now — seed data
-                        so far lives in the migrations themselves: levels in
-                        0001, the placement question bank in 0004)
+                          0005_curriculum.sql — modules, lessons, learning_items
+                                                (+ localizations/examples/patterns/
+                                                relations), grammar_patterns
+                                                (+ localizations/relations),
+                                                lesson_items — schema only, no
+                                                content rows (see seeds/content/)
+seeds/
+  content/              Phase 5 curriculum/content source data (JSON), imported
+                        via apps/api/src/content/ — see docs/content-authoring.md
 docs/                  database.md (Phase 1 schema), authentication.md (Phase 2
                         auth), onboarding.md (Phase 3 onboarding flow),
-                        placement-test.md (Phase 4 placement algorithm)
+                        placement-test.md (Phase 4 placement algorithm),
+                        curriculum.md + content-authoring.md (Phase 5)
 ```
 
 `apps/web` depends on `packages/contracts` and `packages/shared` via pnpm
@@ -124,6 +142,9 @@ the repo-root `migrations/` folder, applied in order:
   `placement_questions` (seeded with the 64-question `placement_v1`
   bank), `placement_attempts`, `placement_answers`, for Phase 4. See
   [`docs/placement-test.md`](./docs/placement-test.md).
+- `migrations/0005_curriculum.sql` — the curriculum/content schema
+  (schema only, no seed rows — see "Curriculum" below). See
+  [`docs/curriculum.md`](./docs/curriculum.md).
 
 **How migrations will eventually be applied:** once `wrangler dev` can run
 on a given machine (or in CI), migrations are applied with:
@@ -238,6 +259,32 @@ write-up: [`docs/placement-test.md`](./docs/placement-test.md). In short:
   never overwritten — it's returned alongside the verified result for
   comparison.
 
+## Curriculum
+
+`/learn` shows the current user's verified level (from Phase 4's
+`users.current_cefr_level`) and its published modules — real curriculum
+data, not a placeholder. Full model, seed/import process, and content
+policy: [`docs/curriculum.md`](./docs/curriculum.md) and
+[`docs/content-authoring.md`](./docs/content-authoring.md). In short:
+
+- **Structure**: `levels -> modules -> lessons -> lesson_items`, where
+  `lesson_items` links a lesson to _reusable_ content (`learning_items`
+  or `grammar_patterns`) rather than storing a copy — the same item can
+  be attached to more than one lesson.
+- **Read-only APIs** (all behind `requireAuth`): `GET /api/v1/path`,
+  `GET /api/v1/modules/:moduleId`, `GET /api/v1/lessons/:lessonId`. The
+  lesson endpoint returns content **structure** only — no session starts,
+  no answer processing, nothing is ever marked complete by reading it.
+  No fake progress percentages exist anywhere in these responses.
+- **Content**: a small original A1/A2 sample (6 modules, 24 lessons, 84
+  learning items, 16 grammar patterns) — original wording throughout, no
+  commercial textbook content copied. Seeded from JSON files under
+  `seeds/content/` via an idempotent upsert import
+  (`apps/api/src/content/seedContent.ts`), not baked into the migration.
+- Placement's result screen now routes "Continue" to `/learn` instead of
+  `/today`, since Learn has real data to show and Today is still a
+  placeholder.
+
 ## Running both locally
 
 ```
@@ -306,23 +353,25 @@ replacing it — see "Authentication" above.
 
 Run from the repo root (they fan out to all workspace packages):
 
-| Script              | What it does                                                                                                                                                                         |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `pnpm dev`          | run api + web dev servers together                                                                                                                                                   |
-| `pnpm dev:web`      | run only the frontend dev server                                                                                                                                                     |
-| `pnpm dev:api`      | run only the backend dev server                                                                                                                                                      |
-| `pnpm build`        | typecheck + build every package                                                                                                                                                      |
-| `pnpm typecheck`    | `tsc --noEmit` in every package                                                                                                                                                      |
-| `pnpm test`         | run tests in every package that defines one (currently: `packages/shared`'s Telegram initData tests, `apps/api`'s data-layer + auth/onboarding/placement-service + content-QA tests) |
-| `pnpm format`       | format the repo with Prettier                                                                                                                                                        |
-| `pnpm format:check` | check formatting without writing                                                                                                                                                     |
+| Script              | What it does                                                                                                                                                                                    |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev`          | run api + web dev servers together                                                                                                                                                              |
+| `pnpm dev:web`      | run only the frontend dev server                                                                                                                                                                |
+| `pnpm dev:api`      | run only the backend dev server                                                                                                                                                                 |
+| `pnpm build`        | typecheck + build every package                                                                                                                                                                 |
+| `pnpm typecheck`    | `tsc --noEmit` in every package                                                                                                                                                                 |
+| `pnpm test`         | run tests in every package that defines one (currently: `packages/shared`'s Telegram initData tests, `apps/api`'s data-layer + auth/onboarding/placement/curriculum-service + content-QA tests) |
+| `pnpm format`       | format the repo with Prettier                                                                                                                                                                   |
+| `pnpm format:check` | check formatting without writing                                                                                                                                                                |
 
-## Routes (placeholders only)
+## Routes
 
 `/`, `/today`, `/learn`, `/review`, `/friends`, `/profile` — `/` routes by
 auth state (see "Onboarding" above) and otherwise falls back to `/today`.
-All five nav destinations render a bottom navigation bar and a placeholder
-page; no real content yet.
+All five nav destinations render a bottom navigation bar. `/learn` (plus
+`/learn/modules/:moduleId` and `/learn/lessons/:lessonId`) now shows real
+curriculum data (see "Curriculum" above); `/today`, `/review`, `/friends`,
+`/profile` remain Phase 0 placeholders.
 
 `/onboarding` (resolves to whichever step is current) and
 `/onboarding/{goals,time,level,ready}` are Phase 3's onboarding flow (see

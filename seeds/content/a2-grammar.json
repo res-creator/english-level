@@ -1,0 +1,98 @@
+[
+  {
+    "id": "gr_a2_past_simple_positive",
+    "levelCode": "A2",
+    "title": "Past Simple - positive",
+    "patternKey": "past_simple_positive",
+    "formula": "I worked. / She went.",
+    "explanationEn": "Use Past Simple for finished actions in the past.",
+    "order": 1,
+    "ru": {
+      "explanation": "Past Simple используется для завершённых действий в прошлом."
+    }
+  },
+  {
+    "id": "gr_a2_past_simple_questions",
+    "levelCode": "A2",
+    "title": "Past Simple - questions",
+    "patternKey": "past_simple_questions",
+    "formula": "Did you work? / Did she go?",
+    "explanationEn": "Use did + base verb to ask about the past.",
+    "order": 2,
+    "ru": {
+      "explanation": "Используйте did + начальная форма глагола, чтобы задать вопрос о прошлом."
+    }
+  },
+  {
+    "id": "gr_a2_past_simple_negative",
+    "levelCode": "A2",
+    "title": "Past Simple - negative",
+    "patternKey": "past_simple_negative",
+    "formula": "I didn't work. / She didn't go.",
+    "explanationEn": "Use didn't + base verb to make the Past Simple negative.",
+    "order": 3,
+    "ru": {
+      "explanation": "Используйте didn't + начальная форма глагола для отрицания в Past Simple."
+    }
+  },
+  {
+    "id": "gr_a2_comparatives",
+    "levelCode": "A2",
+    "title": "Comparative adjectives",
+    "patternKey": "comparatives",
+    "formula": "bigger than / more expensive than",
+    "explanationEn": "Use comparatives to compare two things.",
+    "order": 1,
+    "ru": {
+      "explanation": "Сравнительная степень используется, чтобы сравнить два предмета."
+    }
+  },
+  {
+    "id": "gr_a2_going_to_future",
+    "levelCode": "A2",
+    "title": "Future with 'going to'",
+    "patternKey": "going_to_future",
+    "formula": "I'm going to travel.",
+    "explanationEn": "Use be + going to for plans and intentions.",
+    "order": 2,
+    "ru": {
+      "explanation": "Используйте be + going to для планов и намерений."
+    }
+  },
+  {
+    "id": "gr_a2_should",
+    "levelCode": "A2",
+    "title": "Should - advice",
+    "patternKey": "should_advice",
+    "formula": "You should rest. / You shouldn't worry.",
+    "explanationEn": "Use should/shouldn't to give advice.",
+    "order": 3,
+    "ru": {
+      "explanation": "Используйте should/shouldn't, чтобы дать совет."
+    }
+  },
+  {
+    "id": "gr_a2_must_have_to",
+    "levelCode": "A2",
+    "title": "Must / have to - obligation",
+    "patternKey": "must_have_to",
+    "formula": "I have to work. / You must stop.",
+    "explanationEn": "Use must or have to for obligation or rules.",
+    "order": 1,
+    "ru": {
+      "explanation": "Используйте must или have to для обязанности или правил."
+    }
+  },
+  {
+    "id": "gr_a2_present_perfect_intro",
+    "levelCode": "A2",
+    "title": "Present Perfect - introduction",
+    "patternKey": "present_perfect_intro",
+    "formula": "I have visited Paris.",
+    "explanationEn": "Use the Present Perfect for life experiences, without saying exactly when.",
+    "order": 2,
+    "ru": {
+      "explanation": "Present Perfect используется для жизненного опыта, без указания точного времени."
+    }
+  }
+]

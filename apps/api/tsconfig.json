@@ -4,5 +4,6 @@
     "noEmit": true,
     "types": ["@cloudflare/workers-types"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/content/loadSeedContent.ts", "src/content/seedContent.ts"]
 }

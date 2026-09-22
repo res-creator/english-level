@@ -88,7 +88,7 @@ export function PlacementResult() {
         <button
           type="button"
           className="button-primary"
-          onClick={() => navigate("/today")}
+          onClick={() => navigate("/learn")}
         >
           Continue
         </button>

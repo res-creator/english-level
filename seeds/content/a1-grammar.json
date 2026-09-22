@@ -1,0 +1,98 @@
+[
+  {
+    "id": "gr_a1_be_positive",
+    "levelCode": "A1",
+    "title": "Be - positive",
+    "patternKey": "be_positive",
+    "formula": "I am / you are / he is / she is / it is / we are / they are",
+    "explanationEn": "Use am/is/are to say what someone or something is.",
+    "order": 1,
+    "ru": {
+      "explanation": "Используйте am/is/are, чтобы сказать, кто или что кто-то (что-то) есть."
+    }
+  },
+  {
+    "id": "gr_a1_be_questions",
+    "levelCode": "A1",
+    "title": "Be - questions",
+    "patternKey": "be_questions",
+    "formula": "Am I...? / Are you...? / Is he...?",
+    "explanationEn": "Move am/is/are before the subject to ask a question.",
+    "order": 2,
+    "ru": {
+      "explanation": "Поставьте am/is/are перед подлежащим, чтобы задать вопрос."
+    }
+  },
+  {
+    "id": "gr_a1_have",
+    "levelCode": "A1",
+    "title": "Have / have got",
+    "patternKey": "have_have_got",
+    "formula": "I have.../ I've got...",
+    "explanationEn": "Use have or have got to talk about what you own or possess.",
+    "order": 3,
+    "ru": {
+      "explanation": "Используйте have или have got, чтобы сказать, что у вас есть."
+    }
+  },
+  {
+    "id": "gr_a1_present_simple_positive",
+    "levelCode": "A1",
+    "title": "Present Simple - positive",
+    "patternKey": "present_simple_positive",
+    "formula": "I work. / She works.",
+    "explanationEn": "Use Present Simple for routines and facts; add -s for he/she/it.",
+    "order": 1,
+    "ru": {
+      "explanation": "Present Simple используется для привычных действий и фактов; для he/she/it добавляется -s."
+    }
+  },
+  {
+    "id": "gr_a1_present_simple_questions",
+    "levelCode": "A1",
+    "title": "Present Simple - questions",
+    "patternKey": "present_simple_questions",
+    "formula": "Do you work? / Does she work?",
+    "explanationEn": "Use do/does before the subject to ask about routines.",
+    "order": 2,
+    "ru": {
+      "explanation": "Используйте do/does перед подлежащим, чтобы задать вопрос о привычных действиях."
+    }
+  },
+  {
+    "id": "gr_a1_can",
+    "levelCode": "A1",
+    "title": "Can - ability",
+    "patternKey": "can_ability",
+    "formula": "I can swim. / Can you swim?",
+    "explanationEn": "Use can + verb to talk about ability.",
+    "order": 3,
+    "ru": {
+      "explanation": "Используйте can + глагол, чтобы говорить об умении."
+    }
+  },
+  {
+    "id": "gr_a1_there_is_are",
+    "levelCode": "A1",
+    "title": "There is / There are",
+    "patternKey": "there_is_are",
+    "formula": "There is a book. / There are two books.",
+    "explanationEn": "Use there is/are to say that something exists.",
+    "order": 1,
+    "ru": {
+      "explanation": "Используйте there is/are, чтобы сказать, что что-то существует."
+    }
+  },
+  {
+    "id": "gr_a1_possessives",
+    "levelCode": "A1",
+    "title": "Possessive adjectives",
+    "patternKey": "possessive_adjectives",
+    "formula": "my / your / his / her / our / their",
+    "explanationEn": "Use possessive adjectives before a noun to show who it belongs to.",
+    "order": 2,
+    "ru": {
+      "explanation": "Притяжательные прилагательные ставятся перед существительным, чтобы показать, кому оно принадлежит."
+    }
+  }
+]

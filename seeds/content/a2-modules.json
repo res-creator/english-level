@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mod_a2_01",
+    "levelCode": "A2",
+    "title": "Life & Routines",
+    "slug": "a2-life-and-routines",
+    "description": "Talk about busy schedules, habits, and everyday routines in more detail.",
+    "order": 1
+  },
+  {
+    "id": "mod_a2_02",
+    "levelCode": "A2",
+    "title": "Travel & Transport",
+    "slug": "a2-travel-and-transport",
+    "description": "Handle everyday travel situations: tickets, stations, and getting around.",
+    "order": 2
+  },
+  {
+    "id": "mod_a2_03",
+    "levelCode": "A2",
+    "title": "Communication",
+    "slug": "a2-communication",
+    "description": "Have clearer everyday conversations, ask for clarification, and share opinions.",
+    "order": 3
+  }
+]

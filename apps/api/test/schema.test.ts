@@ -13,7 +13,18 @@ test("migration creates the expected tables and columns", () => {
     .map((row) => (row as { name: string }).name);
 
   assert.deepEqual(tables, [
+    "grammar_pattern_localizations",
+    "grammar_patterns",
+    "grammar_relations",
+    "item_examples",
+    "item_patterns",
+    "item_relations",
+    "learning_item_localizations",
+    "learning_items",
+    "lesson_items",
+    "lessons",
     "levels",
+    "modules",
     "placement_answers",
     "placement_attempts",
     "placement_passages",

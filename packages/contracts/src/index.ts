@@ -227,3 +227,120 @@ export const PlacementResultResponseSchema = z.object({
 export type PlacementResultResponse = z.infer<
   typeof PlacementResultResponseSchema
 >;
+
+// ---------------------------------------------------------------------------
+// Curriculum (Phase 5) — read-only structure and reusable content. No user
+// progress/completion state exists yet; these DTOs never carry it.
+// ---------------------------------------------------------------------------
+
+export const LessonTypeSchema = z.enum([
+  "vocabulary",
+  "grammar",
+  "mixed",
+  "reading",
+  "practice",
+  "checkpoint",
+]);
+export type LessonType = z.infer<typeof LessonTypeSchema>;
+
+export const LearningItemTypeSchema = z.enum([
+  "word",
+  "phrase",
+  "collocation",
+  "phrasal_verb",
+  "functional_phrase",
+  "contrast",
+]);
+export type LearningItemType = z.infer<typeof LearningItemTypeSchema>;
+
+export const LessonItemRoleSchema = z.enum([
+  "introduce",
+  "practice",
+  "review",
+  "target",
+]);
+export type LessonItemRole = z.infer<typeof LessonItemRoleSchema>;
+
+/** A single module in a level's path — no completion/progress data. */
+export const CurriculumModuleDTOSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  order: z.number().int(),
+  lessons: z.number().int(),
+});
+export type CurriculumModuleDTO = z.infer<typeof CurriculumModuleDTOSchema>;
+
+export const CurriculumPathResponseSchema = z.object({
+  currentLevel: CefrLevelSchema.nullable(),
+  modules: z.array(CurriculumModuleDTOSchema),
+});
+export type CurriculumPathResponse = z.infer<
+  typeof CurriculumPathResponseSchema
+>;
+
+export const CurriculumLessonSummaryDTOSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  type: LessonTypeSchema,
+  order: z.number().int(),
+  estimatedMinutes: z.number().int().nullable(),
+});
+export type CurriculumLessonSummaryDTO = z.infer<
+  typeof CurriculumLessonSummaryDTOSchema
+>;
+
+export const ModuleDetailResponseSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string().nullable(),
+  level: CefrLevelSchema,
+  order: z.number().int(),
+  lessons: z.array(CurriculumLessonSummaryDTOSchema),
+});
+export type ModuleDetailResponse = z.infer<typeof ModuleDetailResponseSchema>;
+
+/** A reusable learning item as shown in a lesson preview — never internal
+ * fields like frequency_band, difficulty, provenance, or content_version. */
+export const LearningItemDTOSchema = z.object({
+  id: z.string(),
+  itemType: LearningItemTypeSchema,
+  displayForm: z.string(),
+  translation: z.string(),
+  usageNote: z.string().nullable(),
+  primaryExample: z.string().nullable(),
+});
+export type LearningItemDTO = z.infer<typeof LearningItemDTOSchema>;
+
+export const GrammarPatternDTOSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  formula: z.string().nullable(),
+  explanation: z.string(),
+  usageNote: z.string().nullable(),
+});
+export type GrammarPatternDTO = z.infer<typeof GrammarPatternDTOSchema>;
+
+export const LessonContentEntrySchema = z.discriminatedUnion("contentType", [
+  z.object({
+    contentType: z.literal("learning_item"),
+    role: LessonItemRoleSchema,
+    item: LearningItemDTOSchema,
+  }),
+  z.object({
+    contentType: z.literal("grammar_pattern"),
+    role: LessonItemRoleSchema,
+    pattern: GrammarPatternDTOSchema,
+  }),
+]);
+export type LessonContentEntry = z.infer<typeof LessonContentEntrySchema>;
+
+/** A lesson's content STRUCTURE only — not a session, no answer
+ * processing, nothing is marked started/completed by reading this. */
+export const LessonContentDTOSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  type: LessonTypeSchema,
+  moduleId: z.string(),
+  content: z.array(LessonContentEntrySchema),
+});
+export type LessonContentDTO = z.infer<typeof LessonContentDTOSchema>;

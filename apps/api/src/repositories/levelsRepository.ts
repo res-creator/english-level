@@ -5,3 +5,7 @@ export function listActiveLevels(db: Db): Promise<LevelRow[]> {
     "SELECT * FROM levels WHERE is_active = 1 ORDER BY order_index ASC",
   );
 }
+
+export function findLevelById(db: Db, id: string): Promise<LevelRow | null> {
+  return db.first<LevelRow>("SELECT * FROM levels WHERE id = ?", [id]);
+}

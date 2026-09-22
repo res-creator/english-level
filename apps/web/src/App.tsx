@@ -6,6 +6,8 @@ import { RootRedirect } from "./RootRedirect";
 import { Layout } from "./components/Layout";
 import { Today } from "./routes/Today";
 import { Learn } from "./routes/Learn";
+import { ModuleDetail } from "./routes/ModuleDetail";
+import { LessonPreview } from "./routes/LessonPreview";
 import { Review } from "./routes/Review";
 import { Friends } from "./routes/Friends";
 import { Profile } from "./routes/Profile";
@@ -28,6 +30,14 @@ export function App() {
             <Route element={<Layout />}>
               <Route path="/today" element={<Today />} />
               <Route path="/learn" element={<Learn />} />
+              <Route
+                path="/learn/modules/:moduleId"
+                element={<ModuleDetail />}
+              />
+              <Route
+                path="/learn/lessons/:lessonId"
+                element={<LessonPreview />}
+              />
               <Route path="/review" element={<Review />} />
               <Route path="/friends" element={<Friends />} />
               <Route path="/profile" element={<Profile />} />

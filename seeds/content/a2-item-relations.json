@@ -1,0 +1,22 @@
+[
+  {
+    "fromItemId": "itm_a2_im_running_late",
+    "toItemId": "itm_a2_on_time",
+    "relationType": "antonym"
+  },
+  {
+    "fromItemId": "itm_a2_book_a_ticket",
+    "toItemId": "itm_a2_boarding_pass",
+    "relationType": "related"
+  },
+  {
+    "fromItemId": "itm_a2_reply",
+    "toItemId": "itm_a2_message",
+    "relationType": "related"
+  },
+  {
+    "fromItemId": "itm_a2_get_in_touch",
+    "toItemId": "itm_a2_get_back_to_you",
+    "relationType": "confused_with"
+  }
+]

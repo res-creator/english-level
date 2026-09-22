@@ -170,3 +170,133 @@ export interface PlacementAnswerRow {
   response_time_ms: number | null;
   created_at: string;
 }
+
+// ---------------------------------------------------------------------------
+// Phase 5: curriculum & content
+// ---------------------------------------------------------------------------
+
+export type ContentStatusRow = "draft" | "published" | "archived";
+
+export interface ModuleRow {
+  id: string;
+  level_id: string;
+  title: string;
+  slug: string;
+  description: string | null;
+  order_index: number;
+  status: ContentStatusRow;
+  content_version: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export type LessonTypeRow =
+  "vocabulary" | "grammar" | "mixed" | "reading" | "practice" | "checkpoint";
+
+export interface LessonRow {
+  id: string;
+  module_id: string;
+  title: string;
+  lesson_type: LessonTypeRow;
+  order_index: number;
+  estimated_minutes: number | null;
+  status: ContentStatusRow;
+  content_version: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export type LearningItemTypeRow =
+  | "word"
+  | "phrase"
+  | "collocation"
+  | "phrasal_verb"
+  | "functional_phrase"
+  | "contrast";
+
+export interface LearningItemRow {
+  id: string;
+  item_type: LearningItemTypeRow;
+  lemma: string;
+  display_form: string;
+  part_of_speech: string | null;
+  level_id: string;
+  frequency_band: string | null;
+  difficulty: number | null;
+  is_core: number;
+  topic: string | null;
+  subtopic: string | null;
+  pronunciation_ipa: string | null;
+  audio_key: string | null;
+  provenance: "original" | "derived_open_data";
+  status: ContentStatusRow;
+  content_version: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface LearningItemLocalizationRow {
+  item_id: string;
+  language: string;
+  translation: string;
+  simple_explanation: string | null;
+  usage_note: string | null;
+  common_error_explanation: string | null;
+  status: ContentStatusRow;
+  content_version: number;
+}
+
+export interface ItemExampleRow {
+  id: string;
+  item_id: string;
+  example_text: string;
+  level_id: string | null;
+  is_primary: number;
+  status: ContentStatusRow;
+  content_version: number;
+}
+
+export interface ItemPatternRow {
+  id: string;
+  item_id: string;
+  pattern_text: string;
+  correct_example: string | null;
+  incorrect_example: string | null;
+  order_index: number;
+}
+
+export interface GrammarPatternRow {
+  id: string;
+  level_id: string;
+  title: string;
+  pattern_key: string;
+  formula: string | null;
+  explanation_en: string;
+  difficulty: number | null;
+  order_index: number;
+  status: ContentStatusRow;
+  content_version: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GrammarPatternLocalizationRow {
+  grammar_pattern_id: string;
+  language: string;
+  explanation: string;
+  usage_note: string | null;
+  common_mistake: string | null;
+}
+
+export type LessonItemContentTypeRow = "learning_item" | "grammar_pattern";
+export type LessonItemRoleRow = "introduce" | "practice" | "review" | "target";
+
+export interface LessonItemRow {
+  id: string;
+  lesson_id: string;
+  content_type: LessonItemContentTypeRow;
+  content_id: string;
+  role: LessonItemRoleRow;
+  order_index: number;
+  required: number;
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mod_a1_01",
+    "levelCode": "A1",
+    "title": "Me & Introductions",
+    "slug": "a1-me-and-introductions",
+    "description": "Introduce yourself, ask basic personal questions, and talk about who you are.",
+    "order": 1
+  },
+  {
+    "id": "mod_a1_02",
+    "levelCode": "A1",
+    "title": "Daily Life",
+    "slug": "a1-daily-life",
+    "description": "Describe your everyday routine: waking up, going to work, and free time.",
+    "order": 2
+  },
+  {
+    "id": "mod_a1_03",
+    "levelCode": "A1",
+    "title": "Family & People",
+    "slug": "a1-family-and-people",
+    "description": "Talk about your family, friends, and the people around you.",
+    "order": 3
+  }
+]

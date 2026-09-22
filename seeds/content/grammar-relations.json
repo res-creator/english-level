@@ -1,0 +1,32 @@
+[
+  {
+    "fromPatternId": "gr_a1_be_questions",
+    "toPatternId": "gr_a1_be_positive",
+    "relationType": "prerequisite"
+  },
+  {
+    "fromPatternId": "gr_a1_present_simple_questions",
+    "toPatternId": "gr_a1_present_simple_positive",
+    "relationType": "prerequisite"
+  },
+  {
+    "fromPatternId": "gr_a2_past_simple_questions",
+    "toPatternId": "gr_a2_past_simple_positive",
+    "relationType": "prerequisite"
+  },
+  {
+    "fromPatternId": "gr_a2_past_simple_negative",
+    "toPatternId": "gr_a2_past_simple_positive",
+    "relationType": "prerequisite"
+  },
+  {
+    "fromPatternId": "gr_a2_must_have_to",
+    "toPatternId": "gr_a2_should",
+    "relationType": "confused_with"
+  },
+  {
+    "fromPatternId": "gr_a1_have",
+    "toPatternId": "gr_a1_there_is_are",
+    "relationType": "related"
+  }
+]

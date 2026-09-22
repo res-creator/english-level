@@ -1,0 +1,22 @@
+[
+  {
+    "fromItemId": "itm_a1_single",
+    "toItemId": "itm_a1_married",
+    "relationType": "antonym"
+  },
+  {
+    "fromItemId": "itm_a1_brother",
+    "toItemId": "itm_a1_sister",
+    "relationType": "related"
+  },
+  {
+    "fromItemId": "itm_a1_go_to_bed",
+    "toItemId": "itm_a1_wake_up",
+    "relationType": "related"
+  },
+  {
+    "fromItemId": "itm_a1_nice_to_meet_you",
+    "toItemId": "itm_a1_see_you_later",
+    "relationType": "related"
+  }
+]

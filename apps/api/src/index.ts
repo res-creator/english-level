@@ -9,6 +9,7 @@ import type { AppEnv } from "./types/appEnv.ts";
 import authRoutes from "./routes/auth.ts";
 import onboardingRoutes from "./routes/onboarding.ts";
 import placementRoutes from "./routes/placement.ts";
+import curriculumRoutes from "./routes/curriculum.ts";
 import { requireAuth } from "./auth/middleware.ts";
 import { toPublicUser } from "./dto/userDto.ts";
 
@@ -30,6 +31,9 @@ v1.get("/health", (c) => {
 v1.route("/auth", authRoutes);
 v1.route("/onboarding", onboardingRoutes);
 v1.route("/placement", placementRoutes);
+// Curriculum routes are top-level (/path, /modules/:id, /lessons/:id),
+// not nested under a shared prefix — see docs/curriculum.md.
+v1.route("/", curriculumRoutes);
 
 v1.get("/me", requireAuth, (c) => {
   const body = MeResponseSchema.parse(toPublicUser(c.get("currentUser")));

@@ -1,0 +1,900 @@
+[
+  {
+    "id": "itm_a1_name",
+    "itemType": "word",
+    "lemma": "name",
+    "displayForm": "name",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "introductions",
+    "ru": {
+      "translation": "имя",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_name_01",
+        "text": "My name is Anna.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_age",
+    "itemType": "word",
+    "lemma": "age",
+    "displayForm": "age",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "introductions",
+    "ru": {
+      "translation": "возраст",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_age_01",
+        "text": "I'm twenty years old.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_country",
+    "itemType": "word",
+    "lemma": "country",
+    "displayForm": "country",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "introductions",
+    "ru": {
+      "translation": "страна",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_country_01",
+        "text": "Which country are you from?",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_job",
+    "itemType": "word",
+    "lemma": "job",
+    "displayForm": "job",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "introductions",
+    "ru": {
+      "translation": "работа, профессия",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_job_01",
+        "text": "What's your job?",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_married",
+    "itemType": "word",
+    "lemma": "married",
+    "displayForm": "married",
+    "levelCode": "A1",
+    "partOfSpeech": "adjective",
+    "topic": "introductions",
+    "ru": {
+      "translation": "женат / замужем",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_married_01",
+        "text": "She is married.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_single",
+    "itemType": "word",
+    "lemma": "single",
+    "displayForm": "single",
+    "levelCode": "A1",
+    "partOfSpeech": "adjective",
+    "topic": "introductions",
+    "ru": {
+      "translation": "холост / не замужем",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_single_01",
+        "text": "I'm single.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_live_in",
+    "itemType": "collocation",
+    "lemma": "live in",
+    "displayForm": "live in",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "introductions",
+    "ru": {
+      "translation": "жить в",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_live_in_01",
+        "text": "I live in Berlin.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": [
+      {
+        "id": "pat_itm_a1_live_in_01",
+        "patternText": "live in + place",
+        "correctExample": "I live in Berlin.",
+        "incorrectExample": "I live at Berlin.",
+        "order": 1
+      }
+    ]
+  },
+  {
+    "id": "itm_a1_nice_to_meet_you",
+    "itemType": "functional_phrase",
+    "lemma": "nice to meet you",
+    "displayForm": "Nice to meet you.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "introductions",
+    "ru": {
+      "translation": "Приятно познакомиться",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_nice_to_meet_you_01",
+        "text": "\"Nice to meet you!\" \"Nice to meet you too.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_whats_your_name",
+    "itemType": "functional_phrase",
+    "lemma": "what's your name",
+    "displayForm": "What's your name?",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "introductions",
+    "ru": {
+      "translation": "Как тебя зовут?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_whats_your_name_01",
+        "text": "\"What's your name?\" \"I'm Tom.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_how_old_are_you",
+    "itemType": "functional_phrase",
+    "lemma": "how old are you",
+    "displayForm": "How old are you?",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "introductions",
+    "ru": {
+      "translation": "Сколько тебе лет?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_how_old_are_you_01",
+        "text": "\"How old are you?\" \"I'm 25.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_where_are_you_from",
+    "itemType": "functional_phrase",
+    "lemma": "where are you from",
+    "displayForm": "Where are you from?",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "introductions",
+    "ru": {
+      "translation": "Откуда ты?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_where_are_you_from_01",
+        "text": "\"Where are you from?\" \"I'm from Poland.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_this_is",
+    "itemType": "functional_phrase",
+    "lemma": "this is",
+    "displayForm": "This is ___.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "introductions",
+    "ru": {
+      "translation": "Это ___ (при знакомстве)",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_this_is_01",
+        "text": "This is my colleague, Marta.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_see_you_later",
+    "itemType": "functional_phrase",
+    "lemma": "see you later",
+    "displayForm": "See you later.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "introductions",
+    "ru": {
+      "translation": "Увидимся позже",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_see_you_later_01",
+        "text": "\"Bye!\" \"See you later!\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_my_name_is",
+    "itemType": "functional_phrase",
+    "lemma": "my name is",
+    "displayForm": "My name is ___.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "introductions",
+    "ru": {
+      "translation": "Меня зовут ___.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_my_name_is_01",
+        "text": "Hi, my name is Carlos.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_wake_up",
+    "itemType": "phrasal_verb",
+    "lemma": "wake up",
+    "displayForm": "wake up",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "просыпаться",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_wake_up_01",
+        "text": "I wake up at seven.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_get_dressed",
+    "itemType": "collocation",
+    "lemma": "get dressed",
+    "displayForm": "get dressed",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "одеваться",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_get_dressed_01",
+        "text": "I get dressed after breakfast.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_have_breakfast",
+    "itemType": "collocation",
+    "lemma": "have breakfast",
+    "displayForm": "have breakfast",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "завтракать",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_have_breakfast_01",
+        "text": "We have breakfast at eight.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_go_to_work",
+    "itemType": "collocation",
+    "lemma": "go to work",
+    "displayForm": "go to work",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "идти / ехать на работу",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_go_to_work_01",
+        "text": "He goes to work by bus.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_go_home",
+    "itemType": "collocation",
+    "lemma": "go home",
+    "displayForm": "go home",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "идти домой",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_go_home_01",
+        "text": "I go home at six.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_go_to_bed",
+    "itemType": "collocation",
+    "lemma": "go to bed",
+    "displayForm": "go to bed",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "ложиться спать",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_go_to_bed_01",
+        "text": "She goes to bed at ten.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_free_time",
+    "itemType": "phrase",
+    "lemma": "free time",
+    "displayForm": "free time",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "свободное время",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_free_time_01",
+        "text": "What do you do in your free time?",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_what_time_is_it",
+    "itemType": "functional_phrase",
+    "lemma": "what time is it",
+    "displayForm": "What time is it?",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "Сколько времени?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_what_time_is_it_01",
+        "text": "\"What time is it?\" \"It's six o'clock.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_its_half_past",
+    "itemType": "functional_phrase",
+    "lemma": "it's half past",
+    "displayForm": "It's half past six.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "Сейчас половина седьмого.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_its_half_past_01",
+        "text": "\"When does the film start?\" \"It's half past seven now, so soon.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_every_day",
+    "itemType": "phrase",
+    "lemma": "every day",
+    "displayForm": "every day",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "каждый день",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_every_day_01",
+        "text": "I check my email every day.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_on_weekends",
+    "itemType": "phrase",
+    "lemma": "on weekends",
+    "displayForm": "on weekends",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "по выходным",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_on_weekends_01",
+        "text": "We relax on weekends.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_im_busy",
+    "itemType": "functional_phrase",
+    "lemma": "I'm busy",
+    "displayForm": "I'm busy.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "Я занят(а).",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_im_busy_01",
+        "text": "Sorry, I'm busy right now.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_take_a_break",
+    "itemType": "collocation",
+    "lemma": "take a break",
+    "displayForm": "take a break",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "сделать перерыв",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_take_a_break_01",
+        "text": "Let's take a break.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_im_tired",
+    "itemType": "functional_phrase",
+    "lemma": "I'm tired",
+    "displayForm": "I'm tired.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "daily_life",
+    "ru": {
+      "translation": "Я устал(а).",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_im_tired_01",
+        "text": "I'm tired, I want to go to bed early.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_family",
+    "itemType": "word",
+    "lemma": "family",
+    "displayForm": "family",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "family",
+    "ru": {
+      "translation": "семья",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_family_01",
+        "text": "I have a big family.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_parents",
+    "itemType": "word",
+    "lemma": "parents",
+    "displayForm": "parents",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "family",
+    "ru": {
+      "translation": "родители",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_parents_01",
+        "text": "My parents live in Kyiv.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_brother",
+    "itemType": "word",
+    "lemma": "brother",
+    "displayForm": "brother",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "family",
+    "ru": {
+      "translation": "брат",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_brother_01",
+        "text": "I have one brother.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_sister",
+    "itemType": "word",
+    "lemma": "sister",
+    "displayForm": "sister",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "family",
+    "ru": {
+      "translation": "сестра",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_sister_01",
+        "text": "My sister is a doctor.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_children",
+    "itemType": "word",
+    "lemma": "children",
+    "displayForm": "children",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "family",
+    "ru": {
+      "translation": "дети",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_children_01",
+        "text": "They have two children.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_friend",
+    "itemType": "word",
+    "lemma": "friend",
+    "displayForm": "friend",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "family",
+    "ru": {
+      "translation": "друг / подруга",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_friend_01",
+        "text": "She's my best friend.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_neighbour",
+    "itemType": "word",
+    "lemma": "neighbour",
+    "displayForm": "neighbour",
+    "levelCode": "A1",
+    "partOfSpeech": "noun",
+    "topic": "family",
+    "ru": {
+      "translation": "сосед / соседка",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_neighbour_01",
+        "text": "Our neighbour is very friendly.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_how_many_people",
+    "itemType": "functional_phrase",
+    "lemma": "how many people",
+    "displayForm": "How many people are in your family?",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "family",
+    "ru": {
+      "translation": "Сколько человек в твоей семье?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_how_many_people_01",
+        "text": "\"How many people are in your family?\" \"Four - my parents, my sister, and me.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_get_on_well_with",
+    "itemType": "collocation",
+    "lemma": "get on well with",
+    "displayForm": "get on well with",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "family",
+    "ru": {
+      "translation": "хорошо ладить с",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_get_on_well_with_01",
+        "text": "I get on well with my sister.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_look_like",
+    "itemType": "phrasal_verb",
+    "lemma": "look like",
+    "displayForm": "look like",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "family",
+    "ru": {
+      "translation": "быть похожим на",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_look_like_01",
+        "text": "He looks like his father.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_this_is_my",
+    "itemType": "functional_phrase",
+    "lemma": "this is my",
+    "displayForm": "This is my ___.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "family",
+    "ru": {
+      "translation": "Это мой / моя ___.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_this_is_my_01",
+        "text": "This is my brother, Daniel.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_tell_me_about",
+    "itemType": "functional_phrase",
+    "lemma": "tell me about",
+    "displayForm": "Tell me about your family.",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "family",
+    "ru": {
+      "translation": "Расскажи мне о своей семье.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_tell_me_about_01",
+        "text": "\"Tell me about your family.\" \"Sure, I have two brothers.\"",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_close_family",
+    "itemType": "phrase",
+    "lemma": "close family",
+    "displayForm": "close family",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "family",
+    "ru": {
+      "translation": "близкие родственники",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_close_family_01",
+        "text": "We have a close family.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": []
+  },
+  {
+    "id": "itm_a1_take_care_of",
+    "itemType": "collocation",
+    "lemma": "take care of",
+    "displayForm": "take care of",
+    "levelCode": "A1",
+    "partOfSpeech": null,
+    "topic": "family",
+    "ru": {
+      "translation": "заботиться о",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a1_take_care_of_01",
+        "text": "She takes care of her parents.",
+        "isPrimary": true
+      }
+    ],
+    "patterns": [
+      {
+        "id": "pat_itm_a1_take_care_of_01",
+        "patternText": "take care of + someone/something",
+        "correctExample": "She takes care of her parents.",
+        "incorrectExample": "She takes care about her parents.",
+        "order": 1
+      }
+    ]
+  }
+]
