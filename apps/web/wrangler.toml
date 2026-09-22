@@ -1,0 +1,38 @@
+# Deploys the built SPA (apps/web/dist, produced by `vite build`) as a
+# Cloudflare Worker that serves static assets directly — no Worker script,
+# no `main`. `not_found_handling = "single-page-application"` is what makes
+# deep-linked/reloaded client routes (e.g. /learn/lessons/:id, /placement)
+# work instead of returning a static-hosting 404: any request that doesn't
+# match a real built file falls back to index.html, and React Router takes
+# it from there. See docs/deployment.md.
+#
+# This Worker is intentionally separate from apps/api's Worker (different
+# origin) — see docs/deployment.md for why, and how that interacts with
+# session cookies/CORS.
+name = "english-level-web"
+compatibility_date = "2024-09-25"
+
+# Default (unnamed) environment — local-only; `pnpm dev:web` uses the plain
+# Vite dev server instead (see root README.md), not this Worker. `wrangler
+# dev` here would only be used to sanity-check the *built* assets locally.
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
+
+# Deployed via `wrangler deploy --env preview`, after `vite build --mode
+# preview` (reads apps/web/.env.preview). See docs/deployment.md.
+[env.preview]
+name = "english-level-web-preview"
+
+[env.preview.assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
+
+# Deployed via `wrangler deploy --env production`, after `vite build`
+# (reads apps/web/.env.production). See docs/deployment.md.
+[env.production]
+name = "english-level-web-production"
+
+[env.production.assets]
+directory = "./dist"
+not_found_handling = "single-page-application"

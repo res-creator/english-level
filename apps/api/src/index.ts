@@ -16,11 +16,34 @@ import { toPublicUser } from "./dto/userDto.ts";
 
 const app = new Hono<AppEnv>();
 
+/** No `ALLOWED_ORIGINS` configured (local dev, see `.dev.vars`/`wrangler.toml`
+ * `[vars]`) falls back to the local Vite dev server. Deployed environments
+ * always set this explicitly — see `wrangler.toml`'s `[env.*.vars]` and
+ * docs/deployment.md. */
+function parseAllowedOrigins(raw: string | undefined): string[] {
+  if (!raw) return ["http://localhost:5173"];
+  return raw
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+}
+
 // Phase 2: auth uses cookies, so CORS must name explicit origins and allow
 // credentials — `origin: "*"` is rejected by browsers for credentialed
-// requests. Add the deployed Mini App origin here once it exists.
-const ALLOWED_ORIGINS = ["http://localhost:5173"];
-app.use("*", cors({ origin: ALLOWED_ORIGINS, credentials: true }));
+// requests. The origin callback reads `c.env` per-request (env bindings
+// aren't available at module scope in Workers), so the same build works
+// unmodified across local/preview/production — only `ALLOWED_ORIGINS`
+// changes per environment.
+app.use(
+  "*",
+  cors({
+    origin: (origin, c) => {
+      const allowed = parseAllowedOrigins(c.env.ALLOWED_ORIGINS);
+      return allowed.includes(origin) ? origin : undefined;
+    },
+    credentials: true,
+  }),
+);
 
 const v1 = new Hono<AppEnv>();
 

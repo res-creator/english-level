@@ -25,10 +25,17 @@ migrations_dir = "../../migrations"
 # through. See docs/authentication.md. Never set this in [env.preview] or
 # [env.production] — those must get a real token via `wrangler secret put
 # TELEGRAM_BOT_TOKEN --env <env>`, never committed here.
+#
+# ALLOWED_ORIGINS is NOT a secret — it's the CORS allow-list (comma-
+# separated), read by apps/api/src/index.ts. Wrangler does not inherit
+# top-level [vars]/[[d1_databases]] into named environments, so every
+# [env.*] block below redeclares its own — same pattern already used for
+# d1_databases.
 [vars]
 TELEGRAM_BOT_TOKEN = "dev-fixture-telegram-bot-token-000000"
+ALLOWED_ORIGINS = "http://localhost:5173"
 
-# Deployed via `wrangler deploy --env preview`.
+# Deployed via `wrangler deploy --env preview`. See docs/deployment.md.
 [env.preview]
 name = "english-level-api-preview"
 
@@ -38,7 +45,15 @@ database_name = "english-level-db-preview"
 database_id = "REPLACE_WITH_PREVIEW_D1_DATABASE_ID"
 migrations_dir = "../../migrations"
 
-# Deployed via `wrangler deploy --env production`.
+# Real value = the deployed apps/web preview Worker's origin, e.g.
+# "https://english-level-web-preview.<your-subdomain>.workers.dev" — only
+# knowable after that Worker is first deployed (see docs/deployment.md).
+# TELEGRAM_BOT_TOKEN is intentionally NOT set here: it must be a secret,
+# set once via `wrangler secret put TELEGRAM_BOT_TOKEN --env preview`.
+[env.preview.vars]
+ALLOWED_ORIGINS = "https://REPLACE_WITH_PREVIEW_WEB_ORIGIN.workers.dev"
+
+# Deployed via `wrangler deploy --env production`. See docs/deployment.md.
 [env.production]
 name = "english-level-api-production"
 
@@ -48,7 +63,10 @@ database_name = "english-level-db-production"
 database_id = "REPLACE_WITH_PRODUCTION_D1_DATABASE_ID"
 migrations_dir = "../../migrations"
 
-# No other vars/secrets are needed for Phase 1. When they're added:
-# - non-secret config -> `vars = { ... }` under the relevant [env.*] block
-# - secrets (API keys, tokens) -> `wrangler secret put <NAME> --env <env>`,
-#   never committed to this file.
+# Same as [env.preview.vars] above, pointed at the production web origin.
+# TELEGRAM_BOT_TOKEN: `wrangler secret put TELEGRAM_BOT_TOKEN --env production`.
+[env.production.vars]
+ALLOWED_ORIGINS = "https://REPLACE_WITH_PRODUCTION_WEB_ORIGIN.workers.dev"
+
+# Secrets (API keys, tokens) -> `wrangler secret put <NAME> --env <env>`,
+# never committed to this file. Currently only TELEGRAM_BOT_TOKEN.

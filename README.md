@@ -20,7 +20,9 @@ covers **Phase 0** (monorepo/app shell), **Phase 1** (database foundation
   [`docs/content-authoring.md`](./docs/content-authoring.md) for the
   Phase 5 curriculum/content model, and
   [`docs/lesson-engine.md`](./docs/lesson-engine.md) for the Phase 6
-  lesson execution engine.
+  lesson execution engine. This is not a product phase, but the repo is
+  now also prepared for a first real Cloudflare deployment — see
+  [`docs/deployment.md`](./docs/deployment.md).
 
 ## Project structure
 
@@ -41,6 +43,8 @@ apps/
                         components + ActivityRenderer (kind -> component)
     src/routes/{LessonSession,LessonResult}.tsx Phase 6: the lesson-session
                         and result screens
+    wrangler.toml       deployment prep: deploys apps/web/dist as a static-
+                        assets Worker (SPA fallback) — see docs/deployment.md
   api/                 Cloudflare Worker backend (Hono)
     src/db/            D1 binding types, Db interface, D1 adapter, ID helper
     src/repositories/  typed data-access layer (users, settings, acquisition,
@@ -96,7 +100,8 @@ docs/                  database.md (Phase 1 schema), authentication.md (Phase 2
                         auth), onboarding.md (Phase 3 onboarding flow),
                         placement-test.md (Phase 4 placement algorithm),
                         curriculum.md + content-authoring.md (Phase 5),
-                        lesson-engine.md (Phase 6 lesson execution engine)
+                        lesson-engine.md (Phase 6 lesson execution engine),
+                        deployment.md (Cloudflare deployment preparation)
 ```
 
 `apps/web` depends on `packages/contracts` and `packages/shared` via pnpm
@@ -145,7 +150,10 @@ Starts the Worker locally via `wrangler dev` at http://localhost:8787.
 > Node), or deploy to a preview environment to test against a real Worker.
 > The same limitation means `wrangler d1 migrations apply` can't be run
 > against local D1 on this machine either — see "Database" below for how
-> the Phase 1 schema is validated instead.
+> the Phase 1 schema is validated instead. `wrangler d1 migrations apply
+DB --env preview` **against remote D1** (no local runtime involved, just
+> Wrangler talking to Cloudflare's API) works fine from this machine —
+> see [`docs/deployment.md`](./docs/deployment.md).
 
 ## Database
 
@@ -358,26 +366,28 @@ the API is reachable.
 
 ## Environment variables
 
-| App        | File               | Committed?       | Purpose                                                                         |
-| ---------- | ------------------ | ---------------- | ------------------------------------------------------------------------------- |
-| `apps/web` | `.env.example`     | yes              | documents available variables                                                   |
-| `apps/web` | `.env.development` | yes              | default `VITE_API_BASE_URL` for local dev                                       |
-| `apps/web` | `.env.local`       | no (gitignored)  | personal local overrides                                                        |
-| `apps/api` | `wrangler.toml`    | yes              | non-secret Worker config, per environment                                       |
-| `apps/api` | `wrangler secret`  | n/a (not a file) | `TELEGRAM_BOT_TOKEN` for preview/production (real secret, see "Authentication") |
+| App        | File                               | Committed?       | Purpose                                                                                                                                                                  |
+| ---------- | ---------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `apps/web` | `.env.example`                     | yes              | documents available variables                                                                                                                                            |
+| `apps/web` | `.env.development`                 | yes              | default `VITE_API_BASE_URL` for local dev                                                                                                                                |
+| `apps/web` | `.env.preview` / `.env.production` | yes              | `VITE_API_BASE_URL` for those builds — committed as an obvious placeholder until the API Worker exists, then updated to the real deployed URL (not a secret, just a URL) |
+| `apps/web` | `.env.local`                       | no (gitignored)  | personal local overrides                                                                                                                                                 |
+| `apps/web` | `wrangler.toml`                    | yes              | deploys `dist/` as a static-assets Worker (SPA fallback), per environment                                                                                                |
+| `apps/api` | `wrangler.toml`                    | yes              | non-secret Worker config (incl. D1 binding, `ALLOWED_ORIGINS`), per environment                                                                                          |
+| `apps/api` | `wrangler secret`                  | n/a (not a file) | `TELEGRAM_BOT_TOKEN` for preview/production (real secret, see "Authentication")                                                                                          |
 
 - **Local**: `apps/web/.env.development` points at `http://localhost:8787`
   by default; `apps/api` runs with the default (unnamed) Wrangler
   environment.
-- **Preview / production**: `apps/api/wrangler.toml` defines `[env.preview]`
-  and `[env.production]` blocks. Deploy with
-  `wrangler deploy --env preview` / `--env production`. Non-secret config
-  goes in those blocks as `vars = { ... }`; secrets are set with
-  `wrangler secret put <NAME> --env <env>` and are **never** committed.
-  For the frontend, set `VITE_API_BASE_URL` to the deployed Worker URL in
-  your hosting provider's environment variable settings (or an
-  uncommitted `.env.preview.local` / `.env.production.local` file) rather
-  than committing real URLs here.
+- **Preview / production**: see
+  [`docs/deployment.md`](./docs/deployment.md) for the full setup
+  (Cloudflare Workers Builds, D1 creation/migration/seeding, secrets,
+  origin wiring). In short: `apps/api/wrangler.toml`'s `[env.preview]` /
+  `[env.production]` blocks hold non-secret config
+  (`[env.<env>.vars]`); secrets are set with
+  `wrangler secret put <NAME> --env <env>` and are **never** committed;
+  `apps/web/.env.preview` / `.env.production` hold the (non-secret,
+  build-time) `VITE_API_BASE_URL` for each deployed environment.
 
 No real secrets are required to run Phase 0, 1, or 2 locally — the local
 `TELEGRAM_BOT_TOKEN` in `wrangler.toml` is a fixed, non-secret dev fixture
@@ -416,6 +426,18 @@ Run from the repo root (they fan out to all workspace packages):
 | `pnpm test`         | run tests in every package that defines one (currently: `packages/shared`'s Telegram initData tests, `apps/api`'s data-layer + auth/onboarding/placement/curriculum/lesson-session-service + content-QA tests) |
 | `pnpm format`       | format the repo with Prettier                                                                                                                                                                                  |
 | `pnpm format:check` | check formatting without writing                                                                                                                                                                               |
+
+Deployment scripts (run from `apps/api` or `apps/web`, not the root — see
+[`docs/deployment.md`](./docs/deployment.md) for the full picture):
+
+| Script                        | Package                | What it does                                                                                                            |
+| ----------------------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `pnpm run deploy:preview`     | `apps/api`, `apps/web` | `wrangler deploy --env preview`                                                                                         |
+| `pnpm run deploy:production`  | `apps/api`, `apps/web` | `wrangler deploy --env production`                                                                                      |
+| `pnpm run build:preview`      | `apps/web`             | `vite build --mode preview` (reads `.env.preview`)                                                                      |
+| `pnpm run migrate:preview`    | `apps/api`             | `wrangler d1 migrations apply DB --env preview` (remote — works from this machine, see the local-limitation note above) |
+| `pnpm run migrate:production` | `apps/api`             | same, `--env production`                                                                                                |
+| `pnpm run seed:generate`      | `apps/api`             | renders `seeds/content/*.json` as idempotent SQL, for `wrangler d1 execute`                                             |
 
 ## Routes
 

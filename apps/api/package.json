@@ -8,7 +8,13 @@
     "build": "tsc --noEmit",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p test/tsconfig.json",
     "test": "node --test test/*.test.ts",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "deploy:preview": "wrangler deploy --env preview",
+    "deploy:production": "wrangler deploy --env production",
+    "migrate:local": "wrangler d1 migrations apply DB --local",
+    "migrate:preview": "wrangler d1 migrations apply DB --env preview",
+    "migrate:production": "wrangler d1 migrations apply DB --env production",
+    "seed:generate": "node --experimental-strip-types scripts/generateSeedSql.ts"
   },
   "dependencies": {
     "@english-level/contracts": "workspace:*",
