@@ -3,47 +3,97 @@ import { useNavigate, useParams } from "react-router-dom";
 import type {
   PlacementResultResponse,
   PlacementSkill,
+  TodayResponse,
 } from "@english-level/contracts";
 import { getPlacementResult } from "../placement/placementClient.ts";
+import { getToday } from "../api/productClient.ts";
+import { Button } from "../ui/Button.tsx";
+import { ProgressBar } from "../ui/ProgressBar.tsx";
+import { LoadingScreen, ErrorState } from "../ui/states.tsx";
+import { LevelMark } from "../brand/illustrations.tsx";
+import { levelTitle } from "../ui/labels.tsx";
 
 const SKILL_LABELS: Record<PlacementSkill, string> = {
-  vocabulary: "Vocabulary",
-  grammar: "Grammar",
-  reading: "Reading",
-  active_english: "Active English",
+  vocabulary: "Слова",
+  grammar: "Грамматика",
+  reading: "Чтение",
+  active_english: "Речь",
+};
+
+const LEVEL_MEANING: Record<string, string> = {
+  A1: "Базовые фразы и повседневные выражения — начинаем с самого нужного.",
+  A2: "Простые бытовые темы — расширяем словарь и уверенность.",
+  B1: "Уверенное общение на знакомые темы — добавляем точность.",
+  B2: "Свободное общение на большинство тем — шлифуем нюансы.",
 };
 
 type State =
   | { status: "loading" }
   | { status: "ready"; result: PlacementResultResponse }
-  | { status: "error"; message: string };
+  | { status: "error" };
+
+/** The first situation comes from the same read Today uses — never a
+ * guess, so the CTA always lands on real content. */
+type FirstLesson =
+  | { status: "loading" }
+  | { status: "ready"; episodeId: string; title: string }
+  | { status: "unavailable" };
 
 export function PlacementResult() {
   const { attemptId } = useParams<{ attemptId: string }>();
   const navigate = useNavigate();
   const [state, setState] = useState<State>({ status: "loading" });
+  const [firstLesson, setFirstLesson] = useState<FirstLesson>({
+    status: "loading",
+  });
 
   useEffect(() => {
     if (!attemptId) return;
     getPlacementResult(attemptId)
       .then((result) => setState({ status: "ready", result }))
-      .catch((err) =>
-        setState({ status: "error", message: (err as Error).message }),
-      );
+      .catch(() => setState({ status: "error" }));
   }, [attemptId]);
 
-  if (state.status === "loading") return <p>Loading…</p>;
+  useEffect(() => {
+    if (state.status !== "ready") return;
+    let cancelled = false;
+    getToday()
+      .then((data: TodayResponse) => {
+        if (cancelled) return;
+        setFirstLesson(
+          data.episode
+            ? {
+                status: "ready",
+                episodeId: data.episode.id,
+                title: data.episode.situationTitle ?? data.episode.title,
+              }
+            : { status: "unavailable" },
+        );
+      })
+      .catch(() => {
+        if (!cancelled) setFirstLesson({ status: "unavailable" });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [state.status]);
+
+  if (state.status === "loading") return <LoadingScreen />;
 
   if (state.status === "error") {
     return (
-      <section className="onboarding-screen">
-        <p className="onboarding-error">{state.message}</p>
-      </section>
+      <div className="center-screen">
+        <ErrorState
+          title="Результат не найден"
+          message="Похоже, тест ещё не завершён."
+          onRetry={() => navigate("/placement")}
+        />
+      </div>
     );
   }
 
   const { result } = state;
-  const skillRows: Array<{ skill: PlacementSkill; value: number }> = [
+  const skills: Array<{ skill: PlacementSkill; value: number }> = [
     { skill: "vocabulary", value: result.scores.vocabulary },
     { skill: "grammar", value: result.scores.grammar },
     { skill: "reading", value: result.scores.reading },
@@ -51,48 +101,74 @@ export function PlacementResult() {
   ];
 
   return (
-    <section className="onboarding-screen">
-      <p className="onboarding-progress">Your English Level</p>
-      <p className="result-level">{result.level}</p>
+    <div className="focus-shell has-blobs">
+      <div
+        className="blob blob-green"
+        style={{ width: 280, height: 280, top: -120, right: -120 }}
+      />
+      <div
+        className="blob blob-blush"
+        style={{ width: 200, height: 200, bottom: 80, left: -90 }}
+      />
 
-      <div className="option-list">
-        {skillRows.map((row) => (
-          <div className="result-skill" key={row.skill}>
-            <div className="result-skill-label">
-              <span>{SKILL_LABELS[row.skill]}</span>
-              <span>{row.value}%</span>
-            </div>
-            <div className="result-skill-track">
-              <div
-                className="result-skill-fill"
-                style={{ width: `${row.value}%` }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <p>
-        Strongest: {SKILL_LABELS[result.strongestSkill]}
-        <br />
-        Needs work: {SKILL_LABELS[result.weakestSkill]}
-      </p>
-
-      {result.selfReportedLevel && (
-        <p className="onboarding-progress">
-          During onboarding you guessed {result.selfReportedLevel}.
-        </p>
-      )}
-
-      <div className="onboarding-actions">
-        <button
-          type="button"
-          className="button-primary"
-          onClick={() => navigate("/learn")}
+      <div className="focus-body">
+        <div
+          className="stack-sm"
+          style={{
+            alignItems: "center",
+            textAlign: "center",
+            paddingTop: "var(--s4)",
+          }}
         >
-          Continue
-        </button>
+          <span className="eyebrow muted">Твой уровень</span>
+          <LevelMark level={result.level} />
+          <h1 className="h1">{levelTitle(result.level)}</h1>
+          <p className="body muted" style={{ maxWidth: 330 }}>
+            {LEVEL_MEANING[result.level] ??
+              "Курс собран под твой текущий уровень."}
+          </p>
+        </div>
+
+        <div className="stack" style={{ paddingTop: "var(--s2)" }}>
+          <span className="eyebrow muted">По навыкам</span>
+          {skills.map((row) => (
+            <div key={row.skill} className="stack-sm">
+              <div className="row-between">
+                <span className="small">{SKILL_LABELS[row.skill]}</span>
+                <span className="caption muted num">{row.value}%</span>
+              </div>
+              <ProgressBar percent={row.value} thin />
+            </div>
+          ))}
+        </div>
+
+        <div className="panel-green stack-sm">
+          <span className="caption" style={{ color: "var(--green-700)" }}>
+            Сильнее всего — {SKILL_LABELS[result.strongestSkill]}
+          </span>
+          <span className="small muted">
+            Подтянем {SKILL_LABELS[result.weakestSkill].toLowerCase()} — с этого
+            и начнём.
+          </span>
+        </div>
       </div>
-    </section>
+
+      <div className="focus-footer stack-sm">
+        {firstLesson.status === "ready" ? (
+          <Button onClick={() => navigate(`/course/${firstLesson.episodeId}`)}>
+            Начать: {firstLesson.title}
+          </Button>
+        ) : (
+          <Button
+            disabled={firstLesson.status === "loading"}
+            onClick={() => navigate("/course")}
+          >
+            {firstLesson.status === "loading"
+              ? "Собираем курс…"
+              : "Открыть курс"}
+          </Button>
+        )}
+      </div>
+    </div>
   );
 }

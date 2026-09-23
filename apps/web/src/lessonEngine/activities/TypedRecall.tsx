@@ -1,39 +1,47 @@
-import { useState } from "react";
+import { translatePrompt } from "../promptTranslations.ts";
+import type { ActivityViewProps } from "./ActivityRenderer.tsx";
 
-interface Props {
+interface Props extends ActivityViewProps {
   prompt: string;
   content: { text: string };
-  disabled: boolean;
-  onSubmit: (answer: string) => void;
 }
 
-export function TypedRecall({ prompt, content, disabled, onSubmit }: Props) {
-  const [value, setValue] = useState("");
+export function TypedRecall({
+  prompt,
+  content,
+  answer,
+  onAnswerChange,
+  feedback,
+  disabled,
+}: Props) {
+  const tone = feedback
+    ? feedback.correct
+      ? "var(--green-500)"
+      : "var(--blush-400)"
+    : undefined;
 
   return (
-    <section className="activity-card">
-      <p className="onboarding-progress">{content.text}</p>
-      <h1>{prompt}</h1>
+    <div className="stack">
+      <div className="prompt">
+        <span className="prompt__kicker">Напиши по-английски</span>
+        <h1 className="prompt__text">{translatePrompt(prompt)}</h1>
+      </div>
+
+      <p className="sentence-frame">{content.text}</p>
+
       <input
         type="text"
-        className="text-input"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        className="text-field"
+        style={tone ? { borderColor: tone } : undefined}
+        value={answer}
+        onChange={(e) => onAnswerChange(e.target.value)}
         disabled={disabled}
-        placeholder="Type your answer"
+        placeholder="Твой ответ"
         autoCapitalize="off"
         autoCorrect="off"
+        autoComplete="off"
+        spellCheck={false}
       />
-      <div className="onboarding-actions">
-        <button
-          type="button"
-          className="button-primary"
-          disabled={disabled || !value.trim()}
-          onClick={() => onSubmit(value)}
-        >
-          Check
-        </button>
-      </div>
-    </section>
+    </div>
   );
 }

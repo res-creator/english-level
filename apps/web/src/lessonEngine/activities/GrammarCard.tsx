@@ -4,33 +4,18 @@ interface Props {
     formula: string | null;
     explanation: string;
   };
-  disabled: boolean;
-  onContinue: () => void;
 }
 
-/** Not a scored exercise — shows the pattern, then "Try it" leads into a
- * scored recognition check. */
-export function GrammarCard({ content, disabled, onContinue }: Props) {
+/** A grammar pattern, explained before it is practised. Not scored. */
+export function GrammarCard({ content }: Props) {
   return (
-    <section className="activity-card">
-      <p className="onboarding-progress">Grammar</p>
-      <h1>{content.title}</h1>
-      {content.formula && (
-        <div className="placement-passage">
-          <strong>{content.formula}</strong>
-        </div>
-      )}
-      <p>{content.explanation}</p>
-      <div className="onboarding-actions">
-        <button
-          type="button"
-          className="button-primary"
-          disabled={disabled}
-          onClick={onContinue}
-        >
-          Try it
-        </button>
-      </div>
-    </section>
+    <div className="stack">
+      <span className="prompt__kicker">Правило</span>
+      <h1 className="prompt__text">{content.title}</h1>
+      {content.formula ? (
+        <div className="formula">{content.formula}</div>
+      ) : null}
+      <p className="body">{content.explanation}</p>
+    </div>
   );
 }

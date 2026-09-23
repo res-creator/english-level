@@ -2,97 +2,133 @@
   {
     "id": "les_a2_01_01",
     "moduleId": "mod_a2_01",
-    "title": "Vocabulary",
+    "title": "Неделя расписана по минутам",
     "lessonType": "vocabulary",
     "order": 1,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Неделя расписана по минутам",
+    "scene": "Коллега спрашивает, как ты всё успеваешь.",
+    "capability": "Я могу рассказать о своём расписании"
   },
   {
     "id": "les_a2_01_02",
     "moduleId": "mod_a2_01",
-    "title": "Useful Phrases",
+    "title": "Я опаздываю",
     "lessonType": "practice",
     "order": 2,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Я опаздываю",
+    "scene": "Ты застряла в пробке, а встреча уже началась.",
+    "capability": "Я могу предупредить, что опаздываю"
   },
   {
     "id": "les_a2_01_03",
     "moduleId": "mod_a2_01",
-    "title": "Grammar",
+    "title": "Что я делала вчера",
     "lessonType": "grammar",
     "order": 3,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Что я делала вчера",
+    "scene": "Разговор о прошедших выходных.",
+    "capability": "Я могу рассказать, что было вчера"
   },
   {
     "id": "les_a2_01_04",
     "moduleId": "mod_a2_01",
-    "title": "Mixed Practice",
+    "title": "Привычки и планы",
     "lessonType": "mixed",
     "order": 4,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Привычки и планы",
+    "scene": "Ты обсуждаешь, что хочешь изменить.",
+    "capability": "Я могу говорить о привычках и планах"
   },
   {
     "id": "les_a2_02_01",
     "moduleId": "mod_a2_02",
-    "title": "Vocabulary",
+    "title": "Покупка билета",
     "lessonType": "vocabulary",
     "order": 1,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Покупка билета",
+    "scene": "Ты стоишь у кассы на вокзале.",
+    "capability": "Я могу купить билет и уточнить время"
   },
   {
     "id": "les_a2_02_02",
     "moduleId": "mod_a2_02",
-    "title": "Useful Phrases",
+    "title": "На вокзале",
     "lessonType": "vocabulary",
     "order": 2,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "На вокзале",
+    "scene": "Поезд задерживается, нужно разобраться.",
+    "capability": "Я могу разобраться с задержкой рейса"
   },
   {
     "id": "les_a2_02_03",
     "moduleId": "mod_a2_02",
-    "title": "Grammar",
+    "title": "Как добраться",
     "lessonType": "grammar",
     "order": 3,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Как добраться",
+    "scene": "Ты выбираешь между автобусом и такси.",
+    "capability": "Я могу обсудить, как лучше добраться"
   },
   {
     "id": "les_a2_02_04",
     "moduleId": "mod_a2_02",
-    "title": "Reading",
+    "title": "Короткая поездка",
     "lessonType": "reading",
     "order": 4,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Короткая поездка",
+    "scene": "Ты читаешь описание маршрута.",
+    "capability": "Я могу понять простое описание поездки"
   },
   {
     "id": "les_a2_03_01",
     "moduleId": "mod_a2_03",
-    "title": "Vocabulary",
+    "title": "Я не расслышала",
     "lessonType": "vocabulary",
     "order": 1,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Я не расслышала",
+    "scene": "Связь плохая, собеседника почти не слышно.",
+    "capability": "Я могу попросить повторить и уточнить"
   },
   {
     "id": "les_a2_03_02",
     "moduleId": "mod_a2_03",
-    "title": "Useful Phrases",
+    "title": "Договориться о встрече",
     "lessonType": "vocabulary",
     "order": 2,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Договориться о встрече",
+    "scene": "Нужно найти время, удобное обоим.",
+    "capability": "Я могу договориться о встрече"
   },
   {
     "id": "les_a2_03_03",
     "moduleId": "mod_a2_03",
-    "title": "Grammar",
+    "title": "Моё мнение",
     "lessonType": "grammar",
     "order": 3,
-    "estimatedMinutes": 5
+    "estimatedMinutes": 5,
+    "situationTitle": "Моё мнение",
+    "scene": "Тебя спрашивают, что ты думаешь.",
+    "capability": "Я могу высказать простое мнение"
   },
   {
     "id": "les_a2_03_04",
     "moduleId": "mod_a2_03",
-    "title": "Checkpoint",
+    "title": "Проверка: обычная неделя",
     "lessonType": "checkpoint",
     "order": 4,
-    "estimatedMinutes": 10
+    "estimatedMinutes": 10,
+    "situationTitle": "Проверка: обычная неделя",
+    "scene": "Всё, что ты прошла в этой главе, в одной ситуации.",
+    "capability": "Я могу справиться с обычной рабочей неделей"
   }
 ]

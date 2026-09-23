@@ -9,6 +9,11 @@ import { z } from "zod";
 
 export const CefrLevelCodeSchema = z.enum(["A1", "A2", "B1", "B2"]);
 
+/** Content that is authored but not (or no longer) part of the live course
+ * is marked `archived` rather than deleted — user progress may still point
+ * at it. */
+export const ContentStatusSchema = z.enum(["draft", "published", "archived"]);
+
 export const ModuleSeedSchema = z.object({
   id: z.string().min(1),
   levelCode: CefrLevelCodeSchema,
@@ -16,6 +21,7 @@ export const ModuleSeedSchema = z.object({
   slug: z.string().min(1),
   description: z.string().min(1).optional(),
   order: z.number().int().positive(),
+  status: ContentStatusSchema.optional(),
 });
 export type ModuleSeed = z.infer<typeof ModuleSeedSchema>;
 
@@ -28,6 +34,13 @@ export const LessonTypeSchema = z.enum([
   "checkpoint",
 ]);
 
+/**
+ * A lesson row is what the learner experiences as an **Episode**: one
+ * real-life situation. `lessonType` stays as the internal pedagogical
+ * classification; `situationTitle`/`scene`/`capability`/`teaser` are what
+ * the product actually shows. Older lessons without them still work and
+ * simply fall back to their plain title.
+ */
 export const LessonSeedSchema = z.object({
   id: z.string().min(1),
   moduleId: z.string().min(1),
@@ -35,6 +48,15 @@ export const LessonSeedSchema = z.object({
   lessonType: LessonTypeSchema,
   order: z.number().int().positive(),
   estimatedMinutes: z.number().int().positive().optional(),
+  status: ContentStatusSchema.optional(),
+  /** User-facing situation name, e.g. "Заказ в кафе". */
+  situationTitle: z.string().min(1).optional(),
+  /** 1–2 sentences setting the scene before the first activity. */
+  scene: z.string().min(1).optional(),
+  /** Narrow, honest "Я могу …" statement unlocked by the Mission. */
+  capability: z.string().min(1).optional(),
+  /** One line of anticipation for what comes next. */
+  teaser: z.string().min(1).optional(),
 });
 export type LessonSeed = z.infer<typeof LessonSeedSchema>;
 

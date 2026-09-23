@@ -6,36 +6,28 @@ interface Props {
     example: string | null;
     pattern: string | null;
   };
-  disabled: boolean;
-  onContinue: () => void;
 }
 
-/** Not a scored exercise — just shows the new word and waits for Continue. */
-export function InfoCard({ content, disabled, onContinue }: Props) {
+/** New vocabulary — not scored, just read and continue. */
+export function InfoCard({ content }: Props) {
   return (
-    <section className="activity-card">
-      <p className="onboarding-progress">New word</p>
-      <h1>{content.displayForm}</h1>
-      {content.ipa && <p className="activity-ipa">/{content.ipa}/</p>}
-      <p>{content.translation}</p>
-      {content.example && (
-        <div className="placement-passage">
-          <em>{content.example}</em>
-        </div>
-      )}
-      {content.pattern && (
-        <p className="onboarding-progress">{content.pattern}</p>
-      )}
-      <div className="onboarding-actions">
-        <button
-          type="button"
-          className="button-primary"
-          disabled={disabled}
-          onClick={onContinue}
-        >
-          Continue
-        </button>
+    <div className="stack">
+      <span className="prompt__kicker">Новое слово</span>
+      <div className="word-card">
+        <span className="word-card__word">{content.displayForm}</span>
+        {content.ipa ? (
+          <span className="word-card__ipa">/{content.ipa}/</span>
+        ) : null}
+        <span className="word-card__translation">{content.translation}</span>
+        {content.example ? (
+          <p className="word-card__example">{content.example}</p>
+        ) : null}
       </div>
-    </section>
+      {content.pattern ? (
+        <p className="small muted" style={{ textAlign: "center" }}>
+          {content.pattern}
+        </p>
+      ) : null}
+    </div>
   );
 }

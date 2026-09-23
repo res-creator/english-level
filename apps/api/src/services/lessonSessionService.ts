@@ -1,20 +1,23 @@
 import {
   AnswerActivityRequestSchema,
-  type AnswerActivityResponse,
   type AnswerFeedback,
-  type LessonResultDTO,
-  type LessonSessionDTO,
+  type EpisodeDTO,
+  type EpisodeSessionDTO,
+  type SessionResultDTO,
+  type UnlockedRewardDTO,
 } from "@english-level/contracts";
 import type {
   Db,
   LearningSessionRow,
   LessonRow,
   ModuleRow,
+  UserCapabilityRow,
 } from "../db/types.ts";
 import {
   findPublishedLessonById,
   findPublishedModuleById,
   listLessonItemsByLesson,
+  listPublishedLessonsByModule,
 } from "../repositories/curriculumRepository.ts";
 import { findUserById } from "../repositories/usersRepository.ts";
 import {
@@ -34,9 +37,21 @@ import {
   startProgressStatement,
 } from "../repositories/userLessonProgressRepository.ts";
 import {
-  buildActivityPlan,
-  cloneForRetry,
-} from "../lessonEngine/lessonSessionBuilder.ts";
+  advanceSessionsDoneStatement,
+  findCapability,
+  recordMissionAttemptStatement,
+  startCapabilityStatement,
+} from "../repositories/capabilitiesRepository.ts";
+import {
+  countDueMemory,
+  seedMemoryStatement,
+} from "../repositories/itemMemoryRepository.ts";
+import { cloneForRetry } from "../lessonEngine/lessonSessionBuilder.ts";
+import {
+  MISSION_PASS_ACCURACY,
+  buildMissionPlan,
+  planEpisodeSessions,
+} from "../lessonEngine/episodePlan.ts";
 import { toActivityDTO } from "../lessonEngine/activityDto.ts";
 import {
   correctAnswerDisplay,
@@ -47,6 +62,11 @@ import {
   isScoredActivity,
   type StoredActivity,
 } from "../lessonEngine/activityTypes.ts";
+import {
+  evaluateChapterReward,
+  evaluateWeekMilestone,
+  grantMissionReward,
+} from "./rewardService.ts";
 
 /** A wrong scored answer gets one alternate retry this many positions
  * later in the plan — not immediate, but soon. See
@@ -63,18 +83,23 @@ export type LessonSessionFailure =
   | { code: "validation_error"; message: string };
 
 export type LessonSessionResult =
-  | { ok: true; session: LessonSessionDTO }
+  | { ok: true; session: EpisodeSessionDTO }
   | { ok: false; error: LessonSessionFailure };
 
 export type SessionResultResult =
-  | { ok: true; result: LessonResultDTO }
+  | { ok: true; result: SessionResultDTO }
   | { ok: false; error: LessonSessionFailure };
 
 export type AnswerActivityResult =
   | {
       ok: true;
       feedback: AnswerFeedback;
-      session: AnswerActivityResponse["session"];
+      session:
+        | {
+            status: "in_progress";
+            nextActivity: ReturnType<typeof toActivityDTO>;
+          }
+        | { status: "completed"; result: SessionResultDTO };
     }
   | { ok: false; error: LessonSessionFailure };
 
@@ -86,11 +111,48 @@ function parsePlan(session: LearningSessionRow): StoredActivity[] {
   return JSON.parse(session.activities_json) as StoredActivity[];
 }
 
+// ---------------------------------------------------------------------------
+// Episode view
+// ---------------------------------------------------------------------------
+
+/**
+ * One situation, as the learner sees it. `sessionsTotal` is whatever the
+ * episode turned out to slice into when it was first started — it is not
+ * recomputed on every read, so the number the learner sees never shifts
+ * mid-episode.
+ */
+export function buildEpisodeDTO(
+  lesson: LessonRow,
+  capability: UserCapabilityRow | null,
+): EpisodeDTO {
+  const sessionsDone = capability?.sessions_done ?? 0;
+  const sessionsTotal = capability?.sessions_total ?? 0;
+  const state = capability?.state ?? null;
+  return {
+    id: lesson.id,
+    title: lesson.title,
+    situationTitle: lesson.situation_title,
+    scene: lesson.scene,
+    capability: lesson.capability,
+    teaser: lesson.teaser,
+    type: lesson.lesson_type,
+    order: lesson.order_index,
+    estimatedMinutes: lesson.estimated_minutes,
+    state,
+    sessionsDone,
+    sessionsTotal,
+    missionReady:
+      sessionsTotal > 0 &&
+      sessionsDone >= sessionsTotal &&
+      state === "learning",
+  };
+}
+
 function sessionToDTO(
   session: LearningSessionRow,
-  lesson: LessonRow,
+  episode: EpisodeDTO,
   plan: StoredActivity[],
-): LessonSessionDTO {
+): EpisodeSessionDTO {
   const current = plan[session.current_position];
   const currentActivity =
     session.status === "in_progress" && current
@@ -98,52 +160,12 @@ function sessionToDTO(
       : null;
   return {
     sessionId: session.id,
+    kind: session.session_kind,
     status: session.status,
-    lesson: { id: lesson.id, title: lesson.title },
+    sessionIndex: session.session_index,
+    sessionTotal: Math.max(episode.sessionsTotal, session.session_index),
+    episode,
     currentActivity,
-  };
-}
-
-/** Only callable once `session.status === "completed"` — every field
- * comes straight from the persisted row, so the same result is
- * reconstructable at any later time (see `getSessionResult`), not just
- * in the response that completed the session. */
-function buildLessonResult(
-  session: LearningSessionRow,
-  lesson: LessonRow,
-): LessonResultDTO {
-  const scoredAttempts = session.correct_count + session.wrong_count;
-  const accuracy =
-    scoredAttempts === 0
-      ? 0
-      : Math.round((100 * session.correct_count) / scoredAttempts);
-  if (!session.completed_at) {
-    throw new Error(
-      `buildLessonResult called for session ${session.id} with no completed_at`,
-    );
-  }
-  return {
-    sessionId: session.id,
-    lessonId: lesson.id,
-    lessonTitle: lesson.title,
-    status: "completed",
-    correctCount: session.correct_count,
-    wrongCount: session.wrong_count,
-    scoredAttempts,
-    accuracy,
-    completedAt: session.completed_at,
-  };
-}
-
-function buildFeedback(
-  activity: StoredActivity,
-  isCorrect: boolean,
-): AnswerFeedback {
-  if (isCorrect) return { correct: true };
-  return {
-    correct: false,
-    correctAnswer: correctAnswerDisplay(activity),
-    explanation: explanationFor(activity),
   };
 }
 
@@ -151,8 +173,8 @@ type EligibilityResult =
   | { ok: true; lesson: LessonRow; module: ModuleRow }
   | { ok: false; error: LessonSessionFailure };
 
-/** No prerequisite/unlock system: a lesson is eligible if it's published
- * and its module belongs to the user's currently verified CEFR level. */
+/** No prerequisite/unlock system: an episode is eligible if it's published
+ * and its chapter belongs to the user's currently verified CEFR level. */
 async function checkLessonEligibility(
   db: Db,
   lessonId: string,
@@ -185,13 +207,17 @@ async function checkLessonEligibility(
 }
 
 // ---------------------------------------------------------------------------
-// Public API
+// Starting
 // ---------------------------------------------------------------------------
 
 /**
- * Idempotent: resumes an existing in_progress session rather than
- * creating a second one. Otherwise generates a full deterministic
- * activity plan once and stores it on the new session row.
+ * Serves **one session**, not a whole episode: the engine builds the
+ * episode's deterministic plan, cuts it into 5–8 minute sessions, and this
+ * hands over the next one the learner hasn't done. Once every session is
+ * done the same call starts the Mission instead, so the client never has
+ * to know which comes next.
+ *
+ * Idempotent: an in-progress session is resumed rather than duplicated.
  */
 export async function startLessonSession(
   db: Db,
@@ -207,9 +233,14 @@ export async function startLessonSession(
         error: { code: "not_found", message: "lesson not found" },
       };
     }
+    const capability = await findCapability(db, userId, lessonId);
     return {
       ok: true,
-      session: sessionToDTO(active, lesson, parsePlan(active)),
+      session: sessionToDTO(
+        active,
+        buildEpisodeDTO(lesson, capability),
+        parsePlan(active),
+      ),
     };
   }
 
@@ -232,7 +263,25 @@ export async function startLessonSession(
   const { lesson, module: module_ } = eligibility;
 
   const lessonItems = await listLessonItemsByLesson(db, lessonId);
-  const plan = await buildActivityPlan(db, module_.level_id, lessonItems);
+  const { sessions, total } = await planEpisodeSessions(
+    db,
+    module_.level_id,
+    lessonItems,
+  );
+  if (total === 0) {
+    return {
+      ok: false,
+      error: { code: "not_found", message: "lesson has no content" },
+    };
+  }
+
+  const capability = await findCapability(db, userId, lessonId);
+  const sessionsDone = capability?.sessions_done ?? 0;
+  const isMission = sessionsDone >= total;
+
+  const plan: StoredActivity[] = isMission
+    ? await buildMissionPlan(db, module_.level_id, lessonItems)
+    : (sessions[sessionsDone] ?? []);
   if (plan.length === 0) {
     return {
       ok: false,
@@ -249,14 +298,23 @@ export async function startLessonSession(
       lessonId,
       JSON.stringify(plan),
       now,
+      {
+        kind: isMission ? "mission" : "lesson",
+        index: isMission ? total + 1 : sessionsDone + 1,
+      },
     ),
+    startCapabilityStatement(userId, lessonId, total, now),
     startProgressStatement(userId, lessonId, sessionId, now),
   ]);
 
   const created = await findSessionById(db, sessionId);
   if (!created)
     throw new Error(`Failed to load session ${sessionId} after creation`);
-  return { ok: true, session: sessionToDTO(created, lesson, plan) };
+  const stored = await findCapability(db, userId, lessonId);
+  return {
+    ok: true,
+    session: sessionToDTO(created, buildEpisodeDTO(lesson, stored), plan),
+  };
 }
 
 /** Owner-only; supports resuming after the Mini App is closed and
@@ -280,20 +338,90 @@ export async function getLessonSession(
       error: { code: "not_found", message: "lesson not found" },
     };
   }
+  const capability = await findCapability(db, userId, session.lesson_id);
   return {
     ok: true,
-    session: sessionToDTO(session, lesson, parsePlan(session)),
+    session: sessionToDTO(
+      session,
+      buildEpisodeDTO(lesson, capability),
+      parsePlan(session),
+    ),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Results
+// ---------------------------------------------------------------------------
+
+function accuracyOf(session: LearningSessionRow): number {
+  const scored = session.correct_count + session.wrong_count;
+  return scored === 0 ? 0 : Math.round((100 * session.correct_count) / scored);
+}
+
+/** Which episode follows this one inside the same chapter, if any. */
+async function findNextEpisodeId(
+  db: Db,
+  lesson: LessonRow,
+): Promise<string | null> {
+  const siblings = await listPublishedLessonsByModule(db, lesson.module_id);
+  const index = siblings.findIndex((l) => l.id === lesson.id);
+  if (index === -1) return null;
+  return siblings[index + 1]?.id ?? null;
+}
+
+/**
+ * The result of a finished session. Every number is read back off the
+ * persisted row, so reloading the result screen shows exactly what the
+ * completing response showed. `rewards` is intentionally empty here — a
+ * reward is celebrated once, in the response that unlocked it.
+ */
+async function buildSessionResult(
+  db: Db,
+  session: LearningSessionRow,
+  lesson: LessonRow,
+  rewards: UnlockedRewardDTO[],
+): Promise<SessionResultDTO> {
+  if (!session.completed_at) {
+    throw new Error(
+      `buildSessionResult called for session ${session.id} with no completed_at`,
+    );
+  }
+  const capability = await findCapability(db, session.user_id, lesson.id);
+  const accuracy = accuracyOf(session);
+  const isMission = session.session_kind === "mission";
+  const episode = buildEpisodeDTO(lesson, capability);
+  const due = await countDueMemory(
+    db,
+    session.user_id,
+    new Date().toISOString(),
+  );
+  return {
+    sessionId: session.id,
+    kind: session.session_kind,
+    episodeId: lesson.id,
+    episodeTitle: lesson.situation_title ?? lesson.title,
+    correctCount: session.correct_count,
+    wrongCount: session.wrong_count,
+    scoredAttempts: session.correct_count + session.wrong_count,
+    accuracy,
+    completedAt: session.completed_at,
+    sessionsDone: episode.sessionsDone,
+    sessionsTotal: Math.max(episode.sessionsTotal, 1),
+    missionPassed: isMission ? accuracy >= MISSION_PASS_ACCURACY : null,
+    capability: lesson.capability,
+    capabilityState: episode.state,
+    missionReady: episode.missionReady,
+    teaser: lesson.teaser,
+    nextEpisodeId: await findNextEpisodeId(db, lesson),
+    rewards,
+    reviewDue: due?.n ?? 0,
   };
 }
 
 /**
  * Owner-only; only returns a result for a session that has actually
  * completed — an in_progress/abandoned session gets a clear
- * `not_completed` error, never a fabricated or partial result. Every
- * field is read straight off the persisted `learning_sessions` row, so
- * this reconstructs exactly the same `LessonResultDTO` a completing
- * `/answer` response carried, and survives a page reload since it
- * doesn't depend on any client-held state.
+ * `not_completed` error, never a fabricated or partial result.
  */
 export async function getSessionResult(
   db: Db,
@@ -323,7 +451,53 @@ export async function getSessionResult(
       error: { code: "not_found", message: "lesson not found" },
     };
   }
-  return { ok: true, result: buildLessonResult(session, lesson) };
+  return {
+    ok: true,
+    result: await buildSessionResult(db, session, lesson, []),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Answering
+// ---------------------------------------------------------------------------
+
+function buildFeedback(
+  activity: StoredActivity,
+  isCorrect: boolean,
+): AnswerFeedback {
+  if (isCorrect) return { correct: true };
+  return {
+    correct: false,
+    correctAnswer: correctAnswerDisplay(activity),
+    explanation: explanationFor(activity),
+  };
+}
+
+/** Everything the session touched enters spaced memory, so review is
+ * always built from language the learner has actually met. */
+function seedStatementsFor(
+  userId: string,
+  lessonId: string,
+  plan: StoredActivity[],
+  now: Date,
+) {
+  const seen = new Set<string>();
+  return plan
+    .filter((activity) => {
+      const key = `${activity.targetType}:${activity.targetId}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map((activity) =>
+      seedMemoryStatement(
+        userId,
+        activity.targetType,
+        activity.targetId,
+        lessonId,
+        now,
+      ),
+    );
 }
 
 /**
@@ -385,7 +559,7 @@ export async function answerActivity(
         feedback,
         session: {
           status: "completed",
-          result: buildLessonResult(session, lesson),
+          result: await buildSessionResult(db, session, lesson, []),
         },
       };
     }
@@ -432,8 +606,13 @@ export async function answerActivity(
     else wrongCount += 1;
   }
 
+  // The Mission is a proof, not a lesson: it never hands out a second try.
+  const retryAllowed =
+    session.session_kind === "lesson" &&
+    isScoredActivity(current) &&
+    !current.isRetry;
   let nextPlan = plan;
-  if (!isCorrect && isScoredActivity(current) && !current.isRetry) {
+  if (!isCorrect && retryAllowed) {
     const retry = cloneForRetry(current, `${current.id}_retry`);
     const insertAt = Math.min(currentIndex + 1 + RETRY_OFFSET, plan.length);
     nextPlan = [...plan.slice(0, insertAt), retry, ...plan.slice(insertAt)];
@@ -456,9 +635,14 @@ export async function answerActivity(
   });
 
   if (newPosition >= nextPlan.length) {
-    const now = new Date().toISOString();
+    const completedAt = new Date();
+    const now = completedAt.toISOString();
     const total = correctCount + wrongCount;
     const accuracy = total === 0 ? 0 : Math.round((100 * correctCount) / total);
+    const isMission = session.session_kind === "mission";
+    const missionPassed = isMission && accuracy >= MISSION_PASS_ACCURACY;
+    const capability = await findCapability(db, userId, session.lesson_id);
+
     await db.batch([
       attemptStatement,
       completeSessionStatement(
@@ -471,13 +655,55 @@ export async function answerActivity(
         },
         now,
       ),
-      completeProgressStatement(
+      // The episode counts as completed only once its Mission is passed —
+      // finishing one of its daily sessions is progress, not proof.
+      ...(missionPassed
+        ? [
+            completeProgressStatement(
+              userId,
+              session.lesson_id,
+              { sessionId, accuracy },
+              now,
+            ),
+          ]
+        : []),
+      isMission
+        ? recordMissionAttemptStatement(
+            userId,
+            session.lesson_id,
+            missionPassed,
+            now,
+          )
+        : advanceSessionsDoneStatement(
+            userId,
+            session.lesson_id,
+            Math.max(
+              (capability?.sessions_done ?? 0) + 1,
+              session.session_index,
+            ),
+            now,
+          ),
+      ...seedStatementsFor(userId, session.lesson_id, nextPlan, completedAt),
+    ]);
+
+    const rewards: UnlockedRewardDTO[] = [];
+    if (missionPassed) {
+      const missionReward = await grantMissionReward(
+        db,
         userId,
         session.lesson_id,
-        { sessionId, accuracy },
-        now,
-      ),
-    ]);
+      );
+      if (missionReward) rewards.push(missionReward);
+      const chapterReward = await evaluateChapterReward(
+        db,
+        userId,
+        lesson.module_id,
+      );
+      if (chapterReward) rewards.push(chapterReward);
+    }
+    const milestone = await evaluateWeekMilestone(db, userId, completedAt);
+    if (milestone) rewards.push(milestone);
+
     const completed = await findSessionById(db, sessionId);
     if (!completed)
       throw new Error(`Session ${sessionId} missing after completion`);
@@ -486,7 +712,7 @@ export async function answerActivity(
       feedback,
       session: {
         status: "completed",
-        result: buildLessonResult(completed, lesson),
+        result: await buildSessionResult(db, completed, lesson, rewards),
       },
     };
   }

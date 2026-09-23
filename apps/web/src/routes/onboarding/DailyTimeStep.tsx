@@ -7,11 +7,20 @@ import {
 import { useOnboardingState } from "../../onboarding/useOnboardingState.ts";
 import { updateDailyTime } from "../../onboarding/onboardingClient.ts";
 import { STAGE_ROUTES, stageIndex } from "../../onboarding/stageRoutes.ts";
-import { OnboardingProgress } from "../../onboarding/OnboardingProgress.tsx";
+import { OnboardingStep } from "../../onboarding/OnboardingStep.tsx";
+import { Button } from "../../ui/Button.tsx";
+import { Choice } from "../../ui/Choice.tsx";
+import { LoadingScreen, ErrorState } from "../../ui/states.tsx";
+
+const HINTS: Record<number, string> = {
+  5: "Один короткий урок",
+  10: "Рекомендуем",
+  15: "Заметный прогресс",
+};
 
 export function DailyTimeStep() {
   const navigate = useNavigate();
-  const { status, state, message, reload } = useOnboardingState();
+  const { status, state, reload } = useOnboardingState();
   const [selected, setSelected] = useState<DailyMinutes | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -20,15 +29,12 @@ export function DailyTimeStep() {
     if (state?.dailyMinutes != null) setSelected(state.dailyMinutes);
   }, [state]);
 
-  if (status === "loading") return <p>Loading…</p>;
+  if (status === "loading") return <LoadingScreen />;
   if (status === "error") {
     return (
-      <section className="onboarding-screen">
-        <p className="onboarding-error">{message}</p>
-        <button type="button" className="button-secondary" onClick={reload}>
-          Retry
-        </button>
-      </section>
+      <div className="center-screen">
+        <ErrorState onRetry={reload} />
+      </div>
     );
   }
 
@@ -43,54 +49,45 @@ export function DailyTimeStep() {
     try {
       const next = await updateDailyTime(selected);
       navigate(STAGE_ROUTES[next.stage]);
-    } catch (err) {
-      setError((err as Error).message);
+    } catch {
+      setError("Не получилось сохранить. Попробуй ещё раз.");
     } finally {
       setSubmitting(false);
     }
   }
 
   return (
-    <section className="onboarding-screen">
-      <OnboardingProgress step={2} total={3} />
-      <h1>How much time can you realistically study each day?</h1>
-      <div className="option-list">
-        {DAILY_MINUTES_OPTIONS.map((minutes) => (
-          <button
-            key={minutes}
-            type="button"
-            className={
-              selected === minutes
-                ? "option-button option-button--selected"
-                : "option-button"
-            }
-            onClick={() => setSelected(minutes)}
-          >
-            {minutes} minutes
-            {minutes === 10 && (
-              <span className="option-button__hint">Recommended</span>
-            )}
-          </button>
-        ))}
-      </div>
-      {error && <p className="onboarding-error">{error}</p>}
-      <div className="onboarding-actions">
-        <button
-          type="button"
-          className="button-secondary"
-          onClick={() => navigate("/onboarding/goals")}
-        >
-          Back
-        </button>
-        <button
-          type="button"
-          className="button-primary"
+    <OnboardingStep
+      step={3}
+      title="Сколько минут в день?"
+      subtitle="Лучше меньше, но каждый день — так привычка держится дольше."
+      onBack={() => navigate("/onboarding/level")}
+      footer={
+        <Button
           disabled={selected === null || submitting}
           onClick={handleContinue}
         >
-          {submitting ? "Saving…" : "Continue"}
-        </button>
+          {submitting ? "Сохраняем…" : "Дальше"}
+        </Button>
+      }
+    >
+      <div className="stack">
+        {DAILY_MINUTES_OPTIONS.map((minutes) => (
+          <Choice
+            key={minutes}
+            state={selected === minutes ? "selected" : "idle"}
+            hint={HINTS[minutes]}
+            onClick={() => setSelected(minutes)}
+          >
+            {minutes} минут
+          </Choice>
+        ))}
       </div>
-    </section>
+      {error ? (
+        <p className="small" style={{ color: "var(--danger)" }}>
+          {error}
+        </p>
+      ) : null}
+    </OnboardingStep>
   );
 }

@@ -90,7 +90,7 @@ test("an unknown goal code is rejected", async () => {
   if (!result.ok) assert.equal(result.error.code, "validation_error");
 });
 
-test("valid goals persist and the stage advances to daily_time", async () => {
+test("valid goals persist and the stage advances to level_choice", async () => {
   const { db } = createTestDb();
   const user = await makeUser(db, 6);
 
@@ -101,13 +101,14 @@ test("valid goals persist and the stage advances to daily_time", async () => {
   assert.equal(result.ok, true);
   if (!result.ok) return;
   assert.deepEqual(result.state.goals, ["travel", "work"]);
-  assert.equal(result.state.stage, "daily_time");
+  assert.equal(result.state.stage, "level_choice");
 });
 
 test("invalid daily minutes are rejected", async () => {
   const { db } = createTestDb();
   const user = await makeUser(db, 7);
   await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
+  await updateOnboardingLevel(db, user.id, { level: "A1" });
 
   const result = await updateOnboardingDailyTime(db, user.id, { minutes: 7 });
 
@@ -120,13 +121,14 @@ test("only 5, 10, or 15 minutes are accepted, and daily time persists", async ()
     const { db } = createTestDb();
     const user = await makeUser(db, 100 + minutes);
     await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
+    await updateOnboardingLevel(db, user.id, { level: "A1" });
 
     const result = await updateOnboardingDailyTime(db, user.id, { minutes });
 
     assert.equal(result.ok, true);
     if (!result.ok) continue;
     assert.equal(result.state.dailyMinutes, minutes);
-    assert.equal(result.state.stage, "level_choice");
+    assert.equal(result.state.stage, "placement_required");
   }
 });
 
@@ -134,7 +136,6 @@ test("a valid self-reported level persists", async () => {
   const { db } = createTestDb();
   const user = await makeUser(db, 8);
   await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
-  await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
 
   const result = await updateOnboardingLevel(db, user.id, { level: "B1" });
 
@@ -147,7 +148,6 @@ test('null ("I don\'t know") level is handled correctly, distinct from "not yet 
   const { db } = createTestDb();
   const user = await makeUser(db, 9);
   await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
-  await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
 
   const before = await getOnboardingState(db, user.id);
   assert.equal(before.selfReportedCefrLevel, null); // not yet answered
@@ -156,14 +156,13 @@ test('null ("I don\'t know") level is handled correctly, distinct from "not yet 
   assert.equal(result.ok, true);
   if (!result.ok) return;
   assert.equal(result.state.selfReportedCefrLevel, null); // explicitly "I don't know"
-  assert.equal(result.state.stage, "placement_required"); // but the step IS complete
+  assert.equal(result.state.stage, "daily_time"); // but the step IS complete
 });
 
 test("an unknown CEFR level (e.g. C1) is rejected", async () => {
   const { db } = createTestDb();
   const user = await makeUser(db, 10);
   await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
-  await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
 
   const result = await updateOnboardingLevel(db, user.id, { level: "C1" });
 
@@ -175,8 +174,8 @@ test("current_cefr_level remains unconfirmed/null after onboarding preferences a
   const { db } = createTestDb();
   const user = await makeUser(db, 11);
   await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
-  await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
   await updateOnboardingLevel(db, user.id, { level: "B2" });
+  await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
 
   const stored = await findUserById(db, user.id);
   assert.equal(stored?.current_cefr_level, null);
@@ -186,8 +185,8 @@ test("completed preferences end at placement_required, not completed", async () 
   const { db } = createTestDb();
   const user = await makeUser(db, 12);
   await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
-  await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
-  const result = await updateOnboardingLevel(db, user.id, { level: "A2" });
+  await updateOnboardingLevel(db, user.id, { level: "A2" });
+  const result = await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
 
   assert.equal(result.ok, true);
   if (!result.ok) return;
@@ -211,6 +210,15 @@ test("a client cannot skip required steps by calling a later step directly", asy
   const levelFirst = await updateOnboardingLevel(db, user.id, { level: "A1" });
   assert.equal(levelFirst.ok, false);
   if (!levelFirst.ok) assert.equal(levelFirst.error.code, "step_locked");
+
+  // and daily time is still locked once only goals are done
+  await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
+  const dailyTimeBeforeLevel = await updateOnboardingDailyTime(db, user.id, {
+    minutes: 10,
+  });
+  assert.equal(dailyTimeBeforeLevel.ok, false);
+  if (!dailyTimeBeforeLevel.ok)
+    assert.equal(dailyTimeBeforeLevel.error.code, "step_locked");
 });
 
 test("onboarding resumes at the correct step after a simulated app reopen", async () => {
@@ -220,12 +228,12 @@ test("onboarding resumes at the correct step after a simulated app reopen", asyn
   assert.equal((await getOnboardingState(db, user.id)).stage, "goals");
 
   await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
-  assert.equal((await getOnboardingState(db, user.id)).stage, "daily_time");
-
-  await updateOnboardingDailyTime(db, user.id, { minutes: 5 });
   assert.equal((await getOnboardingState(db, user.id)).stage, "level_choice");
 
   await updateOnboardingLevel(db, user.id, { level: null });
+  assert.equal((await getOnboardingState(db, user.id)).stage, "daily_time");
+
+  await updateOnboardingDailyTime(db, user.id, { minutes: 5 });
   assert.equal(
     (await getOnboardingState(db, user.id)).stage,
     "placement_required",
@@ -236,8 +244,8 @@ test("editing a prior answer persists without corrupting the other answers or th
   const { db } = createTestDb();
   const user = await makeUser(db, 15);
   await updateOnboardingGoals(db, user.id, { goals: ["travel"] });
-  await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
   await updateOnboardingLevel(db, user.id, { level: "A2" });
+  await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
 
   const before = await getOnboardingState(db, user.id);
   assert.equal(before.stage, "placement_required");
@@ -258,6 +266,7 @@ test("repeat requests do not create duplicate user_settings rows", async () => {
 
   await updateOnboardingGoals(db, user.id, { goals: ["everyday"] });
   await updateOnboardingGoals(db, user.id, { goals: ["travel", "work"] });
+  await updateOnboardingLevel(db, user.id, { level: "A1" });
   await updateOnboardingDailyTime(db, user.id, { minutes: 10 });
   await updateOnboardingDailyTime(db, user.id, { minutes: 15 });
 

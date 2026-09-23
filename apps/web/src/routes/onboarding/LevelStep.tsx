@@ -1,28 +1,28 @@
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import type { SelfReportedCefrLevel } from "@english-level/contracts";
-import { useAuth } from "../../auth/useAuth.ts";
 import { useOnboardingState } from "../../onboarding/useOnboardingState.ts";
 import { updateLevel } from "../../onboarding/onboardingClient.ts";
-import { levelLabel } from "../../onboarding/labels.ts";
 import { STAGE_ROUTES, stageIndex } from "../../onboarding/stageRoutes.ts";
-import { OnboardingProgress } from "../../onboarding/OnboardingProgress.tsx";
+import { OnboardingStep } from "../../onboarding/OnboardingStep.tsx";
+import { Button } from "../../ui/Button.tsx";
+import { Choice } from "../../ui/Choice.tsx";
+import { LoadingScreen, ErrorState } from "../../ui/states.tsx";
 
-const LEVEL_OPTIONS: Array<Exclude<SelfReportedCefrLevel, null> | "unknown"> = [
-  "unknown",
-  "A1",
-  "A2",
-  "B1",
-  "B2",
+type Option = Exclude<SelfReportedCefrLevel, null> | "unknown";
+
+const OPTIONS: Array<{ value: Option; label: string; hint: string }> = [
+  { value: "unknown", label: "Не знаю", hint: "Определим на тесте" },
+  { value: "A1", label: "A1", hint: "Знаю отдельные слова" },
+  { value: "A2", label: "A2", hint: "Понимаю простые фразы" },
+  { value: "B1", label: "B1", hint: "Говорю на знакомые темы" },
+  { value: "B2", label: "B2", hint: "Свободно на большинство тем" },
 ];
 
 export function LevelStep() {
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const { status, state, message, reload } = useOnboardingState();
-  const [selected, setSelected] = useState<
-    Exclude<SelfReportedCefrLevel, null> | "unknown" | null
-  >(null);
+  const { status, state, reload } = useOnboardingState();
+  const [selected, setSelected] = useState<Option | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,15 +32,12 @@ export function LevelStep() {
     }
   }, [state]);
 
-  if (status === "loading") return <p>Loading…</p>;
+  if (status === "loading") return <LoadingScreen />;
   if (status === "error") {
     return (
-      <section className="onboarding-screen">
-        <p className="onboarding-error">{message}</p>
-        <button type="button" className="button-secondary" onClick={reload}>
-          Retry
-        </button>
-      </section>
+      <div className="center-screen">
+        <ErrorState onRetry={reload} />
+      </div>
     );
   }
 
@@ -53,55 +50,47 @@ export function LevelStep() {
     setSubmitting(true);
     setError(null);
     try {
-      const level = selected === "unknown" ? null : selected;
-      const next = await updateLevel(level);
+      const next = await updateLevel(selected === "unknown" ? null : selected);
       navigate(STAGE_ROUTES[next.stage]);
-    } catch (err) {
-      setError((err as Error).message);
+    } catch {
+      setError("Не получилось сохранить. Попробуй ещё раз.");
     } finally {
       setSubmitting(false);
     }
   }
 
   return (
-    <section className="onboarding-screen">
-      <OnboardingProgress step={3} total={3} />
-      <h1>Do you know your English level?</h1>
-      <p>This is just your guess — we'll confirm it later.</p>
-      <div className="option-list">
-        {LEVEL_OPTIONS.map((level) => (
-          <button
-            key={level}
-            type="button"
-            className={
-              selected === level
-                ? "option-button option-button--selected"
-                : "option-button"
-            }
-            onClick={() => setSelected(level)}
-          >
-            {levelLabel(level, user?.interfaceLanguage)}
-          </button>
-        ))}
-      </div>
-      {error && <p className="onboarding-error">{error}</p>}
-      <div className="onboarding-actions">
-        <button
-          type="button"
-          className="button-secondary"
-          onClick={() => navigate("/onboarding/time")}
-        >
-          Back
-        </button>
-        <button
-          type="button"
-          className="button-primary"
+    <OnboardingStep
+      step={2}
+      title="Как сейчас с английским?"
+      subtitle="Это только предположение — точный уровень покажет короткий тест."
+      onBack={() => navigate("/onboarding/goals")}
+      footer={
+        <Button
           disabled={selected === null || submitting}
           onClick={handleContinue}
         >
-          {submitting ? "Saving…" : "Continue"}
-        </button>
+          {submitting ? "Сохраняем…" : "Дальше"}
+        </Button>
+      }
+    >
+      <div className="stack">
+        {OPTIONS.map((option) => (
+          <Choice
+            key={option.value}
+            state={selected === option.value ? "selected" : "idle"}
+            hint={option.hint}
+            onClick={() => setSelected(option.value)}
+          >
+            {option.label}
+          </Choice>
+        ))}
       </div>
-    </section>
+      {error ? (
+        <p className="small" style={{ color: "var(--danger)" }}>
+          {error}
+        </p>
+      ) : null}
+    </OnboardingStep>
   );
 }

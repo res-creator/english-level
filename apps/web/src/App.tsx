@@ -4,15 +4,15 @@ import { AuthProvider } from "./auth/AuthProvider";
 import { RequireAuthenticated } from "./auth/RequireAuthenticated";
 import { RootRedirect } from "./RootRedirect";
 import { Layout } from "./components/Layout";
+import { Welcome } from "./routes/Welcome";
 import { Today } from "./routes/Today";
-import { Learn } from "./routes/Learn";
-import { ModuleDetail } from "./routes/ModuleDetail";
-import { LessonPreview } from "./routes/LessonPreview";
-import { LessonSession } from "./routes/LessonSession";
-import { LessonResult } from "./routes/LessonResult";
+import { Course } from "./routes/Course";
+import { EpisodePreview } from "./routes/EpisodePreview";
+import { Session } from "./routes/Session";
+import { SessionResult } from "./routes/SessionResult";
 import { Review } from "./routes/Review";
-import { Friends } from "./routes/Friends";
-import { Profile } from "./routes/Profile";
+import { MyEnglish } from "./routes/MyEnglish";
+import { MySpace } from "./routes/MySpace";
 import { Placement } from "./routes/Placement";
 import { PlacementResult } from "./routes/PlacementResult";
 import { OnboardingIndex } from "./routes/onboarding/OnboardingIndex";
@@ -29,44 +29,34 @@ export function App() {
           <Routes>
             <Route path="/" element={<RootRedirect />} />
 
+            {/* The four daily destinations keep the bottom navigation. */}
             <Route element={<Layout />}>
               <Route path="/today" element={<Today />} />
-              <Route path="/learn" element={<Learn />} />
-              <Route
-                path="/learn/modules/:moduleId"
-                element={<ModuleDetail />}
-              />
-              <Route
-                path="/learn/lessons/:lessonId"
-                element={<LessonPreview />}
-              />
+              <Route path="/course" element={<Course />} />
+              <Route path="/course/:episodeId" element={<EpisodePreview />} />
               <Route path="/review" element={<Review />} />
-              <Route path="/friends" element={<Friends />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/my" element={<MyEnglish />} />
+              <Route path="/my/space" element={<MySpace />} />
             </Route>
 
-            {/* Onboarding and its placement handoff render full-screen,
-                without the main app's bottom nav. */}
+            {/* First-use and focus mode render full-screen, without the
+                product navigation. */}
             <Route element={<RequireAuthenticated />}>
+              <Route path="/welcome" element={<Welcome />} />
               <Route path="/onboarding" element={<OnboardingIndex />} />
               <Route path="/onboarding/goals" element={<GoalsStep />} />
-              <Route path="/onboarding/time" element={<DailyTimeStep />} />
               <Route path="/onboarding/level" element={<LevelStep />} />
+              <Route path="/onboarding/time" element={<DailyTimeStep />} />
               <Route path="/onboarding/ready" element={<ReadyStep />} />
               <Route path="/placement" element={<Placement />} />
               <Route
                 path="/placement/result/:attemptId"
                 element={<PlacementResult />}
               />
-              {/* Lesson execution (Phase 6) also renders full-screen,
-                  focused on one activity at a time, without the bottom nav. */}
+              <Route path="/course/:episodeId/session" element={<Session />} />
               <Route
-                path="/learn/lessons/:lessonId/session"
-                element={<LessonSession />}
-              />
-              <Route
-                path="/learn/lessons/:lessonId/result/:sessionId"
-                element={<LessonResult />}
+                path="/course/:episodeId/result/:sessionId"
+                element={<SessionResult />}
               />
             </Route>
           </Routes>

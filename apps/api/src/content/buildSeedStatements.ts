@@ -51,6 +51,24 @@ export function buildSeedStatements(
 ): DbStatement[] {
   const statements: DbStatement[] = [];
 
+  // `(level_id, order_index)` and `(module_id, order_index)` are unique, so
+  // re-ordering existing content would collide with rows that haven't been
+  // rewritten yet. Parking every seeded row on a negative order first makes
+  // the upserts below order-independent — and re-seeding stays idempotent,
+  // because the real order is written right after.
+  for (const m of bundle.modules) {
+    statements.push({
+      sql: "UPDATE modules SET order_index = ? WHERE id = ?",
+      params: [-1000 - m.order, m.id],
+    });
+  }
+  for (const l of bundle.lessons) {
+    statements.push({
+      sql: "UPDATE lessons SET order_index = ? WHERE id = ?",
+      params: [-1000 - l.order, l.id],
+    });
+  }
+
   for (const m of bundle.modules) {
     statements.push(
       upsert(
@@ -75,7 +93,7 @@ export function buildSeedStatements(
           m.slug,
           m.description ?? null,
           m.order,
-          "published",
+          m.status ?? "published",
           1,
           now,
           now,
@@ -96,6 +114,10 @@ export function buildSeedStatements(
           "order_index",
           "estimated_minutes",
           "status",
+          "situation_title",
+          "scene",
+          "capability",
+          "teaser",
           "content_version",
           "created_at",
           "updated_at",
@@ -108,7 +130,11 @@ export function buildSeedStatements(
           l.lessonType,
           l.order,
           l.estimatedMinutes ?? null,
-          "published",
+          l.status ?? "published",
+          l.situationTitle ?? null,
+          l.scene ?? null,
+          l.capability ?? null,
+          l.teaser ?? null,
           1,
           now,
           now,

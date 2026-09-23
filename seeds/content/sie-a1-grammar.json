@@ -1,0 +1,30 @@
+[
+  {
+    "id": "gr_sie_frequency",
+    "levelCode": "A1",
+    "title": "How often: usually / always / never",
+    "patternKey": "sie_frequency_adverbs",
+    "formula": "I usually work. / I never work on Sundays.",
+    "explanationEn": "Frequency words go before the main verb.",
+    "order": 20,
+    "ru": {
+      "explanation": "Слова «как часто» (usually, always, sometimes, never) ставятся перед глаголом: I usually start at nine.",
+      "usageNote": "С глаголом be — наоборот, после него: I am always late.",
+      "commonMistake": "«I work usually at home» — usually должно стоять перед work."
+    }
+  },
+  {
+    "id": "gr_sie_could_polite",
+    "levelCode": "A1",
+    "title": "Could you…? — polite request",
+    "patternKey": "sie_could_polite",
+    "formula": "Could you change it, please?",
+    "explanationEn": "Could you …? is a softer, more polite request than Can you …?",
+    "order": 21,
+    "ru": {
+      "explanation": "«Could you…?» — более мягкая просьба, чем «Can you…?». В ситуации, где что-то пошло не так, она звучит спокойнее.",
+      "usageNote": "Почти всегда добавляют please в конце.",
+      "commonMistake": "«Could you to change it?» — после could глагол идёт без to."
+    }
+  }
+]

@@ -15,8 +15,8 @@ export const STAGE_ROUTES: Record<OnboardingStage, string> = {
 
 const STAGE_ORDER: OnboardingStage[] = [
   "goals",
-  "daily_time",
   "level_choice",
+  "daily_time",
   "placement_required",
   "completed",
 ];

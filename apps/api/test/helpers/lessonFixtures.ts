@@ -11,7 +11,7 @@ import {
   answerActivity,
   startLessonSession,
 } from "../../src/services/lessonSessionService.ts";
-import type { LessonResultDTO } from "@english-level/contracts";
+import type { SessionResultDTO } from "@english-level/contracts";
 
 export async function makeVerifiedUser(
   db: Db,
@@ -79,7 +79,8 @@ export function correctAnswerFor(
 const WRONG_ANSWER = "zzz_definitely_not_the_answer_zzz";
 
 /**
- * Drives a lesson session to completion via the real service functions,
+ * Drives ONE session (a single slice of an episode, or its Mission) to
+ * completion via the real service functions,
  * answering every scored activity either always correctly or always
  * incorrectly. Returns the final result and every `nextActivity` DTO seen
  * along the way (so tests can inspect them for leaked answer keys, etc).
@@ -92,7 +93,7 @@ export async function driveLessonToCompletion(
   opts: { correct: boolean } = { correct: true },
 ): Promise<{
   sessionId: string;
-  result: LessonResultDTO;
+  result: SessionResultDTO;
   seenActivities: ActivityDTO[];
 }> {
   const start = await startLessonSession(db, userId, lessonId);
@@ -124,4 +125,72 @@ export async function driveLessonToCompletion(
     current = res.session.nextActivity;
   }
   throw new Error(`lesson ${lessonId} did not complete within 400 answers`);
+}
+
+/**
+ * Drives every session of an episode and then its Mission, the way a
+ * learner would over several days. Returns the Mission's result — i.e. the
+ * moment the capability is actually earned.
+ */
+export async function driveEpisodeToCanDo(
+  db: Db,
+  sqlite: DatabaseSync,
+  userId: string,
+  lessonId: string,
+  opts: { correct: boolean } = { correct: true },
+): Promise<SessionResultDTO> {
+  let last: SessionResultDTO | null = null;
+  for (let guard = 0; guard < 20; guard++) {
+    const run = await driveLessonToCompletion(
+      db,
+      sqlite,
+      userId,
+      lessonId,
+      opts,
+    );
+    last = run.result;
+    if (run.result.kind === "mission") return run.result;
+  }
+  if (!last) throw new Error(`episode ${lessonId} produced no session`);
+  throw new Error(`episode ${lessonId} never reached its Mission`);
+}
+
+/**
+ * Walks an episode — across as many of its sessions as it takes, exactly
+ * as a learner would over several days — until an activity of the wanted
+ * kind comes up, answering everything before it correctly.
+ *
+ * Sessions are short by design, so a given exercise format may simply not
+ * be in today's slice; tests that need one must keep going rather than
+ * assume the whole episode arrives at once.
+ */
+export async function walkToActivityKind(
+  db: Db,
+  sqlite: DatabaseSync,
+  userId: string,
+  lessonId: string,
+  kind: ActivityDTO["kind"],
+): Promise<{ sessionId: string; activity: ActivityDTO }> {
+  let attempt = 0;
+  for (let session = 0; session < 12; session++) {
+    const started = await startLessonSession(db, userId, lessonId);
+    if (!started.ok)
+      throw new Error(`start failed: ${JSON.stringify(started.error)}`);
+    const sessionId = started.session.sessionId;
+    let current = started.session.currentActivity;
+
+    while (current) {
+      if (current.kind === kind) return { sessionId, activity: current };
+      const res = await answerActivity(db, userId, sessionId, {
+        activityId: current.id,
+        answer: correctAnswerFor(sqlite, sessionId, current),
+        attemptId: `walk-${sessionId}-${attempt++}`,
+      });
+      if (!res.ok)
+        throw new Error(`answer failed: ${JSON.stringify(res.error)}`);
+      if (res.session.status === "completed") break;
+      current = res.session.nextActivity;
+    }
+  }
+  throw new Error(`no ${kind} activity found anywhere in ${lessonId}`);
 }

@@ -1,8 +1,8 @@
 import { Hono, type Context } from "hono";
 import {
-  AnswerActivityResponseSchema,
-  LessonResultDTOSchema,
-  LessonSessionDTOSchema,
+  AnswerSessionResponseSchema,
+  EpisodeSessionDTOSchema,
+  SessionResultDTOSchema,
 } from "@english-level/contracts";
 import { createD1Db } from "../db/d1Adapter.ts";
 import { requireAuth } from "../auth/middleware.ts";
@@ -47,7 +47,7 @@ lessonSessions.post("/lessons/:lessonId/start", async (c) => {
     c.req.param("lessonId"),
   );
   if (!result.ok) return fail(c, result.error);
-  return c.json(LessonSessionDTOSchema.parse(result.session));
+  return c.json(EpisodeSessionDTOSchema.parse(result.session));
 });
 
 lessonSessions.get("/sessions/:sessionId", async (c) => {
@@ -58,7 +58,7 @@ lessonSessions.get("/sessions/:sessionId", async (c) => {
     c.req.param("sessionId"),
   );
   if (!result.ok) return fail(c, result.error);
-  return c.json(LessonSessionDTOSchema.parse(result.session));
+  return c.json(EpisodeSessionDTOSchema.parse(result.session));
 });
 
 lessonSessions.get("/sessions/:sessionId/result", async (c) => {
@@ -69,7 +69,7 @@ lessonSessions.get("/sessions/:sessionId/result", async (c) => {
     c.req.param("sessionId"),
   );
   if (!result.ok) return fail(c, result.error);
-  return c.json(LessonResultDTOSchema.parse(result.result));
+  return c.json(SessionResultDTOSchema.parse(result.result));
 });
 
 lessonSessions.post("/sessions/:sessionId/answer", async (c) => {
@@ -83,7 +83,7 @@ lessonSessions.post("/sessions/:sessionId/answer", async (c) => {
   );
   if (!result.ok) return fail(c, result.error);
   return c.json(
-    AnswerActivityResponseSchema.parse({
+    AnswerSessionResponseSchema.parse({
       feedback: result.feedback,
       session: result.session,
     }),

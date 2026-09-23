@@ -204,6 +204,11 @@ export interface LessonRow {
   content_version: number;
   created_at: string;
   updated_at: string;
+  /** Episode framing (Speak in English V1) — null for legacy lessons. */
+  situation_title: string | null;
+  scene: string | null;
+  capability: string | null;
+  teaser: string | null;
 }
 
 export type LearningItemTypeRow =
@@ -308,11 +313,17 @@ export interface LessonItemRow {
 export type LearningSessionStatusRow =
   "in_progress" | "completed" | "abandoned";
 
+export type SessionKindRow = "lesson" | "mission";
+
 export interface LearningSessionRow {
   id: string;
   user_id: string;
   lesson_id: string;
   session_type: "lesson";
+  /** Ordinary daily session vs the episode's Mission. */
+  session_kind: SessionKindRow;
+  /** Which slice of the episode this run covers (1-based). */
+  session_index: number;
   status: LearningSessionStatusRow;
   started_at: string;
   completed_at: string | null;
@@ -362,4 +373,85 @@ export interface UserLessonProgressRow {
   last_session_id: string | null;
   accuracy: number | null;
   updated_at: string;
+}
+
+// ---------------------------------------------------------------------------
+// Speak in English V1: capabilities, spaced review, companion, rewards,
+// friends. See migrations/0007_product_v1.sql.
+// ---------------------------------------------------------------------------
+
+export type CapabilityStateRow = "learning" | "can_do" | "consolidated";
+
+/** Episode-level progression — the source of truth for "what can I do". */
+export interface UserCapabilityRow {
+  user_id: string;
+  lesson_id: string;
+  state: CapabilityStateRow;
+  sessions_done: number;
+  sessions_total: number;
+  mission_attempts: number;
+  can_do_at: string | null;
+  consolidated_at: string | null;
+  started_at: string;
+  updated_at: string;
+}
+
+export interface UserItemMemoryRow {
+  user_id: string;
+  target_type: LessonItemContentTypeRow;
+  target_id: string;
+  lesson_id: string | null;
+  /** 1..5 — drives the interval (1 day, 3, 7, 16, 35). */
+  box: number;
+  due_at: string;
+  last_result: "correct" | "wrong" | null;
+  correct_streak: number;
+  reviews: number;
+  first_seen_at: string;
+  updated_at: string;
+}
+
+export interface ReviewSessionRow {
+  id: string;
+  user_id: string;
+  status: LearningSessionStatusRow;
+  started_at: string;
+  completed_at: string | null;
+  current_position: number;
+  correct_count: number;
+  wrong_count: number;
+  activities_json: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface UserCompanionRow {
+  user_id: string;
+  companion_id: string;
+  selected_at: string;
+}
+
+export type RewardSourceKindRow =
+  "episode" | "mission" | "consolidated" | "chapter" | "milestone" | "shared";
+
+export interface UserRewardRow {
+  user_id: string;
+  reward_id: string;
+  source_kind: RewardSourceKindRow;
+  source_id: string | null;
+  unlocked_at: string;
+}
+
+export interface FriendInviteRow {
+  code: string;
+  inviter_user_id: string;
+  accepted_by_user_id: string | null;
+  created_at: string;
+  accepted_at: string | null;
+}
+
+export interface FriendshipRow {
+  user_id: string;
+  friend_user_id: string;
+  created_at: string;
 }

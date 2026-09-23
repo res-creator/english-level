@@ -29,12 +29,12 @@ silently assumed.
 
 ## 0. Bottom Navigation — V2 target vs. current live state
 
-| Tab     | V2 target visibility | Current V1 live visibility            |
-| ------- | --------------------- | -------------------------------------- |
-| Today   | Visible                | Visible                                |
-| Course  | Visible (renamed from "Learn") | Visible today as "Learn"       |
-| Review  | Visible once real       | **Hidden** — no backend support yet   |
-| Profile | Visible once real       | **Hidden** — no backend support yet   |
+| Tab     | V2 target visibility           | Current V1 live visibility          |
+| ------- | ------------------------------ | ----------------------------------- |
+| Today   | Visible                        | Visible                             |
+| Course  | Visible (renamed from "Learn") | Visible today as "Learn"            |
+| Review  | Visible once real              | **Hidden** — no backend support yet |
+| Profile | Visible once real              | **Hidden** — no backend support yet |
 
 Friends is not in this table — it is not part of the target navigation at
 all (see `PRODUCT_STRUCTURE_V2.md` §3, §9). Until Phase D/E
@@ -114,10 +114,11 @@ the target, not to change today's behavior.
   3. `BottomNavigation`.
 
   **Checkpoint rule (approved, explicit):** no checkpoint marker is
-  added to the Unit list itself — a checkpoint is a *lesson*, not a
+  added to the Unit list itself — a checkpoint is a _lesson_, not a
   unit-level concept, so it surfaces inside Unit Detail (§3 below), not
   here. Course never implies "every unit ends in a checkpoint" — most
   don't, in real seeded content.
+
 - **Primary CTA**: none at screen level — each Unit row is the tappable
   unit, same interaction model as V1's module list.
 - **Secondary action**: none.
@@ -132,7 +133,7 @@ the target, not to change today's behavior.
   `PRODUCT_STRUCTURE_V2.md` §5; the "current unit" visual emphasis is
   descriptive, never an enforced gate, and must not be styled or worded
   in a way that implies later units are inaccessible).
-- **Scroll behavior**: normal vertical list, no pagination — this *is*
+- **Scroll behavior**: normal vertical list, no pagination — this _is_
   meant to read as a path/timeline, so generous vertical rhythm between
   units is preferred over a dense table.
 - **Navigation behavior**: tap a Unit → Unit Detail.
@@ -163,7 +164,7 @@ the target, not to change today's behavior.
      change at all**, unlike Course's list-level rollup.
   4. Ordered `LessonCard` list — reuses the V1.1 pattern exactly
      (icon container: order number / checkmark / current-emphasis, `
-     tag-chip` lesson type, `StatusBadge`). **Checkpoint rule (approved,
+tag-chip` lesson type, `StatusBadge`). **Checkpoint rule (approved,
      explicit):** a lesson row shows a checkpoint variant of the
      `tag-chip` (e.g. "Проверка" — the label V1.1 already uses for
      `lesson_type: "checkpoint"`) **only when that lesson's real
@@ -213,7 +214,7 @@ the target, not to change today's behavior.
 - **Must NOT appear**: a full word list expanded by default; a
   fabricated "short lesson description" — no such field exists on
   `lessons` today, so none is added (V2 explicitly says "short
-  description" is *preferred*, not required, and this document does not
+  description" is _preferred_, not required, and this document does not
   invent the missing data to satisfy that preference).
 - **Scroll/navigation/empty/error/loading**: unchanged from V1.
 
@@ -261,7 +262,7 @@ screen inventory is complete.
   2. Score / correct count (`CircularProgress` + counts — unchanged).
   3. Concise supportive message (V1.1's accuracy-tiered copy — unchanged).
   4. **"What was practiced" — only if real data supports it.** Today's
-     `LessonResultDTO` has no field naming *which* items/patterns were
+     `LessonResultDTO` has no field naming _which_ items/patterns were
      practiced (only aggregate counts). This section is **omitted
      entirely** unless/until such a field exists — no placeholder, no
      invented item list. Flagged here explicitly because the V2 brief
@@ -269,7 +270,7 @@ screen inventory is complete.
      not "build a fake version."
   5. Primary CTA: **next lesson** — unchanged mechanism from V1
      (client-side resolution via `moduleId` nav-state + `GET
-     /modules/:moduleId`, no new backend field).
+/modules/:moduleId`, no new backend field).
   6. Secondary: back to unit — unchanged (renamed copy only, "Вернуться
      к модулю" → "Вернуться к юниту" if the Unit rename is adopted).
 - **Must NOT appear**: XP, coins, mastery score, achievements — same

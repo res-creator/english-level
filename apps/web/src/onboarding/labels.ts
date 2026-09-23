@@ -6,13 +6,15 @@ import type {
 /**
  * Minimal label lookup for the two onboarding steps with fixed, short
  * option sets. Not a general i18n system — just enough to satisfy "labels
- * should be localized where practical" without building one. Falls back to
- * English for any language other than Russian.
+ * should be localized where practical" without building one. Russian is
+ * the product's default system UI language (see
+ * docs/design/DESIGN_SYSTEM_V1.md §8) — only an explicit English
+ * preference switches away from it.
  */
 type Locale = "en" | "ru";
 
 function resolveLocale(interfaceLanguage: string | undefined): Locale {
-  return interfaceLanguage === "ru" ? "ru" : "en";
+  return interfaceLanguage === "en" ? "en" : "ru";
 }
 
 const GOAL_LABELS: Record<Locale, Record<LearningGoal, string>> = {

@@ -15,8 +15,10 @@ import { createUser } from "../src/repositories/usersRepository.ts";
 import { createDefaultUserSettings } from "../src/repositories/userSettingsRepository.ts";
 import {
   correctAnswerFor,
+  driveEpisodeToCanDo,
   driveLessonToCompletion,
   makeVerifiedUser,
+  walkToActivityKind,
 } from "./helpers/lessonFixtures.ts";
 
 async function seeded() {
@@ -25,8 +27,8 @@ async function seeded() {
   return { db, sqlite };
 }
 
-const LESSON = "les_a1_01_01"; // 7 "introduce" learning items, vocabulary
-const GRAMMAR_LESSON = "les_a1_01_03"; // grammar_pattern, "target" role
+const LESSON = "les_sie_a1_e1"; // "Первое знакомство": 7 introduce items
+const GRAMMAR_LESSON = "les_sie_a1_e3"; // two grammar patterns, "target" role
 
 // --- auth gate -------------------------------------------------------------
 
@@ -83,7 +85,7 @@ test("a published lesson at the user's own level starts successfully", async () 
   assert.equal(result.ok, true);
   if (result.ok) {
     assert.equal(result.session.status, "in_progress");
-    assert.equal(result.session.lesson.id, LESSON);
+    assert.equal(result.session.episode.id, LESSON);
     assert.ok(result.session.currentActivity);
   }
 });
@@ -248,33 +250,17 @@ test("multiple_choice grades correct and incorrect answers server-side", async (
 test("fill_gap_choice is graded server-side from the selected option id", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 14, "A1");
-  const started = await startLessonSession(db, user.id, LESSON);
-  assert.equal(started.ok, true);
-  if (!started.ok) return;
+  const { sessionId, activity } = await walkToActivityKind(
+    db,
+    sqlite,
+    user.id,
+    LESSON,
+    "fill_gap_choice",
+  );
 
-  let sessionId = started.session.sessionId;
-  let current = started.session.currentActivity!;
-  let found = false;
-  for (let i = 0; i < 20 && !found; i++) {
-    if (current.kind === "fill_gap_choice") {
-      found = true;
-      break;
-    }
-    const correct = correctAnswerFor(sqlite, sessionId, current);
-    const res = await answerActivity(db, user.id, sessionId, {
-      activityId: current.id,
-      answer: correct,
-      attemptId: `walk-${i}`,
-    });
-    assert.equal(res.ok, true);
-    if (!res.ok || res.session.status !== "in_progress") break;
-    current = res.session.nextActivity;
-  }
-  assert.ok(found, "expected a fill_gap_choice activity in this lesson's plan");
-
-  const correctAnswer = correctAnswerFor(sqlite, sessionId, current);
+  const correctAnswer = correctAnswerFor(sqlite, sessionId, activity);
   const res = await answerActivity(db, user.id, sessionId, {
-    activityId: current.id,
+    activityId: activity.id,
     answer: correctAnswer,
     attemptId: "fillgap-correct",
   });
@@ -285,33 +271,17 @@ test("fill_gap_choice is graded server-side from the selected option id", async 
 test("typed_recall normalizes whitespace/case before grading", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 15, "A1");
-  const started = await startLessonSession(db, user.id, LESSON);
-  assert.equal(started.ok, true);
-  if (!started.ok) return;
+  const { sessionId, activity } = await walkToActivityKind(
+    db,
+    sqlite,
+    user.id,
+    GRAMMAR_LESSON,
+    "typed_recall",
+  );
 
-  let sessionId = started.session.sessionId;
-  let current = started.session.currentActivity!;
-  let found = false;
-  for (let i = 0; i < 20 && !found; i++) {
-    if (current.kind === "typed_recall") {
-      found = true;
-      break;
-    }
-    const correct = correctAnswerFor(sqlite, sessionId, current);
-    const res = await answerActivity(db, user.id, sessionId, {
-      activityId: current.id,
-      answer: correct,
-      attemptId: `walk-${i}`,
-    });
-    assert.equal(res.ok, true);
-    if (!res.ok || res.session.status !== "in_progress") break;
-    current = res.session.nextActivity;
-  }
-  assert.ok(found, "expected a typed_recall activity in this lesson's plan");
-
-  const correctAnswer = correctAnswerFor(sqlite, sessionId, current);
+  const correctAnswer = correctAnswerFor(sqlite, sessionId, activity);
   const res = await answerActivity(db, user.id, sessionId, {
-    activityId: current.id,
+    activityId: activity.id,
     answer: `   ${correctAnswer.toUpperCase()}  `,
     attemptId: "typed-messy",
   });
@@ -322,36 +292,20 @@ test("typed_recall normalizes whitespace/case before grading", async () => {
 test("sentence_build is graded server-side against the original sentence", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 16, "A1");
-  const started = await startLessonSession(db, user.id, "les_a1_01_02"); // Useful Phrases: has phrase-type items
-
-  assert.equal(started.ok, true);
-  if (!started.ok) return;
-  let sessionId = started.session.sessionId;
-  let current = started.session.currentActivity!;
-  let found = false;
-  for (let i = 0; i < 40 && !found; i++) {
-    if (current.kind === "sentence_build") {
-      found = true;
-      break;
-    }
-    const correct = correctAnswerFor(sqlite, sessionId, current);
-    const res = await answerActivity(db, user.id, sessionId, {
-      activityId: current.id,
-      answer: correct,
-      attemptId: `walk-${i}`,
-    });
-    assert.equal(res.ok, true);
-    if (!res.ok || res.session.status !== "in_progress") break;
-    current = res.session.nextActivity;
-  }
-  assert.ok(found, "expected a sentence_build activity in this lesson's plan");
+  const { sessionId, activity } = await walkToActivityKind(
+    db,
+    sqlite,
+    user.id,
+    "les_sie_a1_e2",
+    "sentence_build",
+  );
   assert.ok(
-    current.kind === "sentence_build" && current.content.tokens.length >= 3,
+    activity.kind === "sentence_build" && activity.content.tokens.length >= 3,
   );
 
-  const correctAnswer = correctAnswerFor(sqlite, sessionId, current);
+  const correctAnswer = correctAnswerFor(sqlite, sessionId, activity);
   const res = await answerActivity(db, user.id, sessionId, {
-    activityId: current.id,
+    activityId: activity.id,
     answer: correctAnswer,
     attemptId: "sentence-correct",
   });
@@ -363,7 +317,7 @@ test("sentence_build grading uses the canonical sentence order, not the shuffled
   async function walkToSentenceBuild(userId: number) {
     const { db, sqlite } = await seeded();
     const user = await makeVerifiedUser(db, userId, "A1");
-    const started = await startLessonSession(db, user.id, "les_a1_01_02");
+    const started = await startLessonSession(db, user.id, "les_sie_a1_e2");
     assert.equal(started.ok, true);
     if (!started.ok) throw new Error("start failed");
 
@@ -424,13 +378,16 @@ test("sentence_build grading uses the canonical sentence order, not the shuffled
 test("grammar_card and its recognition check both work", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 17, "A1");
-  const started = await startLessonSession(db, user.id, GRAMMAR_LESSON);
-  assert.equal(started.ok, true);
-  if (!started.ok) return;
-  assert.equal(started.session.currentActivity!.kind, "grammar_card");
+  const { sessionId, activity } = await walkToActivityKind(
+    db,
+    sqlite,
+    user.id,
+    GRAMMAR_LESSON,
+    "grammar_card",
+  );
 
-  const ack = await answerActivity(db, user.id, started.session.sessionId, {
-    activityId: started.session.currentActivity!.id,
+  const ack = await answerActivity(db, user.id, sessionId, {
+    activityId: activity.id,
     answer: "",
     attemptId: "grammar-ack",
   });
@@ -440,10 +397,10 @@ test("grammar_card and its recognition check both work", async () => {
 
   const correctAnswer = correctAnswerFor(
     sqlite,
-    started.session.sessionId,
+    sessionId,
     ack.session.nextActivity,
   );
-  const res = await answerActivity(db, user.id, started.session.sessionId, {
+  const res = await answerActivity(db, user.id, sessionId, {
     activityId: ack.session.nextActivity.id,
     answer: correctAnswer,
     attemptId: "grammar-mc",
@@ -564,7 +521,7 @@ test("a session can be read again (simulated Mini App reopen) and shows the same
 
 // --- completion --------------------------------------------------------------
 
-test("a lesson session eventually completes and updates user_lesson_progress", async () => {
+test("finishing one session records it without claiming the episode is done", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 22, "A1");
   const { sessionId, result } = await driveLessonToCompletion(
@@ -577,20 +534,47 @@ test("a lesson session eventually completes and updates user_lesson_progress", a
     },
   );
 
-  assert.equal(result.lessonId, LESSON);
+  assert.equal(result.episodeId, LESSON);
+  assert.equal(result.kind, "lesson");
   assert.ok(result.scoredAttempts > 0);
   assert.equal(result.correctCount, result.scoredAttempts);
   assert.equal(result.accuracy, 100);
+  assert.equal(result.sessionsDone, 1);
 
   const sessionRow = sqlite
     .prepare("SELECT status FROM learning_sessions WHERE id = ?")
     .get(sessionId) as { status: string };
   assert.equal(sessionRow.status, "completed");
 
+  // The capability is still only LEARNING: proof comes from the Mission.
   const progress = await findProgress(db, user.id, LESSON);
-  assert.equal(progress?.status, "completed");
-  assert.equal(progress?.accuracy, 100);
-  assert.equal(progress?.last_session_id, sessionId);
+  assert.equal(progress?.status, "in_progress");
+  const capability = sqlite
+    .prepare(
+      "SELECT state FROM user_capabilities WHERE user_id = ? AND lesson_id = ?",
+    )
+    .get(user.id, LESSON) as { state: string };
+  assert.equal(capability.state, "learning");
+});
+
+test("a session never exceeds a short, finishable length", async () => {
+  const { db, sqlite } = await seeded();
+  const user = await makeVerifiedUser(db, 122, "A1");
+  const started = await startLessonSession(db, user.id, LESSON);
+  assert.equal(started.ok, true);
+  if (!started.ok) return;
+
+  const plan = JSON.parse(
+    (
+      sqlite
+        .prepare("SELECT activities_json FROM learning_sessions WHERE id = ?")
+        .get(started.session.sessionId) as { activities_json: string }
+    ).activities_json,
+  ) as unknown[];
+  assert.ok(
+    plan.length <= 12,
+    `a daily session must stay under 12 activities, got ${plan.length}`,
+  );
 });
 
 test("a completed session cannot be answered again", async () => {
@@ -673,7 +657,6 @@ test("replaying a completed lesson creates a new session and preserves history",
   assert.notEqual(replay.session.sessionId, firstSessionId);
 
   const progress = await findProgress(db, user.id, LESSON);
-  assert.equal(progress?.status, "completed"); // stays completed, not reset
   assert.equal(progress?.attempt_count, 2);
 
   const oldSessionStillThere = sqlite
@@ -694,8 +677,8 @@ test("replaying a completed lesson creates a new session and preserves history",
 
 test("reading lesson content (Phase 5 API) never creates a session", async () => {
   const { db, sqlite } = await seeded();
-  await getLessonContent(db, LESSON);
-  await getLessonContent(db, LESSON);
+  await getLessonContent(db, LESSON, "usr_test");
+  await getLessonContent(db, LESSON, "usr_test");
   const count = sqlite
     .prepare("SELECT COUNT(*) as n FROM learning_sessions")
     .get() as {
@@ -742,28 +725,89 @@ test("no mastery/SRS/streak tables exist and completing a lesson doesn't touch u
 
 // --- end-to-end fixture --------------------------------------------------------
 
-test("end-to-end: open a lesson, complete every activity, get a result, progress becomes completed", async () => {
+test("end-to-end: every session plus the Mission earns the capability", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 27, "A1");
 
-  const started = await startLessonSession(db, user.id, LESSON);
-  assert.equal(started.ok, true);
-  if (!started.ok) return;
-
-  const { result } = await driveLessonToCompletion(
-    db,
-    sqlite,
-    user.id,
-    LESSON,
-    { correct: true },
-  );
-  assert.equal(result.lessonId, LESSON);
-  assert.ok(result.scoredAttempts > 0);
-  assert.equal(result.correctCount, result.scoredAttempts);
-  assert.equal(result.accuracy, 100);
+  const mission = await driveEpisodeToCanDo(db, sqlite, user.id, LESSON);
+  assert.equal(mission.kind, "mission");
+  assert.equal(mission.episodeId, LESSON);
+  assert.equal(mission.missionPassed, true);
+  assert.equal(mission.capabilityState, "can_do");
+  assert.ok(mission.capability?.startsWith("Я могу"));
 
   const progress = await findProgress(db, user.id, LESSON);
   assert.equal(progress?.status, "completed");
+});
+
+test("a failed Mission does not grant the capability", async () => {
+  const { db, sqlite } = await seeded();
+  const user = await makeVerifiedUser(db, 127, "A1");
+
+  for (let guard = 0; guard < 12; guard++) {
+    const started = await startLessonSession(db, user.id, LESSON);
+    assert.equal(started.ok, true);
+    if (!started.ok) return;
+    const isMission = started.session.kind === "mission";
+    // Learn properly, then fail the proof.
+    const run = await driveLessonToCompletion(db, sqlite, user.id, LESSON, {
+      correct: !isMission,
+    });
+    if (!isMission) continue;
+
+    assert.equal(run.result.missionPassed, false);
+    assert.equal(run.result.capabilityState, "learning");
+    const rewards = sqlite
+      .prepare("SELECT COUNT(*) n FROM user_rewards WHERE user_id = ?")
+      .get(user.id) as { n: number };
+    assert.equal(rewards.n, 0, "a failed Mission must unlock nothing");
+    return;
+  }
+  assert.fail("never reached the Mission");
+});
+
+test("a Mission gives no second try — proof is not practice", async () => {
+  const { db, sqlite } = await seeded();
+  const user = await makeVerifiedUser(db, 128, "A1");
+
+  for (let guard = 0; guard < 12; guard++) {
+    const started = await startLessonSession(db, user.id, LESSON);
+    assert.equal(started.ok, true);
+    if (!started.ok) return;
+    if (started.session.kind !== "mission") {
+      await driveLessonToCompletion(db, sqlite, user.id, LESSON, {
+        correct: true,
+      });
+      continue;
+    }
+
+    const planLength = JSON.parse(
+      (
+        sqlite
+          .prepare("SELECT activities_json FROM learning_sessions WHERE id = ?")
+          .get(started.session.sessionId) as { activities_json: string }
+      ).activities_json,
+    ).length as number;
+
+    const first = started.session.currentActivity!;
+    const res = await answerActivity(db, user.id, started.session.sessionId, {
+      activityId: first.id,
+      answer: "definitely wrong",
+      attemptId: "mission-wrong",
+    });
+    assert.equal(res.ok, true);
+
+    const after = JSON.parse(
+      (
+        sqlite
+          .prepare("SELECT activities_json FROM learning_sessions WHERE id = ?")
+          .get(started.session.sessionId) as { activities_json: string }
+      ).activities_json,
+    ).length as number;
+    assert.equal(after, planLength, "the Mission plan must not grow a retry");
+    return;
+  }
+  assert.fail("never reached the Mission");
 });
 
 // --- persistent result (GET /sessions/:sessionId/result) ----------------------
@@ -784,7 +828,7 @@ test("a completed lesson's result can be retrieved after completion via GET /res
   if (!fetched.ok) return;
   assert.deepEqual(fetched.result, inlineResult);
   assert.equal(fetched.result.sessionId, sessionId);
-  assert.equal(fetched.result.status, "completed");
+  assert.equal(fetched.result.kind, "lesson");
   assert.ok(fetched.result.completedAt.length > 0);
   assert.equal(
     fetched.result.correctCount + fetched.result.wrongCount,
@@ -864,13 +908,23 @@ test("the public session-result DTO contains no answer keys or internal grading 
 
   assert.deepEqual(Object.keys(result.result).sort(), [
     "accuracy",
+    "capability",
+    "capabilityState",
     "completedAt",
     "correctCount",
-    "lessonId",
-    "lessonTitle",
+    "episodeId",
+    "episodeTitle",
+    "kind",
+    "missionPassed",
+    "missionReady",
+    "nextEpisodeId",
+    "reviewDue",
+    "rewards",
     "scoredAttempts",
     "sessionId",
-    "status",
+    "sessionsDone",
+    "sessionsTotal",
+    "teaser",
     "wrongCount",
   ]);
   for (const forbidden of [

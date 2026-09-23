@@ -9,6 +9,13 @@ import {
   getCurrentPlacement,
   answerPlacement,
 } from "../placement/placementClient.ts";
+import { FocusShell } from "../components/Layout.tsx";
+import { Button, IconButton } from "../ui/Button.tsx";
+import { Choice } from "../ui/Choice.tsx";
+import { StepProgress } from "../ui/ProgressBar.tsx";
+import { LoadingScreen, ErrorState } from "../ui/states.tsx";
+import { IconArrowLeft } from "../ui/icons.tsx";
+import { LevelMark } from "../brand/illustrations.tsx";
 
 type ViewState =
   | { view: "loading" }
@@ -21,12 +28,12 @@ type ViewState =
       submitting: boolean;
       error: string | null;
     }
-  | { view: "error"; message: string };
+  | { view: "error" };
 
 export function Placement() {
   const navigate = useNavigate();
   const [state, setState] = useState<ViewState>({ view: "loading" });
-  const [selected, setSelected] = useState<string>("");
+  const [answer, setAnswer] = useState<string>("");
   const [startedAt, setStartedAt] = useState<number>(Date.now());
 
   useEffect(() => {
@@ -45,15 +52,14 @@ export function Placement() {
             submitting: false,
             error: null,
           });
-          setSelected("");
+          setAnswer("");
           setStartedAt(Date.now());
         } else {
           setState({ view: "intro" });
         }
       })
-      .catch((err) => {
-        if (!cancelled)
-          setState({ view: "error", message: (err as Error).message });
+      .catch(() => {
+        if (!cancelled) setState({ view: "error" });
       });
     return () => {
       cancelled = true;
@@ -73,22 +79,22 @@ export function Placement() {
         submitting: false,
         error: null,
       });
-      setSelected("");
+      setAnswer("");
       setStartedAt(Date.now());
-    } catch (err) {
-      setState({ view: "error", message: (err as Error).message });
+    } catch {
+      setState({ view: "error" });
     }
   }
 
   async function handleSubmit() {
-    if (state.view !== "question" || !selected) return;
+    if (state.view !== "question" || !answer.trim()) return;
     const { attemptId, question } = state;
     setState({ ...state, submitting: true, error: null });
 
     try {
       const res = await answerPlacement(attemptId, {
         questionId: question.id,
-        answer: selected,
+        answer,
         responseTimeMs: Date.now() - startedAt,
       });
       if (res.status === "completed") {
@@ -103,110 +109,132 @@ export function Placement() {
         submitting: false,
         error: null,
       });
-      setSelected("");
+      setAnswer("");
       setStartedAt(Date.now());
-    } catch (err) {
-      setState({ ...state, submitting: false, error: (err as Error).message });
+    } catch {
+      setState({
+        ...state,
+        submitting: false,
+        error: "Не удалось отправить ответ. Попробуй ещё раз.",
+      });
     }
   }
 
-  if (state.view === "loading") return <p>Loading…</p>;
+  if (state.view === "loading") return <LoadingScreen />;
 
   if (state.view === "error") {
     return (
-      <section className="onboarding-screen">
-        <p className="onboarding-error">{state.message}</p>
-      </section>
+      <div className="center-screen">
+        <ErrorState
+          title="Тест сейчас недоступен"
+          onRetry={() => navigate(0)}
+        />
+      </div>
     );
   }
 
   if (state.view === "intro") {
     return (
-      <section className="onboarding-screen">
-        <h1>Let's check your English level</h1>
-        <p>
-          This takes about 3–5 minutes, though it may be shorter or longer
-          depending on your answers.
+      <div className="center-screen has-blobs">
+        <div
+          className="blob blob-green"
+          style={{ width: 250, height: 250, top: -100, left: -110 }}
+        />
+        <div
+          className="blob blob-blush"
+          style={{ width: 210, height: 210, bottom: -90, right: -90 }}
+        />
+
+        <LevelMark level="?" />
+        <h1 className="h1">Определим твой уровень</h1>
+        <p className="body muted" style={{ maxWidth: 330 }}>
+          3–5 минут. Вопросы подстраиваются под ответы: станет легче или сложнее
+          в зависимости от того, как ты отвечаешь.
         </p>
-        <p>
-          We'll check vocabulary, grammar, reading, and everyday English. The
-          questions get easier or harder based on how you answer.
-        </p>
-        <div className="onboarding-actions">
-          <button
-            type="button"
-            className="button-primary"
-            onClick={handleStart}
-          >
-            Start
-          </button>
+        <div
+          className="row"
+          style={{ justifyContent: "center", flexWrap: "wrap" }}
+        >
+          <span className="tag">Слова</span>
+          <span className="tag">Грамматика</span>
+          <span className="tag">Чтение</span>
+          <span className="tag">Речь</span>
         </div>
-      </section>
+        <div style={{ width: "100%", maxWidth: 320, paddingTop: "var(--s2)" }}>
+          <Button onClick={handleStart}>Начать тест</Button>
+        </div>
+      </div>
     );
   }
 
   const { question, progress, submitting, error } = state;
-  const percent = Math.min(
-    100,
-    Math.round((progress.answered / progress.estimatedTotal) * 100),
-  );
+  const answered = progress.answered;
+  const estimated = Math.max(progress.estimatedTotal, answered + 1);
 
   return (
-    <section className="onboarding-screen">
-      <div className="placement-progress-track">
-        <div
-          className="placement-progress-fill"
-          style={{ width: `${percent}%` }}
-        />
+    <FocusShell
+      top={
+        <div className="session-top">
+          <IconButton label="Выйти" onClick={() => navigate("/today")}>
+            <IconArrowLeft size={20} />
+          </IconButton>
+          <div className="grow">
+            <StepProgress filled={answered} total={estimated} />
+          </div>
+          <span className="session-count">
+            {answered + 1} / ≈{estimated}
+          </span>
+        </div>
+      }
+      footer={
+        <Button disabled={!answer.trim() || submitting} onClick={handleSubmit}>
+          {submitting ? "Проверяем…" : "Ответить"}
+        </Button>
+      }
+    >
+      {question.passage ? (
+        <div className="panel" style={{ whiteSpace: "pre-line" }}>
+          <p className="body">{question.passage}</p>
+        </div>
+      ) : null}
+
+      <div className="prompt">
+        <span className="prompt__kicker">Вопрос</span>
+        <h1 className="prompt__text">{question.prompt}</h1>
       </div>
 
-      {question.passage && (
-        <div className="placement-passage">{question.passage}</div>
-      )}
-
-      <h1>{question.prompt}</h1>
-
       {question.options ? (
-        <div className="option-list">
+        <div className="stack">
           {question.options.map((option) => (
-            <button
+            <Choice
               key={option}
-              type="button"
-              className={
-                selected === option
-                  ? "option-button option-button--selected"
-                  : "option-button"
-              }
-              onClick={() => setSelected(option)}
+              state={answer === option ? "selected" : "idle"}
+              onClick={() => setAnswer(option)}
+              disabled={submitting}
             >
               {option}
-            </button>
+            </Choice>
           ))}
         </div>
       ) : (
         <input
           type="text"
-          className="text-input"
-          value={selected}
-          onChange={(e) => setSelected(e.target.value)}
-          placeholder="Type your answer"
+          className="text-field"
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+          placeholder="Твой ответ"
           autoCapitalize="off"
           autoCorrect="off"
+          autoComplete="off"
+          disabled={submitting}
         />
       )}
 
-      {error && <p className="onboarding-error">{error}</p>}
-
-      <div className="onboarding-actions">
-        <button
-          type="button"
-          className="button-primary"
-          disabled={!selected.trim() || submitting}
-          onClick={handleSubmit}
-        >
-          {submitting ? "Checking…" : "Continue"}
-        </button>
-      </div>
-    </section>
+      {error ? (
+        <p className="small" style={{ color: "var(--danger)" }}>
+          {error}
+        </p>
+      ) : null}
+    </FocusShell>
   );
 }

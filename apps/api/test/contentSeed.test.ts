@@ -13,41 +13,38 @@ test("all seed files load and cross-validate without throwing", () => {
   assert.ok(bundle.lessonItems.length > 0);
 });
 
-test("the seed sample matches the Phase 5 target sizes", () => {
+test("the published catalogue is the V1 situation course", () => {
   const bundle = loadSeedContent();
 
-  assert.equal(bundle.modules.length, 6); // 3 A1 + 3 A2
-  assert.equal(bundle.lessons.length, 24); // 4 per module
+  const published = bundle.modules.filter(
+    (m) => (m.status ?? "published") === "published",
+  );
+  // One A1 starter chapter plus the three A2 chapters. The original A1
+  // chapters stay in the bundle but archived, so no released content id
+  // ever disappears.
+  assert.equal(published.length, 4);
+  assert.equal(bundle.modules.length - published.length, 3);
+
+  const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
+  assert.equal(starter.length, 5);
+  for (const episode of starter) {
+    assert.ok(episode.situationTitle, `${episode.id} has no situation title`);
+    assert.ok(episode.scene, `${episode.id} has no scene`);
+    assert.ok(
+      episode.capability?.startsWith("Я могу"),
+      `${episode.id} capability must be a concrete "Я могу …" claim`,
+    );
+  }
 
   const a1Items = bundle.learningItems.filter((i) => i.levelCode === "A1");
   const a2Items = bundle.learningItems.filter((i) => i.levelCode === "A2");
-  assert.ok(
-    a1Items.length >= 40 && a1Items.length <= 60,
-    `A1 items: ${a1Items.length}`,
-  );
-  assert.ok(
-    a2Items.length >= 40 && a2Items.length <= 60,
-    `A2 items: ${a2Items.length}`,
-  );
-  assert.ok(
-    bundle.learningItems.length >= 80 && bundle.learningItems.length <= 120,
-    `total items: ${bundle.learningItems.length}`,
-  );
+  assert.ok(a1Items.length >= 60, `A1 items: ${a1Items.length}`);
+  assert.ok(a2Items.length >= 40, `A2 items: ${a2Items.length}`);
 
   const a1Grammar = bundle.grammarPatterns.filter((g) => g.levelCode === "A1");
   const a2Grammar = bundle.grammarPatterns.filter((g) => g.levelCode === "A2");
-  assert.ok(
-    a1Grammar.length >= 6 && a1Grammar.length <= 10,
-    `A1 grammar: ${a1Grammar.length}`,
-  );
-  assert.ok(
-    a2Grammar.length >= 6 && a2Grammar.length <= 10,
-    `A2 grammar: ${a2Grammar.length}`,
-  );
-  assert.ok(
-    bundle.grammarPatterns.length >= 12 && bundle.grammarPatterns.length <= 20,
-    `total grammar: ${bundle.grammarPatterns.length}`,
-  );
+  assert.ok(a1Grammar.length >= 8, `A1 grammar: ${a1Grammar.length}`);
+  assert.ok(a2Grammar.length >= 6, `A2 grammar: ${a2Grammar.length}`);
 });
 
 test("seed/import succeeds against a fresh database", async () => {

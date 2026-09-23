@@ -1,14 +1,12 @@
 import type {
-  CurriculumPathResponse,
+  ChapterDTO,
+  CourseResponse,
   LessonContentDTO,
   LessonContentEntry,
-  LessonProgressStatus,
   CefrLevel,
 } from "@english-level/contracts";
 import type { Db } from "../db/types.ts";
-import { findLevelById } from "../repositories/levelsRepository.ts";
 import {
-  countPublishedLessonsByModule,
   findPublishedLessonById,
   findPublishedModuleById,
   listLessonItemsByLesson,
@@ -24,119 +22,15 @@ import {
   findGrammarPatternLocalization,
   findPublishedGrammarPatternById,
 } from "../repositories/grammarRepository.ts";
-import { listProgressForLessons } from "../repositories/userLessonProgressRepository.ts";
+import { findProgress } from "../repositories/userLessonProgressRepository.ts";
+import { listCapabilitiesForLessons } from "../repositories/capabilitiesRepository.ts";
+import { buildEpisodeDTO } from "./lessonSessionService.ts";
 
 /** Only Russian is seeded for V1 — no language negotiation yet. */
 const CONTENT_LANGUAGE = "ru";
 
 function levelId(code: CefrLevel): string {
   return `lvl_${code.toLowerCase()}`;
-}
-
-/**
- * The curriculum path for a user's *verified* level. No progress or
- * completion percentages exist yet — a module here is just "exists in
- * this level's published curriculum", nothing more. A level with no
- * seeded content (or no verified level yet) returns an empty module list
- * rather than an error.
- */
-export async function getCurriculumPath(
-  db: Db,
-  currentCefrLevel: string | null,
-): Promise<CurriculumPathResponse> {
-  if (!currentCefrLevel) {
-    return { currentLevel: null, modules: [] };
-  }
-
-  const modules = await listPublishedModulesByLevel(
-    db,
-    levelId(currentCefrLevel as CefrLevel),
-  );
-
-  const withCounts = await Promise.all(
-    modules.map(async (m) => {
-      const count = await countPublishedLessonsByModule(db, m.id);
-      return {
-        id: m.id,
-        title: m.title,
-        order: m.order_index,
-        lessons: count?.n ?? 0,
-      };
-    }),
-  );
-
-  return {
-    currentLevel: currentCefrLevel as CefrLevel,
-    modules: withCounts,
-  };
-}
-
-export type ModuleDetailResult =
-  | {
-      ok: true;
-      detail: {
-        id: string;
-        title: string;
-        description: string | null;
-        level: CefrLevel;
-        order: number;
-        lessons: {
-          id: string;
-          title: string;
-          type: string;
-          order: number;
-          estimatedMinutes: number | null;
-          progressStatus: LessonProgressStatus;
-        }[];
-      };
-    }
-  | { ok: false; error: { code: "not_found"; message: string } };
-
-/**
- * `userId` is used only to annotate each lesson with the user's own
- * `user_lesson_progress` status (Phase 6) — not_started/in_progress/
- * completed. No mastery/knowledge is inferred or invented; a lesson with
- * no progress row is simply "not_started".
- */
-export async function getModuleDetail(
-  db: Db,
-  moduleId: string,
-  userId: string,
-): Promise<ModuleDetailResult> {
-  const module_ = await findPublishedModuleById(db, moduleId);
-  if (!module_) {
-    return {
-      ok: false,
-      error: { code: "not_found", message: "module not found" },
-    };
-  }
-
-  const level = await findLevelById(db, module_.level_id);
-  const lessons = await listPublishedLessonsByModule(db, moduleId);
-  const progressByLesson = await listProgressForLessons(
-    db,
-    userId,
-    lessons.map((l) => l.id),
-  );
-
-  return {
-    ok: true,
-    detail: {
-      id: module_.id,
-      title: module_.title,
-      description: module_.description,
-      level: (level?.code ?? "A1") as CefrLevel,
-      order: module_.order_index,
-      lessons: lessons.map((l) => ({
-        id: l.id,
-        title: l.title,
-        type: l.lesson_type,
-        order: l.order_index,
-        estimatedMinutes: l.estimated_minutes,
-        progressStatus: progressByLesson.get(l.id)?.status ?? "not_started",
-      })),
-    },
-  };
 }
 
 export type LessonContentResult =
@@ -147,10 +41,14 @@ export type LessonContentResult =
  * Lesson content STRUCTURE only — target learning items and grammar
  * patterns, in order. Read-only: this never starts a session, never
  * marks anything started/completed, and never processes an answer.
+ * `userId` is used solely to attach the user's own persisted
+ * `user_lesson_progress` status, so Lesson Preview can resolve
+ * start-vs-resume from server state rather than navigation state.
  */
 export async function getLessonContent(
   db: Db,
   lessonId: string,
+  userId: string,
 ): Promise<LessonContentResult> {
   const lesson = await findPublishedLessonById(db, lessonId);
   if (!lesson) {
@@ -159,6 +57,9 @@ export async function getLessonContent(
       error: { code: "not_found", message: "lesson not found" },
     };
   }
+
+  const module_ = await findPublishedModuleById(db, lesson.module_id);
+  const progress = await findProgress(db, userId, lessonId);
 
   const links = await listLessonItemsByLesson(db, lessonId);
   const content: LessonContentEntry[] = [];
@@ -217,7 +118,94 @@ export async function getLessonContent(
       title: lesson.title,
       type: lesson.lesson_type,
       moduleId: lesson.module_id,
+      moduleTitle: module_?.title ?? "",
+      estimatedMinutes: lesson.estimated_minutes,
+      progressStatus: progress?.status ?? "not_started",
+      situationTitle: lesson.situation_title,
+      scene: lesson.scene,
+      capability: lesson.capability,
       content,
     },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Course (Speak in English V1)
+// ---------------------------------------------------------------------------
+
+/**
+ * The course as one guided path: chapters of situations, each situation
+ * carrying the capability it unlocks and how far through it the learner is.
+ *
+ * "Current" is a single episode across the whole course — the first one
+ * whose capability isn't earned yet. Everything before it is done,
+ * everything after it is simply ahead; there is no locking, because a
+ * guided path doesn't need a gate to be clear.
+ */
+export async function getCourse(
+  db: Db,
+  currentCefrLevel: string | null,
+  userId: string,
+): Promise<CourseResponse> {
+  if (!currentCefrLevel) {
+    return {
+      level: null,
+      chapters: [],
+      episodesDone: 0,
+      episodesTotal: 0,
+      currentEpisodeId: null,
+    };
+  }
+
+  const modules = await listPublishedModulesByLevel(
+    db,
+    levelId(currentCefrLevel as CefrLevel),
+  );
+
+  const chapters: ChapterDTO[] = [];
+  let episodesDone = 0;
+  let episodesTotal = 0;
+  let currentEpisodeId: string | null = null;
+
+  for (const module_ of modules) {
+    const lessons = await listPublishedLessonsByModule(db, module_.id);
+    const capabilities = await listCapabilitiesForLessons(
+      db,
+      userId,
+      lessons.map((l) => l.id),
+    );
+    const episodes = lessons.map((lesson) =>
+      buildEpisodeDTO(lesson, capabilities.get(lesson.id) ?? null),
+    );
+    for (const episode of episodes) {
+      episodesTotal += 1;
+      if (episode.state === "can_do" || episode.state === "consolidated") {
+        episodesDone += 1;
+      } else if (!currentEpisodeId) {
+        currentEpisodeId = episode.id;
+      }
+    }
+    chapters.push({
+      id: module_.id,
+      title: module_.title,
+      description: module_.description,
+      order: module_.order_index,
+      episodes,
+    });
+  }
+
+  // Everything earned: the last episode stays highlighted rather than
+  // leaving the path with no "you are here".
+  if (!currentEpisodeId) {
+    const last = chapters[chapters.length - 1]?.episodes.at(-1);
+    currentEpisodeId = last?.id ?? null;
+  }
+
+  return {
+    level: currentCefrLevel as CefrLevel,
+    chapters,
+    episodesDone,
+    episodesTotal,
+    currentEpisodeId,
   };
 }

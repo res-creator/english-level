@@ -1,0 +1,579 @@
+[
+  {
+    "id": "itm_sie_hello",
+    "itemType": "functional_phrase",
+    "lemma": "hello",
+    "displayForm": "Hello",
+    "levelCode": "A1",
+    "topic": "first_conversations",
+    "ru": {
+      "translation": "Здравствуйте / привет",
+      "usageNote": "«Hello» подходит всегда, «Hi» — чуть менее официально."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_hello_01",
+        "text": "Hello, I'm Mark.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_im_name",
+    "itemType": "phrase",
+    "lemma": "i am name",
+    "displayForm": "I'm Anna",
+    "levelCode": "A1",
+    "topic": "first_conversations",
+    "ru": {
+      "translation": "Я — Анна",
+      "usageNote": "Полную форму «I am» в разговоре почти не используют."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_im_name_01",
+        "text": "Hi, I'm Anna.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_nice_to_meet_you",
+    "itemType": "functional_phrase",
+    "lemma": "nice to meet you",
+    "displayForm": "Nice to meet you",
+    "levelCode": "A1",
+    "topic": "first_conversations",
+    "ru": {
+      "translation": "Приятно познакомиться",
+      "usageNote": "В ответ говорят «Nice to meet you too»."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_nice_to_meet_you_01",
+        "text": "Nice to meet you, Mark.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_whats_your_name",
+    "itemType": "functional_phrase",
+    "lemma": "what is your name",
+    "displayForm": "What's your name?",
+    "levelCode": "A1",
+    "topic": "first_conversations",
+    "ru": { "translation": "Как тебя зовут?" },
+    "examples": [
+      {
+        "id": "ex_sie_whats_your_name_01",
+        "text": "Sorry, what's your name?",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_where_are_you_from",
+    "itemType": "functional_phrase",
+    "lemma": "where are you from",
+    "displayForm": "Where are you from?",
+    "levelCode": "A1",
+    "topic": "first_conversations",
+    "ru": { "translation": "Откуда ты?" },
+    "examples": [
+      {
+        "id": "ex_sie_where_are_you_from_01",
+        "text": "Nice to meet you. Where are you from?",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_im_from",
+    "itemType": "phrase",
+    "lemma": "i am from",
+    "displayForm": "I'm from Kyiv",
+    "levelCode": "A1",
+    "topic": "first_conversations",
+    "ru": { "translation": "Я из Киева" },
+    "examples": [
+      {
+        "id": "ex_sie_im_from_01",
+        "text": "I'm from Kyiv, and you?",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_what_do_you_do",
+    "itemType": "functional_phrase",
+    "lemma": "what do you do",
+    "displayForm": "What do you do?",
+    "levelCode": "A1",
+    "topic": "first_conversations",
+    "ru": {
+      "translation": "Чем ты занимаешься?",
+      "usageNote": "Спрашивают о работе, а не о том, что человек делает прямо сейчас."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_what_do_you_do_01",
+        "text": "What do you do? I'm a designer.",
+        "isPrimary": true
+      }
+    ]
+  },
+
+  {
+    "id": "itm_sie_can_i_get",
+    "itemType": "functional_phrase",
+    "lemma": "can i get",
+    "displayForm": "Can I get a coffee, please?",
+    "levelCode": "A1",
+    "topic": "cafe",
+    "ru": {
+      "translation": "Можно мне кофе, пожалуйста?",
+      "usageNote": "Самый обычный способ сделать заказ. «I want» звучит грубо."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_can_i_get_01",
+        "text": "Can I get a coffee, please?",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_large",
+    "itemType": "word",
+    "lemma": "large",
+    "displayForm": "large",
+    "partOfSpeech": "adjective",
+    "levelCode": "A1",
+    "topic": "cafe",
+    "ru": { "translation": "большой" },
+    "examples": [
+      {
+        "id": "ex_sie_large_01",
+        "text": "A large coffee, please.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_with_milk",
+    "itemType": "collocation",
+    "lemma": "with milk",
+    "displayForm": "with milk",
+    "levelCode": "A1",
+    "topic": "cafe",
+    "ru": { "translation": "с молоком" },
+    "examples": [
+      {
+        "id": "ex_sie_with_milk_01",
+        "text": "Tea with milk, please.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_to_go",
+    "itemType": "collocation",
+    "lemma": "to go",
+    "displayForm": "to go",
+    "levelCode": "A1",
+    "topic": "cafe",
+    "ru": {
+      "translation": "с собой",
+      "usageNote": "В Британии чаще говорят «takeaway», в США — «to go»."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_to_go_01",
+        "text": "One coffee to go, please.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_anything_else",
+    "itemType": "functional_phrase",
+    "lemma": "anything else",
+    "displayForm": "Anything else?",
+    "levelCode": "A1",
+    "topic": "cafe",
+    "ru": { "translation": "Что-нибудь ещё?" },
+    "examples": [
+      {
+        "id": "ex_sie_anything_else_01",
+        "text": "Anything else? No, that's all.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_thats_all",
+    "itemType": "functional_phrase",
+    "lemma": "that is all",
+    "displayForm": "That's all, thanks",
+    "levelCode": "A1",
+    "topic": "cafe",
+    "ru": { "translation": "Это всё, спасибо" },
+    "examples": [
+      {
+        "id": "ex_sie_thats_all_01",
+        "text": "That's all, thanks.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_how_much_is_it",
+    "itemType": "functional_phrase",
+    "lemma": "how much is it",
+    "displayForm": "How much is it?",
+    "levelCode": "A1",
+    "topic": "cafe",
+    "ru": { "translation": "Сколько это стоит?" },
+    "examples": [
+      {
+        "id": "ex_sie_how_much_is_it_01",
+        "text": "How much is it? That's four pounds.",
+        "isPrimary": true
+      }
+    ]
+  },
+
+  {
+    "id": "itm_sie_work_from_home",
+    "itemType": "collocation",
+    "lemma": "work from home",
+    "displayForm": "work from home",
+    "levelCode": "A1",
+    "topic": "my_day",
+    "ru": { "translation": "работать из дома" },
+    "examples": [
+      {
+        "id": "ex_sie_work_from_home_01",
+        "text": "I work from home on Fridays.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_start_work",
+    "itemType": "collocation",
+    "lemma": "start work",
+    "displayForm": "start work",
+    "levelCode": "A1",
+    "topic": "my_day",
+    "ru": { "translation": "начинать работу" },
+    "examples": [
+      {
+        "id": "ex_sie_start_work_01",
+        "text": "I start work at nine.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_finish_work",
+    "itemType": "collocation",
+    "lemma": "finish work",
+    "displayForm": "finish work",
+    "levelCode": "A1",
+    "topic": "my_day",
+    "ru": { "translation": "заканчивать работу" },
+    "examples": [
+      {
+        "id": "ex_sie_finish_work_01",
+        "text": "I finish work at six.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_usually",
+    "itemType": "word",
+    "lemma": "usually",
+    "displayForm": "usually",
+    "partOfSpeech": "adverb",
+    "levelCode": "A1",
+    "topic": "my_day",
+    "ru": {
+      "translation": "обычно",
+      "usageNote": "Стоит перед глаголом: I usually work, а не I work usually."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_usually_01",
+        "text": "I usually start at nine.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_never",
+    "itemType": "word",
+    "lemma": "never",
+    "displayForm": "never",
+    "partOfSpeech": "adverb",
+    "levelCode": "A1",
+    "topic": "my_day",
+    "ru": {
+      "translation": "никогда",
+      "usageNote": "С «never» второе отрицание не нужно: I never work — не «I don't never»."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_never_01",
+        "text": "I never work on Sundays.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_every_day",
+    "itemType": "collocation",
+    "lemma": "every day",
+    "displayForm": "every day",
+    "levelCode": "A1",
+    "topic": "my_day",
+    "ru": { "translation": "каждый день" },
+    "examples": [
+      {
+        "id": "ex_sie_every_day_01",
+        "text": "I walk every day.",
+        "isPrimary": true
+      }
+    ]
+  },
+
+  {
+    "id": "itm_sie_excuse_me",
+    "itemType": "functional_phrase",
+    "lemma": "excuse me",
+    "displayForm": "Excuse me",
+    "levelCode": "A1",
+    "topic": "city",
+    "ru": {
+      "translation": "Извините",
+      "usageNote": "Так начинают разговор с незнакомым человеком. «Sorry» — скорее извинение."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_excuse_me_01",
+        "text": "Excuse me, where is the station?",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_where_is_the",
+    "itemType": "functional_phrase",
+    "lemma": "where is the",
+    "displayForm": "Where is the station?",
+    "levelCode": "A1",
+    "topic": "city",
+    "ru": { "translation": "Где находится вокзал?" },
+    "examples": [
+      {
+        "id": "ex_sie_where_is_the_01",
+        "text": "Where is the station, please?",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_go_straight",
+    "itemType": "collocation",
+    "lemma": "go straight",
+    "displayForm": "go straight",
+    "levelCode": "A1",
+    "topic": "city",
+    "ru": { "translation": "идти прямо" },
+    "examples": [
+      {
+        "id": "ex_sie_go_straight_01",
+        "text": "Go straight and then turn left.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_turn_left",
+    "itemType": "collocation",
+    "lemma": "turn left",
+    "displayForm": "turn left",
+    "levelCode": "A1",
+    "topic": "city",
+    "ru": { "translation": "повернуть налево" },
+    "examples": [
+      {
+        "id": "ex_sie_turn_left_01",
+        "text": "Turn left at the corner.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_next_to",
+    "itemType": "collocation",
+    "lemma": "next to",
+    "displayForm": "next to",
+    "levelCode": "A1",
+    "topic": "city",
+    "ru": { "translation": "рядом с" },
+    "examples": [
+      {
+        "id": "ex_sie_next_to_01",
+        "text": "It's next to the bank.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_i_dont_understand",
+    "itemType": "functional_phrase",
+    "lemma": "i do not understand",
+    "displayForm": "I don't understand",
+    "levelCode": "A1",
+    "topic": "city",
+    "ru": {
+      "translation": "Я не понимаю",
+      "usageNote": "Говорить это — нормально. Так делают все, кто учит язык."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_i_dont_understand_01",
+        "text": "Sorry, I don't understand.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_can_you_repeat",
+    "itemType": "functional_phrase",
+    "lemma": "can you repeat that",
+    "displayForm": "Can you repeat that, please?",
+    "levelCode": "A1",
+    "topic": "city",
+    "ru": {
+      "translation": "Повторите, пожалуйста",
+      "usageNote": "Можно добавить «slowly» — помедленнее."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_can_you_repeat_01",
+        "text": "Sorry, can you repeat that, please?",
+        "isPrimary": true
+      }
+    ]
+  },
+
+  {
+    "id": "itm_sie_i_ordered",
+    "itemType": "phrase",
+    "lemma": "i ordered",
+    "displayForm": "I ordered tea",
+    "levelCode": "A1",
+    "topic": "problem",
+    "ru": {
+      "translation": "Я заказывала чай",
+      "usageNote": "«Ordered» — про то, что уже случилось."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_i_ordered_01",
+        "text": "Sorry, I ordered tea.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_but_this_is",
+    "itemType": "phrase",
+    "lemma": "but this is",
+    "displayForm": "but this is coffee",
+    "levelCode": "A1",
+    "topic": "problem",
+    "ru": { "translation": "а это кофе" },
+    "examples": [
+      {
+        "id": "ex_sie_but_this_is_01",
+        "text": "I ordered tea, but this is coffee.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_theres_been_a_mistake",
+    "itemType": "functional_phrase",
+    "lemma": "there has been a mistake",
+    "displayForm": "There's been a mistake",
+    "levelCode": "A1",
+    "topic": "problem",
+    "ru": {
+      "translation": "Произошла ошибка",
+      "usageNote": "Вежливая формула: никого не обвиняет."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_theres_been_a_mistake_01",
+        "text": "Sorry, I think there's been a mistake.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_could_you_change_it",
+    "itemType": "functional_phrase",
+    "lemma": "could you change it",
+    "displayForm": "Could you change it, please?",
+    "levelCode": "A1",
+    "topic": "problem",
+    "ru": {
+      "translation": "Не могли бы вы заменить?",
+      "usageNote": "«Could» звучит мягче, чем «Can»."
+    },
+    "examples": [
+      {
+        "id": "ex_sie_could_you_change_it_01",
+        "text": "Could you change it, please?",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_no_problem",
+    "itemType": "functional_phrase",
+    "lemma": "no problem",
+    "displayForm": "No problem",
+    "levelCode": "A1",
+    "topic": "problem",
+    "ru": { "translation": "Без проблем" },
+    "examples": [
+      {
+        "id": "ex_sie_no_problem_01",
+        "text": "No problem, I'll change it.",
+        "isPrimary": true
+      }
+    ]
+  },
+  {
+    "id": "itm_sie_thanks_a_lot",
+    "itemType": "functional_phrase",
+    "lemma": "thanks a lot",
+    "displayForm": "Thanks a lot",
+    "levelCode": "A1",
+    "topic": "problem",
+    "ru": { "translation": "Большое спасибо" },
+    "examples": [
+      {
+        "id": "ex_sie_thanks_a_lot_01",
+        "text": "Thanks a lot, that's perfect.",
+        "isPrimary": true
+      }
+    ]
+  }
+]

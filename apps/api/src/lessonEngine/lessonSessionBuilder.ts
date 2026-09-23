@@ -68,6 +68,66 @@ export async function buildActivityPlan(
   }));
 }
 
+/**
+ * A single activity for one content item, at a chosen difficulty. Used by
+ * the Mission (production only — the learner has to generate language
+ * rather than recognise it) and by spaced review, where the format gets
+ * harder as an item's memory box grows. Returns null when the item can't
+ * support the requested format (e.g. no example to build a sentence from),
+ * so callers can fall back a rung.
+ */
+export type ActivityMode = "recognition" | "context" | "production";
+
+export async function buildItemActivity(
+  db: Db,
+  levelId: string,
+  link: LessonItemRow,
+  mode: ActivityMode,
+): Promise<ScoredActivity | null> {
+  if (link.content_type === "grammar_pattern") {
+    const activities = await buildGrammarActivities(db, levelId, {
+      ...link,
+      role: "practice",
+    });
+    const scored = activities.find((a) => a.kind === "multiple_choice");
+    return (scored as ScoredActivity | undefined) ?? null;
+  }
+
+  const item = await findPublishedLearningItemById(db, link.content_id);
+  if (!item) return null;
+  const localization = await findLearningItemLocalization(
+    db,
+    item.id,
+    CONTENT_LANGUAGE,
+  );
+  const translation = localization?.translation ?? "";
+  const example = await findPrimaryExample(db, item.id);
+  const explanation = localization?.usage_note ?? example?.example_text ?? null;
+
+  if (mode === "production") {
+    const recall = buildExtraRecall(item, translation, example, explanation);
+    if (recall) return recall;
+    const gap = await buildFillGap(db, levelId, item, example, explanation);
+    if (gap) return gap;
+  }
+  if (mode === "context") {
+    const gap = await buildFillGap(db, levelId, item, example, explanation);
+    if (gap) return gap;
+  }
+  try {
+    return await buildRecognitionMC(
+      db,
+      levelId,
+      item,
+      translation,
+      explanation,
+    );
+  } catch {
+    // Not enough distractors at this level to build an honest question.
+    return null;
+  }
+}
+
 /** One deterministic alternate-question retry, inserted a few activities
  * after a wrong answer. V1 simplification: re-asks the SAME activity
  * (same kind/content) rather than synthesizing a different kind, so it

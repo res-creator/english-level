@@ -11,6 +11,9 @@
     "../src/telegram/types.ts",
     "../src/auth/resolveInitData.ts",
     "../src/auth/devTelegramFixture.ts",
+    "../src/curriculum/coursePath.ts",
+    "../src/routes/lessonPreviewCta.ts",
+    "../src/lessonEngine/promptTranslations.ts",
     "../src/vite-env.d.ts"
   ]
 }

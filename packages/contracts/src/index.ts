@@ -261,23 +261,6 @@ export const LessonItemRoleSchema = z.enum([
 ]);
 export type LessonItemRole = z.infer<typeof LessonItemRoleSchema>;
 
-/** A single module in a level's path — no completion/progress data. */
-export const CurriculumModuleDTOSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  order: z.number().int(),
-  lessons: z.number().int(),
-});
-export type CurriculumModuleDTO = z.infer<typeof CurriculumModuleDTOSchema>;
-
-export const CurriculumPathResponseSchema = z.object({
-  currentLevel: CefrLevelSchema.nullable(),
-  modules: z.array(CurriculumModuleDTOSchema),
-});
-export type CurriculumPathResponse = z.infer<
-  typeof CurriculumPathResponseSchema
->;
-
 /** Whether the current user has started/finished a lesson — from
  * `user_lesson_progress` (Phase 6). Never invents mastery/knowledge. */
 export const LessonProgressStatusSchema = z.enum([
@@ -286,28 +269,6 @@ export const LessonProgressStatusSchema = z.enum([
   "completed",
 ]);
 export type LessonProgressStatus = z.infer<typeof LessonProgressStatusSchema>;
-
-export const CurriculumLessonSummaryDTOSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  type: LessonTypeSchema,
-  order: z.number().int(),
-  estimatedMinutes: z.number().int().nullable(),
-  progressStatus: LessonProgressStatusSchema,
-});
-export type CurriculumLessonSummaryDTO = z.infer<
-  typeof CurriculumLessonSummaryDTOSchema
->;
-
-export const ModuleDetailResponseSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  description: z.string().nullable(),
-  level: CefrLevelSchema,
-  order: z.number().int(),
-  lessons: z.array(CurriculumLessonSummaryDTOSchema),
-});
-export type ModuleDetailResponse = z.infer<typeof ModuleDetailResponseSchema>;
 
 /** A reusable learning item as shown in a lesson preview — never internal
  * fields like frequency_band, difficulty, provenance, or content_version. */
@@ -345,12 +306,26 @@ export const LessonContentEntrySchema = z.discriminatedUnion("contentType", [
 export type LessonContentEntry = z.infer<typeof LessonContentEntrySchema>;
 
 /** A lesson's content STRUCTURE only — not a session, no answer
- * processing, nothing is marked started/completed by reading this. */
+ * processing, nothing is marked started/completed by reading this.
+ * `progressStatus` is the user's own real, persisted lesson state, so a
+ * Lesson Preview opened by deep link or after a Telegram restart knows
+ * whether to offer "start" or "resume" without relying on router state.
+ * `moduleTitle`/`estimatedMinutes` come from rows this read already
+ * touches — they exist so the screen can show unit context and duration
+ * without a second request. */
 export const LessonContentDTOSchema = z.object({
   id: z.string(),
   title: z.string(),
   type: LessonTypeSchema,
   moduleId: z.string(),
+  moduleTitle: z.string(),
+  estimatedMinutes: z.number().int().nullable(),
+  progressStatus: LessonProgressStatusSchema,
+  /** Situation framing — what this episode is about before any of its
+   * language is shown. Null for content authored before V1. */
+  situationTitle: z.string().nullable(),
+  scene: z.string().nullable(),
+  capability: z.string().nullable(),
   content: z.array(LessonContentEntrySchema),
 });
 export type LessonContentDTO = z.infer<typeof LessonContentDTOSchema>;
@@ -446,19 +421,6 @@ export const LessonSessionStatusSchema = z.enum([
 ]);
 export type LessonSessionStatus = z.infer<typeof LessonSessionStatusSchema>;
 
-/** Shared shape for both "start a lesson" and "resume a session" — a
- * session is trivially resumable because this is all the client needs. */
-export const LessonSessionDTOSchema = z.object({
-  sessionId: z.string(),
-  status: LessonSessionStatusSchema,
-  lesson: z.object({ id: z.string(), title: z.string() }),
-  currentActivity: ActivityDTOSchema.nullable(),
-});
-export type LessonSessionDTO = z.infer<typeof LessonSessionDTOSchema>;
-
-export const StartLessonResponseSchema = LessonSessionDTOSchema;
-export type StartLessonResponse = z.infer<typeof StartLessonResponseSchema>;
-
 export const AnswerActivityRequestSchema = z.object({
   activityId: z.string(),
   answer: z.string(),
@@ -479,29 +441,303 @@ export const AnswerFeedbackSchema = z.discriminatedUnion("correct", [
 ]);
 export type AnswerFeedback = z.infer<typeof AnswerFeedbackSchema>;
 
-/**
- * Only what actually exists, and only ever for a session that has really
- * completed — every field here is reconstructable from persisted
- * `learning_sessions`/`user_lesson_progress` data. No streak, no
- * mastery, no "words learned", no XP, no level progress — those systems
- * don't exist yet. This is also what `GET /api/v1/sessions/:id/result`
- * returns, so a page reload can reconstruct the same result the answer
- * response originally carried.
- */
-export const LessonResultDTOSchema = z.object({
+// ---------------------------------------------------------------------------
+// Speak in English V1.
+//
+// Frontstage vocabulary (what the learner sees) maps onto the existing
+// backstage entities: Chapter = module, Episode = lesson, Session = a slice
+// of that episode's activity plan, Mission = the episode's proof session.
+// ---------------------------------------------------------------------------
+
+export const SessionKindSchema = z.enum(["lesson", "mission"]);
+export type SessionKind = z.infer<typeof SessionKindSchema>;
+
+export const CapabilityStateSchema = z.enum([
+  "learning",
+  "can_do",
+  "consolidated",
+]);
+export type CapabilityState = z.infer<typeof CapabilityStateSchema>;
+
+/** One real-life situation. `capability` is the narrow "Я могу …" claim it
+ * unlocks — never a broad promise. */
+export const EpisodeDTOSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  situationTitle: z.string().nullable(),
+  scene: z.string().nullable(),
+  capability: z.string().nullable(),
+  teaser: z.string().nullable(),
+  type: LessonTypeSchema,
+  order: z.number().int(),
+  estimatedMinutes: z.number().int().nullable(),
+  state: CapabilityStateSchema.nullable(),
+  sessionsDone: z.number().int().nonnegative(),
+  sessionsTotal: z.number().int().nonnegative(),
+  /** True once every session is done and only the Mission is left. */
+  missionReady: z.boolean(),
+});
+export type EpisodeDTO = z.infer<typeof EpisodeDTOSchema>;
+
+export const ChapterDTOSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string().nullable(),
+  order: z.number().int(),
+  episodes: z.array(EpisodeDTOSchema),
+});
+export type ChapterDTO = z.infer<typeof ChapterDTOSchema>;
+
+export const CourseResponseSchema = z.object({
+  level: CefrLevelSchema.nullable(),
+  chapters: z.array(ChapterDTOSchema),
+  episodesDone: z.number().int().nonnegative(),
+  episodesTotal: z.number().int().nonnegative(),
+  currentEpisodeId: z.string().nullable(),
+});
+export type CourseResponse = z.infer<typeof CourseResponseSchema>;
+
+/** What Today should put in front of the learner right now. */
+export const TodayActionSchema = z.enum([
+  "session",
+  "mission",
+  "review",
+  "none",
+]);
+export type TodayAction = z.infer<typeof TodayActionSchema>;
+
+export const TodayResponseSchema = z.object({
+  action: TodayActionSchema,
+  episode: EpisodeDTOSchema.nullable(),
+  chapterTitle: z.string().nullable(),
+  level: CefrLevelSchema.nullable(),
+  /** Minutes the next session is expected to take, when derivable. */
+  estimatedMinutes: z.number().int().nullable(),
+  reviewDue: z.number().int().nonnegative(),
+  capabilities: z.object({
+    canDo: z.number().int().nonnegative(),
+    consolidated: z.number().int().nonnegative(),
+  }),
+  chapterProgress: z
+    .object({
+      done: z.number().int().nonnegative(),
+      total: z.number().int().nonnegative(),
+    })
+    .nullable(),
+  companionId: z.string().nullable(),
+  /** Set after an absence so the client can open gently. */
+  daysAway: z.number().int().nonnegative().nullable(),
+  weeklyGoal: z
+    .object({
+      target: z.number().int().positive(),
+      mine: z.number().int().nonnegative(),
+      friendName: z.string().nullable(),
+      friendDone: z.number().int().nonnegative().nullable(),
+      completed: z.boolean(),
+    })
+    .nullable(),
+});
+export type TodayResponse = z.infer<typeof TodayResponseSchema>;
+
+/** A running session — daily session or Mission, same shape. */
+export const EpisodeSessionDTOSchema = z.object({
   sessionId: z.string(),
-  lessonId: z.string(),
-  lessonTitle: z.string(),
-  status: z.literal("completed"),
+  kind: SessionKindSchema,
+  status: LessonSessionStatusSchema,
+  sessionIndex: z.number().int().positive(),
+  sessionTotal: z.number().int().positive(),
+  episode: EpisodeDTOSchema,
+  currentActivity: ActivityDTOSchema.nullable(),
+});
+export type EpisodeSessionDTO = z.infer<typeof EpisodeSessionDTOSchema>;
+
+export const UnlockedRewardDTOSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  reason: z.string(),
+  tier: z.enum(["small", "medium", "rare", "chapter", "milestone", "shared"]),
+  slot: z.string(),
+  glyph: z.string(),
+});
+export type UnlockedRewardDTO = z.infer<typeof UnlockedRewardDTOSchema>;
+
+/** The result screen's data. Emotionally the centre is `capability`, not
+ * the score — the numbers are real but secondary. */
+export const SessionResultDTOSchema = z.object({
+  sessionId: z.string(),
+  kind: SessionKindSchema,
+  episodeId: z.string(),
+  episodeTitle: z.string(),
   correctCount: z.number().int().nonnegative(),
   wrongCount: z.number().int().nonnegative(),
   scoredAttempts: z.number().int().nonnegative(),
   accuracy: z.number().int().min(0).max(100),
   completedAt: z.string(),
+  sessionsDone: z.number().int().nonnegative(),
+  sessionsTotal: z.number().int().positive(),
+  /** Only meaningful for a Mission. */
+  missionPassed: z.boolean().nullable(),
+  capability: z.string().nullable(),
+  capabilityState: CapabilityStateSchema.nullable(),
+  /** True when the episode's content is done and the Mission is next. */
+  missionReady: z.boolean(),
+  teaser: z.string().nullable(),
+  nextEpisodeId: z.string().nullable(),
+  rewards: z.array(UnlockedRewardDTOSchema),
+  reviewDue: z.number().int().nonnegative(),
 });
-export type LessonResultDTO = z.infer<typeof LessonResultDTOSchema>;
+export type SessionResultDTO = z.infer<typeof SessionResultDTOSchema>;
 
-export const AnswerActivityResponseSchema = z.object({
+// --- review ---------------------------------------------------------------
+
+export const ReviewStateResponseSchema = z.object({
+  due: z.number().int().nonnegative(),
+  /** Items whose last answer was wrong — worth a second look. */
+  weak: z.number().int().nonnegative(),
+  /** Capabilities waiting for a spaced retrieval to become CONSOLIDATED. */
+  awaitingConsolidation: z.number().int().nonnegative(),
+  estimatedMinutes: z.number().int().nonnegative(),
+  activeSessionId: z.string().nullable(),
+});
+export type ReviewStateResponse = z.infer<typeof ReviewStateResponseSchema>;
+
+export const ReviewSessionDTOSchema = z.object({
+  sessionId: z.string(),
+  status: LessonSessionStatusSchema,
+  total: z.number().int().nonnegative(),
+  currentActivity: ActivityDTOSchema.nullable(),
+});
+export type ReviewSessionDTO = z.infer<typeof ReviewSessionDTOSchema>;
+
+export const ReviewResultDTOSchema = z.object({
+  sessionId: z.string(),
+  reviewed: z.number().int().nonnegative(),
+  correctCount: z.number().int().nonnegative(),
+  accuracy: z.number().int().min(0).max(100),
+  consolidated: z.array(z.string()),
+  rewards: z.array(UnlockedRewardDTOSchema),
+});
+export type ReviewResultDTO = z.infer<typeof ReviewResultDTOSchema>;
+
+export const AnswerReviewResponseSchema = z.object({
+  feedback: AnswerFeedbackSchema,
+  session: z.discriminatedUnion("status", [
+    z.object({
+      status: z.literal("in_progress"),
+      nextActivity: ActivityDTOSchema,
+    }),
+    z.object({ status: z.literal("completed"), result: ReviewResultDTOSchema }),
+  ]),
+});
+export type AnswerReviewResponse = z.infer<typeof AnswerReviewResponseSchema>;
+
+// --- my english -----------------------------------------------------------
+
+export const CapabilityItemDTOSchema = z.object({
+  episodeId: z.string(),
+  capability: z.string(),
+  situationTitle: z.string().nullable(),
+  state: CapabilityStateSchema,
+  canDoAt: z.string().nullable(),
+  consolidatedAt: z.string().nullable(),
+});
+export type CapabilityItemDTO = z.infer<typeof CapabilityItemDTOSchema>;
+
+export const KnownPhraseDTOSchema = z.object({
+  id: z.string(),
+  text: z.string(),
+  translation: z.string(),
+  box: z.number().int(),
+  consolidated: z.boolean(),
+});
+export type KnownPhraseDTO = z.infer<typeof KnownPhraseDTOSchema>;
+
+export const MyEnglishResponseSchema = z.object({
+  level: CefrLevelSchema.nullable(),
+  capabilities: z.array(CapabilityItemDTOSchema),
+  phrases: z.array(KnownPhraseDTOSchema),
+  stats: z.object({
+    phrasesMet: z.number().int().nonnegative(),
+    phrasesConsolidated: z.number().int().nonnegative(),
+    episodesDone: z.number().int().nonnegative(),
+    missionsPassed: z.number().int().nonnegative(),
+    activeDaysThisWeek: z.number().int().nonnegative(),
+    sessionsThisWeek: z.number().int().nonnegative(),
+  }),
+});
+export type MyEnglishResponse = z.infer<typeof MyEnglishResponseSchema>;
+
+// --- companion & space ----------------------------------------------------
+
+export const CompanionDTOSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  tagline: z.string(),
+  tone: z.enum(["green", "blush", "sand"]),
+});
+export type CompanionDTO = z.infer<typeof CompanionDTOSchema>;
+
+export const RoomItemDTOSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  reason: z.string(),
+  slot: z.string(),
+  glyph: z.string(),
+  tier: z.enum(["small", "medium", "rare", "chapter", "milestone", "shared"]),
+  unlocked: z.boolean(),
+  unlockedAt: z.string().nullable(),
+  /** The language this object remembers — the whole point of the space. */
+  memory: z
+    .object({
+      capability: z.string().nullable(),
+      episodeTitle: z.string().nullable(),
+      phrases: z.array(z.object({ text: z.string(), translation: z.string() })),
+    })
+    .nullable(),
+});
+export type RoomItemDTO = z.infer<typeof RoomItemDTOSchema>;
+
+export const MySpaceResponseSchema = z.object({
+  companion: CompanionDTOSchema.nullable(),
+  companionChoices: z.array(CompanionDTOSchema),
+  items: z.array(RoomItemDTOSchema),
+  unlockedCount: z.number().int().nonnegative(),
+  totalCount: z.number().int().nonnegative(),
+});
+export type MySpaceResponse = z.infer<typeof MySpaceResponseSchema>;
+
+export const SelectCompanionRequestSchema = z.object({
+  companionId: z.string().min(1),
+});
+export type SelectCompanionRequest = z.infer<
+  typeof SelectCompanionRequestSchema
+>;
+
+// --- friends --------------------------------------------------------------
+
+export const FriendStateResponseSchema = z.object({
+  friend: z.object({ id: z.string(), firstName: z.string() }).nullable(),
+  inviteCode: z.string().nullable(),
+  goal: z.object({
+    target: z.number().int().positive(),
+    mine: z.number().int().nonnegative(),
+    friendDone: z.number().int().nonnegative().nullable(),
+    total: z.number().int().nonnegative(),
+    completed: z.boolean(),
+    weekStart: z.string(),
+  }),
+  sharedRewardUnlocked: z.boolean(),
+});
+export type FriendStateResponse = z.infer<typeof FriendStateResponseSchema>;
+
+export const AcceptInviteRequestSchema = z.object({
+  code: z.string().min(1),
+});
+export type AcceptInviteRequest = z.infer<typeof AcceptInviteRequestSchema>;
+
+/** Same shape as the lesson answer response, but carrying the richer V1
+ * session result. */
+export const AnswerSessionResponseSchema = z.object({
   feedback: AnswerFeedbackSchema,
   session: z.discriminatedUnion("status", [
     z.object({
@@ -510,10 +746,11 @@ export const AnswerActivityResponseSchema = z.object({
     }),
     z.object({
       status: z.literal("completed"),
-      result: LessonResultDTOSchema,
+      result: SessionResultDTOSchema,
     }),
   ]),
 });
-export type AnswerActivityResponse = z.infer<
-  typeof AnswerActivityResponseSchema
->;
+export type AnswerSessionResponse = z.infer<typeof AnswerSessionResponseSchema>;
+
+export const InviteCodeResponseSchema = z.object({ code: z.string() });
+export type InviteCodeResponse = z.infer<typeof InviteCodeResponseSchema>;

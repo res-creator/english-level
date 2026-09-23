@@ -60,14 +60,17 @@ function assertUnique(ids: string[], label: string): void {
  */
 export function loadSeedContent(): ContentBundle {
   const modules = [
+    ...parseArray("sie-a1-modules.json", ModuleSeedSchema),
     ...parseArray("a1-modules.json", ModuleSeedSchema),
     ...parseArray("a2-modules.json", ModuleSeedSchema),
   ];
   const lessons = [
+    ...parseArray("sie-a1-lessons.json", LessonSeedSchema),
     ...parseArray("a1-lessons.json", LessonSeedSchema),
     ...parseArray("a2-lessons.json", LessonSeedSchema),
   ];
   const learningItems = [
+    ...parseArray("sie-a1-items.json", LearningItemSeedSchema),
     ...parseArray("a1-learning-items.json", LearningItemSeedSchema),
     ...parseArray("a2-learning-items.json", LearningItemSeedSchema),
   ];
@@ -76,6 +79,7 @@ export function loadSeedContent(): ContentBundle {
     ...parseArray("a2-item-relations.json", ItemRelationSeedSchema),
   ];
   const grammarPatterns = [
+    ...parseArray("sie-a1-grammar.json", GrammarPatternSeedSchema),
     ...parseArray("a1-grammar.json", GrammarPatternSeedSchema),
     ...parseArray("a2-grammar.json", GrammarPatternSeedSchema),
   ];
@@ -84,6 +88,7 @@ export function loadSeedContent(): ContentBundle {
     GrammarRelationSeedSchema,
   );
   const lessonItems = [
+    ...parseArray("sie-a1-lesson-items.json", LessonItemSeedSchema),
     ...parseArray("a1-lesson-items.json", LessonItemSeedSchema),
     ...parseArray("a2-lesson-items.json", LessonItemSeedSchema),
   ];

@@ -11,6 +11,8 @@ import onboardingRoutes from "./routes/onboarding.ts";
 import placementRoutes from "./routes/placement.ts";
 import curriculumRoutes from "./routes/curriculum.ts";
 import lessonSessionRoutes from "./routes/lessonSessions.ts";
+import reviewRoutes from "./routes/review.ts";
+import meRoutes from "./routes/me.ts";
 import { requireAuth } from "./auth/middleware.ts";
 import { toPublicUser } from "./dto/userDto.ts";
 
@@ -62,6 +64,12 @@ v1.route("/", curriculumRoutes);
 // also top-level, alongside the read-only curriculum routes above. See
 // docs/lesson-engine.md.
 v1.route("/", lessonSessionRoutes);
+// Spaced review spans episodes, so it has its own prefix rather than
+// hanging off a lesson.
+v1.route("/review", reviewRoutes);
+// Everything the learner owns: capabilities, the companion's space, and
+// the single friend connection.
+v1.route("/my", meRoutes);
 
 v1.get("/me", requireAuth, (c) => {
   const body = MeResponseSchema.parse(toPublicUser(c.get("currentUser")));

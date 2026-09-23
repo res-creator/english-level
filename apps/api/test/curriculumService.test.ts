@@ -4,10 +4,19 @@ import { createTestDb } from "./helpers/testDb.ts";
 import { seedContent } from "../src/content/seedContent.ts";
 import { resolveCurrentUser } from "../src/services/authService.ts";
 import {
-  getCurriculumPath,
-  getModuleDetail,
+  getCourse,
   getLessonContent,
 } from "../src/services/curriculumService.ts";
+import { startLessonSession } from "../src/services/lessonSessionService.ts";
+import {
+  driveEpisodeToCanDo,
+  driveLessonToCompletion,
+  makeVerifiedUser,
+} from "./helpers/lessonFixtures.ts";
+
+const CHAPTER = "mod_sie_a1_01";
+const EPISODE_1 = "les_sie_a1_e1";
+const EPISODE_2 = "les_sie_a1_e2";
 
 async function seeded() {
   const { db, sqlite } = createTestDb();
@@ -22,139 +31,202 @@ test("unauthenticated curriculum access is rejected (same requireAuth gate the r
   assert.equal(await resolveCurrentUser(db, undefined), null);
 });
 
-// --- GET /path -------------------------------------------------------------
+// --- GET /course ----------------------------------------------------------
 
-test("A1 path returns the 3 seeded A1 modules", async () => {
+test("A1 course is the starter chapter of situations", async () => {
   const { db } = await seeded();
-  const path = await getCurriculumPath(db, "A1");
-  assert.equal(path.currentLevel, "A1");
-  assert.equal(path.modules.length, 3);
-  assert.deepEqual(
-    path.modules.map((m) => m.title),
-    ["Me & Introductions", "Daily Life", "Family & People"],
-  );
-  for (const m of path.modules) {
-    assert.equal(m.lessons, 4);
+  const course = await getCourse(db, "A1", "usr_test");
+  assert.equal(course.level, "A1");
+  assert.equal(course.chapters.length, 1);
+  assert.equal(course.chapters[0]?.id, CHAPTER);
+  assert.equal(course.chapters[0]?.title, "Первые разговоры");
+  assert.equal(course.episodesTotal, 5);
+});
+
+test("the archived original A1 chapters are not part of the course any more", async () => {
+  const { db } = await seeded();
+  const course = await getCourse(db, "A1", "usr_test");
+  const ids = course.chapters.map((c) => c.id);
+  assert.ok(!ids.includes("mod_a1_01"));
+  assert.ok(!ids.includes("mod_a1_02"));
+  assert.ok(!ids.includes("mod_a1_03"));
+});
+
+test("every episode states the capability it unlocks", async () => {
+  const { db } = await seeded();
+  const course = await getCourse(db, "A1", "usr_test");
+  for (const episode of course.chapters[0]?.episodes ?? []) {
+    assert.ok(
+      episode.capability?.startsWith("Я могу"),
+      `${episode.id} has no concrete capability`,
+    );
+    assert.ok(episode.situationTitle, `${episode.id} has no situation title`);
   }
 });
 
-test("A2 path returns the 3 seeded A2 modules", async () => {
+test("A2 course keeps its three chapters, now framed as situations", async () => {
   const { db } = await seeded();
-  const path = await getCurriculumPath(db, "A2");
-  assert.equal(path.currentLevel, "A2");
-  assert.equal(path.modules.length, 3);
+  const course = await getCourse(db, "A2", "usr_test");
   assert.deepEqual(
-    path.modules.map((m) => m.title),
-    ["Life & Routines", "Travel & Transport", "Communication"],
+    course.chapters.map((c) => c.title),
+    ["Жизнь и ритм", "Поездки и транспорт", "Разговор без пауз"],
   );
 });
 
-test("B1/B2 with no seeded curriculum returns a safe empty result, not an error", async () => {
+test("a level with no seeded content returns an empty course, not an error", async () => {
   const { db } = await seeded();
-  const b1 = await getCurriculumPath(db, "B1");
-  const b2 = await getCurriculumPath(db, "B2");
-  assert.deepEqual(b1, { currentLevel: "B1", modules: [] });
-  assert.deepEqual(b2, { currentLevel: "B2", modules: [] });
+  const b1 = await getCourse(db, "B1", "usr_test");
+  assert.deepEqual(b1.chapters, []);
+  assert.equal(b1.episodesTotal, 0);
+  assert.equal(b1.currentEpisodeId, null);
 });
 
-test("no current level yet returns a safe empty result", async () => {
+test("no verified level yet returns an empty course", async () => {
   const { db } = await seeded();
-  const path = await getCurriculumPath(db, null);
-  assert.deepEqual(path, { currentLevel: null, modules: [] });
+  const course = await getCourse(db, null, "usr_test");
+  assert.equal(course.level, null);
+  assert.deepEqual(course.chapters, []);
 });
 
-test("path never invents progress/completion data", async () => {
+test("a fresh learner is placed at the very first situation", async () => {
   const { db } = await seeded();
-  const path = await getCurriculumPath(db, "A1");
-  for (const m of path.modules) {
-    assert.deepEqual(Object.keys(m).sort(), [
-      "id",
-      "lessons",
-      "order",
-      "title",
-    ]);
+  const user = await makeVerifiedUser(db, 201, "A1");
+  const course = await getCourse(db, "A1", user.id);
+  assert.equal(course.currentEpisodeId, EPISODE_1);
+  assert.equal(course.episodesDone, 0);
+  for (const episode of course.chapters[0]?.episodes ?? []) {
+    assert.equal(episode.state, null);
+    assert.equal(episode.sessionsDone, 0);
   }
 });
 
-// --- GET /modules/:id --------------------------------------------------
-
-test("module detail returns metadata and an ordered lesson list", async () => {
-  const { db } = await seeded();
-  const result = await getModuleDetail(db, "mod_a1_01", "usr_test");
-  assert.equal(result.ok, true);
-  if (!result.ok) return;
-
-  assert.equal(result.detail.title, "Me & Introductions");
-  assert.equal(result.detail.level, "A1");
-  assert.equal(result.detail.lessons.length, 4);
-  assert.deepEqual(
-    result.detail.lessons.map((l) => l.order),
-    [1, 2, 3, 4],
-  );
-});
-
-test("module lesson order is deterministic across repeated calls", async () => {
-  const { db } = await seeded();
-  const first = await getModuleDetail(db, "mod_a2_02", "usr_test");
-  const second = await getModuleDetail(db, "mod_a2_02", "usr_test");
-  assert.deepEqual(first, second);
-});
-
-test("an unknown module id returns not_found", async () => {
-  const { db } = await seeded();
-  const result = await getModuleDetail(db, "mod_does_not_exist", "usr_test");
-  assert.equal(result.ok, false);
-  if (!result.ok) assert.equal(result.error.code, "not_found");
-});
-
-test("an archived module is not returned", async () => {
+test("an episode counts as done only once its Mission is passed", async () => {
   const { db, sqlite } = await seeded();
-  sqlite
-    .prepare("UPDATE modules SET status = 'archived' WHERE id = ?")
-    .run("mod_a1_02");
-  const result = await getModuleDetail(db, "mod_a1_02", "usr_test");
-  assert.equal(result.ok, false);
-  if (!result.ok) assert.equal(result.error.code, "not_found");
+  const user = await makeVerifiedUser(db, 202, "A1");
+
+  await driveLessonToCompletion(db, sqlite, user.id, EPISODE_1, {
+    correct: true,
+  });
+  const midway = await getCourse(db, "A1", user.id);
+  assert.equal(midway.episodesDone, 0);
+  assert.equal(midway.currentEpisodeId, EPISODE_1);
+  const started = midway.chapters[0]?.episodes.find((e) => e.id === EPISODE_1);
+  assert.equal(started?.state, "learning");
+  assert.equal(started?.sessionsDone, 1);
+  assert.ok((started?.sessionsTotal ?? 0) >= 1);
+
+  await driveEpisodeToCanDo(db, sqlite, user.id, EPISODE_1);
+  const after = await getCourse(db, "A1", user.id);
+  assert.equal(after.episodesDone, 1);
+  assert.equal(after.currentEpisodeId, EPISODE_2);
+});
+
+test("progress is scoped per learner and never leaks between accounts", async () => {
+  const { db, sqlite } = await seeded();
+  const userA = await makeVerifiedUser(db, 203, "A1");
+  const userB = await makeVerifiedUser(db, 204, "A1");
+  await driveEpisodeToCanDo(db, sqlite, userA.id, EPISODE_1);
+
+  const courseA = await getCourse(db, "A1", userA.id);
+  const courseB = await getCourse(db, "A1", userB.id);
+  assert.equal(courseA.episodesDone, 1);
+  assert.equal(courseB.episodesDone, 0);
+  assert.equal(courseB.currentEpisodeId, EPISODE_1);
+});
+
+test("the course exposes exactly the fields the path screen needs — nothing invented", async () => {
+  const { db } = await seeded();
+  const course = await getCourse(db, "A1", "usr_test");
+  const episode = course.chapters[0]?.episodes[0];
+  assert.ok(episode);
+  assert.deepEqual(Object.keys(episode).sort(), [
+    "capability",
+    "estimatedMinutes",
+    "id",
+    "missionReady",
+    "order",
+    "scene",
+    "sessionsDone",
+    "sessionsTotal",
+    "situationTitle",
+    "state",
+    "teaser",
+    "title",
+    "type",
+  ]);
 });
 
 // --- GET /lessons/:id --------------------------------------------------
 
-test("lesson content returns ordered target learning items and grammar patterns", async () => {
+test("episode content returns its learning items and grammar patterns in order", async () => {
   const { db } = await seeded();
-  const result = await getLessonContent(db, "les_a1_01_03"); // the grammar lesson
+  const result = await getLessonContent(db, EPISODE_1, "usr_test");
   assert.equal(result.ok, true);
   if (!result.ok) return;
 
-  assert.equal(result.content.type, "grammar");
   assert.ok(result.content.content.length > 0);
-  assert.ok(
-    result.content.content.every(
-      (entry) => entry.contentType === "grammar_pattern",
-    ),
-  );
-});
-
-test("lesson content order is deterministic across repeated calls", async () => {
-  const { db } = await seeded();
-  const first = await getLessonContent(db, "les_a1_01_01");
-  const second = await getLessonContent(db, "les_a1_01_01");
-  assert.deepEqual(first, second);
-});
-
-test("a mixed lesson returns both learning items and grammar patterns", async () => {
-  const { db } = await seeded();
-  const result = await getLessonContent(db, "les_a1_01_04"); // Mixed Practice
-  assert.equal(result.ok, true);
-  if (!result.ok) return;
-
   const types = new Set(result.content.content.map((e) => e.contentType));
   assert.ok(types.has("learning_item"));
   assert.ok(types.has("grammar_pattern"));
 });
 
+test("episode content order is deterministic across repeated calls", async () => {
+  const { db } = await seeded();
+  const first = await getLessonContent(db, EPISODE_1, "usr_test");
+  const second = await getLessonContent(db, EPISODE_1, "usr_test");
+  assert.deepEqual(first, second);
+});
+
+test("episode content carries the situation framing the preview screen needs", async () => {
+  const { db } = await seeded();
+  const result = await getLessonContent(db, EPISODE_1, "usr_test");
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+
+  assert.equal(result.content.moduleId, CHAPTER);
+  assert.equal(result.content.moduleTitle, "Первые разговоры");
+  assert.equal(result.content.situationTitle, "Первое знакомство");
+  assert.ok(result.content.scene);
+  assert.ok(result.content.capability?.startsWith("Я могу"));
+  assert.equal(typeof result.content.estimatedMinutes, "number");
+});
+
+test("an episode the learner never touched reports not_started", async () => {
+  const { db } = await seeded();
+  const user = await makeVerifiedUser(db, 205, "A1");
+  const result = await getLessonContent(db, EPISODE_1, user.id);
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+  assert.equal(result.content.progressStatus, "not_started");
+});
+
+test("an in-progress session makes the episode report in_progress — the server-backed source of truth for resume", async () => {
+  const { db } = await seeded();
+  const user = await makeVerifiedUser(db, 206, "A1");
+  const start = await startLessonSession(db, user.id, EPISODE_1);
+  assert.equal(start.ok, true);
+
+  const result = await getLessonContent(db, EPISODE_1, user.id);
+  assert.equal(result.ok, true);
+  if (!result.ok) return;
+  assert.equal(result.content.progressStatus, "in_progress");
+});
+
+test("a finished episode reports completed, and only for the learner who finished it", async () => {
+  const { db, sqlite } = await seeded();
+  const user = await makeVerifiedUser(db, 207, "A1");
+  const other = await makeVerifiedUser(db, 208, "A1");
+  await driveEpisodeToCanDo(db, sqlite, user.id, EPISODE_1);
+
+  const mine = await getLessonContent(db, EPISODE_1, user.id);
+  const theirs = await getLessonContent(db, EPISODE_1, other.id);
+  assert.equal(mine.ok && mine.content.progressStatus, "completed");
+  assert.equal(theirs.ok && theirs.content.progressStatus, "not_started");
+});
+
 test("an unknown lesson id returns not_found", async () => {
   const { db } = await seeded();
-  const result = await getLessonContent(db, "les_does_not_exist");
+  const result = await getLessonContent(db, "les_does_not_exist", "usr_test");
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.error.code, "not_found");
 });
@@ -163,15 +235,15 @@ test("an archived lesson is not returned", async () => {
   const { db, sqlite } = await seeded();
   sqlite
     .prepare("UPDATE lessons SET status = 'archived' WHERE id = ?")
-    .run("les_a1_02_01");
-  const result = await getLessonContent(db, "les_a1_02_01");
+    .run(EPISODE_2);
+  const result = await getLessonContent(db, EPISODE_2, "usr_test");
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.error.code, "not_found");
 });
 
-test("the lesson content DTO exposes no internal DB fields (frequency, difficulty, provenance, timestamps, status)", async () => {
+test("the episode content DTO exposes no internal DB fields (frequency, difficulty, provenance, timestamps, status)", async () => {
   const { db } = await seeded();
-  const result = await getLessonContent(db, "les_a1_01_01");
+  const result = await getLessonContent(db, EPISODE_1, "usr_test");
   assert.equal(result.ok, true);
   if (!result.ok) return;
 
@@ -207,7 +279,7 @@ test("the lesson content DTO exposes no internal DB fields (frequency, difficult
 
 // --- read-only guarantees -------------------------------------------------
 
-test("reading curriculum content does not mutate any table (no progress/completion is created)", async () => {
+test("reading the course does not mutate any table (no progress/completion is created)", async () => {
   const { db, sqlite } = await seeded();
 
   const snapshot = () =>
@@ -219,6 +291,9 @@ test("reading curriculum content does not mutate any table (no progress/completi
       "lesson_items",
       "users",
       "user_settings",
+      "user_capabilities",
+      "user_item_memory",
+      "user_rewards",
     ]
       .map(
         (t) =>
@@ -231,10 +306,9 @@ test("reading curriculum content does not mutate any table (no progress/completi
       .join(",");
 
   const before = snapshot();
-  await getCurriculumPath(db, "A1");
-  await getModuleDetail(db, "mod_a1_01", "usr_test");
-  await getLessonContent(db, "les_a1_01_01");
-  await getLessonContent(db, "les_a1_01_04");
+  await getCourse(db, "A1", "usr_test");
+  await getLessonContent(db, EPISODE_1, "usr_test");
+  await getLessonContent(db, EPISODE_2, "usr_test");
   const after = snapshot();
 
   assert.equal(after, before);

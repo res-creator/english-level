@@ -8,6 +8,17 @@ export interface TelegramUser {
   language_code?: string;
 }
 
+export interface TelegramBackButton {
+  show: () => void;
+  hide: () => void;
+  onClick: (cb: () => void) => void;
+  offClick: (cb: () => void) => void;
+}
+
+export interface TelegramHapticFeedback {
+  notificationOccurred: (type: "error" | "success" | "warning") => void;
+}
+
 export interface TelegramWebApp {
   initData: string;
   initDataUnsafe: {
@@ -17,6 +28,9 @@ export interface TelegramWebApp {
   platform: string;
   ready: () => void;
   expand: () => void;
+  /** Not present in every client/version — always optional-chain. */
+  BackButton?: TelegramBackButton;
+  HapticFeedback?: TelegramHapticFeedback;
 }
 
 declare global {

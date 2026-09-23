@@ -1,55 +1,50 @@
-import type { ActivityDTO } from "@english-level/contracts";
+import type { ActivityDTO, AnswerFeedback } from "@english-level/contracts";
 import { InfoCard } from "./InfoCard.tsx";
 import { GrammarCard } from "./GrammarCard.tsx";
-import { MultipleChoice } from "./MultipleChoice.tsx";
-import { FillGapChoice } from "./FillGapChoice.tsx";
+import { ChoiceActivity } from "./ChoiceActivity.tsx";
 import { TypedRecall } from "./TypedRecall.tsx";
 import { SentenceBuild } from "./SentenceBuild.tsx";
 
-interface Props {
-  activity: ActivityDTO;
+export interface ActivityViewProps {
+  answer: string;
+  onAnswerChange: (value: string) => void;
+  feedback: AnswerFeedback | null;
   disabled: boolean;
-  onSubmit: (answer: string) => void;
 }
 
-/** ActivityDTO.kind -> component. The only place that needs to know about
- * every activity kind — nothing else in the lesson session screen does. */
-export function ActivityRenderer({ activity, disabled, onSubmit }: Props) {
+interface Props extends ActivityViewProps {
+  activity: ActivityDTO;
+}
+
+/**
+ * ActivityDTO.kind -> presentation. The only place that knows about every
+ * activity kind. The lesson engine decides what to show; this decides how
+ * it looks.
+ */
+export function ActivityRenderer({ activity, ...view }: Props) {
   switch (activity.kind) {
     case "info_card":
-      return (
-        <InfoCard
-          content={activity.content}
-          disabled={disabled}
-          onContinue={() => onSubmit("")}
-        />
-      );
+      return <InfoCard content={activity.content} />;
     case "grammar_card":
-      return (
-        <GrammarCard
-          content={activity.content}
-          disabled={disabled}
-          onContinue={() => onSubmit("")}
-        />
-      );
+      return <GrammarCard content={activity.content} />;
     case "multiple_choice":
       return (
-        <MultipleChoice
+        <ChoiceActivity
+          kicker="Выбери ответ"
           prompt={activity.prompt}
-          content={activity.content}
+          context={activity.content.text}
           options={activity.options}
-          disabled={disabled}
-          onSubmit={onSubmit}
+          {...view}
         />
       );
     case "fill_gap_choice":
       return (
-        <FillGapChoice
+        <ChoiceActivity
+          kicker="Заполни пропуск"
           prompt={activity.prompt}
-          content={activity.content}
+          sentence={activity.content.sentence}
           options={activity.options}
-          disabled={disabled}
-          onSubmit={onSubmit}
+          {...view}
         />
       );
     case "typed_recall":
@@ -57,18 +52,10 @@ export function ActivityRenderer({ activity, disabled, onSubmit }: Props) {
         <TypedRecall
           prompt={activity.prompt}
           content={activity.content}
-          disabled={disabled}
-          onSubmit={onSubmit}
+          {...view}
         />
       );
     case "sentence_build":
-      return (
-        <SentenceBuild
-          prompt={activity.prompt}
-          content={activity.content}
-          disabled={disabled}
-          onSubmit={onSubmit}
-        />
-      );
+      return <SentenceBuild content={activity.content} {...view} />;
   }
 }

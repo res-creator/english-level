@@ -14,6 +14,8 @@ test("migration creates the expected tables and columns", () => {
 
   assert.deepEqual(tables, [
     "exercise_attempts",
+    "friend_invites",
+    "friendships",
     "grammar_pattern_localizations",
     "grammar_patterns",
     "grammar_relations",
@@ -31,9 +33,14 @@ test("migration creates the expected tables and columns", () => {
     "placement_attempts",
     "placement_passages",
     "placement_questions",
+    "review_sessions",
     "sessions",
     "user_acquisition",
+    "user_capabilities",
+    "user_companion",
+    "user_item_memory",
     "user_lesson_progress",
+    "user_rewards",
     "user_settings",
     "users",
   ]);

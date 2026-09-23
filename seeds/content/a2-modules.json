@@ -2,25 +2,25 @@
   {
     "id": "mod_a2_01",
     "levelCode": "A2",
-    "title": "Life & Routines",
+    "title": "Жизнь и ритм",
     "slug": "a2-life-and-routines",
-    "description": "Talk about busy schedules, habits, and everyday routines in more detail.",
+    "description": "Плотная неделя, опоздания, планы и привычки — то, из чего состоит обычная жизнь.",
     "order": 1
   },
   {
     "id": "mod_a2_02",
     "levelCode": "A2",
-    "title": "Travel & Transport",
+    "title": "Поездки и транспорт",
     "slug": "a2-travel-and-transport",
-    "description": "Handle everyday travel situations: tickets, stations, and getting around.",
+    "description": "Билеты, вокзалы и маршруты: всё, что нужно, чтобы доехать.",
     "order": 2
   },
   {
     "id": "mod_a2_03",
     "levelCode": "A2",
-    "title": "Communication",
+    "title": "Разговор без пауз",
     "slug": "a2-communication",
-    "description": "Have clearer everyday conversations, ask for clarification, and share opinions.",
+    "description": "Переспросить, договориться и высказать мнение.",
     "order": 3
   }
 ]

@@ -27,8 +27,8 @@ prior draft wherever they differ — see §5, §6, §7, §12, §13, and the new
 **Relationship to V1 docs:** [`DESIGN_SYSTEM_V1.md`](./DESIGN_SYSTEM_V1.md)
 (tokens, components, visual language) and
 [`PAGE_STRUCTURE_V1.md`](./PAGE_STRUCTURE_V1.md) (the currently-implemented
-V1 screens) are **not superseded**. V2 changes the *information
-architecture* — what screens exist, how they're organized, what they're
+V1 screens) are **not superseded**. V2 changes the _information
+architecture_ — what screens exist, how they're organized, what they're
 called — not the visual system. Every V2 screen still uses
 `DESIGN_SYSTEM_V1.md`'s tokens/components unless a new component is
 explicitly called out here.
@@ -57,50 +57,50 @@ feature parity with Duolingo/Busuu/Babbel/English Galaxy.
 
 ## 3. Final navigation architecture
 
-| Tab     | V2 target                                | Current V1 live state                                                     |
-| ------- | ----------------------------------------- | --------------------------------------------------------------------------- |
-| Today   | Visible — primary entry point             | Visible today, stays as-is structurally, gets the refinements in §6         |
-| Course  | Visible — renamed from "Learn"            | Visible today as "Learn"; V2 renames + restructures around Unit hierarchy   |
-| Review  | Visible **once real review/SRS exists**   | **Hidden** — no spaced-repetition/review system exists in the backend yet   |
-| Profile | Visible **once a real profile screen exists** | **Hidden** — no profile/settings screen or endpoint exists yet          |
+| Tab     | V2 target                                     | Current V1 live state                                                     |
+| ------- | --------------------------------------------- | ------------------------------------------------------------------------- |
+| Today   | Visible — primary entry point                 | Visible today, stays as-is structurally, gets the refinements in §6       |
+| Course  | Visible — renamed from "Learn"                | Visible today as "Learn"; V2 renames + restructures around Unit hierarchy |
+| Review  | Visible **once real review/SRS exists**       | **Hidden** — no spaced-repetition/review system exists in the backend yet |
+| Profile | Visible **once a real profile screen exists** | **Hidden** — no profile/settings screen or endpoint exists yet            |
 
 **Friends is explicitly removed from the target navigation.** It stops
 being a primary destination in V2; if a social/Duo feature is ever built,
-it re-enters product design as a feature surfaced *from* Today or Profile,
+it re-enters product design as a feature surfaced _from_ Today or Profile,
 not as its own tab — this avoids the "too many entry points" failure mode
 the target user has already burned out on elsewhere.
 
 This is the same rule V1 already applies (hide, don't stub) — V2 doesn't
-change how hiding works, it changes what the *permanent* target list is,
+change how hiding works, it changes what the _permanent_ target list is,
 so V1's current 2-tab bar (Today/Course after the rename) is already
 "V2-shaped," just two tabs short of the final set.
 
 ## 4. Complete screen inventory
 
-| # | Screen | V1 status | V2 status |
-| - | ------ | --------- | --------- |
-| 1 | Telegram entry/loading/auth | Implemented | Reused unchanged |
-| 2 | Onboarding — Welcome | **Missing in V1** | **New** — see §10 |
-| 3 | Onboarding — Goals | Implemented | Reused unchanged |
-| 4 | Onboarding — Daily time (preferences) | Implemented | Reused, reframed as part of "preferences" step |
-| 5 | Onboarding — Self-estimated level | Implemented | Reused unchanged |
-| 6 | Onboarding — Ready/handoff | Implemented | Reused unchanged |
-| 7 | Placement — intro | Implemented | Reused unchanged |
-| 8 | Placement — question | Implemented | Reused unchanged |
-| 9 | Placement — result | Implemented | Reused, gains "first recommended lesson" CTA — see §10 |
-| 10 | Today | Implemented | Restructured — see §6 |
-| 11 | Course (was "Learn") | Implemented (flat module list) | Restructured into Level → Unit path — see §5 |
-| 12 | Unit Detail (was "Module Detail") | Implemented | Restructured — see §5 |
-| 13 | Lesson Preview | Implemented | Refined, unchanged data contract — see PAGE_STRUCTURE_V2 §4 |
-| 14 | Lesson Session (all activity types) | Implemented | Reused, lesson-engine logic untouched |
-| 15 | Answer feedback (correct/incorrect) | Implemented | Reused, tone already aligned (Polish V1.1) |
-| 16 | Lesson Result | Implemented | Refined hierarchy — see PAGE_STRUCTURE_V2 §7 |
-| 17 | Review — today's due items | **Does not exist** | **Future** — documented only, §7 |
-| 18 | Review — My Words | **Does not exist** | **Future** — documented only, §7 |
-| 19 | Review — Weak items | **Does not exist** | **Future** — documented only, §7 |
-| 20 | Review — Grammar review | **Does not exist** | **Future** — documented only, §7 |
-| 21 | Profile | **Does not exist** (stub route only) | **Future** — documented only, §8 |
-| 22 | Friends | Exists as an unlinked stub route | **Removed from target IA** — see §3, §9 |
+| #   | Screen                                | V1 status                            | V2 status                                                   |
+| --- | ------------------------------------- | ------------------------------------ | ----------------------------------------------------------- |
+| 1   | Telegram entry/loading/auth           | Implemented                          | Reused unchanged                                            |
+| 2   | Onboarding — Welcome                  | **Missing in V1**                    | **New** — see §10                                           |
+| 3   | Onboarding — Goals                    | Implemented                          | Reused unchanged                                            |
+| 4   | Onboarding — Daily time (preferences) | Implemented                          | Reused, reframed as part of "preferences" step              |
+| 5   | Onboarding — Self-estimated level     | Implemented                          | Reused unchanged                                            |
+| 6   | Onboarding — Ready/handoff            | Implemented                          | Reused unchanged                                            |
+| 7   | Placement — intro                     | Implemented                          | Reused unchanged                                            |
+| 8   | Placement — question                  | Implemented                          | Reused unchanged                                            |
+| 9   | Placement — result                    | Implemented                          | Reused, gains "first recommended lesson" CTA — see §10      |
+| 10  | Today                                 | Implemented                          | Restructured — see §6                                       |
+| 11  | Course (was "Learn")                  | Implemented (flat module list)       | Restructured into Level → Unit path — see §5                |
+| 12  | Unit Detail (was "Module Detail")     | Implemented                          | Restructured — see §5                                       |
+| 13  | Lesson Preview                        | Implemented                          | Refined, unchanged data contract — see PAGE_STRUCTURE_V2 §4 |
+| 14  | Lesson Session (all activity types)   | Implemented                          | Reused, lesson-engine logic untouched                       |
+| 15  | Answer feedback (correct/incorrect)   | Implemented                          | Reused, tone already aligned (Polish V1.1)                  |
+| 16  | Lesson Result                         | Implemented                          | Refined hierarchy — see PAGE_STRUCTURE_V2 §7                |
+| 17  | Review — today's due items            | **Does not exist**                   | **Future** — documented only, §7                            |
+| 18  | Review — My Words                     | **Does not exist**                   | **Future** — documented only, §7                            |
+| 19  | Review — Weak items                   | **Does not exist**                   | **Future** — documented only, §7                            |
+| 20  | Review — Grammar review               | **Does not exist**                   | **Future** — documented only, §7                            |
+| 21  | Profile                               | **Does not exist** (stub route only) | **Future** — documented only, §8                            |
+| 22  | Friends                               | Exists as an unlinked stub route     | **Removed from target IA** — see §3, §9                     |
 
 ## 5. Course → Unit → Lesson → Checkpoint hierarchy
 
@@ -146,7 +146,7 @@ choosing review-heavy `lesson_items` for it. V2 does **not** invent
 special checkpoint gating, extra scoring weight, or a "must pass to
 continue" rule — none of that exists in current logic. It's presented
 in Course/Unit UI as a distinct visual moment (per §5 of
-PAGE_STRUCTURE_V2.md) purely because the *content* is already
+PAGE_STRUCTURE_V2.md) purely because the _content_ is already
 structured that way, not because new logic was added.
 
 **Approved rule (explicit):** a checkpoint is shown in the Course/Unit
@@ -185,10 +185,10 @@ data:
    **approved rule on duration:** useful, but **not a blocker** — shown
    only if it can be derived trivially and reliably from data that
    already exists, omitted otherwise. Concretely: `lessons
-   .estimated_minutes` already exists in the schema and is already
+.estimated_minutes` already exists in the schema and is already
    returned by `GET /modules/:id`, so surfacing it on Today is a
-   candidate *only in the sense that the value already exists
-   somewhere* — no new backend field or calculation is to be added
+   candidate _only in the sense that the value already exists
+   somewhere_ — no new backend field or calculation is to be added
    solely to get it onto this card. If it isn't trivially available in
    whatever the implementation task's data flow already looks like, the
    card simply omits the duration line, exactly as it does today.
@@ -230,7 +230,7 @@ Target structure, in likely priority order:
    encountered, sourced from `exercise_attempts`/`user_lesson_progress`
    joined to `learning_items`. **Partially buildable today** (the raw
    attempt history already exists in `exercise_attempts`), but "my
-   words" as a *product feature* (dedup, sorting, mastery-adjacent
+   words" as a _product feature_ (dedup, sorting, mastery-adjacent
    display) is still **FUTURE** — flagged so a future task doesn't
    assume it's a trivial read.
 3. **Weak items** — items with a low correct rate. **FUTURE** — requires
@@ -248,15 +248,15 @@ real — see §3.
 **Nothing here is implemented or scheduled by this document.** Target
 fields, each marked against what's real today:
 
-| Field | Status |
-| ----- | ------ |
-| Current CEFR level | **Real today** — `users.current_cefr_level`, already in `GET /me` |
-| Learning goal(s) | **Real today** — `user_settings.learning_goals_json`, no current read endpoint exposes it back out, but the data exists |
-| Course progress (overall, across all units) | **FUTURE** — no aggregate query exists; per-lesson/per-module progress exists, a level-wide rollup does not |
-| Completed lessons (count/list) | **Partially real** — derivable from `user_lesson_progress`, but no endpoint aggregates it today |
-| Interface language | **Real today** — `users.interface_language` |
-| Learning preferences (daily minutes, reminders, quiet hours, accent) | **Real today** — all columns exist on `user_settings`, already used by onboarding, no read-back UI exists |
-| Retake placement test | **FUTURE** — no retake flow exists in `placementService`; current logic assumes one attempt per user's verified level |
+| Field                                                                | Status                                                                                                                  |
+| -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Current CEFR level                                                   | **Real today** — `users.current_cefr_level`, already in `GET /me`                                                       |
+| Learning goal(s)                                                     | **Real today** — `user_settings.learning_goals_json`, no current read endpoint exposes it back out, but the data exists |
+| Course progress (overall, across all units)                          | **FUTURE** — no aggregate query exists; per-lesson/per-module progress exists, a level-wide rollup does not             |
+| Completed lessons (count/list)                                       | **Partially real** — derivable from `user_lesson_progress`, but no endpoint aggregates it today                         |
+| Interface language                                                   | **Real today** — `users.interface_language`                                                                             |
+| Learning preferences (daily minutes, reminders, quiet hours, accent) | **Real today** — all columns exist on `user_settings`, already used by onboarding, no read-back UI exists               |
+| Retake placement test                                                | **FUTURE** — no retake flow exists in `placementService`; current logic assumes one attempt per user's verified level   |
 
 Profile is deliberately not designed screen-by-screen here (that's
 PAGE_STRUCTURE_V2's job once actually scheduled) — this table exists so a
@@ -296,15 +296,15 @@ Welcome  →  Goal  →  Self-estimated level  →  Preferences  →  Placement
   →  Placement result  →  first recommended lesson
 ```
 
-| Step | Exists today? |
-| ---- | -------------- |
-| Welcome | **Missing** — onboarding currently starts directly at Goals; a single-screen welcome/framing step is new (documented in PAGE_STRUCTURE_V2, not built) |
-| Goal | Exists (`GoalsStep`) |
-| Self-estimated level | Exists (`LevelStep`) — sequenced after Daily Time today; the ideal order above moves it earlier, next to Goal, which is a **reordering** to review, not a data change (same `onboarding_stage` state machine, different `STAGE_ROUTES` order) |
-| Preferences (daily time, + reminders/accent if ever added) | Exists today only as Daily Time (`DailyTimeStep`); reminders/quiet-hours/accent already have `user_settings` columns but no onboarding UI — **not proposed for V2**, flagged as a possible future addition only |
-| Placement | Exists (`Placement`) |
-| Placement result | Exists (`PlacementResult`) |
-| First recommended lesson | **Missing as an explicit step** — today `PlacementResult`'s CTA goes to Course/Learn in general, not to a specific first lesson. The **Continue Learning contract already implemented for Today** (`GET /api/v1/today/continue`) already computes exactly "the first not-completed lesson" — PAGE_STRUCTURE_V2 proposes reusing that same read, not a new algorithm, to make Placement Result's CTA name a specific lesson |
+| Step                                                       | Exists today?                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Welcome                                                    | **Missing** — onboarding currently starts directly at Goals; a single-screen welcome/framing step is new (documented in PAGE_STRUCTURE_V2, not built)                                                                                                                                                                                                                                                                      |
+| Goal                                                       | Exists (`GoalsStep`)                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Self-estimated level                                       | Exists (`LevelStep`) — sequenced after Daily Time today; the ideal order above moves it earlier, next to Goal, which is a **reordering** to review, not a data change (same `onboarding_stage` state machine, different `STAGE_ROUTES` order)                                                                                                                                                                              |
+| Preferences (daily time, + reminders/accent if ever added) | Exists today only as Daily Time (`DailyTimeStep`); reminders/quiet-hours/accent already have `user_settings` columns but no onboarding UI — **not proposed for V2**, flagged as a possible future addition only                                                                                                                                                                                                            |
+| Placement                                                  | Exists (`Placement`)                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Placement result                                           | Exists (`PlacementResult`)                                                                                                                                                                                                                                                                                                                                                                                                 |
+| First recommended lesson                                   | **Missing as an explicit step** — today `PlacementResult`'s CTA goes to Course/Learn in general, not to a specific first lesson. The **Continue Learning contract already implemented for Today** (`GET /api/v1/today/continue`) already computes exactly "the first not-completed lesson" — PAGE_STRUCTURE_V2 proposes reusing that same read, not a new algorithm, to make Placement Result's CTA name a specific lesson |
 
 This section is explicitly **review, not a build order** — see §13 for
 when/how it would actually change.
@@ -315,6 +315,7 @@ Every implication below is classified so a future implementation task
 knows exactly what it's signing up for.
 
 **Zero-backend, presentation-only (safe to do in a UI task alone):**
+
 - Renaming "Learn" → "Course", "Module" → "Unit" in all user-facing copy
   and route labels (URLs can stay `/learn/...` or be relabeled — a
   routing decision for the implementation task, not this document)
@@ -326,6 +327,7 @@ knows exactly what it's signing up for.
 
 **Small, additive backend reads (same shape/spirit as the existing
 Continue Learning contract — read-only, no new algorithm):**
+
 - **Unit completion fraction on the Course list** — `GET /path` would
   need to additionally return each module's completed/total lesson
   count, the same computation `todayService.ts` already does per-module
@@ -339,7 +341,7 @@ Continue Learning contract — read-only, no new algorithm):**
   approved as non-blocking.** `lessons.estimated_minutes` already exists
   in the schema and is already returned by `GET /modules/:id`; the
   Continue Learning contract (`GET /api/v1/today/continue`) does not
-  currently include it. This is *listed* here as a small additive read,
+  currently include it. This is _listed_ here as a small additive read,
   but it is explicitly **not required** for V2 — no backend field or
   calculation is to be added solely to surface it. Include it only if
   the implementation task finds it trivially available already; omit it
@@ -347,11 +349,12 @@ Continue Learning contract — read-only, no new algorithm):**
 
 **Explicitly FUTURE, out of scope for any V2 UI task without a separate
 decision:**
+
 - Any Review functionality (§7) — needs a genuinely new `SRSService`/
   scoring concept, not a read extension
 - Any Profile aggregate stats beyond what's already itemized in §8
 - Any prerequisite/lock system for units or lessons — not proposed,
-  explicitly called out in §5 as something V2 does *not* add
+  explicitly called out in §5 as something V2 does _not_ add
 - Placement retake flow
 - Friends/social features of any kind
 
@@ -415,6 +418,7 @@ duration (§6/§12) rides along only if trivial; it is not a separate
 required step.
 
 **Explicitly out of scope for this implementation pass:**
+
 - Review, in any form — including a simplified/manual, non-SRS version
   (§7). The Review tab stays hidden.
 - Profile, in any form (§8). The Profile tab stays hidden.
@@ -431,6 +435,7 @@ this document restate.
 
 **Core V2 principle, restated as the acceptance bar for this scope:**
 the learner should always know the next action —
+
 - after Placement Result → a concrete first-lesson CTA (name the
   lesson, not "go explore"),
 - after Lesson Result → the next real lesson as the primary CTA,

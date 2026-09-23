@@ -1,4 +1,9 @@
-import type { Db, DbStatement, LearningSessionRow } from "../db/types.ts";
+import type {
+  Db,
+  DbStatement,
+  LearningSessionRow,
+  SessionKindRow,
+} from "../db/types.ts";
 import { generateId } from "../db/ids.ts";
 
 export function findSessionById(
@@ -26,6 +31,21 @@ export function findActiveSessionForLesson(
   );
 }
 
+/** The user's current in_progress session for any lesson — used to
+ * resolve the Today "Continue Learning" resume case without knowing the
+ * lesson id up front. */
+export function findActiveSessionForUser(
+  db: Db,
+  userId: string,
+): Promise<LearningSessionRow | null> {
+  return db.first<LearningSessionRow>(
+    `SELECT * FROM learning_sessions
+     WHERE user_id = ? AND status = 'in_progress'
+     ORDER BY started_at DESC LIMIT 1`,
+    [userId],
+  );
+}
+
 /** Generates the new session's id up front so the caller can reference it
  * (e.g. `user_lesson_progress.last_session_id`) in the same `db.batch()`
  * as the insert statement this returns. */
@@ -42,15 +62,44 @@ export function createSessionStatement(
   lessonId: string,
   activitiesJson: string,
   now: string,
+  /** Which slice of the episode this is, and whether it's the Mission.
+   * Defaults keep older callers (and tests) on the plain single-session
+   * behaviour. */
+  options: { kind?: SessionKindRow; index?: number } = {},
 ): DbStatement {
   return {
     sql: `INSERT INTO learning_sessions
-       (id, user_id, lesson_id, session_type, status, started_at,
-        current_position, correct_count, wrong_count, activities_json,
-        created_at, updated_at)
-     VALUES (?, ?, ?, 'lesson', 'in_progress', ?, 0, 0, 0, ?, ?, ?)`,
-    params: [id, userId, lessonId, now, activitiesJson, now, now],
+       (id, user_id, lesson_id, session_type, session_kind, session_index,
+        status, started_at, current_position, correct_count, wrong_count,
+        activities_json, created_at, updated_at)
+     VALUES (?, ?, ?, 'lesson', ?, ?, 'in_progress', ?, 0, 0, 0, ?, ?, ?)`,
+    params: [
+      id,
+      userId,
+      lessonId,
+      options.kind ?? "lesson",
+      options.index ?? 1,
+      now,
+      activitiesJson,
+      now,
+      now,
+    ],
   };
+}
+
+/** How many sessions of this episode the user has already finished — the
+ * authoritative count behind "session 2 of 4". */
+export function countCompletedSessionsForLesson(
+  db: Db,
+  userId: string,
+  lessonId: string,
+): Promise<{ n: number } | null> {
+  return db.first<{ n: number }>(
+    `SELECT COUNT(*) as n FROM learning_sessions
+     WHERE user_id = ? AND lesson_id = ? AND status = 'completed'
+       AND session_kind = 'lesson'`,
+    [userId, lessonId],
+  );
 }
 
 /** Builds (without executing) the statement that advances a session's
