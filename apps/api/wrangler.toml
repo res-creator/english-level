@@ -31,9 +31,16 @@ migrations_dir = "../../migrations"
 # top-level [vars]/[[d1_databases]] into named environments, so every
 # [env.*] block below redeclares its own — same pattern already used for
 # d1_databases.
+#
+# ENVIRONMENT gates preview-only testing tools (currently the account
+# reset, see src/routes/me.ts). It is set to "preview" ONLY in
+# [env.preview.vars] below and is deliberately absent from
+# [env.production.vars] — the guard fails closed, so the tools do not
+# exist in production.
 [vars]
 TELEGRAM_BOT_TOKEN = "dev-fixture-telegram-bot-token-000000"
 ALLOWED_ORIGINS = "http://localhost:5173"
+ENVIRONMENT = "development"
 
 # Deployed via `wrangler deploy --env preview`. See docs/deployment.md.
 [env.preview]
@@ -49,6 +56,8 @@ migrations_dir = "../../migrations"
 # set once via `wrangler secret put TELEGRAM_BOT_TOKEN --env preview`.
 [env.preview.vars]
 ALLOWED_ORIGINS = "https://english-level-web-preview.res-creator.workers.dev"
+# The only place this is ever "preview". Do not copy it into production.
+ENVIRONMENT = "preview"
 
 # Deployed via `wrangler deploy --env production`. See docs/deployment.md.
 [env.production]

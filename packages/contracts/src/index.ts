@@ -754,3 +754,37 @@ export type AnswerSessionResponse = z.infer<typeof AnswerSessionResponseSchema>;
 
 export const InviteCodeResponseSchema = z.object({ code: z.string() });
 export type InviteCodeResponse = z.infer<typeof InviteCodeResponseSchema>;
+
+// ---------------------------------------------------------------------------
+// Preview-only testing tools. These exist so the first-run experience can be
+// re-tested without a second Telegram account, and are refused outside the
+// preview environment — see apps/api/src/routes/me.ts.
+// ---------------------------------------------------------------------------
+
+/** A literal the caller must send, so the reset can never be triggered by a
+ * stray or replayed request. */
+export const RESET_PREVIEW_CONFIRMATION = "СБРОСИТЬ";
+
+export const ResetPreviewRequestSchema = z.object({
+  confirm: z.literal(RESET_PREVIEW_CONFIRMATION),
+});
+export type ResetPreviewRequest = z.infer<typeof ResetPreviewRequestSchema>;
+
+/** Honest counts of what was actually cleared — never a generic "done". */
+export const ResetPreviewResponseSchema = z.object({
+  ok: z.literal(true),
+  cleared: z.object({
+    learningSessions: z.number().int().nonnegative(),
+    exerciseAttempts: z.number().int().nonnegative(),
+    reviewSessions: z.number().int().nonnegative(),
+    itemMemory: z.number().int().nonnegative(),
+    capabilities: z.number().int().nonnegative(),
+    lessonProgress: z.number().int().nonnegative(),
+    placementAttempts: z.number().int().nonnegative(),
+    rewards: z.number().int().nonnegative(),
+    companion: z.number().int().nonnegative(),
+    friendships: z.number().int().nonnegative(),
+    friendInvites: z.number().int().nonnegative(),
+  }),
+});
+export type ResetPreviewResponse = z.infer<typeof ResetPreviewResponseSchema>;

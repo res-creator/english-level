@@ -362,6 +362,29 @@ minted by real Telegram, not faked in a test — the dev mock in
    `POST /api/v1/lessons/:lessonId/start` returns a session with a
    `currentActivity`.
 
+## 12a. Preview-only account reset
+
+Preview carries one tool production does not: `POST /api/v1/my/reset`
+wipes the signed-in account's learning state so the first-run experience
+can be re-tested without a second Telegram account. In the Mini App it
+sits at the bottom of **Мой английский**, behind a two-step confirmation.
+
+It is gated twice, and both guards fail closed:
+
+1. **Server** — `ENVIRONMENT` must be exactly `"preview"`. It is set in
+   `[env.preview.vars]` only; production leaves it unset, so the route
+   answers `404` there and does not advertise its own existence.
+2. **Client** — the panel renders only when `import.meta.env.MODE` is
+   `"preview"`, i.e. a `vite build --mode preview` bundle.
+
+The request body must carry the literal confirmation
+(`RESET_PREVIEW_CONFIRMATION`), so no stray or replayed POST can trigger
+it. The reset clears only the caller's own rows, never another account's
+and never shared content, and runs in a single transaction. Behaviour is
+covered by `apps/api/test/previewReset.test.ts`.
+
+**Never copy `ENVIRONMENT = "preview"` into `[env.production.vars]`.**
+
 ## 13. Rollback strategy
 
 - **Application code (either Worker)**: Cloudflare keeps every deployment;

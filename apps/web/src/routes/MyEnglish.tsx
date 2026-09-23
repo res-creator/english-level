@@ -11,6 +11,7 @@ import {
   getMyEnglish,
 } from "../api/productClient.ts";
 import { useAuth } from "../auth/useAuth.ts";
+import { PreviewResetPanel } from "../components/PreviewResetPanel.tsx";
 import { Button } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { SkeletonList, ErrorState, EmptyState } from "../ui/states.tsx";
@@ -166,6 +167,8 @@ export function MyEnglish() {
       ) : null}
 
       <FriendPanel state={friend} onChanged={setFriend} />
+
+      <PreviewResetPanel />
     </section>
   );
 }

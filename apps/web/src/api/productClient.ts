@@ -11,6 +11,8 @@ import {
   MyEnglishResponseSchema,
   MySpaceResponseSchema,
   ReviewSessionDTOSchema,
+  ResetPreviewResponseSchema,
+  RESET_PREVIEW_CONFIRMATION,
   ReviewStateResponseSchema,
   SessionResultDTOSchema,
   TodayResponseSchema,
@@ -24,6 +26,7 @@ import {
   type MyEnglishResponse,
   type MySpaceResponse,
   type ReviewSessionDTO,
+  type ResetPreviewResponse,
   type ReviewStateResponse,
   type SessionResultDTO,
   type TodayResponse,
@@ -190,4 +193,17 @@ export function createFriendInvite(): Promise<{ code: string }> {
 
 export function acceptFriendInvite(code: string): Promise<FriendStateResponse> {
   return post("/my/friend/accept", FriendStateResponseSchema, { code });
+}
+
+// --- preview-only testing tools -------------------------------------------
+
+/**
+ * Wipes this account's learning state so the first-run experience can be
+ * tested again. Only the preview API implements it — anywhere else this
+ * comes back as a 404, which is exactly what should happen.
+ */
+export function resetPreviewAccount(): Promise<ResetPreviewResponse> {
+  return post("/my/reset", ResetPreviewResponseSchema, {
+    confirm: RESET_PREVIEW_CONFIRMATION,
+  });
 }

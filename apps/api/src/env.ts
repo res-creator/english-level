@@ -12,4 +12,10 @@ export interface Env {
    * per environment in `wrangler.toml` for preview/production.
    */
   ALLOWED_ORIGINS?: string;
+  /**
+   * Which deployment this is. Only ever `"preview"` on the preview
+   * Worker; production deliberately leaves it unset, so anything gated on
+   * it fails closed. See `isPreviewEnvironment`.
+   */
+  ENVIRONMENT?: string;
 }

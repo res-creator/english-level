@@ -7,6 +7,8 @@ import {
   SelectCompanionRequestSchema,
   AcceptInviteRequestSchema,
   CompanionDTOSchema,
+  ResetPreviewRequestSchema,
+  ResetPreviewResponseSchema,
 } from "@english-level/contracts";
 import { createD1Db } from "../db/d1Adapter.ts";
 import { requireAuth } from "../auth/middleware.ts";
@@ -17,6 +19,8 @@ import {
   createInvite,
   getFriendState,
 } from "../services/friendService.ts";
+import { resetPreviewAccount } from "../services/previewResetService.ts";
+import { isPreviewEnvironment } from "../previewMode.ts";
 import type { AppEnv } from "../types/appEnv.ts";
 
 /** "My English", the companion's space, and the one friend connection —
@@ -84,6 +88,29 @@ me.post("/friend/accept", async (c) => {
     );
   }
   return c.json(FriendStateResponseSchema.parse(result.state));
+});
+
+/**
+ * Preview-only: wipes the signed-in account's learning state so the
+ * first-run experience can be tested again.
+ *
+ * Outside preview this responds 404 — not 403 — so the endpoint does not
+ * even advertise its own existence in production. The confirmation
+ * literal in the body is a second, independent guard: no accidental or
+ * replayed POST can reach the reset by itself.
+ */
+me.post("/reset", async (c) => {
+  if (!isPreviewEnvironment(c.env)) {
+    return c.json({ error: "not found" }, 404);
+  }
+  const body = await c.req.json().catch(() => null);
+  const parsed = ResetPreviewRequestSchema.safeParse(body);
+  if (!parsed.success) {
+    return c.json({ error: "confirmation required" }, 400);
+  }
+  const db = createD1Db(c.env.DB);
+  const cleared = await resetPreviewAccount(db, c.get("currentUser").id);
+  return c.json(ResetPreviewResponseSchema.parse({ ok: true, cleared }));
 });
 
 export default me;
