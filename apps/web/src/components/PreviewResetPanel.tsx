@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { resetPreviewAccount } from "../api/productClient.ts";
+import { clearWelcomeSeen } from "../rootRedirectLogic.ts";
 import { IS_PREVIEW_BUILD } from "../lib/previewMode.ts";
 import { Button } from "../ui/Button.tsx";
 
@@ -28,6 +29,11 @@ export function PreviewResetPanel() {
     setState({ status: "working" });
     try {
       await resetPreviewAccount();
+      // The backend account is wiped, but "seen Welcome" is a per-device
+      // flag the backend never touches — without clearing it here, a
+      // reset on the same device would skip straight past Welcome and
+      // the demo, exactly the screens this reset exists to re-test.
+      clearWelcomeSeen();
       // A full reload, not a route change: every screen's loaded state
       // belongs to the account that no longer exists.
       window.location.replace("/");

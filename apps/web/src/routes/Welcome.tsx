@@ -4,7 +4,7 @@ import { Kvo, KvoBadge } from "../brand/Kvo.tsx";
 import { Art, ArtLayer } from "../brand/Art.tsx";
 import { artName } from "../brand/artRegistry.ts";
 import { Button } from "../ui/Button.tsx";
-import { markWelcomeSeen } from "../RootRedirect.tsx";
+import { markWelcomeSeen } from "../rootRedirectLogic.ts";
 import { track } from "../lib/analytics.ts";
 
 /**
