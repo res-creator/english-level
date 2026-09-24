@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { DailyMinutes } from "@english-level/contracts";
 import { DAILY_MINUTES_OPTIONS } from "@english-level/contracts";
 import {
@@ -26,6 +27,7 @@ type DeleteState = { status: "idle" | "confirming" | "working" | "failed" };
  * it's deliberately just these two fields.
  */
 export function AccountSettingsPanel() {
+  const navigate = useNavigate();
   const [state, setState] = useState<LoadState>({ status: "loading" });
   const [saving, setSaving] = useState(false);
   const [deleteState, setDeleteState] = useState<DeleteState>({
@@ -143,6 +145,14 @@ export function AccountSettingsPanel() {
           </button>
         </div>
       </div>
+
+      <button
+        type="button"
+        className="btn btn-ghost"
+        onClick={() => navigate("/my/privacy")}
+      >
+        О приватности
+      </button>
 
       <div className="stack-sm" style={{ paddingTop: "var(--s2)" }}>
         <span className="small muted">Аккаунт</span>

@@ -38,6 +38,9 @@ export interface TelegramSender {
     chatId: number,
     text: string,
     webAppUrl: string,
+    /** Defaults to "Открыть" — the reminder's own label. The /start
+     * reply (`telegramWebhookService.ts`) sends a longer one instead. */
+    buttonLabel?: string,
   ): Promise<TelegramSendResult>;
 }
 
@@ -46,7 +49,7 @@ export interface TelegramSender {
  * a network call — see `test/notificationService.test.ts`. */
 export function createTelegramSender(botToken: string): TelegramSender {
   return {
-    async send(chatId, text, webAppUrl) {
+    async send(chatId, text, webAppUrl, buttonLabel = "Открыть") {
       const res = await fetch(
         `https://api.telegram.org/bot${botToken}/sendMessage`,
         {
@@ -57,7 +60,7 @@ export function createTelegramSender(botToken: string): TelegramSender {
             text,
             reply_markup: {
               inline_keyboard: [
-                [{ text: "Открыть", web_app: { url: webAppUrl } }],
+                [{ text: buttonLabel, web_app: { url: webAppUrl } }],
               ],
             },
           }),

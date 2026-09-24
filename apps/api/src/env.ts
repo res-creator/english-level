@@ -26,4 +26,13 @@ export interface Env {
    * (semantically a set) and this is a single deep-link target.
    */
   WEB_APP_URL?: string;
+  /**
+   * Server-only. Telegram includes this exact value in the
+   * `X-Telegram-Bot-Api-Secret-Token` header on every webhook delivery
+   * once `setWebhook` is registered with it — the one thing standing
+   * between `/api/v1/telegram/webhook` and anyone on the internet who
+   * finds the URL and starts sending it fake updates. See
+   * `routes/telegramWebhook.ts`.
+   */
+  TELEGRAM_WEBHOOK_SECRET?: string;
 }

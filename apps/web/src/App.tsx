@@ -16,6 +16,7 @@ import { SessionResult } from "./routes/SessionResult";
 import { Review } from "./routes/Review";
 import { MyEnglish } from "./routes/MyEnglish";
 import { MySpace } from "./routes/MySpace";
+import { Privacy } from "./routes/Privacy";
 import { Placement } from "./routes/Placement";
 import { PlacementResult } from "./routes/PlacementResult";
 import { OnboardingIndex } from "./routes/onboarding/OnboardingIndex";
@@ -41,6 +42,7 @@ export function App() {
               <Route path="/course/:episodeId" element={<EpisodePreview />} />
               <Route path="/my" element={<MyEnglish />} />
               <Route path="/my/space" element={<MySpace />} />
+              <Route path="/my/privacy" element={<Privacy />} />
             </Route>
 
             {/* Focus mode and first use render full-screen, without the

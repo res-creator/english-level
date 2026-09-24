@@ -23,6 +23,7 @@ import lessonSessionRoutes from "./routes/lessonSessions.ts";
 import reviewRoutes from "./routes/review.ts";
 import eventRoutes from "./routes/events.ts";
 import meRoutes from "./routes/me.ts";
+import telegramWebhookRoutes from "./routes/telegramWebhook.ts";
 import { requireAuth } from "./auth/middleware.ts";
 import { toPublicUser } from "./dto/userDto.ts";
 
@@ -88,6 +89,9 @@ v1.route("/my", meRoutes);
 // Pilot analytics: not auth-gated, since the hook and the demo run
 // before an account exists. See routes/events.ts.
 v1.route("/events", eventRoutes);
+// Telegram calls this directly — no learner session exists yet either.
+// See routes/telegramWebhook.ts.
+v1.route("/telegram", telegramWebhookRoutes);
 
 v1.get("/me", requireAuth, (c) => {
   const body = MeResponseSchema.parse(toPublicUser(c.get("currentUser")));

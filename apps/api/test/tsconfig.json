@@ -16,6 +16,7 @@
     "routingAuth.test.ts",
     "errorHandling.test.ts",
     "debugRunReminders.test.ts",
-    "accountManagement.test.ts"
+    "accountManagement.test.ts",
+    "telegramWebhook.test.ts"
   ]
 }

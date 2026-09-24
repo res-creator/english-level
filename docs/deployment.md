@@ -218,13 +218,17 @@ source of truth for what the Worker actually reads):
 | `TELEGRAM_AUTH_MAX_AGE_SECONDS` | No                      | `apps/api/src/routes/auth.ts`                                           | Optional; defaults to 1 hour if unset. Not currently set anywhere; only override if needed.                                                                                                                                                                                                                                                                                      |
 | `VITE_API_BASE_URL`             | No                      | `apps/web/src/lib/apiBaseUrl.ts`                                        | **Build-time**, not a Worker runtime var — baked into the static JS bundle by Vite. Lives in `apps/web/.env.preview`/`.env.production` (committed, non-secret — it's just a URL).                                                                                                                                                                                                |
 | `SESSION_SECRET`                | **N/A — doesn't exist** | —                                                                       | This app doesn't use signed/HMAC session cookies. Sessions are a random 256-bit token (`apps/api/src/auth/tokens.ts`), stored **hashed** (SHA-256) in D1, looked up by hash on each request. There is no secret key to compromise if the D1 database is read — only the raw cookie value (never persisted anywhere) authenticates a session. Nothing needs to be added for this. |
+| `TELEGRAM_WEBHOOK_SECRET`       | **Yes**                 | `apps/api/src/routes/telegramWebhook.ts`                                | Arbitrary random string, not a Telegram-issued value — generated once per environment and given to `setWebhook`'s `secret_token` param (§11a). Telegram echoes it back on every real delivery via `X-Telegram-Bot-Api-Secret-Token`; without it, the webhook URL would accept fake updates from anyone who finds it.                                                             |
 
-**Setting the one real secret**, per environment (never committed, never
+**Setting the two real secrets**, per environment (never committed, never
 put in `[vars]`):
 
 ```
 wrangler secret put TELEGRAM_BOT_TOKEN --env preview
 wrangler secret put TELEGRAM_BOT_TOKEN --env production   # once ready
+
+wrangler secret put TELEGRAM_WEBHOOK_SECRET --env preview
+wrangler secret put TELEGRAM_WEBHOOK_SECRET --env production   # once ready
 ```
 
 Get the real token from [@BotFather](https://t.me/BotFather) — this is
@@ -324,6 +328,39 @@ https://t.me/<your_bot_username>/learn?startapp=<payload>
 `startapp` is optional — it's delivered to the Mini App as
 `initDataUnsafe.start_param`/parsed out of `initData`, for deep-linking
 into a specific screen later (not used by anything in Phases 0–6).
+
+## 11a. Registering the `/start` webhook
+
+**Not performed by this change — run once per environment, from any
+machine, after that environment's API Worker is deployed and both
+secrets from §8 are set.** Without this, `/start` opens an empty chat;
+Telegram has no URL to deliver updates to yet.
+
+```
+curl "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook" \
+  -d "url=https://<api-worker-url>/api/v1/telegram/webhook" \
+  -d "secret_token=<TELEGRAM_WEBHOOK_SECRET>"
+```
+
+Both `<...>` values are the same ones just set via `wrangler secret put`
+— this command is the only place they need to be typed together, and it
+runs from your own terminal, never committed or logged anywhere. A
+successful call returns `{"ok":true,"result":true,...}`.
+
+**Verifying it took**:
+
+```
+curl "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/getWebhookInfo"
+```
+
+`url` should match the Worker's webhook endpoint, `pending_update_count`
+should be `0` on a healthy setup, and `last_error_message` (if present)
+tells you what the endpoint returned last time delivery failed.
+
+**Manual test**: message the real bot `/start` from a Telegram account
+that hasn't used it before (or use "Restart" on one that has) — it
+should reply within a couple of seconds with the welcome text and an
+"Открыть Speak in English" button that opens the Mini App.
 
 ## 12. Post-deployment smoke-test checklist
 
