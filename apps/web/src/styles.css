@@ -2706,13 +2706,6 @@ a {
 
 /* --- Today -------------------------------------------------------------- */
 
-.today-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--s3);
-}
-
 .welcome-back {
   padding: var(--s4);
   border-radius: var(--r-lg);
@@ -2723,104 +2716,81 @@ a {
   line-height: 1.4;
 }
 
-/* The one thing to do today, and it owns the screen. */
-.today-card {
+/* The one thing to do today: an atmospheric stage (real scene art when
+   it exists, the coded backdrop when it doesn't) with an inset white
+   card floating over it, per the approved set. */
+.today-hero {
+  margin: calc(var(--s5) * -1) calc(var(--s5) * -1) 0;
+}
+
+.today-hero__stage {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s4);
-  padding: var(--s6) var(--s5) var(--s5);
-  border-radius: var(--r-2xl);
-  background: linear-gradient(
-    168deg,
-    var(--violet-500) 0%,
-    var(--violet-600) 52%,
-    var(--violet-700) 100%
-  );
-  color: #ffffff;
-  box-shadow: var(--shadow-green);
+  height: 190px;
   overflow: hidden;
+  background: radial-gradient(
+    120% 100% at 50% 0%,
+    var(--violet-500) 0%,
+    var(--violet-600) 55%,
+    var(--violet-800) 100%
+  );
 }
 
-.today-card--quiet {
-  background: linear-gradient(168deg, var(--violet-600), var(--violet-800));
+.today-hero__stage--quiet {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: var(--s5);
 }
 
-.today-card__head {
+.today-hero__kvo {
+  position: absolute;
+  z-index: 1;
+  right: var(--s5);
+  bottom: -8px;
+  filter: drop-shadow(0 14px 18px rgba(27, 13, 74, 0.3));
+}
+
+.today-hero__stage--quiet .today-hero__kvo {
+  position: static;
+  filter: drop-shadow(0 10px 16px rgba(27, 13, 74, 0.3));
+}
+
+.today-hero__card {
+  position: relative;
+  z-index: 1;
+  margin: -22px var(--s5) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--s2);
+  align-items: flex-start;
+  gap: var(--s3);
+  padding: var(--s5);
+  background: var(--surface);
+  border-radius: var(--r-2xl);
+  box-shadow: var(--shadow-lg);
 }
 
-.today-card__eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.today-card__title {
+.today-hero__title {
   margin: 0;
-  font-size: 38px;
-  line-height: 1.05;
+  font-size: 24px;
+  line-height: 1.2;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  color: var(--ink-900);
 }
 
-.today-card__meta {
+.today-hero__meta {
   display: flex;
   align-items: center;
   gap: 6px;
   margin: 0;
   font-size: 14.5px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--ink-500);
 }
 
-.today-card__scene {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--s3);
-  min-height: 132px;
-}
-
-.today-card__line {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-self: center;
-  max-width: 58%;
-  padding: 10px var(--s4);
-  border-radius: 18px;
-  border-bottom-left-radius: 6px;
-  background: #ffffff;
-  box-shadow: var(--shadow-sm);
-}
-
-.today-card__line b {
-  font-size: 12.5px;
-  font-weight: 700;
-  color: var(--violet-600);
-}
-
-.today-card__line .en {
-  font-size: 16px;
-  color: var(--ink-900);
-}
-
-.today-card__kvo {
-  flex: none;
-  margin-right: -14px;
-  margin-bottom: -18px;
-  filter: drop-shadow(0 14px 18px rgba(27, 13, 74, 0.3));
-}
-
-.today-card__cta {
-  position: relative;
-  z-index: 1;
+.today-hero__card .btn {
+  width: 100%;
+  border-radius: var(--r-pill);
 }
 
 /* Honest numbers, in a row, no dashboard. */
@@ -2833,8 +2803,9 @@ a {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: var(--s4) var(--s3);
+  align-items: flex-start;
+  gap: 6px;
+  padding: var(--s3);
   border-radius: var(--r-lg);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -2847,11 +2818,29 @@ a {
   background: var(--apricot-100);
 }
 
+.today-stat__icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--violet-100);
+  color: var(--violet-600);
+}
+
+.today-stat--action .today-stat__icon {
+  background: var(--apricot-200);
+  color: var(--apricot-700);
+}
+
+.today-stat__value {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
 .today-stat__label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--ink-500);
 }
@@ -2860,235 +2849,283 @@ a {
   color: var(--apricot-700);
 }
 
-.today-stat__value {
-  font-size: 15.5px;
+/* A link disguised as a fact — the same chevron affordance the course
+   list uses for "go see the rest". */
+.link-chevron {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--violet-600);
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--lav-200);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--violet-600);
+  transition: width var(--base);
+}
+
+.today-minis {
+  display: flex;
+  gap: var(--s3);
+}
+
+.today-mini {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: var(--s4);
+  border: none;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.today-mini__icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--violet-100);
+  color: var(--violet-600);
+  margin-bottom: 2px;
+}
+
+.today-mini__icon--peach {
+  background: var(--apricot-100);
+  color: var(--apricot-700);
+}
+
+.today-mini__title {
+  font-size: 14.5px;
   font-weight: 800;
   color: var(--ink-900);
 }
 
-.today-stat__hint {
-  font-size: 11.5px;
+.today-mini__sub {
+  font-size: 12.5px;
   font-weight: 600;
-  color: var(--ink-400);
-}
-
-.chapter-dots {
-  display: flex;
-  gap: 4px;
-  padding-top: 5px;
-}
-
-.chapter-dots i {
-  width: 14px;
-  height: 6px;
-  border-radius: var(--r-pill);
-  background: var(--lav-300);
-}
-
-.chapter-dots i.is-on {
-  background: var(--violet-600);
+  color: var(--ink-500);
 }
 
 /* ===========================================================================
-   V1.1 — the course path.
-   Nodes alternate down the screen; the line is solid behind you and
-   dotted ahead. Exactly one node carries a card, so there is never a
-   question about where to start.
+   The course: every situation stays visible, in order, as a plain
+   vertical list — done, current or locked. Only the current one carries
+   a way in.
    =========================================================================== */
 
-.path {
+.course-chapter {
   display: flex;
   flex-direction: column;
   gap: var(--s5);
 }
 
-.path__head {
+.course-hero {
+  position: relative;
+  margin: calc(var(--s5) * -1) calc(var(--s5) * -1) 0;
+  padding: calc(var(--safe-t) + var(--s5)) var(--s5) var(--s8);
+  background: radial-gradient(
+    120% 80% at 50% 0%,
+    var(--violet-500) 0%,
+    var(--violet-600) 46%,
+    var(--violet-700) 100%
+  );
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+
+.course-hero__kvo {
+  position: absolute;
+  top: calc(var(--safe-t) + var(--s3));
+  right: var(--s5);
+  filter: drop-shadow(0 10px 16px rgba(27, 13, 74, 0.3));
+}
+
+.course-hero__title {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.course-hero__subtitle {
+  margin: 0;
+  max-width: 70%;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.course-progress {
+  position: relative;
+  z-index: 1;
+  margin: -28px var(--s2) 0;
   display: flex;
   flex-direction: column;
   gap: var(--s2);
+  padding: var(--s5);
+  background: var(--surface);
+  border-radius: var(--r-2xl);
+  box-shadow: var(--shadow-lg);
 }
 
-.path__list {
+.course-progress__count {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
+.course-progress__pct {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--violet-600);
+}
+
+.situation-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--s6);
+  gap: var(--s3);
 }
 
-.node2 {
-  position: relative;
+.situation-row {
   display: flex;
-  align-items: center;
-  gap: var(--s4);
-  min-height: 78px;
+  align-items: flex-start;
+  gap: var(--s3);
 }
 
-.node2--left {
-  flex-direction: row-reverse;
-}
-
-/* The connector, drawn from this node towards the next one. */
-.node2__link {
-  position: absolute;
-  z-index: 0;
-  top: 64px;
-  width: 3px;
-  height: calc(100% + var(--s6) - 52px);
-  border-radius: var(--r-pill);
-  background-image: linear-gradient(var(--violet-300) 55%, transparent 0);
-  background-size: 3px 12px;
-}
-
-.node2--right .node2__link {
-  left: 34px;
-}
-
-.node2--left .node2__link {
-  right: 34px;
-}
-
-.node2__link.is-solid {
-  background-image: none;
-  background-color: var(--violet-600);
-}
-
-.node2__dot {
-  position: relative;
-  z-index: 1;
+.situation-row__badge {
   flex: none;
-  width: 72px;
-  height: 72px;
+  width: 32px;
+  height: 32px;
+  margin-top: var(--s1);
   display: grid;
   place-items: center;
   border-radius: 50%;
-  border: none;
-  background: var(--lav-200);
-  color: var(--violet-400);
-  cursor: pointer;
-  transition:
-    transform var(--fast),
-    box-shadow var(--fast);
-}
-
-.node2__dot:disabled {
-  cursor: not-allowed;
-  color: var(--ink-400);
-}
-
-.node2__label:disabled {
-  cursor: not-allowed;
-}
-
-.node2__dot:active {
-  transform: scale(0.96);
-}
-
-.node2.is-done .node2__dot {
   background: var(--violet-600);
   color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
 }
 
-/* You are here: a ring and a halo, and it is the only one that has them. */
-.node2.is-current .node2__dot,
-.node2.is-started .node2__dot {
+.situation-row.is-locked .situation-row__badge {
+  background: var(--lav-200);
+  color: var(--ink-400);
+}
+
+.situation-row.is-current .situation-row__badge {
   background: var(--surface);
   color: var(--violet-600);
-  box-shadow:
-    0 0 0 4px var(--violet-600),
-    0 0 0 14px rgba(91, 47, 224, 0.12);
+  box-shadow: 0 0 0 2px var(--violet-600);
 }
 
-.node2__badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--apricot-400)
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317121f' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>")
-    center / 13px no-repeat;
-}
-
-.node2__num {
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.node2__kvo {
-  position: absolute;
-  z-index: 2;
-  bottom: 38px;
-  pointer-events: none;
-}
-
-.node2--right .node2__kvo {
-  left: -18px;
-}
-
-.node2--left .node2__kvo {
-  right: -18px;
-}
-
-.node2__label {
+.situation-row__card {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  text-align: left;
+  gap: var(--s3);
   min-width: 0;
+  padding: var(--s3);
+  border: none;
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  cursor: pointer;
 }
 
-.node2--left .node2__label {
-  text-align: right;
-  align-items: flex-end;
+.situation-row__card--button:disabled {
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
-.node2__title {
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  color: var(--ink-900);
+.situation-row.is-current .situation-row__card {
+  align-items: flex-start;
+  border: 2px solid var(--violet-600);
+  box-shadow: var(--shadow-md);
+  cursor: default;
 }
 
-.node2.is-ahead .node2__title {
-  color: var(--ink-400);
+.situation-row.is-locked .situation-row__card {
+  background: var(--lav-50);
+  box-shadow: none;
 }
 
-.node2__meta {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--violet-600);
+.situation-row__thumb {
+  position: relative;
+  flex: none;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--lav-200);
 }
 
-.node2.is-ahead .node2__meta {
-  color: var(--ink-400);
+.situation-row.is-locked .situation-row__thumb {
+  opacity: 0.55;
 }
 
-/* The only card on the path. */
-.node2__card {
+.situation-row__body {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--s2);
-  padding: var(--s4);
-  border-radius: var(--r-xl);
-  background: var(--surface);
-  border: 2px solid var(--violet-600);
-  box-shadow: var(--shadow-md);
+  gap: 3px;
   min-width: 0;
 }
 
-.node2__card .btn {
-  width: 100%;
-  margin-top: var(--s1);
+.situation-row__title {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink-900);
+}
+
+.situation-row.is-locked .situation-row__title {
+  color: var(--ink-400);
+}
+
+.situation-row__meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--violet-600);
+}
+
+.situation-row.is-locked .situation-row__meta {
+  color: var(--ink-400);
+}
+
+.situation-row.is-current .situation-row__meta {
+  color: var(--ink-500);
+}
+
+.situation-row.is-current .situation-row__body .btn {
+  margin-top: var(--s2);
+  border-radius: var(--r-pill);
 }
 
 /* ===========================================================================
@@ -3833,16 +3870,4 @@ a {
 .room-slot img {
   width: 76%;
   height: 76%;
-}
-
-/* Today's card carries a hint of the place the situation happens in —
-   dimmed hard, because the words on top have to stay legible. */
-.today-card__art {
-  opacity: 0.28;
-  mix-blend-mode: luminosity;
-}
-
-.today-card > *:not(.today-card__art) {
-  position: relative;
-  z-index: 1;
 }

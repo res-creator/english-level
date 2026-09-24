@@ -7,10 +7,13 @@ import type {
 } from "@english-level/contracts";
 import { getCourse } from "../api/productClient.ts";
 import { Kvo } from "../brand/Kvo.tsx";
+import { ArtLayer } from "../brand/Art.tsx";
+import { artName } from "../brand/artRegistry.ts";
+import { SceneBackdrop } from "../brand/scenes.tsx";
+import { sceneForSituation } from "../brand/situationScenes.ts";
 import { Button } from "../ui/Button.tsx";
 import { SkeletonJourney, ErrorState, EmptyState } from "../ui/states.tsx";
-import { IconCheck, IconLock, IconPlay } from "../ui/icons.tsx";
-import { situationGlyph } from "./situationGlyph.tsx";
+import { IconArrowRight, IconCheck, IconLock, IconPlay } from "../ui/icons.tsx";
 import {
   LOCKED_NODE_MESSAGE,
   resolvePathNodeState,
@@ -24,10 +27,9 @@ type State =
 /**
  * The course is a path, not a list of lessons.
  *
- * Nodes alternate left and right down the screen, joined by a line that
- * is solid behind you and dotted ahead. Exactly one node is "you are
- * here", and it is the only one carrying a card and a way in — so the
- * screen never asks the learner to choose where to start.
+ * Every situation stays visible — done, current or locked — in the order
+ * you'll reach it. Exactly one is "you are here", and it is the only one
+ * carrying a way in, so the screen never asks the learner where to start.
  */
 export function Course() {
   const [state, setState] = useState<State>({ status: "loading" });
@@ -115,30 +117,43 @@ function ChapterPath({
   const done = chapter.episodes.filter(
     (e) => e.state === "can_do" || e.state === "consolidated",
   ).length;
+  const total = chapter.episodes.length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
 
   return (
-    <div className="path">
-      <header className="path__head">
-        <h1 className="h1">{index === 0 ? "Курс" : "Дальше"}</h1>
-        <div className="row-between">
-          <span className="body muted">
-            Глава {index + 1} · {chapter.title}
-          </span>
-          <span className="pill">
-            {done} из {chapter.episodes.length}
-          </span>
+    <div className="course-chapter">
+      <div className="course-hero">
+        <div className="course-hero__kvo">
+          <Kvo size={72} state="idle" />
         </div>
-      </header>
+        <h1 className="course-hero__title">
+          {index === 0 ? "Курс" : "Дальше"}
+        </h1>
+        <p className="course-hero__subtitle">
+          Глава {index + 1} · {chapter.title}
+        </p>
+      </div>
 
-      <ol className="path__list">
+      <div className="course-progress">
+        <span className="small muted">Твой прогресс в курсе</span>
+        <div className="row-between">
+          <span className="course-progress__count">
+            {done} из {total}
+          </span>
+          <span className="course-progress__pct">{pct}%</span>
+        </div>
+        <div className="progress-bar">
+          <div className="progress-bar__fill" style={{ width: `${pct}%` }} />
+        </div>
+      </div>
+
+      <ol className="situation-list">
         {chapter.episodes.map((episode, i) => (
-          <PathNode
+          <SituationRow
             key={episode.id}
             episode={episode}
             position={i + 1}
-            side={i % 2 === 0 ? "right" : "left"}
             isCurrent={episode.id === currentEpisodeId}
-            isLast={i === chapter.episodes.length - 1}
           />
         ))}
       </ol>
@@ -146,32 +161,21 @@ function ChapterPath({
   );
 }
 
-function PathNode({
+function SituationRow({
   episode,
   position,
-  side,
   isCurrent,
-  isLast,
 }: {
   episode: EpisodeDTO;
   position: number;
-  side: "left" | "right";
   isCurrent: boolean;
-  isLast: boolean;
 }) {
   const navigate = useNavigate();
   const nodeState = resolvePathNodeState(episode, isCurrent);
   const earned = nodeState === "done";
   const locked = nodeState === "locked";
-
-  const stateClass =
-    nodeState === "done"
-      ? "is-done"
-      : nodeState === "current"
-        ? "is-current"
-        : nodeState === "started"
-          ? "is-started"
-          : "is-ahead";
+  const { scene } = sceneForSituation(episode.id);
+  const title = episode.situationTitle ?? episode.title;
 
   // A locked situation stays visible — title, number, everything — it
   // just can't be opened yet. Public V1 is a sequential path: the
@@ -181,81 +185,86 @@ function PathNode({
     navigate(`/course/${episode.id}`);
   }
 
+  const thumb = (
+    <span className="situation-row__thumb" aria-hidden="true">
+      <ArtLayer
+        name={artName.sceneBackground(scene)}
+        fallback={<SceneBackdrop scene={scene} />}
+      />
+    </span>
+  );
+
   return (
-    <li className={`node2 node2--${side} ${stateClass}`}>
-      {!isLast ? (
-        <span
-          className={earned ? "node2__link is-solid" : "node2__link"}
-          aria-hidden="true"
-        />
-      ) : null}
-
-      {isCurrent ? (
-        <span className="node2__kvo" aria-hidden="true">
-          <Kvo size={82} state="idle" flip={side === "left"} />
-        </span>
-      ) : null}
-
-      <button
-        type="button"
-        className="node2__dot"
-        onClick={open}
-        disabled={locked}
-        aria-label={
-          locked
-            ? `${episode.situationTitle ?? episode.title}: ${LOCKED_NODE_MESSAGE}`
-            : (episode.situationTitle ?? episode.title)
-        }
-      >
+    <li
+      className={
+        "situation-row" +
+        (isCurrent ? " is-current" : "") +
+        (locked ? " is-locked" : "")
+      }
+    >
+      <span className="situation-row__badge" aria-hidden="true">
         {earned ? (
-          <IconCheck size={24} />
+          <IconCheck size={17} />
         ) : locked ? (
-          <IconLock size={22} />
+          <IconLock size={15} />
         ) : (
-          situationGlyph(episode.id, position)
+          position
         )}
-        {earned ? <i className="node2__badge" aria-hidden="true" /> : null}
-      </button>
+      </span>
 
       {isCurrent ? (
-        <div className="node2__card">
-          <span className="tag tag-blush">
-            {episode.missionReady ? "Миссия" : "Сейчас"}
-          </span>
-          <h2 className="h3">{episode.situationTitle ?? episode.title}</h2>
-          <p className="small muted">
-            {episode.estimatedMinutes ? `~${episode.estimatedMinutes} мин` : ""}
-            {episode.sessionsTotal > 0
-              ? ` · шаг ${Math.min(
-                  episode.sessionsDone + 1,
-                  episode.sessionsTotal,
-                )} из ${episode.sessionsTotal}`
-              : ""}
-          </p>
-          <Button onClick={() => navigate(`/course/${episode.id}/session`)}>
-            <IconPlay size={16} />{" "}
-            {episode.sessionsDone > 0 ? "Продолжить" : "Начать"}
-          </Button>
+        <div className="situation-row__card">
+          {thumb}
+          <div className="situation-row__body">
+            <span className="tag tag-blush">
+              {episode.missionReady ? "Миссия" : "Сейчас"}
+            </span>
+            <span className="situation-row__title">{title}</span>
+            <span className="situation-row__meta">
+              {episode.estimatedMinutes
+                ? `~${episode.estimatedMinutes} мин`
+                : ""}
+              {episode.sessionsTotal > 0
+                ? ` · шаг ${Math.min(
+                    episode.sessionsDone + 1,
+                    episode.sessionsTotal,
+                  )} из ${episode.sessionsTotal}`
+                : ""}
+            </span>
+            <Button onClick={() => navigate(`/course/${episode.id}/session`)}>
+              <IconPlay size={16} />{" "}
+              {episode.sessionsDone > 0 ? "Продолжить" : "Начать"}{" "}
+              <IconArrowRight size={16} />
+            </Button>
+          </div>
         </div>
       ) : (
         <button
           type="button"
-          className="node2__label"
+          className="situation-row__card situation-row__card--button"
           onClick={open}
           disabled={locked}
+          aria-label={locked ? `${title}: ${LOCKED_NODE_MESSAGE}` : title}
         >
-          <span className="node2__title">
-            {episode.situationTitle ?? episode.title}
-          </span>
-          <span className="node2__meta">
-            {locked
-              ? LOCKED_NODE_MESSAGE
-              : earned
-                ? episode.state === "consolidated"
-                  ? "Закреплено"
-                  : "Пройдено"
-                : `Заход ${episode.sessionsDone + 1}`}
-          </span>
+          {thumb}
+          <div className="situation-row__body">
+            <span className="situation-row__title">{title}</span>
+            <span className="situation-row__meta">
+              {locked ? (
+                <>
+                  <IconLock size={12} /> {LOCKED_NODE_MESSAGE}
+                </>
+              ) : earned ? (
+                episode.state === "consolidated" ? (
+                  "Закреплено"
+                ) : (
+                  "Пройдено · можно пройти снова"
+                )
+              ) : (
+                `Заход ${episode.sessionsDone + 1}`
+              )}
+            </span>
+          </div>
         </button>
       )}
     </li>

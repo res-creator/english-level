@@ -2,14 +2,21 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { TodayAction, TodayResponse } from "@english-level/contracts";
 import { getToday } from "../api/productClient.ts";
-import { openingLine, sceneForSituation } from "../brand/situationScenes.ts";
-import { CAST } from "../brand/cast.tsx";
+import { sceneForSituation } from "../brand/situationScenes.ts";
 import { Kvo } from "../brand/Kvo.tsx";
 import { ArtLayer } from "../brand/Art.tsx";
 import { artName } from "../brand/artRegistry.ts";
+import { SceneBackdrop } from "../brand/scenes.tsx";
 import { Button } from "../ui/Button.tsx";
 import { SkeletonList, ErrorState } from "../ui/states.tsx";
-import { IconClock, IconPlay, IconRefresh } from "../ui/icons.tsx";
+import {
+  IconArrowRight,
+  IconClock,
+  IconCourse,
+  IconPlay,
+  IconRefresh,
+  IconSparkle,
+} from "../ui/icons.tsx";
 import { plural, resolveTodayCta, resolveTodayEyebrow } from "./todayCopy.ts";
 
 type State =
@@ -70,15 +77,7 @@ export function Today() {
 
   return (
     <section className="stack-lg">
-      <header className="today-head">
-        <span className="small muted">{formatToday()}</span>
-        {chapter ? (
-          <span className="small muted">
-            {data.chapterTitle ?? "Глава"} · пройдено {chapter.done} из{" "}
-            {chapter.total}
-          </span>
-        ) : null}
-      </header>
+      <span className="small muted">{formatToday()}</span>
 
       {data.daysAway ? (
         <div className="welcome-back">
@@ -105,41 +104,104 @@ export function Today() {
             className="today-stat today-stat--action"
             onClick={() => navigate("/review")}
           >
-            <span className="today-stat__label">
-              <IconRefresh size={14} /> Повторить
+            <span className="today-stat__icon">
+              <IconRefresh size={16} />
             </span>
-            <span className="today-stat__value">
-              {data.reviewDue}{" "}
+            <span className="today-stat__value">{data.reviewDue}</span>
+            <span className="today-stat__label">
               {plural(data.reviewDue, "фраза", "фразы", "фраз")}
             </span>
           </button>
         ) : null}
 
         <div className="today-stat">
-          <span className="today-stat__label">Я могу</span>
-          <span className="today-stat__value">
-            {data.capabilities.canDo}{" "}
-            {plural(data.capabilities.canDo, "умение", "умения", "умений")}
+          <span className="today-stat__icon">
+            <IconSparkle size={16} />
           </span>
-          {/* A situation mid-progress hasn't earned "Я могу" yet — that's
-              proven only by a passed Mission, not changing here — but
-              saying nothing at all reads as "nothing was saved". */}
-          {episode?.state === "learning" ? (
-            <span className="today-stat__hint">1 в процессе</span>
-          ) : null}
+          <span className="today-stat__value">{data.capabilities.canDo}</span>
+          <span className="today-stat__label">
+            {/* A situation mid-progress hasn't earned "Я могу" yet — that's
+                proven only by a passed Mission, not changing here — but
+                saying nothing at all reads as "nothing was saved". */}
+            {episode?.state === "learning"
+              ? "1 в процессе"
+              : plural(data.capabilities.canDo, "умение", "умения", "умений")}
+          </span>
         </div>
 
         {chapter ? (
           <div className="today-stat">
-            <span className="today-stat__label">Глава</span>
-            <span className="chapter-dots" aria-hidden="true">
-              {Array.from({ length: chapter.total }).map((_, i) => (
-                <i key={i} className={i < chapter.done ? "is-on" : ""} />
-              ))}
+            <span className="today-stat__icon">
+              <IconCourse size={16} />
+            </span>
+            <span className="today-stat__value">{chapter.done}</span>
+            <span className="today-stat__label">
+              из {chapter.total} пройдено
             </span>
           </div>
         ) : null}
       </div>
+
+      {chapter ? (
+        <div className="stack-sm">
+          <div className="row-between">
+            <h2 className="h3">Твой прогресс</h2>
+            <button
+              type="button"
+              className="link-chevron"
+              onClick={() => navigate("/course")}
+            >
+              {data.chapterTitle ?? "Глава"} · {chapter.done} из {chapter.total}{" "}
+              ›
+            </button>
+          </div>
+          <div className="progress-bar">
+            <div
+              className="progress-bar__fill"
+              style={{
+                width: `${chapter.total ? Math.round((chapter.done / chapter.total) * 100) : 0}%`,
+              }}
+            />
+          </div>
+          <div className="today-minis">
+            <button
+              type="button"
+              className="today-mini"
+              onClick={() => navigate("/my")}
+            >
+              <span className="today-mini__icon today-mini__icon--peach">
+                <IconSparkle size={17} />
+              </span>
+              <span className="today-mini__title">
+                Я могу · {data.capabilities.canDo}
+              </span>
+              <span className="today-mini__sub">
+                {plural(
+                  data.capabilities.canDo,
+                  "реальная ситуация",
+                  "реальные ситуации",
+                  "реальных ситуаций",
+                )}
+              </span>
+            </button>
+            <button
+              type="button"
+              className="today-mini"
+              onClick={() => navigate("/course")}
+            >
+              <span className="today-mini__icon">
+                <IconCourse size={17} />
+              </span>
+              <span className="today-mini__title">
+                {data.chapterTitle ?? "Глава"}
+              </span>
+              <span className="today-mini__sub">
+                {chapter.done} из {chapter.total} пройдено
+              </span>
+            </button>
+          </div>
+        </div>
+      ) : null}
 
       {data.weeklyGoal ? (
         <div className="panel stack-sm">
@@ -173,26 +235,30 @@ function TodayCard({
   episode: NonNullable<TodayResponse["episode"]>;
 }) {
   const navigate = useNavigate();
-  const { cast, scene } = sceneForSituation(episode.id);
-  const person = CAST[cast];
+  const { scene } = sceneForSituation(episode.id);
   const isMission = data.action === "mission";
   const step = Math.min(episode.sessionsDone + 1, episode.sessionsTotal || 1);
   const eyebrow = resolveTodayEyebrow(data.action, episode);
 
   return (
-    <article className="today-card">
-      <ArtLayer
-        name={artName.sceneBackground(scene)}
-        className="today-card__art"
-        priority
-      />
+    <article className="today-hero">
+      <div className="today-hero__stage">
+        <ArtLayer
+          name={artName.sceneBackground(scene)}
+          priority
+          fallback={<SceneBackdrop scene={scene} />}
+        />
+        <div className="today-hero__kvo">
+          <Kvo size={104} state={isMission ? "happy" : "idle"} />
+        </div>
+      </div>
 
-      <div className="today-card__head">
-        <span className="today-card__eyebrow">{eyebrow}</span>
-        <h1 className="today-card__title">
+      <div className="today-hero__card">
+        <span className="overline">{eyebrow}</span>
+        <h1 className="today-hero__title">
           {episode.situationTitle ?? episode.title}
         </h1>
-        <p className="today-card__meta">
+        <p className="today-hero__meta">
           <IconClock size={15} />
           {data.estimatedMinutes
             ? `~${data.estimatedMinutes} минут`
@@ -201,25 +267,10 @@ function TodayCard({
             ? ` · шаг ${step} из ${episode.sessionsTotal}`
             : ""}
         </p>
-      </div>
 
-      {/* The person waiting in today's situation, and Kvo beside her. */}
-      <div className="today-card__scene">
-        <span className="today-card__line">
-          <b>{person.name}</b>
-          <span className="en">{openingLine(episode.id)}</span>
-        </span>
-        <span className="today-card__kvo">
-          <Kvo size={132} state="idle" />
-        </span>
-      </div>
-
-      <div className="today-card__cta">
-        <Button
-          variant="onGreen"
-          onClick={() => navigate(`/course/${episode.id}/session`)}
-        >
-          <IconPlay size={17} /> {resolveTodayCta(data.action, episode)}
+        <Button onClick={() => navigate(`/course/${episode.id}/session`)}>
+          <IconPlay size={17} /> {resolveTodayCta(data.action, episode)}{" "}
+          <IconArrowRight size={18} />
         </Button>
       </div>
     </article>
@@ -247,47 +298,38 @@ function EmptyToday({
 }) {
   if (action === "unavailable") {
     return (
-      <article className="today-card today-card--quiet">
-        <div className="today-card__head">
-          <span className="today-card__eyebrow">Сегодня</span>
-          <h1 className="today-card__title">
+      <article className="today-hero">
+        <div className="today-hero__stage today-hero__stage--quiet">
+          <div className="today-hero__kvo">
+            <Kvo size={104} state="thinking" />
+          </div>
+        </div>
+        <div className="today-hero__card">
+          <span className="overline">Сегодня</span>
+          <h1 className="today-hero__title">
             Готовим программу для твоего уровня
           </h1>
-        </div>
-        <div className="today-card__scene">
-          <span className="today-card__kvo">
-            <Kvo size={132} state="thinking" />
-          </span>
-        </div>
-        <div className="today-card__cta">
-          <Button variant="onGreen" onClick={onCourse}>
-            Открыть курс
-          </Button>
+          <Button onClick={onCourse}>Открыть курс</Button>
         </div>
       </article>
     );
   }
 
   return (
-    <article className="today-card today-card--quiet">
-      <div className="today-card__head">
-        <span className="today-card__eyebrow">Сегодня</span>
-        <h1 className="today-card__title">
+    <article className="today-hero">
+      <div className="today-hero__stage today-hero__stage--quiet">
+        <div className="today-hero__kvo">
+          <Kvo size={104} state="happy" />
+        </div>
+      </div>
+      <div className="today-hero__card">
+        <span className="overline">Сегодня</span>
+        <h1 className="today-hero__title">
           {action === "review"
             ? "Освежим то, что уже знаешь"
             : "Ты прошла все ситуации этого уровня"}
         </h1>
-      </div>
-      <div className="today-card__scene">
-        <span className="today-card__kvo">
-          <Kvo size={132} state="happy" />
-        </span>
-      </div>
-      <div className="today-card__cta">
-        <Button
-          variant="onGreen"
-          onClick={action === "review" ? onReview : onCourse}
-        >
+        <Button onClick={action === "review" ? onReview : onCourse}>
           {action === "review" ? "Повторить" : "Открыть курс"}
         </Button>
       </div>
