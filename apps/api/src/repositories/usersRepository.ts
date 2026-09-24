@@ -196,3 +196,30 @@ export async function completeOnboardingWithVerifiedLevel(
   }
   return updated;
 }
+
+/**
+ * Who the daily reminder considers messaging — active, done with
+ * onboarding (there's a real "today" to invite them back to), and opted
+ * in. `notificationService` still has to check per candidate whether
+ * they've already practised today and whether they were already
+ * reminded today; this is the coarse, cheap filter before that.
+ */
+export interface ReminderCandidateRow {
+  id: string;
+  telegram_user_id: number;
+  first_name: string;
+  current_cefr_level: string | null;
+}
+
+export function listReminderCandidates(
+  db: Db,
+): Promise<ReminderCandidateRow[]> {
+  return db.all<ReminderCandidateRow>(
+    `SELECT u.id, u.telegram_user_id, u.first_name, u.current_cefr_level
+     FROM users u
+     JOIN user_settings s ON s.user_id = u.id
+     WHERE u.status = 'active'
+       AND u.onboarding_completed = 1
+       AND s.daily_reminder_enabled = 1`,
+  );
+}

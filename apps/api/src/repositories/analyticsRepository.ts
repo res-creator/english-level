@@ -62,3 +62,22 @@ export function countEventsForAnonymous(
     [anonymousId, eventName],
   );
 }
+
+/** Whether a user already has this event within a time window —
+ * `reminder_sent` uses it as the day-boundary idempotency check, so a
+ * cron run that overlaps the previous one (or is re-triggered) can never
+ * message the same person twice in one day. */
+export async function hasEventBetween(
+  db: Db,
+  userId: string,
+  eventName: string,
+  fromIso: string,
+  toIso: string,
+): Promise<boolean> {
+  const row = await db.first<{ n: number }>(
+    `SELECT COUNT(*) n FROM analytics_events
+     WHERE user_id = ? AND event_name = ? AND created_at >= ? AND created_at < ?`,
+    [userId, eventName, fromIso, toIso],
+  );
+  return (row?.n ?? 0) > 0;
+}

@@ -6,6 +6,12 @@ import {
 } from "@english-level/contracts";
 import { APP_NAME } from "@english-level/shared";
 import type { AppEnv } from "./types/appEnv.ts";
+import type { Env } from "./env.ts";
+import { createD1Db } from "./db/d1Adapter.ts";
+import {
+  createTelegramSender,
+  runDailyReminders,
+} from "./services/notificationService.ts";
 import authRoutes from "./routes/auth.ts";
 import onboardingRoutes from "./routes/onboarding.ts";
 import placementRoutes from "./routes/placement.ts";
@@ -17,7 +23,12 @@ import meRoutes from "./routes/me.ts";
 import { requireAuth } from "./auth/middleware.ts";
 import { toPublicUser } from "./dto/userDto.ts";
 
-const app = new Hono<AppEnv>();
+// Named, not just default-exported: the default export below has to be
+// `{ fetch, scheduled }` for the Workers runtime, which no longer has
+// Hono's own `.request()` test helper on it. `routingAuth.test.ts` needs
+// the real Hono instance to call that directly, so it imports this name
+// instead of the default.
+export const app = new Hono<AppEnv>();
 
 /** No `ALLOWED_ORIGINS` configured (local dev, see `.dev.vars`/`wrangler.toml`
  * `[vars]`) falls back to the local Vite dev server. Deployed environments
@@ -84,4 +95,37 @@ app.route("/api/v1", v1);
 
 app.get("/", (c) => c.text(`${APP_NAME} API`));
 
-export default app;
+/**
+ * The daily reminder's cron entry point (`[env.*.triggers]` in
+ * wrangler.toml). See `services/notificationService.ts` for what it
+ * actually decides and sends — this just wires it to real bindings and
+ * makes sure a failure is visible instead of silently eating the run.
+ */
+async function scheduled(
+  _event: ScheduledController,
+  env: Env,
+  ctx: ExecutionContext,
+): Promise<void> {
+  ctx.waitUntil(
+    (async () => {
+      const db = createD1Db(env.DB);
+      const sender = createTelegramSender(env.TELEGRAM_BOT_TOKEN);
+      const webAppUrl =
+        env.WEB_APP_URL ?? parseAllowedOrigins(env.ALLOWED_ORIGINS)[0] ?? "";
+      try {
+        const summary = await runDailyReminders(db, sender, webAppUrl);
+        console.log(`[reminders] ${JSON.stringify(summary)}`);
+      } catch (err) {
+        // A cron failure has no caller to report to — logging is the
+        // only visibility it gets, so it must not disappear silently.
+        console.error("[reminders] run failed", err);
+        throw err;
+      }
+    })(),
+  );
+}
+
+export default {
+  fetch: app.fetch,
+  scheduled,
+};

@@ -819,6 +819,10 @@ export const EventNameSchema = z.enum([
   "friend_accepted",
   "shared_goal_completed",
   "preview_account_reset",
+  // The daily "come back" nudge, sent by the bot rather than the client
+  // — recorded here so the same idempotent-by-day check that decides
+  // whether to send it can also read back whether one already went out.
+  "reminder_sent",
 ]);
 export type EventName = z.infer<typeof EventNameSchema>;
 

@@ -18,4 +18,12 @@ export interface Env {
    * it fails closed. See `isPreviewEnvironment`.
    */
   ENVIRONMENT?: string;
+  /**
+   * The deployed Mini App's own origin for this environment — the target
+   * of the `web_app` button on the daily reminder (see
+   * `services/notificationService.ts`). Not a secret, just a URL; kept
+   * separate from `ALLOWED_ORIGINS` because that one is a CORS allow-list
+   * (semantically a set) and this is a single deep-link target.
+   */
+  WEB_APP_URL?: string;
 }

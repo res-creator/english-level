@@ -56,8 +56,18 @@ migrations_dir = "../../migrations"
 # set once via `wrangler secret put TELEGRAM_BOT_TOKEN --env preview`.
 [env.preview.vars]
 ALLOWED_ORIGINS = "https://english-level-web-preview.res-creator.workers.dev"
+WEB_APP_URL = "https://english-level-web-preview.res-creator.workers.dev"
 # The only place this is ever "preview". Do not copy it into production.
 ENVIRONMENT = "preview"
+
+# Fires the daily reminder (src/index.ts `scheduled()`,
+# src/services/notificationService.ts). Once a day is enough for a pilot:
+# testers are assumed to be in roughly the same timezone as the person
+# running the pilot, so a single fixed UTC hour is an honest, simple
+# starting point rather than a per-user timezone scheduler nothing in the
+# product collects yet (see notificationService.ts for that limitation).
+[env.preview.triggers]
+crons = ["0 9 * * *"]
 
 # Deployed via `wrangler deploy --env production`. See docs/deployment.md.
 [env.production]
@@ -73,6 +83,10 @@ migrations_dir = "../../migrations"
 # TELEGRAM_BOT_TOKEN: `wrangler secret put TELEGRAM_BOT_TOKEN --env production`.
 [env.production.vars]
 ALLOWED_ORIGINS = "https://REPLACE_WITH_PRODUCTION_WEB_ORIGIN.workers.dev"
+WEB_APP_URL = "https://REPLACE_WITH_PRODUCTION_WEB_ORIGIN.workers.dev"
+
+[env.production.triggers]
+crons = ["0 9 * * *"]
 
 # Secrets (API keys, tokens) -> `wrangler secret put <NAME> --env <env>`,
 # never committed to this file. Currently only TELEGRAM_BOT_TOKEN.

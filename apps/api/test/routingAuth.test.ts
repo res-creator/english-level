@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createTestDb } from "./helpers/testDb.ts";
 import { createFakeD1 } from "./helpers/fakeD1.ts";
-import app from "../src/index.ts";
+import { app } from "../src/index.ts";
 import type { Env } from "../src/env.ts";
 
 /**
