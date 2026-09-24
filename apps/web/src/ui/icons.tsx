@@ -183,3 +183,35 @@ export function IconSparkle({ size }: IconProps) {
     </svg>
   );
 }
+
+/** A scene chip: which kind of situation this is — a café order. */
+export function IconCup({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M5 9h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z" />
+      <path d="M17 11h1.6a2.4 2.4 0 0 1 0 4.8H17" />
+      <path d="M8.6 3.4c-.8.9-.8 1.8 0 2.7M12 3.4c-.8.9-.8 1.8 0 2.7" />
+    </svg>
+  );
+}
+
+/** A scene chip: meeting a person for the first time. */
+export function IconUsers({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <circle cx="9" cy="8.4" r="3" />
+      <path d="M3.6 19.4a5.4 5.4 0 0 1 10.8 0" />
+      <path d="M15.5 6a3 3 0 0 1 0 5.8M18.4 19.4a5.2 5.2 0 0 0-3.4-5" />
+    </svg>
+  );
+}
+
+/** A scene chip: finding your way around a place. */
+export function IconPin({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </svg>
+  );
+}

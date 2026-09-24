@@ -179,12 +179,12 @@ function AnswerRow({
       disabled={disabled}
       onClick={onPick}
     >
+      <span className="answer__mark" aria-hidden="true" />
       <span className="answer__body">
         <span className={english ? "answer__text en" : "answer__text"}>
           {text}
         </span>
       </span>
-      <span className="answer__mark" aria-hidden="true" />
     </button>
   );
 }

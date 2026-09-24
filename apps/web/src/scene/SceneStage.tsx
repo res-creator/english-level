@@ -1,10 +1,35 @@
 import type { ReactNode } from "react";
-import { CastMember, type CastId, type CastState } from "../brand/cast.tsx";
+import {
+  CAST,
+  CastMember,
+  type CastId,
+  type CastState,
+} from "../brand/cast.tsx";
 import { Kvo, type KvoState } from "../brand/Kvo.tsx";
 import { SceneBackdrop } from "../brand/scenes.tsx";
-import type { SceneId } from "../brand/situationScenes.ts";
+import { sceneLabelText, type SceneId } from "../brand/situationScenes.ts";
 import { ArtLayer } from "../brand/Art.tsx";
 import { artName } from "../brand/artRegistry.ts";
+import { IconCup, IconPin, IconUsers } from "../ui/icons.tsx";
+
+const SCENE_ICON: Record<SceneId, ReactNode> = {
+  cafe: <IconCup size={15} />,
+  meeting: <IconUsers size={15} />,
+  street: <IconPin size={15} />,
+  shop: <IconCup size={15} />,
+  restaurant: <IconCup size={15} />,
+};
+
+/** The pill chip over a scene: an icon and what situation this is — the
+ * same one on the preview and inside every activity of the lesson. */
+export function sceneChip(scene: SceneId): ReactNode {
+  return (
+    <>
+      {SCENE_ICON[scene]}
+      {sceneLabelText(scene)}
+    </>
+  );
+}
 
 /**
  * A situation is one continuous visual conversation.
@@ -93,6 +118,7 @@ export function SceneStage({
           <Bubble
             key={line.id}
             line={line}
+            cast={cast}
             // Older turns stay faintly visible: the conversation has a
             // past, but only the current turn asks for attention.
             depth={newestIndex - index}
@@ -102,15 +128,23 @@ export function SceneStage({
 
       {kvoHint ? (
         <div className="scene__kvo">
+          <Kvo size={compact ? 62 : 76} state={kvoState} />
           <span className="kvo-bubble">{kvoHint}</span>
-          <Kvo size={compact ? 62 : 76} state={kvoState} flip />
         </div>
       ) : null}
     </div>
   );
 }
 
-function Bubble({ line, depth }: { line: DialogueLine; depth: number }) {
+function Bubble({
+  line,
+  cast,
+  depth,
+}: {
+  line: DialogueLine;
+  cast: CastId;
+  depth: number;
+}) {
   const classes = [
     "bubble",
     line.from === "you" ? "bubble--you" : "bubble--them",
@@ -121,6 +155,9 @@ function Bubble({ line, depth }: { line: DialogueLine; depth: number }) {
 
   return (
     <div className={classes}>
+      {line.from === "them" && !line.pending ? (
+        <span className="bubble__from">{CAST[cast].name}</span>
+      ) : null}
       {line.pending ? (
         <span className="bubble__pending" aria-label="Твой ход">
           <i />

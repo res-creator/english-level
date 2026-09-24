@@ -52,3 +52,17 @@ const OPENING_LINES: Record<string, string> = {
 export function openingLine(episodeId: string): string {
   return OPENING_LINES[episodeId] ?? "Hello!";
 }
+
+/** The chip over the scene: what kind of situation this is, plainly
+ * named — same wording whether you're previewing it or inside it. */
+const SCENE_LABEL: Record<SceneId, string> = {
+  cafe: "В кафе",
+  meeting: "Знакомство",
+  street: "В городе",
+  shop: "В магазине",
+  restaurant: "В ресторане",
+};
+
+export function sceneLabelText(scene: SceneId): string {
+  return `Ситуация: ${SCENE_LABEL[scene]}`;
+}

@@ -7,15 +7,19 @@ import type {
   SessionKind,
 } from "@english-level/contracts";
 import { answerActivity, startEpisodeSession } from "../api/productClient.ts";
-import { SceneStage, type DialogueLine } from "../scene/SceneStage.tsx";
+import {
+  SceneStage,
+  sceneChip,
+  type DialogueLine,
+} from "../scene/SceneStage.tsx";
 import { ActivityPanel } from "../scene/ActivityPanel.tsx";
 import { openingLine, sceneForSituation } from "../brand/situationScenes.ts";
-import { castArtNames } from "../brand/cast.tsx";
+import { CAST, castArtNames } from "../brand/cast.tsx";
 import { artName, preloadArt } from "../brand/artRegistry.ts";
 import type { CastState } from "../brand/cast.tsx";
 import { Button, IconButton } from "../ui/Button.tsx";
 import { LoadingScreen, ErrorState } from "../ui/states.tsx";
-import { IconClose } from "../ui/icons.tsx";
+import { IconArrowRight, IconClose } from "../ui/icons.tsx";
 
 /**
  * A situation is one continuous visual conversation.
@@ -253,11 +257,37 @@ export function Session() {
               <b style={{ color: "var(--violet-600)" }}>Миссия</b> ·{" "}
               {state.title}
             </>
-          ) : null
+          ) : (
+            sceneChip(scene)
+          )
         }
       />
 
       <div className="task-sheet">
+        <div className="sheet-grabber" aria-hidden="true" />
+
+        {kind === "mission" ? (
+          <div className="mission-log">
+            {state.dialogue.map((line) =>
+              line.pending ? null : (
+                <div
+                  key={line.id}
+                  className={
+                    line.from === "you"
+                      ? "mission-log__row mission-log__row--you"
+                      : "mission-log__row"
+                  }
+                >
+                  {line.from === "them" ? (
+                    <span className="mission-log__from">{CAST[cast].name}</span>
+                  ) : null}
+                  <span className="mission-log__bubble en">{line.text}</span>
+                </div>
+              ),
+            )}
+          </div>
+        ) : null}
+
         <ActivityPanel
           key={activity.id}
           activity={activity}
@@ -285,14 +315,22 @@ export function Session() {
                 advance(state, state.pendingNext, state.dialogue)
               }
             >
-              Дальше
+              Дальше <IconArrowRight size={18} />
             </Button>
           ) : (
             <Button
               disabled={!canSubmit || submitting}
               onClick={() => submit(card ? "" : answer)}
             >
-              {submitting ? "Проверяем…" : card ? "Понятно" : "Ответить"}
+              {submitting ? (
+                "Проверяем…"
+              ) : card ? (
+                "Понятно"
+              ) : (
+                <>
+                  Ответить <IconArrowRight size={18} />
+                </>
+              )}
             </Button>
           )}
           {!feedback && misses > 0 && !hintUsed ? (

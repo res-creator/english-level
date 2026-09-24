@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { LessonContentDTO } from "@english-level/contracts";
 import { getEpisodeContent } from "../api/productClient.ts";
-import { SceneBackdrop } from "../brand/scenes.tsx";
-import { ArtLayer } from "../brand/Art.tsx";
-import { artName } from "../brand/artRegistry.ts";
-import { sceneForSituation } from "../brand/situationScenes.ts";
-import { CastMember } from "../brand/cast.tsx";
+import { SceneStage, sceneChip } from "../scene/SceneStage.tsx";
+import { openingLine, sceneForSituation } from "../brand/situationScenes.ts";
 import { Button, IconButton } from "../ui/Button.tsx";
 import { SkeletonList, ErrorState } from "../ui/states.tsx";
-import { IconArrowLeft, IconCheck, IconClock } from "../ui/icons.tsx";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconCheck,
+  IconClock,
+  IconStack,
+} from "../ui/icons.tsx";
 import { resolveStartCtaLabel } from "./lessonPreviewCta.ts";
 
 type State =
@@ -66,38 +69,50 @@ export function EpisodePreview() {
 
   const { episode } = state;
   const { scene, cast } = sceneForSituation(episode.id);
+  const stepCount = episode.content.length;
 
   return (
     <div className="preview-screen">
-      <div className="preview-screen__scene">
-        <ArtLayer
-          name={artName.sceneBackground(scene)}
-          priority
-          fallback={<SceneBackdrop scene={scene} />}
-        />
+      <div className="preview-screen__stage">
         <div className="preview-screen__back">
           <IconButton label="Назад" onClick={() => navigate("/course")}>
             <IconArrowLeft size={19} />
           </IconButton>
         </div>
-        <div className="preview-screen__person">
-          <CastMember cast={cast} state="smiling" width={210} />
-        </div>
-        <ArtLayer
-          name={artName.sceneForeground(scene)}
-          className="scene__foreground"
+        <SceneStage
+          scene={scene}
+          cast={cast}
+          castState="smiling"
+          dialogue={[
+            { id: "open", from: "them", text: openingLine(episode.id) },
+          ]}
+          label={sceneChip(scene)}
         />
       </div>
 
       <div className="preview-screen__sheet">
-        <span className="small muted">{episode.moduleTitle}</span>
+        <div className="sheet-grabber" aria-hidden="true" />
         <h1 className="h1">{episode.situationTitle ?? episode.title}</h1>
 
         {episode.scene ? <p className="body muted">{episode.scene}</p> : null}
 
+        <div className="preview-screen__meta">
+          {episode.estimatedMinutes ? (
+            <span className="duration-chip">
+              <IconClock size={15} />~{episode.estimatedMinutes} мин
+            </span>
+          ) : null}
+          {stepCount ? (
+            <span className="duration-chip">
+              <IconStack size={15} />
+              {stepCount} {stepsWord(stepCount)}
+            </span>
+          ) : null}
+        </div>
+
         {episode.capability ? (
           <div className="stack-sm">
-            <h2 className="h3">После этой ситуации ты сможешь…</h2>
+            <span className="overline">После этой ситуации ты сможешь</span>
             <div className="can-row">
               <span className="can-row__mark" aria-hidden="true">
                 <IconCheck size={15} />
@@ -108,16 +123,21 @@ export function EpisodePreview() {
         ) : null}
 
         <div className="preview-screen__cta">
-          {episode.estimatedMinutes ? (
-            <span className="duration-chip">
-              <IconClock size={15} />~{episode.estimatedMinutes} мин
-            </span>
-          ) : null}
           <Button onClick={() => navigate(`/course/${episode.id}/session`)}>
-            {resolveStartCtaLabel(episode.progressStatus)}
+            {resolveStartCtaLabel(episode.progressStatus)}{" "}
+            <IconArrowRight size={18} />
           </Button>
         </div>
       </div>
     </div>
   );
+}
+
+function stepsWord(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return "шаг";
+  if ([2, 3, 4].includes(mod10) && ![12, 13, 14].includes(mod100))
+    return "шага";
+  return "шагов";
 }
