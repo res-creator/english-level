@@ -8,9 +8,9 @@ import type {
 import { getCourse } from "../api/productClient.ts";
 import { Kvo } from "../brand/Kvo.tsx";
 import { ArtLayer } from "../brand/Art.tsx";
-import { artName } from "../brand/artRegistry.ts";
-import { SceneBackdrop } from "../brand/scenes.tsx";
+import { artName, hasArt } from "../brand/artRegistry.ts";
 import { sceneForSituation } from "../brand/situationScenes.ts";
+import { sceneIcon } from "../scene/SceneStage.tsx";
 import { Button } from "../ui/Button.tsx";
 import { SkeletonJourney, ErrorState, EmptyState } from "../ui/states.tsx";
 import { IconArrowRight, IconCheck, IconLock, IconPlay } from "../ui/icons.tsx";
@@ -185,12 +185,20 @@ function SituationRow({
     navigate(`/course/${episode.id}`);
   }
 
+  const bgArtName = artName.sceneBackground(scene);
   const thumb = (
     <span className="situation-row__thumb" aria-hidden="true">
-      <ArtLayer
-        name={artName.sceneBackground(scene)}
-        fallback={<SceneBackdrop scene={scene} />}
-      />
+      {hasArt(bgArtName) ? (
+        <ArtLayer name={bgArtName} />
+      ) : (
+        // The coded SceneBackdrop illustration is tuned for a tall scene
+        // frame; sliced into a 56px square it shows only a fragment of
+        // solid colour, which reads as no art at all — a plain icon is
+        // honest about there being no art yet, instead of pretending.
+        <span className="situation-row__thumb-icon">
+          {sceneIcon(scene, 22)}
+        </span>
+      )}
     </span>
   );
 

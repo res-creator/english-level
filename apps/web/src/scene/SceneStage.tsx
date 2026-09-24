@@ -12,20 +12,29 @@ import { ArtLayer } from "../brand/Art.tsx";
 import { artName } from "../brand/artRegistry.ts";
 import { IconCup, IconPin, IconUsers } from "../ui/icons.tsx";
 
-const SCENE_ICON: Record<SceneId, ReactNode> = {
-  cafe: <IconCup size={15} />,
-  meeting: <IconUsers size={15} />,
-  street: <IconPin size={15} />,
-  shop: <IconCup size={15} />,
-  restaurant: <IconCup size={15} />,
-};
+/** The one glyph for a scene, at whatever size the spot calls for — a
+ * course-list thumbnail and a scene chip both need it, at different
+ * sizes, so this takes size rather than being a fixed-size map. */
+export function sceneIcon(scene: SceneId, size = 15): ReactNode {
+  switch (scene) {
+    case "meeting":
+      return <IconUsers size={size} />;
+    case "street":
+      return <IconPin size={size} />;
+    case "cafe":
+    case "shop":
+    case "restaurant":
+    default:
+      return <IconCup size={size} />;
+  }
+}
 
 /** The pill chip over a scene: an icon and what situation this is — the
  * same one on the preview and inside every activity of the lesson. */
 export function sceneChip(scene: SceneId): ReactNode {
   return (
     <>
-      {SCENE_ICON[scene]}
+      {sceneIcon(scene)}
       {sceneLabelText(scene)}
     </>
   );

@@ -6,7 +6,6 @@ import { sceneForSituation } from "../brand/situationScenes.ts";
 import { Kvo } from "../brand/Kvo.tsx";
 import { ArtLayer } from "../brand/Art.tsx";
 import { artName } from "../brand/artRegistry.ts";
-import { SceneBackdrop } from "../brand/scenes.tsx";
 import { Button } from "../ui/Button.tsx";
 import { SkeletonList, ErrorState } from "../ui/states.tsx";
 import {
@@ -243,11 +242,12 @@ function TodayCard({
   return (
     <article className="today-hero">
       <div className="today-hero__stage">
-        <ArtLayer
-          name={artName.sceneBackground(scene)}
-          priority
-          fallback={<SceneBackdrop scene={scene} />}
-        />
+        {/* Real scene art renders full-bleed when it exists; until then
+            the stage stays the plain gradient — the coded SceneBackdrop
+            is tuned for the lesson screen's taller, bottom-anchored
+            frame, and cropping it into this short wide banner left
+            almost nothing visible but its own solid counter band. */}
+        <ArtLayer name={artName.sceneBackground(scene)} priority />
         <div className="today-hero__kvo">
           <Kvo size={104} state={isMission ? "happy" : "idle"} />
         </div>

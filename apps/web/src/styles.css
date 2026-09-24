@@ -3079,7 +3079,15 @@ a {
   height: 56px;
   overflow: hidden;
   border-radius: var(--r-md);
-  background: var(--lav-200);
+  background: var(--violet-100);
+  display: grid;
+  place-items: center;
+}
+
+.situation-row__thumb-icon {
+  display: grid;
+  place-items: center;
+  color: var(--violet-500);
 }
 
 .situation-row.is-locked .situation-row__thumb {
