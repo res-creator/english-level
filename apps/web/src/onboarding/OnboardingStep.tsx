@@ -1,6 +1,4 @@
 import type { ReactNode } from "react";
-import { FocusShell } from "../components/Layout.tsx";
-import { StepProgress } from "../ui/ProgressBar.tsx";
 import { IconButton } from "../ui/Button.tsx";
 import { IconArrowLeft } from "../ui/icons.tsx";
 import { useTelegramBackButton } from "../telegram/useTelegramBackButton.ts";
@@ -8,10 +6,11 @@ import { useTelegramBackButton } from "../telegram/useTelegramBackButton.ts";
 const TOTAL_STEPS = 3;
 
 /**
- * One shared frame for every onboarding question: progress, one large
- * question, short supporting line, the answer area, and a sticky action.
- * Onboarding is a conversation, not a form — each step asks exactly one
- * thing.
+ * One shared frame for every onboarding question — the same top-bar
+ * plus one-sheet composition as a session or the placement test
+ * (lesson-screen / lesson-top / task-sheet), because onboarding asks
+ * exactly one thing at a time in the same rhythm those do. No separate
+ * "form" look: a question is a question everywhere in this product.
  */
 export function OnboardingStep({
   step,
@@ -31,35 +30,35 @@ export function OnboardingStep({
   useTelegramBackButton(onBack);
 
   return (
-    <FocusShell footer={footer}>
-      <div className="stack-sm">
-        <div className="row" style={{ minHeight: 40 }}>
-          {onBack ? (
-            <IconButton label="Назад" onClick={onBack}>
-              <IconArrowLeft size={20} />
-            </IconButton>
-          ) : (
-            <span className="brand">
-              <span className="brand__dot" aria-hidden="true">
-                S
-              </span>
-              Speak in English
-            </span>
-          )}
-          <span className="grow" />
-          <span className="caption muted num">
-            {step} / {TOTAL_STEPS}
-          </span>
+    <div className="lesson-screen">
+      <div className="lesson-top">
+        {onBack ? (
+          <IconButton label="Назад" onClick={onBack}>
+            <IconArrowLeft size={19} />
+          </IconButton>
+        ) : (
+          <span style={{ width: 40 }} />
+        )}
+        <div className="seg-progress">
+          {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+            <span key={i} className={i < step ? "seg is-on" : "seg"} />
+          ))}
         </div>
-        <StepProgress filled={step} total={TOTAL_STEPS} />
+        <span className="lesson-top__label">
+          {step} / {TOTAL_STEPS}
+        </span>
       </div>
 
-      <div className="stack-sm" style={{ paddingTop: "var(--s2)" }}>
-        <h1 className="h1">{title}</h1>
-        {subtitle ? <p className="small muted">{subtitle}</p> : null}
-      </div>
+      {/* No scene above this — a question, not a situation — so the
+          sheet sits directly under the top bar. */}
+      <div className="task-sheet" style={{ marginTop: 0 }}>
+        <h1 className="task-sheet__title">{title}</h1>
+        {subtitle ? <p className="body muted">{subtitle}</p> : null}
 
-      {children}
-    </FocusShell>
+        {children}
+
+        <div className="task-sheet__cta">{footer}</div>
+      </div>
+    </div>
   );
 }

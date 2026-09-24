@@ -527,141 +527,37 @@ a {
 }
 
 /* ==========================================================================
-   Choice rows (onboarding, placement, answers) — tactile, mobile-first
+   Goal chips (onboarding — multi-select, up to three)
+   Same recipe as the word-bank chip elsewhere in V1.1: a flat tile that
+   turns violet when picked, nothing else changes shape.
    ========================================================================== */
 
-.choice {
-  display: flex;
-  align-items: center;
-  gap: var(--s3);
-  width: 100%;
-  min-height: 60px;
-  padding: var(--s3) var(--s4);
-  border: 1.5px solid transparent;
-  border-radius: var(--r-md);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  color: var(--text);
-  font-size: 16px;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    border-color var(--base),
-    background var(--base),
-    transform var(--fast),
-    box-shadow var(--base);
-}
-
-.choice:active:not(:disabled) {
-  transform: scale(0.985);
-}
-
-.choice__mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  min-width: 30px;
-  border-radius: var(--r-pill);
-  border: 1.5px solid var(--border-strong);
-  background: transparent;
-  color: transparent;
-  font-size: 14px;
-  font-weight: 800;
-  transition:
-    background var(--base),
-    border-color var(--base),
-    color var(--base);
-}
-
-.choice__text {
-  flex: 1;
-  min-width: 0;
-}
-
-.choice__hint {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-.choice.is-selected {
-  border-color: var(--primary);
-  background: var(--green-50);
-}
-
-.choice.is-selected .choice__mark {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: var(--text-on-dark);
-}
-
-.choice.is-correct {
-  border-color: var(--green-500);
-  background: var(--green-50);
-}
-
-.choice.is-correct .choice__mark {
-  background: var(--green-500);
-  border-color: var(--green-500);
-  color: var(--text-on-dark);
-}
-
-.choice.is-wrong {
-  border-color: var(--blush-400);
-  background: var(--blush-100);
-}
-
-.choice.is-wrong .choice__mark {
-  background: var(--blush-400);
-  border-color: var(--blush-400);
-  color: #fff;
-}
-
-.choice.is-dimmed {
-  opacity: 0.45;
-}
-
-.choice:disabled {
-  cursor: default;
-}
-
-/* Compact selectable chips (goals) */
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 48px;
-  padding: 0 var(--s4);
-  border-radius: var(--r-pill);
-  border: 1.5px solid transparent;
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    border-color var(--base),
-    background var(--base),
-    transform var(--fast);
-}
-
-.chip:active {
-  transform: scale(0.97);
-}
-
-.chip.is-selected {
-  border-color: var(--primary);
-  background: var(--green-50);
-  color: var(--green-700);
-}
-
-.chip-wrap {
+.goal-grid {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s2);
+}
+
+.goal-chip {
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-md);
+  border: 2px solid var(--lav-200);
+  background: var(--surface);
+  color: var(--ink-900);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color var(--fast);
+}
+
+.goal-chip:active {
+  transform: scale(0.97);
+}
+
+.goal-chip.is-picked {
+  border-color: var(--violet-600);
+  background: var(--violet-50);
+  color: var(--violet-700);
 }
 
 /* ==========================================================================
@@ -692,23 +588,6 @@ a {
 
 .track--on-green .track__fill {
   background: var(--cream-50);
-}
-
-.steps {
-  display: flex;
-  gap: 5px;
-}
-
-.steps__item {
-  flex: 1;
-  height: 5px;
-  border-radius: var(--r-pill);
-  background: var(--cream-300);
-  transition: background var(--base);
-}
-
-.steps__item.is-on {
-  background: var(--primary);
 }
 
 .ring {

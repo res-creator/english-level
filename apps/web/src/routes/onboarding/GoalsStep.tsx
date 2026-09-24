@@ -69,19 +69,21 @@ export function GoalsStep() {
         </Button>
       }
     >
-      <div className="chip-wrap">
-        {LEARNING_GOALS.map((goal) => (
-          <button
-            key={goal}
-            type="button"
-            className={selected.includes(goal) ? "chip is-selected" : "chip"}
-            onClick={() => toggle(goal)}
-            aria-pressed={selected.includes(goal)}
-          >
-            {selected.includes(goal) ? "✓ " : ""}
-            {goalLabel(goal, user?.interfaceLanguage)}
-          </button>
-        ))}
+      <div className="goal-grid">
+        {LEARNING_GOALS.map((goal) => {
+          const picked = selected.includes(goal);
+          return (
+            <button
+              key={goal}
+              type="button"
+              className={picked ? "goal-chip is-picked" : "goal-chip"}
+              onClick={() => toggle(goal)}
+              aria-pressed={picked}
+            >
+              {goalLabel(goal, user?.interfaceLanguage)}
+            </button>
+          );
+        })}
       </div>
       {error ? (
         <p className="small" style={{ color: "var(--danger)" }}>

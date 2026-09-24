@@ -9,7 +9,6 @@ import { updateDailyTime } from "../../onboarding/onboardingClient.ts";
 import { STAGE_ROUTES, stageIndex } from "../../onboarding/stageRoutes.ts";
 import { OnboardingStep } from "../../onboarding/OnboardingStep.tsx";
 import { Button } from "../../ui/Button.tsx";
-import { Choice } from "../../ui/Choice.tsx";
 import { LoadingScreen, ErrorState } from "../../ui/states.tsx";
 
 const HINTS: Record<number, string> = {
@@ -71,17 +70,27 @@ export function DailyTimeStep() {
         </Button>
       }
     >
-      <div className="stack">
-        {DAILY_MINUTES_OPTIONS.map((minutes) => (
-          <Choice
-            key={minutes}
-            state={selected === minutes ? "selected" : "idle"}
-            hint={HINTS[minutes]}
-            onClick={() => setSelected(minutes)}
-          >
-            {minutes} минут
-          </Choice>
-        ))}
+      <div className="stack-sm">
+        {DAILY_MINUTES_OPTIONS.map((minutes) => {
+          const picked = selected === minutes;
+          return (
+            <button
+              key={minutes}
+              type="button"
+              className={"answer" + (picked ? " answer--picked" : "")}
+              onClick={() => setSelected(minutes)}
+              aria-pressed={picked}
+            >
+              <span className="answer__body">
+                <span className="answer__text">{minutes} минут</span>
+                {HINTS[minutes] ? (
+                  <span className="answer__because">{HINTS[minutes]}</span>
+                ) : null}
+              </span>
+              <span className="answer__mark" aria-hidden="true" />
+            </button>
+          );
+        })}
       </div>
       {error ? (
         <p className="small" style={{ color: "var(--danger)" }}>

@@ -6,7 +6,6 @@ import { updateLevel } from "../../onboarding/onboardingClient.ts";
 import { STAGE_ROUTES, stageIndex } from "../../onboarding/stageRoutes.ts";
 import { OnboardingStep } from "../../onboarding/OnboardingStep.tsx";
 import { Button } from "../../ui/Button.tsx";
-import { Choice } from "../../ui/Choice.tsx";
 import { LoadingScreen, ErrorState } from "../../ui/states.tsx";
 
 type Option = Exclude<SelfReportedCefrLevel, null> | "unknown";
@@ -74,17 +73,25 @@ export function LevelStep() {
         </Button>
       }
     >
-      <div className="stack">
-        {OPTIONS.map((option) => (
-          <Choice
-            key={option.value}
-            state={selected === option.value ? "selected" : "idle"}
-            hint={option.hint}
-            onClick={() => setSelected(option.value)}
-          >
-            {option.label}
-          </Choice>
-        ))}
+      <div className="stack-sm">
+        {OPTIONS.map((option) => {
+          const picked = selected === option.value;
+          return (
+            <button
+              key={option.value}
+              type="button"
+              className={"answer" + (picked ? " answer--picked" : "")}
+              onClick={() => setSelected(option.value)}
+              aria-pressed={picked}
+            >
+              <span className="answer__body">
+                <span className="answer__text">{option.label}</span>
+                <span className="answer__because">{option.hint}</span>
+              </span>
+              <span className="answer__mark" aria-hidden="true" />
+            </button>
+          );
+        })}
       </div>
       {error ? (
         <p className="small" style={{ color: "var(--danger)" }}>
