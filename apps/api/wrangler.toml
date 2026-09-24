@@ -76,7 +76,7 @@ name = "english-level-api-production"
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "english-level-db-production"
-database_id = "REPLACE_WITH_PRODUCTION_D1_DATABASE_ID"
+database_id = "347e1d97-7727-4519-a834-e17c450b37c6"
 migrations_dir = "../../migrations"
 
 # Same as [env.preview.vars] above, pointed at the production web origin.
