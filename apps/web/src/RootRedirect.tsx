@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "./auth/useAuth.ts";
 import { LoadingScreen } from "./ui/states.tsx";
-import { WelcomeArt } from "./brand/illustrations.tsx";
+import { Kvo } from "./brand/Kvo.tsx";
 
 const WELCOME_SEEN_KEY = "sie.welcomeSeen";
 
@@ -49,9 +49,7 @@ export function RootRedirect() {
           className="blob blob-green"
           style={{ width: 240, height: 240, top: -100, right: -100 }}
         />
-        <div style={{ maxWidth: 260 }}>
-          <WelcomeArt />
-        </div>
+        <Kvo size={140} state="idle" title="Кво" />
         <h1 className="h2">Открой приложение через Telegram</h1>
         <p className="small muted" style={{ maxWidth: 300 }}>
           Speak in English работает внутри Telegram — так мы узнаём твой

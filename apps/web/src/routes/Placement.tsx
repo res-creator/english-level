@@ -9,13 +9,10 @@ import {
   getCurrentPlacement,
   answerPlacement,
 } from "../placement/placementClient.ts";
-import { FocusShell } from "../components/Layout.tsx";
+import { Kvo } from "../brand/Kvo.tsx";
 import { Button, IconButton } from "../ui/Button.tsx";
-import { Choice } from "../ui/Choice.tsx";
-import { StepProgress } from "../ui/ProgressBar.tsx";
 import { LoadingScreen, ErrorState } from "../ui/states.tsx";
-import { IconArrowLeft } from "../ui/icons.tsx";
-import { LevelMark } from "../brand/illustrations.tsx";
+import { IconClose } from "../ui/icons.tsx";
 
 type ViewState =
   | { view: "loading" }
@@ -30,6 +27,15 @@ type ViewState =
     }
   | { view: "error" };
 
+/**
+ * The test itself uses the same visual language as a real session —
+ * top bar, one question, one action — because it *is* one: a short,
+ * adaptive run through the same kind of activities the course will ask
+ * for later. Kvo stands in for a mascot illustration that no longer
+ * exists in this product; he's the one constant face across the whole
+ * first-run flow, from the hook through the test to meeting him
+ * properly afterwards.
+ */
 export function Placement() {
   const navigate = useNavigate();
   const [state, setState] = useState<ViewState>({ view: "loading" });
@@ -135,33 +141,29 @@ export function Placement() {
 
   if (state.view === "intro") {
     return (
-      <div className="center-screen has-blobs">
-        <div
-          className="blob blob-green"
-          style={{ width: 250, height: 250, top: -100, left: -110 }}
-        />
-        <div
-          className="blob blob-blush"
-          style={{ width: 210, height: 210, bottom: -90, right: -90 }}
-        />
-
-        <LevelMark level="?" />
-        <h1 className="h1">Определим твой уровень</h1>
-        <p className="body muted" style={{ maxWidth: 330 }}>
-          3–5 минут. Вопросы подстраиваются под ответы: станет легче или сложнее
-          в зависимости от того, как ты отвечаешь.
-        </p>
-        <div
-          className="row"
-          style={{ justifyContent: "center", flexWrap: "wrap" }}
-        >
-          <span className="tag">Слова</span>
-          <span className="tag">Грамматика</span>
-          <span className="tag">Чтение</span>
-          <span className="tag">Речь</span>
+      <div className="hero-screen">
+        <div className="hero-screen__stage">
+          <div className="hero-screen__kvo">
+            <Kvo size={200} state="thinking" title="Кво" />
+          </div>
         </div>
-        <div style={{ width: "100%", maxWidth: 320, paddingTop: "var(--s2)" }}>
-          <Button onClick={handleStart}>Начать тест</Button>
+
+        <div className="hero-screen__sheet">
+          <div className="sheet-grabber" aria-hidden="true" />
+          <h1 className="display">Определим твой уровень</h1>
+          <p className="body muted">
+            3–5 минут. Вопросы подстраиваются под ответы: станет легче или
+            сложнее в зависимости от того, как ты отвечаешь.
+          </p>
+          <div className="row" style={{ flexWrap: "wrap", gap: "var(--s2)" }}>
+            <span className="tag">Слова</span>
+            <span className="tag">Грамматика</span>
+            <span className="tag">Чтение</span>
+            <span className="tag">Речь</span>
+          </div>
+          <div className="hero-screen__actions">
+            <Button onClick={handleStart}>Начать тест</Button>
+          </div>
         </div>
       </div>
     );
@@ -172,69 +174,80 @@ export function Placement() {
   const estimated = Math.max(progress.estimatedTotal, answered + 1);
 
   return (
-    <FocusShell
-      top={
-        <div className="session-top">
-          <IconButton label="Выйти" onClick={() => navigate("/today")}>
-            <IconArrowLeft size={20} />
-          </IconButton>
-          <div className="grow">
-            <StepProgress filled={answered} total={estimated} />
-          </div>
-          <span className="session-count">
-            {answered + 1} / ≈{estimated}
-          </span>
-        </div>
-      }
-      footer={
-        <Button disabled={!answer.trim() || submitting} onClick={handleSubmit}>
-          {submitting ? "Проверяем…" : "Ответить"}
-        </Button>
-      }
-    >
-      {question.passage ? (
-        <div className="panel" style={{ whiteSpace: "pre-line" }}>
-          <p className="body">{question.passage}</p>
-        </div>
-      ) : null}
-
-      <div className="prompt">
-        <span className="prompt__kicker">Вопрос</span>
-        <h1 className="prompt__text">{question.prompt}</h1>
-      </div>
-
-      {question.options ? (
-        <div className="stack">
-          {question.options.map((option) => (
-            <Choice
-              key={option}
-              state={answer === option ? "selected" : "idle"}
-              onClick={() => setAnswer(option)}
-              disabled={submitting}
-            >
-              {option}
-            </Choice>
+    <div className="lesson-screen">
+      <div className="lesson-top">
+        <IconButton label="Выйти" onClick={() => navigate("/today")}>
+          <IconClose size={19} />
+        </IconButton>
+        <div className="seg-progress">
+          {Array.from({ length: estimated }).map((_, i) => (
+            <span key={i} className={i < answered ? "seg is-on" : "seg"} />
           ))}
         </div>
-      ) : (
-        <input
-          type="text"
-          className="text-field"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          placeholder="Твой ответ"
-          autoCapitalize="off"
-          autoCorrect="off"
-          autoComplete="off"
-          disabled={submitting}
-        />
-      )}
+        <span className="lesson-top__label">
+          {answered + 1} / ≈{estimated}
+        </span>
+      </div>
 
-      {error ? (
-        <p className="small" style={{ color: "var(--danger)" }}>
-          {error}
-        </p>
-      ) : null}
-    </FocusShell>
+      {/* No scene here — the test isn't a situation, just questions, so
+          the sheet sits directly under the top bar rather than riding
+          over one. */}
+      <div className="task-sheet" style={{ marginTop: 0 }}>
+        {question.passage ? (
+          <p className="sentence-line en" style={{ whiteSpace: "pre-line" }}>
+            {question.passage}
+          </p>
+        ) : null}
+
+        <h2 className="task-sheet__title">{question.prompt}</h2>
+
+        {question.options ? (
+          <div className="stack-sm">
+            {question.options.map((option) => (
+              <button
+                key={option}
+                type="button"
+                className={
+                  "answer" + (answer === option ? " answer--picked" : "")
+                }
+                disabled={submitting}
+                onClick={() => setAnswer(option)}
+              >
+                <span className="answer__body">
+                  <span className="answer__text en">{option}</span>
+                </span>
+                <span className="answer__mark" aria-hidden="true" />
+              </button>
+            ))}
+          </div>
+        ) : (
+          <input
+            className="answer-input en"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            placeholder="Твой ответ"
+            autoCapitalize="off"
+            autoCorrect="off"
+            autoComplete="off"
+            disabled={submitting}
+          />
+        )}
+
+        {error ? (
+          <p className="small" style={{ color: "var(--danger)" }}>
+            {error}
+          </p>
+        ) : null}
+
+        <div className="task-sheet__cta">
+          <Button
+            disabled={!answer.trim() || submitting}
+            onClick={handleSubmit}
+          >
+            {submitting ? "Проверяем…" : "Ответить"}
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 }

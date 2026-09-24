@@ -3,7 +3,7 @@ import { useOnboardingState } from "../../onboarding/useOnboardingState.ts";
 import { STAGE_ROUTES, stageIndex } from "../../onboarding/stageRoutes.ts";
 import { Button } from "../../ui/Button.tsx";
 import { LoadingScreen, ErrorState } from "../../ui/states.tsx";
-import { ResultArt } from "../../brand/illustrations.tsx";
+import { Kvo } from "../../brand/Kvo.tsx";
 
 /** Hand-off between onboarding and the placement test. */
 export function ReadyStep() {
@@ -34,7 +34,7 @@ export function ReadyStep() {
         style={{ width: 200, height: 200, bottom: -80, left: -80 }}
       />
 
-      <ResultArt accuracy={100} />
+      <Kvo size={150} state="happy" title="Кво" />
       <h1 className="h1">Всё готово</h1>
       <p className="body muted" style={{ maxWidth: 320 }}>
         Осталось определить уровень — короткий тест на 3–5 минут, и мы соберём

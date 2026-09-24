@@ -7,10 +7,10 @@ import type {
 } from "@english-level/contracts";
 import { getPlacementResult } from "../placement/placementClient.ts";
 import { getToday } from "../api/productClient.ts";
+import { Kvo } from "../brand/Kvo.tsx";
 import { Button } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { LoadingScreen, ErrorState } from "../ui/states.tsx";
-import { LevelMark } from "../brand/illustrations.tsx";
 import { levelTitle } from "../ui/labels.tsx";
 
 const SKILL_LABELS: Record<PlacementSkill, string> = {
@@ -101,36 +101,24 @@ export function PlacementResult() {
   ];
 
   return (
-    <div className="focus-shell has-blobs">
-      <div
-        className="blob blob-green"
-        style={{ width: 280, height: 280, top: -120, right: -120 }}
-      />
-      <div
-        className="blob blob-blush"
-        style={{ width: 200, height: 200, bottom: 80, left: -90 }}
-      />
-
-      <div className="focus-body">
-        <div
-          className="stack-sm"
-          style={{
-            alignItems: "center",
-            textAlign: "center",
-            paddingTop: "var(--s4)",
-          }}
-        >
-          <span className="eyebrow muted">Твой уровень</span>
-          <LevelMark level={result.level} />
-          <h1 className="h1">{levelTitle(result.level)}</h1>
-          <p className="body muted" style={{ maxWidth: 330 }}>
-            {LEVEL_MEANING[result.level] ??
-              "Курс собран под твой текущий уровень."}
-          </p>
+    <div className="hero-screen">
+      <div className="hero-screen__stage hero-screen__stage--tall">
+        <span className="stage-chip">Твой уровень</span>
+        <div className="hero-screen__kvo">
+          <Kvo size={200} state="happy" title="Кво" />
         </div>
+      </div>
 
-        <div className="stack" style={{ paddingTop: "var(--s2)" }}>
-          <span className="eyebrow muted">По навыкам</span>
+      <div className="hero-screen__sheet">
+        <div className="sheet-grabber" aria-hidden="true" />
+        <h1 className="display">{levelTitle(result.level)}</h1>
+        <p className="body muted">
+          {LEVEL_MEANING[result.level] ??
+            "Курс собран под твой текущий уровень."}
+        </p>
+
+        <div className="stack-sm">
+          <span className="section-title">По навыкам</span>
           {skills.map((row) => (
             <div key={row.skill} className="stack-sm">
               <div className="row-between">
@@ -142,8 +130,8 @@ export function PlacementResult() {
           ))}
         </div>
 
-        <div className="panel-green stack-sm">
-          <span className="caption" style={{ color: "var(--green-700)" }}>
+        <div className="panel stack-sm">
+          <span className="caption">
             Сильнее всего — {SKILL_LABELS[result.strongestSkill]}
           </span>
           <span className="small muted">
@@ -151,23 +139,25 @@ export function PlacementResult() {
             и начнём.
           </span>
         </div>
-      </div>
 
-      <div className="focus-footer stack-sm">
-        {firstLesson.status === "ready" ? (
-          <Button onClick={() => navigate(`/course/${firstLesson.episodeId}`)}>
-            Начать: {firstLesson.title}
-          </Button>
-        ) : (
-          <Button
-            disabled={firstLesson.status === "loading"}
-            onClick={() => navigate("/course")}
-          >
-            {firstLesson.status === "loading"
-              ? "Собираем курс…"
-              : "Открыть курс"}
-          </Button>
-        )}
+        <div className="hero-screen__actions">
+          {firstLesson.status === "ready" ? (
+            <Button
+              onClick={() => navigate(`/course/${firstLesson.episodeId}`)}
+            >
+              Начать: {firstLesson.title}
+            </Button>
+          ) : (
+            <Button
+              disabled={firstLesson.status === "loading"}
+              onClick={() => navigate("/course")}
+            >
+              {firstLesson.status === "loading"
+                ? "Собираем курс…"
+                : "Открыть курс"}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
