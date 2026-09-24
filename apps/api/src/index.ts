@@ -11,8 +11,10 @@ import { createD1Db } from "./db/d1Adapter.ts";
 import {
   createTelegramSender,
   runDailyReminders,
+  type ReminderRunSummary,
 } from "./services/notificationService.ts";
 import { reportError } from "./services/errorReportingService.ts";
+import { isPreviewEnvironment } from "./previewMode.ts";
 import authRoutes from "./routes/auth.ts";
 import onboardingRoutes from "./routes/onboarding.ts";
 import placementRoutes from "./routes/placement.ts";
@@ -92,6 +94,33 @@ v1.get("/me", requireAuth, (c) => {
   return c.json(body);
 });
 
+/**
+ * Preview-only: fires the exact same reminder run the daily cron does,
+ * on demand. Exists purely because `wrangler dev`/`--test-scheduled`
+ * cannot run on the maintainer's machine (an unrelated macOS/workerd
+ * version limitation, not a product constraint), so this is the one
+ * reliable way to test delivery against a real preview deployment
+ * without waiting for the schedule. Gated exactly like `/my/reset`:
+ * outside preview it's a 404, not a 403, so it doesn't even announce
+ * its own existence — and a body confirmation literal means no stray
+ * or replayed POST can fire it by accident.
+ */
+v1.post("/debug/run-reminders", async (c) => {
+  if (!isPreviewEnvironment(c.env)) {
+    return c.json({ error: "not found" }, 404);
+  }
+  const body = await c.req.json().catch(() => null);
+  if (
+    !body ||
+    typeof body !== "object" ||
+    (body as { confirm?: unknown }).confirm !== "ЗАПУСТИТЬ"
+  ) {
+    return c.json({ error: "confirmation required" }, 400);
+  }
+  const summary = await runReminderPass(c.env);
+  return c.json({ ok: true, summary });
+});
+
 app.route("/api/v1", v1);
 
 app.get("/", (c) => c.text(`${APP_NAME} API`));
@@ -122,34 +151,40 @@ app.onError(async (err, c) => {
 });
 
 /**
+ * Wires real bindings to `runDailyReminders` and makes sure a failure is
+ * visible instead of silently eaten. Shared by the cron entry point
+ * below and by `/debug/run-reminders` — both must behave identically,
+ * since the whole point of that route is testing what the cron will do.
+ */
+async function runReminderPass(env: Env): Promise<ReminderRunSummary> {
+  const db = createD1Db(env.DB);
+  const sender = createTelegramSender(env.TELEGRAM_BOT_TOKEN);
+  const webAppUrl =
+    env.WEB_APP_URL ?? parseAllowedOrigins(env.ALLOWED_ORIGINS)[0] ?? "";
+  try {
+    const summary = await runDailyReminders(db, sender, webAppUrl);
+    console.log(`[reminders] ${JSON.stringify(summary)}`);
+    return summary;
+  } catch (err) {
+    // No caller to report to from the cron path — the error_logs row
+    // (same store `app.onError` writes to) is the only visibility a
+    // failed run gets, so it must not disappear into the console alone.
+    await reportError(db, "cron", "reminders", null, err);
+    throw err;
+  }
+}
+
+/**
  * The daily reminder's cron entry point (`[env.*.triggers]` in
  * wrangler.toml). See `services/notificationService.ts` for what it
- * actually decides and sends — this just wires it to real bindings and
- * makes sure a failure is visible instead of silently eating the run.
+ * actually decides and sends.
  */
 async function scheduled(
   _event: ScheduledController,
   env: Env,
   ctx: ExecutionContext,
 ): Promise<void> {
-  ctx.waitUntil(
-    (async () => {
-      const db = createD1Db(env.DB);
-      const sender = createTelegramSender(env.TELEGRAM_BOT_TOKEN);
-      const webAppUrl =
-        env.WEB_APP_URL ?? parseAllowedOrigins(env.ALLOWED_ORIGINS)[0] ?? "";
-      try {
-        const summary = await runDailyReminders(db, sender, webAppUrl);
-        console.log(`[reminders] ${JSON.stringify(summary)}`);
-      } catch (err) {
-        // A cron failure has no caller to report to — the error_logs row
-        // (same store `app.onError` writes to) is the only visibility it
-        // gets, so it must not disappear into the console alone.
-        await reportError(db, "cron", "reminders", null, err);
-        throw err;
-      }
-    })(),
-  );
+  ctx.waitUntil(runReminderPass(env));
 }
 
 export default {
