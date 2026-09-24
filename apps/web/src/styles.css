@@ -2846,6 +2846,12 @@ a {
   color: var(--ink-900);
 }
 
+.today-stat__hint {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-400);
+}
+
 .chapter-dots {
   display: flex;
   gap: 4px;

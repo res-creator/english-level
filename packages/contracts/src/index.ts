@@ -391,6 +391,10 @@ export const ActivityDTOSchema = z.discriminatedUnion("kind", [
     prompt: z.string(),
     content: z.object({ text: z.string() }),
     options: z.array(ActivityOptionDTOSchema),
+    /** Lets the client show `content.text` only where it isn't already
+     * redundant with the prompt — a grammar-pattern check's prompt never
+     * quotes its own example, a learning-item check's always does. */
+    targetType: z.enum(["learning_item", "grammar_pattern"]),
   }),
   z.object({
     ...activityBase,

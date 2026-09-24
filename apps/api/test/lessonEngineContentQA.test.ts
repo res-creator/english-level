@@ -202,7 +202,6 @@ test("no activity leaks an answer key through the public ActivityDTO mapping", a
         "acceptedAnswers",
         "correctAnswer",
         "isRetry",
-        "targetType",
         "targetId",
         "explanation",
       ]) {
@@ -210,6 +209,22 @@ test("no activity leaks an answer key through the public ActivityDTO mapping", a
           Object.prototype.hasOwnProperty.call(dto, forbidden),
           false,
           `${lessonId}/${activity.id}: leaked "${forbidden}"`,
+        );
+      }
+      // `targetType` is the one deliberate exception: not an answer key,
+      // just "learning_item" vs "grammar_pattern" so ActivityPanel.tsx
+      // knows whether content.text is redundant with the prompt.
+      if (dto.kind === "multiple_choice") {
+        assert.ok(
+          dto.targetType === "learning_item" ||
+            dto.targetType === "grammar_pattern",
+          `${lessonId}/${activity.id}: multiple_choice must carry a valid targetType`,
+        );
+      } else {
+        assert.equal(
+          Object.prototype.hasOwnProperty.call(dto, "targetType"),
+          false,
+          `${lessonId}/${activity.id}: leaked "targetType" on a ${String(dto.kind)}`,
         );
       }
     });

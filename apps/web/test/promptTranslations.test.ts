@@ -12,7 +12,7 @@ const ENGINE_TEMPLATES = [
   'What does "opportunity" mean?',
   'In this sentence, what does "opportunity" mean?',
   "Complete the sentence.",
-  "Which pattern is this?",
+  "What's the rule here?",
   'Type the English word for "возможность".',
   "Put the words in the correct order.",
 ];

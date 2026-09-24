@@ -81,9 +81,14 @@ Per `lesson_items` row, in lesson order:
 
 - **`grammar_pattern`**, role `target`/`introduce` → `grammar_card` (the
   pattern's title/formula/explanation) followed by one `multiple_choice`
-  "which pattern is this?" recognition check. A `grammar_pattern` reused
-  at a `review`/`practice` role (e.g. a later mixed-practice lesson) gets
-  **only** the recognition check — the card isn't repeated.
+  "what's the rule here?" recognition check, with the pattern's own
+  formula/example rendered visibly as the "here" (`ActivityPanel.tsx`) —
+  a bare "which pattern is this?" with nothing shown read as a question
+  about the scene's dialogue instead, which is genuinely ambiguous
+  whenever that dialogue itself contains more than one construction. A
+  `grammar_pattern` reused at a `review`/`practice` role (e.g. a later
+  mixed-practice lesson) gets **only** the recognition check — the card
+  isn't repeated.
 - **`learning_item`**, role `introduce` → the full new-item sequence:
   1. `info_card` (word/translation/IPA/example/pattern — not scored)
   2. `multiple_choice` — translation recognition ("What does X mean?")
@@ -177,6 +182,15 @@ same-kind repeat after a gap satisfies the actual requirement (don't
 immediately repeat the identical question) with no extra generation
 logic. This is a deliberate, documented simplification, not an
 oversight.
+
+**The 3-position gap is a real invariant, not a suggestion**: a wrong
+answer inside the last 3 activities of a session used to have its
+insertion point clamped to the plan's own length, which silently
+collapsed the gap down to as little as zero — the exact "immediately
+re-shown" case this design explicitly exists to avoid. Fixed by
+skipping the retry entirely when the full 3-activity gap doesn't fit,
+rather than cramming it in short. The material isn't lost — it's still
+due for spaced review the next day like anything else missed.
 
 ## Completion, accuracy, and replay
 

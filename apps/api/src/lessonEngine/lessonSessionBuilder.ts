@@ -41,7 +41,7 @@ const CONTENT_LANGUAGE = "ru";
  *    example). A new item never opens with typed recall.
  *  - other roles (review/practice/target) get one lighter-touch
  *    multiple_choice only.
- *  - grammar_pattern items get grammar_card -> a "which pattern is this?"
+ *  - grammar_pattern items get grammar_card -> a "what's the rule here?"
  *    recognition multiple_choice built from title/formula (Phase 5's
  *    schema has no correct/incorrect example pair to build a scored
  *    check from directly — a documented V1 simplification).
@@ -284,7 +284,12 @@ async function buildGrammarActivities(
     kind: "multiple_choice",
     targetType: "grammar_pattern",
     targetId: pattern.id,
-    prompt: "Which pattern is this?",
+    // "Which pattern is this?" read as a floating, disconnected quiz
+    // question when the example it's actually about ("this") was never
+    // shown anywhere on screen — see ActivityPanel.tsx, which now
+    // renders `content.text` for exactly this reason. "What's the rule
+    // here?" only makes sense once there's a visible "here" to point at.
+    prompt: "What's the rule here?",
     content: { text: pattern.formula ?? pattern.title },
     options,
     correctOptionId,

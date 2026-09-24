@@ -614,9 +614,19 @@ export async function answerActivity(
     !current.isRetry;
   let nextPlan = plan;
   if (!isCorrect && retryAllowed) {
-    const retry = cloneForRetry(current, `${current.id}_retry`);
-    const insertAt = Math.min(currentIndex + 1 + RETRY_OFFSET, plan.length);
-    nextPlan = [...plan.slice(0, insertAt), retry, ...plan.slice(insertAt)];
+    // A wrong answer near the end of a session used to have its retry
+    // clamped right up against (sometimes immediately after) the
+    // original — `Math.min(..., plan.length)` silently collapsed the
+    // intended gap whenever fewer than RETRY_OFFSET activities remained,
+    // so the "same question again" could appear as the very next screen.
+    // Only insert it when the full gap actually fits; otherwise the
+    // material simply isn't retried this session — it still surfaces
+    // again through spaced review, never dropped, just not crammed in.
+    const insertAt = currentIndex + 1 + RETRY_OFFSET;
+    if (insertAt <= plan.length) {
+      const retry = cloneForRetry(current, `${current.id}_retry`);
+      nextPlan = [...plan.slice(0, insertAt), retry, ...plan.slice(insertAt)];
+    }
   }
 
   const newPosition = currentIndex + 1;

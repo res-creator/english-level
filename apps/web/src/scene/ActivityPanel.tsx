@@ -68,6 +68,16 @@ export function ActivityPanel({
               {activity.content.sentence.replace(/_{2,}/g, "  ___  ")}
             </p>
           ) : null}
+          {activity.kind === "multiple_choice" &&
+          activity.targetType === "grammar_pattern" ? (
+            // A grammar check's prompt never quotes its own example (a
+            // vocabulary check's always does) — without this, "what's
+            // the rule here?" pointed at nothing on screen and read as a
+            // question about the scene's dialogue instead, which is
+            // genuinely ambiguous whenever that dialogue has more than
+            // one construction in it.
+            <p className="sentence-line en">{activity.content.text}</p>
+          ) : null}
           <div className="stack-sm">
             {activity.options.map((option) => (
               <AnswerRow

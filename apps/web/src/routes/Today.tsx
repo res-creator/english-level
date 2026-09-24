@@ -10,7 +10,7 @@ import { artName } from "../brand/artRegistry.ts";
 import { Button } from "../ui/Button.tsx";
 import { SkeletonList, ErrorState } from "../ui/states.tsx";
 import { IconClock, IconPlay, IconRefresh } from "../ui/icons.tsx";
-import { plural, resolveTodayCta } from "./todayCopy.ts";
+import { plural, resolveTodayCta, resolveTodayEyebrow } from "./todayCopy.ts";
 
 type State =
   | { status: "loading" }
@@ -74,7 +74,8 @@ export function Today() {
         <span className="small muted">{formatToday()}</span>
         {chapter ? (
           <span className="small muted">
-            {data.chapterTitle ?? "Глава"} · {chapter.done} из {chapter.total}
+            {data.chapterTitle ?? "Глава"} · пройдено {chapter.done} из{" "}
+            {chapter.total}
           </span>
         ) : null}
       </header>
@@ -120,6 +121,12 @@ export function Today() {
             {data.capabilities.canDo}{" "}
             {plural(data.capabilities.canDo, "умение", "умения", "умений")}
           </span>
+          {/* A situation mid-progress hasn't earned "Я могу" yet — that's
+              proven only by a passed Mission, not changing here — but
+              saying nothing at all reads as "nothing was saved". */}
+          {episode?.state === "learning" ? (
+            <span className="today-stat__hint">1 в процессе</span>
+          ) : null}
         </div>
 
         {chapter ? (
@@ -170,6 +177,7 @@ function TodayCard({
   const person = CAST[cast];
   const isMission = data.action === "mission";
   const step = Math.min(episode.sessionsDone + 1, episode.sessionsTotal || 1);
+  const eyebrow = resolveTodayEyebrow(data.action, episode);
 
   return (
     <article className="today-card">
@@ -180,9 +188,7 @@ function TodayCard({
       />
 
       <div className="today-card__head">
-        <span className="today-card__eyebrow">
-          {isMission ? "Миссия" : "Сегодня"}
-        </span>
+        <span className="today-card__eyebrow">{eyebrow}</span>
         <h1 className="today-card__title">
           {episode.situationTitle ?? episode.title}
         </h1>

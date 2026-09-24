@@ -3,8 +3,12 @@ import type { StoredActivity } from "./activityTypes.ts";
 
 /**
  * Strips every answer-key field (correctOptionId, acceptedAnswers,
- * correctAnswer, explanation, isRetry, targetType/targetId) and returns
- * only what the frontend is allowed to see before answering.
+ * correctAnswer, explanation, isRetry, targetId) and returns only what
+ * the frontend is allowed to see before answering. `multiple_choice`
+ * alone keeps `targetType` — not an answer key, just enough for the
+ * client to know whether `content.text` is redundant with the prompt
+ * (a learning-item check's prompt always quotes it; a grammar-pattern
+ * check's never does) — see `ActivityPanel.tsx`.
  */
 export function toActivityDTO(
   activity: StoredActivity,
@@ -36,6 +40,7 @@ export function toActivityDTO(
         prompt: activity.prompt,
         content: activity.content,
         options: activity.options,
+        targetType: activity.targetType,
       };
     case "fill_gap_choice":
       return {

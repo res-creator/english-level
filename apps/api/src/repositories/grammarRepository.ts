@@ -25,7 +25,7 @@ export function findGrammarPatternLocalization(
   );
 }
 
-/** Fallback distractor source for the "which pattern is this?" check —
+/** Fallback distractor source for the "what's the rule here?" check —
  * other published patterns at the same level, deterministically ordered. */
 export function listOtherPublishedGrammarPatterns(
   db: Db,

@@ -180,7 +180,6 @@ test("the current activity contains no answer-key fields", async () => {
     "acceptedAnswers",
     "correctAnswer",
     "isRetry",
-    "targetType",
     "targetId",
     "explanation",
   ]) {
@@ -188,6 +187,17 @@ test("the current activity contains no answer-key fields", async () => {
       Object.prototype.hasOwnProperty.call(activity, forbidden),
       false,
       `leaked field "${forbidden}"`,
+    );
+  }
+  // The one deliberate exception: multiple_choice carries `targetType`
+  // (not an answer key) so the client can tell a grammar-pattern check
+  // apart from a vocabulary one — see ActivityPanel.tsx. Anything else
+  // must not have it.
+  if (activity.kind !== "multiple_choice") {
+    assert.equal(
+      Object.prototype.hasOwnProperty.call(activity, "targetType"),
+      false,
+      `leaked field "targetType" on a ${String(activity.kind)}`,
     );
   }
 });
@@ -245,6 +255,139 @@ test("multiple_choice grades correct and incorrect answers server-side", async (
   if (wrong.feedback.correct === false) {
     assert.ok(wrong.feedback.correctAnswer.length > 0);
   }
+});
+
+// --- a grammar recognition check is never a floating, contentless question ---
+
+test("a grammar-pattern check carries its own visible example and targetType, not a bare 'which pattern' prompt", async () => {
+  const { db, sqlite } = await seeded();
+  const user = await makeVerifiedUser(db, 17, "A1");
+  const { sessionId, activity: card } = await walkToActivityKind(
+    db,
+    sqlite,
+    user.id,
+    LESSON,
+    "grammar_card",
+  );
+  assert.equal(card.kind, "grammar_card");
+
+  const ack = await answerActivity(db, user.id, sessionId, {
+    activityId: card.id,
+    answer: "",
+    attemptId: "ack-grammar-card",
+  });
+  assert.equal(ack.ok, true);
+  if (!ack.ok || ack.session.status !== "in_progress") return;
+  const mc = ack.session.nextActivity;
+
+  assert.equal(mc.kind, "multiple_choice");
+  if (mc.kind !== "multiple_choice") return;
+  assert.equal(mc.targetType, "grammar_pattern");
+  // The prompt used to ask an abstract "which pattern is this?" with
+  // nothing shown to point at — ActivityPanel.tsx now renders this text
+  // as the visible "here" the prompt refers to.
+  assert.equal(mc.prompt, "What's the rule here?");
+  assert.ok(mc.content.text.length > 0);
+});
+
+test("gr_a1_be_positive's own example is a real sentence, not a bare conjugation table", async () => {
+  const { db } = await seeded();
+  const pattern = await db.first<{ formula: string | null }>(
+    "SELECT formula FROM grammar_patterns WHERE id = 'gr_a1_be_positive'",
+  );
+  // The old formula ("I am / you are / he is / she is / it is / we are /
+  // they are") was the exact thing that made the recognition check read
+  // as an abstract grammar-terminology quiz with nothing concrete to
+  // point at — even once shown, a full conjugation table isn't "one
+  // clear part of a phrase". A real example sentence is.
+  assert.ok(pattern?.formula, "gr_a1_be_positive must have a formula");
+  assert.ok(
+    !pattern!.formula!.includes("we are / they are"),
+    "the old bare conjugation table must be gone",
+  );
+  assert.match(pattern!.formula!, /\./);
+});
+
+// --- retry insertion never lands immediately next -----------------------------
+
+test("a wrong answer on the last activity of a session inserts no immediate retry", async () => {
+  const { db, sqlite } = await seeded();
+  const user = await makeVerifiedUser(db, 15, "A1");
+  const started = await startLessonSession(db, user.id, LESSON);
+  assert.equal(started.ok, true);
+  if (!started.ok) return;
+  const sessionId = started.session.sessionId;
+
+  // Session 1 of this lesson is a fixed 12 activities (verified content
+  // shape, not incidental) — walk correctly through the first 11 so the
+  // very last one, a scored sentence_build, is what gets answered wrong.
+  let current = started.session.currentActivity!;
+  for (let i = 0; i < 11; i++) {
+    const res = await answerActivity(db, user.id, sessionId, {
+      activityId: current.id,
+      answer: correctAnswerFor(sqlite, sessionId, current),
+      attemptId: `walk-${i}`,
+    });
+    assert.equal(res.ok, true);
+    if (!res.ok || res.session.status !== "in_progress") return;
+    current = res.session.nextActivity;
+  }
+  assert.equal(current.kind, "sentence_build");
+
+  const wrong = await answerActivity(db, user.id, sessionId, {
+    activityId: current.id,
+    answer: "definitely not the right words",
+    attemptId: "final-wrong",
+  });
+  assert.equal(wrong.ok, true);
+  if (!wrong.ok) return;
+  assert.equal(wrong.feedback.correct, false);
+  // Before the fix, `Math.min(insertAt, plan.length)` clamped the retry
+  // to right after this activity — the exact "same question again,
+  // immediately" bug. Now it's simply not inserted when the full
+  // 3-activity gap doesn't fit: the session completes instead.
+  assert.equal(wrong.session.status, "completed");
+});
+
+test("a wrong answer with room to spare still gets its retry, offset by a real gap", async () => {
+  const { db, sqlite } = await seeded();
+  const user = await makeVerifiedUser(db, 16, "A1");
+  const started = await startLessonSession(db, user.id, LESSON);
+  assert.equal(started.ok, true);
+  if (!started.ok) return;
+  const sessionId = started.session.sessionId;
+
+  // The very first activity is an info_card (never scored); advance past
+  // it to the first real, scored check.
+  const ack = await answerActivity(db, user.id, sessionId, {
+    activityId: started.session.currentActivity!.id,
+    answer: "",
+    attemptId: "adv",
+  });
+  assert.equal(ack.ok, true);
+  if (!ack.ok || ack.session.status !== "in_progress") return;
+  const mc = ack.session.nextActivity;
+
+  const wrong = await answerActivity(db, user.id, sessionId, {
+    activityId: mc.id,
+    answer: "not-an-option",
+    attemptId: "wrong-early",
+  });
+  assert.equal(wrong.ok, true);
+  if (!wrong.ok || wrong.session.status !== "in_progress") return;
+
+  // Plenty of room this early in a 12-activity session — the retry must
+  // still exist, and the very next activity must not be it.
+  assert.notEqual(wrong.session.nextActivity.id, `${mc.id}_retry`);
+
+  const row = sqlite
+    .prepare("SELECT activities_json FROM learning_sessions WHERE id = ?")
+    .get(sessionId) as { activities_json: string };
+  const plan = JSON.parse(row.activities_json) as { id: string }[];
+  assert.ok(
+    plan.some((a) => a.id === `${mc.id}_retry`),
+    "the retry must still be somewhere in the plan",
+  );
 });
 
 test("fill_gap_choice is graded server-side from the selected option id", async () => {

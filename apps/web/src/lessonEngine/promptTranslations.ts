@@ -19,8 +19,8 @@ const TEMPLATES: Array<{
   translate: (m: RegExpMatchArray) => string;
 }> = [
   {
-    pattern: /^Which pattern is this\?$/,
-    translate: () => "Какой это паттерн?",
+    pattern: /^What's the rule here\?$/,
+    translate: () => "Какое здесь правило?",
   },
   {
     pattern: /^What does "(.+)" mean\?$/,
