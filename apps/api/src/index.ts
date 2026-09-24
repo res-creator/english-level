@@ -12,6 +12,7 @@ import placementRoutes from "./routes/placement.ts";
 import curriculumRoutes from "./routes/curriculum.ts";
 import lessonSessionRoutes from "./routes/lessonSessions.ts";
 import reviewRoutes from "./routes/review.ts";
+import eventRoutes from "./routes/events.ts";
 import meRoutes from "./routes/me.ts";
 import { requireAuth } from "./auth/middleware.ts";
 import { toPublicUser } from "./dto/userDto.ts";
@@ -70,6 +71,9 @@ v1.route("/review", reviewRoutes);
 // Everything the learner owns: capabilities, the companion's space, and
 // the single friend connection.
 v1.route("/my", meRoutes);
+// Pilot analytics: not auth-gated, since the hook and the demo run
+// before an account exists. See routes/events.ts.
+v1.route("/events", eventRoutes);
 
 v1.get("/me", requireAuth, (c) => {
   const body = MeResponseSchema.parse(toPublicUser(c.get("currentUser")));

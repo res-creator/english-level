@@ -11,6 +11,8 @@
     "../src/db/d1Adapter.ts",
     "../src/types/appEnv.ts",
     "../src/auth/middleware.ts",
-    "../src/routes"
+    "../src/routes",
+    "helpers/fakeD1.ts",
+    "routingAuth.test.ts"
   ]
 }

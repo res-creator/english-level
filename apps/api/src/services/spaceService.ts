@@ -18,6 +18,7 @@ import {
   findPublishedLessonById,
   listLessonItemsByLesson,
 } from "../repositories/curriculumRepository.ts";
+import { eventStatement } from "./analyticsService.ts";
 import {
   findLearningItemLocalization,
   findPublishedLearningItemById,
@@ -138,8 +139,14 @@ export async function selectCompanion(
       error: { code: "not_found", message: "companion not found" },
     };
   }
+  const now = new Date().toISOString();
   await db.batch([
-    selectCompanionStatement(userId, companionId, new Date().toISOString()),
+    selectCompanionStatement(userId, companionId, now),
+    eventStatement(
+      "companion_chosen",
+      { userId, properties: { companionId } },
+      now,
+    ),
   ]);
   return { ok: true, companion };
 }

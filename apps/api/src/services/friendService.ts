@@ -12,6 +12,7 @@ import {
 import { findUserById } from "../repositories/usersRepository.ts";
 import { addDays } from "../repositories/itemMemoryRepository.ts";
 import { grantSharedGoalReward } from "./rewardService.ts";
+import { eventStatement } from "./analyticsService.ts";
 
 /**
  * One friend, one shared goal, nothing else. No leaderboard, no streak
@@ -95,8 +96,20 @@ export async function getFriendState(
   let sharedRewardUnlocked = false;
   if (completed) {
     // Granting is idempotent, so checking here rather than on a schedule
-    // costs nothing and means the reward can't be missed.
-    await grantSharedGoalReward(db, userId);
+    // costs nothing and means the reward can't be missed. A non-null
+    // result means this call is the one that unlocked it, which is also
+    // the only moment worth logging — not every later poll of this
+    // already-completed state.
+    const reward = await grantSharedGoalReward(db, userId);
+    if (reward) {
+      await db.batch([
+        eventStatement(
+          "shared_goal_completed",
+          { userId, properties: { total } },
+          now.toISOString(),
+        ),
+      ]);
+    }
     sharedRewardUnlocked = true;
   }
 
@@ -132,8 +145,10 @@ export async function createInvite(
   if (open) return { ok: true, code: open.code };
 
   const code = newInviteCode();
+  const now = new Date().toISOString();
   await db.batch([
-    createInviteStatement(code, userId, new Date().toISOString()),
+    createInviteStatement(code, userId, now),
+    eventStatement("friend_invited", { userId }, now),
   ]);
   return { ok: true, code };
 }
@@ -168,6 +183,7 @@ export async function acceptInvite(
   await db.batch([
     acceptInviteStatement(code.trim().toUpperCase(), userId, now),
     ...linkFriendsStatements(invite.inviter_user_id, userId, now),
+    eventStatement("friend_accepted", { userId }, now),
   ]);
   return { ok: true, state: await getFriendState(db, userId) };
 }

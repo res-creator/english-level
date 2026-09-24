@@ -1,4 +1,5 @@
 import type { Db, DbStatement } from "../db/types.ts";
+import { eventStatement } from "./analyticsService.ts";
 
 /**
  * Preview-only account reset, for testing the first-run experience without
@@ -160,6 +161,13 @@ export async function resetPreviewAccount(
   now: Date = new Date(),
 ): Promise<PreviewResetSummary> {
   const summary = await summarize(db, userId);
-  await db.batch(resetStatements(userId, now.toISOString()));
+  const nowIso = now.toISOString();
+  await db.batch([
+    ...resetStatements(userId, nowIso),
+    // Recorded, not cleared: the reset wipes what the account *knows*,
+    // never the log of what it *did* — a pilot tester resetting their
+    // own account mid-session is itself a data point worth keeping.
+    eventStatement("preview_account_reset", { userId }, nowIso),
+  ]);
   return summary;
 }

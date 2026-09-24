@@ -17,7 +17,10 @@ import type { AppEnv } from "../types/appEnv.ts";
 
 const lessonSessions = new Hono<AppEnv>();
 
-lessonSessions.use("*", requireAuth);
+// Per route, not `lessonSessions.use("*", ...)` — this router is also
+// mounted at "/" (top-level, alongside curriculum). See the comment in
+// routes/curriculum.ts for why a blanket "*" there leaks auth onto every
+// other router in the API, including ones that must stay public.
 
 function statusFor(code: LessonSessionFailure["code"]): 400 | 403 | 404 | 409 {
   switch (code) {
@@ -39,7 +42,7 @@ function fail(c: Context<AppEnv>, error: LessonSessionFailure) {
   return c.json({ error: error.message }, statusFor(error.code));
 }
 
-lessonSessions.post("/lessons/:lessonId/start", async (c) => {
+lessonSessions.post("/lessons/:lessonId/start", requireAuth, async (c) => {
   const db = createD1Db(c.env.DB);
   const result = await startLessonSession(
     db,
@@ -50,7 +53,7 @@ lessonSessions.post("/lessons/:lessonId/start", async (c) => {
   return c.json(EpisodeSessionDTOSchema.parse(result.session));
 });
 
-lessonSessions.get("/sessions/:sessionId", async (c) => {
+lessonSessions.get("/sessions/:sessionId", requireAuth, async (c) => {
   const db = createD1Db(c.env.DB);
   const result = await getLessonSession(
     db,
@@ -61,7 +64,7 @@ lessonSessions.get("/sessions/:sessionId", async (c) => {
   return c.json(EpisodeSessionDTOSchema.parse(result.session));
 });
 
-lessonSessions.get("/sessions/:sessionId/result", async (c) => {
+lessonSessions.get("/sessions/:sessionId/result", requireAuth, async (c) => {
   const db = createD1Db(c.env.DB);
   const result = await getSessionResult(
     db,
@@ -72,7 +75,7 @@ lessonSessions.get("/sessions/:sessionId/result", async (c) => {
   return c.json(SessionResultDTOSchema.parse(result.result));
 });
 
-lessonSessions.post("/sessions/:sessionId/answer", async (c) => {
+lessonSessions.post("/sessions/:sessionId/answer", requireAuth, async (c) => {
   const db = createD1Db(c.env.DB);
   const body = await c.req.json().catch(() => null);
   const result = await answerActivity(

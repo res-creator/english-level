@@ -39,6 +39,7 @@ import {
 } from "../lessonEngine/exerciseGrading.ts";
 import type { StoredActivity } from "../lessonEngine/activityTypes.ts";
 import { grantConsolidationReward } from "./rewardService.ts";
+import { eventStatement } from "./analyticsService.ts";
 
 /**
  * Review never shows everything that is technically due. A capped, finite
@@ -403,11 +404,19 @@ export async function answerReviewActivity(
 
   const newPosition = currentIndex + 1;
   if (newPosition >= plan.length) {
+    const reviewed = correctCount + wrongCount;
+    const accuracy =
+      reviewed === 0 ? 0 : Math.round((100 * correctCount) / reviewed);
     await db.batch([
       scheduleStatement,
       completeReviewSessionStatement(
         sessionId,
         { currentPosition: newPosition, correctCount, wrongCount },
+        nowIso,
+      ),
+      eventStatement(
+        "review_completed",
+        { userId, properties: { reviewed, accuracy } },
         nowIso,
       ),
     ]);

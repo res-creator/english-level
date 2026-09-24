@@ -35,6 +35,7 @@ import {
   completeOnboardingWithVerifiedLevel,
   completeOnboardingWithVerifiedLevelStatement,
 } from "../repositories/usersRepository.ts";
+import { eventStatement } from "./analyticsService.ts";
 
 /**
  * V1 adaptive placement engine. See docs/placement-test.md for the full
@@ -387,6 +388,14 @@ async function finalizeAttempt(
       now,
     ),
     completeOnboardingWithVerifiedLevelStatement(userId, level, now),
+    eventStatement(
+      "placement_completed",
+      {
+        userId,
+        properties: { level, strongestSkill: strongest, weakestSkill: weakest },
+      },
+      now,
+    ),
   ]);
 }
 

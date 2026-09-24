@@ -67,6 +67,7 @@ import {
   evaluateWeekMilestone,
   grantMissionReward,
 } from "./rewardService.ts";
+import { eventStatement } from "./analyticsService.ts";
 
 /** A wrong scored answer gets one alternate retry this many positions
  * later in the plan — not immediate, but soon. See
@@ -684,6 +685,27 @@ export async function answerActivity(
             now,
           ),
       ...seedStatementsFor(userId, session.lesson_id, nextPlan, completedAt),
+      isMission
+        ? eventStatement(
+            missionPassed ? "mission_passed" : "mission_failed",
+            {
+              userId,
+              properties: { episodeId: session.lesson_id, accuracy },
+            },
+            now,
+          )
+        : eventStatement(
+            "session_completed",
+            {
+              userId,
+              properties: {
+                episodeId: session.lesson_id,
+                sessionIndex: session.session_index,
+                accuracy,
+              },
+            },
+            now,
+          ),
     ]);
 
     const rewards: UnlockedRewardDTO[] = [];
