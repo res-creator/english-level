@@ -82,8 +82,8 @@ migrations_dir = "../../migrations"
 # Same as [env.preview.vars] above, pointed at the production web origin.
 # TELEGRAM_BOT_TOKEN: `wrangler secret put TELEGRAM_BOT_TOKEN --env production`.
 [env.production.vars]
-ALLOWED_ORIGINS = "https://REPLACE_WITH_PRODUCTION_WEB_ORIGIN.workers.dev"
-WEB_APP_URL = "https://REPLACE_WITH_PRODUCTION_WEB_ORIGIN.workers.dev"
+ALLOWED_ORIGINS = "https://english-level-web-production.res-creator.workers.dev"
+WEB_APP_URL = "https://english-level-web-production.res-creator.workers.dev"
 
 [env.production.triggers]
 crons = ["0 9 * * *"]
