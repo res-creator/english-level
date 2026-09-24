@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { TodayAction, TodayResponse } from "@english-level/contracts";
 import { getToday } from "../api/productClient.ts";
-import { sceneForSituation } from "../brand/situationScenes.ts";
 import { Kvo } from "../brand/Kvo.tsx";
 import { ArtLayer } from "../brand/Art.tsx";
 import { artName } from "../brand/artRegistry.ts";
@@ -234,7 +233,6 @@ function TodayCard({
   episode: NonNullable<TodayResponse["episode"]>;
 }) {
   const navigate = useNavigate();
-  const { scene } = sceneForSituation(episode.id);
   const isMission = data.action === "mission";
   const step = Math.min(episode.sessionsDone + 1, episode.sessionsTotal || 1);
   const eyebrow = resolveTodayEyebrow(data.action, episode);
@@ -242,16 +240,13 @@ function TodayCard({
   return (
     <article className="today-hero">
       <div className="today-hero__stage ambient-stage">
-        {/* The art slot: a real scene photo (café counter, London
-            skyline) renders full-bleed the moment a file exists. Until
-            then, the layered glow beneath stands in for it — the coded
-            SceneBackdrop illustration is tuned for the lesson screen's
-            taller, bottom-anchored frame, and cropping it into this
-            short wide banner left almost nothing visible but its own
-            solid counter band. */}
-        <span className="ambient-glow" aria-hidden="true" />
-        <ArtLayer name={artName.sceneBackground(scene)} priority />
-        <span className="today-hero__ground" aria-hidden="true" />
+        {/* Today's own hero backdrop — not tied to any one situation's
+            scene, so it stays the same regardless of what's today. */}
+        <ArtLayer
+          name={artName.heroBackdrop("today")}
+          priority
+          position="center"
+        />
         <div className="today-hero__kvo">
           <Kvo size={148} state={isMission ? "happy" : "idle"} />
         </div>
@@ -304,7 +299,11 @@ function EmptyToday({
     return (
       <article className="today-hero">
         <div className="today-hero__stage today-hero__stage--quiet ambient-stage">
-          <span className="ambient-glow" aria-hidden="true" />
+          <ArtLayer
+            name={artName.heroBackdrop("today")}
+            priority
+            position="center"
+          />
           <div className="today-hero__kvo">
             <Kvo size={130} state="thinking" />
           </div>
@@ -323,7 +322,11 @@ function EmptyToday({
   return (
     <article className="today-hero">
       <div className="today-hero__stage today-hero__stage--quiet ambient-stage">
-        <span className="ambient-glow" aria-hidden="true" />
+        <ArtLayer
+          name={artName.heroBackdrop("today")}
+          priority
+          position="center"
+        />
         <div className="today-hero__kvo">
           <Kvo size={130} state="happy" />
         </div>

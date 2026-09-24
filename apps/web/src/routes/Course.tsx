@@ -123,7 +123,11 @@ function ChapterPath({
   return (
     <div className="course-chapter">
       <div className="course-hero ambient-stage">
-        <span className="ambient-glow" aria-hidden="true" />
+        <ArtLayer
+          name={artName.heroBackdrop("course")}
+          priority
+          position="center"
+        />
         <div className="course-hero__kvo">
           <Kvo size={92} state="idle" />
         </div>

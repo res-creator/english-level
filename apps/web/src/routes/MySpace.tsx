@@ -91,9 +91,7 @@ export function MySpace() {
         </div>
       </header>
 
-      <div className={`room room--stage-${stage} ambient-stage`}>
-        <span className="ambient-glow" aria-hidden="true" />
-
+      <div className={`room room--stage-${stage}`}>
         {/* The environment itself: one painting per stage, so the room
             visibly grows as chapters are finished. */}
         <ArtLayer
@@ -104,13 +102,6 @@ export function MySpace() {
         />
 
         <span className="room__chip">Комната {stage} из 4</span>
-
-        {/* Coded placeholders, shown only until the environment art
-            lands. */}
-        <div className="room__shelf" aria-hidden="true" />
-        <div className="room__window" aria-hidden="true">
-          <i />
-        </div>
 
         <div className="room__objects">
           {unlocked.map((item) => (
