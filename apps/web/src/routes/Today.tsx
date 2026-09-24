@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { TodayResponse } from "@english-level/contracts";
-import { useAuth } from "../auth/useAuth.ts";
 import { getToday } from "../api/productClient.ts";
+import { openingLine, sceneForSituation } from "../brand/situationScenes.ts";
+import { CAST } from "../brand/cast.tsx";
+import { Kvo } from "../brand/Kvo.tsx";
+import { ArtLayer } from "../brand/Art.tsx";
+import { artName } from "../brand/artRegistry.ts";
 import { Button } from "../ui/Button.tsx";
-import { ProgressBar } from "../ui/ProgressBar.tsx";
-import { SkeletonList } from "../ui/states.tsx";
-import { HeroArt } from "../brand/illustrations.tsx";
-import { levelTitle } from "../ui/labels.tsx";
-import { plural, resolveTodayCta, resolveTodayEyebrow } from "./todayCopy.ts";
+import { SkeletonList, ErrorState } from "../ui/states.tsx";
+import { IconClock, IconPlay, IconRefresh } from "../ui/icons.tsx";
+import { plural, resolveTodayCta } from "./todayCopy.ts";
 
 type State =
   | { status: "loading" }
@@ -17,110 +19,146 @@ type State =
   // blocks the one thing it exists for.
   | { status: "degraded" };
 
-function greeting(): string {
-  const hour = new Date().getHours();
-  if (hour < 5) return "Доброй ночи";
-  if (hour < 12) return "Доброе утро";
-  if (hour < 18) return "Добрый день";
-  return "Добрый вечер";
-}
-
 /**
- * Today answers one question — what do I do right now — and the server
- * gives exactly one answer. Everything else on the screen is context, and
- * every number on it is real.
+ * Today answers one question: what do I do right now. The server gives
+ * exactly one answer, and it gets the whole screen — a single violet card
+ * carrying the situation, the person waiting in it and the way in.
+ *
+ * Everything under the card is context, not a dashboard: a few honest
+ * numbers, and review as a quiet chip rather than a permanent tab.
  */
 export function Today() {
-  const auth = useAuth();
   const navigate = useNavigate();
   const [state, setState] = useState<State>({ status: "loading" });
 
-  useEffect(() => {
-    let cancelled = false;
+  function load() {
+    setState({ status: "loading" });
     getToday()
-      .then((data) => {
-        if (!cancelled) setState({ status: "ready", data });
-      })
-      .catch(() => {
-        if (!cancelled) setState({ status: "degraded" });
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+      .then((data) => setState({ status: "ready", data }))
+      .catch(() => setState({ status: "degraded" }));
+  }
 
-  const firstName = auth.user?.firstName ?? "";
-  const level = auth.user?.currentCefrLevel;
-  const data = state.status === "ready" ? state.data : null;
+  useEffect(load, []);
+
+  if (state.status === "loading") {
+    return (
+      <section className="stack-lg">
+        <SkeletonList rows={1} height={420} />
+        <SkeletonList rows={1} height={72} />
+      </section>
+    );
+  }
+
+  if (state.status === "degraded") {
+    return (
+      <section className="stack-lg">
+        <ErrorState
+          title="Не удалось открыть сегодняшний день"
+          message="Курс на месте — можно продолжить оттуда."
+          onRetry={load}
+        />
+        <Button variant="secondary" onClick={() => navigate("/course")}>
+          Открыть курс
+        </Button>
+      </section>
+    );
+  }
+
+  const { data } = state;
+  const episode = data.episode;
+  const chapter = data.chapterProgress;
 
   return (
     <section className="stack-lg">
-      <header className="stack-sm">
-        <span className="eyebrow muted">{greeting()}</span>
-        <div className="row-between">
-          <h1 className="h1">{firstName || "Рады видеть"}</h1>
-          {level ? <span className="pill">{levelTitle(level)}</span> : null}
-        </div>
+      <header className="today-head">
+        <span className="small muted">{formatToday()}</span>
+        {chapter ? (
+          <span className="small muted">
+            {data.chapterTitle ?? "Глава"} · {chapter.done} из {chapter.total}
+          </span>
+        ) : null}
       </header>
 
-      {data?.daysAway ? <WelcomeBack days={data.daysAway} /> : null}
+      {data.daysAway ? (
+        <div className="welcome-back">
+          Тебя не было {data.daysAway}{" "}
+          {plural(data.daysAway, "день", "дня", "дней")}. Ничего не потеряно —
+          начнём с короткого захода.
+        </div>
+      ) : null}
 
-      {state.status === "loading" ? (
-        <SkeletonList rows={1} height={210} />
-      ) : data && data.episode ? (
-        <TodayHero data={data} episode={data.episode} />
+      {episode ? (
+        <TodayCard data={data} episode={episode} />
       ) : (
-        <FallbackHero
-          degraded={state.status === "degraded"}
-          reviewDue={data?.reviewDue ?? 0}
+        <EmptyToday
+          reviewDue={data.reviewDue}
+          onReview={() => navigate("/review")}
+          onCourse={() => navigate("/course")}
         />
       )}
 
-      {data && data.reviewDue > 0 && data.action !== "review" ? (
-        <button
-          type="button"
-          className="row-card"
-          onClick={() => navigate("/review")}
-        >
-          <span className="row-card__body">
-            <span className="row-card__title">Повторение</span>
-            <span className="row-card__meta">
+      <div className="today-stats">
+        {data.reviewDue > 0 ? (
+          <button
+            type="button"
+            className="today-stat today-stat--action"
+            onClick={() => navigate("/review")}
+          >
+            <span className="today-stat__label">
+              <IconRefresh size={14} /> Повторить
+            </span>
+            <span className="today-stat__value">
               {data.reviewDue}{" "}
-              {plural(data.reviewDue, "фраза", "фразы", "фраз")} ждут второго
-              захода
+              {plural(data.reviewDue, "фраза", "фразы", "фраз")}
             </span>
-          </span>
-          <span className="row-card__chevron" aria-hidden="true">
-            →
-          </span>
-        </button>
-      ) : null}
+          </button>
+        ) : null}
 
-      {data?.weeklyGoal ? <WeeklyGoal goal={data.weeklyGoal} /> : null}
+        <div className="today-stat">
+          <span className="today-stat__label">Я могу</span>
+          <span className="today-stat__value">
+            {data.capabilities.canDo}{" "}
+            {plural(data.capabilities.canDo, "умение", "умения", "умений")}
+          </span>
+        </div>
 
-      {data && (data.capabilities.canDo > 0 || data.chapterProgress) ? (
-        <div className="stat-strip">
-          <div className="stat-strip__item">
-            <span className="stat-strip__value num">
-              {data.capabilities.canDo}
+        {chapter ? (
+          <div className="today-stat">
+            <span className="today-stat__label">Глава</span>
+            <span className="chapter-dots" aria-hidden="true">
+              {Array.from({ length: chapter.total }).map((_, i) => (
+                <i key={i} className={i < chapter.done ? "is-on" : ""} />
+              ))}
             </span>
-            <span className="stat-strip__label">Умею по-английски</span>
           </div>
-          {data.chapterProgress ? (
-            <div className="stat-strip__item">
-              <span className="stat-strip__value num">
-                {data.chapterProgress.done}/{data.chapterProgress.total}
-              </span>
-              <span className="stat-strip__label">Ситуаций в главе</span>
-            </div>
-          ) : null}
+        ) : null}
+      </div>
+
+      {data.weeklyGoal ? (
+        <div className="panel stack-sm">
+          <div className="row-between">
+            <span className="caption">
+              {data.weeklyGoal.friendName
+                ? `Вместе с ${data.weeklyGoal.friendName}`
+                : "Общая цель"}
+            </span>
+            <span className="caption num">
+              {data.weeklyGoal.mine + (data.weeklyGoal.friendDone ?? 0)} /{" "}
+              {data.weeklyGoal.target}
+            </span>
+          </div>
+          <p className="small muted">
+            {data.weeklyGoal.completed
+              ? "Цель недели закрыта — вы оба справились."
+              : "Занятия обоих складываются в одну цель на неделю."}
+          </p>
         </div>
       ) : null}
     </section>
   );
 }
 
-function TodayHero({
+function TodayCard({
   data,
   episode,
 }: {
@@ -128,150 +166,98 @@ function TodayHero({
   episode: NonNullable<TodayResponse["episode"]>;
 }) {
   const navigate = useNavigate();
+  const { cast, scene } = sceneForSituation(episode.id);
+  const person = CAST[cast];
   const isMission = data.action === "mission";
-  const inProgress = episode.sessionsDone > 0 && !isMission;
+  const step = Math.min(episode.sessionsDone + 1, episode.sessionsTotal || 1);
 
   return (
-    <article className="hero">
-      <div className="hero__art" aria-hidden="true">
-        <HeroArt />
-      </div>
-      <div className="hero__head">
-        <span className="eyebrow" style={{ opacity: 0.85 }}>
-          {resolveTodayEyebrow(data.action, episode)}
+    <article className="today-card">
+      <ArtLayer
+        name={artName.sceneBackground(scene)}
+        className="today-card__art"
+        priority
+      />
+
+      <div className="today-card__head">
+        <span className="today-card__eyebrow">
+          {isMission ? "Миссия" : "Сегодня"}
         </span>
-        <h2 className="hero__lesson">
+        <h1 className="today-card__title">
           {episode.situationTitle ?? episode.title}
-        </h2>
-        {episode.capability ? (
-          <p className="hero__capability">{episode.capability}</p>
-        ) : null}
+        </h1>
+        <p className="today-card__meta">
+          <IconClock size={15} />
+          {data.estimatedMinutes
+            ? `~${data.estimatedMinutes} минут`
+            : "Коротко"}
+          {episode.sessionsTotal > 0 && !isMission
+            ? ` · шаг ${step} из ${episode.sessionsTotal}`
+            : ""}
+        </p>
       </div>
 
-      {episode.sessionsTotal > 0 && !isMission ? (
-        <div className="stack-sm">
-          <div className="hero__meta">
-            <span>
-              Заход {Math.min(episode.sessionsDone + 1, episode.sessionsTotal)}{" "}
-              из {episode.sessionsTotal}
-            </span>
-            {data.estimatedMinutes ? (
-              <span className="num">~{data.estimatedMinutes} мин</span>
-            ) : null}
-          </div>
-          <ProgressBar
-            percent={Math.round(
-              (100 * episode.sessionsDone) / episode.sessionsTotal,
-            )}
-            thin
-            onGreen
-          />
-        </div>
-      ) : null}
+      {/* The person waiting in today's situation, and Kvo beside her. */}
+      <div className="today-card__scene">
+        <span className="today-card__line">
+          <b>{person.name}</b>
+          <span className="en">{openingLine(episode.id)}</span>
+        </span>
+        <span className="today-card__kvo">
+          <Kvo size={132} state="idle" />
+        </span>
+      </div>
 
-      <div className="hero__cta">
+      <div className="today-card__cta">
         <Button
           variant="onGreen"
           onClick={() => navigate(`/course/${episode.id}/session`)}
         >
-          {resolveTodayCta(data.action, episode)}
+          <IconPlay size={17} /> {resolveTodayCta(data.action, episode)}
         </Button>
       </div>
     </article>
   );
 }
 
-function FallbackHero({
-  degraded,
+function EmptyToday({
   reviewDue,
+  onReview,
+  onCourse,
 }: {
-  degraded: boolean;
   reviewDue: number;
+  onReview: () => void;
+  onCourse: () => void;
 }) {
-  const navigate = useNavigate();
-  if (reviewDue > 0) {
-    return (
-      <article className="hero">
-        <div className="hero__art" aria-hidden="true">
-          <HeroArt />
-        </div>
-        <div className="hero__head">
-          <span className="eyebrow" style={{ opacity: 0.85 }}>
-            Сегодня
-          </span>
-          <h2 className="hero__lesson">Освежим то, что уже знаешь</h2>
-        </div>
-        <div className="hero__cta">
-          <Button variant="onGreen" onClick={() => navigate("/review")}>
-            Повторить
-          </Button>
-        </div>
-      </article>
-    );
-  }
-
   return (
-    <article className="hero">
-      <div className="hero__art" aria-hidden="true">
-        <HeroArt />
-      </div>
-      <div className="hero__head">
-        <span className="eyebrow" style={{ opacity: 0.85 }}>
-          {degraded ? "Курс" : "Всё пройдено"}
-        </span>
-        <h2 className="hero__lesson">
-          {degraded
-            ? "Открой курс и продолжай"
+    <article className="today-card today-card--quiet">
+      <div className="today-card__head">
+        <span className="today-card__eyebrow">Сегодня</span>
+        <h1 className="today-card__title">
+          {reviewDue > 0
+            ? "Освежим то, что уже знаешь"
             : "Ты прошла все ситуации этого уровня"}
-        </h2>
+        </h1>
       </div>
-      <div className="hero__cta">
-        <Button variant="onGreen" onClick={() => navigate("/course")}>
-          Открыть курс
+      <div className="today-card__scene">
+        <span className="today-card__kvo">
+          <Kvo size={132} state="happy" />
+        </span>
+      </div>
+      <div className="today-card__cta">
+        <Button variant="onGreen" onClick={reviewDue > 0 ? onReview : onCourse}>
+          {reviewDue > 0 ? "Повторить" : "Открыть курс"}
         </Button>
       </div>
     </article>
   );
 }
 
-/** Returning is never framed as a debt or a broken streak. */
-function WelcomeBack({ days }: { days: number }) {
-  return (
-    <div className="panel-blush stack-sm">
-      <span className="caption" style={{ color: "var(--accent-ink)" }}>
-        С возвращением
-      </span>
-      <p className="small" style={{ color: "var(--ink-700)" }}>
-        Тебя не было {days} {plural(days, "день", "дня", "дней")}. Ничего не
-        потеряно — начнём с короткого захода.
-      </p>
-    </div>
-  );
-}
-
-function WeeklyGoal({
-  goal,
-}: {
-  goal: NonNullable<TodayResponse["weeklyGoal"]>;
-}) {
-  const total = goal.mine + (goal.friendDone ?? 0);
-  const percent = Math.min(100, Math.round((100 * total) / goal.target));
-  return (
-    <div className="panel stack-sm">
-      <div className="row-between">
-        <span className="caption">
-          {goal.friendName ? `Вместе с ${goal.friendName}` : "Общая цель"}
-        </span>
-        <span className="caption num">
-          {total} / {goal.target}
-        </span>
-      </div>
-      <ProgressBar percent={percent} thin />
-      <p className="small muted">
-        {goal.completed
-          ? "Цель недели закрыта — вы оба справились."
-          : "Занятия складываются в одну общую цель на неделю."}
-      </p>
-    </div>
-  );
+function formatToday(): string {
+  const formatted = new Date().toLocaleDateString("ru-RU", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
 }

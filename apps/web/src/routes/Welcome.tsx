@@ -1,60 +1,81 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { WelcomeArt } from "../brand/illustrations.tsx";
+import { Kvo, KvoBadge } from "../brand/Kvo.tsx";
+import { Art, ArtLayer } from "../brand/Art.tsx";
+import { artName } from "../brand/artRegistry.ts";
 import { Button } from "../ui/Button.tsx";
+import { markWelcomeSeen } from "../RootRedirect.tsx";
+import { track } from "../lib/analytics.ts";
 
-/** First screen of the product. Illustration-led and emotional — the one
- * place that sells the idea before asking for anything. */
+/**
+ * The hook.
+ *
+ * It names a feeling the learner already knows — you have the words, the
+ * answer just doesn't come — instead of promising that they will learn
+ * English. A promise that large gets filtered out; a recognised moment
+ * does not.
+ *
+ * One headline, one action. No skip, no step dots, no second door.
+ */
 export function Welcome() {
   const navigate = useNavigate();
 
-  return (
-    <div className="focus-shell has-blobs">
-      <div
-        className="blob blob-blush"
-        style={{ width: 220, height: 220, top: -80, left: -90 }}
-      />
-      <div
-        className="blob blob-green"
-        style={{ width: 260, height: 260, bottom: -120, right: -110 }}
-      />
+  useEffect(() => {
+    track("welcome_viewed");
+  }, []);
 
-      <div
-        className="focus-body"
-        style={{ justifyContent: "space-between", gap: 0 }}
-      >
-        <div className="row" style={{ paddingTop: 4 }}>
-          <span className="brand">
-            <span className="brand__dot" aria-hidden="true">
-              S
-            </span>
-            Speak in English
+  return (
+    <div className="hero-screen">
+      <div className="hero-screen__stage">
+        <ArtLayer name={artName.heroBackdrop("welcome")} priority />
+
+        <div className="brand-lockup">
+          <KvoBadge size={34} />
+          <span className="brand-lockup__name">
+            <b>Speak</b> in English
           </span>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            padding: "var(--s6) 0 var(--s4)",
-          }}
-        >
-          <WelcomeArt />
-        </div>
+        {/* The unfinished phrases that hang in the air in a real
+            conversation — the thing the product is actually about. */}
+        <span className="float-phrase float-phrase--a en">Could I…</span>
+        <span className="float-phrase float-phrase--b en">Sorry?</span>
+        <span className="float-phrase float-phrase--c en">um…</span>
+        <span className="float-phrase float-phrase--d en">I'd like a…</span>
 
-        <div className="stack" style={{ paddingBottom: "var(--s6)" }}>
-          <h1 className="display">Английский без хаоса</h1>
-          <p className="body muted">
-            Короткие уроки, понятная структура и прогресс каждый день — прямо в
-            Telegram.
-          </p>
+        <div className="hero-screen__kvo">
+          <Art
+            name={artName.heroSubject("welcome")}
+            className="hero-art"
+            priority
+            fallback={<Kvo size={220} state="thinking" title="Кво" />}
+          />
         </div>
+      </div>
 
-        <div className="stack-sm">
-          <Button onClick={() => navigate("/onboarding/goals")}>
-            Начать обучение
+      <div className="hero-screen__sheet">
+        <div className="sheet-grabber" aria-hidden="true" />
+        <h1 className="display">
+          Ты знаешь слова.
+          <br />
+          Но ответ <span className="accent-text">почему-то не приходит.</span>
+        </h1>
+        <p className="body muted">
+          Мы учим через жизненные ситуации — кафе, знакомства, город. Сначала
+          ситуация. Потом слова.
+        </p>
+
+        <div className="hero-screen__actions">
+          <Button
+            onClick={() => {
+              markWelcomeSeen();
+              navigate("/demo");
+            }}
+          >
+            Попробовать иначе
           </Button>
           <p className="caption muted" style={{ textAlign: "center" }}>
-            Займёт пару минут — подберём уровень и первый урок
+            Меньше минуты, без регистрации
           </p>
         </div>
       </div>

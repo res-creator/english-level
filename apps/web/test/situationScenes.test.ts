@@ -1,0 +1,54 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {
+  FALLBACK_SCENE,
+  openingLine,
+  sceneForSituation,
+} from "../src/brand/situationScenes.ts";
+
+test("a situation always resolves to one place and one person", () => {
+  const cafe = sceneForSituation("les_sie_a1_e2");
+  assert.equal(cafe.scene, "cafe");
+  assert.equal(cafe.cast, "maya");
+});
+
+test("the same person returns in the same place across situations", () => {
+  // Ordering coffee, and later an order that went wrong — same café,
+  // same barista. That continuity is the product, not decoration.
+  const first = sceneForSituation("les_sie_a1_e2");
+  const later = sceneForSituation("les_sie_a1_e5");
+  assert.deepEqual(later, first);
+
+  const meeting = sceneForSituation("les_sie_a1_e1");
+  const dayAfter = sceneForSituation("les_sie_a1_e3");
+  assert.deepEqual(dayAfter, meeting);
+});
+
+test("one chapter needs only a handful of places and people", () => {
+  const episodes = [
+    "les_sie_a1_e1",
+    "les_sie_a1_e2",
+    "les_sie_a1_e3",
+    "les_sie_a1_e4",
+    "les_sie_a1_e5",
+  ].map(sceneForSituation);
+
+  assert.equal(new Set(episodes.map((e) => e.scene)).size, 3);
+  assert.equal(new Set(episodes.map((e) => e.cast)).size, 3);
+});
+
+test("content without artwork still gets a scene instead of nothing", () => {
+  assert.deepEqual(sceneForSituation("les_does_not_exist"), FALLBACK_SCENE);
+  assert.equal(openingLine("les_does_not_exist"), "Hello!");
+});
+
+test("every situation opens mid-conversation, in English", () => {
+  for (const id of ["les_sie_a1_e1", "les_sie_a1_e2", "les_sie_a1_e4"]) {
+    const line = openingLine(id);
+    assert.ok(line.length > 0);
+    assert.ok(
+      !/[а-яё]/i.test(line),
+      `the opening line for ${id} must be English, got "${line}"`,
+    );
+  }
+});

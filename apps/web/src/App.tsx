@@ -5,6 +5,9 @@ import { RequireAuthenticated } from "./auth/RequireAuthenticated";
 import { RootRedirect } from "./RootRedirect";
 import { Layout } from "./components/Layout";
 import { Welcome } from "./routes/Welcome";
+import { Demo } from "./routes/Demo";
+import { DemoResult } from "./routes/DemoResult";
+import { CompanionIntro } from "./routes/CompanionIntro";
 import { Today } from "./routes/Today";
 import { Course } from "./routes/Course";
 import { EpisodePreview } from "./routes/EpisodePreview";
@@ -29,20 +32,31 @@ export function App() {
           <Routes>
             <Route path="/" element={<RootRedirect />} />
 
-            {/* The four daily destinations keep the bottom navigation. */}
+            {/* The four daily destinations keep the bottom navigation.
+                Review is deliberately not one of them — it surfaces from
+                Today and from My Space, where it has a reason to exist. */}
             <Route element={<Layout />}>
               <Route path="/today" element={<Today />} />
               <Route path="/course" element={<Course />} />
               <Route path="/course/:episodeId" element={<EpisodePreview />} />
-              <Route path="/review" element={<Review />} />
               <Route path="/my" element={<MyEnglish />} />
               <Route path="/my/space" element={<MySpace />} />
             </Route>
 
-            {/* First-use and focus mode render full-screen, without the
-                product navigation. */}
+            {/* Focus mode and first use render full-screen, without the
+                product navigation. The hook and the demo run before
+                anything is asked for:
+                no account, no placement, no saved state. */}
+            <Route path="/welcome" element={<Welcome />} />
+            <Route path="/demo" element={<Demo />} />
+            <Route path="/demo/result" element={<DemoResult />} />
+
             <Route element={<RequireAuthenticated />}>
-              <Route path="/welcome" element={<Welcome />} />
+              <Route path="/review" element={<Review />} />
+              <Route
+                path="/onboarding/companion"
+                element={<CompanionIntro />}
+              />
               <Route path="/onboarding" element={<OnboardingIndex />} />
               <Route path="/onboarding/goals" element={<GoalsStep />} />
               <Route path="/onboarding/level" element={<LevelStep />} />

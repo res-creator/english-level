@@ -7,56 +7,90 @@
 :root {
   color-scheme: light;
 
-  /* -- Brand greens (primary) -- */
-  --green-900: #12302a;
-  --green-800: #174436;
-  --green-700: #1d6146;
-  --green-600: #24795a;
-  --green-500: #2e9068;
-  --green-400: #4aad83;
-  --green-300: #8fd0b1;
-  --green-200: #c7e8d6;
-  --green-100: #e2f3ea;
-  --green-50: #f0faf4;
+  /* ------------------------------------------------------------------
+     Speak in English V1.1 — violet system.
+     Six brand values come straight from the approved design:
+     Violet #5B2FE0 · Zone #6B42EE · Lavender #F2EDFF · Surface #FFFFFF
+     Ink #17121F · Apricot #FFB27A. Everything below is a ramp built
+     around them, so a component never hard-codes a colour.
+     ------------------------------------------------------------------ */
 
-  /* -- Blush (secondary, supporting only) -- */
-  --blush-700: #a8465f;
-  --blush-600: #c25d77;
-  --blush-400: #eda0b4;
-  --blush-300: #f6c3d0;
-  --blush-200: #fbdde5;
-  --blush-100: #fdeef2;
+  /* -- Violet (primary) -- */
+  --violet-900: #1b0d4a;
+  --violet-800: #2c1673;
+  --violet-700: #3f1fa3;
+  --violet-600: #5b2fe0;
+  --violet-500: #6b42ee;
+  --violet-400: #8b6bf3;
+  --violet-300: #b6a1f8;
+  --violet-200: #d9cdfc;
+  --violet-100: #ece6fe;
+  --violet-50: #f6f3ff;
 
-  /* -- Warm neutrals (ground) -- */
-  --cream-50: #fffdfa;
-  --cream-100: #fbf6ef;
-  --cream-200: #f4ece1;
-  --cream-300: #e9ded0;
+  /* -- Lavender ground -- */
+  --lav-300: #cdc2ee;
+  --lav-200: #e4dcfa;
+  --lav-100: #f2edff;
+  --lav-50: #f8f5ff;
 
-  /* -- Ink (dark elegant type) -- */
-  --ink-900: #17211c;
-  --ink-700: #38463e;
-  --ink-500: #64736a;
-  --ink-400: #8b988f;
-  --ink-300: #b4beb7;
+  /* -- Apricot (earned moments only) -- */
+  --apricot-700: #a8551f;
+  --apricot-500: #ff9c53;
+  --apricot-400: #ffb27a;
+  --apricot-200: #ffe0c7;
+  --apricot-100: #fff2e7;
+
+  /* -- Ink (near-black, violet undertone) -- */
+  --ink-900: #17121f;
+  --ink-800: #241d31;
+  --ink-700: #3c3350;
+  --ink-500: #6b6383;
+  --ink-400: #9a93ad;
+  --ink-300: #c6c0d6;
 
   /* -- Semantic -- */
-  --bg: var(--cream-100);
-  --surface: var(--cream-50);
-  --surface-sunken: var(--cream-200);
-  --border: #e6dccd;
-  --border-strong: #d8cab6;
+  --bg: var(--lav-100);
+  --surface: #ffffff;
+  --surface-sunken: var(--lav-200);
+  --border: #e6def8;
+  --border-strong: #d4c8f2;
   --text: var(--ink-900);
   --text-muted: var(--ink-500);
-  --text-on-dark: #fffdfa;
-  --primary: var(--green-600);
-  --primary-strong: var(--green-700);
-  --primary-soft: var(--green-100);
-  --accent: var(--blush-400);
-  --accent-soft: var(--blush-100);
-  --accent-ink: var(--blush-700);
-  --danger: #c0563f;
-  --danger-soft: #fbe6e0;
+  --text-on-dark: #ffffff;
+  --primary: var(--violet-600);
+  --primary-strong: var(--violet-700);
+  --primary-soft: var(--violet-100);
+  --accent: var(--apricot-400);
+  --accent-soft: var(--apricot-100);
+  --accent-ink: var(--apricot-700);
+  --correct: #2f9e6b;
+  --correct-soft: #e2f4ec;
+  --danger: #d1523c;
+  --danger-soft: #fbe6e2;
+
+  /* Legacy aliases: older components still name the first palette.
+     Remapping them here turns the whole app violet in one place
+     instead of touching every rule. */
+  --green-900: var(--violet-900);
+  --green-800: var(--violet-800);
+  --green-700: var(--violet-700);
+  --green-600: var(--violet-600);
+  --green-500: var(--violet-500);
+  --green-400: var(--violet-400);
+  --green-300: var(--violet-300);
+  --green-200: var(--violet-200);
+  --green-100: var(--violet-100);
+  --green-50: var(--violet-50);
+  --blush-700: var(--apricot-700);
+  --blush-600: var(--apricot-700);
+  --blush-400: var(--apricot-400);
+  --blush-300: var(--apricot-400);
+  --blush-200: var(--apricot-200);
+  --blush-100: var(--apricot-100);
+  --cream-50: #ffffff;
+  --cream-100: var(--lav-100);
+  --cream-200: var(--lav-200);
+  --cream-300: var(--lav-300);
 
   /* -- Spacing -- */
   --s1: 4px;
@@ -76,12 +110,15 @@
   --r-md: 14px;
   --r-lg: 20px;
   --r-xl: 28px;
+  --r-2xl: 36px;
   --r-pill: 999px;
 
-  /* -- Elevation (warm, very soft) -- */
-  --shadow-sm: 0 2px 6px -2px rgba(23, 33, 28, 0.08);
-  --shadow-md: 0 10px 24px -14px rgba(23, 33, 28, 0.22);
-  --shadow-green: 0 14px 30px -16px rgba(29, 97, 70, 0.45);
+  /* -- Elevation (violet-tinted, never black) -- */
+  --shadow-sm: 0 2px 8px -4px rgba(27, 13, 74, 0.12);
+  --shadow-md: 0 12px 28px -16px rgba(27, 13, 74, 0.2);
+  --shadow-lg: 0 24px 48px -28px rgba(27, 13, 74, 0.34);
+  --shadow-green: 0 14px 30px -16px rgba(91, 47, 224, 0.42);
+  --shadow-cta: 0 12px 26px -12px rgba(91, 47, 224, 0.5);
 
   /* -- Motion -- */
   --fast: 110ms ease;
@@ -90,7 +127,7 @@
 
   /* -- Layout -- */
   --content-max: 460px;
-  --nav-h: 62px;
+  --nav-h: 66px;
   --safe-b: env(safe-area-inset-bottom, 0px);
   --safe-t: env(safe-area-inset-top, 0px);
 }
@@ -109,7 +146,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Onest", "Manrope", "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -1942,4 +1979,1886 @@ a {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+/* ===========================================================================
+   V1.1 — English speech.
+   Every line of English the learner reads or says is set in a serif italic.
+   That single choice separates "the language" from "the interface" at a
+   glance, without a label, an icon or a colour.
+   =========================================================================== */
+
+.en {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* ===========================================================================
+   V1.1 — the scene.
+   =========================================================================== */
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-bottom-left-radius: var(--r-2xl);
+  border-bottom-right-radius: var(--r-2xl);
+  background: var(--lav-200);
+  isolation: isolate;
+}
+
+.scene--compact {
+  height: 240px;
+}
+
+.scene__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scene__person {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-56%);
+  /* The expression is the only thing that changes between activities,
+     so it cross-fades in place rather than the screen moving. */
+  animation: scene-settle var(--slow) both;
+}
+
+@keyframes scene-settle {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.scene__label {
+  position: absolute;
+  top: var(--s4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px var(--s3);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-700);
+  white-space: nowrap;
+}
+
+.scene__dialogue {
+  position: absolute;
+  z-index: 2;
+  right: var(--s4);
+  top: var(--s7);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s2);
+  max-width: 68%;
+}
+
+.bubble {
+  padding: 10px var(--s4);
+  border-radius: 18px;
+  font-size: 16px;
+  line-height: 1.32;
+  box-shadow: var(--shadow-sm);
+  animation: bubble-in 220ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.bubble--them {
+  align-self: flex-start;
+  background: #ffffff;
+  color: var(--ink-900);
+  border-bottom-left-radius: 6px;
+}
+
+.bubble--you {
+  background: var(--violet-600);
+  color: #ffffff;
+  border-bottom-right-radius: 6px;
+}
+
+/* The conversation has a past — it just doesn't ask for attention. */
+.bubble--past-1 {
+  opacity: 0.62;
+  transform: scale(0.96);
+  transform-origin: right center;
+}
+
+.bubble--past-2 {
+  opacity: 0.34;
+  transform: scale(0.92);
+  transform-origin: right center;
+}
+
+.bubble__pending {
+  display: inline-flex;
+  gap: 5px;
+  padding: 3px 2px;
+}
+
+.bubble__pending i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.45;
+  animation: pending 1.1s infinite ease-in-out;
+}
+
+.bubble__pending i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.bubble__pending i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes pending {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+/* Kvo leans in from the edge, on your side of the scene. */
+.scene__kvo {
+  position: absolute;
+  z-index: 3;
+  right: -10px;
+  bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  animation: kvo-in 260ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+@keyframes kvo-in {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+
+/* A different shape from the human bubbles, so you never confuse who
+   is speaking — even out of the corner of your eye. */
+.kvo-bubble {
+  max-width: 150px;
+  padding: 8px var(--s3);
+  border-radius: var(--r-md);
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink-700);
+}
+
+.kvo-badge {
+  display: inline-grid;
+  place-items: center;
+  background: linear-gradient(160deg, var(--violet-500), var(--violet-700));
+  flex: none;
+}
+
+/* ===========================================================================
+   V1.1 — hero screens (welcome, companion, demo result, mission result).
+   A violet stage on top, a white sheet riding over it. The sheet is where
+   the app talks to you; the stage is the world it talks about.
+   =========================================================================== */
+
+.hero-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.hero-screen__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 46vh;
+  padding-top: calc(var(--safe-t) + var(--s5));
+  background: radial-gradient(
+    120% 80% at 50% 0%,
+    var(--violet-500) 0%,
+    var(--violet-600) 46%,
+    var(--violet-700) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-screen__kvo {
+  margin-top: auto;
+  transform: translateY(14%);
+  filter: drop-shadow(0 26px 30px rgba(27, 13, 74, 0.35));
+}
+
+.hero-screen__sheet {
+  position: relative;
+  z-index: 2;
+  margin-top: -28px;
+  padding: var(--s5) var(--s6) calc(var(--s6) + var(--safe-b));
+  background: var(--surface);
+  border-radius: var(--r-2xl) var(--r-2xl) 0 0;
+  box-shadow: 0 -18px 40px -26px rgba(27, 13, 74, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+.sheet-grabber {
+  width: 44px;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--lav-300);
+  margin: 0 auto var(--s2);
+}
+
+.hero-screen__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding-top: var(--s2);
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.brand-lockup__name b {
+  font-weight: 800;
+}
+
+/* Unfinished phrases, drifting where they always drift: in the air. */
+.float-phrase {
+  position: absolute;
+  padding: 6px var(--s3);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 15px;
+  white-space: nowrap;
+  animation: drift 5.5s ease-in-out infinite alternate;
+}
+
+.float-phrase--a {
+  top: 16%;
+  left: 6%;
+}
+.float-phrase--b {
+  top: 11%;
+  right: 7%;
+  animation-delay: -1.4s;
+}
+.float-phrase--c {
+  top: 36%;
+  left: 3%;
+  animation-delay: -2.6s;
+}
+.float-phrase--d {
+  top: 33%;
+  right: 4%;
+  animation-delay: -3.8s;
+}
+
+@keyframes drift {
+  to {
+    transform: translateY(-9px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-phrase,
+  .bubble__pending i {
+    animation: none;
+  }
+}
+
+.display {
+  font-size: 34px;
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink-900);
+  margin: 0;
+}
+
+.accent-text {
+  color: var(--violet-600);
+}
+
+/* ===========================================================================
+   V1.1 — lesson / demo screen: top bar, scene, task sheet.
+   =========================================================================== */
+
+.lesson-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg);
+}
+
+.lesson-top {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: calc(var(--safe-t) + var(--s3)) var(--s4) var(--s3);
+}
+
+.lesson-top__skip,
+.lesson-top__label {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-500);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.lesson-top__label {
+  cursor: default;
+  color: var(--ink-700);
+  font-weight: 700;
+}
+
+/* Segmented progress: a session is short enough to be countable. */
+.seg-progress {
+  display: flex;
+  flex: 1;
+  gap: 5px;
+}
+
+.seg {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--lav-300);
+  transition: background var(--base);
+}
+
+.seg.is-on {
+  background: var(--violet-600);
+}
+
+/* The sheet where the app asks you something. It rides over the scene,
+   and it is the only thing that changes between activities. */
+.task-sheet {
+  position: relative;
+  z-index: 3;
+  margin-top: -22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  padding: var(--s6) var(--s5) calc(var(--s6) + var(--safe-b));
+  background: var(--surface);
+  border-radius: var(--r-2xl) var(--r-2xl) 0 0;
+  box-shadow: 0 -16px 36px -26px rgba(27, 13, 74, 0.35);
+}
+
+.task-sheet__title {
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.22;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink-900);
+}
+
+.task-sheet__cta {
+  margin-top: auto;
+  padding-top: var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+/* Context the situation gives you, not the app: "you're in a hurry". */
+.context-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin: 0;
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-md);
+  background: var(--apricot-100);
+  color: var(--apricot-700);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.overline {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+
+/* Answers */
+.answer {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  width: 100%;
+  padding: var(--s4);
+  text-align: left;
+  background: var(--lav-50);
+  border: 2px solid transparent;
+  border-radius: var(--r-lg);
+  cursor: pointer;
+  transition:
+    border-color var(--fast),
+    background var(--fast);
+}
+
+.answer--picked {
+  background: var(--violet-50);
+  border-color: var(--violet-600);
+}
+
+.answer--correct {
+  background: var(--correct-soft);
+  border-color: var(--correct);
+}
+
+.answer--wrong {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+}
+
+.answer:disabled {
+  cursor: default;
+}
+
+.answer__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.answer__text {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.answer__because {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--violet-600);
+}
+
+.answer__mark {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--lav-300);
+}
+
+.answer--picked .answer__mark,
+.answer--correct .answer__mark {
+  border-color: transparent;
+  background: var(--violet-600)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>")
+    center / 16px no-repeat;
+}
+
+.answer--correct .answer__mark {
+  background-color: var(--correct);
+}
+
+.answer--wrong .answer__mark {
+  border-color: transparent;
+  background: var(--danger);
+}
+
+/* Word bank */
+.word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+.word {
+  padding: var(--s3) var(--s4);
+  font-size: 17px;
+  background: var(--surface);
+  border: 2px solid var(--lav-200);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: border-color var(--fast);
+}
+
+.word--picked {
+  border-color: var(--violet-600);
+  background: var(--violet-50);
+}
+
+.word:disabled {
+  cursor: default;
+}
+
+.cast-note {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s4);
+  border-radius: var(--r-lg);
+  background: var(--lav-100);
+}
+
+.cast-note__avatar {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--apricot-200);
+  color: var(--apricot-700);
+  font-weight: 800;
+}
+
+/* --- demo result -------------------------------------------------------- */
+
+.hero-screen__stage--tall {
+  justify-content: flex-start;
+  gap: var(--s5);
+  padding: calc(var(--safe-t) + var(--s6)) var(--s5) var(--s8);
+}
+
+.stage-chip {
+  align-self: center;
+  padding: 7px var(--s4);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.transcript {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  width: 100%;
+}
+
+.transcript__row {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.transcript__row--you {
+  justify-content: flex-end;
+}
+
+.transcript__avatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--apricot-200);
+  color: var(--apricot-700);
+  font-weight: 800;
+}
+
+.transcript__bubble {
+  padding: 12px var(--s4);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink-900);
+  font-size: 19px;
+}
+
+.transcript__bubble--you {
+  background: var(--violet-800);
+  color: #ffffff;
+}
+
+.transcript__tag {
+  align-self: flex-end;
+  padding: 5px var(--s3);
+  border-radius: var(--r-pill);
+  background: var(--apricot-400);
+  color: var(--ink-900);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* The schedule, drawn rather than explained. */
+.timeline {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s1);
+  padding: var(--s2) 0;
+}
+
+.timeline__point {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.timeline__point::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--lav-300);
+}
+
+.timeline__point:last-child::before {
+  display: none;
+}
+
+.timeline__chip {
+  padding: 3px var(--s2);
+  border-radius: var(--r-sm);
+  background: var(--lav-100);
+  color: var(--violet-600);
+  font-size: 13px;
+  min-height: 22px;
+}
+
+.timeline__chip--empty {
+  background: none;
+}
+
+.timeline__dot {
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid var(--violet-600);
+  background: var(--surface);
+}
+
+.timeline__dot--done {
+  background: var(--violet-600);
+}
+
+.timeline__dot--goal {
+  border-color: var(--apricot-400);
+  background: var(--apricot-400);
+}
+
+.timeline__label {
+  font-size: 12px;
+  color: var(--ink-500);
+  text-align: center;
+}
+
+.timeline__label.is-strong {
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+/* ===========================================================================
+   V1.1 — companion picker and Today.
+   =========================================================================== */
+
+.pick-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding: calc(var(--safe-t) + var(--s8)) var(--s6)
+    calc(var(--s6) + var(--safe-b));
+  gap: var(--s5);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.pick-screen__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  text-align: center;
+}
+
+.pick-stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s4);
+  min-height: 240px;
+}
+
+.pick-stage__disc {
+  display: grid;
+  place-items: center;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 30%,
+    var(--violet-500),
+    var(--violet-700)
+  );
+  box-shadow: var(--shadow-lg);
+}
+
+/* Cropped by the screen edge — they are peeking in, not lined up. */
+.pick-peek {
+  position: absolute;
+  top: 50%;
+  opacity: 0.9;
+}
+
+.pick-peek--left {
+  left: -72px;
+  transform: translateY(-10%);
+}
+
+.pick-peek--right {
+  right: -66px;
+  transform: translateY(-58%);
+}
+
+.pick-dots {
+  display: flex;
+  gap: var(--s2);
+}
+
+.pick-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: var(--r-pill);
+  background: var(--lav-300);
+  cursor: pointer;
+  transition: width var(--base);
+}
+
+.pick-dot.is-on {
+  width: 22px;
+  background: var(--violet-600);
+}
+
+.pick-screen__foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.pick-screen__alt {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+
+/* --- Today -------------------------------------------------------------- */
+
+.today-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+
+.welcome-back {
+  padding: var(--s4);
+  border-radius: var(--r-lg);
+  background: var(--apricot-100);
+  color: var(--apricot-700);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* The one thing to do today, and it owns the screen. */
+.today-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  padding: var(--s6) var(--s5) var(--s5);
+  border-radius: var(--r-2xl);
+  background: linear-gradient(
+    168deg,
+    var(--violet-500) 0%,
+    var(--violet-600) 52%,
+    var(--violet-700) 100%
+  );
+  color: #ffffff;
+  box-shadow: var(--shadow-green);
+  overflow: hidden;
+}
+
+.today-card--quiet {
+  background: linear-gradient(168deg, var(--violet-600), var(--violet-800));
+}
+
+.today-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.today-card__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.today-card__title {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.today-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.today-card__scene {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s3);
+  min-height: 132px;
+}
+
+.today-card__line {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-self: center;
+  max-width: 58%;
+  padding: 10px var(--s4);
+  border-radius: 18px;
+  border-bottom-left-radius: 6px;
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.today-card__line b {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--violet-600);
+}
+
+.today-card__line .en {
+  font-size: 16px;
+  color: var(--ink-900);
+}
+
+.today-card__kvo {
+  flex: none;
+  margin-right: -14px;
+  margin-bottom: -18px;
+  filter: drop-shadow(0 14px 18px rgba(27, 13, 74, 0.3));
+}
+
+.today-card__cta {
+  position: relative;
+  z-index: 1;
+}
+
+/* Honest numbers, in a row, no dashboard. */
+.today-stats {
+  display: flex;
+  gap: var(--s2);
+}
+
+.today-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--s4) var(--s3);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.today-stat--action {
+  cursor: pointer;
+  border-color: var(--apricot-200);
+  background: var(--apricot-100);
+}
+
+.today-stat__label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-500);
+}
+
+.today-stat--action .today-stat__label {
+  color: var(--apricot-700);
+}
+
+.today-stat__value {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
+.chapter-dots {
+  display: flex;
+  gap: 4px;
+  padding-top: 5px;
+}
+
+.chapter-dots i {
+  width: 14px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--lav-300);
+}
+
+.chapter-dots i.is-on {
+  background: var(--violet-600);
+}
+
+/* ===========================================================================
+   V1.1 — the course path.
+   Nodes alternate down the screen; the line is solid behind you and
+   dotted ahead. Exactly one node carries a card, so there is never a
+   question about where to start.
+   =========================================================================== */
+
+.path {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s5);
+}
+
+.path__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.path__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s6);
+}
+
+.node2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  min-height: 78px;
+}
+
+.node2--left {
+  flex-direction: row-reverse;
+}
+
+/* The connector, drawn from this node towards the next one. */
+.node2__link {
+  position: absolute;
+  z-index: 0;
+  top: 64px;
+  width: 3px;
+  height: calc(100% + var(--s6) - 52px);
+  border-radius: var(--r-pill);
+  background-image: linear-gradient(var(--violet-300) 55%, transparent 0);
+  background-size: 3px 12px;
+}
+
+.node2--right .node2__link {
+  left: 34px;
+}
+
+.node2--left .node2__link {
+  right: 34px;
+}
+
+.node2__link.is-solid {
+  background-image: none;
+  background-color: var(--violet-600);
+}
+
+.node2__dot {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: none;
+  background: var(--lav-200);
+  color: var(--violet-400);
+  cursor: pointer;
+  transition:
+    transform var(--fast),
+    box-shadow var(--fast);
+}
+
+.node2__dot:active {
+  transform: scale(0.96);
+}
+
+.node2.is-done .node2__dot {
+  background: var(--violet-600);
+  color: #ffffff;
+}
+
+/* You are here: a ring and a halo, and it is the only one that has them. */
+.node2.is-current .node2__dot,
+.node2.is-started .node2__dot {
+  background: var(--surface);
+  color: var(--violet-600);
+  box-shadow:
+    0 0 0 4px var(--violet-600),
+    0 0 0 14px rgba(91, 47, 224, 0.12);
+}
+
+.node2__badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--apricot-400)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2317121f' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>")
+    center / 13px no-repeat;
+}
+
+.node2__num {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.node2__kvo {
+  position: absolute;
+  z-index: 2;
+  bottom: 38px;
+  pointer-events: none;
+}
+
+.node2--right .node2__kvo {
+  left: -18px;
+}
+
+.node2--left .node2__kvo {
+  right: -18px;
+}
+
+.node2__label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+}
+
+.node2--left .node2__label {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.node2__title {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--ink-900);
+}
+
+.node2.is-ahead .node2__title {
+  color: var(--ink-400);
+}
+
+.node2__meta {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--violet-600);
+}
+
+.node2.is-ahead .node2__meta {
+  color: var(--ink-400);
+}
+
+/* The only card on the path. */
+.node2__card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s2);
+  padding: var(--s4);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  border: 2px solid var(--violet-600);
+  box-shadow: var(--shadow-md);
+  min-width: 0;
+}
+
+.node2__card .btn {
+  width: 100%;
+  margin-top: var(--s1);
+}
+
+/* ===========================================================================
+   V1.1 — situation preview.
+   =========================================================================== */
+
+.preview-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg);
+  margin: calc(var(--s5) * -1) calc(var(--s5) * -1) 0;
+}
+
+.preview-screen__scene {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  background: var(--lav-200);
+}
+
+.preview-screen__back {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--safe-t) + var(--s3));
+  left: var(--s4);
+}
+
+.preview-screen__person {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-54%);
+}
+
+.preview-screen__sheet {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  margin-top: -26px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  padding: var(--s6) var(--s5) calc(var(--s8) + var(--safe-b));
+  background: var(--surface);
+  border-radius: var(--r-2xl) var(--r-2xl) 0 0;
+}
+
+.can-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s3);
+  padding: var(--s1) 0;
+}
+
+.can-row__mark {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--violet-100);
+  color: var(--violet-600);
+}
+
+.can-row__text {
+  font-size: 16.5px;
+  line-height: 1.38;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.preview-screen__cta {
+  margin-top: auto;
+  display: flex;
+  align-items: stretch;
+  gap: var(--s3);
+  padding-top: var(--s4);
+}
+
+.preview-screen__cta .btn {
+  flex: 1;
+}
+
+.duration-chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 var(--s4);
+  border-radius: var(--r-btn, 16px);
+  background: var(--lav-100);
+  color: var(--ink-700);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ===========================================================================
+   V1.1 — answers, misses, memory objects.
+   =========================================================================== */
+
+.sentence-line,
+.example {
+  margin: 0;
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-md);
+  background: var(--lav-100);
+  font-size: 18px;
+  color: var(--ink-900);
+}
+
+.answer-input {
+  width: 100%;
+  padding: var(--s4);
+  font-size: 19px;
+  color: var(--ink-900);
+  background: var(--surface);
+  border: 2px solid var(--violet-600);
+  border-radius: var(--r-lg);
+  outline: none;
+}
+
+.answer-input.is-correct {
+  border-color: var(--correct);
+  background: var(--correct-soft);
+}
+
+.answer-input.is-wrong {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.build-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  min-height: 60px;
+  padding: var(--s3);
+  border-radius: var(--r-lg);
+  background: var(--lav-100);
+  border: 2px dashed var(--lav-300);
+}
+
+.build-line.is-empty {
+  align-items: center;
+  justify-content: center;
+}
+
+.build-line__hint {
+  font-size: 14px;
+  color: var(--ink-400);
+}
+
+.word--placed {
+  border-color: var(--violet-600);
+  background: var(--surface);
+}
+
+/* A miss is information, never a verdict — and never delivered by a face. */
+.miss {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--s4);
+  border-radius: var(--r-lg);
+  background: var(--lav-100);
+  border-left: 4px solid var(--violet-600);
+}
+
+.miss__title {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.miss__answer {
+  font-size: 19px;
+  color: var(--ink-900);
+}
+
+.miss__note {
+  font-size: 14px;
+  color: var(--ink-500);
+}
+
+/* --- memory objects ------------------------------------------------------ */
+
+.memory-object {
+  display: grid;
+  place-items: center;
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 40% 34%,
+    rgba(255, 255, 255, 0.34),
+    rgba(255, 255, 255, 0.06)
+  );
+  font-size: 64px;
+  line-height: 1;
+}
+
+.memory-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px var(--s4);
+  border-radius: var(--r-pill);
+  background: var(--apricot-400);
+  color: var(--ink-900);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.can-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.can-list__row {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.can-list__mark {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--violet-600);
+  color: #ffffff;
+}
+
+.can-list__text {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
+.lives-in {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s3) var(--s4);
+  border-radius: var(--r-md);
+  background: var(--lav-100);
+  font-size: 14.5px;
+  color: var(--ink-500);
+}
+
+.lives-in b {
+  color: var(--ink-900);
+}
+
+/* ===========================================================================
+   V1.1 — My English and My Space.
+   =========================================================================== */
+
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--violet-600);
+}
+
+.result-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  width: 100%;
+}
+
+.result-top__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.hero-screen__stage--result {
+  justify-content: flex-start;
+  gap: var(--s5);
+  padding: calc(var(--safe-t) + var(--s3)) var(--s5) var(--s8);
+}
+
+.result-kvo {
+  filter: drop-shadow(0 18px 22px rgba(27, 13, 74, 0.32));
+}
+
+.result-kvo--corner {
+  position: absolute;
+  right: -14px;
+  top: 38%;
+}
+
+.result-facts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-400);
+}
+
+/* The newest capability gets a card; the rest settle into rows. */
+.cap-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding: var(--s5);
+  border-radius: var(--r-xl);
+  background: linear-gradient(150deg, var(--violet-500), var(--violet-700));
+  color: #ffffff;
+  box-shadow: var(--shadow-green);
+}
+
+.cap-card__chip {
+  align-self: flex-start;
+  padding: 5px var(--s3);
+  border-radius: var(--r-pill);
+  background: var(--apricot-400);
+  color: var(--ink-900);
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+.cap-card__title {
+  margin: 0;
+  max-width: 74%;
+  font-size: 24px;
+  line-height: 1.16;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.cap-card__from {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.cap-card__kvo {
+  position: absolute;
+  right: -10px;
+  bottom: -14px;
+  opacity: 0.95;
+}
+
+.cap-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.cap-row__icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  background: var(--violet-100);
+  color: var(--violet-600);
+}
+
+.cap-row__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cap-row__text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.cap-row__meta {
+  font-size: 13px;
+  color: var(--ink-500);
+}
+
+.phrase-flow {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ink-900);
+}
+
+.phrase-flow i {
+  padding: 0 var(--s2);
+  color: var(--ink-300);
+  font-style: normal;
+}
+
+.space-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  width: 100%;
+  padding: var(--s5);
+  border: none;
+  border-radius: var(--r-xl);
+  background: linear-gradient(140deg, var(--violet-800), var(--violet-900));
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.space-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.space-card__title {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.space-card__meta {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.space-card__link {
+  padding-top: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--apricot-400);
+}
+
+.space-card__kvo {
+  flex: none;
+  margin-bottom: -18px;
+}
+
+/* --- the room ------------------------------------------------------------ */
+
+.space-head {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.room {
+  position: relative;
+  height: 340px;
+  padding: var(--s5);
+  border-radius: var(--r-2xl);
+  background: linear-gradient(
+    175deg,
+    var(--lav-200) 0%,
+    var(--violet-300) 100%
+  );
+  overflow: hidden;
+}
+
+.room__chip {
+  position: absolute;
+  z-index: 3;
+  right: var(--s4);
+  bottom: var(--s4);
+  padding: 7px var(--s4);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--violet-700);
+}
+
+.room__shelf {
+  position: absolute;
+  left: var(--s5);
+  top: 108px;
+  width: 44%;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: #ffffff;
+  opacity: 0;
+  transition: opacity var(--slow);
+}
+
+.room--stage-3 .room__shelf,
+.room--stage-4 .room__shelf {
+  opacity: 1;
+}
+
+.room__window {
+  position: absolute;
+  right: var(--s6);
+  top: var(--s6);
+  width: 108px;
+  height: 130px;
+  border-radius: 54px 54px 8px 8px;
+  background: var(--violet-800);
+  border: 6px solid #ffffff;
+  transform: scale(0.6);
+  transform-origin: top right;
+  transition: transform var(--slow);
+}
+
+.room--stage-2 .room__window {
+  transform: scale(0.8);
+}
+
+.room--stage-3 .room__window,
+.room--stage-4 .room__window {
+  transform: scale(1);
+}
+
+.room__window i {
+  position: absolute;
+  right: 14px;
+  top: 16px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--apricot-400);
+}
+
+.room__objects {
+  position: absolute;
+  left: var(--s5);
+  bottom: 96px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  width: 62%;
+}
+
+.room-slot {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.room-slot.is-locked {
+  background: rgba(255, 255, 255, 0.24);
+  border: 2px dashed rgba(255, 255, 255, 0.55);
+  box-shadow: none;
+  cursor: default;
+}
+
+.room__kvo {
+  position: absolute;
+  left: var(--s6);
+  bottom: 6px;
+  filter: drop-shadow(0 12px 16px rgba(27, 13, 74, 0.25));
+}
+
+.room__saying {
+  position: absolute;
+  left: 120px;
+  bottom: 56px;
+  max-width: 44%;
+  padding: 8px var(--s3);
+  border-radius: var(--r-md);
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-700);
+}
+
+.review-head {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+/* ===========================================================================
+   V1.1 — illustration slots.
+   Artwork fills its layer; every word, bubble and control stays real DOM
+   above it. A missing file simply renders nothing, so the screen degrades
+   to its background colour rather than to a broken box.
+   =========================================================================== */
+
+.art-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Sits in front of the person — the near edge of a counter, a plant —
+   but never in front of the conversation. */
+.scene__foreground {
+  z-index: 2;
+}
+
+.scene__person {
+  z-index: 1;
+}
+
+.scene__dialogue {
+  z-index: 3;
+}
+
+.scene__kvo {
+  z-index: 4;
+}
+
+.scene__label {
+  z-index: 5;
+}
+
+/* Hero screens: an opaque backdrop, and a transparent subject over it. */
+.hero-screen__stage {
+  position: relative;
+}
+
+.hero-art {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 78%;
+  height: auto;
+  filter: drop-shadow(0 26px 30px rgba(27, 13, 74, 0.35));
+}
+
+.hero-screen__stage > *:not(.art-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+/* The room in My Space. */
+.room__art {
+  z-index: 0;
+  border-radius: inherit;
+}
+
+.room__foreground {
+  z-index: 2;
+}
+
+.room-slot img {
+  width: 76%;
+  height: 76%;
+}
+
+/* Today's card carries a hint of the place the situation happens in —
+   dimmed hard, because the words on top have to stay legible. */
+.today-card__art {
+  opacity: 0.28;
+  mix-blend-mode: luminosity;
+}
+
+.today-card > *:not(.today-card__art) {
+  position: relative;
+  z-index: 1;
+}
+
+.preview-screen__scene > *:not(.art-layer) {
+  position: relative;
+  z-index: 1;
 }

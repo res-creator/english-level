@@ -3,6 +3,24 @@ import { useAuth } from "./auth/useAuth.ts";
 import { LoadingScreen } from "./ui/states.tsx";
 import { WelcomeArt } from "./brand/illustrations.tsx";
 
+const WELCOME_SEEN_KEY = "sie.welcomeSeen";
+
+export function markWelcomeSeen(): void {
+  try {
+    localStorage.setItem(WELCOME_SEEN_KEY, "1");
+  } catch {
+    // Private mode or blocked storage: the hook simply shows again.
+  }
+}
+
+function hasSeenWelcome(): boolean {
+  try {
+    return localStorage.getItem(WELCOME_SEEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 /** Entry point: routes by the backend's own navigation intent. */
 export function RootRedirect() {
   const auth = useAuth();
@@ -12,8 +30,14 @@ export function RootRedirect() {
   }
 
   if (auth.status === "authenticated") {
-    if (auth.next === "onboarding")
-      return <Navigate to="/onboarding" replace />;
+    // A brand-new learner meets the hook and the 48-second demo first.
+    // The flag is a per-device convenience only: losing it just shows the
+    // hook again, which costs nothing.
+    if (auth.next === "onboarding") {
+      return (
+        <Navigate to={hasSeenWelcome() ? "/onboarding" : "/welcome"} replace />
+      );
+    }
     if (auth.next === "placement") return <Navigate to="/placement" replace />;
     return <Navigate to="/today" replace />;
   }

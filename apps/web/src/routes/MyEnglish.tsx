@@ -3,19 +3,21 @@ import { useNavigate } from "react-router-dom";
 import type {
   FriendStateResponse,
   MyEnglishResponse,
+  MySpaceResponse,
 } from "@english-level/contracts";
 import {
   acceptFriendInvite,
   createFriendInvite,
   getFriendState,
   getMyEnglish,
+  getMySpace,
 } from "../api/productClient.ts";
-import { useAuth } from "../auth/useAuth.ts";
-import { PreviewResetPanel } from "../components/PreviewResetPanel.tsx";
+import { Kvo } from "../brand/Kvo.tsx";
 import { Button } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { SkeletonList, ErrorState, EmptyState } from "../ui/states.tsx";
-import { levelTitle } from "../ui/labels.tsx";
+import { IconSpeechCheck } from "../ui/icons.tsx";
+import { PreviewResetPanel } from "../components/PreviewResetPanel.tsx";
 
 type State =
   | { status: "loading" }
@@ -23,15 +25,18 @@ type State =
   | { status: "error" };
 
 /**
- * Proof, not a score. Every line is something the learner actually did:
- * a capability proven in a Mission, a phrase met in a real situation.
- * There is no level percentage, no XP and nothing projected.
+ * Proof, not a score.
+ *
+ * The newest capability gets a card of its own, because the moment it was
+ * earned is what the learner came back for. Older ones settle into rows.
+ * Phrases that have survived spaced review are listed as "уже приходят
+ * сами" — the honest wording for what consolidation actually means.
  */
 export function MyEnglish() {
-  const auth = useAuth();
   const navigate = useNavigate();
   const [state, setState] = useState<State>({ status: "loading" });
   const [friend, setFriend] = useState<FriendStateResponse | null>(null);
+  const [space, setSpace] = useState<MySpaceResponse | null>(null);
 
   function load() {
     setState({ status: "loading" });
@@ -41,6 +46,9 @@ export function MyEnglish() {
     getFriendState()
       .then(setFriend)
       .catch(() => setFriend(null));
+    getMySpace()
+      .then(setSpace)
+      .catch(() => setSpace(null));
   }
 
   useEffect(load, []);
@@ -49,7 +57,7 @@ export function MyEnglish() {
     return (
       <section className="stack-lg">
         <h1 className="h1">Мой английский</h1>
-        <SkeletonList rows={3} height={64} />
+        <SkeletonList rows={3} height={84} />
       </section>
     );
   }
@@ -68,103 +76,94 @@ export function MyEnglish() {
   }
 
   const { data } = state;
-  const level = data.level ?? auth.user?.currentCefrLevel ?? null;
+  const [newest, ...rest] = data.capabilities.slice().reverse();
+  const consolidated = data.phrases.filter((p) => p.consolidated);
 
   return (
     <section className="stack-lg">
       <header className="stack-sm">
-        <span className="eyebrow muted">Что ты уже умеешь</span>
-        <div className="row-between">
-          <h1 className="h1">Мой английский</h1>
-          {level ? <span className="pill">{levelTitle(level)}</span> : null}
+        <h1 className="h1">Мой английский</h1>
+        <div className="row" style={{ gap: "var(--s3)" }}>
+          {data.level ? <span className="pill">{data.level}</span> : null}
+          <span className="small muted">
+            {data.stats.phrasesMet} фраз встречено
+          </span>
         </div>
       </header>
 
-      <div className="stat-strip">
-        <div className="stat-strip__item">
-          <span className="stat-strip__value num">{data.stats.phrasesMet}</span>
-          <span className="stat-strip__label">Фраз встречено</span>
-        </div>
-        <div className="stat-strip__item">
-          <span className="stat-strip__value num">
-            {data.stats.phrasesConsolidated}
-          </span>
-          <span className="stat-strip__label">Закреплено</span>
-        </div>
-        <div className="stat-strip__item">
-          <span className="stat-strip__value num">
-            {data.stats.activeDaysThisWeek}
-          </span>
-          <span className="stat-strip__label">Дней на неделе</span>
-        </div>
-      </div>
-
-      <button
-        type="button"
-        className="row-card"
-        onClick={() => navigate("/my/space")}
-      >
-        <span className="row-card__body">
-          <span className="row-card__title">Мой уголок</span>
-          <span className="row-card__meta">
-            Предметы, которые помнят, что ты выучила
-          </span>
-        </span>
-        <span className="row-card__chevron" aria-hidden="true">
-          →
-        </span>
-      </button>
-
       <div className="stack-sm">
-        <span className="eyebrow muted">Я могу</span>
-        {data.capabilities.length === 0 ? (
+        <span className="section-title">Я могу…</span>
+
+        {!newest ? (
           <EmptyState
             title="Пока пусто"
             message="Пройди первую миссию — и здесь появится первое «Я могу»."
           />
         ) : (
-          data.capabilities.map((capability) => (
-            <div className="capability-row" key={capability.episodeId}>
-              <span className="capability-row__mark" aria-hidden="true">
-                {capability.state === "consolidated" ? "★" : "✓"}
+          <>
+            <article className="cap-card">
+              <span className="cap-card__chip">новое</span>
+              <h2 className="cap-card__title">{newest.capability}</h2>
+              {newest.situationTitle ? (
+                <p className="cap-card__from">
+                  из ситуации «{newest.situationTitle}»
+                </p>
+              ) : null}
+              <span className="cap-card__kvo" aria-hidden="true">
+                <Kvo size={92} state="happy" />
               </span>
-              <span className="capability-row__body">
-                <span className="capability-row__text">
-                  {capability.capability}
+            </article>
+
+            {rest.map((capability) => (
+              <div className="cap-row" key={capability.episodeId}>
+                <span className="cap-row__icon" aria-hidden="true">
+                  <IconSpeechCheck size={20} />
                 </span>
-                <span className="capability-row__meta">
-                  {capability.situationTitle}
-                  {capability.state === "consolidated"
-                    ? " · закреплено"
-                    : " · могу"}
+                <span className="cap-row__body">
+                  <span className="cap-row__text">{capability.capability}</span>
+                  <span className="cap-row__meta">
+                    {capability.situationTitle}
+                    {capability.state === "consolidated" ? " · закреплено" : ""}
+                  </span>
                 </span>
-              </span>
-            </div>
-          ))
+              </div>
+            ))}
+          </>
         )}
       </div>
 
-      {data.phrases.length > 0 ? (
+      {consolidated.length > 0 ? (
         <div className="stack-sm">
-          <span className="eyebrow muted">
-            Мои фразы ({data.phrases.length})
-          </span>
-          {data.phrases.slice(0, 12).map((phrase) => (
-            <div className="preview-word" key={phrase.id}>
-              <span className="preview-word__en">{phrase.text}</span>
-              <span className="preview-word__ru">
-                {phrase.translation}
-                {phrase.consolidated ? " · закреплено" : ""}
+          <span className="section-title">Уже приходят сами</span>
+          <p className="phrase-flow">
+            {consolidated.slice(0, 8).map((phrase, index) => (
+              <span key={phrase.id}>
+                {index > 0 ? <i aria-hidden="true">·</i> : null}
+                <span className="en">{phrase.text}</span>
               </span>
-            </div>
-          ))}
-          {data.phrases.length > 12 ? (
-            <span className="caption muted">
-              …и ещё {data.phrases.length - 12}
-            </span>
-          ) : null}
+            ))}
+          </p>
         </div>
       ) : null}
+
+      <button
+        type="button"
+        className="space-card"
+        onClick={() => navigate("/my/space")}
+      >
+        <span className="space-card__body">
+          <span className="space-card__title">Моё место</span>
+          <span className="space-card__meta">
+            {space
+              ? `${space.unlockedCount} ${plural(space.unlockedCount)}`
+              : "Твои воспоминания"}
+          </span>
+          <span className="space-card__link">Зайти →</span>
+        </span>
+        <span className="space-card__kvo" aria-hidden="true">
+          <Kvo size={92} state="idle" />
+        </span>
+      </button>
 
       <FriendPanel state={friend} onChanged={setFriend} />
 
@@ -173,10 +172,19 @@ export function MyEnglish() {
   );
 }
 
+function plural(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return "воспоминание";
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14))
+    return "воспоминания";
+  return "воспоминаний";
+}
+
 /**
- * One friend, one shared goal. No comparison of who did more, because
- * the moment it becomes a contest it stops helping the person who is
- * behind.
+ * One friend, one shared goal. Neither side sees the other's mistakes and
+ * nothing ranks them — the only shared number is how much the two of them
+ * did together this week.
  */
 function FriendPanel({
   state,
@@ -212,7 +220,7 @@ function FriendPanel({
         <ProgressBar percent={percent} thin />
         <p className="small muted">
           {state.goal.completed
-            ? "Цель недели закрыта. Общее растение теперь в уголке."
+            ? "Цель недели закрыта. Общее растение теперь в «Моём месте»."
             : "Занятия обоих складываются в одну цель на неделю."}
         </p>
       </div>
@@ -245,18 +253,16 @@ function FriendPanel({
   }
 
   return (
-    <div className="panel-blush stack-sm">
-      <span className="caption" style={{ color: "var(--accent-ink)" }}>
-        Учиться вдвоём
-      </span>
-      <p className="small" style={{ color: "var(--ink-700)" }}>
+    <div className="panel stack-sm">
+      <span className="caption">Учиться вдвоём</span>
+      <p className="small muted">
         Один друг и одна общая цель на неделю. Без рейтингов и сравнений.
       </p>
 
       {invite ? (
         <div className="invite-code">{invite}</div>
       ) : (
-        <Button onClick={handleInvite} disabled={busy}>
+        <Button variant="secondary" onClick={handleInvite} disabled={busy}>
           Пригласить друга
         </Button>
       )}

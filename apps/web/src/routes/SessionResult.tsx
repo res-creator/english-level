@@ -1,34 +1,26 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import type { CompanionDTO, SessionResultDTO } from "@english-level/contracts";
-import { getMySpace, getSessionResult } from "../api/productClient.ts";
-import { CompanionPicker } from "../components/CompanionPicker.tsx";
-import { Button } from "../ui/Button.tsx";
-import { CircularProgress } from "../ui/CircularProgress.tsx";
+import type { SessionResultDTO } from "@english-level/contracts";
+import { getSessionResult } from "../api/productClient.ts";
+import { Kvo } from "../brand/Kvo.tsx";
+import { Art, ArtLayer } from "../brand/Art.tsx";
+import { artName } from "../brand/artRegistry.ts";
+import { Button, IconButton } from "../ui/Button.tsx";
 import { LoadingScreen, ErrorState } from "../ui/states.tsx";
-import { ResultArt } from "../brand/illustrations.tsx";
+import { IconCheck, IconClose, IconHome, IconSparkle } from "../ui/icons.tsx";
 
 type State =
   | { status: "loading" }
   | { status: "ready"; result: SessionResultDTO }
   | { status: "error" };
 
-function sessionMessage(result: SessionResultDTO): string {
-  if (result.missionReady)
-    return "Материал ситуации пройден. Осталось проверить его на деле.";
-  if (result.accuracy >= 90) return "Уверенно. Завтра закрепим.";
-  if (result.accuracy >= 70) return "Хорошо — основное усвоено.";
-  if (result.wrongCount > 0)
-    return "Сложные места вернутся в повторении — так они и запоминаются.";
-  return "Заход закрыт. Дальше будет легче.";
-}
-
 /**
- * The result screen's centre of gravity is what the learner can now do,
- * not the percentage. After a passed Mission that is a plain statement
- * ("Теперь ты можешь…"); after an ordinary session it is honest progress
- * towards it. The result is re-fetchable from the server, so reopening
- * this URL never shows a blank screen.
+ * "Теперь ты можешь…" is the message. Everything else is support.
+ *
+ * After a passed Mission the screen leads with the object the situation
+ * left behind and the capability it earned. The accuracy figure is
+ * present but deliberately small — a percentage is a fact about a
+ * session, not about what the learner can now do in a café.
  */
 export function SessionResult() {
   const { episodeId, sessionId } = useParams<{
@@ -43,9 +35,6 @@ export function SessionResult() {
   const [state, setState] = useState<State>(
     instant ? { status: "ready", result: instant } : { status: "loading" },
   );
-  // Offered exactly once, right after the very first session — when the
-  // learner has already felt what the app does, and not before.
-  const [companionChoices, setCompanionChoices] = useState<CompanionDTO[]>([]);
 
   useEffect(() => {
     if (instant || !sessionId) return;
@@ -63,23 +52,6 @@ export function SessionResult() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId]);
 
-  useEffect(() => {
-    if (state.status !== "ready") return;
-    if (state.result.kind !== "lesson" || state.result.sessionsDone !== 1)
-      return;
-    let cancelled = false;
-    getMySpace()
-      .then((space) => {
-        if (!cancelled && !space.companion) {
-          setCompanionChoices(space.companionChoices);
-        }
-      })
-      .catch(() => undefined);
-    return () => {
-      cancelled = true;
-    };
-  }, [state]);
-
   if (state.status === "loading") return <LoadingScreen />;
 
   if (state.status === "error") {
@@ -95,133 +67,135 @@ export function SessionResult() {
   }
 
   const { result } = state;
-  const missionPassed = result.missionPassed === true;
-  const missionFailed = result.missionPassed === false;
+  const passed = result.missionPassed === true;
+  const failed = result.missionPassed === false;
+  const reward = result.rewards[0];
 
   return (
-    <div className="focus-shell has-blobs">
-      <div
-        className="blob blob-green"
-        style={{ width: 280, height: 280, top: -130, left: -110 }}
-      />
-      <div
-        className="blob blob-blush"
-        style={{ width: 200, height: 200, bottom: 120, right: -90 }}
-      />
+    <div className="hero-screen">
+      <div className="hero-screen__stage hero-screen__stage--result">
+        <ArtLayer name={artName.heroBackdrop("mission-result")} priority />
 
-      <div className="focus-body">
-        <div className="result-hero">
-          <ResultArt accuracy={result.accuracy} />
-          <span className="eyebrow muted">
-            {missionPassed
-              ? "Миссия пройдена"
-              : missionFailed
+        <div className="result-top">
+          <IconButton label="Закрыть" onClick={() => navigate("/today")}>
+            <IconClose size={19} />
+          </IconButton>
+          <span className="result-top__title">
+            {passed
+              ? `Ситуация «${result.episodeTitle}» пройдена`
+              : failed
                 ? "Почти получилось"
                 : `Заход ${result.sessionsDone} из ${result.sessionsTotal}`}
           </span>
-          <h1 className="h1" style={{ textAlign: "center" }}>
-            {result.episodeTitle}
-          </h1>
+          <span style={{ width: 40 }} />
         </div>
 
-        {missionPassed && result.capability ? (
-          <div className="capability-card">
-            <span className="capability-card__label">Теперь ты можешь</span>
-            <p className="capability-card__text">{result.capability}</p>
-          </div>
-        ) : null}
-
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress percent={result.accuracy} />
-        </div>
-
-        <div className="result-stats">
-          <div className="result-stats__cell">
-            <div className="result-stats__value">{result.correctCount}</div>
-            <div className="result-stats__label">верных</div>
-          </div>
-          <div className="result-stats__cell">
-            <div className="result-stats__value">{result.scoredAttempts}</div>
-            <div className="result-stats__label">заданий</div>
-          </div>
-          <div className="result-stats__cell">
-            <div className="result-stats__value">{result.accuracy}%</div>
-            <div className="result-stats__label">точность</div>
-          </div>
-        </div>
-
-        {companionChoices.length > 0 ? (
-          <CompanionPicker
-            choices={companionChoices}
-            onChosen={() => setCompanionChoices([])}
-            title="Теперь выбери, кто будет рядом"
-          />
-        ) : null}
-
-        {result.rewards.length > 0 ? (
-          <div className="stack-sm">
-            <span className="eyebrow muted" style={{ textAlign: "center" }}>
-              В твоём уголке появилось
+        {reward ? (
+          <>
+            <div className="memory-object" aria-hidden="true">
+              <Art
+                name={artName.spaceObject(reward.id)}
+                priority
+                style={{ width: "72%", height: "72%" }}
+                fallback={<span>{reward.glyph}</span>}
+              />
+            </div>
+            <span className="memory-pill">
+              <IconSparkle size={16} /> Новое воспоминание · {reward.title}
             </span>
-            {result.rewards.map((reward) => (
-              <div className="reward-row" key={reward.id}>
-                <span className="reward-row__glyph" aria-hidden="true">
-                  {reward.glyph}
-                </span>
-                <span className="reward-row__body">
-                  <span className="reward-row__title">{reward.title}</span>
-                  <span className="reward-row__reason">{reward.reason}</span>
-                </span>
-              </div>
-            ))}
+          </>
+        ) : (
+          <div className="result-kvo">
+            <Kvo size={150} state={failed ? "thinking" : "happy"} />
           </div>
-        ) : null}
+        )}
 
-        <p className="body muted" style={{ textAlign: "center" }}>
-          {missionFailed
-            ? "Ещё пара заходов — и миссия точно получится."
-            : missionPassed && result.teaser
-              ? result.teaser
-              : sessionMessage(result)}
-        </p>
+        {reward ? (
+          <span className="result-kvo result-kvo--corner">
+            <Kvo size={96} state="happy" flip />
+          </span>
+        ) : null}
       </div>
 
-      <div className="focus-footer stack-sm">
-        {missionPassed && result.nextEpisodeId ? (
+      <div className="hero-screen__sheet">
+        <div className="sheet-grabber" aria-hidden="true" />
+
+        {passed && result.capability ? (
           <>
-            <Button onClick={() => navigate(`/course/${result.nextEpisodeId}`)}>
-              Следующая ситуация
-            </Button>
-            <button
-              type="button"
-              className="btn btn-ghost"
-              onClick={() => navigate("/today")}
-            >
-              На сегодня хватит
-            </button>
+            <h1 className="display">Теперь ты можешь…</h1>
+            <div className="can-list">
+              <div className="can-list__row">
+                <span className="can-list__mark" aria-hidden="true">
+                  <IconCheck size={18} />
+                </span>
+                <span className="can-list__text">{result.capability}</span>
+              </div>
+            </div>
           </>
         ) : (
           <>
-            <Button onClick={() => navigate("/today")}>Готово</Button>
-            {result.reviewDue > 0 ? (
-              <button
-                type="button"
-                className="btn btn-ghost"
-                onClick={() => navigate("/review")}
-              >
-                Повторить ({result.reviewDue})
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="btn btn-ghost"
-                onClick={() => navigate("/review?extra=1")}
-              >
-                Хочу ещё
-              </button>
-            )}
+            <h1 className="h1">
+              {failed
+                ? "Ещё пара заходов — и миссия получится"
+                : result.missionReady
+                  ? "Материал пройден. Осталась миссия."
+                  : "Заход закрыт"}
+            </h1>
+            <p className="body muted">
+              {failed
+                ? "Ничего не потеряно: язык остался с тобой, вернёмся к нему завтра."
+                : "Сложные места вернутся в повторении — так они и запоминаются."}
+            </p>
           </>
         )}
+
+        {reward ? (
+          <div className="lives-in">
+            <IconHome size={17} />
+            <span>
+              {reward.title} теперь живёт в <b>Моём месте</b>
+            </span>
+          </div>
+        ) : null}
+
+        {/* Real, but secondary. */}
+        <div className="result-facts">
+          <span>
+            {result.correctCount} из {result.scoredAttempts} верно
+          </span>
+          <span>·</span>
+          <span>{result.accuracy}%</span>
+        </div>
+
+        <div className="hero-screen__actions">
+          {passed && result.nextEpisodeId ? (
+            <>
+              <Button
+                onClick={() => navigate(`/course/${result.nextEpisodeId}`)}
+              >
+                Дальше
+              </Button>
+              <button
+                type="button"
+                className="btn btn-ghost"
+                onClick={() => navigate("/today")}
+              >
+                На главную
+              </button>
+            </>
+          ) : (
+            <>
+              <Button onClick={() => navigate("/today")}>Готово</Button>
+              <button
+                type="button"
+                className="btn btn-ghost"
+                onClick={() => navigate(`/course/${episodeId}`)}
+              >
+                К ситуации
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

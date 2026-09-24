@@ -6,11 +6,11 @@ import type {
   EpisodeDTO,
 } from "@english-level/contracts";
 import { getCourse } from "../api/productClient.ts";
-import { ProgressBar } from "../ui/ProgressBar.tsx";
+import { Kvo } from "../brand/Kvo.tsx";
+import { Button } from "../ui/Button.tsx";
 import { SkeletonJourney, ErrorState, EmptyState } from "../ui/states.tsx";
 import { IconCheck, IconPlay } from "../ui/icons.tsx";
-import { UnitScene } from "../brand/illustrations.tsx";
-import { levelTitle } from "../ui/labels.tsx";
+import { situationGlyph } from "./situationGlyph.tsx";
 
 type State =
   | { status: "loading" }
@@ -18,9 +18,12 @@ type State =
   | { status: "error" };
 
 /**
- * The course is one scrollable path of situations. There are no locks:
- * exactly one situation is "you are here", everything before it is done
- * and everything after it is simply ahead.
+ * The course is a path, not a list of lessons.
+ *
+ * Nodes alternate left and right down the screen, joined by a line that
+ * is solid behind you and dotted ahead. Exactly one node is "you are
+ * here", and it is the only one carrying a card and a way in — so the
+ * screen never asks the learner to choose where to start.
  */
 export function Course() {
   const [state, setState] = useState<State>({ status: "loading" });
@@ -75,55 +78,28 @@ export function Course() {
       <section className="stack-lg">
         <h1 className="h1">Курс</h1>
         <EmptyState
-          title="Программа для этого уровня готовится"
-          message="Мы дорабатываем ситуации для твоего уровня — загляни чуть позже."
+          title="Ситуации для этого уровня готовятся"
+          message="Загляни чуть позже — мы дорабатываем главу."
         />
       </section>
     );
   }
 
-  const percent =
-    course.episodesTotal === 0
-      ? 0
-      : Math.round((100 * course.episodesDone) / course.episodesTotal);
-
   return (
-    <section className="journey">
-      <header className="journey-head has-blobs">
-        <div
-          className="blob blob-blush"
-          style={{ width: 150, height: 150, top: -60, right: -50 }}
-        />
-        <span className="eyebrow muted">Твой путь</span>
-        <h1 className="h1">{levelTitle(course.level)}</h1>
-        <div className="stack-sm">
-          <div className="row-between">
-            <span className="small muted">
-              {course.episodesDone} из {course.episodesTotal} ситуаций освоено
-            </span>
-            <span className="caption num">{percent}%</span>
-          </div>
-          <ProgressBar percent={percent} />
-        </div>
-      </header>
-
+    <section className="stack-lg">
       {course.chapters.map((chapter, index) => (
-        <ChapterSection
+        <ChapterPath
           key={chapter.id}
           chapter={chapter}
           index={index}
           currentEpisodeId={course.currentEpisodeId}
         />
       ))}
-
-      <p className="caption muted" style={{ textAlign: "center" }}>
-        Следующие уровни откроются, когда закончишь этот
-      </p>
     </section>
   );
 }
 
-function ChapterSection({
+function ChapterPath({
   chapter,
   index,
   currentEpisodeId,
@@ -135,100 +111,134 @@ function ChapterSection({
   const done = chapter.episodes.filter(
     (e) => e.state === "can_do" || e.state === "consolidated",
   ).length;
-  const isDone = done === chapter.episodes.length && done > 0;
-  const holdsCurrent = chapter.episodes.some((e) => e.id === currentEpisodeId);
-
-  const bannerClass = holdsCurrent
-    ? "unit__banner unit__banner--current"
-    : isDone
-      ? "unit__banner unit__banner--done"
-      : "unit__banner";
 
   return (
-    <section className="unit">
-      <div className={bannerClass}>
-        <span className="unit__scene" aria-hidden="true">
-          <UnitScene index={index} />
-        </span>
-        <span className="unit__label">
-          <span className="unit__index">Глава {index + 1}</span>
-          <span className="unit__title">{chapter.title}</span>
-          <span className="unit__meta">
-            {done} / {chapter.episodes.length} ситуаций
-            {isDone ? " · пройдена" : ""}
+    <div className="path">
+      <header className="path__head">
+        <h1 className="h1">{index === 0 ? "Курс" : "Дальше"}</h1>
+        <div className="row-between">
+          <span className="body muted">
+            Глава {index + 1} · {chapter.title}
           </span>
-        </span>
-      </div>
+          <span className="pill">
+            {done} из {chapter.episodes.length}
+          </span>
+        </div>
+      </header>
 
-      <div className="nodes">
+      <ol className="path__list">
         {chapter.episodes.map((episode, i) => (
-          <EpisodeNode
+          <PathNode
             key={episode.id}
             episode={episode}
             position={i + 1}
+            side={i % 2 === 0 ? "right" : "left"}
             isCurrent={episode.id === currentEpisodeId}
+            isLast={i === chapter.episodes.length - 1}
           />
         ))}
-      </div>
-    </section>
+      </ol>
+    </div>
   );
 }
 
-function EpisodeNode({
+function PathNode({
   episode,
   position,
+  side,
   isCurrent,
+  isLast,
 }: {
   episode: EpisodeDTO;
   position: number;
+  side: "left" | "right";
   isCurrent: boolean;
+  isLast: boolean;
 }) {
   const navigate = useNavigate();
   const earned = episode.state === "can_do" || episode.state === "consolidated";
-  const modifier = earned ? " node--done" : isCurrent ? " node--current" : "";
+  const started = episode.state === "learning";
+  const ahead = !earned && !isCurrent && !started;
+
+  const stateClass = earned
+    ? "is-done"
+    : isCurrent
+      ? "is-current"
+      : started
+        ? "is-started"
+        : "is-ahead";
 
   return (
-    <button
-      type="button"
-      className={"node" + modifier}
-      onClick={() => navigate(`/course/${episode.id}`)}
-    >
-      <span className="node__rail">
-        <span className="node__line" aria-hidden="true" />
-        <span className="node__dot">
-          {earned ? (
-            <IconCheck size={20} />
-          ) : isCurrent ? (
-            <IconPlay size={22} />
-          ) : (
-            position
-          )}
+    <li className={`node2 node2--${side} ${stateClass}`}>
+      {!isLast ? (
+        <span
+          className={earned ? "node2__link is-solid" : "node2__link"}
+          aria-hidden="true"
+        />
+      ) : null}
+
+      {isCurrent ? (
+        <span className="node2__kvo" aria-hidden="true">
+          <Kvo size={82} state="idle" flip={side === "left"} />
         </span>
-      </span>
-      <span className="node__body">
-        <span className="node__title">
-          {episode.situationTitle ?? episode.title}
-        </span>
-        <span className="node__meta">
-          {episode.state === "consolidated" ? (
-            <span className="tag tag-green">Закреплено</span>
-          ) : episode.state === "can_do" ? (
-            <span className="tag tag-green">Могу</span>
-          ) : episode.missionReady ? (
-            <span className="tag tag-blush">Миссия</span>
-          ) : episode.state === "learning" ? (
-            <span className="tag">
-              Заход {episode.sessionsDone + 1}
-              {episode.sessionsTotal > 0 ? ` из ${episode.sessionsTotal}` : ""}
-            </span>
-          ) : episode.estimatedMinutes ? (
-            <span className="tag">~{episode.estimatedMinutes} мин</span>
-          ) : null}
-          {isCurrent && !earned ? (
-            <span className="tag tag-green">Сейчас</span>
-          ) : null}
-        </span>
-      </span>
-    </button>
+      ) : null}
+
+      <button
+        type="button"
+        className="node2__dot"
+        onClick={() => navigate(`/course/${episode.id}`)}
+        aria-label={episode.situationTitle ?? episode.title}
+      >
+        {earned ? (
+          <IconCheck size={24} />
+        ) : (
+          situationGlyph(episode.id, position)
+        )}
+        {earned ? <i className="node2__badge" aria-hidden="true" /> : null}
+      </button>
+
+      {isCurrent ? (
+        <div className="node2__card">
+          <span className="tag tag-blush">
+            {episode.missionReady ? "Миссия" : "Сейчас"}
+          </span>
+          <h2 className="h3">{episode.situationTitle ?? episode.title}</h2>
+          <p className="small muted">
+            {episode.estimatedMinutes ? `~${episode.estimatedMinutes} мин` : ""}
+            {episode.sessionsTotal > 0
+              ? ` · шаг ${Math.min(
+                  episode.sessionsDone + 1,
+                  episode.sessionsTotal,
+                )} из ${episode.sessionsTotal}`
+              : ""}
+          </p>
+          <Button onClick={() => navigate(`/course/${episode.id}/session`)}>
+            <IconPlay size={16} />{" "}
+            {episode.sessionsDone > 0 ? "Продолжить" : "Начать"}
+          </Button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          className="node2__label"
+          onClick={() => navigate(`/course/${episode.id}`)}
+        >
+          <span className="node2__title">
+            {episode.situationTitle ?? episode.title}
+          </span>
+          <span className="node2__meta">
+            {earned
+              ? episode.state === "consolidated"
+                ? "Закреплено"
+                : "Пройдено"
+              : started
+                ? `Заход ${episode.sessionsDone + 1}`
+                : ahead
+                  ? `Ситуация ${position}`
+                  : "Следующая"}
+          </span>
+        </button>
+      )}
+    </li>
   );
 }

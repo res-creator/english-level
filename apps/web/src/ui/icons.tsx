@@ -113,3 +113,63 @@ export function IconMine({ size }: IconProps) {
     </svg>
   );
 }
+
+/* --- V1.1 navigation. Four destinations, four distinct silhouettes. --- */
+
+/** Today: a new day. */
+export function IconSun({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <circle cx="12" cy="12" r="4.2" />
+      <path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6" />
+    </svg>
+  );
+}
+
+/** Course: the path from one situation to the next. */
+export function IconPath({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <circle cx="16.8" cy="6.6" r="2.6" />
+      <circle cx="7.2" cy="17.4" r="2.6" />
+      <path d="M14.4 7.6c-4.6 1.2-7 3-7.2 5.4M9.6 16.4c4.6-1.2 7-3 7.2-5.4" />
+    </svg>
+  );
+}
+
+/** My English: what you can already say. */
+export function IconSpeechCheck({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H12l-4.4 3.4V16H6.5A2.5 2.5 0 0 1 4 13.5z" />
+      <path d="M8.8 10.2l2 2 4.4-4.4" />
+    </svg>
+  );
+}
+
+/** My Space: the room that grows with you. */
+export function IconHome({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M4 10.6 12 4l8 6.6V19a1.4 1.4 0 0 1-1.4 1.4H5.4A1.4 1.4 0 0 1 4 19z" />
+    </svg>
+  );
+}
+
+/** Contextual review — never a permanent tab, only a chip. */
+export function IconRefresh({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M20 11.4a8 8 0 1 0-.6 4" />
+      <path d="M20 4.6V11h-6" />
+    </svg>
+  );
+}
+
+export function IconSparkle({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <path d="M12 3.4l1.9 5.1 5.1 1.9-5.1 1.9L12 17.4l-1.9-5.1L5 10.4l5.1-1.9z" />
+    </svg>
+  );
+}

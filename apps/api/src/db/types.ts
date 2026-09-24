@@ -455,3 +455,16 @@ export interface FriendshipRow {
   friend_user_id: string;
   created_at: string;
 }
+
+// ---------------------------------------------------------------------------
+// Pilot analytics
+// ---------------------------------------------------------------------------
+
+export interface AnalyticsEventRow {
+  id: string;
+  user_id: string | null;
+  anonymous_id: string | null;
+  event_name: string;
+  properties_json: string;
+  created_at: string;
+}

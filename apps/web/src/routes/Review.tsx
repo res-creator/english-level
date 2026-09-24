@@ -12,8 +12,8 @@ import {
   getReviewState,
   startReview,
 } from "../api/productClient.ts";
-import { ActivityRenderer } from "../lessonEngine/activities/ActivityRenderer.tsx";
-import { FeedbackPanel } from "../lessonEngine/FeedbackPanel.tsx";
+import { ActivityPanel } from "../scene/ActivityPanel.tsx";
+import { Kvo } from "../brand/Kvo.tsx";
 import { FocusShell } from "../components/Layout.tsx";
 import { Button, IconButton } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
@@ -189,7 +189,7 @@ export function Review() {
         )
       }
     >
-      <ActivityRenderer
+      <ActivityPanel
         key={activity.id}
         activity={activity}
         answer={answer}
@@ -197,7 +197,15 @@ export function Review() {
         feedback={feedback}
         disabled={submitting || !!feedback}
       />
-      {feedback ? <FeedbackPanel feedback={feedback} /> : null}
+      {feedback && !feedback.correct ? (
+        <div className="miss">
+          <span className="miss__title">Вот как это было</span>
+          <span className="miss__answer en">{feedback.correctAnswer}</span>
+          {feedback.explanation ? (
+            <span className="miss__note">{feedback.explanation}</span>
+          ) : null}
+        </div>
+      ) : null}
     </FocusShell>
   );
 }
@@ -213,9 +221,12 @@ function ReviewIdle({
 
   return (
     <section className="stack-lg">
-      <header className="stack-sm">
-        <span className="eyebrow muted">Твоя память</span>
-        <h1 className="h1">Повторение</h1>
+      <header className="review-head">
+        <Kvo size={96} state={nothingDue ? "happy" : "idle"} />
+        <div>
+          <span className="eyebrow muted">Твоя память</span>
+          <h1 className="h1">Повторение</h1>
+        </div>
       </header>
 
       {nothingDue ? (

@@ -788,3 +788,65 @@ export const ResetPreviewResponseSchema = z.object({
   }),
 });
 export type ResetPreviewResponse = z.infer<typeof ResetPreviewResponseSchema>;
+
+// ---------------------------------------------------------------------------
+// Pilot analytics.
+//
+// A fixed, small catalog rather than free-text event names: this is the
+// one thing that keeps the log from turning into a second, undocumented
+// schema that drifts every time a screen changes. Adding an event means
+// adding it here, in one place both apps import.
+// ---------------------------------------------------------------------------
+
+export const EventNameSchema = z.enum([
+  // Before an account exists — the hook and the 48-second demo.
+  "welcome_viewed",
+  "demo_started",
+  "demo_completed",
+  "demo_skipped",
+  // Right after meeting Kvo.
+  "companion_chosen",
+  "companion_deferred",
+  // Server-emitted, in the same transaction as the mutation they describe
+  // — never lost to a client that closed the tab, never duplicated by a
+  // retry.
+  "placement_completed",
+  "session_completed",
+  "mission_passed",
+  "mission_failed",
+  "review_completed",
+  "friend_invited",
+  "friend_accepted",
+  "shared_goal_completed",
+  "preview_account_reset",
+]);
+export type EventName = z.infer<typeof EventNameSchema>;
+
+/** Flat and small on purpose: analytics properties are context for a
+ * funnel step, never a place to smuggle structured data through. */
+const EventPropertyValueSchema = z.union([
+  z.string().max(200),
+  z.number(),
+  z.boolean(),
+  z.null(),
+]);
+
+export const EventPropertiesSchema = z
+  .record(z.string().max(60), EventPropertyValueSchema)
+  .refine((props) => Object.keys(props).length <= 12, {
+    message: "at most 12 properties per event",
+  });
+export type EventProperties = z.infer<typeof EventPropertiesSchema>;
+
+export const TrackEventRequestSchema = z.object({
+  event: EventNameSchema,
+  /** Client-generated, persisted in localStorage — not derived from any
+   * Telegram or device identifier. Lets a pilot funnel be read end to end
+   * (demo → signup → first Mission) without claiming exact identity. */
+  anonymousId: z.string().min(1).max(64),
+  properties: EventPropertiesSchema.optional(),
+});
+export type TrackEventRequest = z.infer<typeof TrackEventRequestSchema>;
+
+export const TrackEventResponseSchema = z.object({ ok: z.literal(true) });
+export type TrackEventResponse = z.infer<typeof TrackEventResponseSchema>;
