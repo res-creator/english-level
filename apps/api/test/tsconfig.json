@@ -13,6 +13,7 @@
     "../src/auth/middleware.ts",
     "../src/routes",
     "helpers/fakeD1.ts",
-    "routingAuth.test.ts"
+    "routingAuth.test.ts",
+    "errorHandling.test.ts"
   ]
 }

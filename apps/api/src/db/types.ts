@@ -468,3 +468,17 @@ export interface AnalyticsEventRow {
   properties_json: string;
   created_at: string;
 }
+
+// ---------------------------------------------------------------------------
+// Pilot error visibility
+// ---------------------------------------------------------------------------
+
+export interface ErrorLogRow {
+  id: string;
+  user_id: string | null;
+  source: string;
+  path: string | null;
+  message: string;
+  stack: string | null;
+  created_at: string;
+}

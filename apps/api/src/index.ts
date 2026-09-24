@@ -12,6 +12,7 @@ import {
   createTelegramSender,
   runDailyReminders,
 } from "./services/notificationService.ts";
+import { reportError } from "./services/errorReportingService.ts";
 import authRoutes from "./routes/auth.ts";
 import onboardingRoutes from "./routes/onboarding.ts";
 import placementRoutes from "./routes/placement.ts";
@@ -96,6 +97,31 @@ app.route("/api/v1", v1);
 app.get("/", (c) => c.text(`${APP_NAME} API`));
 
 /**
+ * The entire error-monitoring story for the pilot: no third-party
+ * service, just this. Every exception a route handler throws (a bad
+ * query, a bug in a service, anything not already turned into a proper
+ * `c.json({ error }, code)` response) lands here instead of Hono's own
+ * bare 500. It's recorded — never re-thrown, never left only in the
+ * console where it's gone the moment nobody is tailing logs — and the
+ * caller gets a safe, generic body. The real message and stack are for
+ * `wrangler d1 execute ... SELECT * FROM error_logs`, never for the
+ * response: a stack trace is exactly the kind of internal detail this
+ * project's DTOs already take care never to leak.
+ */
+app.onError(async (err, c) => {
+  const db = createD1Db(c.env.DB);
+  let userId: string | null = null;
+  try {
+    userId = c.get("currentUser")?.id ?? null;
+  } catch {
+    // `requireAuth` never ran for this request — fine, it just means we
+    // don't know who hit it.
+  }
+  await reportError(db, c.req.method, c.req.path, userId, err);
+  return c.json({ error: "internal error" }, 500);
+});
+
+/**
  * The daily reminder's cron entry point (`[env.*.triggers]` in
  * wrangler.toml). See `services/notificationService.ts` for what it
  * actually decides and sends — this just wires it to real bindings and
@@ -116,9 +142,10 @@ async function scheduled(
         const summary = await runDailyReminders(db, sender, webAppUrl);
         console.log(`[reminders] ${JSON.stringify(summary)}`);
       } catch (err) {
-        // A cron failure has no caller to report to — logging is the
-        // only visibility it gets, so it must not disappear silently.
-        console.error("[reminders] run failed", err);
+        // A cron failure has no caller to report to — the error_logs row
+        // (same store `app.onError` writes to) is the only visibility it
+        // gets, so it must not disappear into the console alone.
+        await reportError(db, "cron", "reminders", null, err);
         throw err;
       }
     })(),
