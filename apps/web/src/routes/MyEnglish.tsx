@@ -19,6 +19,13 @@ import { SkeletonList, ErrorState, EmptyState } from "../ui/states.tsx";
 import { IconSpeechCheck } from "../ui/icons.tsx";
 import { PreviewResetPanel } from "../components/PreviewResetPanel.tsx";
 import { AccountSettingsPanel } from "../components/AccountSettingsPanel.tsx";
+import { useTelegram } from "../telegram/useTelegram.ts";
+import {
+  INVITE_SHARE_TEXT,
+  buildInviteShareUrl,
+  buildTelegramShareLink,
+} from "../friend/inviteShare.ts";
+import { consumePendingInvite } from "../lib/pendingInvite.ts";
 
 type State =
   | { status: "loading" }
@@ -196,14 +203,27 @@ function FriendPanel({
   state: FriendStateResponse | null;
   onChanged: (next: FriendStateResponse) => void;
 }) {
+  const { webApp } = useTelegram();
   const [code, setCode] = useState("");
   const [invite, setInvite] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [showAccept, setShowAccept] = useState(false);
 
   useEffect(() => {
     setInvite(state?.inviteCode ?? null);
   }, [state?.inviteCode]);
+
+  // A code carried in from a shared link — pre-filled, not auto-
+  // submitted, so accepting is still a real choice.
+  useEffect(() => {
+    const pending = consumePendingInvite();
+    if (pending) {
+      setCode(pending);
+      setShowAccept(true);
+    }
+  }, []);
 
   if (!state) return null;
 
@@ -230,16 +250,54 @@ function FriendPanel({
     );
   }
 
-  async function handleInvite() {
+  async function ensureInviteCode(): Promise<string | null> {
+    if (invite) return invite;
     setBusy(true);
     setError(null);
     try {
       const res = await createFriendInvite();
       setInvite(res.code);
+      return res.code;
     } catch {
       setError("Не получилось создать код");
+      return null;
     } finally {
       setBusy(false);
+    }
+  }
+
+  /**
+   * Telegram's own share chooser when it's available (a real Telegram
+   * session), the Web Share API when it isn't (dev/desktop browser),
+   * and a clipboard copy as the last resort — either way the raw code
+   * stays visible below as a backup that always works.
+   */
+  async function handleInvite() {
+    const inviteCode = await ensureInviteCode();
+    if (!inviteCode) return;
+    setCopied(false);
+
+    const shareUrl = buildInviteShareUrl(window.location.origin, inviteCode);
+
+    if (webApp.openTelegramLink) {
+      webApp.openTelegramLink(
+        buildTelegramShareLink(shareUrl, INVITE_SHARE_TEXT),
+      );
+      return;
+    }
+    if (typeof navigator.share === "function") {
+      try {
+        await navigator.share({ text: INVITE_SHARE_TEXT, url: shareUrl });
+      } catch {
+        // Cancelled, or unsupported mid-call — the code below still works.
+      }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(`${INVITE_SHARE_TEXT}\n${shareUrl}`);
+      setCopied(true);
+    } catch {
+      // Nothing more to do — the raw code is still there to read out.
     }
   }
 
@@ -262,32 +320,49 @@ function FriendPanel({
         Один друг и одна общая цель на неделю. Без рейтингов и сравнений.
       </p>
 
-      {invite ? (
-        <div className="invite-code">{invite}</div>
-      ) : (
-        <Button variant="secondary" onClick={handleInvite} disabled={busy}>
-          Пригласить друга
-        </Button>
-      )}
+      <Button variant="secondary" onClick={handleInvite} disabled={busy}>
+        Пригласить друга
+      </Button>
 
-      <div className="invite-accept">
-        <input
-          className="input"
-          value={code}
-          onChange={(e) => setCode(e.target.value.toUpperCase())}
-          placeholder="Код друга"
-          maxLength={6}
-          aria-label="Код приглашения"
-        />
+      {invite ? (
+        <div className="row-between">
+          <div className="invite-code">{invite}</div>
+          {copied ? (
+            <span className="caption" style={{ color: "var(--green-700)" }}>
+              Ссылка скопирована
+            </span>
+          ) : null}
+        </div>
+      ) : null}
+
+      {showAccept ? (
+        <div className="invite-accept">
+          <input
+            className="input"
+            value={code}
+            onChange={(e) => setCode(e.target.value.toUpperCase())}
+            placeholder="Код друга"
+            maxLength={6}
+            aria-label="Код приглашения"
+          />
+          <button
+            type="button"
+            className="btn btn-ghost"
+            disabled={busy || code.trim().length === 0}
+            onClick={handleAccept}
+          >
+            Принять
+          </button>
+        </div>
+      ) : (
         <button
           type="button"
           className="btn btn-ghost"
-          disabled={busy || code.trim().length === 0}
-          onClick={handleAccept}
+          onClick={() => setShowAccept(true)}
         >
-          Принять
+          У меня есть код друга
         </button>
-      </div>
+      )}
 
       {error ? (
         <span className="caption" style={{ color: "var(--danger)" }}>

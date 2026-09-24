@@ -9,8 +9,12 @@ import { getCourse } from "../api/productClient.ts";
 import { Kvo } from "../brand/Kvo.tsx";
 import { Button } from "../ui/Button.tsx";
 import { SkeletonJourney, ErrorState, EmptyState } from "../ui/states.tsx";
-import { IconCheck, IconPlay } from "../ui/icons.tsx";
+import { IconCheck, IconLock, IconPlay } from "../ui/icons.tsx";
 import { situationGlyph } from "./situationGlyph.tsx";
+import {
+  LOCKED_NODE_MESSAGE,
+  resolvePathNodeState,
+} from "./coursePathState.ts";
 
 type State =
   | { status: "loading" }
@@ -156,17 +160,26 @@ function PathNode({
   isLast: boolean;
 }) {
   const navigate = useNavigate();
-  const earned = episode.state === "can_do" || episode.state === "consolidated";
-  const started = episode.state === "learning";
-  const ahead = !earned && !isCurrent && !started;
+  const nodeState = resolvePathNodeState(episode, isCurrent);
+  const earned = nodeState === "done";
+  const locked = nodeState === "locked";
 
-  const stateClass = earned
-    ? "is-done"
-    : isCurrent
-      ? "is-current"
-      : started
-        ? "is-started"
-        : "is-ahead";
+  const stateClass =
+    nodeState === "done"
+      ? "is-done"
+      : nodeState === "current"
+        ? "is-current"
+        : nodeState === "started"
+          ? "is-started"
+          : "is-ahead";
+
+  // A locked situation stays visible — title, number, everything — it
+  // just can't be opened yet. Public V1 is a sequential path: the
+  // Mission before it has to pass first.
+  function open() {
+    if (locked) return;
+    navigate(`/course/${episode.id}`);
+  }
 
   return (
     <li className={`node2 node2--${side} ${stateClass}`}>
@@ -186,11 +199,18 @@ function PathNode({
       <button
         type="button"
         className="node2__dot"
-        onClick={() => navigate(`/course/${episode.id}`)}
-        aria-label={episode.situationTitle ?? episode.title}
+        onClick={open}
+        disabled={locked}
+        aria-label={
+          locked
+            ? `${episode.situationTitle ?? episode.title}: ${LOCKED_NODE_MESSAGE}`
+            : (episode.situationTitle ?? episode.title)
+        }
       >
         {earned ? (
           <IconCheck size={24} />
+        ) : locked ? (
+          <IconLock size={22} />
         ) : (
           situationGlyph(episode.id, position)
         )}
@@ -221,21 +241,20 @@ function PathNode({
         <button
           type="button"
           className="node2__label"
-          onClick={() => navigate(`/course/${episode.id}`)}
+          onClick={open}
+          disabled={locked}
         >
           <span className="node2__title">
             {episode.situationTitle ?? episode.title}
           </span>
           <span className="node2__meta">
-            {earned
-              ? episode.state === "consolidated"
-                ? "Закреплено"
-                : "Пройдено"
-              : started
-                ? `Заход ${episode.sessionsDone + 1}`
-                : ahead
-                  ? `Ситуация ${position}`
-                  : "Следующая"}
+            {locked
+              ? LOCKED_NODE_MESSAGE
+              : earned
+                ? episode.state === "consolidated"
+                  ? "Закреплено"
+                  : "Пройдено"
+                : `Заход ${episode.sessionsDone + 1}`}
           </span>
         </button>
       )}

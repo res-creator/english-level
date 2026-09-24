@@ -1908,6 +1908,10 @@ a {
   /* The expression is the only thing that changes between activities,
      so it cross-fades in place rather than the screen moving. */
   animation: scene-settle var(--slow) both;
+  /* Coded fallback cast art has no outline of its own, and a light skin
+     tone against these pale lavender backdrops can lose its edge —
+     this is readability hygiene for the placeholder, not a redesign. */
+  filter: drop-shadow(0 10px 14px rgba(36, 29, 49, 0.22));
 }
 
 @keyframes scene-settle {
@@ -1947,7 +1951,10 @@ a {
   flex-direction: column;
   align-items: flex-end;
   gap: var(--s2);
-  max-width: 68%;
+  /* Was 68% — narrow enough that a bubble stack stays clear of the
+     person's face instead of stretching in over the centre of the
+     scene. */
+  max-width: 58%;
 }
 
 .bubble {
@@ -2952,6 +2959,15 @@ a {
     box-shadow var(--fast);
 }
 
+.node2__dot:disabled {
+  cursor: not-allowed;
+  color: var(--ink-400);
+}
+
+.node2__label:disabled {
+  cursor: not-allowed;
+}
+
 .node2__dot:active {
   transform: scale(0.96);
 }
@@ -3076,7 +3092,10 @@ a {
 
 .preview-screen__scene {
   position: relative;
-  height: 320px;
+  /* Was 320px — on a real iPhone that pushed "После этой ситуации ты
+     сможешь…" and the CTA below the fold, forcing a scroll just to see
+     what the situation is about. The scene still reads fine smaller. */
+  height: 220px;
   overflow: hidden;
   background: var(--lav-200);
 }
@@ -3093,6 +3112,7 @@ a {
   left: 50%;
   bottom: 0;
   transform: translateX(-54%);
+  filter: drop-shadow(0 10px 14px rgba(36, 29, 49, 0.22));
 }
 
 .preview-screen__sheet {
@@ -3102,8 +3122,8 @@ a {
   margin-top: -26px;
   display: flex;
   flex-direction: column;
-  gap: var(--s4);
-  padding: var(--s6) var(--s5) calc(var(--s8) + var(--safe-b));
+  gap: var(--s3);
+  padding: var(--s5) var(--s5) calc(var(--s8) + var(--safe-b));
   background: var(--surface);
   border-radius: var(--r-2xl) var(--r-2xl) 0 0;
 }
@@ -3349,9 +3369,13 @@ a {
 }
 
 .hero-screen__stage--result {
+  /* A bare "closed" screen (no reward object) doesn't need the same
+     46vh a rewarded/mission stage does — that much empty gradient
+     around one small Kvo is exactly what read as unfinished. */
+  min-height: 30vh;
   justify-content: flex-start;
-  gap: var(--s5);
-  padding: calc(var(--safe-t) + var(--s3)) var(--s5) var(--s8);
+  gap: var(--s4);
+  padding: calc(var(--safe-t) + var(--s3)) var(--s5) var(--s6);
 }
 
 .result-kvo {
@@ -3372,6 +3396,29 @@ a {
   font-size: 13.5px;
   font-weight: 600;
   color: var(--ink-400);
+}
+
+/* A small trace of *which* situation this was — not a reward, just
+   context, so a bare "closed" screen isn't only a mascot and a number. */
+.situation-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px var(--s3) 6px var(--s2);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.situation-cue__glyph {
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
+
+.situation-cue__text {
+  font-size: 13px;
+  font-weight: 700;
 }
 
 /* The newest capability gets a card; the rest settle into rows. */

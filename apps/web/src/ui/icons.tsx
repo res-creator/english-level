@@ -166,6 +166,16 @@ export function IconRefresh({ size }: IconProps) {
   );
 }
 
+/** A future situation, not yet reachable. */
+export function IconLock({ size }: IconProps) {
+  return (
+    <svg {...base(size)}>
+      <rect x="5.5" y="10.5" width="13" height="9.5" rx="2.4" />
+      <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
+    </svg>
+  );
+}
+
 export function IconSparkle({ size }: IconProps) {
   return (
     <svg {...base(size)}>

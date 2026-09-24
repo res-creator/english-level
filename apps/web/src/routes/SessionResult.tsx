@@ -8,6 +8,7 @@ import { artName } from "../brand/artRegistry.ts";
 import { Button, IconButton } from "../ui/Button.tsx";
 import { LoadingScreen, ErrorState } from "../ui/states.tsx";
 import { IconCheck, IconClose, IconHome, IconSparkle } from "../ui/icons.tsx";
+import { situationGlyph } from "./situationGlyph.tsx";
 
 type State =
   | { status: "loading" }
@@ -105,9 +106,19 @@ export function SessionResult() {
             </span>
           </>
         ) : (
-          <div className="result-kvo">
-            <Kvo size={150} state={failed ? "thinking" : "happy"} />
-          </div>
+          <>
+            <div className="result-kvo">
+              <Kvo size={128} state={failed ? "thinking" : "happy"} />
+            </div>
+            {/* Which situation this was — a small memory cue, not a
+                reward object, so the screen isn't just a mascot. */}
+            <span className="situation-cue">
+              <span className="situation-cue__glyph" aria-hidden="true">
+                {situationGlyph(result.episodeId, 0)}
+              </span>
+              <span className="situation-cue__text">{result.episodeTitle}</span>
+            </span>
+          </>
         )}
 
         {reward ? (

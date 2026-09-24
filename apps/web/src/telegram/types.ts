@@ -31,6 +31,10 @@ export interface TelegramWebApp {
   /** Not present in every client/version — always optional-chain. */
   BackButton?: TelegramBackButton;
   HapticFeedback?: TelegramHapticFeedback;
+  /** Opens Telegram's own native chooser for a t.me link — used for the
+   * friend-invite share, so "who do I send this to" is the same picker
+   * every other share in Telegram uses, not a custom UI. */
+  openTelegramLink?: (url: string) => void;
 }
 
 declare global {
