@@ -16,7 +16,7 @@ import { Kvo } from "../brand/Kvo.tsx";
 import { Button } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { SkeletonList, ErrorState, EmptyState } from "../ui/states.tsx";
-import { IconSpeechCheck } from "../ui/icons.tsx";
+import { IconCheck, IconRefresh, IconSparkle } from "../ui/icons.tsx";
 import { PreviewResetPanel } from "../components/PreviewResetPanel.tsx";
 import { AccountSettingsPanel } from "../components/AccountSettingsPanel.tsx";
 import { useTelegram } from "../telegram/useTelegram.ts";
@@ -91,13 +91,34 @@ export function MyEnglish() {
     <section className="stack-lg">
       <header className="stack-sm">
         <h1 className="h1">Мой английский</h1>
-        <div className="row" style={{ gap: "var(--s3)" }}>
-          {data.level ? <span className="pill">{data.level}</span> : null}
-          <span className="small muted">
-            {data.stats.phrasesMet} фраз встречено
-          </span>
-        </div>
+        {data.level ? <span className="pill">{data.level}</span> : null}
       </header>
+
+      <div className="skill-stats">
+        <div className="skill-stat">
+          <span className="skill-stat__icon">
+            <IconSparkle size={16} />
+          </span>
+          <span className="skill-stat__value">{data.stats.phrasesMet}</span>
+          <span className="skill-stat__label">фраз встречено</span>
+        </div>
+        <div className="skill-stat">
+          <span className="skill-stat__icon">
+            <IconRefresh size={16} />
+          </span>
+          <span className="skill-stat__value">
+            {data.stats.phrasesConsolidated}
+          </span>
+          <span className="skill-stat__label">закреплено</span>
+        </div>
+        <div className="skill-stat">
+          <span className="skill-stat__icon">
+            <IconCheck size={16} />
+          </span>
+          <span className="skill-stat__value">{data.stats.episodesDone}</span>
+          <span className="skill-stat__label">ситуаций пройдено</span>
+        </div>
+      </div>
 
       <div className="stack-sm">
         <span className="section-title">Я могу…</span>
@@ -122,20 +143,34 @@ export function MyEnglish() {
               </span>
             </article>
 
-            {rest.map((capability) => (
-              <div className="cap-row" key={capability.episodeId}>
-                <span className="cap-row__icon" aria-hidden="true">
-                  <IconSpeechCheck size={20} />
-                </span>
-                <span className="cap-row__body">
-                  <span className="cap-row__text">{capability.capability}</span>
-                  <span className="cap-row__meta">
-                    {capability.situationTitle}
-                    {capability.state === "consolidated" ? " · закреплено" : ""}
-                  </span>
-                </span>
+            {rest.length > 0 ? (
+              <div className="skill-grid">
+                {rest.map((capability) => (
+                  <div
+                    key={capability.episodeId}
+                    className={
+                      capability.state === "consolidated"
+                        ? "skill-card is-consolidated"
+                        : "skill-card is-fresh"
+                    }
+                  >
+                    <span className="skill-card__badge">
+                      {capability.state === "consolidated"
+                        ? "Закреплено"
+                        : "Могу"}
+                    </span>
+                    <span className="skill-card__text">
+                      {capability.capability}
+                    </span>
+                    {capability.situationTitle ? (
+                      <span className="skill-card__meta">
+                        {capability.situationTitle}
+                      </span>
+                    ) : null}
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : null}
           </>
         )}
       </div>

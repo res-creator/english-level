@@ -241,15 +241,19 @@ function TodayCard({
 
   return (
     <article className="today-hero">
-      <div className="today-hero__stage">
-        {/* Real scene art renders full-bleed when it exists; until then
-            the stage stays the plain gradient — the coded SceneBackdrop
-            is tuned for the lesson screen's taller, bottom-anchored
-            frame, and cropping it into this short wide banner left
-            almost nothing visible but its own solid counter band. */}
+      <div className="today-hero__stage ambient-stage">
+        {/* The art slot: a real scene photo (café counter, London
+            skyline) renders full-bleed the moment a file exists. Until
+            then, the layered glow beneath stands in for it — the coded
+            SceneBackdrop illustration is tuned for the lesson screen's
+            taller, bottom-anchored frame, and cropping it into this
+            short wide banner left almost nothing visible but its own
+            solid counter band. */}
+        <span className="ambient-glow" aria-hidden="true" />
         <ArtLayer name={artName.sceneBackground(scene)} priority />
+        <span className="today-hero__ground" aria-hidden="true" />
         <div className="today-hero__kvo">
-          <Kvo size={104} state={isMission ? "happy" : "idle"} />
+          <Kvo size={148} state={isMission ? "happy" : "idle"} />
         </div>
       </div>
 
@@ -299,9 +303,10 @@ function EmptyToday({
   if (action === "unavailable") {
     return (
       <article className="today-hero">
-        <div className="today-hero__stage today-hero__stage--quiet">
+        <div className="today-hero__stage today-hero__stage--quiet ambient-stage">
+          <span className="ambient-glow" aria-hidden="true" />
           <div className="today-hero__kvo">
-            <Kvo size={104} state="thinking" />
+            <Kvo size={130} state="thinking" />
           </div>
         </div>
         <div className="today-hero__card">
@@ -317,9 +322,10 @@ function EmptyToday({
 
   return (
     <article className="today-hero">
-      <div className="today-hero__stage today-hero__stage--quiet">
+      <div className="today-hero__stage today-hero__stage--quiet ambient-stage">
+        <span className="ambient-glow" aria-hidden="true" />
         <div className="today-hero__kvo">
-          <Kvo size={104} state="happy" />
+          <Kvo size={130} state="happy" />
         </div>
       </div>
       <div className="today-hero__card">

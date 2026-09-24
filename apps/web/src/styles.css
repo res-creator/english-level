@@ -2704,6 +2704,52 @@ a {
   gap: var(--s2);
 }
 
+/* ===========================================================================
+   Ambient stage — the temporary art slot.
+   A soft, layered-gradient atmosphere for anywhere a real illustrated
+   scene (café counter, London skyline, a cosy room) will eventually go.
+   `.ambient-glow` renders first and stays z-index:0 by default stacking
+   order; any real content after it — text, Kvo, or an ArtLayer's <img>
+   once a file actually exists — paints on top with no extra z-index
+   bookkeeping needed. Dropping in real art later is a content change,
+   never a layout one: this class and its container size stay exactly
+   as they are.
+   =========================================================================== */
+
+.ambient-stage {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    165deg,
+    var(--violet-400) 0%,
+    var(--violet-600) 55%,
+    var(--violet-800) 100%
+  );
+}
+
+.ambient-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      55% 50% at 85% 6%,
+      rgba(255, 178, 122, 0.4) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      65% 55% at 6% 96%,
+      rgba(139, 107, 243, 0.6) 0%,
+      transparent 68%
+    ),
+    radial-gradient(
+      120% 65% at 50% -15%,
+      rgba(255, 255, 255, 0.22) 0%,
+      transparent 58%
+    );
+}
+
 /* --- Today -------------------------------------------------------------- */
 
 .welcome-back {
@@ -2725,40 +2771,52 @@ a {
 
 .today-hero__stage {
   position: relative;
-  height: 190px;
+  height: 250px;
   overflow: hidden;
-  background: radial-gradient(
-    120% 100% at 50% 0%,
-    var(--violet-500) 0%,
-    var(--violet-600) 55%,
-    var(--violet-800) 100%
-  );
 }
 
 .today-hero__stage--quiet {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: var(--s5);
+  padding-bottom: var(--s6);
+}
+
+.today-hero__ground {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  bottom: 30px;
+  width: 180px;
+  height: 60px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 178, 122, 0.5),
+    transparent 75%
+  );
+  filter: blur(2px);
 }
 
 .today-hero__kvo {
   position: absolute;
   z-index: 1;
-  right: var(--s5);
-  bottom: -8px;
-  filter: drop-shadow(0 14px 18px rgba(27, 13, 74, 0.3));
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 18px 22px rgba(27, 13, 74, 0.34));
 }
 
 .today-hero__stage--quiet .today-hero__kvo {
   position: static;
+  transform: none;
   filter: drop-shadow(0 10px 16px rgba(27, 13, 74, 0.3));
 }
 
 .today-hero__card {
   position: relative;
   z-index: 1;
-  margin: -22px var(--s5) 0;
+  margin: -44px var(--s5) 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2941,12 +2999,6 @@ a {
   position: relative;
   margin: calc(var(--s5) * -1) calc(var(--s5) * -1) 0;
   padding: calc(var(--safe-t) + var(--s5)) var(--s5) var(--s8);
-  background: radial-gradient(
-    120% 80% at 50% 0%,
-    var(--violet-500) 0%,
-    var(--violet-600) 46%,
-    var(--violet-700) 100%
-  );
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -2954,13 +3006,16 @@ a {
 }
 
 .course-hero__kvo {
-  position: absolute;
-  top: calc(var(--safe-t) + var(--s3));
-  right: var(--s5);
-  filter: drop-shadow(0 10px 16px rgba(27, 13, 74, 0.3));
+  position: relative;
+  z-index: 1;
+  align-self: flex-end;
+  margin-bottom: -6px;
+  filter: drop-shadow(0 12px 18px rgba(27, 13, 74, 0.32));
 }
 
 .course-hero__title {
+  position: relative;
+  z-index: 1;
   margin: 0;
   font-size: 30px;
   line-height: 1.1;
@@ -2969,6 +3024,8 @@ a {
 }
 
 .course-hero__subtitle {
+  position: relative;
+  z-index: 1;
   margin: 0;
   max-width: 70%;
   font-size: 15px;
@@ -3047,7 +3104,7 @@ a {
   gap: var(--s3);
   min-width: 0;
   padding: var(--s3);
-  border: none;
+  border: 2px solid transparent;
   border-radius: var(--r-xl);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
@@ -3062,24 +3119,28 @@ a {
 
 .situation-row.is-current .situation-row__card {
   align-items: flex-start;
-  border: 2px solid var(--violet-600);
+  border-color: var(--violet-600);
+  background: linear-gradient(160deg, var(--violet-50) 0%, #ffffff 60%);
   box-shadow: var(--shadow-md);
   cursor: default;
 }
 
 .situation-row.is-locked .situation-row__card {
   background: var(--lav-50);
-  box-shadow: none;
+  box-shadow: var(--shadow-sm);
 }
 
 .situation-row__thumb {
   position: relative;
   flex: none;
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   overflow: hidden;
-  border-radius: var(--r-md);
-  background: var(--violet-100);
+  border-radius: 50%;
+  background: linear-gradient(155deg, var(--violet-300), var(--violet-600));
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.4),
+    inset 0 -6px 10px rgba(27, 13, 74, 0.25);
   display: grid;
   place-items: center;
 }
@@ -3087,11 +3148,18 @@ a {
 .situation-row__thumb-icon {
   display: grid;
   place-items: center;
-  color: var(--violet-500);
+  color: #ffffff;
+  filter: drop-shadow(0 1px 1px rgba(27, 13, 74, 0.35));
 }
 
 .situation-row.is-locked .situation-row__thumb {
-  opacity: 0.55;
+  background: linear-gradient(155deg, var(--lav-200), var(--lav-300));
+  box-shadow: none;
+}
+
+.situation-row.is-locked .situation-row__thumb-icon {
+  color: var(--ink-400);
+  filter: none;
 }
 
 .situation-row__body {
@@ -3523,6 +3591,100 @@ a {
   font-weight: 700;
 }
 
+.skill-stats {
+  display: flex;
+  gap: var(--s2);
+}
+
+.skill-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: var(--s3);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.skill-stat__icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--violet-100);
+  color: var(--violet-600);
+}
+
+.skill-stat__value {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
+.skill-stat__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-500);
+}
+
+/* Earned capabilities beyond the newest one, as a grid of compact
+   cards — two real states, never invented ones: "Могу" (can_do, just
+   earned) and "Закреплено" (consolidated, survived spaced review).
+   There is no third "in progress" tier here — MyEnglishResponse only
+   ever carries capabilities that have actually been earned. */
+.skill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s3);
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: var(--s4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  min-width: 0;
+}
+
+.skill-card__badge {
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.skill-card.is-fresh .skill-card__badge {
+  background: var(--apricot-100);
+  color: var(--apricot-700);
+}
+
+.skill-card.is-consolidated .skill-card__badge {
+  background: var(--violet-100);
+  color: var(--violet-600);
+}
+
+.skill-card__text {
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.32;
+  color: var(--ink-900);
+}
+
+.skill-card__meta {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-500);
+}
+
 /* The newest capability gets a card; the rest settle into rows. */
 .cap-card {
   position: relative;
@@ -3567,45 +3729,6 @@ a {
   right: -10px;
   bottom: -14px;
   opacity: 0.95;
-}
-
-.cap-row {
-  display: flex;
-  align-items: center;
-  gap: var(--s3);
-  padding: var(--s4);
-  border-radius: var(--r-lg);
-  background: var(--surface);
-  border: 1px solid var(--border);
-}
-
-.cap-row__icon {
-  flex: none;
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-md);
-  background: var(--violet-100);
-  color: var(--violet-600);
-}
-
-.cap-row__body {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.cap-row__text {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--ink-900);
-}
-
-.cap-row__meta {
-  font-size: 13px;
-  color: var(--ink-500);
 }
 
 .phrase-flow {
@@ -3761,23 +3884,38 @@ a {
 }
 
 .room-slot {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   display: grid;
   place-items: center;
-  border-radius: var(--r-md);
+  border-radius: var(--r-lg);
   border: none;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(155deg, #ffffff, var(--lav-100));
+  box-shadow:
+    var(--shadow-sm),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
   font-size: 26px;
   cursor: pointer;
 }
 
-.room-slot.is-locked {
-  background: rgba(255, 255, 255, 0.24);
-  border: 2px dashed rgba(255, 255, 255, 0.55);
+/* One warm, soft hint of what's still ahead — not a slot per locked
+   item, which read as an empty inventory grid rather than a room that
+   keeps growing. */
+.room-slot--more {
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.08) 70%
+  );
+  border: 1.5px dashed rgba(255, 255, 255, 0.6);
   box-shadow: none;
   cursor: default;
+}
+
+.room-slot__count {
+  font-size: 15px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .room__kvo {

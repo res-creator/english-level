@@ -122,9 +122,10 @@ function ChapterPath({
 
   return (
     <div className="course-chapter">
-      <div className="course-hero">
+      <div className="course-hero ambient-stage">
+        <span className="ambient-glow" aria-hidden="true" />
         <div className="course-hero__kvo">
-          <Kvo size={72} state="idle" />
+          <Kvo size={92} state="idle" />
         </div>
         <h1 className="course-hero__title">
           {index === 0 ? "Курс" : "Дальше"}
@@ -196,7 +197,7 @@ function SituationRow({
         // solid colour, which reads as no art at all — a plain icon is
         // honest about there being no art yet, instead of pretending.
         <span className="situation-row__thumb-icon">
-          {sceneIcon(scene, 22)}
+          {sceneIcon(scene, 26)}
         </span>
       )}
     </span>

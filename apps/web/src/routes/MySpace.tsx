@@ -91,7 +91,9 @@ export function MySpace() {
         </div>
       </header>
 
-      <div className={`room room--stage-${stage}`}>
+      <div className={`room room--stage-${stage} ambient-stage`}>
+        <span className="ambient-glow" aria-hidden="true" />
+
         {/* The environment itself: one painting per stage, so the room
             visibly grows as chapters are finished. */}
         <ArtLayer
@@ -111,23 +113,31 @@ export function MySpace() {
         </div>
 
         <div className="room__objects">
-          {data.items.map((item) => (
+          {unlocked.map((item) => (
             <button
               key={item.id}
               type="button"
-              className={item.unlocked ? "room-slot" : "room-slot is-locked"}
-              disabled={!item.unlocked}
+              className="room-slot"
               onClick={() => setOpen(item)}
-              aria-label={item.unlocked ? item.title : "Ещё впереди"}
+              aria-label={item.title}
             >
-              {item.unlocked ? (
-                <Art
-                  name={artName.spaceObject(item.id)}
-                  fallback={<span aria-hidden="true">{item.glyph}</span>}
-                />
-              ) : null}
+              <Art
+                name={artName.spaceObject(item.id)}
+                fallback={<span aria-hidden="true">{item.glyph}</span>}
+              />
             </button>
           ))}
+          {/* The rest of the room is only softly implied — one warm hint
+              of how much is still ahead, not an empty slot per locked
+              item. That grid read as a wireframe inventory, not a room
+              that's still growing. */}
+          {data.items.length > unlocked.length ? (
+            <span className="room-slot room-slot--more" aria-hidden="true">
+              <span className="room-slot__count">
+                +{data.items.length - unlocked.length}
+              </span>
+            </span>
+          ) : null}
         </div>
 
         <span className="room__kvo">
