@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { TodayResponse } from "@english-level/contracts";
+import type { TodayAction, TodayResponse } from "@english-level/contracts";
 import { getToday } from "../api/productClient.ts";
 import { openingLine, sceneForSituation } from "../brand/situationScenes.ts";
 import { CAST } from "../brand/cast.tsx";
@@ -91,7 +91,7 @@ export function Today() {
         <TodayCard data={data} episode={episode} />
       ) : (
         <EmptyToday
-          reviewDue={data.reviewDue}
+          action={data.action}
           onReview={() => navigate("/review")}
           onCourse={() => navigate("/course")}
         />
@@ -220,21 +220,54 @@ function TodayCard({
   );
 }
 
+/**
+ * Three genuinely different "nothing to show" states — never collapsed
+ * into one, because "unavailable" (this level has no published content
+ * yet) is not the same claim as "none" (finished everything it has).
+ * Saying the wrong one is saying something false to the learner.
+ */
 function EmptyToday({
-  reviewDue,
+  action,
   onReview,
   onCourse,
 }: {
-  reviewDue: number;
+  // Only ever "review" | "none" | "unavailable" in practice — EmptyToday
+  // only renders when there's no episode, which "session"/"mission"
+  // never leave null. Typed as the full TodayAction anyway so this stays
+  // in sync with the server's own type rather than re-declaring a subset.
+  action: TodayAction;
   onReview: () => void;
   onCourse: () => void;
 }) {
+  if (action === "unavailable") {
+    return (
+      <article className="today-card today-card--quiet">
+        <div className="today-card__head">
+          <span className="today-card__eyebrow">Сегодня</span>
+          <h1 className="today-card__title">
+            Готовим программу для твоего уровня
+          </h1>
+        </div>
+        <div className="today-card__scene">
+          <span className="today-card__kvo">
+            <Kvo size={132} state="thinking" />
+          </span>
+        </div>
+        <div className="today-card__cta">
+          <Button variant="onGreen" onClick={onCourse}>
+            Открыть курс
+          </Button>
+        </div>
+      </article>
+    );
+  }
+
   return (
     <article className="today-card today-card--quiet">
       <div className="today-card__head">
         <span className="today-card__eyebrow">Сегодня</span>
         <h1 className="today-card__title">
-          {reviewDue > 0
+          {action === "review"
             ? "Освежим то, что уже знаешь"
             : "Ты прошла все ситуации этого уровня"}
         </h1>
@@ -245,8 +278,11 @@ function EmptyToday({
         </span>
       </div>
       <div className="today-card__cta">
-        <Button variant="onGreen" onClick={reviewDue > 0 ? onReview : onCourse}>
-          {reviewDue > 0 ? "Повторить" : "Открыть курс"}
+        <Button
+          variant="onGreen"
+          onClick={action === "review" ? onReview : onCourse}
+        >
+          {action === "review" ? "Повторить" : "Открыть курс"}
         </Button>
       </div>
     </article>

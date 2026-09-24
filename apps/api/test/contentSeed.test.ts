@@ -19,11 +19,12 @@ test("the published catalogue is the V1 situation course", () => {
   const published = bundle.modules.filter(
     (m) => (m.status ?? "published") === "published",
   );
-  // One A1 starter chapter plus the three A2 chapters. The original A1
+  // Public V1 is A1-only: just the one situational starter chapter is
+  // published. The original (pre-pivot) A1 chapters and all three A2
   // chapters stay in the bundle but archived, so no released content id
-  // ever disappears.
-  assert.equal(published.length, 4);
-  assert.equal(bundle.modules.length - published.length, 3);
+  // ever disappears and A2 can be published later without a rewrite.
+  assert.equal(published.length, 1);
+  assert.equal(bundle.modules.length - published.length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
   assert.equal(starter.length, 5);

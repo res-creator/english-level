@@ -9,6 +9,7 @@ import {
   InviteCodeResponseSchema,
   LessonContentDTOSchema,
   MyEnglishResponseSchema,
+  MySettingsResponseSchema,
   MySpaceResponseSchema,
   ReviewSessionDTOSchema,
   ResetPreviewResponseSchema,
@@ -16,6 +17,8 @@ import {
   ReviewStateResponseSchema,
   SessionResultDTOSchema,
   TodayResponseSchema,
+  DeleteAccountResponseSchema,
+  DELETE_ACCOUNT_CONFIRMATION,
   type AnswerReviewResponse,
   type AnswerSessionResponse,
   type CompanionDTO,
@@ -24,12 +27,14 @@ import {
   type FriendStateResponse,
   type LessonContentDTO,
   type MyEnglishResponse,
+  type MySettingsResponse,
   type MySpaceResponse,
   type ReviewSessionDTO,
   type ResetPreviewResponse,
   type ReviewStateResponse,
   type SessionResultDTO,
   type TodayResponse,
+  type UpdateMySettingsRequest,
 } from "@english-level/contracts";
 import { API_BASE_URL } from "../lib/apiBaseUrl.ts";
 
@@ -79,6 +84,18 @@ function post<T>(
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body),
         }),
+  });
+}
+
+function patch<T>(
+  path: string,
+  schema: { parse: (v: unknown) => T },
+  body: unknown,
+): Promise<T> {
+  return request(path, schema, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
   });
 }
 
@@ -193,6 +210,26 @@ export function createFriendInvite(): Promise<{ code: string }> {
 
 export function acceptFriendInvite(code: string): Promise<FriendStateResponse> {
   return post("/my/friend/accept", FriendStateResponseSchema, { code });
+}
+
+// --- account settings & deletion -------------------------------------------
+
+export function getMySettings(): Promise<MySettingsResponse> {
+  return request("/my/settings", MySettingsResponseSchema);
+}
+
+export function updateMySettings(
+  input: UpdateMySettingsRequest,
+): Promise<MySettingsResponse> {
+  return patch("/my/settings", MySettingsResponseSchema, input);
+}
+
+/** Real, permanent deletion — works in every environment, unlike the
+ * preview-only reset below. */
+export function deleteAccount(): Promise<{ ok: true }> {
+  return post("/my/account/delete", DeleteAccountResponseSchema, {
+    confirm: DELETE_ACCOUNT_CONFIRMATION,
+  });
 }
 
 // --- preview-only testing tools -------------------------------------------

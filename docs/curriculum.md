@@ -152,6 +152,12 @@ creates schema only, with **zero content rows**.
 
 - **6 modules**: A1 — _Me & Introductions_, _Daily Life_, _Family &
   People_; A2 — _Life & Routines_, _Travel & Transport_, _Communication_.
+  **All 6 are `status = 'archived'`** — public V1 is A1-only by product
+  decision (see `docs/speak-in-english-v1.md`), and A2's pre-pivot
+  content isn't in the situational format A1 shipped in. Archived, not
+  deleted: the rows and seed files stay, so re-publishing A2 later (once
+  it gets the same situational treatment as A1) is a one-line status
+  change, not a rewrite.
 - **24 lessons** (4 per module: Vocabulary, Useful Phrases, Grammar, and
   a closing Mixed Practice/Reading/Checkpoint/Practice lesson — all 6
   `lesson_type` values are exercised at least once across the sample).

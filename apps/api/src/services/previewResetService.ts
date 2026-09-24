@@ -83,7 +83,14 @@ async function summarize(db: Db, userId: string): Promise<PreviewResetSummary> {
   };
 }
 
-function resetStatements(userId: string, now: string): DbStatement[] {
+/**
+ * Every DELETE that clears a user's learning state, shared by the preview
+ * reset (keeps the account, clears what it learned) and real account
+ * deletion (removes the account too, see `accountDeletionService.ts`) —
+ * one tested implementation of "what belongs to this user" rather than
+ * two lists that can drift apart.
+ */
+export function clearLearningStateStatements(userId: string): DbStatement[] {
   const own = (sql: string): DbStatement => ({ sql, params: [userId] });
   return [
     // --- lesson execution ---------------------------------------------
@@ -121,7 +128,12 @@ function resetStatements(userId: string, now: string): DbStatement[] {
             WHERE inviter_user_id = ? OR accepted_by_user_id = ?`,
       params: [userId, userId],
     },
+  ];
+}
 
+function resetStatements(userId: string, now: string): DbStatement[] {
+  return [
+    ...clearLearningStateStatements(userId),
     // --- onboarding, level and return state -----------------------------
     // The account survives; only what it learned is cleared. Telegram
     // identity (id, telegram_user_id, name) is deliberately untouched, so

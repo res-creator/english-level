@@ -4,7 +4,7 @@ import type {
   TodayAction,
   TodayResponse,
 } from "@english-level/contracts";
-import type { Db, LessonRow } from "../db/types.ts";
+import type { Db, LessonRow, ModuleRow } from "../db/types.ts";
 import { findActiveSessionForUser } from "../repositories/learningSessionsRepository.ts";
 import {
   findPublishedLessonById,
@@ -65,17 +65,19 @@ async function softenAfterAbsence(
   return daysAway;
 }
 
-/** The first episode whose capability isn't earned yet, in course order. */
+/** The first episode whose capability isn't earned yet, in course order.
+ * Takes the level's already-fetched modules rather than the level code, so
+ * `getToday` can check "does this level have any content at all" once and
+ * reuse the same list here instead of querying it twice. */
 async function findCurrentEpisode(
   db: Db,
   userId: string,
-  cefrLevel: string,
+  modules: ModuleRow[],
 ): Promise<{
   lesson: LessonRow;
   chapterTitle: string;
   chapterProgress: { done: number; total: number };
 } | null> {
-  const modules = await listPublishedModulesByLevel(db, levelId(cefrLevel));
   for (const module_ of modules) {
     const lessons = await listPublishedLessonsByModule(db, module_.id);
     if (lessons.length === 0) continue;
@@ -180,7 +182,26 @@ export async function getToday(
 
   if (!currentCefrLevel) return nothing;
 
-  const current = await findCurrentEpisode(db, userId, currentCefrLevel);
+  // Public V1 is A1-only: a level placement can honestly land someone
+  // above (or, once more levels ship, below) what's actually published.
+  // That must never be confused with "finished everything" — the learner
+  // hasn't done anything yet, there's simply nothing here for their level.
+  const modules = await listPublishedModulesByLevel(
+    db,
+    levelId(currentCefrLevel),
+  );
+  if (modules.length === 0) {
+    return {
+      ...base,
+      action: reviewDue > 0 ? "review" : "unavailable",
+      episode: null,
+      chapterTitle: null,
+      estimatedMinutes: null,
+      chapterProgress: null,
+    };
+  }
+
+  const current = await findCurrentEpisode(db, userId, modules);
   if (!current) return nothing;
 
   const capability = await findCapability(db, userId, current.lesson.id);

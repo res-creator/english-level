@@ -20,7 +20,15 @@ The learner never sees the words "module", "lesson" or "activity plan".
 
 No renaming migration was needed, and no released content id changed —
 the original A1 chapters are `status = 'archived'` at orders 101–103, not
-deleted, because user progress points at them.
+deleted, because user progress points at them. A2's three chapters are
+archived too, for a different reason: public V1 is A1-only by product
+decision — A2's content is real but still in the pre-pivot, non-
+situational format, so it's held back rather than shipped inconsistent
+with A1's polish. `todayService.getToday` returns `action: "unavailable"`
+for a verified level with no published modules (any level, not just
+A2), which the client renders as "we don't have this yet" — never as
+"you finished everything", which would be a lie for someone who scored
+above A1 and never touched any content at all.
 
 ## The session is a slice, not a lesson
 

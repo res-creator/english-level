@@ -18,6 +18,7 @@ import { ProgressBar } from "../ui/ProgressBar.tsx";
 import { SkeletonList, ErrorState, EmptyState } from "../ui/states.tsx";
 import { IconSpeechCheck } from "../ui/icons.tsx";
 import { PreviewResetPanel } from "../components/PreviewResetPanel.tsx";
+import { AccountSettingsPanel } from "../components/AccountSettingsPanel.tsx";
 
 type State =
   | { status: "loading" }
@@ -166,6 +167,8 @@ export function MyEnglish() {
       </button>
 
       <FriendPanel state={friend} onChanged={setFriend} />
+
+      <AccountSettingsPanel />
 
       <PreviewResetPanel />
     </section>

@@ -27,6 +27,19 @@ test("no verified level yet leaves Today with nothing to do", async () => {
   assert.equal(today.reviewDue, 0);
 });
 
+test("a level with no published content is honestly 'unavailable', never 'course complete'", async () => {
+  const { db } = await seeded();
+  // Public V1 is A1-only: A2's modules are archived, not deleted — exactly
+  // like B1/B2/C1 having no content at all. Someone placement legitimately
+  // scores above A1 must never see this collapse into "you finished
+  // everything", since they haven't done anything yet.
+  const user = await makeVerifiedUser(db, 103, "A2");
+  const today = await getToday(db, user.id, "A2");
+  assert.equal(today.action, "unavailable");
+  assert.equal(today.episode, null);
+  assert.equal(today.reviewDue, 0);
+});
+
 test("a fresh verified user is pointed at the first situation", async () => {
   const { db } = await seeded();
   const user = await makeVerifiedUser(db, 101, "A1");

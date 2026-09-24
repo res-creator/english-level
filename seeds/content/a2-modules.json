@@ -5,7 +5,8 @@
     "title": "Жизнь и ритм",
     "slug": "a2-life-and-routines",
     "description": "Плотная неделя, опоздания, планы и привычки — то, из чего состоит обычная жизнь.",
-    "order": 1
+    "order": 1,
+    "status": "archived"
   },
   {
     "id": "mod_a2_02",
@@ -13,7 +14,8 @@
     "title": "Поездки и транспорт",
     "slug": "a2-travel-and-transport",
     "description": "Билеты, вокзалы и маршруты: всё, что нужно, чтобы доехать.",
-    "order": 2
+    "order": 2,
+    "status": "archived"
   },
   {
     "id": "mod_a2_03",
@@ -21,6 +23,7 @@
     "title": "Разговор без пауз",
     "slug": "a2-communication",
     "description": "Переспросить, договориться и высказать мнение.",
-    "order": 3
+    "order": 3,
+    "status": "archived"
   }
 ]

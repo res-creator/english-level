@@ -95,6 +95,10 @@ export function buildReminderText(
         : null;
     case "none":
       return null;
+    // Nudging someone back to content that doesn't exist for their level
+    // would be exactly the kind of noise this function exists to avoid.
+    case "unavailable":
+      return null;
   }
 }
 

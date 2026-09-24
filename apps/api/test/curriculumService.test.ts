@@ -64,13 +64,11 @@ test("every episode states the capability it unlocks", async () => {
   }
 });
 
-test("A2 course keeps its three chapters, now framed as situations", async () => {
+test("A2's three chapters are archived — public V1 is A1-only, not deleted or exposed", async () => {
   const { db } = await seeded();
   const course = await getCourse(db, "A2", "usr_test");
-  assert.deepEqual(
-    course.chapters.map((c) => c.title),
-    ["Жизнь и ритм", "Поездки и транспорт", "Разговор без пауз"],
-  );
+  assert.deepEqual(course.chapters, []);
+  assert.equal(course.episodesTotal, 0);
 });
 
 test("a level with no seeded content returns an empty course, not an error", async () => {

@@ -497,12 +497,18 @@ export const CourseResponseSchema = z.object({
 });
 export type CourseResponse = z.infer<typeof CourseResponseSchema>;
 
-/** What Today should put in front of the learner right now. */
+/** What Today should put in front of the learner right now.
+ * "unavailable" is distinct from "none": "none" means the learner has
+ * genuinely finished everything their level currently offers, while
+ * "unavailable" means their verified level has no published content at
+ * all — the honest case for anyone placed above the public V1's A1-only
+ * scope, never to be confused with "course complete". */
 export const TodayActionSchema = z.enum([
   "session",
   "mission",
   "review",
   "none",
+  "unavailable",
 ]);
 export type TodayAction = z.infer<typeof TodayActionSchema>;
 
@@ -788,6 +794,47 @@ export const ResetPreviewResponseSchema = z.object({
   }),
 });
 export type ResetPreviewResponse = z.infer<typeof ResetPreviewResponseSchema>;
+
+// ---------------------------------------------------------------------------
+// Account settings & deletion.
+//
+// Deliberately narrow: only the two settings a learner can actually act on
+// today (daily goal, daily reminder). `user_settings` has more columns than
+// this — they stay unexposed until a real feature needs them, rather than
+// growing a settings screen nobody asked for yet.
+// ---------------------------------------------------------------------------
+
+export const MySettingsResponseSchema = z.object({
+  dailyMinutes: DailyMinutesSchema,
+  dailyReminderEnabled: z.boolean(),
+});
+export type MySettingsResponse = z.infer<typeof MySettingsResponseSchema>;
+
+export const UpdateMySettingsRequestSchema = z
+  .object({
+    dailyMinutes: DailyMinutesSchema.optional(),
+    dailyReminderEnabled: z.boolean().optional(),
+  })
+  .refine(
+    (v) => v.dailyMinutes !== undefined || v.dailyReminderEnabled !== undefined,
+    { message: "at least one setting must be provided" },
+  );
+export type UpdateMySettingsRequest = z.infer<
+  typeof UpdateMySettingsRequestSchema
+>;
+
+/** A literal the caller must send, so real account deletion can never be
+ * triggered by a stray or replayed request — same pattern as the preview
+ * reset, but this one runs in production too. */
+export const DELETE_ACCOUNT_CONFIRMATION = "УДАЛИТЬ";
+
+export const DeleteAccountRequestSchema = z.object({
+  confirm: z.literal(DELETE_ACCOUNT_CONFIRMATION),
+});
+export type DeleteAccountRequest = z.infer<typeof DeleteAccountRequestSchema>;
+
+export const DeleteAccountResponseSchema = z.object({ ok: z.literal(true) });
+export type DeleteAccountResponse = z.infer<typeof DeleteAccountResponseSchema>;
 
 // ---------------------------------------------------------------------------
 // Pilot analytics.
