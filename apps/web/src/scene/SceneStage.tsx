@@ -6,7 +6,6 @@ import {
   type CastState,
 } from "../brand/cast.tsx";
 import { Kvo, type KvoState } from "../brand/Kvo.tsx";
-import { SceneBackdrop } from "../brand/scenes.tsx";
 import { sceneLabelText, type SceneId } from "../brand/situationScenes.ts";
 import { ArtLayer } from "../brand/Art.tsx";
 import { artName } from "../brand/artRegistry.ts";
@@ -97,12 +96,18 @@ export function SceneStage({
 
   return (
     <div className={compact ? "scene scene--compact" : "scene"}>
-      {/* Layer 1 — the place. Real artwork when it exists, the coded
-          backdrop underneath when it doesn't. */}
+      {/* Layer 1 — the place. Real artwork when it exists; a plain
+          neutral backdrop when it doesn't. The old flat-vector
+          SceneBackdrop illustration (cups, lamps, a sketched window)
+          was designed against a coded silhouette, not a photoreal
+          cast render — once the person in front is a real photo, its
+          own decorative fragments read as a rendering bug, not as
+          "no art yet". A quiet gradient never clashes with anything
+          placed on top of it, whatever that art ends up being. */}
       <ArtLayer
         name={artName.sceneBackground(scene)}
         priority
-        fallback={<SceneBackdrop scene={scene} />}
+        fallback={<div className="scene__backdrop-neutral" />}
       />
 
       {label ? <div className="scene__label">{label}</div> : null}

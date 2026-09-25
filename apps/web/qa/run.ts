@@ -119,19 +119,19 @@ async function main() {
   await shoot(page, "lesson-step-01.png");
   await checkLayout(page, "demo-step-1-choice");
 
-  // The coded SceneBackdrop (flat vector cup/lamp/window sketch) is a
-  // fallback for when no real scene photo exists yet — it wasn't
-  // designed to sit behind a photoreal cast render. If it's still the
-  // one showing, flag it: it reads as a rendering bug (mismatched art
-  // styles), not as "no art yet".
+  // Regression guard for a fixed bug: the old flat-vector SceneBackdrop
+  // (cup/lamp/window sketch) used to render behind the photoreal cast
+  // art and visibly clash with it. It's been replaced with a neutral
+  // gradient (.scene__backdrop-neutral) — this asserts the illustrated
+  // fallback never comes back.
   const codedBackdropVisible = await page
     .locator(".scene svg.scene__backdrop")
     .count();
   if (codedBackdropVisible > 0) {
     report(
       "demo-step-1-choice",
-      "note",
-      'The scene background is still the coded flat-vector SceneBackdrop (no real photo for artName.sceneBackground("cafe") yet) — it visibly clashes with the photoreal Kvo/cast art now in front of it (see the cup/lamp/window sketch fragments peeking around Maya in the screenshot).',
+      "bug",
+      "The old coded flat-vector SceneBackdrop is rendering again behind the photoreal cast art (regression — this was fixed by replacing it with .scene__backdrop-neutral).",
     );
   }
 
