@@ -30,7 +30,13 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # 22, not 20: the seed-generation step below runs
+          # `node --experimental-strip-types` (also how this repo's own
+          # apps/api/package.json `seed:generate` script is documented
+          # to be run), which needs Node >=22.6. Root package.json's
+          # engines field ("node": ">=20") is a floor, not a pin, so 22
+          # satisfies it.
+          node-version: 22
 
       - name: Enable corepack (pnpm)
         run: corepack enable
