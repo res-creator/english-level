@@ -21,4 +21,9 @@ export const artName = {
   spaceStage: (stage: number) => `space-stage-${stage}`,
   spaceForeground: () => `space-fg`,
   spaceObject: (rewardId: string) => `space-object-${rewardId}`,
+  /** The course list's own thumbnail for one situation — per episode,
+   * not per scene: two episodes can share a scene/cast (e.g. two
+   * "meeting" situations with Alex) while needing visually distinct
+   * cards in the list. */
+  courseThumb: (episodeId: string) => `course-thumb-${episodeId}`,
 };

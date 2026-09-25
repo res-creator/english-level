@@ -190,16 +190,19 @@ function SituationRow({
     navigate(`/course/${episode.id}`);
   }
 
-  const bgArtName = artName.sceneBackground(scene);
+  const thumbArtName = artName.courseThumb(episode.id);
   const thumb = (
-    <span className="situation-row__thumb" aria-hidden="true">
-      {hasArt(bgArtName) ? (
-        <ArtLayer name={bgArtName} />
+    <span
+      className={
+        "situation-row__thumb" + (locked ? " situation-row__thumb--locked" : "")
+      }
+      aria-hidden="true"
+    >
+      {hasArt(thumbArtName) ? (
+        <ArtLayer name={thumbArtName} />
       ) : (
-        // The coded SceneBackdrop illustration is tuned for a tall scene
-        // frame; sliced into a 56px square it shows only a fragment of
-        // solid colour, which reads as no art at all — a plain icon is
-        // honest about there being no art yet, instead of pretending.
+        // No thumbnail illustrated for this situation yet — a plain
+        // scene icon is honest about that instead of pretending.
         <span className="situation-row__thumb-icon">
           {sceneIcon(scene, 26)}
         </span>
