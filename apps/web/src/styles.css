@@ -3611,37 +3611,87 @@ a {
   gap: var(--s2);
 }
 
+/* Compact: icon beside the number, not stacked above it — this row is
+   context for the screen below, not its own headline. */
 .skill-stat {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  padding: var(--s3);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 9px 10px;
   border-radius: var(--r-lg);
   background: var(--surface);
   border: 1px solid var(--border);
 }
 
 .skill-stat__icon {
+  flex: none;
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: var(--violet-100);
   color: var(--violet-600);
 }
 
+.skill-stat__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+
 .skill-stat__value {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--ink-900);
 }
 
 .skill-stat__label {
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 600;
+  color: var(--ink-500);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Before any capability exists: an illustrated, on-brand moment
+   instead of a bare "Пока пусто" line — same soft lavender/off-white
+   language as the rest of the screen (and Today/Course/My Space),
+   Kvo included, no invented achievement to fill the space. */
+.cap-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s2);
+  text-align: center;
+  padding: var(--s6) var(--s5) var(--s5);
+  border-radius: var(--r-2xl);
+  background: linear-gradient(180deg, var(--lav-100) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+}
+
+.cap-empty__kvo {
+  margin-bottom: var(--s1);
+  filter: drop-shadow(0 12px 18px rgba(27, 13, 74, 0.18));
+}
+
+.cap-empty__title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink-900);
+}
+
+.cap-empty__text {
+  margin: 0;
+  max-width: 260px;
+  font-size: 14px;
+  line-height: 1.45;
   color: var(--ink-500);
 }
 

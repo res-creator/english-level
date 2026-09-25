@@ -15,7 +15,7 @@ import {
 import { Kvo } from "../brand/Kvo.tsx";
 import { Button } from "../ui/Button.tsx";
 import { ProgressBar } from "../ui/ProgressBar.tsx";
-import { SkeletonList, ErrorState, EmptyState } from "../ui/states.tsx";
+import { SkeletonList, ErrorState } from "../ui/states.tsx";
 import { IconCheck, IconRefresh, IconSparkle } from "../ui/icons.tsx";
 import { PreviewResetPanel } from "../components/PreviewResetPanel.tsx";
 import { AccountSettingsPanel } from "../components/AccountSettingsPanel.tsx";
@@ -97,26 +97,32 @@ export function MyEnglish() {
       <div className="skill-stats">
         <div className="skill-stat">
           <span className="skill-stat__icon">
-            <IconSparkle size={16} />
+            <IconSparkle size={14} />
           </span>
-          <span className="skill-stat__value">{data.stats.phrasesMet}</span>
-          <span className="skill-stat__label">фраз встречено</span>
+          <span className="skill-stat__body">
+            <span className="skill-stat__value">{data.stats.phrasesMet}</span>
+            <span className="skill-stat__label">встречено</span>
+          </span>
         </div>
         <div className="skill-stat">
           <span className="skill-stat__icon">
-            <IconRefresh size={16} />
+            <IconRefresh size={14} />
           </span>
-          <span className="skill-stat__value">
-            {data.stats.phrasesConsolidated}
+          <span className="skill-stat__body">
+            <span className="skill-stat__value">
+              {data.stats.phrasesConsolidated}
+            </span>
+            <span className="skill-stat__label">закреплено</span>
           </span>
-          <span className="skill-stat__label">закреплено</span>
         </div>
         <div className="skill-stat">
           <span className="skill-stat__icon">
-            <IconCheck size={16} />
+            <IconCheck size={14} />
           </span>
-          <span className="skill-stat__value">{data.stats.episodesDone}</span>
-          <span className="skill-stat__label">ситуаций пройдено</span>
+          <span className="skill-stat__body">
+            <span className="skill-stat__value">{data.stats.episodesDone}</span>
+            <span className="skill-stat__label">пройдено</span>
+          </span>
         </div>
       </div>
 
@@ -124,10 +130,15 @@ export function MyEnglish() {
         <span className="section-title">Я могу…</span>
 
         {!newest ? (
-          <EmptyState
-            title="Пока пусто"
-            message="Пройди первую миссию — и здесь появится первое «Я могу»."
-          />
+          <div className="cap-empty">
+            <span className="cap-empty__kvo" aria-hidden="true">
+              <Kvo size={104} state="idle" />
+            </span>
+            <h2 className="cap-empty__title">Пока пусто</h2>
+            <p className="cap-empty__text">
+              Пройди первую миссию — и здесь появится первое «Я могу».
+            </p>
+          </div>
         ) : (
           <>
             <article className="cap-card">
