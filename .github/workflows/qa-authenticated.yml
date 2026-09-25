@@ -1,0 +1,80 @@
+name: Authenticated preview QA (Playwright)
+
+# Manual only, for now — this exercises the real curriculum flow
+# (Today -> Course -> Session -> Mission Result) using the app's own
+# existing local-dev auth fixture (apps/web/src/auth/devTelegramFixture.ts),
+# against a throwaway local API + D1 this job stands up itself via
+# `wrangler dev`. No production is touched, and no new auth path is
+# added — see apps/web/qa/README.md for why this needs Linux (workerd)
+# and can't run on the maintainer's current Mac.
+#
+# Run it: GitHub -> Actions -> "Authenticated preview QA (Playwright)"
+# -> Run workflow. Or: gh workflow run qa-authenticated.yml
+on:
+  workflow_dispatch: {}
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable corepack (pnpm)
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright's Chromium
+        run: pnpm --filter @english-level/web exec playwright install --with-deps chromium
+
+      - name: Apply D1 migrations (local, throwaway per run)
+        working-directory: apps/api
+        run: pnpm run migrate:local
+
+      - name: Generate and apply curriculum seed content (local D1)
+        run: |
+          node --experimental-strip-types apps/api/scripts/generateSeedSql.ts > /tmp/curriculum_seed.sql
+          cd apps/api && pnpm exec wrangler d1 execute DB --local --file=/tmp/curriculum_seed.sql
+
+      - name: Start the API (wrangler dev)
+        working-directory: apps/api
+        run: pnpm run dev &
+
+      - name: Start the web app (vite dev)
+        working-directory: apps/web
+        run: pnpm run dev &
+
+      - name: Wait for both dev servers
+        run: |
+          for url in http://localhost:8787/api/v1/health http://localhost:5173; do
+            echo "waiting for $url"
+            for i in $(seq 1 60); do
+              if curl -sf "$url" > /dev/null; then
+                echo "$url is up"
+                break
+              fi
+              if [ "$i" -eq 60 ]; then
+                echo "$url never came up" >&2
+                exit 1
+              fi
+              sleep 1
+            done
+          done
+
+      - name: Run authenticated QA
+        working-directory: apps/web
+        run: pnpm run qa:authenticated
+
+      - name: Upload QA artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-authenticated-artifacts
+          path: artifacts/qa/
+          retention-days: 14
