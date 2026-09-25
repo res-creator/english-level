@@ -15,7 +15,15 @@ on:
 
 jobs:
   qa:
-    runs-on: ubuntu-latest
+    # Pinned, not `ubuntu-latest`: Playwright 1.44.0's `--with-deps` apt
+    # list still names the pre-24.04 package `libasound2`, which 24.04
+    # (`ubuntu-latest` as of this writing) renamed to `libasound2t64`
+    # (the 64-bit time_t transition) — `apt install` then fails with
+    # "no installation candidate" before Chromium ever gets installed.
+    # 22.04 still ships the package under its original name. Playwright
+    # itself stays at 1.44.0 for the separate, existing reason (macOS 12
+    # compatibility on the maintainer's dev Mac — see qa/README.md).
+    runs-on: ubuntu-22.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
