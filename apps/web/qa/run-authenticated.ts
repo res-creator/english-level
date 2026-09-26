@@ -28,8 +28,16 @@
  * transcript and its controls render sanely. The Mission may well
  * come back "failed" as a result; SessionResult handles that case too
  * and this script screenshots whichever one actually happens.
+ *
+ * Screen transitions are all client-side (React Router), not full
+ * page loads — waiting on `page.waitForURL()` alone hung here at
+ * first, because its default `waitUntil: "load"` waits for a `load`
+ * event that a pushState-only navigation never fires. Every wait below
+ * is instead on a UI element unique to the destination screen
+ * (`waitForScreen`); the URL is logged alongside it for diagnosis, not
+ * used as the sole signal that a transition finished.
  */
-import { chromium, devices, type Page } from "playwright";
+import { chromium, devices, type Locator, type Page } from "playwright";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -65,6 +73,56 @@ async function shoot(page: Page, name: string) {
   );
   await page.screenshot({ path: file });
   console.log(`saved ${path.relative(REPO_ROOT, file)}`);
+}
+
+/** Sanitizes a screen name into something safe to use in a filename. */
+function slug(name: string): string {
+  return name.replace(/[^a-z0-9-]+/gi, "-").replace(/^-+|-+$/g, "");
+}
+
+/**
+ * Waits for a UI element unique to the destination screen — never for
+ * the URL alone. Logs where we started, where we ended up, and (on
+ * failure) saves a screenshot of whatever's actually on screen before
+ * rethrowing, so a broken run always leaves something to look at.
+ *
+ * `urlPattern` is an optional secondary check, logged as a finding if
+ * it doesn't match — informative, not a reason to fail the wait.
+ */
+async function waitForScreen(
+  page: Page,
+  name: string,
+  marker: Locator,
+  opts?: { urlPattern?: RegExp; timeout?: number },
+) {
+  const timeout = opts?.timeout ?? 15_000;
+  console.log(`--> waiting for "${name}" (currently at ${page.url()})`);
+  try {
+    await marker.first().waitFor({ state: "visible", timeout });
+  } catch (err) {
+    console.error(
+      `FAILED waiting for "${name}" — page.url() is now ${page.url()}`,
+    );
+    try {
+      await page.screenshot({
+        path: path.join(OUT_DIR, `FAILURE-${slug(name)}.png`),
+      });
+      console.error(
+        `saved artifacts/qa/FAILURE-${slug(name)}.png for diagnosis`,
+      );
+    } catch (shotErr) {
+      console.error("could not even save a failure screenshot:", shotErr);
+    }
+    throw err;
+  }
+  console.log(`<-- reached "${name}" at ${page.url()}`);
+  if (opts?.urlPattern && !opts.urlPattern.test(page.url())) {
+    report(
+      name,
+      "note",
+      `Expected UI marker is visible, but the URL "${page.url()}" doesn't match ${opts.urlPattern} — logged, not treated as a failure.`,
+    );
+  }
 }
 
 async function checkLayout(page: Page, screen: string) {
@@ -106,24 +164,16 @@ async function clickByText(page: Page, text: string | RegExp) {
   await page.locator(".btn, button", { hasText: text }).first().click();
 }
 
-async function main() {
-  await mkdir(OUT_DIR, { recursive: true });
-
-  const browser = await chromium.launch();
-  const context = await browser.newContext({
-    viewport: VIEWPORT,
-    deviceScaleFactor: devices["iPhone 13"].deviceScaleFactor,
-    isMobile: true,
-    hasTouch: true,
-    userAgent: devices["iPhone 13"].userAgent,
-  });
-  const page = await context.newPage();
-
+async function run(page: Page) {
   // --- Welcome -> Demo (marks welcome seen; the only path onward) -----
   await page.goto(`${BASE_URL}/welcome`, { waitUntil: "networkidle" });
   await checkLayout(page, "welcome");
   await clickByText(page, "Попробовать иначе");
-  await page.waitForURL(/\/demo$/, { timeout: 15_000 });
+  // .lesson-screen is shared by Demo/Session/Placement, but Demo is the
+  // only one reachable from here, so it's unambiguous at this point.
+  await waitForScreen(page, "demo", page.locator(".lesson-screen"), {
+    urlPattern: /\/demo$/,
+  });
 
   // Drive the 2-step demo with whatever's fastest — content itself is
   // already covered by qa/run.ts against the deployed preview.
@@ -139,32 +189,62 @@ async function main() {
     await page.waitForTimeout(300);
   }
   await clickByText(page, "Дальше"); // DemoDone -> /demo/result
-  await page.waitForURL(/\/demo\/result$/, { timeout: 10_000 });
+  await waitForScreen(
+    page,
+    "demo-result",
+    page.locator(".transcript"), // unique to DemoResult
+    { urlPattern: /\/demo\/result$/ },
+  );
   await clickByText(page, "Продолжить"); // -> /onboarding/companion
-  await page.waitForURL(/\/onboarding\/companion$/, { timeout: 10_000 });
+  await waitForScreen(
+    page,
+    "onboarding-companion",
+    page.locator(".pick-screen"),
+    { urlPattern: /\/onboarding\/companion$/ },
+  );
 
   // --- Companion, then Goals -> Level (A1) -> Daily time -> Ready -----
-  await page.waitForSelector(".pick-screen", { timeout: 10_000 });
   await clickByText(page, /^Оставить/);
-  await page.waitForURL(/\/onboarding(\/goals)?$/, { timeout: 10_000 });
+  await waitForScreen(page, "onboarding-goals", page.locator(".goal-grid"), {
+    urlPattern: /\/onboarding(\/goals)?$/,
+  });
 
-  await page.waitForSelector(".goal-grid", { timeout: 10_000 });
   await page.locator(".goal-chip").first().click();
   await clickByText(page, "Дальше");
+  await waitForScreen(
+    page,
+    "onboarding-level",
+    page.locator(".task-sheet__title", { hasText: "Как сейчас с английским?" }),
+    { urlPattern: /\/onboarding\/level$/ },
+  );
 
-  await page.waitForURL(/\/onboarding\/level$/, { timeout: 10_000 });
   await page.locator(".answer", { hasText: "A1" }).click();
   await clickByText(page, "Дальше");
+  await waitForScreen(
+    page,
+    "onboarding-time",
+    page.locator(".task-sheet__title", { hasText: "Сколько минут в день?" }),
+    { urlPattern: /\/onboarding\/time$/ },
+  );
 
-  await page.waitForURL(/\/onboarding\/time$/, { timeout: 10_000 });
   await page.locator(".answer").first().click();
   await clickByText(page, "Дальше");
+  await waitForScreen(
+    page,
+    "onboarding-ready",
+    page.locator("text=Всё готово"),
+    { urlPattern: /\/onboarding\/ready$/ },
+  );
 
-  await page.waitForURL(/\/onboarding\/ready$/, { timeout: 10_000 });
   await clickByText(page, "Пройти тест");
+  await waitForScreen(
+    page,
+    "placement-intro",
+    page.locator(".btn", { hasText: "Начать тест" }),
+    { urlPattern: /\/placement$/ },
+  );
 
   // --- Placement (adaptive, ~15-25 questions) --------------------------
-  await page.waitForURL(/\/placement$/, { timeout: 10_000 });
   const startBtn = page.locator(".btn", { hasText: "Начать тест" });
   if ((await startBtn.count()) > 0) await startBtn.click();
 
@@ -185,7 +265,12 @@ async function main() {
     await page.waitForTimeout(250);
     if (/\/placement\/result\//.test(page.url())) break;
   }
-  await page.waitForURL(/\/placement\/result\//, { timeout: 15_000 });
+  await waitForScreen(
+    page,
+    "placement-result",
+    page.locator("text=Твой уровень"),
+    { urlPattern: /\/placement\/result\// },
+  );
   await shoot(page, "placement-result.png");
   await checkLayout(page, "placement-result");
 
@@ -217,7 +302,9 @@ async function main() {
     );
   } else {
     await currentCta.first().click();
-    await page.waitForURL(/\/session$/, { timeout: 15_000 });
+    await waitForScreen(page, "session", page.locator(".scene"), {
+      urlPattern: /\/session$/,
+    });
   }
 
   // --- Session: repeat across every session of the first episode until
@@ -267,7 +354,6 @@ async function main() {
       } else if ((await answerBtn.count()) > 0) {
         const mcOptions = page.locator(".answer");
         const wordBankTokens = page.locator(".word-bank .word:not(:disabled)");
-        const buildLineWords = page.locator(".build-line .word");
         const textInput = page.locator(".answer-input");
 
         if ((await mcOptions.count()) > 0) {
@@ -283,7 +369,6 @@ async function main() {
             await still.first().click();
             await page.waitForTimeout(60);
           }
-          void buildLineWords; // (kept for readability of intent above)
         } else if ((await textInput.count()) > 0) {
           await textInput.fill("placeholder");
         }
@@ -297,10 +382,7 @@ async function main() {
           // turns out to be (revealed only now, in the miss panel), every
           // one of its words must have existed in the token bank shown.
           const missAnswer = page.locator(".miss__answer");
-          if (
-            (await missAnswer.count()) > 0 &&
-            (await wordBankTokens.count()) >= 0
-          ) {
+          if ((await missAnswer.count()) > 0) {
             const correct = (await missAnswer.innerText()).trim();
             const bankTextsNow = await page
               .locator(".word-bank .word, .build-line .word")
@@ -328,8 +410,15 @@ async function main() {
       if (/\/result\//.test(page.url())) break;
     }
 
-    await page.waitForURL(/\/result\//, { timeout: 15_000 });
-    await page.waitForSelector(".hero-screen", { timeout: 10_000 });
+    await waitForScreen(
+      page,
+      `session-result-r${round}`,
+      page.locator(".hero-screen"),
+      {
+        urlPattern: /\/result\//,
+        timeout: 15_000,
+      },
+    );
 
     const isMissionResult = (await page.locator(".can-list").count()) > 0;
     const isFailedMission =
@@ -362,9 +451,16 @@ async function main() {
     } else {
       break; // nothing more to continue from
     }
-    await page.waitForURL(/\/course\/[^/]+$/, { timeout: 10_000 });
+    await waitForScreen(
+      page,
+      `episode-preview-r${round}`,
+      page.locator(".preview-screen"),
+      { urlPattern: /\/course\/[^/]+$/ },
+    );
     await clickByText(page, /Продолжить|Начать/);
-    await page.waitForURL(/\/session$/, { timeout: 15_000 });
+    await waitForScreen(page, `session-r${round + 1}`, page.locator(".scene"), {
+      urlPattern: /\/session$/,
+    });
   }
 
   if (!missionSeen) {
@@ -374,18 +470,56 @@ async function main() {
       `Never reached a Mission result after ${MAX_ROUNDS} session rounds — either the episode has more sessions than expected, or something didn't advance.`,
     );
   }
+}
 
-  await browser.close();
+async function main() {
+  await mkdir(OUT_DIR, { recursive: true });
 
-  await writeFile(
-    path.join(OUT_DIR, "findings-authenticated.json"),
-    JSON.stringify(findings, null, 2),
-  );
-  console.log(
-    `\n${findings.length} findings written to artifacts/qa/findings-authenticated.json`,
-  );
+  const browser = await chromium.launch();
+  const context = await browser.newContext({
+    viewport: VIEWPORT,
+    deviceScaleFactor: devices["iPhone 13"].deviceScaleFactor,
+    isMobile: true,
+    hasTouch: true,
+    userAgent: devices["iPhone 13"].userAgent,
+  });
+  const page = await context.newPage();
 
-  if (findings.some((f) => f.severity === "bug")) {
+  let crashed = false;
+  try {
+    await run(page);
+  } catch (err) {
+    crashed = true;
+    console.error("QA run aborted with an error:", err);
+    // Best-effort: whatever state the page is actually in when this
+    // throws is exactly what's needed to diagnose it — save it even
+    // though waitForScreen() above already saves a FAILURE-*.png of
+    // its own on the specific wait that failed.
+    try {
+      await shoot(page, "CRASH-final-state.png");
+    } catch (shotErr) {
+      console.error("could not save the final-state screenshot:", shotErr);
+    }
+    report(
+      "run",
+      "bug",
+      `Script aborted: ${err instanceof Error ? err.message : String(err)}`,
+    );
+  } finally {
+    await browser.close();
+    // Written whether the run finished or crashed partway — screenshots
+    // taken before the crash are already on disk regardless (shoot()
+    // writes immediately), this just makes sure findings are too.
+    await writeFile(
+      path.join(OUT_DIR, "findings-authenticated.json"),
+      JSON.stringify(findings, null, 2),
+    );
+    console.log(
+      `\n${findings.length} findings written to artifacts/qa/findings-authenticated.json`,
+    );
+  }
+
+  if (crashed || findings.some((f) => f.severity === "bug")) {
     process.exitCode = 1;
   }
 }
