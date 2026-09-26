@@ -58,6 +58,31 @@ function isCard(kind: ActivityDTO["kind"]): boolean {
   return kind === "info_card" || kind === "grammar_card";
 }
 
+/**
+ * A short, natural reply from the person you're actually talking to,
+ * added right after your own line — so the transcript alternates
+ * them/you/them/you instead of only ever growing with the learner's own
+ * lines (the audit-confirmed bug: no path here ever pushed a fresh
+ * `them` line after the opening one).
+ *
+ * This is a stand-in for real per-turn authored NPC dialogue, which the
+ * content model doesn't have yet — no field in ActivityDTO (or the
+ * underlying seed content) represents "what the NPC says for this
+ * activity"; `prompt`/`content.sentence`/`content.tokens` are all
+ * either instruction text or the learner's own line-in-progress.
+ * Authoring real per-turn lines is a content task, not a code fix, and
+ * out of scope here. Picked deterministically by how many lines have
+ * been said so far — never `Math.random()`, and never a repeat of the
+ * opener — so the same conversation reads the same way twice.
+ */
+const NPC_REACTIONS_CORRECT = ["Nice!", "Got it.", "Cool!", "Right."];
+const NPC_REACTIONS_MISS = ["Ah, okay.", "Hmm, I see.", "No worries."];
+
+function npcReaction(correct: boolean, turnIndex: number): string {
+  const pool = correct ? NPC_REACTIONS_CORRECT : NPC_REACTIONS_MISS;
+  return pool[Math.abs(turnIndex) % pool.length] ?? "Okay.";
+}
+
 export function Session() {
   const { episodeId } = useParams<{ episodeId: string }>();
   const navigate = useNavigate();
@@ -136,7 +161,7 @@ export function Session() {
       // What the learner said now belongs to the conversation — spoken
       // correctly by them, or spoken correctly *for* them after a miss.
       const said = spokenAnswer(current.activity, value, res.feedback);
-      const dialogue = said
+      let dialogue = said
         ? [
             ...current.dialogue,
             {
@@ -146,6 +171,16 @@ export function Session() {
             },
           ]
         : current.dialogue;
+
+      // A real reply, not silence — see npcReaction()'s comment.
+      dialogue = [
+        ...dialogue,
+        {
+          id: `${current.activity.id}-reply`,
+          from: "them" as const,
+          text: npcReaction(res.feedback.correct, dialogue.length),
+        },
+      ];
 
       setState({
         ...current,
