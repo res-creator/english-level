@@ -362,6 +362,18 @@ export type ActivityProgress = z.infer<typeof ActivityProgressSchema>;
 
 const activityBase = { id: z.string(), progress: ActivityProgressSchema };
 
+/**
+ * What the conversation partner says right after the learner answers —
+ * not an answer-key field (it never reveals correctness), so it's safe
+ * to send before the activity is answered. Present only on the scored
+ * kinds a learner actually "speaks" in — never info_card/grammar_card,
+ * and never on grammar_pattern-targeted checks (a "Пауза на правило" is
+ * deliberately not a conversational turn). See Session.tsx.
+ */
+const npcReplySchema = z
+  .object({ correct: z.string(), incorrect: z.string().nullable() })
+  .optional();
+
 /** The single current activity for a session — never the whole plan, and
  * never with a correct-answer field, until after it has been answered. */
 export const ActivityDTOSchema = z.discriminatedUnion("kind", [
@@ -395,6 +407,7 @@ export const ActivityDTOSchema = z.discriminatedUnion("kind", [
      * redundant with the prompt — a grammar-pattern check's prompt never
      * quotes its own example, a learning-item check's always does. */
     targetType: z.enum(["learning_item", "grammar_pattern"]),
+    npcReply: npcReplySchema,
   }),
   z.object({
     ...activityBase,
@@ -402,18 +415,21 @@ export const ActivityDTOSchema = z.discriminatedUnion("kind", [
     prompt: z.string(),
     content: z.object({ sentence: z.string() }),
     options: z.array(ActivityOptionDTOSchema),
+    npcReply: npcReplySchema,
   }),
   z.object({
     ...activityBase,
     kind: z.literal("typed_recall"),
     prompt: z.string(),
     content: z.object({ text: z.string() }),
+    npcReply: npcReplySchema,
   }),
   z.object({
     ...activityBase,
     kind: z.literal("sentence_build"),
     prompt: z.string(),
     content: z.object({ tokens: z.array(z.string()) }),
+    npcReply: npcReplySchema,
   }),
 ]);
 export type ActivityDTO = z.infer<typeof ActivityDTOSchema>;

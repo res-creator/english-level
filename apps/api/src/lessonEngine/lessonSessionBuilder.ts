@@ -324,10 +324,13 @@ async function buildLearningItemActivities(
   const pattern = await findPrimaryPattern(db, item.id);
   const explanation = localization?.usage_note ?? example?.example_text ?? null;
 
+  const npcReply = item.npc_reply_correct
+    ? { correct: item.npc_reply_correct, incorrect: item.npc_reply_incorrect }
+    : undefined;
+
   if (link.role !== "introduce") {
-    return [
-      await buildRecognitionMC(db, levelId, item, translation, explanation),
-    ];
+    const mc = await buildRecognitionMC(db, levelId, item, translation, explanation);
+    return [npcReply ? { ...mc, npcReply } : mc];
   }
 
   const activities: StoredActivity[] = [];
@@ -365,6 +368,14 @@ async function buildLearningItemActivities(
 
   const extra = buildExtraRecall(item, translation, example, explanation);
   if (extra) activities.push(extra);
+
+  // Exactly one NPC turn per item, on whichever activity actually ends
+  // up last (info_card never gets it — it's index 0, never last, and
+  // isn't a conversational turn anyway).
+  if (npcReply) {
+    const last = activities[activities.length - 1]!;
+    activities[activities.length - 1] = { ...last, npcReply };
+  }
 
   return activities;
 }

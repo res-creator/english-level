@@ -361,6 +361,7 @@ test("no correct-order metadata leaks through the sentence_build ActivityDTO", a
     "content",
     "id",
     "kind",
+    "npcReply",
     "progress",
     "prompt",
   ]);

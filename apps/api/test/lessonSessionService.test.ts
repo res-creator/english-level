@@ -418,7 +418,12 @@ test("typed_recall normalizes whitespace/case before grading", async () => {
     db,
     sqlite,
     user.id,
-    GRAMMAR_LESSON,
+    // Not GRAMMAR_LESSON (les_sie_a1_e3): its two former "word" items
+    // (usually/never) became "collocation" so their production step
+    // reads as a real sentence in the transcript (see
+    // A1_FULL_LEARNING_QA.md's NPC-continuation work) — e3 no longer has
+    // any typed_recall activity. les_sie_a1_e2 still has one ("large").
+    "les_sie_a1_e2",
     "typed_recall",
   );
 

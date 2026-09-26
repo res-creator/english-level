@@ -20,6 +20,17 @@ interface StoredActivityBase {
    * Prevents a retry from spawning another retry. See docs/lesson-engine.md
    * ("session-level reinforcement", not SRS). */
   isRetry?: boolean;
+  /**
+   * What the conversation partner says right after the learner answers
+   * this activity — the actual continuation of the scene, authored per
+   * learning item (see SieLearningItemSeedSchema). Attached only to the
+   * LAST activity generated for a given item (lessonSessionBuilder.ts),
+   * so a multi-activity item (info_card -> MC -> fill_gap -> recall)
+   * gets exactly one NPC turn, not one per activity. Absent for a1/a2
+   * content and for grammar_pattern activities (a "Пауза на правило" is
+   * deliberately not a conversational turn).
+   */
+  npcReply?: { correct: string; incorrect: string | null };
 }
 
 export interface StoredInfoCard extends StoredActivityBase {

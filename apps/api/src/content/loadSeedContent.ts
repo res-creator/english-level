@@ -4,6 +4,7 @@ import {
   ModuleSeedSchema,
   LessonSeedSchema,
   LearningItemSeedSchema,
+  SieLearningItemSeedSchema,
   ItemRelationSeedSchema,
   GrammarPatternSeedSchema,
   GrammarRelationSeedSchema,
@@ -70,7 +71,10 @@ export function loadSeedContent(): ContentBundle {
     ...parseArray("a2-lessons.json", LessonSeedSchema),
   ];
   const learningItems = [
-    ...parseArray("sie-a1-items.json", LearningItemSeedSchema),
+    // Stricter schema: sie-a1 is the one live "one continuous situation"
+    // track, so every item here must carry an authored npcReplyCorrect —
+    // see schemas.ts's SieLearningItemSeedSchema doc comment.
+    ...parseArray("sie-a1-items.json", SieLearningItemSeedSchema),
     ...parseArray("a1-learning-items.json", LearningItemSeedSchema),
     ...parseArray("a2-learning-items.json", LearningItemSeedSchema),
   ];

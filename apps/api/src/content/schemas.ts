@@ -91,32 +91,66 @@ const ItemLocalizationSeedSchema = z.object({
   commonErrorExplanation: z.string().min(1).nullable().optional(),
 });
 
-export const LearningItemSeedSchema = z
-  .object({
-    id: z.string().min(1),
-    itemType: ItemTypeSchema,
-    lemma: z.string().min(1),
-    displayForm: z.string().min(1),
-    partOfSpeech: z.string().min(1).nullable().optional(),
-    levelCode: CefrLevelCodeSchema,
-    frequencyBand: z.string().min(1).nullable().optional(),
-    difficulty: z.number().int().nullable().optional(),
-    isCore: z.boolean().optional(),
-    topic: z.string().min(1).nullable().optional(),
-    subtopic: z.string().min(1).nullable().optional(),
-    pronunciationIpa: z.string().min(1).nullable().optional(),
-    audioKey: z.string().min(1).nullable().optional(),
-    ru: ItemLocalizationSeedSchema,
-    examples: z
-      .array(ItemExampleSeedSchema)
-      .min(1, "at least one example is required"),
-    patterns: z.array(ItemPatternSeedSchema).optional(),
-  })
-  .refine((item) => item.examples.filter((e) => e.isPrimary).length === 1, {
-    message: "an item must have exactly one primary example",
-    path: ["examples"],
-  });
+/**
+ * `npcReplyCorrect`/`npcReplyIncorrect`: what the conversation partner
+ * says right after the learner produces this item's target phrase —
+ * the actual continuation of a real scene, not a canned reaction.
+ * Optional on the base schema (a1/a2 tracks don't have this "one
+ * continuous situation" framing); required on `SieLearningItemSeedSchema`
+ * below for the sie track specifically. See A1_FULL_LEARNING_QA.md's
+ * CONTENT_LOGIC finding and Session.tsx for how it's used.
+ */
+const NpcReplyFieldsSchema = {
+  npcReplyCorrect: z.string().min(1).nullable().optional(),
+  npcReplyIncorrect: z.string().min(1).nullable().optional(),
+};
+
+const LearningItemObjectSchema = z.object({
+  id: z.string().min(1),
+  itemType: ItemTypeSchema,
+  lemma: z.string().min(1),
+  displayForm: z.string().min(1),
+  partOfSpeech: z.string().min(1).nullable().optional(),
+  levelCode: CefrLevelCodeSchema,
+  frequencyBand: z.string().min(1).nullable().optional(),
+  difficulty: z.number().int().nullable().optional(),
+  isCore: z.boolean().optional(),
+  topic: z.string().min(1).nullable().optional(),
+  subtopic: z.string().min(1).nullable().optional(),
+  pronunciationIpa: z.string().min(1).nullable().optional(),
+  audioKey: z.string().min(1).nullable().optional(),
+  ru: ItemLocalizationSeedSchema,
+  examples: z
+    .array(ItemExampleSeedSchema)
+    .min(1, "at least one example is required"),
+  patterns: z.array(ItemPatternSeedSchema).optional(),
+  ...NpcReplyFieldsSchema,
+});
+
+const exactlyOnePrimaryExample = (item: { examples: { isPrimary: boolean }[] }) =>
+  item.examples.filter((e) => e.isPrimary).length === 1;
+
+export const LearningItemSeedSchema = LearningItemObjectSchema.refine(
+  exactlyOnePrimaryExample,
+  { message: "an item must have exactly one primary example", path: ["examples"] },
+);
 export type LearningItemSeed = z.infer<typeof LearningItemSeedSchema>;
+
+/**
+ * The sie-a1 track is the one live "one continuous situation" course
+ * (the 5 public A1 situations) — every item in it is a real
+ * conversational beat, so `npcReplyCorrect` is mandatory here, not just
+ * optional metadata. `npcReplyIncorrect` stays optional: the frontend
+ * falls back to a single shared neutral line when it's absent (never a
+ * generic reaction pool for the *correct* path — see Session.tsx).
+ */
+export const SieLearningItemSeedSchema = LearningItemObjectSchema.extend({
+  npcReplyCorrect: z.string().min(1),
+}).refine(exactlyOnePrimaryExample, {
+  message: "an item must have exactly one primary example",
+  path: ["examples"],
+});
+export type SieLearningItemSeed = z.infer<typeof SieLearningItemSeedSchema>;
 
 export const ItemRelationTypeSchema = z.enum([
   "confused_with",

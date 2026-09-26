@@ -236,6 +236,8 @@ export interface LearningItemRow {
   provenance: "original" | "derived_open_data";
   status: ContentStatusRow;
   content_version: number;
+  npc_reply_correct: string | null;
+  npc_reply_incorrect: string | null;
   created_at: string;
   updated_at: string;
 }

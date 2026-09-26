@@ -59,28 +59,30 @@ function isCard(kind: ActivityDTO["kind"]): boolean {
 }
 
 /**
- * A short, natural reply from the person you're actually talking to,
- * added right after your own line — so the transcript alternates
- * them/you/them/you instead of only ever growing with the learner's own
- * lines (the audit-confirmed bug: no path here ever pushed a fresh
- * `them` line after the opening one).
- *
- * This is a stand-in for real per-turn authored NPC dialogue, which the
- * content model doesn't have yet — no field in ActivityDTO (or the
- * underlying seed content) represents "what the NPC says for this
- * activity"; `prompt`/`content.sentence`/`content.tokens` are all
- * either instruction text or the learner's own line-in-progress.
- * Authoring real per-turn lines is a content task, not a code fix, and
- * out of scope here. Picked deterministically by how many lines have
- * been said so far — never `Math.random()`, and never a repeat of the
- * opener — so the same conversation reads the same way twice.
+ * Real per-turn NPC dialogue, authored per learning item
+ * (`npcReplyCorrect`/`npcReplyIncorrect` — SieLearningItemSeedSchema) and
+ * carried on `activity.npcReply`. Required for every sie-a1 conversational
+ * item, so the correct-path branch is never silent for content that's
+ * actually live; a1/a2 content (not part of any of the 5 public
+ * situations) simply has no reply and the scene stays quiet for it, same
+ * as before this feature existed — no generic filler pool stands in for
+ * missing authored content on either path anymore (that pool produced
+ * "Nice!"/"Got it." regardless of what was actually said, which is
+ * exactly what A1_FULL_LEARNING_QA.md flagged as not a real
+ * conversation). The one exception is the incorrect path, where a
+ * single shared neutral line is an explicitly approved fallback.
  */
-const NPC_REACTIONS_CORRECT = ["Nice!", "Got it.", "Cool!", "Right."];
-const NPC_REACTIONS_MISS = ["Ah, okay.", "Hmm, I see.", "No worries."];
+const NEUTRAL_INCORRECT_FALLBACK = "Sorry, one more time?";
 
-function npcReaction(correct: boolean, turnIndex: number): string {
-  const pool = correct ? NPC_REACTIONS_CORRECT : NPC_REACTIONS_MISS;
-  return pool[Math.abs(turnIndex) % pool.length] ?? "Okay.";
+function npcReplyFor(
+  activity: ActivityDTO,
+  correct: boolean,
+): string | null {
+  const reply =
+    "npcReply" in activity ? activity.npcReply : undefined;
+  if (!reply) return null;
+  if (correct) return reply.correct;
+  return reply.incorrect ?? NEUTRAL_INCORRECT_FALLBACK;
 }
 
 export function Session() {
@@ -172,15 +174,19 @@ export function Session() {
           ]
         : current.dialogue;
 
-      // A real reply, not silence — see npcReaction()'s comment.
-      dialogue = [
-        ...dialogue,
-        {
-          id: `${current.activity.id}-reply`,
-          from: "them" as const,
-          text: npcReaction(res.feedback.correct, dialogue.length),
-        },
-      ];
+      // Real, authored NPC continuation — see npcReplyFor()'s comment.
+      // Silent (no line pushed) when this activity has none authored.
+      const reply = npcReplyFor(current.activity, res.feedback.correct);
+      if (reply) {
+        dialogue = [
+          ...dialogue,
+          {
+            id: `${current.activity.id}-reply`,
+            from: "them" as const,
+            text: reply,
+          },
+        ];
+      }
 
       setState({
         ...current,
@@ -389,9 +395,15 @@ function spokenAnswer(
   value: string,
   feedback: AnswerFeedback,
 ): string | null {
+  // multiple_choice's options are never spoken English: a recognition
+  // check's options are the Russian translation, and a grammar check's
+  // are pattern titles ("Be - positive") — either way, not something
+  // the learner would actually say to the person they're talking to.
+  // Confirmed in A1_FULL_LEARNING_QA.md's review-role finding. Only
+  // fill_gap_choice/typed_recall/sentence_build produce genuine English.
+  if (activity.kind === "multiple_choice") return null;
   if (!feedback.correct) return feedback.correctAnswer;
   switch (activity.kind) {
-    case "multiple_choice":
     case "fill_gap_choice":
       return activity.options.find((o) => o.id === value)?.text ?? null;
     case "typed_recall":

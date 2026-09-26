@@ -41,6 +41,7 @@ export function toActivityDTO(
         content: activity.content,
         options: activity.options,
         targetType: activity.targetType,
+        npcReply: activity.npcReply,
       };
     case "fill_gap_choice":
       return {
@@ -50,6 +51,7 @@ export function toActivityDTO(
         prompt: activity.prompt,
         content: activity.content,
         options: activity.options,
+        npcReply: activity.npcReply,
       };
     case "typed_recall":
       return {
@@ -58,6 +60,7 @@ export function toActivityDTO(
         progress,
         prompt: activity.prompt,
         content: activity.content,
+        npcReply: activity.npcReply,
       };
     case "sentence_build":
       return {
@@ -66,6 +69,7 @@ export function toActivityDTO(
         progress,
         prompt: activity.prompt,
         content: activity.content,
+        npcReply: activity.npcReply,
       };
   }
 }

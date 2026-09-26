@@ -13,10 +13,11 @@
     "examples": [
       {
         "id": "ex_sie_hello_01",
-        "text": "Hello, I'm Mark.",
+        "text": "Hello!",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Hi! Nice to meet you."
   },
   {
     "id": "itm_sie_im_name",
@@ -35,7 +36,8 @@
         "text": "Hi, I'm Anna.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Nice to meet you, Anna."
   },
   {
     "id": "itm_sie_nice_to_meet_you",
@@ -51,10 +53,11 @@
     "examples": [
       {
         "id": "ex_sie_nice_to_meet_you_01",
-        "text": "Nice to meet you, Mark.",
+        "text": "Nice to meet you!",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "You too! Where are you from?"
   },
   {
     "id": "itm_sie_whats_your_name",
@@ -70,7 +73,8 @@
         "text": "Sorry, what's your name?",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Oh, right — nice to meet you!"
   },
   {
     "id": "itm_sie_where_are_you_from",
@@ -83,26 +87,28 @@
     "examples": [
       {
         "id": "ex_sie_where_are_you_from_01",
-        "text": "Nice to meet you. Where are you from?",
+        "text": "Where are you from?",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "I'm from London. And you?"
   },
   {
     "id": "itm_sie_im_from",
     "itemType": "phrase",
     "lemma": "i am from",
-    "displayForm": "I'm from Kyiv",
+    "displayForm": "I'm from Paris",
     "levelCode": "A1",
     "topic": "first_conversations",
-    "ru": { "translation": "Я из Киева" },
+    "ru": { "translation": "Я из Парижа" },
     "examples": [
       {
         "id": "ex_sie_im_from_01",
-        "text": "I'm from Kyiv, and you?",
+        "text": "I'm from Paris.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Nice! What do you do?"
   },
   {
     "id": "itm_sie_what_do_you_do",
@@ -118,10 +124,11 @@
     "examples": [
       {
         "id": "ex_sie_what_do_you_do_01",
-        "text": "What do you do? I'm a designer.",
+        "text": "What do you do?",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "I'm a designer. What about you?"
   },
 
   {
@@ -141,7 +148,8 @@
         "text": "Can I get a coffee, please?",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Sure! What size?"
   },
   {
     "id": "itm_sie_large",
@@ -158,7 +166,8 @@
         "text": "A large coffee, please.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Got it. Anything in it?"
   },
   {
     "id": "itm_sie_with_milk",
@@ -171,10 +180,11 @@
     "examples": [
       {
         "id": "ex_sie_with_milk_01",
-        "text": "Tea with milk, please.",
+        "text": "With milk, please.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "One large with milk. For here or to go?"
   },
   {
     "id": "itm_sie_to_go",
@@ -193,7 +203,8 @@
         "text": "One coffee to go, please.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "To go, got it. Anything else?"
   },
   {
     "id": "itm_sie_anything_else",
@@ -209,7 +220,8 @@
         "text": "Anything else? No, that's all.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Sure, coming right up."
   },
   {
     "id": "itm_sie_thats_all",
@@ -225,7 +237,8 @@
         "text": "That's all, thanks.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Sure thing."
   },
   {
     "id": "itm_sie_how_much_is_it",
@@ -238,10 +251,11 @@
     "examples": [
       {
         "id": "ex_sie_how_much_is_it_01",
-        "text": "How much is it? That's four pounds.",
+        "text": "How much is it?",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "That's four pounds."
   },
 
   {
@@ -258,7 +272,8 @@
         "text": "I work from home on Fridays.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Nice! What time do you start?"
   },
   {
     "id": "itm_sie_start_work",
@@ -274,7 +289,8 @@
         "text": "I start work at nine.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Early start! When do you finish?"
   },
   {
     "id": "itm_sie_finish_work",
@@ -290,34 +306,34 @@
         "text": "I finish work at six.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Not bad! Same every day?"
   },
   {
     "id": "itm_sie_usually",
-    "itemType": "word",
-    "lemma": "usually",
+    "itemType": "collocation",
+    "lemma": "usually have lunch",
     "displayForm": "usually",
-    "partOfSpeech": "adverb",
     "levelCode": "A1",
     "topic": "my_day",
     "ru": {
       "translation": "обычно",
-      "usageNote": "Стоит перед глаголом: I usually work, а не I work usually."
+      "usageNote": "Стоит перед глаголом: I usually have lunch, а не I have lunch usually."
     },
     "examples": [
       {
         "id": "ex_sie_usually_01",
-        "text": "I usually start at nine.",
+        "text": "I usually have lunch at one.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Nice. Do you work on Sundays?"
   },
   {
     "id": "itm_sie_never",
-    "itemType": "word",
-    "lemma": "never",
+    "itemType": "collocation",
+    "lemma": "never work on sundays",
     "displayForm": "never",
-    "partOfSpeech": "adverb",
     "levelCode": "A1",
     "topic": "my_day",
     "ru": {
@@ -330,7 +346,8 @@
         "text": "I never work on Sundays.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Good — everyone needs a day off!"
   },
   {
     "id": "itm_sie_every_day",
@@ -346,7 +363,8 @@
         "text": "I walk every day.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "That's a great habit."
   },
 
   {
@@ -363,10 +381,11 @@
     "examples": [
       {
         "id": "ex_sie_excuse_me_01",
-        "text": "Excuse me, where is the station?",
+        "text": "Excuse me!",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Sure, what do you need?"
   },
   {
     "id": "itm_sie_where_is_the",
@@ -382,7 +401,8 @@
         "text": "Where is the station, please?",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Go straight, then turn left — it's next to the bank."
   },
   {
     "id": "itm_sie_go_straight",
@@ -395,10 +415,11 @@
     "examples": [
       {
         "id": "ex_sie_go_straight_01",
-        "text": "Go straight and then turn left.",
+        "text": "Go straight.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Yes, straight on."
   },
   {
     "id": "itm_sie_turn_left",
@@ -414,7 +435,8 @@
         "text": "Turn left at the corner.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "That's it."
   },
   {
     "id": "itm_sie_next_to",
@@ -430,7 +452,8 @@
         "text": "It's next to the bank.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Exactly — you've got it!"
   },
   {
     "id": "itm_sie_i_dont_understand",
@@ -449,7 +472,8 @@
         "text": "Sorry, I don't understand.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "No worries, let me say it again."
   },
   {
     "id": "itm_sie_can_you_repeat",
@@ -468,7 +492,8 @@
         "text": "Sorry, can you repeat that, please?",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Of course — go straight, then turn left."
   },
 
   {
@@ -488,7 +513,8 @@
         "text": "Sorry, I ordered tea.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Oh no, sorry!"
   },
   {
     "id": "itm_sie_but_this_is",
@@ -501,10 +527,11 @@
     "examples": [
       {
         "id": "ex_sie_but_this_is_01",
-        "text": "I ordered tea, but this is coffee.",
+        "text": "But this is coffee.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "You're right, my mistake."
   },
   {
     "id": "itm_sie_theres_been_a_mistake",
@@ -523,7 +550,8 @@
         "text": "Sorry, I think there's been a mistake.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Let me fix that."
   },
   {
     "id": "itm_sie_could_you_change_it",
@@ -542,7 +570,8 @@
         "text": "Could you change it, please?",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Of course — no problem, one moment."
   },
   {
     "id": "itm_sie_no_problem",
@@ -558,7 +587,8 @@
         "text": "No problem, I'll change it.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "Thanks!"
   },
   {
     "id": "itm_sie_thanks_a_lot",
@@ -574,6 +604,7 @@
         "text": "Thanks a lot, that's perfect.",
         "isPrimary": true
       }
-    ]
+    ],
+    "npcReplyCorrect": "You're welcome — enjoy!"
   }
 ]
