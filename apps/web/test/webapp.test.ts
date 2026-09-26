@@ -42,7 +42,7 @@ test("falls back to the dev mock when window.Telegram is absent (plain browser d
 
   assert.equal(isMock, true);
   assert.equal(webApp.initData, "mock_init_data");
-  assert.equal(webApp.initDataUnsafe.user?.id, 0);
+  assert.equal(webApp.initDataUnsafe.user?.id, 1);
 });
 
 test("falls back to the dev mock when window.Telegram.WebApp is absent", () => {

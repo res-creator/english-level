@@ -15,7 +15,7 @@
  * Intended to run in CI (see .github/workflows/qa-authenticated.yml),
  * where the local API is already up via `wrangler dev` with migrations + seed
  * content applied. It ALSO needs a fresh per-run user: the dev fixture
- * always presents Telegram user id 0
+ * always presents the same fixed Telegram user id
  * (apps/web/src/telegram/webapp.ts's createMockTelegramWebApp), so a
  * second run against the same D1 file would resume an already-
  * onboarded account instead of a fresh one — the CI job re-applies

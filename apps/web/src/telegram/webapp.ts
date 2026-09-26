@@ -10,7 +10,10 @@ function createMockTelegramWebApp(): TelegramWebApp {
     initData: "mock_init_data",
     initDataUnsafe: {
       user: {
-        id: 0,
+        // Must be a positive integer: real Telegram user ids always are,
+        // and the backend's own user-creation validation enforces that
+        // (`telegramUserId` > 0), so a mock id of 0 fails there.
+        id: 1,
         first_name: "Dev",
         username: "dev_user",
         language_code: "en",
