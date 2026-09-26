@@ -58,11 +58,17 @@ jobs:
 
       - name: Start the API (wrangler dev)
         working-directory: apps/api
-        run: pnpm run dev &
+        # Redirected to a file, not left attached to this step's own
+        # stdout: once this step returns (immediately, since the
+        # process is backgrounded), later steps aren't guaranteed to
+        # still see its output in the job log otherwise — and the
+        # "print server logs" step below needs a real file to read
+        # regardless of when the failure happens.
+        run: pnpm run dev > /tmp/wrangler-api.log 2>&1 &
 
       - name: Start the web app (vite dev)
         working-directory: apps/web
-        run: pnpm run dev &
+        run: pnpm run dev > /tmp/vite-web.log 2>&1 &
 
       - name: Wait for both dev servers
         run: |
@@ -85,10 +91,27 @@ jobs:
         working-directory: apps/web
         run: pnpm run qa:authenticated
 
+      - name: Dump server-side error logs (D1 error_logs + dev-server console)
+        if: always()
+        run: |
+          echo "### wrangler dev (API) console output ###"
+          cat /tmp/wrangler-api.log || echo "(no API log file)"
+          echo ""
+          echo "### vite dev (web) console output ###"
+          cat /tmp/vite-web.log || echo "(no web log file)"
+          echo ""
+          echo "### error_logs table (apps/api's own crash log — migrations/0009_error_logs.sql) ###"
+          cd apps/api && pnpm exec wrangler d1 execute DB --local \
+            --command "SELECT created_at, source, path, message, stack FROM error_logs ORDER BY created_at DESC LIMIT 20;" \
+            || echo "(could not query error_logs — D1 may not have started)"
+
       - name: Upload QA artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: qa-authenticated-artifacts
-          path: artifacts/qa/
+          path: |
+            artifacts/qa/
+            /tmp/wrangler-api.log
+            /tmp/vite-web.log
           retention-days: 14
