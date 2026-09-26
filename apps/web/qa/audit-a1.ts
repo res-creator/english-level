@@ -664,14 +664,18 @@ async function bootstrap(page: Page) {
 
   for (let i = 0; i < 2; i++) {
     await page.waitForSelector(".task-sheet", { timeout: 10_000 });
-    const choice = page.locator(".answer").first();
-    const bank = page.locator(".word").first();
+    // :not(:disabled) — see qa/audit-a1.ts's captureActivity comment:
+    // a just-answered option/token lingers in the DOM, disabled, for a
+    // beat before the next one mounts; run 36241526961 crashed exactly
+    // here (bootstrap:720 in that build) on a stale disabled button.
+    const choice = page.locator(".answer:not(:disabled)").first();
+    const bank = page.locator(".word:not(:disabled)").first();
     if ((await choice.count()) > 0) await choice.click();
     else if ((await bank.count()) > 0) await bank.click();
     await clickByText(page, "Ответить");
-    await page.waitForTimeout(300);
+    await waitForFreshActivity(page);
     await clickByText(page, "Дальше");
-    await page.waitForTimeout(300);
+    await waitForFreshActivity(page);
   }
   await clickByText(page, "Дальше");
   await waitForScreen(page, "demo-result", page.locator(".transcript"), { urlPattern: /\/demo\/result$/ });
@@ -692,7 +696,7 @@ async function bootstrap(page: Page) {
     page.locator(".task-sheet__title", { hasText: "Как сейчас с английским?" }),
     { urlPattern: /\/onboarding\/level$/ },
   );
-  await page.locator(".answer", { hasText: "A1" }).click();
+  await page.locator(".answer:not(:disabled)", { hasText: "A1" }).click();
   await clickByText(page, "Дальше");
   await waitForScreen(
     page,
@@ -700,7 +704,7 @@ async function bootstrap(page: Page) {
     page.locator(".task-sheet__title", { hasText: "Сколько минут в день?" }),
     { urlPattern: /\/onboarding\/time$/ },
   );
-  await page.locator(".answer").first().click();
+  await page.locator(".answer:not(:disabled)").first().click();
   await clickByText(page, "Дальше");
   await waitForScreen(page, "onboarding-ready", page.locator("text=Всё готово"), {
     urlPattern: /\/onboarding\/ready$/,
@@ -715,12 +719,12 @@ async function bootstrap(page: Page) {
   for (let i = 0; i < 40; i++) {
     if (/\/placement\/result\//.test(page.url())) break;
     await page.waitForSelector(".task-sheet, .answer-input", { timeout: 15_000 });
-    const options = page.locator(".answer");
+    const options = page.locator(".answer:not(:disabled)");
     const input = page.locator(".answer-input");
     if ((await options.count()) > 0) await options.first().click();
     else if ((await input.count()) > 0) await input.fill("placeholder");
     await clickByText(page, "Ответить");
-    await page.waitForTimeout(250);
+    await waitForFreshActivity(page, 4_000);
     if (/\/placement\/result\//.test(page.url())) break;
   }
   await waitForScreen(page, "placement-result", page.locator("text=Твой уровень"), {
