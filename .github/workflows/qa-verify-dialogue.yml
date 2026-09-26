@@ -1,0 +1,93 @@
+name: Verify NPC dialogue (Playwright)
+
+# Manual only. Fast, always-correct playthrough of all 5 A1 situations
+# (every answer computed from this repo's own seed content, never
+# guessed) — verifies the NPC-continuation feature end to end and
+# captures a real dialogue screenshot for e1/e3/e4/e5 plus every
+# situation's Mission result. Not a general audit (see qa-audit-a1.yml
+# for that) — this is a targeted regression check for one feature.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  verify:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable corepack (pnpm)
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright's Chromium
+        run: pnpm --filter @english-level/web exec playwright install --with-deps chromium
+
+      - name: Apply D1 migrations (local, throwaway per run)
+        working-directory: apps/api
+        run: pnpm run migrate:local
+
+      - name: Generate and apply curriculum seed content (local D1)
+        run: |
+          node --experimental-strip-types apps/api/scripts/generateSeedSql.ts > /tmp/curriculum_seed.sql
+          cd apps/api && pnpm exec wrangler d1 execute DB --local --file=/tmp/curriculum_seed.sql
+
+      - name: Start the API (wrangler dev)
+        working-directory: apps/api
+        run: pnpm run dev > /tmp/wrangler-api.log 2>&1 &
+
+      - name: Start the web app (vite dev)
+        working-directory: apps/web
+        run: pnpm run dev > /tmp/vite-web.log 2>&1 &
+
+      - name: Wait for both dev servers
+        run: |
+          for url in http://localhost:8787/api/v1/health http://localhost:5173; do
+            echo "waiting for $url"
+            for i in $(seq 1 60); do
+              if curl -sf "$url" > /dev/null; then
+                echo "$url is up"
+                break
+              fi
+              if [ "$i" -eq 60 ]; then
+                echo "$url never came up" >&2
+                exit 1
+              fi
+              sleep 1
+            done
+          done
+
+      - name: Run the dialogue verification
+        working-directory: apps/web
+        run: pnpm run qa:verify-dialogue
+
+      - name: Dump server-side error logs (D1 error_logs + dev-server console)
+        if: always()
+        run: |
+          echo "### wrangler dev (API) console output ###"
+          cat /tmp/wrangler-api.log || echo "(no API log file)"
+          echo ""
+          echo "### vite dev (web) console output ###"
+          cat /tmp/vite-web.log || echo "(no web log file)"
+          echo ""
+          echo "### error_logs table (apps/api's own crash log — migrations/0009_error_logs.sql) ###"
+          cd apps/api && pnpm exec wrangler d1 execute DB --local \
+            --command "SELECT created_at, source, path, message, stack FROM error_logs ORDER BY created_at DESC LIMIT 40;" \
+            || echo "(could not query error_logs — D1 may not have started)"
+
+      - name: Upload verification artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-verify-dialogue-artifacts
+          path: |
+            artifacts/qa/verify-dialogue/
+            /tmp/wrangler-api.log
+            /tmp/vite-web.log
+          retention-days: 14

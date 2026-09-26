@@ -15,7 +15,8 @@
     "deploy:production": "wrangler deploy --env production",
     "qa": "node --experimental-strip-types qa/run.ts",
     "qa:authenticated": "node --experimental-strip-types qa/run-authenticated.ts",
-    "qa:audit-a1": "node --experimental-strip-types qa/audit-a1.ts"
+    "qa:audit-a1": "node --experimental-strip-types qa/audit-a1.ts",
+    "qa:verify-dialogue": "node --experimental-strip-types qa/verify-dialogue.ts"
   },
   "dependencies": {
     "@english-level/contracts": "workspace:*",
