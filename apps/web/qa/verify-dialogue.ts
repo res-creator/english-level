@@ -251,7 +251,12 @@ async function answerCorrectly(page: Page, key: AnswerKey) {
       ...key.patternTitleOf.values(),
     ]);
     let idx = texts.findIndex((t) => candidates.has(t));
-    if (idx === -1) idx = 0; // context-MC fallback content we don't have a key for — best effort
+    if (idx === -1) {
+      console.log(`[answerCorrectly] MC/fill-gap: no known-correct option among ${JSON.stringify(texts)} — guessing index 0`);
+      idx = 0; // context-MC fallback content we don't have a key for — best effort
+    } else {
+      console.log(`[answerCorrectly] MC/fill-gap: picked "${texts[idx]}" from ${JSON.stringify(texts)}`);
+    }
     await options.nth(idx).click();
   } else if (hasWordBank) {
     const title = (await page.locator(".task-sheet__title").first().innerText().catch(() => "")).trim();
@@ -270,6 +275,7 @@ async function answerCorrectly(page: Page, key: AnswerKey) {
       }
     }
     if (!title && target) {
+      console.log(`[answerCorrectly] sentence_build: bank=${JSON.stringify(bankTexts)} -> target="${target.join(" ")}"`);
       for (const word of target) {
         const want = normalizeWord(word);
         const tokens = page.locator(".word-bank .word:not(:disabled)");
@@ -285,6 +291,7 @@ async function answerCorrectly(page: Page, key: AnswerKey) {
     } else {
       // Fallback: click in display order (shouldn't happen for any
       // sie-a1 content given the answer key above, but never hang).
+      console.log(`[answerCorrectly] sentence_build: NO MATCHING EXAMPLE for bank=${JSON.stringify(bankTexts)} (title="${title}") — guessing display order`);
       const still = page.locator(".word-bank .word:not(:disabled)");
       const n = await still.count();
       for (let i = 0; i < n; i++) await still.first().click();
@@ -300,12 +307,25 @@ async function answerCorrectly(page: Page, key: AnswerKey) {
         break;
       }
     }
+    console.log(`[answerCorrectly] typed_recall: hint="${hint}" -> typing "${word}"`);
     await page.locator(".answer-input:not(:disabled)").fill(word);
   }
 
   const answerBtn = page.locator(".btn", { hasText: "Ответить" });
   if ((await answerBtn.count()) > 0 && !(await answerBtn.first().isDisabled())) {
     await answerBtn.first().click();
+    await page.waitForTimeout(300);
+    const missCount = await page.locator(".miss").count();
+    if (missCount > 0) {
+      const correctAnswer = await page
+        .locator(".miss__answer")
+        .first()
+        .innerText()
+        .catch(() => "(unknown)");
+      console.log(`[answerCorrectly] WRONG — app expected "${correctAnswer}"`);
+    } else {
+      console.log(`[answerCorrectly] correct`);
+    }
     await waitForFreshActivity(page);
   }
 }
