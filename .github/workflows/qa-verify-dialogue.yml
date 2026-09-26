@@ -12,7 +12,11 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-22.04
-    timeout-minutes: 30
+    # e1 alone took ~15min in run 36269032512 (real network round-trips
+    # per activity, not a stall — same order of magnitude as
+    # qa-authenticated.yml's smoke test scaled up by activity count).
+    # 30min wasn't enough for 5 situations; generous headroom here.
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
