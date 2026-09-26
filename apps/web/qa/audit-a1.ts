@@ -233,10 +233,18 @@ async function captureActivity(
   const hasAnswerOptions = (await page.locator(".answer:not(:disabled)").count()) > 0;
   const hasSentenceLine = (await page.locator(".sentence-line").count()) > 0;
 
+  // .overline is styled text-transform: uppercase (apps/web/src/styles.css),
+  // and Playwright's innerText() reflects rendered (post-CSS) text, not
+  // the raw DOM string — so this compared "Новое выражение" against an
+  // actual "НОВОЕ ВЫРАЖЕНИЕ" and never matched. Confirmed in run
+  // 36244900024: every info_card/grammar_card activity was misclassified
+  // "unknown" as a result (72 of 406 screenshots). Not a product bug —
+  // purely this script's own string comparison. Case-insensitive fixes it.
+  const overlineUpper = overlineText.toUpperCase();
   let kind: string;
-  if (overlineText === "Новое выражение") kind = "info_card";
-  else if (overlineText === "Пауза на правило") kind = "grammar_card";
-  else if (overlineText === "Собери ответ" || hasWordBank) kind = "sentence_build";
+  if (overlineUpper === "НОВОЕ ВЫРАЖЕНИЕ") kind = "info_card";
+  else if (overlineUpper === "ПАУЗА НА ПРАВИЛО") kind = "grammar_card";
+  else if (overlineUpper === "СОБЕРИ ОТВЕТ" || hasWordBank) kind = "sentence_build";
   else if (hasAnswerInput) kind = "typed_recall";
   else if (hasAnswerOptions && hasSentenceLine) kind = "fill_gap_choice";
   else if (hasAnswerOptions) kind = "multiple_choice";
