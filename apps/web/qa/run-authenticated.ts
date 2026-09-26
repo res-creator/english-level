@@ -280,6 +280,22 @@ async function run(page: Page) {
   // reveal a dev-fixture login that silently failed or is still in
   // flight — confirm it actually landed before doing anything else.
   await waitForSessionCookie(page);
+  // React.StrictMode (dev builds only) double-invokes AuthProvider's
+  // bootstrap effect on first mount, firing telegramLogin() twice for
+  // what's still a brand-new user. loginWithTelegramInitData does a
+  // check-then-insert (findUserByTelegramUserId, then createUser) with
+  // no protection against two concurrent callers both seeing "not found" —
+  // one INSERT wins, the other hits D1's `UNIQUE constraint failed:
+  // users.telegram_user_id`, and if that losing response happens to
+  // belong to the effect instance StrictMode *didn't* cancel, this page's
+  // auth status is left "error" instead of "authenticated" for the rest
+  // of the session (the bootstrap effect never reruns without a remount).
+  // A single reload here sidesteps it without touching AuthProvider or
+  // authService.ts: the user row already exists by now, so every login
+  // call this time takes the existing-user branch (syncTelegramProfile,
+  // an idempotent UPDATE) instead of racing a duplicate INSERT.
+  await page.reload({ waitUntil: "networkidle" });
+  await waitForSessionCookie(page);
   await checkLayout(page, "welcome");
   await clickByText(page, "Попробовать иначе");
   // .lesson-screen is shared by Demo/Session/Placement, but Demo is the
