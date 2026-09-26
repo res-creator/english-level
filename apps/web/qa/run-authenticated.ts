@@ -441,7 +441,12 @@ async function run(page: Page) {
   const MAX_ROUNDS = 8; // sessions-before-mission for one A1 episode is small (seen: 3); generous ceiling
   let missionSeen = false;
   for (let round = 0; round < MAX_ROUNDS && !missionSeen; round++) {
-    const MAX_STEPS = 12;
+    // Real A1 sessions run longer than the earlier assumption of ~12
+    // steps — run 36235021062's screenshot at step 11 (of a session that
+    // clearly wasn't finished yet, per its own progress-dot indicator)
+    // proved the old ceiling too low and cut a real, in-progress session
+    // off mid-flow. Generous, same reasoning as MAX_ROUNDS above.
+    const MAX_STEPS = 30;
     for (let step = 0; step < MAX_STEPS; step++) {
       await page.waitForSelector(".task-sheet", { timeout: 15_000 });
       if (/\/result\//.test(page.url())) break;
