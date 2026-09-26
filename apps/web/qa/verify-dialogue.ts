@@ -39,6 +39,7 @@ interface ItemSeed {
 interface GrammarSeed {
   id: string;
   title: string;
+  formula: string | null;
 }
 
 async function loadJson<T>(fileName: string): Promise<T> {
@@ -54,6 +55,12 @@ interface AnswerKey {
   displayFormOf: Map<string, string>; // itemId -> display form
   exampleOf: Map<string, string>; // itemId -> primary example text
   patternTitleOf: Map<string, string>; // grammarId -> title
+  // "Какое здесь правило?" grammar-recognition MC shows the pattern's
+  // own formula as .sentence-line content — every option is a REAL
+  // pattern title (correct one + 3 distractors), so "is this a known
+  // title" isn't enough to identify the correct one; this maps the
+  // exact displayed formula text back to its one true title.
+  titleByFormula: Map<string, string>;
 }
 
 async function buildAnswerKey(): Promise<AnswerKey> {
@@ -69,11 +76,19 @@ async function buildAnswerKey(): Promise<AnswerKey> {
     if (primary) exampleOf.set(it.id, primary.text);
   }
   const patternTitleOf = new Map<string, string>();
+  const titleByFormula = new Map<string, string>();
   for (const f of grammarFiles) {
     const patterns = await loadJson<GrammarSeed[]>(f);
-    for (const p of patterns) patternTitleOf.set(p.id, p.title);
+    for (const p of patterns) {
+      patternTitleOf.set(p.id, p.title);
+      // Mirrors lessonSessionBuilder.ts's mc.content = { text: pattern.formula
+      // ?? pattern.title } — the grammar MC's own displayed text, which is
+      // unique per pattern (unlike the title, which appears among the
+      // options too and can't disambiguate on its own).
+      titleByFormula.set(p.formula ?? p.title, p.title);
+    }
   }
-  return { translationOf, displayFormOf, exampleOf, patternTitleOf };
+  return { translationOf, displayFormOf, exampleOf, patternTitleOf, titleByFormula };
 }
 
 function tokenize(sentence: string): string[] {
@@ -237,25 +252,40 @@ async function answerCorrectly(page: Page, key: AnswerKey) {
   const hasAnswerInput = (await page.locator(".answer-input:not(:disabled)").count()) > 0;
 
   if (hasAnswerOptions) {
-    // Recognition MC (options = RU translations), grammar MC (options =
-    // pattern titles), or fill_gap_choice (options = English display
-    // forms) — try every known-correct-value source against the
-    // option texts actually shown, click whichever matches.
     const options = page.locator(".answer:not(:disabled)");
     const n = await options.count();
     const texts: string[] = [];
     for (let i = 0; i < n; i++) texts.push((await options.nth(i).innerText()).trim());
-    const candidates = new Set<string>([
-      ...key.translationOf.values(),
-      ...key.displayFormOf.values(),
-      ...key.patternTitleOf.values(),
-    ]);
-    let idx = texts.findIndex((t) => candidates.has(t));
+
+    // Grammar recognition MC ("Какое здесь правило?"): every option is a
+    // REAL pattern title (the correct one + 3 distractors), so "is this
+    // a known title" can't tell them apart — all of them are known.
+    // The activity's own .sentence-line shows the pattern's formula,
+    // which IS unique per pattern; use that to find the one true title.
+    const sentenceLine = (await page.locator(".sentence-line").first().innerText().catch(() => "")).trim();
+    const correctTitle = sentenceLine ? key.titleByFormula.get(sentenceLine) : undefined;
+
+    let idx = -1;
+    if (correctTitle) {
+      idx = texts.findIndex((t) => t === correctTitle);
+      console.log(
+        idx === -1
+          ? `[answerCorrectly] grammar MC: formula "${sentenceLine}" -> expected "${correctTitle}", not found among ${JSON.stringify(texts)}`
+          : `[answerCorrectly] grammar MC: formula "${sentenceLine}" -> picked "${texts[idx]}"`,
+      );
+    }
     if (idx === -1) {
-      console.log(`[answerCorrectly] MC/fill-gap: no known-correct option among ${JSON.stringify(texts)} — guessing index 0`);
-      idx = 0; // context-MC fallback content we don't have a key for — best effort
-    } else {
-      console.log(`[answerCorrectly] MC/fill-gap: picked "${texts[idx]}" from ${JSON.stringify(texts)}`);
+      // Recognition MC (options = RU translations) or fill_gap_choice
+      // (options = English display forms) — these values are unique
+      // enough on their own that "is this a known value" is sufficient.
+      const candidates = new Set<string>([...key.translationOf.values(), ...key.displayFormOf.values()]);
+      idx = texts.findIndex((t) => candidates.has(t));
+      if (idx === -1) {
+        console.log(`[answerCorrectly] MC/fill-gap: no known-correct option among ${JSON.stringify(texts)} — guessing index 0`);
+        idx = 0; // context-MC fallback content we don't have a key for — best effort
+      } else {
+        console.log(`[answerCorrectly] MC/fill-gap: picked "${texts[idx]}" from ${JSON.stringify(texts)}`);
+      }
     }
     await options.nth(idx).click();
   } else if (hasWordBank) {
