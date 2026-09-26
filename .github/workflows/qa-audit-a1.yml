@@ -19,8 +19,13 @@ jobs:
     runs-on: ubuntu-22.04
     # Much longer than qa-authenticated.yml's smoke test: 5 situations,
     # each with several regular rounds plus a deliberate-fail-then-pass
-    # double Mission attempt.
-    timeout-minutes: 45
+    # double Mission attempt, AND a full-page screenshot plus a dozen+
+    # Playwright round-trips per single activity (both required by the
+    # audit spec, not something to trim) — run 36238930204 showed this
+    # is genuinely ~20s/activity even with no bugs, not a hang; 45min
+    # wasn't enough for legitimate work, so this is raised generously
+    # rather than chased as a phantom performance bug.
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
 
