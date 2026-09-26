@@ -36,6 +36,36 @@
  * is instead on a UI element unique to the destination screen
  * (`waitForScreen`); the URL is logged alongside it for diagnosis, not
  * used as the sole signal that a transition finished.
+ *
+ * A second, separate failure mode showed up once the above was fixed:
+ * the flow reached DemoResult fine, but the *next* screen
+ * (/onboarding/companion, the first route actually gated by
+ * <RequireAuthenticated>) landed on "/" instead — the
+ * fail-closed-outside-Telegram screen RootRedirect shows whenever
+ * useAuth() isn't "authenticated" (apps/web/src/auth/RequireAuthenticated.tsx).
+ * Welcome and Demo themselves aren't auth-gated at all, so this is the
+ * *first* point in the whole flow where auth state is actually
+ * checked — meaning the dev-fixture login could have silently not
+ * finished (or not stuck) well before this, with nothing up to that
+ * point able to reveal it.
+ *
+ * AuthProvider's bootstrap (apps/web/src/auth/AuthProvider.tsx) is a
+ * fire-once effect off a memoized Telegram context
+ * (TelegramProvider.tsx uses useMemo), so it isn't re-running or
+ * getting a fresh mock object on every render — that part is fine.
+ * What it does is two sequential network round trips
+ * (telegramLogin -> getMe) against the local API, whose very first
+ * requests in a cold `wrangler dev` (Miniflare/workerd isolate + D1
+ * warmup) can plausibly take longer than the few hundred ms this
+ * script used to spend clicking through Welcome/Demo. `waitForSessionCookie`
+ * below makes the harness wait on the actual browser-stored session
+ * cookie (`el_session`, apps/api/src/auth/session.ts's
+ * SESSION_COOKIE_NAME) before doing anything else, instead of assuming
+ * incidental UI-click delays were enough time — and if the cookie
+ * never shows up at all, it dumps every cookie that *does* exist
+ * (name/domain/sameSite/secure) so a real backend-side cookie problem,
+ * if there is one, is visible in the log instead of just this script
+ * timing out somewhere later with no clue why.
  */
 import { chromium, devices, type Locator, type Page } from "playwright";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -80,6 +110,61 @@ function slug(name: string): string {
   return name.replace(/[^a-z0-9-]+/gi, "-").replace(/^-+|-+$/g, "");
 }
 
+// apps/api/src/auth/session.ts's SESSION_COOKIE_NAME, duplicated here
+// rather than imported: qa/ intentionally has no dependency on the api
+// workspace package, and this is a stable, deliberately-named constant
+// (not something that changes casually) — keep the two in sync if it
+// ever does.
+const SESSION_COOKIE_NAME = "el_session";
+
+async function describeCookies(page: Page): Promise<string> {
+  const cookies = await page.context().cookies();
+  if (cookies.length === 0) return "(no cookies at all)";
+  return cookies
+    .map(
+      (c) =>
+        `${c.name}@${c.domain} (sameSite=${c.sameSite}, secure=${c.secure}, httpOnly=${c.httpOnly})`,
+    )
+    .join(", ");
+}
+
+/**
+ * Waits for the dev-auth fixture's login to have actually stuck, by
+ * watching the browser's real cookie jar rather than assuming enough
+ * wall-clock time has passed. See the file header for why this exists.
+ */
+async function waitForSessionCookie(page: Page, timeoutMs = 30_000) {
+  const start = Date.now();
+  console.log(`--> waiting for the "${SESSION_COOKIE_NAME}" session cookie`);
+  while (Date.now() - start < timeoutMs) {
+    const cookies = await page.context().cookies();
+    const session = cookies.find((c) => c.name === SESSION_COOKIE_NAME);
+    if (session) {
+      console.log(
+        `<-- session cookie present after ${Date.now() - start}ms ` +
+          `(sameSite=${session.sameSite}, secure=${session.secure}, domain=${session.domain})`,
+      );
+      return;
+    }
+    await page.waitForTimeout(250);
+  }
+  const seen = await describeCookies(page);
+  console.error(
+    `session cookie "${SESSION_COOKIE_NAME}" never appeared within ${timeoutMs}ms. Cookies actually present: ${seen}`,
+  );
+  try {
+    await page.screenshot({
+      path: path.join(OUT_DIR, "FAILURE-no-session-cookie.png"),
+    });
+  } catch (shotErr) {
+    console.error("could not save a failure screenshot:", shotErr);
+  }
+  throw new Error(
+    `Dev-auth fixture never produced a "${SESSION_COOKIE_NAME}" session cookie within ${timeoutMs}ms — ` +
+      `the app never actually authenticated (see the cookie dump logged above).`,
+  );
+}
+
 /**
  * Waits for a UI element unique to the destination screen — never for
  * the URL alone. Logs where we started, where we ended up, and (on
@@ -103,6 +188,7 @@ async function waitForScreen(
     console.error(
       `FAILED waiting for "${name}" — page.url() is now ${page.url()}`,
     );
+    console.error(`cookies at failure time: ${await describeCookies(page)}`);
     try {
       await page.screenshot({
         path: path.join(OUT_DIR, `FAILURE-${slug(name)}.png`),
@@ -167,6 +253,10 @@ async function clickByText(page: Page, text: string | RegExp) {
 async function run(page: Page) {
   // --- Welcome -> Demo (marks welcome seen; the only path onward) -----
   await page.goto(`${BASE_URL}/welcome`, { waitUntil: "networkidle" });
+  // Welcome/Demo aren't auth-gated, so nothing visible would otherwise
+  // reveal a dev-fixture login that silently failed or is still in
+  // flight — confirm it actually landed before doing anything else.
+  await waitForSessionCookie(page);
   await checkLayout(page, "welcome");
   await clickByText(page, "Попробовать иначе");
   // .lesson-screen is shared by Demo/Session/Placement, but Demo is the
@@ -484,6 +574,19 @@ async function main() {
     userAgent: devices["iPhone 13"].userAgent,
   });
   const page = await context.newPage();
+
+  // Surface whatever the app itself logs/throws in the browser — a
+  // fetch failure in AuthProvider's bootstrap (network error, CORS
+  // rejection, a thrown parse error) would otherwise be invisible;
+  // this is often the fastest way to tell "the API was unreachable"
+  // apart from "the API answered but the cookie didn't stick" apart
+  // from "the app itself threw".
+  page.on("console", (msg) => {
+    console.log(`[browser:${msg.type()}] ${msg.text()}`);
+  });
+  page.on("pageerror", (err) => {
+    console.error(`[browser:pageerror] ${err.message}`);
+  });
 
   let crashed = false;
   try {
