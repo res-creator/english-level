@@ -173,6 +173,29 @@ async function clickByText(page: Page, text: string | RegExp) {
   await page.locator(".btn, button", { hasText: text }).first().click();
 }
 
+/**
+ * After advancing past an activity (Дальше/Понятно), the just-answered
+ * one's disabled/status-classed options can linger in the DOM for a
+ * beat before the next activity mounts. Waits for that leftover state
+ * to actually clear instead of a flat sleep, so the next capture/answer
+ * never races a stale disabled node (see the long comment at
+ * captureActivity's `:not(:disabled)` filters for the full story).
+ */
+async function waitForFreshActivity(page: Page, timeoutMs = 8_000) {
+  await page
+    .waitForFunction(
+      () =>
+        document.querySelectorAll(".answer:disabled").length === 0 &&
+        !document.querySelector(".miss"),
+      { timeout: timeoutMs },
+    )
+    .catch(() => {
+      /* best effort — proceed regardless; :not(:disabled) filters
+         downstream still prevent acting on a stale node even if this
+         wait itself times out. */
+    });
+}
+
 // ---------------------------------------------------------------------
 // Answer/content normalization (mirrors apps/api/src/lessonEngine/
 // exerciseGrading.ts's normalizeAnswer as closely as a black-box client
@@ -199,8 +222,15 @@ async function captureActivity(
 ): Promise<ActivityRecord> {
   const overlineText = (await page.locator(".overline").first().innerText().catch(() => "")).trim();
   const hasAnswerInput = (await page.locator(".answer-input").count()) > 0;
-  const hasWordBank = (await page.locator(".word-bank .word").count()) > 0;
-  const hasAnswerOptions = (await page.locator(".answer").count()) > 0;
+  // :not(:disabled) throughout this function: a just-answered activity's
+  // options/tokens stay in the DOM (now disabled, status-classed) for a
+  // beat while the next activity mounts, and an unfiltered `.answer`/
+  // `.word-bank .word` query can catch that stale, permanently-disabled
+  // node instead of the fresh one — confirmed in run 36236354904 (every
+  // captured MC option list was duplicated, and one click hung the full
+  // 30s Playwright action timeout against a disabled leftover button).
+  const hasWordBank = (await page.locator(".word-bank .word:not(:disabled)").count()) > 0;
+  const hasAnswerOptions = (await page.locator(".answer:not(:disabled)").count()) > 0;
   const hasSentenceLine = (await page.locator(".sentence-line").count()) > 0;
 
   let kind: string;
@@ -223,10 +253,10 @@ async function captureActivity(
     ? (await page.locator(".body.muted").first().innerText().catch(() => "")).trim() || null
     : null;
   const options = hasAnswerOptions
-    ? (await page.locator(".answer__text, .answer").allInnerTexts()).map((t) => t.trim())
+    ? (await page.locator(".answer:not(:disabled)").allInnerTexts()).map((t) => t.trim())
     : [];
   const wordBank = hasWordBank
-    ? (await page.locator(".word-bank .word").allInnerTexts()).map((t) => t.trim())
+    ? (await page.locator(".word-bank .word:not(:disabled)").allInnerTexts()).map((t) => t.trim())
     : [];
 
   const bubbleEls = page.locator(".bubble, .mission-log__bubble");
@@ -273,18 +303,19 @@ async function answerActivity(
   if ((await understoodBtn.count()) > 0) {
     record.submittedAnswer = "(info/grammar card — acknowledged, not scored)";
     await understoodBtn.click();
+    await waitForFreshActivity(page);
     return;
   }
 
   const key = `${record.kind}::${record.instruction}`;
   const recorded = recordedAnswers.get(key);
 
-  const hasAnswerOptions = (await page.locator(".answer").count()) > 0;
-  const hasWordBank = (await page.locator(".word-bank .word").count()) > 0;
+  const hasAnswerOptions = (await page.locator(".answer:not(:disabled)").count()) > 0;
+  const hasWordBank = (await page.locator(".word-bank .word:not(:disabled)").count()) > 0;
   const hasAnswerInput = (await page.locator(".answer-input").count()) > 0;
 
   if (hasAnswerOptions) {
-    const options = page.locator(".answer");
+    const options = page.locator(".answer:not(:disabled)");
     const n = await options.count();
     let idx = 0;
     if (mode === "mission-pass" && recorded) {
@@ -504,7 +535,7 @@ async function runSituation(page: Page, situation: (typeof SITUATIONS)[number]):
       const nextBtn = page.locator(".btn", { hasText: "Дальше" });
       if ((await nextBtn.count()) > 0) {
         await nextBtn.click();
-        await page.waitForTimeout(300);
+        await waitForFreshActivity(page);
       }
       if (/\/result\//.test(page.url())) break;
     }
