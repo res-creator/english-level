@@ -127,6 +127,7 @@ async function waitForFreshActivity(page: Page, timeoutMs = 8_000) {
     .waitForFunction(
       () =>
         document.querySelectorAll(".answer:disabled").length === 0 &&
+        document.querySelectorAll(".answer-input:disabled").length === 0 &&
         !document.querySelector(".miss"),
       { timeout: timeoutMs },
     )
@@ -233,7 +234,7 @@ async function answerCorrectly(page: Page, key: AnswerKey) {
 
   const hasAnswerOptions = (await page.locator(".answer:not(:disabled)").count()) > 0;
   const hasWordBank = (await page.locator(".word-bank .word:not(:disabled)").count()) > 0;
-  const hasAnswerInput = (await page.locator(".answer-input").count()) > 0;
+  const hasAnswerInput = (await page.locator(".answer-input:not(:disabled)").count()) > 0;
 
   if (hasAnswerOptions) {
     // Recognition MC (options = RU translations), grammar MC (options =
@@ -299,7 +300,7 @@ async function answerCorrectly(page: Page, key: AnswerKey) {
         break;
       }
     }
-    await page.locator(".answer-input").fill(word);
+    await page.locator(".answer-input:not(:disabled)").fill(word);
   }
 
   const answerBtn = page.locator(".btn", { hasText: "Ответить" });
