@@ -53,19 +53,19 @@
  * fire-once effect off a memoized Telegram context
  * (TelegramProvider.tsx uses useMemo), so it isn't re-running or
  * getting a fresh mock object on every render — that part is fine.
- * What it does is two sequential network round trips
- * (telegramLogin -> getMe) against the local API, whose very first
- * requests in a cold `wrangler dev` (Miniflare/workerd isolate + D1
- * warmup) can plausibly take longer than the few hundred ms this
- * script used to spend clicking through Welcome/Demo. `waitForSessionCookie`
- * below makes the harness wait on the actual browser-stored session
- * cookie (`el_session`, apps/api/src/auth/session.ts's
- * SESSION_COOKIE_NAME) before doing anything else, instead of assuming
- * incidental UI-click delays were enough time — and if the cookie
- * never shows up at all, it dumps every cookie that *does* exist
- * (name/domain/sameSite/secure) so a real backend-side cookie problem,
- * if there is one, is visible in the log instead of just this script
- * timing out somewhere later with no clue why.
+ * `waitForSessionCookie` below waits on the actual browser-stored
+ * session cookie (`el_session`, apps/api/src/auth/session.ts's
+ * SESSION_COOKIE_NAME) rather than assuming any fixed amount of time
+ * is enough — first suspected as a cold-`wrangler-dev`-start timing
+ * gap, but CI logs showed the real cause: /api/v1/auth/telegram was
+ * never called at all, not just slow. See the long comment at the
+ * `page.route(".../telegram-web-app.js", ...)` call in `main()` below
+ * for the actual root cause and its fix (index.html's unconditional
+ * real-Telegram-SDK script makes `window.Telegram.WebApp` look
+ * "real but empty" in any plain browser, so the app's real-vs-mock
+ * detection never falls back to the dev fixture) — `waitForSessionCookie`
+ * still earns its keep independently as the thing that actually
+ * notices "no cookie ever showed up" instead of a random later timeout.
  */
 import { chromium, devices, type Locator, type Page } from "playwright";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -166,6 +166,28 @@ async function waitForSessionCookie(page: Page, timeoutMs = 30_000) {
 }
 
 /**
+ * Reads window.Telegram.WebApp's presence/shape directly — never its
+ * content. Confirms empirically whether the fixture (or, if the route
+ * block above is ever removed, the real SDK) put a usable initData in
+ * place before AuthProvider's bootstrap runs, instead of inferring it
+ * only from whether /auth/telegram gets called later.
+ */
+async function logTelegramFixtureState(page: Page, label: string) {
+  const info = await page.evaluate(() => {
+    const w = (window as unknown as { Telegram?: { WebApp?: unknown } })
+      .Telegram?.WebApp as
+      { initData?: string; initDataUnsafe?: { user?: unknown } } | undefined;
+    return {
+      hasTelegramWebApp: !!w,
+      hasInitData: !!w?.initData,
+      initDataLength: w?.initData ? w.initData.length : 0,
+      hasInitDataUnsafeUser: !!w?.initDataUnsafe?.user,
+    };
+  });
+  console.log(`[telegram-fixture:${label}] ${JSON.stringify(info)}`);
+}
+
+/**
  * Waits for a UI element unique to the destination screen — never for
  * the URL alone. Logs where we started, where we ended up, and (on
  * failure) saves a screenshot of whatever's actually on screen before
@@ -253,6 +275,7 @@ async function clickByText(page: Page, text: string | RegExp) {
 async function run(page: Page) {
   // --- Welcome -> Demo (marks welcome seen; the only path onward) -----
   await page.goto(`${BASE_URL}/welcome`, { waitUntil: "networkidle" });
+  await logTelegramFixtureState(page, "after-welcome-load");
   // Welcome/Demo aren't auth-gated, so nothing visible would otherwise
   // reveal a dev-fixture login that silently failed or is still in
   // flight — confirm it actually landed before doing anything else.
@@ -574,6 +597,44 @@ async function main() {
     userAgent: devices["iPhone 13"].userAgent,
   });
   const page = await context.newPage();
+
+  // Root cause of "telegramLogin() is never called at all", found by
+  // reading apps/web/src/telegram/webapp.ts + resolveInitData.ts +
+  // index.html rather than guessing: index.html unconditionally loads
+  // the REAL Telegram Web App SDK
+  // (https://telegram.org/js/telegram-web-app.js) — its own comment
+  // there says as much ("this is what actually defines
+  // window.Telegram.WebApp inside a real Telegram client"). That SDK,
+  // loaded successfully in ANY browser (not just inside Telegram),
+  // defines `window.Telegram.WebApp` as a real, truthy object even
+  // outside Telegram — just with an empty `initData` and no user.
+  // `resolveTelegramWebApp()`'s real-vs-mock check is a plain
+  // `window.Telegram?.WebApp` truthiness test, so it takes this for a
+  // genuine Telegram session (`isMock: false`) and never falls back to
+  // the dev fixture; `resolveInitData()`'s `!isMock` branch then
+  // returns `webApp.initData || null` = null without ever touching the
+  // fixture logic, and AuthProvider never calls telegramLogin() —
+  // exactly matching the CI log (no /auth/telegram request at all).
+  // apps/web/test/webapp.test.ts already covers "window.Telegram is
+  // entirely absent" and "window.Telegram.WebApp is absent" (both
+  // correctly fall back to the mock) but not this third case, which
+  // only a real browser actually fetching that script can produce — a
+  // Node-based unit test never exercises it.
+  //
+  // Fix, scoped to this harness: block that one script request, so
+  // `window.Telegram` never gets defined in this browser at all — the
+  // exact "plain browser dev" case the app already handles correctly
+  // and already has a passing unit test for. Not a new bypass; it
+  // removes the one input (Telegram's own script) that was making this
+  // browser look like it was inside Telegram when it isn't. No app
+  // code changes.
+  await page.route("https://telegram.org/js/telegram-web-app.js", (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: "application/javascript",
+      body: "",
+    }),
+  );
 
   // Surface whatever the app itself logs/throws in the browser — a
   // fetch failure in AuthProvider's bootstrap (network error, CORS
