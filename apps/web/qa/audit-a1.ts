@@ -307,7 +307,22 @@ async function answerActivity(
     return;
   }
 
-  const key = `${record.kind}::${record.instruction}`;
+  // sentence_build has no .task-sheet__title at all (confirmed in
+  // ActivityPanel.tsx's SentenceBuilder — only .overline "Собери
+  // ответ", no per-item prompt text), so record.instruction is always
+  // "" for that kind. Keying purely on kind+instruction then collapses
+  // every sentence_build item in a situation onto the same key,
+  // silently reusing whichever one's answer got recorded last for
+  // every other one — this was the actual cause of every mission
+  // "informed" attempt failing in runs 36236354904 through 36244900024
+  // (confirmed by cross-referencing screenshots against
+  // ActivityPanel.tsx's source, not a real app grading bug). Fall back
+  // to the word bank's own contents, which — unlike the instruction —
+  // does distinguish one sentence_build item from another.
+  const key =
+    record.kind === "sentence_build" && !record.instruction
+      ? `sentence_build::${record.wordBank.slice().sort().join("|")}`
+      : `${record.kind}::${record.instruction}`;
   const recorded = recordedAnswers.get(key);
 
   const hasAnswerOptions = (await page.locator(".answer:not(:disabled)").count()) > 0;
