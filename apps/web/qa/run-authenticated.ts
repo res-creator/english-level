@@ -588,6 +588,61 @@ async function main() {
     console.error(`[browser:pageerror] ${err.message}`);
   });
 
+  // Diagnostics for the auth bootstrap specifically: which URL the
+  // frontend actually calls (confirms whether it's really hitting the
+  // local API this job just started, not some other origin), the
+  // status of every /api/v1/ call, and whether the login response
+  // carried a Set-Cookie header at all — never the cookie's value, an
+  // initData string, or any token/secret.
+  let loggedApiOrigin = false;
+  page.on("request", (req) => {
+    const url = req.url();
+    if (!url.includes("/api/v1/")) return;
+    if (!loggedApiOrigin) {
+      loggedApiOrigin = true;
+      console.log(
+        `[api] frontend is calling the API at origin: ${new URL(url).origin}`,
+      );
+    }
+    console.log(`[api:request] ${req.method()} ${url}`);
+  });
+  page.on("response", (res) => {
+    const url = res.url();
+    if (!url.includes("/api/v1/")) return;
+    void (async () => {
+      const status = res.status();
+      let setCookiePresent = false;
+      try {
+        const headers = await res.allHeaders();
+        setCookiePresent = Object.keys(headers).some(
+          (h) => h.toLowerCase() === "set-cookie",
+        );
+      } catch {
+        // Header inspection failing isn't itself worth stopping for —
+        // the status line below still gets logged.
+      }
+      console.log(
+        `[api:response] ${status} ${url} (set-cookie present: ${setCookiePresent})`,
+      );
+      if (url.includes("/auth/telegram") || url.includes("/api/v1/me")) {
+        if (status < 200 || status >= 300) {
+          // Response bodies on these two endpoints are only ever
+          // {"error": "<code>"} or the public user/session shape —
+          // never initData, a token, or the cookie value — safe to log.
+          try {
+            const body = (await res.text()).slice(0, 500);
+            console.error(`[api:response] non-2xx body for ${url}: ${body}`);
+          } catch (bodyErr) {
+            console.error(
+              `[api:response] non-2xx and couldn't read body for ${url}:`,
+              bodyErr,
+            );
+          }
+        }
+      }
+    })();
+  });
+
   let crashed = false;
   try {
     await run(page);
