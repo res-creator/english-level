@@ -906,5 +906,290 @@
       }
     ],
     "npcReplyCorrect": "The 11:15 train leaves from platform four. That's ten pounds."
+  },
+  {
+    "id": "itm_sie_a19_like_reading",
+    "itemType": "functional_phrase",
+    "lemma": "i like reading in cafés",
+    "displayForm": "I like reading in cafés.",
+    "levelCode": "A1",
+    "topic": "free_time",
+    "ru": {
+      "translation": "Мне нравится читать в кафе."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a19_like_reading_01",
+        "text": "I like reading in cafés.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Me too. That little café by the park is quiet."
+  },
+  {
+    "id": "itm_sie_a19_suggest_cafe",
+    "itemType": "functional_phrase",
+    "lemma": "do you want to meet at the café on saturday",
+    "displayForm": "Do you want to meet at the café on Saturday?",
+    "levelCode": "A1",
+    "topic": "free_time",
+    "ru": {
+      "translation": "Хочешь встретиться в кафе в субботу?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a19_suggest_cafe_01",
+        "text": "Do you want to meet at the café on Saturday?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Sure. What time works for you?"
+  },
+  {
+    "id": "itm_sie_a19_suggest_time",
+    "itemType": "functional_phrase",
+    "lemma": "how about two",
+    "displayForm": "How about two?",
+    "levelCode": "A1",
+    "topic": "free_time",
+    "ru": {
+      "translation": "Как насчёт двух часов?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a19_suggest_time_01",
+        "text": "How about two?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Two is good. See you there!"
+  },
+  {
+    "id": "itm_sie_a19_practice_park",
+    "itemType": "functional_phrase",
+    "lemma": "do you want to walk in the park on sunday",
+    "displayForm": "Do you want to walk in the park on Sunday?",
+    "levelCode": "A1",
+    "topic": "free_time",
+    "ru": {
+      "translation": "Хочешь погулять в парке в воскресенье?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a19_practice_park_01",
+        "text": "Do you want to walk in the park on Sunday?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Sure. Shall we meet by the entrance at one?"
+  },
+  {
+    "id": "itm_sie_a110_live_apartment",
+    "itemType": "functional_phrase",
+    "lemma": "i live in a small apartment near the station",
+    "displayForm": "I live in a small apartment near the station.",
+    "levelCode": "A1",
+    "topic": "home",
+    "ru": {
+      "translation": "Я живу в небольшой квартире рядом со станцией."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a110_live_apartment_01",
+        "text": "I live in a small apartment near the station.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "What rooms are in your apartment?"
+  },
+  {
+    "id": "itm_sie_a110_there_are_rooms",
+    "itemType": "functional_phrase",
+    "lemma": "there are two bedrooms and a small kitchen",
+    "displayForm": "There are two bedrooms and a small kitchen.",
+    "levelCode": "A1",
+    "topic": "home",
+    "ru": {
+      "translation": "Там две спальни и небольшая кухня."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a110_there_are_rooms_01",
+        "text": "There are two bedrooms and a small kitchen.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Where is the kitchen?"
+  },
+  {
+    "id": "itm_sie_a110_next_to",
+    "itemType": "functional_phrase",
+    "lemma": "the kitchen is next to the living room",
+    "displayForm": "The kitchen is next to the living room.",
+    "levelCode": "A1",
+    "topic": "home",
+    "ru": {
+      "translation": "Кухня рядом с гостиной."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a110_next_to_01",
+        "text": "The kitchen is next to the living room.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds convenient."
+  },
+  {
+    "id": "itm_sie_a110_practice_house",
+    "itemType": "functional_phrase",
+    "lemma": "i live in a house near the library there is a small garden next to the kitchen",
+    "displayForm": "I live in a house near the library. There is a small garden next to the kitchen.",
+    "levelCode": "A1",
+    "topic": "home",
+    "ru": {
+      "translation": "Я живу в доме рядом с библиотекой. Рядом с кухней есть небольшой сад."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a110_practice_house_01",
+        "text": "I live in a house near the library. There is a small garden next to the kitchen.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A garden by the kitchen sounds lovely. Is it big?"
+  },
+  {
+    "id": "itm_sie_ha1_unwell",
+    "itemType": "functional_phrase",
+    "lemma": "i don’t feel well",
+    "displayForm": "I don’t feel well.",
+    "levelCode": "A1",
+    "topic": "health",
+    "ru": {
+      "translation": "Я плохо себя чувствую."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_ha1_unwell_01",
+        "text": "I don’t feel well.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Oh no. What’s wrong?"
+  },
+  {
+    "id": "itm_sie_ha1_headache_rest",
+    "itemType": "functional_phrase",
+    "lemma": "i have a headache i need to rest",
+    "displayForm": "I have a headache. I need to rest.",
+    "levelCode": "A1",
+    "topic": "health",
+    "ru": {
+      "translation": "У меня болит голова. Мне нужно отдохнуть."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_ha1_headache_rest_01",
+        "text": "I have a headache. I need to rest.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Of course. Let’s sit on that bench for a minute."
+  },
+  {
+    "id": "itm_sie_ha1_practice_stomach",
+    "itemType": "functional_phrase",
+    "lemma": "i have a stomach ache",
+    "displayForm": "I have a stomach ache.",
+    "levelCode": "A1",
+    "topic": "health",
+    "ru": {
+      "translation": "У меня болит живот."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_ha1_practice_stomach_01",
+        "text": "I have a stomach ache.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I’m sorry. Let’s sit here for a minute."
+  },
+  {
+    "id": "itm_sie_e2_practice_tea",
+    "itemType": "functional_phrase",
+    "lemma": "can i get a large tea please",
+    "displayForm": "Can I get a large tea, please?",
+    "levelCode": "A1",
+    "topic": "cafe",
+    "ru": {
+      "translation": "Можно мне большой чай, пожалуйста?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_e2_practice_tea_01",
+        "text": "Can I get a large tea, please?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Sure. Would you like milk?"
+  },
+  {
+    "id": "itm_sie_e3_practice_evening",
+    "itemType": "functional_phrase",
+    "lemma": "i usually read in the evening",
+    "displayForm": "I usually read in the evening.",
+    "levelCode": "A1",
+    "topic": "my_day",
+    "ru": {
+      "translation": "Обычно я читаю вечером."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_e3_practice_evening_01",
+        "text": "I usually read in the evening.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds relaxing."
+  },
+  {
+    "id": "itm_sie_e4_practice_pharmacy",
+    "itemType": "functional_phrase",
+    "lemma": "where is the pharmacy please",
+    "displayForm": "Where is the pharmacy, please?",
+    "levelCode": "A1",
+    "topic": "directions",
+    "ru": {
+      "translation": "Где находится аптека, пожалуйста?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_e4_practice_pharmacy_01",
+        "text": "Where is the pharmacy, please?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Go straight, then turn right. It’s next to the bank."
+  },
+  {
+    "id": "itm_sie_e5_practice_pastry",
+    "itemType": "functional_phrase",
+    "lemma": "i ordered a pastry but this is a sandwich",
+    "displayForm": "I ordered a pastry, but this is a sandwich.",
+    "levelCode": "A1",
+    "topic": "problem",
+    "ru": {
+      "translation": "Я заказала выпечку, а это сэндвич."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_e5_practice_pastry_01",
+        "text": "I ordered a pastry, but this is a sandwich.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You’re right. I’ll bring you the pastry you ordered."
   }
 ]

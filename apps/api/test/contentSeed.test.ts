@@ -27,7 +27,7 @@ test("the published catalogue is the current A1 situation course", () => {
   assert.equal(bundle.modules.length - published.length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
-  assert.equal(starter.length, 8);
+  assert.equal(starter.length, 11);
   for (const episode of starter) {
     assert.ok(episode.situationTitle, `${episode.id} has no situation title`);
     assert.ok(episode.scene, `${episode.id} has no scene`);

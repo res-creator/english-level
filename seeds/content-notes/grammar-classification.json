@@ -152,5 +152,74 @@
         "chunkLabel": "Fixed transactional chunk; question words and there is/are are the recycled grammar targets."
       }
     ]
+  },
+  {
+    "situationId": "sit_a1_social_01",
+    "phrases": [
+      {
+        "text": "I like reading in cafés.",
+        "itemId": "itm_sie_a19_like_reading",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_like_ing"
+      },
+      {
+        "text": "Do you want to meet at the café on Saturday?",
+        "itemId": "itm_sie_a19_suggest_cafe",
+        "classification": "chunk",
+        "chunkLabel": "Fixed A1 invitation formula; the learner transfers the invitation to a new activity and day."
+      },
+      {
+        "text": "How about two?",
+        "itemId": "itm_sie_a19_suggest_time",
+        "classification": "chunk",
+        "chunkLabel": "Fixed A1 suggestion formula used to agree a meeting time."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a1_daily_02",
+    "phrases": [
+      {
+        "text": "There are two bedrooms and a small kitchen.",
+        "itemId": "itm_sie_a110_there_are_rooms",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_there_is_are"
+      },
+      {
+        "text": "I live in a small apartment near the station.",
+        "itemId": "itm_sie_a110_live_apartment",
+        "classification": "chunk",
+        "chunkLabel": "Fixed A1 home-description frame; location vocabulary is within the learner's directions content."
+      },
+      {
+        "text": "The kitchen is next to the living room.",
+        "itemId": "itm_sie_a110_next_to",
+        "classification": "chunk",
+        "chunkLabel": "Simple A1 location phrase using the recycled next-to item."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a1_health_01",
+    "phrases": [
+      {
+        "text": "I have a headache.",
+        "itemId": "itm_sie_ha1_headache_rest",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_have"
+      },
+      {
+        "text": "I need to rest.",
+        "itemId": "itm_sie_ha1_headache_rest",
+        "classification": "chunk",
+        "chunkLabel": "Ordinary key phrase retained by frozen V2; explicitly lexicalized, not a grammar or exposure target."
+      },
+      {
+        "text": "I don't feel well.",
+        "itemId": "itm_sie_ha1_unwell",
+        "classification": "chunk",
+        "chunkLabel": "Fixed A1 phrase for reporting how one feels; the sole grammar target is have + symptom noun."
+      }
+    ]
   }
 ]

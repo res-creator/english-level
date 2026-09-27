@@ -94,5 +94,41 @@
     "lessonType": "mixed",
     "order": 8,
     "estimatedMinutes": 6
+  },
+  {
+    "id": "sit_a1_social_01",
+    "moduleId": "mod_sie_a1_01",
+    "title": "Что ты любишь делать?",
+    "situationTitle": "Что ты любишь делать?",
+    "scene": "После нескольких встреч с Алексом вы разговорились о свободном времени и общих интересах.",
+    "capability": "Я могу сказать, что мне нравится, и предложить встретиться",
+    "teaser": "Дальше: ты расскажешь Майе, где живёшь",
+    "lessonType": "mixed",
+    "order": 9,
+    "estimatedMinutes": 6
+  },
+  {
+    "id": "sit_a1_daily_02",
+    "moduleId": "mod_sie_a1_01",
+    "title": "Где ты живёшь?",
+    "situationTitle": "Где ты живёшь?",
+    "scene": "В кафе Майя спрашивает о твоём доме и о том, что находится рядом.",
+    "capability": "Я могу описать своё жильё и сказать, где оно находится",
+    "teaser": "Дальше: Алекс заметит, что тебе нехорошо",
+    "lessonType": "mixed",
+    "order": 10,
+    "estimatedMinutes": 6
+  },
+  {
+    "id": "sit_a1_health_01",
+    "moduleId": "mod_sie_a1_01",
+    "title": "Мне нехорошо",
+    "situationTitle": "Мне нехорошо",
+    "scene": "Алекс замечает, что тебе нехорошо, и предлагает присесть рядом с ним.",
+    "capability": "Я могу сказать, что мне нехорошо, и назвать простую проблему",
+    "teaser": "Ты завершила ситуации уровня A1",
+    "lessonType": "mixed",
+    "order": 11,
+    "estimatedMinutes": 6
   }
 ]

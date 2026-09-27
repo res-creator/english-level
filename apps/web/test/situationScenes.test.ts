@@ -50,6 +50,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_a1_people_02",
     "sit_a1_shop_01",
     "sit_a1_travel_02",
+    "sit_a1_social_01",
+    "sit_a1_daily_02",
+    "sit_a1_health_01",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);
@@ -82,4 +85,16 @@ test("Batch 1 situations use the authored place, cast, and opener", () => {
     openingLine("sit_a1_travel_02").includes("ticket machine"),
     true,
   );
+  assert.deepEqual(sceneForSituation("sit_a1_social_01"), {
+    scene: "cafe",
+    cast: "alex",
+  });
+  assert.deepEqual(sceneForSituation("sit_a1_daily_02"), {
+    scene: "cafe",
+    cast: "maya",
+  });
+  assert.deepEqual(sceneForSituation("sit_a1_health_01"), {
+    scene: "meeting",
+    cast: "alex",
+  });
 });

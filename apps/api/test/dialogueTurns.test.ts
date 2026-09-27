@@ -71,12 +71,14 @@ for (const episode of [
         assert.equal(lines.at(-1)?.text, activity.npcReply?.correct);
       }
     }
-    const coreItems = links.filter(
-      (l) => l.content_type === "learning_item" && l.role === "introduce",
+    const spokenItems = links.filter(
+      (l) =>
+        l.content_type === "learning_item" &&
+        (l.role === "introduce" || l.role === "practice"),
     );
     assert.equal(
       lines.filter((l) => l.from === "you").length,
-      coreItems.length,
+      spokenItems.length,
     );
     assert.equal(new Set(lines.map((l) => l.id)).size, lines.length);
     assert.ok(lines.every((l) => !/[\u0400-\u04ff]/.test(l.text)));
@@ -122,7 +124,7 @@ test("stored pre-marker plans and retries preserve one semantic turn; review rem
   const plan = await buildActivityPlan(db, "lvl_a1", links);
   const oldPlan = plan.map(({ dialogueTurnId, ...rest }) => rest);
   const restored = restoreDialogueTurns(oldPlan, "lesson");
-  assert.equal(restored.filter((a) => a.dialogueTurnId).length, 7);
+  assert.equal(restored.filter((a) => a.dialogueTurnId).length, 8);
   const final = restored.find(
     (a) => a.dialogueTurnId && a.kind === "sentence_build",
   )!;

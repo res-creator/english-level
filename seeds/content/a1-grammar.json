@@ -118,5 +118,17 @@
     "ru": {
       "explanation": "Can I get/have...? — спросить, можно ли получить или взять доступную вещь или услугу."
     }
+  },
+  {
+    "id": "gr_a1_like_ing",
+    "levelCode": "A1",
+    "title": "Like + -ing",
+    "patternKey": "like_gerund",
+    "formula": "I like reading. / Do you like walking?",
+    "explanationEn": "Use like + verb-ing to talk about activities you enjoy.",
+    "order": 11,
+    "ru": {
+      "explanation": "После like можно поставить глагол с окончанием -ing, чтобы сказать, какое занятие вам нравится."
+    }
   }
 ]

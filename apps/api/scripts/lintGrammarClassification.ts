@@ -76,12 +76,18 @@ const ABOVE_LEVEL_SIGNATURES: { label: string; re: RegExp }[] = [
     label: "question tag",
     re: /,\s*(isn't|aren't|wasn't|weren't|don't|doesn't|didn't|can't|won't|wouldn't|shouldn't|haven't|hasn't)\s+\w+\?/i,
   },
-  { label: "cleft sentence (what ... was)", re: /\bwhat\s+\w[\s\S]{0,20}\bwas\b/i },
+  {
+    label: "cleft sentence (what ... was)",
+    re: /\bwhat\s+\w[\s\S]{0,20}\bwas\b/i,
+  },
   {
     label: "modal + have + past participle",
     re: /\b(should|would|could|might|must)\s+have\b/i,
   },
-  { label: "mixed/unreal conditional", re: /\bif\s+\w[\s\S]{0,30}\bwould have\b/i },
+  {
+    label: "mixed/unreal conditional",
+    re: /\bif\s+\w[\s\S]{0,30}\bwould have\b/i,
+  },
 ];
 
 function loadClassifications(): SituationClassification[] {
@@ -96,14 +102,15 @@ async function main(): Promise<void> {
 
   const realItemIds = new Set(bundle.learningItems.map((i) => i.id));
 
-  // Scoped to the "sie" track (les_sie_*) — the one continuous-situation
+  // Scoped to the "sie" track (les_sie_* and sit_a1_*) — the continuous-situation
   // curriculum CONTENT_MASTER_PLAN_A1_B2_V2.md and this whole production
   // plan are about. The legacy a1-*/a2-* mixed-practice tracks are a
   // separate, older content experiment (several of their modules are
   // already `status: "archived"`) and were never in scope for the V2
   // grammar audit — including them here would just be noise, not a real
   // finding, so they're skipped rather than silently misreported.
-  const SIE_TRACK_PREFIX = "les_sie_";
+  const isSieTrack = (id: string) =>
+    id.startsWith("les_sie_") || id.startsWith("sit_a1_");
 
   // Which grammar_patterns are actually attached (as target/introduce) to
   // which situations, per the real seed content.
@@ -112,7 +119,7 @@ async function main(): Promise<void> {
   for (const link of bundle.lessonItems) {
     if (link.contentType !== "grammar_pattern") continue;
     if (link.role !== "target" && link.role !== "introduce") continue;
-    if (!link.lessonId.startsWith(SIE_TRACK_PREFIX)) {
+    if (!isSieTrack(link.lessonId)) {
       skippedOutOfScope++;
       continue;
     }
@@ -124,12 +131,15 @@ async function main(): Promise<void> {
   let errors = 0;
   let advisories = 0;
 
-  console.log("=== Check A: every attached grammar target has a backing phrase ===");
+  console.log(
+    "=== Check A: every attached grammar target has a backing phrase ===",
+  );
   for (const [situationId, patternIds] of attachedPatterns) {
     const note = notesBySituation.get(situationId);
     for (const patternId of patternIds) {
       const backed = note?.phrases.some(
-        (p) => p.classification === "target" && p.grammarPatternId === patternId,
+        (p) =>
+          p.classification === "target" && p.grammarPatternId === patternId,
       );
       if (backed) {
         console.log(`  OK    ${situationId} / ${patternId}`);
@@ -145,12 +155,16 @@ async function main(): Promise<void> {
     }
   }
 
-  console.log("\n=== Check B: every worksheet phrase references a real learning item ===");
+  console.log(
+    "\n=== Check B: every worksheet phrase references a real learning item ===",
+  );
   for (const note of notes) {
     for (const phrase of note.phrases) {
       if (!phrase.itemId) continue;
       if (realItemIds.has(phrase.itemId)) {
-        console.log(`  OK    ${note.situationId} / "${phrase.text}" -> ${phrase.itemId}`);
+        console.log(
+          `  OK    ${note.situationId} / "${phrase.text}" -> ${phrase.itemId}`,
+        );
       } else {
         console.log(
           `  ERROR ${note.situationId} / "${phrase.text}" -> ${phrase.itemId} does not exist in the seed content (stale worksheet entry?)`,
@@ -160,7 +174,9 @@ async function main(): Promise<void> {
     }
   }
 
-  console.log("\n=== Check C (advisory): above-level construction heuristics on \"target\" phrases ===");
+  console.log(
+    '\n=== Check C (advisory): above-level construction heuristics on "target" phrases ===',
+  );
   for (const note of notes) {
     for (const phrase of note.phrases) {
       if (phrase.classification !== "target") continue;
