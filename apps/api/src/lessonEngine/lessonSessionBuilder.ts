@@ -39,8 +39,13 @@ const CONTENT_LANGUAGE = "ru";
  *    masked cleanly out of its example) -> optionally one typed_recall
  *    (single words) or sentence_build (phrases with a long enough
  *    example). A new item never opens with typed recall.
- *  - other roles (review/practice/target) get one lighter-touch
- *    multiple_choice only.
+ *  - `practice` learning items (a Practice Variation, see
+ *    CONTENT_PRODUCTION_PLAN.md §2/§9) get the same sequence minus
+ *    info_card — the learner already knows the underlying item, but the
+ *    check must still be production-capable, not just recognition.
+ *  - `review` (and `target`, for a learning item — grammar_pattern is the
+ *    only current user of `target`) get one lighter-touch multiple_choice
+ *    only.
  *  - grammar_pattern items get grammar_card -> a "what's the rule here?"
  *    recognition multiple_choice built from title/formula (Phase 5's
  *    schema has no correct/incorrect example pair to build a scored
@@ -328,26 +333,39 @@ async function buildLearningItemActivities(
     ? { correct: item.npc_reply_correct, incorrect: item.npc_reply_incorrect }
     : undefined;
 
-  if (link.role !== "introduce") {
+  // "review": one lighter-touch recognition check only — unchanged from
+  // before. "target" (grammar-pattern-only today, but falls through here
+  // if ever used for a learning_item) gets the same single-MC treatment
+  // it always has. Neither is affected by the practice-role change below.
+  if (link.role !== "introduce" && link.role !== "practice") {
     const mc = await buildRecognitionMC(db, levelId, item, translation, explanation);
     return [npcReply ? { ...mc, npcReply } : mc];
   }
 
+  // "practice": a Practice Variation (CONTENT_PRODUCTION_PLAN.md §2/§9) —
+  // the learner already knows this item's underlying capability, so it
+  // skips info_card, but must still get a real production-capable check
+  // (MC + fill_gap/context-MC + optional recall + its own NPC reply), not
+  // the bare single MC "review" gets. A variation that only re-tested
+  // recognition would not actually exercise transfer — see V2's own
+  // "не должна превращаться в обычный review-MC" requirement.
   const activities: StoredActivity[] = [];
 
-  activities.push({
-    id: "",
-    kind: "info_card",
-    targetType: "learning_item",
-    targetId: item.id,
-    content: {
-      displayForm: item.display_form,
-      translation,
-      ipa: item.pronunciation_ipa,
-      example: example?.example_text ?? null,
-      pattern: pattern?.pattern_text ?? null,
-    },
-  });
+  if (link.role === "introduce") {
+    activities.push({
+      id: "",
+      kind: "info_card",
+      targetType: "learning_item",
+      targetId: item.id,
+      content: {
+        displayForm: item.display_form,
+        translation,
+        ipa: item.pronunciation_ipa,
+        example: example?.example_text ?? null,
+        pattern: pattern?.pattern_text ?? null,
+      },
+    });
+  }
 
   activities.push(
     await buildRecognitionMC(db, levelId, item, translation, explanation),

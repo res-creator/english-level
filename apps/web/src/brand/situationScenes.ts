@@ -13,8 +13,22 @@
  * Anything unmapped falls back to a neutral scene, so new content never
  * waits on artwork.
  */
-export type SceneId = "cafe" | "street" | "meeting" | "shop" | "restaurant";
-export type CastId = "maya" | "alex" | "emma" | "daniel" | "leo" | "rosa";
+export type SceneId =
+  | "cafe"
+  | "street"
+  | "meeting"
+  | "shop"
+  | "restaurant"
+  | "office"
+  | "clinic";
+export type CastId =
+  | "maya"
+  | "alex"
+  | "emma"
+  | "daniel"
+  | "leo"
+  | "rosa"
+  | "drkim";
 
 export interface SituationScene {
   scene: SceneId;
@@ -61,6 +75,8 @@ const SCENE_LABEL: Record<SceneId, string> = {
   street: "В городе",
   shop: "В магазине",
   restaurant: "В ресторане",
+  office: "На работе",
+  clinic: "У врача",
 };
 
 export function sceneLabelText(scene: SceneId): string {

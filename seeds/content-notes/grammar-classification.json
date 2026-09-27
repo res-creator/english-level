@@ -1,0 +1,69 @@
+[
+  {
+    "situationId": "les_sie_a1_e1",
+    "phrases": [
+      {
+        "text": "I'm Anna",
+        "itemId": "itm_sie_im_name",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_be_positive"
+      }
+    ]
+  },
+  {
+    "situationId": "les_sie_a1_e2",
+    "phrases": [
+      {
+        "text": "Can I get a coffee, please?",
+        "itemId": "itm_sie_can_i_get",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_can"
+      }
+    ]
+  },
+  {
+    "situationId": "les_sie_a1_e3",
+    "phrases": [
+      {
+        "text": "work from home",
+        "itemId": "itm_sie_work_from_home",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_positive"
+      },
+      {
+        "text": "usually",
+        "itemId": "itm_sie_usually",
+        "classification": "target",
+        "grammarPatternId": "gr_sie_frequency"
+      }
+    ]
+  },
+  {
+    "situationId": "les_sie_a1_e4",
+    "phrases": [
+      {
+        "text": "Where is the station?",
+        "itemId": "itm_sie_where_is_the",
+        "classification": "chunk",
+        "chunkLabel": "WH-question + be-verb (recycled question formation from A1.1) — NOT a there-is/are construction. LINT FINDING: this situation's attached grammar target (gr_a1_there_is_are) has no real backing phrase anywhere in its item bank (checked: excuse_me, where_is_the, i_dont_understand, can_you_repeat, go_straight, turn_left, next_to — none is a genuine 'there is/are' sentence). Surfaced by building this lint tool against real shipped content, not by the V2 master-plan audit (which only covered newly-planned situations). Flagged for the user to decide a fix; content not changed in Phase 0 per 'production не трогать'."
+      }
+    ]
+  },
+  {
+    "situationId": "les_sie_a1_e5",
+    "phrases": [
+      {
+        "text": "Could you change it, please?",
+        "itemId": "itm_sie_could_you_change_it",
+        "classification": "target",
+        "grammarPatternId": "gr_sie_could_polite"
+      },
+      {
+        "text": "There's been a mistake",
+        "itemId": "itm_sie_theres_been_a_mistake",
+        "classification": "chunk",
+        "chunkLabel": "Present Perfect ('been' = participle of existential 'there has been', not a passive marker — see CONTENT_MASTER_PLAN_A1_B2_V2.md §11 fix #2) — fixed functional phrase for reporting an error, not decomposed at A1. Real target deferred to B1.8 (storytelling / experience)."
+      }
+    ]
+  }
+]

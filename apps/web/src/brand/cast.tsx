@@ -7,6 +7,12 @@
  * That continuity is the product: by A2 you are not meeting a stranger,
  * you are handling a harder moment with someone you know.
  *
+ * `drkim` is the one deliberate exception (CONTENT_MASTER_PLAN_A1_B2_V2.md
+ * §3 / CONTENT_PRODUCTION_PLAN.md §2): a minimal-footprint clinical NPC
+ * for the Health strand's B1/B2 situations, where none of the recurring
+ * six can honestly carry a doctor's register. Not a "friend" character —
+ * she doesn't recur outside those two situations.
+ *
  * Editorial 2D: flat shapes, one soft shadow, no outlines, adult
  * proportions, small eyes. Not photoreal, not anime, not Pixar. Every
  * member is drawn by the same component — only the tokens change — so
@@ -15,7 +21,14 @@
 import { Art } from "./Art.tsx";
 import { artName } from "./artRegistry.ts";
 
-export type CastId = "maya" | "alex" | "emma" | "daniel" | "leo" | "rosa";
+export type CastId =
+  | "maya"
+  | "alex"
+  | "emma"
+  | "daniel"
+  | "leo"
+  | "rosa"
+  | "drkim";
 
 /** The four states a scene needs. `showing` is only meaningful where the
  * situation actually involves handing something over. */
@@ -102,6 +115,17 @@ export const CAST: Record<CastId, CastLook> = {
     clothes: "#ffb27a",
     clothesDark: "#ff9c53",
     silhouette: "curls",
+  },
+  drkim: {
+    id: "drkim",
+    name: "Доктор Ким",
+    role: "врач в клинике",
+    skin: "#e0ac7e",
+    skinShade: "#c8925f",
+    hair: "#0f0d12",
+    clothes: "#ffffff",
+    clothesDark: "#dfe6f0",
+    silhouette: "glasses",
   },
 };
 

@@ -186,6 +186,19 @@ export function loadSeedContent(): ContentBundle {
       `lessons in module ${moduleId}`,
     );
   }
+  // lesson_items already has a DB-level UNIQUE index on (lesson_id,
+  // order_index), so a duplicate here would fail at seed-apply time
+  // anyway — this just catches it earlier, at load time, with a specific
+  // lesson/order in the message instead of a raw SQLite constraint
+  // error, the same way modules/lessons are already checked above.
+  for (const [lessonId, group] of Object.entries(
+    groupBy(lessonItems, (li) => li.lessonId),
+  )) {
+    assertContiguousOrder(
+      group.map((li) => li.order),
+      `lesson_items in lesson ${lessonId}`,
+    );
+  }
 
   return {
     modules,
