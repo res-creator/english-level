@@ -12,11 +12,12 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-22.04
-    # e1 alone took ~15min in run 36269032512 (real network round-trips
-    # per activity, not a stall — same order of magnitude as
-    # qa-authenticated.yml's smoke test scaled up by activity count).
-    # 30min wasn't enough for 5 situations; generous headroom here.
-    timeout-minutes: 90
+    # e1-e4 now pass cleanly and reliably (confirmed across 2 full runs:
+    # 36276773776, 36281942113), taking ~80-90min combined — 90min
+    # wasn't quite enough to also finish e5. Not a correctness problem,
+    # just genuinely this many real network round-trips across 5
+    # situations x rounds x a passing Mission each.
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
 
