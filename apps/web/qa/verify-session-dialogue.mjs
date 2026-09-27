@@ -1,7 +1,7 @@
 /** Local regression QA: real React + Hono handlers + disposable SQLite.
  * Start Vite first. No Cloudflare runtime, remote DB, or canned API responses.
  * Episode IDs may be passed as command-line arguments; default is shipped e1-e5.
- * Onboarding is a verified fixture; authentication still uses signed dev auth.
+ * Onboarding/placement and course run through the UI; authentication uses signed dev auth.
  */
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -11,7 +11,6 @@ import { app } from "../../api/src/index.ts";
 import { createTestDb } from "../../api/test/helpers/testDb.ts";
 import { createFakeD1 } from "../../api/test/helpers/fakeD1.ts";
 import { seedContent } from "../../api/src/content/seedContent.ts";
-import { makeVerifiedUser } from "../../api/test/helpers/lessonFixtures.ts";
 import { openingLine } from "../src/brand/situationScenes.ts";
 
 const base = "http://localhost:5173";
@@ -29,7 +28,6 @@ const browser = await chromium.launch();
 async function run(failMission) {
   const { db, sqlite } = createTestDb();
   await seedContent(db);
-  await makeVerifiedUser(db, 1, "A1");
   const env = {
     DB: createFakeD1(sqlite),
     TELEGRAM_BOT_TOKEN: "dev-fixture-telegram-bot-token-000000",
@@ -83,13 +81,90 @@ async function run(failMission) {
       (await context.cookies()).some((c) => c.name === "el_session"),
       "signed dev auth cookie missing",
     );
+    await page.reload({ waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "Попробовать иначе" }).click();
+    await page.locator(".lesson-screen").waitFor();
+    for (let i = 0; i < 2; i++) {
+      await page.locator(".task-sheet").waitFor();
+      const choice = page.locator(".answer:not(:disabled)").first();
+      const word = page.locator(".word:not(:disabled)").first();
+      if (await choice.count()) await choice.click();
+      else if (await word.count()) await word.click();
+      await page.getByRole("button", { name: "Ответить" }).click();
+      await page.waitForTimeout(150);
+      await page.getByRole("button", { name: "Дальше" }).click();
+    }
+    await page.getByRole("button", { name: "Дальше" }).click();
+    await page.locator(".transcript").waitFor();
+    await page.getByRole("button", { name: "Продолжить" }).click();
+    await page.locator(".pick-screen").waitFor();
+    await page.getByRole("button", { name: /Оставить/ }).click();
+    await page.locator(".goal-grid").waitFor();
+    await page.locator(".goal-chip").first().click();
+    await page.getByRole("button", { name: "Дальше" }).click();
+    await page
+      .locator(".task-sheet__title", { hasText: "Как сейчас с английским?" })
+      .waitFor();
+    await page.locator(".answer:not(:disabled)", { hasText: "A1" }).click();
+    await page.getByRole("button", { name: "Дальше" }).click();
+    await page
+      .locator(".task-sheet__title", { hasText: "Сколько минут в день?" })
+      .waitFor();
+    await page.locator(".answer:not(:disabled)").first().click();
+    await page.getByRole("button", { name: "Дальше" }).click();
+    await page.getByText("Всё готово").waitFor();
+    await page.screenshot({ path: `${out}/a1-onboarding-ready.png` });
+    await page.getByRole("button", { name: "Пройти тест" }).click();
+    await page.getByRole("button", { name: "Начать тест" }).click();
+    for (let i = 0; i < 40 && !page.url().includes("/placement/result"); i++) {
+      await page.locator(".task-sheet, .answer-input").first().waitFor();
+      const choice = page.locator(".answer:not(:disabled)").last();
+      const input = page.locator(".answer-input");
+      if (await choice.count()) await choice.click();
+      else await input.fill("not an answer");
+      await page.getByRole("button", { name: "Ответить" }).click();
+      await page.waitForTimeout(300);
+    }
+    await page.locator("text=Твой уровень").waitFor();
+    assert.match(await page.locator(".hero-screen").innerText(), /A1/i);
+    await page.screenshot({ path: `${out}/a1-placement-result.png` });
+    await page.locator(".hero-screen__actions .btn").first().click();
+    await page.goto(`${base}/course`, { waitUntil: "networkidle" });
+    await page.locator(".situation-list").waitFor();
+    assert.equal(await page.locator(".situation-row").count(), 11);
+    assert.match(
+      await page.locator(".course-progress__count").innerText(),
+      /0 из 11/,
+    );
+    assert.equal(await page.locator(".situation-row.is-current").count(), 1);
+    assert.equal(await page.locator(".situation-row.is-locked").count(), 10);
+    await page.screenshot({
+      path: `${out}/a1-course-start.png`,
+      fullPage: true,
+    });
     for (const episode of failMission ? [episodes[0]] : episodes) {
       let finished = false;
       for (let round = 0; round < 20 && !finished; round++) {
         started = undefined;
-        await page.goto(`${base}/course/${episode}/session`, {
-          waitUntil: "networkidle",
-        });
+        if (round === 0) {
+          await page.goto(`${base}/course`, { waitUntil: "networkidle" });
+          const pathRow = page
+            .locator(".situation-row")
+            .nth(episodes.indexOf(episode));
+          assert.ok(
+            await pathRow.evaluate((node) =>
+              node.classList.contains("is-current"),
+            ),
+            `${episode} is not the next unlocked Course node`,
+          );
+          await pathRow
+            .getByRole("button", { name: /Начать|Продолжить/ })
+            .click();
+        } else {
+          await page.goto(`${base}/course/${episode}/session`, {
+            waitUntil: "networkidle",
+          });
+        }
         await page.locator(".task-sheet").waitFor();
         assert.ok(started?.currentActivity, JSON.stringify(started));
         const session = started;
@@ -223,7 +298,10 @@ async function run(failMission) {
             if (
               activity.dialogueTurnId &&
               (stored.targetId === "itm_sie_i_dont_understand" ||
-                stored.targetId === "itm_sie_where_is_the")
+                stored.targetId === "itm_sie_where_is_the" ||
+                stored.targetId.startsWith("itm_sie_a19_") ||
+                stored.targetId.startsWith("itm_sie_a110_") ||
+                stored.targetId.startsWith("itm_sie_ha1_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,
@@ -261,6 +339,19 @@ async function run(failMission) {
         }
       }
       assert.ok(finished, `${episode}: no Mission result`);
+    }
+    if (!failMission && episodes.length === 11) {
+      await page.goto(`${base}/course`, { waitUntil: "networkidle" });
+      await page.locator(".situation-list").waitFor();
+      assert.match(
+        await page.locator(".course-progress__count").innerText(),
+        /11 из 11/,
+      );
+      assert.equal(await page.locator(".situation-row").count(), 11);
+      await page.screenshot({
+        path: `${out}/a1-course-complete.png`,
+        fullPage: true,
+      });
     }
     assert.deepEqual(errors, []);
   } catch (err) {

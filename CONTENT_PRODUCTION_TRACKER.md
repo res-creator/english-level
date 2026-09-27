@@ -32,17 +32,17 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 | ID | Title | Chapter | NPC | Status | Variations | Grammar | Notes |
 |---|---|---|---|---|---|---|---|
-| `les_sie_a1_e1` | Первое знакомство | People & Connections | Alex | **done** | — (pre-V2) | target: `gr_a1_be_positive` (backed) | shipped, verified `36286655459` |
-| `les_sie_a1_e2` | Заказ в кафе | Café & Casual Food | Maya | **done** | — (pre-V2) | target: `gr_a1_can` (backed) | shipped |
-| `les_sie_a1_e3` | Мой обычный день | Daily Life & Home | Alex | **done** | — (pre-V2) | target: `gr_a1_present_simple_positive`, `gr_sie_frequency` (both backed) | shipped |
-| `les_sie_a1_e4` | Я потерялась в городе | Getting Around | Rosa | **done** | — (pre-V2) | target: `gr_a1_there_is_are` — backed by Rosa's authored reply | grammar + transcript/session findings resolved locally; Mission pass/fail and browser transcript verified |
-| `les_sie_a1_e5` | Заказ пошёл не по плану | Problems & Solutions | Maya | **done** | — (pre-V2) | target: `gr_sie_could_polite` (backed); chunk: "There's been a mistake" (Present Perfect) | shipped |
+| `les_sie_a1_e1` | Первое знакомство | People & Connections | Alex | **mission authored** | **BLOCKED** — V2 v1 specifies Rosa, §1 requires same NPC and current model binds cast to situation | target: `gr_a1_be_positive` (backed) | shipped core; full V2 DoD remains open because practice variation cannot satisfy both frozen requirements without cast override/model work |
+| `les_sie_a1_e2` | Заказ в кафе | Café & Casual Food | Maya | **done** | 1 — large tea; request frame transferred to a different drink | target: `gr_a1_can` (backed) | Gate A/B/C PASS; added V2 variation in Batch 2 |
+| `les_sie_a1_e3` | Мой обычный день | Daily Life & Home | Alex | **done** | 1 — evening reading routine | target: `gr_a1_present_simple_positive`, `gr_sie_frequency` (both backed) | Gate A/B/C PASS; added V2 variation in Batch 2 |
+| `les_sie_a1_e4` | Я потерялась в городе | Getting Around | Rosa | **done** | 1 — directions to the pharmacy | target: `gr_a1_there_is_are` — backed by Rosa's authored reply | grammar + transcript/session findings resolved locally; Gate A/B/C PASS for variation |
+| `les_sie_a1_e5` | Заказ пошёл не по плану | Problems & Solutions | Maya | **done** | 1 — wrong pastry instead of drink | target: `gr_sie_could_polite` (backed); chunk: "There's been a mistake" (Present Perfect) | Gate A/B/C PASS; added V2 variation in Batch 2 |
 | `sit_a1_people_02` | Знакомство с соседкой | People & Connections | Rosa | **done** | 1 — elevator introduction (new setting/details) | be-positive/questions (recycled); NPC-only chunk: “How long have you lived here?” | Near: A1.1 greeting/self-intro; Gate A/B/C PASS |
 | `sit_a1_shop_01` | Покупка в магазине | Shopping & Services | Emma | **done** | 1 — notebook, green colour, new price | this/that; Can I get…? (availability) | Near: A1.2 price exchange; Gate A/B/C PASS |
 | `sit_a1_travel_02` | Покупка билета | Getting Around | Rosa | **done** | 1 — Brighton at 11:15 | there is/are; present-simple WH question (recycled) | Near: A1.4 directions; Gate A/B/C PASS |
-| `sit_a1_social_01` | Что ты любишь делать? | Social Life & Leisure | Alex | planned | 1 | like + -ing (recycled) | Batch 2 |
-| `sit_a1_daily_02` | Где ты живёшь? | Daily Life & Home | Maya | planned | 1 | there is/are (recycled) | Batch 2 |
-| `sit_a1_health_01` (H.A1) | Мне нехорошо | Problems & Solutions | Alex | planned | 1 | have + symptom noun (recycled) | Batch 2 |
+| `sit_a1_social_01` | Что ты любишь делать? | Social Life & Leisure | Alex | **done** | 1 — suggest a park walk on Sunday instead of café on Saturday | target: `gr_a1_like_ing`; suggestion formulas are lexical chunks | Near: A1.3 routine; Gate A/B/C PASS |
+| `sit_a1_daily_02` | Где ты живёшь? | Daily Life & Home | Maya | **done** | 1 — house + garden near kitchen instead of apartment | target: `gr_a1_there_is_are`; `I live…` and `next to` are chunks | Near: A1.2 café + A1.4 directions; Gate A/B/C PASS |
+| `sit_a1_health_01` (H.A1) | Мне нехорошо | Problems & Solutions | Alex | **done** | 1 — stomach ache instead of headache | sole target: `gr_a1_have`; `I need to rest` explicitly lexical chunk | Near/Far: —; Gate A/B/C PASS |
 
 ## A2 — 17 core situations
 
@@ -121,13 +121,13 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 ## Totals
 
-| Level | Core situations | Done | Planned |
-|---|---|---|---|
-| A1 | 11 | 8 | 3 |
-| A2 | 17 | 0 | 17 |
-| B1 | 19 | 0 | 19 |
-| B2 | 22 | 0 | 22 |
-| **Total** | **69** | **8** | **61** |
+| Level | Core situations | Done | Planned | Blocked |
+|---|---|---|---|---|
+| A1 | 11 | 10 | 0 | 1 |
+| A2 | 17 | 0 | 17 | 0 |
+| B1 | 19 | 0 | 19 | 0 |
+| B2 | 22 | 0 | 22 | 0 |
+| **Total** | **69** | **10** | **58** | **1** |
 
 ---
 
@@ -138,3 +138,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 2. **RESOLVED (engine-level, preview-only; commit `6de5818`): transcript turns и повтор opener.** Причина была в том, что UI считал любое activity с `spokenAnswer` новой репликой, а lesson session неизменно добавляла situation opener. Engine теперь помечает только завершающее spoken activity одного semantic learner turn через необязательный `dialogueTurnId`; recognition/build/retrieval вокруг неё остаются учебными activity, но не создают дубли в transcript. NPC continuation привязана к завершённому turn, а opener показывается только первой session ситуации. Старые сохранённые планы получают turn markers при чтении; Mission scoring/ответы, Near/Far и Leitner/SRS не менялись. Regression tests охватывают e1–e5, Mission pass/fail, retries, review/practice, старые планы и первую/последующие sessions. Browser QA A1.4: Mission PASS 8/8 `can_do`; Mission FAIL 0/8 `learning`; transcript и continuation проверены. Targeted tests 89/89; suite до Batch 1 — 386/386; API/web typecheck — PASS; grammar lint — 0 ошибок.
 
 3. **Batch 1 завершён (preview-only).** A1.6–A1.8 имеют authored openers/continuations, learner targets, grammar/chunk classification, variations и Near review links. Grammar lint: 0 ошибок / 0 advisory notes; Gate A: PASS (schemas, IDs, cross-references, contiguous ordering, plans, idempotent seed); Gate B: PASS (dialogue read-through, role match, no repeated replies, CEFR/grammar checks); Gate C: PASS (Chromium transcript QA на A1.4 и Batch 1, Mission pass/fail на A1.4 и pass на трёх новых ситуациях). Полный suite 387/387 и API/web typecheck — PASS после финального запуска. Диалоги и QA: [A1_BATCH1_PRODUCTION_QA.md](docs/A1_BATCH1_PRODUCTION_QA.md). Артефакты скриншотов: `artifacts/qa/session-dialogue/` (локальный ignored output).
+
+4. **OPEN — full A1 freeze blocked by A1.1 variation contradiction.** V2 §6 explicitly requests a new partner (Rosa instead of Alex) for A1.1 v1, while V2 §1 requires Practice Variations to reuse the same NPC. The current lesson model maps cast at situation level, and Practice activity DTOs carry no cast override. Making Rosa appear in this variation would either violate the frozen same-NPC rule or show a speaker inconsistent with the scene; adding a cast override is an architecture change, outside this batch. Do not mark A1 frozen or begin A2 until this frozen-plan contradiction is resolved by the curriculum owner.
+
+5. **Batch 2 complete; A1 audit preview-only.** A1.9/A1.10/H.A1 and V2 variations A1.2–A1.5 passed Gates A/B/C. Grammar lint covers both `les_sie_*` and `sit_a1_*`, with 0 errors/0 advisory notes. Full automated suite: 387/387; API/web typecheck: PASS; seed idempotency, contiguous ordering and references: PASS. Chromium drove Course (0/11 → 11/11), all 11 situations, all Mission PASS paths at 100%, and a Mission FAIL at 0%/`learning`; 333 transcript snapshots passed, including no repeated opener and Practice turns. Full details: [A1_LEVEL_FREEZE_QA.md](docs/A1_LEVEL_FREEZE_QA.md). Screenshots and JSON are ignored preview artifacts under `artifacts/qa/session-dialogue/`.
+
+6. **Known non-blocking UI/release backlog (kept separate from content findings):** persistent `Ситуация: …` overlay should be intro-only/fade; grammar UX needs beginner-facing labels/options; safe-area/CTA layout needs device review; final visual polish. No global redesign started during content QA.
