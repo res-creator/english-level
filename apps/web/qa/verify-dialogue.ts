@@ -94,6 +94,15 @@ async function buildAnswerKey(): Promise<AnswerKey> {
 function tokenize(sentence: string): string[] {
   return sentence.trim().split(/\s+/).filter(Boolean);
 }
+
+// Mirrors apps/api/src/lessonEngine/lessonSessionBuilder.ts's maskExample
+// exactly, so fill_gap_choice's shown gapped sentence can be matched back
+// to the one item it was built from.
+function maskExample(displayForm: string, exampleText: string): string | null {
+  const idx = exampleText.toLowerCase().indexOf(displayForm.toLowerCase());
+  if (idx === -1) return null;
+  return exampleText.slice(0, idx) + "___" + exampleText.slice(idx + displayForm.length);
+}
 function normalizeWord(s: string): string {
   return s.trim().toLowerCase().replace(/^[.,!?;:]+|[.,!?;:]+$/g, "");
 }
@@ -275,16 +284,57 @@ async function answerCorrectly(page: Page, key: AnswerKey) {
       );
     }
     if (idx === -1) {
-      // Recognition MC (options = RU translations) or fill_gap_choice
-      // (options = English display forms) — these values are unique
-      // enough on their own that "is this a known value" is sufficient.
-      const candidates = new Set<string>([...key.translationOf.values(), ...key.displayFormOf.values()]);
-      idx = texts.findIndex((t) => candidates.has(t));
+      // Recognition/context MC ("What does "X" mean?") and
+      // fill_gap_choice (a masked example) can ALSO have every option
+      // be some other real item's known value (display form or
+      // translation) — the same ambiguity as grammar MC above, just one
+      // level down. Identify the ONE item actually being tested instead
+      // of asking "is this text known to anyone":
+      //   - recognition/context MC quotes the item's display form
+      //     directly in the prompt (`What does "X" mean?`) — find which
+      //     item has exactly that display form, use its translation.
+      //   - fill_gap_choice shows a masked sentence; find which item's
+      //     own (displayForm, example) pair reproduces that exact mask,
+      //     use its display form.
+      const promptText = (await page.locator(".task-sheet__title").first().innerText().catch(() => "")).trim();
+      const quoted = promptText.match(/"([^"]+)"/)?.[1];
+      let correctValue: string | undefined;
+      if (quoted && key.displayFormOf) {
+        for (const [id, form] of key.displayFormOf) {
+          if (form === quoted) {
+            correctValue = key.translationOf.get(id);
+            break;
+          }
+        }
+      }
+      if (!correctValue && sentenceLine.includes("___")) {
+        for (const [id, form] of key.displayFormOf) {
+          const example = key.exampleOf.get(id);
+          if (example && maskExample(form, example) === sentenceLine) {
+            correctValue = form;
+            break;
+          }
+        }
+      }
+      if (correctValue) {
+        idx = texts.findIndex((t) => t === correctValue);
+        console.log(
+          idx === -1
+            ? `[answerCorrectly] MC/fill-gap: expected "${correctValue}" (from prompt/mask), not found among ${JSON.stringify(texts)}`
+            : `[answerCorrectly] MC/fill-gap: identified target, picked "${texts[idx]}"`,
+        );
+      }
       if (idx === -1) {
-        console.log(`[answerCorrectly] MC/fill-gap: no known-correct option among ${JSON.stringify(texts)} — guessing index 0`);
-        idx = 0; // context-MC fallback content we don't have a key for — best effort
-      } else {
-        console.log(`[answerCorrectly] MC/fill-gap: picked "${texts[idx]}" from ${JSON.stringify(texts)}`);
+        // Last-resort fallback: any option that's at least a real known
+        // value, even if we couldn't identify the specific item.
+        const candidates = new Set<string>([...key.translationOf.values(), ...key.displayFormOf.values()]);
+        idx = texts.findIndex((t) => candidates.has(t));
+        console.log(
+          idx === -1
+            ? `[answerCorrectly] MC/fill-gap: no known-correct option among ${JSON.stringify(texts)} (prompt="${promptText}") — guessing index 0`
+            : `[answerCorrectly] MC/fill-gap: fallback picked "${texts[idx]}" from ${JSON.stringify(texts)} (prompt="${promptText}")`,
+        );
+        if (idx === -1) idx = 0;
       }
     }
     await options.nth(idx).click();
