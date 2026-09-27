@@ -220,7 +220,7 @@ Format: **Core ID → Variation** | what concretely changes | transfer skill tes
 
 | Core | Variation | What changes | Transfer tested |
 |---|---|---|---|
-| A1.1 | v1 | New partner (Rosa instead of Alex, before A1.6) says a different name/job | Learner must produce intro without leaning on memorized Alex-specific answers |
+| A1.1 | v1 | Same café, same partner Alex; learner introduces themself with different familiar details (e.g. Warsaw and teacher), and Alex shares that his design studio is near the café. | Learner must produce a self-introduction without relying on Alex-specific details |
 | A1.2 | v1 | Order a different drink (tea, size "large") | Same request pattern, new noun/adjective |
 | A1.3 | v1 | Describe an evening routine instead of a morning one | Same frequency-adverb pattern, new time-of-day vocabulary |
 | A1.4 | v1 | Ask directions to a different, less obvious place (the pharmacy, not the station) | Same direction-asking pattern under less predictability |

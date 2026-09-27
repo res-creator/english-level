@@ -7,6 +7,20 @@
         "itemId": "itm_sie_im_name",
         "classification": "target",
         "grammarPatternId": "gr_a1_be_positive"
+      },
+      {
+        "text": "Hi, I’m Anna from Warsaw, and I’m a teacher.",
+        "itemId": "itm_sie_a11_practice_intro",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_be_positive"
+      },
+      {
+        "text": "My design studio is near here.",
+        "itemId": "itm_sie_a11_practice_intro",
+        "classification": "chunk",
+        "chunkLabel": "NPC-only authored scene detail about Alex's workplace; the existing learner Grammar Target and vocabulary targets are unchanged.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
       }
     ]
   },

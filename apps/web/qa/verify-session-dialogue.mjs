@@ -299,6 +299,7 @@ async function run(failMission) {
               activity.dialogueTurnId &&
               (stored.targetId === "itm_sie_i_dont_understand" ||
                 stored.targetId === "itm_sie_where_is_the" ||
+                stored.targetId.startsWith("itm_sie_a11_") ||
                 stored.targetId.startsWith("itm_sie_a19_") ||
                 stored.targetId.startsWith("itm_sie_a110_") ||
                 stored.targetId.startsWith("itm_sie_ha1_"))

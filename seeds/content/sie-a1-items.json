@@ -1191,5 +1191,24 @@
       }
     ],
     "npcReplyCorrect": "You’re right. I’ll bring you the pastry you ordered."
+  },
+  {
+    "id": "itm_sie_a11_practice_intro",
+    "itemType": "functional_phrase",
+    "lemma": "introduce myself with my name origin and job",
+    "displayForm": "Hi, I’m Anna from Warsaw, and I’m a teacher.",
+    "levelCode": "A1",
+    "topic": "first_conversations",
+    "ru": {
+      "translation": "Привет, я Анна. Я из Варшавы, и я учитель."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a11_practice_intro_01",
+        "text": "Hi, I’m Anna from Warsaw, and I’m a teacher.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Warsaw sounds lovely. My design studio is near here."
   }
 ]

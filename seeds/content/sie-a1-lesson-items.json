@@ -56,6 +56,14 @@
     "order": 7
   },
   {
+    "id": "li_sie_e1_practice_intro",
+    "lessonId": "les_sie_a1_e1",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a11_practice_intro",
+    "role": "practice",
+    "order": 8
+  },
+  {
     "id": "li_sie_e2_02",
     "lessonId": "les_sie_a1_e2",
     "contentType": "learning_item",

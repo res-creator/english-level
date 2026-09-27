@@ -48,6 +48,51 @@ test("the published catalogue is the current A1 situation course", () => {
   assert.ok(a2Grammar.length >= 6, `A2 grammar: ${a2Grammar.length}`);
 });
 
+test("A1.1 Practice Variation keeps Alex and transfers the self-introduction", () => {
+  const bundle = loadSeedContent();
+  const practice = bundle.lessonItems.find(
+    (link) =>
+      link.lessonId === "les_sie_a1_e1" &&
+      link.role === "practice" &&
+      link.contentType === "learning_item",
+  );
+  assert.equal(practice?.contentId, "itm_sie_a11_practice_intro");
+
+  const variation = bundle.learningItems.find(
+    (item) => item.id === practice?.contentId,
+  );
+  assert.ok(variation);
+  assert.equal(
+    variation.examples.find((example) => example.isPrimary)?.text,
+    "Hi, I’m Anna from Warsaw, and I’m a teacher.",
+  );
+  assert.equal(
+    variation.npcReplyCorrect,
+    "Warsaw sounds lovely. My design studio is near here.",
+  );
+  assert.ok(!variation.npcReplyCorrect.includes("Rosa"));
+
+  const coreLines = bundle.lessonItems
+    .filter(
+      (link) =>
+        link.lessonId === "les_sie_a1_e1" &&
+        link.role === "introduce" &&
+        link.contentType === "learning_item",
+    )
+    .flatMap(
+      (link) =>
+        bundle.learningItems
+          .find((item) => item.id === link.contentId)
+          ?.examples.map((example) => example.text) ?? [],
+    );
+  assert.ok(
+    !coreLines.includes(
+      variation.examples.find((example) => example.isPrimary)!.text,
+    ),
+    "variation must not copy a core learner sentence verbatim",
+  );
+});
+
 test("seed/import succeeds against a fresh database", async () => {
   const { db, sqlite } = createTestDb();
   await seedContent(db);

@@ -24,6 +24,14 @@ test("the same person returns in the same place across situations", () => {
   assert.deepEqual(dayAfter, meeting);
 });
 
+test("A1.1 practice stays with Alex in the same café scene", () => {
+  assert.deepEqual(sceneForSituation("les_sie_a1_e1"), {
+    scene: "meeting",
+    cast: "alex",
+  });
+  assert.match(openingLine("les_sie_a1_e1"), /Alex/);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",
