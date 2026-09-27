@@ -13,13 +13,13 @@ test("all seed files load and cross-validate without throwing", () => {
   assert.ok(bundle.lessonItems.length > 0);
 });
 
-test("the published catalogue is the V1 situation course", () => {
+test("the published catalogue is the current A1 situation course", () => {
   const bundle = loadSeedContent();
 
   const published = bundle.modules.filter(
     (m) => (m.status ?? "published") === "published",
   );
-  // Public V1 is A1-only: just the one situational starter chapter is
+  // The published course is A1-only: just the one situational starter chapter is
   // published. The original (pre-pivot) A1 chapters and all three A2
   // chapters stay in the bundle but archived, so no released content id
   // ever disappears and A2 can be published later without a rewrite.
@@ -27,7 +27,7 @@ test("the published catalogue is the V1 situation course", () => {
   assert.equal(bundle.modules.length - published.length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
-  assert.equal(starter.length, 5);
+  assert.equal(starter.length, 8);
   for (const episode of starter) {
     assert.ok(episode.situationTitle, `${episode.id} has no situation title`);
     assert.ok(episode.scene, `${episode.id} has no scene`);

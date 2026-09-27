@@ -40,7 +40,7 @@ test("A1 course is the starter chapter of situations", async () => {
   assert.equal(course.chapters.length, 1);
   assert.equal(course.chapters[0]?.id, CHAPTER);
   assert.equal(course.chapters[0]?.title, "Первые разговоры");
-  assert.equal(course.episodesTotal, 5);
+  assert.equal(course.episodesTotal, 8);
 });
 
 test("the archived original A1 chapters are not part of the course any more", async () => {

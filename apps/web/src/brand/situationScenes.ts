@@ -14,21 +14,9 @@
  * waits on artwork.
  */
 export type SceneId =
-  | "cafe"
-  | "street"
-  | "meeting"
-  | "shop"
-  | "restaurant"
-  | "office"
-  | "clinic";
+  "cafe" | "street" | "meeting" | "shop" | "restaurant" | "office" | "clinic";
 export type CastId =
-  | "maya"
-  | "alex"
-  | "emma"
-  | "daniel"
-  | "leo"
-  | "rosa"
-  | "drkim";
+  "maya" | "alex" | "emma" | "daniel" | "leo" | "rosa" | "drkim";
 
 export interface SituationScene {
   scene: SceneId;
@@ -42,6 +30,9 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   les_sie_a1_e4: { scene: "street", cast: "rosa" },
   // The same barista, the same café — now something has gone wrong.
   les_sie_a1_e5: { scene: "cafe", cast: "maya" },
+  sit_a1_people_02: { scene: "meeting", cast: "rosa" },
+  sit_a1_shop_01: { scene: "shop", cast: "emma" },
+  sit_a1_travel_02: { scene: "street", cast: "rosa" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -61,6 +52,9 @@ const OPENING_LINES: Record<string, string> = {
   les_sie_a1_e3: "So what do you do all day?",
   les_sie_a1_e4: "Are you looking for something?",
   les_sie_a1_e5: "Sorry — what did you order?",
+  sit_a1_people_02: "Hi, I'm Rosa. I live in apartment 3. What's your name?",
+  sit_a1_shop_01: "Hi! Are you looking for something?",
+  sit_a1_travel_02: "The ticket machine is free. Where are you going?",
 };
 
 export function openingLine(episodeId: string): string {

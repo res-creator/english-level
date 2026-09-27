@@ -35,11 +35,11 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `les_sie_a1_e1` | Первое знакомство | People & Connections | Alex | **done** | — (pre-V2) | target: `gr_a1_be_positive` (backed) | shipped, verified `36286655459` |
 | `les_sie_a1_e2` | Заказ в кафе | Café & Casual Food | Maya | **done** | — (pre-V2) | target: `gr_a1_can` (backed) | shipped |
 | `les_sie_a1_e3` | Мой обычный день | Daily Life & Home | Alex | **done** | — (pre-V2) | target: `gr_a1_present_simple_positive`, `gr_sie_frequency` (both backed) | shipped |
-| `les_sie_a1_e4` | Я потерялась в городе | Getting Around | Rosa | **done** | — (pre-V2) | target: `gr_a1_there_is_are` — backed by Rosa's authored reply | shipped status retained; grammar finding resolved locally 2026-09-27; transcript QA blocked by finding #2 below |
+| `les_sie_a1_e4` | Я потерялась в городе | Getting Around | Rosa | **done** | — (pre-V2) | target: `gr_a1_there_is_are` — backed by Rosa's authored reply | grammar + transcript/session findings resolved locally; Mission pass/fail and browser transcript verified |
 | `les_sie_a1_e5` | Заказ пошёл не по плану | Problems & Solutions | Maya | **done** | — (pre-V2) | target: `gr_sie_could_polite` (backed); chunk: "There's been a mistake" (Present Perfect) | shipped |
-| `sit_a1_people_02` | Знакомство с соседкой | People & Connections | Rosa | planned | 1 | be-verbs/question formation (recycled) | Batch 1 |
-| `sit_a1_shop_01` | Покупка в магазине | Shopping & Services | Emma | planned | 1 | this/that, can (recycled) | Batch 1 |
-| `sit_a1_travel_02` | Покупка билета | Getting Around | Rosa | planned | 1 | there is/are, question words (recycled) | Batch 1 |
+| `sit_a1_people_02` | Знакомство с соседкой | People & Connections | Rosa | **done** | 1 — elevator introduction (new setting/details) | be-positive/questions (recycled); NPC-only chunk: “How long have you lived here?” | Near: A1.1 greeting/self-intro; Gate A/B/C PASS |
+| `sit_a1_shop_01` | Покупка в магазине | Shopping & Services | Emma | **done** | 1 — notebook, green colour, new price | this/that; Can I get…? (availability) | Near: A1.2 price exchange; Gate A/B/C PASS |
+| `sit_a1_travel_02` | Покупка билета | Getting Around | Rosa | **done** | 1 — Brighton at 11:15 | there is/are; present-simple WH question (recycled) | Near: A1.4 directions; Gate A/B/C PASS |
 | `sit_a1_social_01` | Что ты любишь делать? | Social Life & Leisure | Alex | planned | 1 | like + -ing (recycled) | Batch 2 |
 | `sit_a1_daily_02` | Где ты живёшь? | Daily Life & Home | Maya | planned | 1 | there is/are (recycled) | Batch 2 |
 | `sit_a1_health_01` (H.A1) | Мне нехорошо | Problems & Solutions | Alex | planned | 1 | have + symptom noun (recycled) | Batch 2 |
@@ -123,11 +123,11 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 | Level | Core situations | Done | Planned |
 |---|---|---|---|
-| A1 | 11 | 5 | 6 |
+| A1 | 11 | 8 | 3 |
 | A2 | 17 | 0 | 17 |
 | B1 | 19 | 0 | 19 |
 | B2 | 22 | 0 | 22 |
-| **Total** | **69** | **5** | **64** |
+| **Total** | **69** | **8** | **61** |
 
 ---
 
@@ -135,4 +135,6 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 1. **RESOLVED (локально, без deploy): A1.4 — `gr_a1_there_is_are` без опорной реплики.** Минимально изменён только `npcReplyCorrect` у `itm_sie_where_is_the`: «Go straight, then turn left. There's a bank next to the station.» Роза естественно отвечает на вопрос о вокзале и указывает прежний ориентир. Grammar target, learner phrases, примеры, порядок, Mission и frozen curriculum не изменены. В worksheet добавлена классификация NPC-реплики как target. Grammar lint: 0 ошибок / 0 замечаний; targeted QA: 76/76; полный suite: 371/371; typecheck API/web: PASS. Mission: PASS 8/8 (100%, `can_do`), FAIL 0/8 (0%, `learning`, без наград). Успешный Mission подтверждён и в браузере. [Полный отчёт](docs/A1_4_REPAIR_QA.md).
 
-2. **RESOLVED (engine-level, preview-only): transcript turns и повтор opener.** Причина была в том, что UI считал любое activity с `spokenAnswer` новой репликой, а lesson session неизменно добавляла situation opener. Engine теперь помечает только завершающее spoken activity одного semantic learner turn через необязательный `dialogueTurnId`; recognition/build/retrieval вокруг неё остаются учебными activity, но не создают дубли в transcript. NPC continuation привязана к завершённому turn, а opener показывается только первой session ситуации. Старые сохранённые планы получают turn markers при чтении; Mission scoring/ответы, Near/Far и Leitner/SRS не менялись. Regression tests охватывают реальные e1–e5, Mission pass/fail, retries, review/practice, старые планы и первую/последующие sessions. Browser QA A1.4: PASS/Mission 8/8 `can_do`; FAIL/Mission 0/8 `learning`; transcript и continuation проверены. Targeted tests 89/89; полный suite 386/386; API и web typecheck — PASS; grammar lint — 0 ошибок. Скриншоты: `apps/web/artifacts/qa/session-dialogue/pass.png`, `fail.png` (локальные preview артефакты). Batch 1 начинает следующий этап после отдельного engine commit.
+2. **RESOLVED (engine-level, preview-only; commit `6de5818`): transcript turns и повтор opener.** Причина была в том, что UI считал любое activity с `spokenAnswer` новой репликой, а lesson session неизменно добавляла situation opener. Engine теперь помечает только завершающее spoken activity одного semantic learner turn через необязательный `dialogueTurnId`; recognition/build/retrieval вокруг неё остаются учебными activity, но не создают дубли в transcript. NPC continuation привязана к завершённому turn, а opener показывается только первой session ситуации. Старые сохранённые планы получают turn markers при чтении; Mission scoring/ответы, Near/Far и Leitner/SRS не менялись. Regression tests охватывают e1–e5, Mission pass/fail, retries, review/practice, старые планы и первую/последующие sessions. Browser QA A1.4: Mission PASS 8/8 `can_do`; Mission FAIL 0/8 `learning`; transcript и continuation проверены. Targeted tests 89/89; suite до Batch 1 — 386/386; API/web typecheck — PASS; grammar lint — 0 ошибок.
+
+3. **Batch 1 завершён (preview-only).** A1.6–A1.8 имеют authored openers/continuations, learner targets, grammar/chunk classification, variations и Near review links. Grammar lint: 0 ошибок / 0 advisory notes; Gate A: PASS (schemas, IDs, cross-references, contiguous ordering, plans, idempotent seed); Gate B: PASS (dialogue read-through, role match, no repeated replies, CEFR/grammar checks); Gate C: PASS (Chromium transcript QA на A1.4 и Batch 1, Mission pass/fail на A1.4 и pass на трёх новых ситуациях). Полный suite 387/387 и API/web typecheck — PASS после финального запуска. Диалоги и QA: [A1_BATCH1_PRODUCTION_QA.md](docs/A1_BATCH1_PRODUCTION_QA.md). Артефакты скриншотов: `artifacts/qa/session-dialogue/` (локальный ignored output).

@@ -97,7 +97,7 @@ test("Today reports real chapter progress, never an invented number", async () =
   await driveEpisodeToCanDo(db, sqlite, user.id, FIRST_EPISODE);
 
   const today = await getToday(db, user.id, "A1");
-  assert.deepEqual(today.chapterProgress, { done: 1, total: 5 });
+  assert.deepEqual(today.chapterProgress, { done: 1, total: 8 });
 });
 
 test("Today does not start a session or fabricate progress just by being read", async () => {

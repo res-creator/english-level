@@ -94,5 +94,29 @@
     "ru": {
       "explanation": "Притяжательные прилагательные ставятся перед существительным, чтобы показать, кому оно принадлежит."
     }
+  },
+  {
+    "id": "gr_a1_demonstratives",
+    "levelCode": "A1",
+    "title": "This / that",
+    "patternKey": "demonstratives_this_that",
+    "formula": "this book (near) / that book (far)",
+    "explanationEn": "Use this for one thing near you and that for one thing farther away.",
+    "order": 9,
+    "ru": {
+      "explanation": "This указывает на один предмет рядом, that — на предмет подальше."
+    }
+  },
+  {
+    "id": "gr_a1_can_availability",
+    "levelCode": "A1",
+    "title": "Can I get…? — availability",
+    "patternKey": "can_availability_request",
+    "formula": "Can I get a bag? / Can I have a ticket?",
+    "explanationEn": "Use Can I get/have...? to ask whether an item or service is available.",
+    "order": 10,
+    "ru": {
+      "explanation": "Can I get/have...? — спросить, можно ли получить или взять доступную вещь или услугу."
+    }
   }
 ]

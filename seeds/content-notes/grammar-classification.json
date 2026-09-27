@@ -73,5 +73,84 @@
         "chunkLabel": "Present Perfect ('been' = participle of existential 'there has been', not a passive marker — see CONTENT_MASTER_PLAN_A1_B2_V2.md §11 fix #2) — fixed functional phrase for reporting an error, not decomposed at A1. Real target deferred to B1.8 (storytelling / experience)."
       }
     ]
+  },
+  {
+    "situationId": "sit_a1_people_02",
+    "phrases": [
+      {
+        "text": "I'm Anna",
+        "itemId": "itm_sie_a16_im_name",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_be_positive"
+      },
+      {
+        "text": "Are you from around here?",
+        "itemId": "itm_sie_a16_are_you_from_here",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_be_questions"
+      },
+      {
+        "text": "I've lived here for five years. How long have you lived here?",
+        "itemId": "itm_sie_a16_are_you_from_here",
+        "classification": "chunk",
+        "chunkLabel": "NPC-only receptive lexical chunk; Present Perfect Simple is above A1 here, as specified for A1.6 in the frozen curriculum.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a1_shop_01",
+    "phrases": [
+      {
+        "text": "Do you have this chocolate bar?",
+        "itemId": "itm_sie_a17_do_you_have",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_questions"
+      },
+      {
+        "text": "this chocolate bar",
+        "itemId": "itm_sie_a17_do_you_have",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_demonstratives"
+      },
+      {
+        "text": "Can I get a bag?",
+        "itemId": "itm_sie_a17_can_get_bag",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_can_availability"
+      },
+      {
+        "text": "I'll take it",
+        "itemId": "itm_sie_a17_ill_take_it",
+        "classification": "chunk",
+        "chunkLabel": "Fixed functional purchase phrase; not a live future grammar target."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a1_travel_02",
+    "phrases": [
+      {
+        "text": "There are trains to Oxford every hour.",
+        "itemId": "itm_sie_a18_going_to_oxford",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_there_is_are",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "What time does the first train leave?",
+        "itemId": "itm_sie_a18_what_time",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_questions"
+      },
+      {
+        "text": "One ticket to Oxford at 10:30, please.",
+        "itemId": "itm_sie_a18_one_ticket",
+        "classification": "chunk",
+        "chunkLabel": "Fixed transactional chunk; question words and there is/are are the recycled grammar targets."
+      }
+    ]
   }
 ]

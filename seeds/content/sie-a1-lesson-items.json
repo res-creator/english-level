@@ -55,7 +55,6 @@
     "role": "introduce",
     "order": 7
   },
-
   {
     "id": "li_sie_e2_02",
     "lessonId": "les_sie_a1_e2",
@@ -112,7 +111,6 @@
     "role": "introduce",
     "order": 7
   },
-
   {
     "id": "li_sie_e3_02",
     "lessonId": "les_sie_a1_e3",
@@ -177,7 +175,6 @@
     "role": "introduce",
     "order": 8
   },
-
   {
     "id": "li_sie_e4_02",
     "lessonId": "les_sie_a1_e4",
@@ -242,7 +239,6 @@
     "role": "introduce",
     "order": 8
   },
-
   {
     "id": "li_sie_e5_02",
     "lessonId": "les_sie_a1_e5",
@@ -288,6 +284,214 @@
     "lessonId": "les_sie_a1_e5",
     "contentType": "learning_item",
     "contentId": "itm_sie_thanks_a_lot",
+    "role": "introduce",
+    "order": 6
+  },
+  {
+    "id": "li_sie_a16_review_01",
+    "lessonId": "sit_a1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_hello",
+    "role": "review",
+    "order": 6
+  },
+  {
+    "id": "li_sie_a16_review_02",
+    "lessonId": "sit_a1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_im_name",
+    "role": "review",
+    "order": 7
+  },
+  {
+    "id": "li_sie_a16_01",
+    "lessonId": "sit_a1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a16_im_name",
+    "role": "introduce",
+    "order": 1
+  },
+  {
+    "id": "li_sie_a16_02",
+    "lessonId": "sit_a1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a16_are_you_from_here",
+    "role": "introduce",
+    "order": 2
+  },
+  {
+    "id": "li_sie_a16_03",
+    "lessonId": "sit_a1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a16_just_moved_in",
+    "role": "introduce",
+    "order": 3
+  },
+  {
+    "id": "li_sie_a16_grammar_be",
+    "lessonId": "sit_a1_people_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_be_positive",
+    "role": "target",
+    "order": 4
+  },
+  {
+    "id": "li_sie_a16_grammar_question",
+    "lessonId": "sit_a1_people_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_be_questions",
+    "role": "target",
+    "order": 5
+  },
+  {
+    "id": "li_sie_a16_practice",
+    "lessonId": "sit_a1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a16_practice_elevator",
+    "role": "practice",
+    "order": 8
+  },
+  {
+    "id": "li_sie_a17_review",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_how_much_is_it",
+    "role": "review",
+    "order": 8
+  },
+  {
+    "id": "li_sie_a17_01",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_do_you_have",
+    "role": "introduce",
+    "order": 1
+  },
+  {
+    "id": "li_sie_a17_02",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_how_much",
+    "role": "introduce",
+    "order": 2
+  },
+  {
+    "id": "li_sie_a17_03",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_ill_take_it",
+    "role": "introduce",
+    "order": 3
+  },
+  {
+    "id": "li_sie_a17_04",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_can_get_bag",
+    "role": "introduce",
+    "order": 4
+  },
+  {
+    "id": "li_sie_a17_grammar_questions",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_present_simple_questions",
+    "role": "target",
+    "order": 5
+  },
+  {
+    "id": "li_sie_a17_grammar_this_that",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_demonstratives",
+    "role": "target",
+    "order": 6
+  },
+  {
+    "id": "li_sie_a17_grammar_can",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_can_availability",
+    "role": "target",
+    "order": 7
+  },
+  {
+    "id": "li_sie_a17_practice",
+    "lessonId": "sit_a1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_practice_notebook",
+    "role": "practice",
+    "order": 9
+  },
+  {
+    "id": "li_sie_a18_review_01",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_go_straight",
+    "role": "review",
+    "order": 7
+  },
+  {
+    "id": "li_sie_a18_review_02",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_turn_left",
+    "role": "review",
+    "order": 8
+  },
+  {
+    "id": "li_sie_a18_01",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_going_to_oxford",
+    "role": "introduce",
+    "order": 1
+  },
+  {
+    "id": "li_sie_a18_02",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_what_time",
+    "role": "introduce",
+    "order": 2
+  },
+  {
+    "id": "li_sie_a18_03",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_how_much",
+    "role": "introduce",
+    "order": 3
+  },
+  {
+    "id": "li_sie_a18_grammar_there",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_there_is_are",
+    "role": "target",
+    "order": 4
+  },
+  {
+    "id": "li_sie_a18_grammar_questions",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_present_simple_questions",
+    "role": "target",
+    "order": 5
+  },
+  {
+    "id": "li_sie_a18_practice",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_practice_ticket",
+    "role": "practice",
+    "order": 9
+  },
+  {
+    "id": "li_sie_a18_04",
+    "lessonId": "sit_a1_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_one_ticket",
     "role": "introduce",
     "order": 6
   }

@@ -66,7 +66,9 @@
     "displayForm": "What's your name?",
     "levelCode": "A1",
     "topic": "first_conversations",
-    "ru": { "translation": "Как тебя зовут?" },
+    "ru": {
+      "translation": "Как тебя зовут?"
+    },
     "examples": [
       {
         "id": "ex_sie_whats_your_name_01",
@@ -83,7 +85,9 @@
     "displayForm": "Where are you from?",
     "levelCode": "A1",
     "topic": "first_conversations",
-    "ru": { "translation": "Откуда ты?" },
+    "ru": {
+      "translation": "Откуда ты?"
+    },
     "examples": [
       {
         "id": "ex_sie_where_are_you_from_01",
@@ -100,7 +104,9 @@
     "displayForm": "I'm from Paris",
     "levelCode": "A1",
     "topic": "first_conversations",
-    "ru": { "translation": "Я из Парижа" },
+    "ru": {
+      "translation": "Я из Парижа"
+    },
     "examples": [
       {
         "id": "ex_sie_im_from_01",
@@ -130,7 +136,6 @@
     ],
     "npcReplyCorrect": "I'm a designer. What about you?"
   },
-
   {
     "id": "itm_sie_can_i_get",
     "itemType": "functional_phrase",
@@ -159,7 +164,9 @@
     "partOfSpeech": "adjective",
     "levelCode": "A1",
     "topic": "cafe",
-    "ru": { "translation": "большой" },
+    "ru": {
+      "translation": "большой"
+    },
     "examples": [
       {
         "id": "ex_sie_large_01",
@@ -176,7 +183,9 @@
     "displayForm": "with milk",
     "levelCode": "A1",
     "topic": "cafe",
-    "ru": { "translation": "с молоком" },
+    "ru": {
+      "translation": "с молоком"
+    },
     "examples": [
       {
         "id": "ex_sie_with_milk_01",
@@ -213,7 +222,9 @@
     "displayForm": "Anything else?",
     "levelCode": "A1",
     "topic": "cafe",
-    "ru": { "translation": "Что-нибудь ещё?" },
+    "ru": {
+      "translation": "Что-нибудь ещё?"
+    },
     "examples": [
       {
         "id": "ex_sie_anything_else_01",
@@ -230,7 +241,9 @@
     "displayForm": "That's all, thanks",
     "levelCode": "A1",
     "topic": "cafe",
-    "ru": { "translation": "Это всё, спасибо" },
+    "ru": {
+      "translation": "Это всё, спасибо"
+    },
     "examples": [
       {
         "id": "ex_sie_thats_all_01",
@@ -247,7 +260,9 @@
     "displayForm": "How much is it?",
     "levelCode": "A1",
     "topic": "cafe",
-    "ru": { "translation": "Сколько это стоит?" },
+    "ru": {
+      "translation": "Сколько это стоит?"
+    },
     "examples": [
       {
         "id": "ex_sie_how_much_is_it_01",
@@ -257,7 +272,6 @@
     ],
     "npcReplyCorrect": "That's four pounds."
   },
-
   {
     "id": "itm_sie_work_from_home",
     "itemType": "collocation",
@@ -265,7 +279,9 @@
     "displayForm": "work from home",
     "levelCode": "A1",
     "topic": "my_day",
-    "ru": { "translation": "работать из дома" },
+    "ru": {
+      "translation": "работать из дома"
+    },
     "examples": [
       {
         "id": "ex_sie_work_from_home_01",
@@ -282,7 +298,9 @@
     "displayForm": "start work",
     "levelCode": "A1",
     "topic": "my_day",
-    "ru": { "translation": "начинать работу" },
+    "ru": {
+      "translation": "начинать работу"
+    },
     "examples": [
       {
         "id": "ex_sie_start_work_01",
@@ -299,7 +317,9 @@
     "displayForm": "finish work",
     "levelCode": "A1",
     "topic": "my_day",
-    "ru": { "translation": "заканчивать работу" },
+    "ru": {
+      "translation": "заканчивать работу"
+    },
     "examples": [
       {
         "id": "ex_sie_finish_work_01",
@@ -356,7 +376,9 @@
     "displayForm": "every day",
     "levelCode": "A1",
     "topic": "my_day",
-    "ru": { "translation": "каждый день" },
+    "ru": {
+      "translation": "каждый день"
+    },
     "examples": [
       {
         "id": "ex_sie_every_day_01",
@@ -366,7 +388,6 @@
     ],
     "npcReplyCorrect": "That's a great habit."
   },
-
   {
     "id": "itm_sie_excuse_me",
     "itemType": "functional_phrase",
@@ -394,7 +415,9 @@
     "displayForm": "Where is the station?",
     "levelCode": "A1",
     "topic": "city",
-    "ru": { "translation": "Где находится вокзал?" },
+    "ru": {
+      "translation": "Где находится вокзал?"
+    },
     "examples": [
       {
         "id": "ex_sie_where_is_the_01",
@@ -411,7 +434,9 @@
     "displayForm": "go straight",
     "levelCode": "A1",
     "topic": "city",
-    "ru": { "translation": "идти прямо" },
+    "ru": {
+      "translation": "идти прямо"
+    },
     "examples": [
       {
         "id": "ex_sie_go_straight_01",
@@ -428,7 +453,9 @@
     "displayForm": "turn left",
     "levelCode": "A1",
     "topic": "city",
-    "ru": { "translation": "повернуть налево" },
+    "ru": {
+      "translation": "повернуть налево"
+    },
     "examples": [
       {
         "id": "ex_sie_turn_left_01",
@@ -445,7 +472,9 @@
     "displayForm": "next to",
     "levelCode": "A1",
     "topic": "city",
-    "ru": { "translation": "рядом с" },
+    "ru": {
+      "translation": "рядом с"
+    },
     "examples": [
       {
         "id": "ex_sie_next_to_01",
@@ -495,7 +524,6 @@
     ],
     "npcReplyCorrect": "Of course — go straight, then turn left."
   },
-
   {
     "id": "itm_sie_i_ordered",
     "itemType": "phrase",
@@ -523,7 +551,9 @@
     "displayForm": "but this is coffee",
     "levelCode": "A1",
     "topic": "problem",
-    "ru": { "translation": "а это кофе" },
+    "ru": {
+      "translation": "а это кофе"
+    },
     "examples": [
       {
         "id": "ex_sie_but_this_is_01",
@@ -580,7 +610,9 @@
     "displayForm": "No problem",
     "levelCode": "A1",
     "topic": "problem",
-    "ru": { "translation": "Без проблем" },
+    "ru": {
+      "translation": "Без проблем"
+    },
     "examples": [
       {
         "id": "ex_sie_no_problem_01",
@@ -597,7 +629,9 @@
     "displayForm": "Thanks a lot",
     "levelCode": "A1",
     "topic": "problem",
-    "ru": { "translation": "Большое спасибо" },
+    "ru": {
+      "translation": "Большое спасибо"
+    },
     "examples": [
       {
         "id": "ex_sie_thanks_a_lot_01",
@@ -606,5 +640,271 @@
       }
     ],
     "npcReplyCorrect": "You're welcome — enjoy!"
+  },
+  {
+    "id": "itm_sie_a16_im_name",
+    "itemType": "functional_phrase",
+    "lemma": "hi, i'm anna",
+    "displayForm": "Hi, I'm Anna.",
+    "levelCode": "A1",
+    "topic": "neighbors",
+    "ru": {
+      "translation": "Привет, я Анна."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a16_im_name_01",
+        "text": "Hi, I'm Anna.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Nice to meet you, Anna. I live upstairs."
+  },
+  {
+    "id": "itm_sie_a16_are_you_from_here",
+    "itemType": "functional_phrase",
+    "lemma": "are you from around here",
+    "displayForm": "Are you from around here?",
+    "levelCode": "A1",
+    "topic": "neighbors",
+    "ru": {
+      "translation": "Ты давно здесь живёшь?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a16_are_you_from_here_01",
+        "text": "Are you from around here?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, I am. I've lived here for five years. How long have you lived here?"
+  },
+  {
+    "id": "itm_sie_a16_just_moved_in",
+    "itemType": "functional_phrase",
+    "lemma": "i just moved in",
+    "displayForm": "I just moved in.",
+    "levelCode": "A1",
+    "topic": "neighbors",
+    "ru": {
+      "translation": "Я только что сюда переехала."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a16_just_moved_in_01",
+        "text": "I just moved in.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Welcome! The garden is behind the building."
+  },
+  {
+    "id": "itm_sie_a16_practice_elevator",
+    "itemType": "functional_phrase",
+    "lemma": "hi, i'm anna. i just moved into apartment 8",
+    "displayForm": "Hi, I'm Anna. I just moved into apartment 8.",
+    "levelCode": "A1",
+    "topic": "neighbors",
+    "ru": {
+      "translation": "Привет, я Анна. Я только что въехала в квартиру 8."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a16_practice_elevator_01",
+        "text": "Hi, I'm Anna. I just moved into apartment 8.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Welcome, Anna. I'm Rosa from apartment 6."
+  },
+  {
+    "id": "itm_sie_a17_do_you_have",
+    "itemType": "functional_phrase",
+    "lemma": "do you have this chocolate bar",
+    "displayForm": "Do you have this chocolate bar?",
+    "levelCode": "A1",
+    "topic": "shopping",
+    "ru": {
+      "translation": "У вас есть эта шоколадка?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a17_do_you_have_01",
+        "text": "Do you have this chocolate bar?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, we do. It's right here."
+  },
+  {
+    "id": "itm_sie_a17_how_much",
+    "itemType": "functional_phrase",
+    "lemma": "how much is this",
+    "displayForm": "How much is this?",
+    "levelCode": "A1",
+    "topic": "shopping",
+    "ru": {
+      "translation": "Сколько это стоит?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a17_how_much_01",
+        "text": "How much is this?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It's three pounds."
+  },
+  {
+    "id": "itm_sie_a17_ill_take_it",
+    "itemType": "functional_phrase",
+    "lemma": "i'll take it, please",
+    "displayForm": "I'll take it, please.",
+    "levelCode": "A1",
+    "topic": "shopping",
+    "ru": {
+      "translation": "Я её возьму, пожалуйста."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a17_ill_take_it_01",
+        "text": "I'll take it, please.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Of course. Would you like a bag?"
+  },
+  {
+    "id": "itm_sie_a17_can_get_bag",
+    "itemType": "functional_phrase",
+    "lemma": "can I get a bag",
+    "displayForm": "Can I get a bag?",
+    "levelCode": "A1",
+    "topic": "shopping",
+    "ru": {
+      "translation": "Можно оплатить картой?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a17_can_get_bag_01",
+        "text": "Can I get a bag?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Of course. Bags are by the door."
+  },
+  {
+    "id": "itm_sie_a17_practice_notebook",
+    "itemType": "functional_phrase",
+    "lemma": "do you have this notebook in green? how much is it",
+    "displayForm": "Do you have this notebook in green? How much is it?",
+    "levelCode": "A1",
+    "topic": "shopping",
+    "ru": {
+      "translation": "У вас есть этот блокнот зелёного цвета? Сколько он стоит?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a17_practice_notebook_01",
+        "text": "Do you have this notebook in green? How much is it?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, we do. It's six pounds."
+  },
+  {
+    "id": "itm_sie_a18_going_to_oxford",
+    "itemType": "phrase",
+    "lemma": "go to Oxford",
+    "displayForm": "I'm going to Oxford.",
+    "levelCode": "A1",
+    "topic": "travel",
+    "ru": {
+      "translation": "Я еду в Оксфорд."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a18_going_to_oxford_01",
+        "text": "I'm going to Oxford.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "There are trains to Oxford every hour."
+  },
+  {
+    "id": "itm_sie_a18_one_ticket",
+    "itemType": "functional_phrase",
+    "lemma": "one ticket Oxford 10:30",
+    "displayForm": "One ticket to Oxford at 10:30, please.",
+    "levelCode": "A1",
+    "topic": "travel",
+    "ru": {
+      "translation": "Один билет до Оксфорда, пожалуйста."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a18_one_ticket_01",
+        "text": "One ticket to Oxford at 10:30, please.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "All right. Select Oxford and 10:30 on the screen."
+  },
+  {
+    "id": "itm_sie_a18_what_time",
+    "itemType": "functional_phrase",
+    "lemma": "what time does the first train leave",
+    "displayForm": "What time does the first train leave?",
+    "levelCode": "A1",
+    "topic": "travel",
+    "ru": {
+      "translation": "Во сколько отправляется первый поезд?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a18_what_time_01",
+        "text": "What time does the first train leave?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It leaves at 10:30 from platform two."
+  },
+  {
+    "id": "itm_sie_a18_how_much",
+    "itemType": "functional_phrase",
+    "lemma": "how much is it",
+    "displayForm": "How much is it?",
+    "levelCode": "A1",
+    "topic": "travel",
+    "ru": {
+      "translation": "Сколько это стоит?"
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a18_how_much_01",
+        "text": "How much is it?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It's eight pounds."
+  },
+  {
+    "id": "itm_sie_a18_practice_ticket",
+    "itemType": "functional_phrase",
+    "lemma": "one ticket to brighton at 11:15, please",
+    "displayForm": "One ticket to Brighton at 11:15, please.",
+    "levelCode": "A1",
+    "topic": "travel",
+    "ru": {
+      "translation": "Один билет до Брайтона на 11:15, пожалуйста."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_sie_a18_practice_ticket_01",
+        "text": "One ticket to Brighton at 11:15, please.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The 11:15 train leaves from platform four. That's ten pounds."
   }
 ]

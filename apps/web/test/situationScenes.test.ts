@@ -43,7 +43,14 @@ test("content without artwork still gets a scene instead of nothing", () => {
 });
 
 test("every situation opens mid-conversation, in English", () => {
-  for (const id of ["les_sie_a1_e1", "les_sie_a1_e2", "les_sie_a1_e4"]) {
+  for (const id of [
+    "les_sie_a1_e1",
+    "les_sie_a1_e2",
+    "les_sie_a1_e4",
+    "sit_a1_people_02",
+    "sit_a1_shop_01",
+    "sit_a1_travel_02",
+  ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);
     assert.ok(
@@ -51,4 +58,28 @@ test("every situation opens mid-conversation, in English", () => {
       `the opening line for ${id} must be English, got "${line}"`,
     );
   }
+});
+
+test("Batch 1 situations use the authored place, cast, and opener", () => {
+  assert.deepEqual(sceneForSituation("sit_a1_people_02"), {
+    scene: "meeting",
+    cast: "rosa",
+  });
+  assert.deepEqual(sceneForSituation("sit_a1_shop_01"), {
+    scene: "shop",
+    cast: "emma",
+  });
+  assert.deepEqual(sceneForSituation("sit_a1_travel_02"), {
+    scene: "street",
+    cast: "rosa",
+  });
+  assert.equal(openingLine("sit_a1_people_02").includes("Rosa"), true);
+  assert.equal(
+    openingLine("sit_a1_shop_01"),
+    "Hi! Are you looking for something?",
+  );
+  assert.equal(
+    openingLine("sit_a1_travel_02").includes("ticket machine"),
+    true,
+  );
 });

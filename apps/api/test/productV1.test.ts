@@ -165,6 +165,9 @@ test("finishing a whole chapter leaves a chapter object", async () => {
     "les_sie_a1_e3",
     "les_sie_a1_e4",
     "les_sie_a1_e5",
+    "sit_a1_people_02",
+    "sit_a1_shop_01",
+    "sit_a1_travel_02",
   ];
   let sawChapterReward = false;
   for (const episode of episodes) {

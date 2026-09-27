@@ -1,6 +1,6 @@
 /** Local regression QA: real React + Hono handlers + disposable SQLite.
  * Start Vite first. No Cloudflare runtime, remote DB, or canned API responses.
- * QA_EPISODES may select a comma-separated batch; default is shipped e1-e5.
+ * Episode IDs may be passed as command-line arguments; default is shipped e1-e5.
  * Onboarding is a verified fixture; authentication still uses signed dev auth.
  */
 import assert from "node:assert/strict";
