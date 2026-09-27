@@ -402,7 +402,7 @@
         "isPrimary": true
       }
     ],
-    "npcReplyCorrect": "Go straight, then turn left — it's next to the bank."
+    "npcReplyCorrect": "Go straight, then turn left. There's a bank next to the station."
   },
   {
     "id": "itm_sie_go_straight",

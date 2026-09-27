@@ -45,7 +45,15 @@
         "text": "Where is the station?",
         "itemId": "itm_sie_where_is_the",
         "classification": "chunk",
-        "chunkLabel": "WH-question + be-verb (recycled question formation from A1.1) — NOT a there-is/are construction. LINT FINDING: this situation's attached grammar target (gr_a1_there_is_are) has no real backing phrase anywhere in its item bank (checked: excuse_me, where_is_the, i_dont_understand, can_you_repeat, go_straight, turn_left, next_to — none is a genuine 'there is/are' sentence). Surfaced by building this lint tool against real shipped content, not by the V2 master-plan audit (which only covered newly-planned situations). Flagged for the user to decide a fix; content not changed in Phase 0 per 'production не трогать'."
+        "chunkLabel": "WH-question + be: recycled question formation; not an existential there-is/are construction."
+      },
+      {
+        "text": "There's a bank next to the station.",
+        "itemId": "itm_sie_where_is_the",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_there_is_are",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
       }
     ]
   },
