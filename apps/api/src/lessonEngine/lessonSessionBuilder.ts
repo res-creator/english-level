@@ -1,3 +1,4 @@
+import { asDialogueTurn } from "./dialogueTurns.ts";
 import type {
   Db,
   ItemExampleRow,
@@ -338,8 +339,14 @@ async function buildLearningItemActivities(
   // if ever used for a learning_item) gets the same single-MC treatment
   // it always has. Neither is affected by the practice-role change below.
   if (link.role !== "introduce" && link.role !== "practice") {
-    const mc = await buildRecognitionMC(db, levelId, item, translation, explanation);
-    return [npcReply ? { ...mc, npcReply } : mc];
+    const mc = await buildRecognitionMC(
+      db,
+      levelId,
+      item,
+      translation,
+      explanation,
+    );
+    return [mc];
   }
 
   // "practice": a Practice Variation (CONTENT_PRODUCTION_PLAN.md §2/§9) —
@@ -387,13 +394,10 @@ async function buildLearningItemActivities(
   const extra = buildExtraRecall(item, translation, example, explanation);
   if (extra) activities.push(extra);
 
-  // Exactly one NPC turn per item, on whichever activity actually ends
-  // up last (info_card never gets it — it's index 0, never last, and
-  // isn't a conversational turn anyway).
-  if (npcReply) {
-    const last = activities[activities.length - 1]!;
-    activities[activities.length - 1] = { ...last, npcReply };
-  }
+  // Only the completed learner turn speaks; scaffolding stays off-stage.
+  // A recognition-only fallback is not a spoken turn, even with NPC copy.
+  const last = activities[activities.length - 1] as ScoredActivity;
+  activities[activities.length - 1] = asDialogueTurn(last, link.id, npcReply);
 
   return activities;
 }

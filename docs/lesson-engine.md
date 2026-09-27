@@ -75,6 +75,20 @@ for placement questions (`toQuestionDTO`), applied here via
 whole engine testable without fighting randomness: the same lesson
 content always produces the exact same activity sequence.
 
+Activities and spoken dialogue turns are distinct. A generated learning
+item can have recognition and production exercises, but only its final
+spoken exercise carries a `dialogueTurnId`. The client adds one learner
+utterance and the item's authored NPC continuation at that boundary;
+intermediate exercises, recognition-only review and grammar checks do not
+become speech. Wrong answers remain in exercise feedback. The optional
+marker travels in `ActivityDTO` and is not an answer key. Old active session
+plans can recover the boundary from their authored NPC reply without a
+schema change.
+
+The situation opener is presentation metadata, not a session field. The
+client shows it in the first learning slice (`sessionIndex === 1`) and
+does not replay it in later slices, resumed sessions, or the Mission.
+
 ## Activity types and generation rules
 
 Per `lesson_items` row, in lesson order:

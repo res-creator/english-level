@@ -80,6 +80,7 @@ function fixtureBundle(): ContentBundle {
       {
         id: "itm_fixture_distractor_1",
         itemType: "phrase",
+        npcReplyCorrect: "One juice coming up.",
         lemma: "a juice",
         displayForm: "a juice",
         levelCode: "A1",
@@ -215,10 +216,12 @@ test("the variation's own authored NPC reply is preserved, attached to its last 
   const last = variation[variation.length - 1];
   assert.ok(last, "expected at least one variation activity");
   assert.equal(last?.npcReply?.correct, "Of course! One tea coming up.");
+  assert.equal(last?.dialogueTurnId, "li_fixture_02");
   // Only the last activity carries it — mirrors the "exactly one NPC turn
   // per item" rule that already applies to `introduce`.
   for (const a of variation.slice(0, -1)) {
     assert.equal(a.npcReply, undefined);
+    assert.equal(a.dialogueTurnId, undefined);
   }
 });
 
@@ -239,4 +242,14 @@ test("a practice variation is excluded from the Mission — only the core target
     !targetIds.includes("itm_fixture_distractor_1"),
     "Mission must not test a review-role item either",
   );
+});
+
+test("review recognition is not a spoken turn even when the item has NPC copy", async () => {
+  const db = await seededFixture();
+  const items = await listLessonItemsByLesson(db, "les_fixture_practice");
+  const plan = await buildActivityPlan(db, "lvl_a1", items);
+  const review = plan.filter((a) => a.targetId === "itm_fixture_distractor_1");
+  assert.equal(review.length, 1);
+  assert.equal(review[0]?.npcReply, undefined);
+  assert.equal(review[0]?.dialogueTurnId, undefined);
 });

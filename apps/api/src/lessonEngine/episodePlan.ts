@@ -1,3 +1,5 @@
+import { asDialogueTurn } from "./dialogueTurns.ts";
+import { findPublishedLearningItemById } from "../repositories/learningItemRepository.ts";
 import type { Db, LessonItemRow } from "../db/types.ts";
 import {
   buildActivityPlan,
@@ -86,7 +88,15 @@ export async function buildMissionPlan(
 
   for (const link of targets) {
     const activity = await buildItemActivity(db, levelId, link, "production");
-    if (activity) activities.push(activity);
+    if (!activity) continue;
+    const item =
+      link.content_type === "learning_item"
+        ? await findPublishedLearningItemById(db, link.content_id)
+        : null;
+    const npcReply = item?.npc_reply_correct
+      ? { correct: item.npc_reply_correct, incorrect: item.npc_reply_incorrect }
+      : undefined;
+    activities.push(asDialogueTurn(activity, link.id, npcReply));
   }
 
   return activities.map((activity, index) => ({

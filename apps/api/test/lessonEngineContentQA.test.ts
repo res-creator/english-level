@@ -359,6 +359,7 @@ test("no correct-order metadata leaks through the sentence_build ActivityDTO", a
   assert.deepEqual(Object.keys(dto.content), ["tokens"]);
   assert.deepEqual(Object.keys(dto).sort(), [
     "content",
+    "dialogueTurnId",
     "id",
     "kind",
     "npcReply",

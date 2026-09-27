@@ -408,6 +408,8 @@ export const ActivityDTOSchema = z.discriminatedUnion("kind", [
      * quotes its own example, a learning-item check's always does. */
     targetType: z.enum(["learning_item", "grammar_pattern"]),
     npcReply: npcReplySchema,
+    /** Semantic turn completion, not an answer key or an exercise group. */
+    dialogueTurnId: z.string().optional(),
   }),
   z.object({
     ...activityBase,
@@ -416,6 +418,8 @@ export const ActivityDTOSchema = z.discriminatedUnion("kind", [
     content: z.object({ sentence: z.string() }),
     options: z.array(ActivityOptionDTOSchema),
     npcReply: npcReplySchema,
+    /** Semantic turn completion, not an answer key or an exercise group. */
+    dialogueTurnId: z.string().optional(),
   }),
   z.object({
     ...activityBase,
@@ -423,6 +427,8 @@ export const ActivityDTOSchema = z.discriminatedUnion("kind", [
     prompt: z.string(),
     content: z.object({ text: z.string() }),
     npcReply: npcReplySchema,
+    /** Semantic turn completion, not an answer key or an exercise group. */
+    dialogueTurnId: z.string().optional(),
   }),
   z.object({
     ...activityBase,
@@ -430,6 +436,8 @@ export const ActivityDTOSchema = z.discriminatedUnion("kind", [
     prompt: z.string(),
     content: z.object({ tokens: z.array(z.string()) }),
     npcReply: npcReplySchema,
+    /** Semantic turn completion, not an answer key or an exercise group. */
+    dialogueTurnId: z.string().optional(),
   }),
 ]);
 export type ActivityDTO = z.infer<typeof ActivityDTOSchema>;

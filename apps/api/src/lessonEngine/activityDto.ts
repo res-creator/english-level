@@ -42,6 +42,7 @@ export function toActivityDTO(
         options: activity.options,
         targetType: activity.targetType,
         npcReply: activity.npcReply,
+        dialogueTurnId: activity.dialogueTurnId,
       };
     case "fill_gap_choice":
       return {
@@ -52,6 +53,7 @@ export function toActivityDTO(
         content: activity.content,
         options: activity.options,
         npcReply: activity.npcReply,
+        dialogueTurnId: activity.dialogueTurnId,
       };
     case "typed_recall":
       return {
@@ -61,6 +63,7 @@ export function toActivityDTO(
         prompt: activity.prompt,
         content: activity.content,
         npcReply: activity.npcReply,
+        dialogueTurnId: activity.dialogueTurnId,
       };
     case "sentence_build":
       return {
@@ -70,6 +73,7 @@ export function toActivityDTO(
         prompt: activity.prompt,
         content: activity.content,
         npcReply: activity.npcReply,
+        dialogueTurnId: activity.dialogueTurnId,
       };
   }
 }

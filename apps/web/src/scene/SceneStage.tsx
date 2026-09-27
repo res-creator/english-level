@@ -1,3 +1,5 @@
+import type { DialogueLine } from "./dialogueTypes.ts";
+export type { DialogueLine } from "./dialogueTypes.ts";
 import type { ReactNode } from "react";
 import {
   CAST,
@@ -52,16 +54,6 @@ export function sceneChip(scene: SceneId): ReactNode {
  * scene's own frame, in a bubble of a different shape. He is beside you,
  * not in the room — and he never replaces the person you are talking to.
  */
-
-export interface DialogueLine {
-  id: string;
-  /** Who said it. `you` renders on the right, in violet. */
-  from: "them" | "you";
-  /** English is always set in the serif; Russian never appears here. */
-  text: string;
-  /** A turn you haven't completed yet — shown as a pending gap. */
-  pending?: boolean;
-}
 
 interface Props {
   scene: SceneId;

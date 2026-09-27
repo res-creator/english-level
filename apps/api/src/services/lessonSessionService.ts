@@ -1,3 +1,4 @@
+import { restoreDialogueTurns } from "../lessonEngine/dialogueTurns.ts";
 import {
   AnswerActivityRequestSchema,
   type AnswerFeedback,
@@ -109,7 +110,10 @@ function levelIdFor(cefrCode: string): string {
 }
 
 function parsePlan(session: LearningSessionRow): StoredActivity[] {
-  return JSON.parse(session.activities_json) as StoredActivity[];
+  return restoreDialogueTurns(
+    JSON.parse(session.activities_json) as StoredActivity[],
+    session.session_kind,
+  );
 }
 
 // ---------------------------------------------------------------------------

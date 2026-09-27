@@ -20,6 +20,9 @@ interface StoredActivityBase {
    * Prevents a retry from spawning another retry. See docs/lesson-engine.md
    * ("session-level reinforcement", not SRS). */
   isRetry?: boolean;
+  /** Only the final spoken exercise for a semantic learner turn carries
+   * this marker. Stable across retries; contains no answer text. */
+  dialogueTurnId?: string;
   /**
    * What the conversation partner says right after the learner answers
    * this activity — the actual continuation of the scene, authored per

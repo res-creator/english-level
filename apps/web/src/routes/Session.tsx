@@ -13,13 +13,17 @@ import {
   type DialogueLine,
 } from "../scene/SceneStage.tsx";
 import { ActivityPanel } from "../scene/ActivityPanel.tsx";
-import { openingLine, sceneForSituation } from "../brand/situationScenes.ts";
+import { sceneForSituation } from "../brand/situationScenes.ts";
 import { CAST, castArtNames } from "../brand/cast.tsx";
 import { artName, preloadArt } from "../brand/artRegistry.ts";
 import type { CastState } from "../brand/cast.tsx";
 import { Button, IconButton } from "../ui/Button.tsx";
 import { LoadingScreen, ErrorState } from "../ui/states.tsx";
 import { IconArrowRight, IconClose } from "../ui/icons.tsx";
+import {
+  appendCompletedTurn,
+  initialSessionDialogue,
+} from "../lessonEngine/sessionDialogue.ts";
 
 /**
  * A situation is one continuous visual conversation.
@@ -50,39 +54,11 @@ interface Active {
   /** Spent for this mini-scene once Kvo has spoken. */
   hintUsed: boolean;
 }
-
 type State = { status: "loading" } | { status: "error" } | Active;
 
 /** Cards are never scored — acknowledging one just advances. */
 function isCard(kind: ActivityDTO["kind"]): boolean {
   return kind === "info_card" || kind === "grammar_card";
-}
-
-/**
- * Real per-turn NPC dialogue, authored per learning item
- * (`npcReplyCorrect`/`npcReplyIncorrect` — SieLearningItemSeedSchema) and
- * carried on `activity.npcReply`. Required for every sie-a1 conversational
- * item, so the correct-path branch is never silent for content that's
- * actually live; a1/a2 content (not part of any of the 5 public
- * situations) simply has no reply and the scene stays quiet for it, same
- * as before this feature existed — no generic filler pool stands in for
- * missing authored content on either path anymore (that pool produced
- * "Nice!"/"Got it." regardless of what was actually said, which is
- * exactly what A1_FULL_LEARNING_QA.md flagged as not a real
- * conversation). The one exception is the incorrect path, where a
- * single shared neutral line is an explicitly approved fallback.
- */
-const NEUTRAL_INCORRECT_FALLBACK = "Sorry, one more time?";
-
-function npcReplyFor(
-  activity: ActivityDTO,
-  correct: boolean,
-): string | null {
-  const reply =
-    "npcReply" in activity ? activity.npcReply : undefined;
-  if (!reply) return null;
-  if (correct) return reply.correct;
-  return reply.incorrect ?? NEUTRAL_INCORRECT_FALLBACK;
 }
 
 export function Session() {
@@ -127,9 +103,7 @@ export function Session() {
           submitting: false,
           feedback: null,
           pendingNext: null,
-          dialogue: [
-            { id: "open", from: "them", text: openingLine(episodeId) },
-          ],
+          dialogue: initialSessionDialogue(session, episodeId),
           misses: 0,
           hintUsed: false,
         });
@@ -160,33 +134,12 @@ export function Session() {
         return;
       }
 
-      // What the learner said now belongs to the conversation — spoken
-      // correctly by them, or spoken correctly *for* them after a miss.
-      const said = spokenAnswer(current.activity, value, res.feedback);
-      let dialogue = said
-        ? [
-            ...current.dialogue,
-            {
-              id: `${current.activity.id}-said`,
-              from: "you" as const,
-              text: said,
-            },
-          ]
-        : current.dialogue;
-
-      // Real, authored NPC continuation — see npcReplyFor()'s comment.
-      // Silent (no line pushed) when this activity has none authored.
-      const reply = npcReplyFor(current.activity, res.feedback.correct);
-      if (reply) {
-        dialogue = [
-          ...dialogue,
-          {
-            id: `${current.activity.id}-reply`,
-            from: "them" as const,
-            text: reply,
-          },
-        ];
-      }
+      const dialogue = appendCompletedTurn(
+        current.dialogue,
+        current.activity,
+        value,
+        res.feedback,
+      );
 
       setState({
         ...current,
@@ -387,29 +340,4 @@ export function Session() {
       </div>
     </div>
   );
-}
-
-/** What the learner actually said, in English, for the transcript. */
-function spokenAnswer(
-  activity: ActivityDTO,
-  value: string,
-  feedback: AnswerFeedback,
-): string | null {
-  // multiple_choice's options are never spoken English: a recognition
-  // check's options are the Russian translation, and a grammar check's
-  // are pattern titles ("Be - positive") — either way, not something
-  // the learner would actually say to the person they're talking to.
-  // Confirmed in A1_FULL_LEARNING_QA.md's review-role finding. Only
-  // fill_gap_choice/typed_recall/sentence_build produce genuine English.
-  if (activity.kind === "multiple_choice") return null;
-  if (!feedback.correct) return feedback.correctAnswer;
-  switch (activity.kind) {
-    case "fill_gap_choice":
-      return activity.options.find((o) => o.id === value)?.text ?? null;
-    case "typed_recall":
-    case "sentence_build":
-      return value.trim() || null;
-    default:
-      return null;
-  }
 }
