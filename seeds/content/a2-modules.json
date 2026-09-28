@@ -88,5 +88,23 @@
     "description": "Рассказывать о своей работе и повседневных обязанностях.",
     "order": 10,
     "status": "published"
+  },
+  {
+    "id": "mod_a2_social_life",
+    "levelCode": "A2",
+    "title": "Социальная жизнь и досуг",
+    "slug": "a2-social-life-leisure",
+    "description": "Приглашать друзей и договариваться о встречах.",
+    "order": 11,
+    "status": "published"
+  },
+  {
+    "id": "mod_a2_problems",
+    "levelCode": "A2",
+    "title": "Проблемы и решения",
+    "slug": "a2-problems-solutions",
+    "description": "Объяснять простые проблемы и просить о помощи.",
+    "order": 12,
+    "status": "published"
   }
 ]

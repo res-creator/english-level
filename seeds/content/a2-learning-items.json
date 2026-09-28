@@ -2186,4 +2186,489 @@
     "npcReplyCorrect": "That sounds like a friendly place to work.",
     "patterns": []
   }
+,
+  {
+    "id": "itm_a2_a213_context",
+    "itemType": "functional_phrase",
+    "lemma": "explain a concrete work task",
+    "displayForm": "I need to finish the handout for tomorrow's meeting, but the names are too small to read.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Мне нужно закончить раздаточный материал к завтрашней встрече, но имена слишком мелкие, чтобы их прочитать.",
+      "usageNote": "`need to` is explicitly recorded as the V2 lexical chunk; the task and difficulty are concrete."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a213_context_01",
+        "text": "I need to finish the handout for tomorrow's meeting, but the names are too small to read.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can check the layout with you. Which names are hard to read?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a213_request",
+    "itemType": "functional_phrase",
+    "lemma": "ask a colleague to check a document",
+    "displayForm": "Could you check the names and dates with me? The team needs it by two.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Не мог бы ты проверить со мной имена и даты? Команде материал нужен к двум.",
+      "usageNote": "Recycled polite request frame `Could you...?`; learner names the help and deadline."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a213_request_01",
+        "text": "Could you check the names and dates with me? The team needs it by two.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, I can check them now. The names look clear, but one date is missing.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a213_agree",
+    "itemType": "functional_phrase",
+    "lemma": "confirm a practical next step",
+    "displayForm": "Thanks. I need to print ten copies before the meeting, so I'll add the date and print them at one.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Спасибо. Мне нужно распечатать десять копий до встречи, поэтому я добавлю дату и распечатаю их в час.",
+      "usageNote": "`need to` remains the V2 chunk; the learner closes the practical task and timing."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a213_agree_01",
+        "text": "Thanks. I need to print ten copies before the meeting, so I'll add the date and print them at one.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That gives us time. Send me the new page and I’ll check it once more.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a213_v1_info",
+    "itemType": "functional_phrase",
+    "lemma": "request information needed for a work task",
+    "displayForm": "Could you send me the room list for tomorrow? I need to add it to the handout.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Не мог бы ты прислать мне список аудиторий на завтра? Мне нужно добавить его в раздаточный материал.",
+      "usageNote": "Variation v1 transfers the polite request to an information favour with a specific purpose."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a213_v1_info_01",
+        "text": "Could you send me the room list for tomorrow? I need to add it to the handout.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can send it after lunch. Do you need the room names or the floor numbers too?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a213_v1_clarify",
+    "itemType": "functional_phrase",
+    "lemma": "specify the information needed",
+    "displayForm": "The room names are enough. Could you send the list before three?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Названий комнат достаточно. Не мог бы ты прислать список до трёх?",
+      "usageNote": "Learner narrows the information request and sets a deadline."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a213_v1_clarify_01",
+        "text": "The room names are enough. Could you send the list before three?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Sure. I’ll email the names before three.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a213_v2_request",
+    "itemType": "functional_phrase",
+    "lemma": "reschedule a work favour when a colleague is busy",
+    "displayForm": "Could you look at this chart with me after lunch? I need to check the totals before the team call.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Не мог бы ты посмотреть со мной эту диаграмму после обеда? Мне нужно проверить суммы до командного звонка.",
+      "usageNote": "Variation v2 changes the task and requires negotiating because Daniel is busy; `need to` remains an explicit V2 chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a213_v2_request_01",
+        "text": "Could you look at this chart with me after lunch? I need to check the totals before the team call.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I’m finishing a report now. I can look at it at half past two. Is that early enough?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a213_v2_agree",
+    "itemType": "functional_phrase",
+    "lemma": "accept a later time for help",
+    "displayForm": "Half past two is fine. Could you check the last two rows first?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "В половине третьего подходит. Не мог бы ты сначала проверить последние две строки?",
+      "usageNote": "Learner accepts the rescheduled favour and prioritises a concrete part of the task."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a213_v2_agree_01",
+        "text": "Half past two is fine. Could you check the last two rows first?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. I’ll check those rows before the call.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a214_invite",
+    "itemType": "functional_phrase",
+    "lemma": "invite a friend and state a plan",
+    "displayForm": "Would you like to come to the book fair with me on Saturday? I'm going to look for a cookbook.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "social",
+    "ru": {
+      "translation": "Хочешь пойти со мной на книжную ярмарку в субботу? Я собираюсь поискать книгу рецептов.",
+      "usageNote": "Going to is the explicit A2 Grammar Target for a plan; the invitation is contextual."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a214_invite_01",
+        "text": "Would you like to come to the book fair with me on Saturday? I'm going to look for a cookbook.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds good. Saturday at eleven works for me.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a214_reschedule",
+    "itemType": "functional_phrase",
+    "lemma": "change an agreed plan and offer another time",
+    "displayForm": "Could we change it to Sunday afternoon instead? I have to visit my aunt on Saturday.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "social",
+    "ru": {
+      "translation": "Можем перенести на воскресенье после обеда? В субботу мне нужно навестить тётю.",
+      "usageNote": "`Could we... instead?` is the V2 lexical request chunk; it changes an already accepted arrangement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a214_reschedule_01",
+        "text": "Could we change it to Sunday afternoon instead? I have to visit my aunt on Saturday.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Sunday afternoon is fine. How about three o’clock at the entrance?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a214_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "confirm the revised arrangement",
+    "displayForm": "Three o’clock is great. We can meet by the main entrance.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "social",
+    "ru": {
+      "translation": "Три часа отлично. Можем встретиться у главного входа.",
+      "usageNote": "Learner confirms the new day, time and meeting place without introducing a new tense target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a214_confirm_01",
+        "text": "Three o’clock is great. We can meet by the main entrance.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Great. I’ll see you there on Sunday.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a214_v1_invite",
+    "itemType": "functional_phrase",
+    "lemma": "invite a group through a shared plan",
+    "displayForm": "Would you and Maya like to come to the food market with me on Sunday? I'm going to try the new café there.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "social",
+    "ru": {
+      "translation": "Хотите с Майей пойти со мной на продуктовый рынок в воскресенье? Я собираюсь попробовать там новое кафе.",
+      "usageNote": "Variation v1 changes participants and shared activity while retaining the invitation and plan function."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a214_v1_invite_01",
+        "text": "Would you and Maya like to come to the food market with me on Sunday? I'm going to try the new café there.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We’d like that. What time are you thinking?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a214_v1_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "agree a group time",
+    "displayForm": "Could we meet at twelve by the market entrance?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "social",
+    "ru": {
+      "translation": "Можем встретиться в двенадцать у входа на рынок?",
+      "usageNote": "Learner coordinates a group meeting in a new social context."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a214_v1_confirm_01",
+        "text": "Could we meet at twelve by the market entrance?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Twelve is good for both of us.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a214_v2_change1",
+    "itemType": "functional_phrase",
+    "lemma": "make the first change to a plan",
+    "displayForm": "Friday evening works. I can book the tickets for seven.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "social",
+    "ru": {
+      "translation": "Вечер пятницы подходит. Я могу забронировать билеты на семь.",
+      "usageNote": "After the first proposed change, learner agrees to a time; Alex raises a second scheduling constraint."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a214_v2_change1_01",
+        "text": "Friday evening works. I can book the tickets for seven.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I have class until seven. Could we go on Saturday afternoon instead?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a214_v2_change2",
+    "itemType": "functional_phrase",
+    "lemma": "make a second change after a counteroffer",
+    "displayForm": "Could we make it Saturday at four instead? I can book those tickets.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "social",
+    "ru": {
+      "translation": "Можем тогда на субботу, на четыре? Я могу забронировать эти билеты.",
+      "usageNote": "Learner accepts the second real change and confirms the revised time."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a214_v2_change2_01",
+        "text": "Could we make it Saturday at four instead? I can book those tickets.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Saturday at four works. I’ll meet you outside the cinema.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a215_lost",
+    "itemType": "functional_phrase",
+    "lemma": "report a lost phone",
+    "displayForm": "I've lost my phone. Have you seen it near the library?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "problems",
+    "ru": {
+      "translation": "Я потерял(а) телефон. Ты не видела его возле библиотеки?",
+      "usageNote": "`I’ve lost...` is a fixed lexical chunk in V2, not a Present Perfect target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a215_lost_01",
+        "text": "I've lost my phone. Have you seen it near the library?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Not yet. When did you last use it?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a215_last_seen",
+    "itemType": "functional_phrase",
+    "lemma": "say where the item was last used",
+    "displayForm": "I used it outside the library, then I walked to the bus stop.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "problems",
+    "ru": {
+      "translation": "Я пользовался(лась) им у библиотеки, а потом пошёл(шла) к автобусной остановке.",
+      "usageNote": "Past Simple is explicit in the learner’s account of the last known place and event."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a215_last_seen_01",
+        "text": "I used it outside the library, then I walked to the bus stop.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Was it the stop on King Street, beside the small park?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a215_search",
+    "itemType": "functional_phrase",
+    "lemma": "ask for practical help tracing the item",
+    "displayForm": "Yes, that stop. I think I left it on the bench by the library. Could you help me check there?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "problems",
+    "ru": {
+      "translation": "Да, та остановка. Кажется, я оставил(а) его на скамейке у библиотеки. Не поможешь проверить там?",
+      "usageNote": "Past Simple `left` gives the likely last location; the learner asks for a practical next step."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a215_search_01",
+        "text": "Yes, that stop. I think I left it on the bench by the library. Could you help me check there?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Of course. Let’s go back to the library bench first, then we can ask at the bus stop.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a215_v1_lost",
+    "itemType": "functional_phrase",
+    "lemma": "report a lost bag and last place seen",
+    "displayForm": "I've lost my bag. I had it at the sports centre before I took the bus home.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "problems",
+    "ru": {
+      "translation": "Я потерял(а) сумку. Она была со мной в спортцентре, прежде чем я сел(а) на автобус домой.",
+      "usageNote": "Variation v1 changes the item and gives a different sequence of places; Present Perfect remains only in a lexical chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a215_v1_lost_01",
+        "text": "I've lost my bag. I had it at the sports centre before I took the bus home.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "What did you have in the bag, and when did you see it last?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a215_v1_detail",
+    "itemType": "functional_phrase",
+    "lemma": "retrace a bag’s last known location",
+    "displayForm": "I left it by the lockers after my class, but I didn’t see it on the bus.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "problems",
+    "ru": {
+      "translation": "Я оставил(а) её у шкафчиков после занятия, но в автобусе не видел(а).",
+      "usageNote": "Past Simple supports a short, useful loss report; the changed circumstances require transfer."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a215_v1_detail_01",
+        "text": "I left it by the lockers after my class, but I didn’t see it on the bus.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can call the sports centre and ask them to check the lockers.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a215_v2_lost",
+    "itemType": "functional_phrase",
+    "lemma": "report an item lost in a less obvious place",
+    "displayForm": "I've lost my keys. I last saw them when I paid at the flower shop, but I also went to the post office.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "problems",
+    "ru": {
+      "translation": "Я потерял(а) ключи. Последний раз я видел(а) их, когда расплачивался(лась) в цветочном, но ещё заходил(а) на почту.",
+      "usageNote": "Variation v2 changes the object and creates two plausible locations; Present Perfect remains a chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a215_v2_lost_01",
+        "text": "I've lost my keys. I last saw them when I paid at the flower shop, but I also went to the post office.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Which place did you visit first after the flower shop?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a215_v2_search",
+    "itemType": "functional_phrase",
+    "lemma": "identify a less obvious location and choose a next step",
+    "displayForm": "I went to the post office after that. Could you help me call the flower shop first?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "problems",
+    "ru": {
+      "translation": "Потом я пошёл(шла) на почту. Не поможешь сначала позвонить в цветочный?",
+      "usageNote": "Learner reconstructs the sequence in Past Simple and asks for a useful next step."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a215_v2_search_01",
+        "text": "I went to the post office after that. Could you help me call the flower shop first?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. I’ll call the shop while you check your coat pockets.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a214_v2_invite",
+    "itemType": "functional_phrase",
+    "lemma": "invite a friend to a film before negotiating two changes",
+    "displayForm": "Would you like to see a film with me on Thursday? I'm going to book two seats.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "social",
+    "ru": {
+      "translation": "Хочешь сходить со мной в кино в четверг? Я собираюсь забронировать два места.",
+      "usageNote": "Variation v2 establishes the original plan before the two subsequent changes; going to remains the target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a214_v2_invite_01",
+        "text": "Would you like to see a film with me on Thursday? I'm going to book two seats.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thursday is difficult. Could we go on Friday instead?",
+    "patterns": []
+  }
 ]

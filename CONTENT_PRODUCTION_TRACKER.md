@@ -60,9 +60,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_a2_shop_01` | Возврат или обмен товара | Shopping & Services | Emma | **done** | 2 — wrong size on trousers; exchange a faulty kettle instead of a size swap | target: `gr_a2_past_simple_positive`; polite return/exchange requests are lexical chunks | Gate A/B/C PASS; Far A1.7; prerequisite A1.7; BC A2 clothing-shop exchange order |
 | `sit_a2_shop_02` | Спросить про скидку | Shopping & Services | Emma | **done** | 2 — trainer pair with single-item weekend discount; bags with buy-one/get-second-half-price offer | target: `gr_a2_comparatives`, evidenced in learner turns; offer conditions and price checks are chunks | Gate A/B/C PASS; Far A1.7; prerequisite A1.7; ELLLO A2 Comparatives |
 | `sit_a2_work_01` | Чем ты занимаешься подробнее | Work & Study | Daniel | **done** | 2 — teacher responsibilities; part-time bookshop schedule instead of full-time office role | target: `gr_a2_present_simple_connected_descriptions`; recycled target: `gr_sie_frequency`; no B1 preview | Gate A/B/C PASS; Near A2.1; prerequisites A2.1/A2.2; BC A2 job-talk sequence |
-| `sit_a2_work_02` | Попросить о помощи с задачей | Work & Study | Daniel | planned | 2 (+phone variation) | Could you...? (recycled), need to | |
-| `sit_a2_social_01` | Пригласить и изменить планы | Social Life & Leisure | Alex | planned | 2 | going to, could we...instead | |
-| `sit_a2_problems_01` | Потерял(а) вещь | Problems & Solutions | Rosa | planned | 2 | Present Perfect (chunk), Past Simple | |
+| `sit_a2_work_02` | Попросить о помощи с задачей | Work & Study | Daniel | **done** | 2 — information favour; a different task with Daniel initially busy and a negotiated time | recycled target: `gr_sie_could_polite`; `need to` explicitly classified as a V2 lexical chunk | Gate A/B/C PASS; Near A2.12, Far A1.5; ordered after A2.12; BC colleague-request reference |
+| `sit_a2_social_01` | Пригласить и изменить планы | Social Life & Leisure | Alex | **done** | 2 — invite Alex and Maya as a group; film plan with two explicit changes and an authored starting agreement | target: `gr_a2_going_to_future`; `Could we... instead?` is a lexical chunk | Gate A/B/C PASS; Near A2.9, Far A1.9; BC plans reference |
+| `sit_a2_problems_01` | Потерял(а) вещь | Problems & Solutions | Rosa | **done** | 2 — bag lost after sports-centre class; keys with two possible shops | `I've lost...` / `Have you seen...?` are lexical chunks; target: `gr_a2_past_simple_positive` for last-seen events | Gate A/B/C PASS; Far A1.4 directions vocabulary; Cambridge A2 Key vocabulary reference |
 | `sit_a2_problems_02` | Ошибка в счёте | Problems & Solutions | Leo | planned | 2 | Past Simple, could you check | |
 | `sit_a2_health_01` (H.A2) | Нужно средство от простуды | Shopping & Services | Emma | planned | 2 | have+symptom, do you have (recycled) | reframed in V2 §11 fix #4b — Emma stays shop assistant, not a pharmacist |
 
@@ -145,15 +145,23 @@ A2.10: Emma помогает обменять неподходящую руба�
 
 Gate A PASS: seed/schema/reference IDs, уникальность и contiguous ordering, course order, idempotent reseed, Near/Far links и Mission excludes practice variations. Grammar lint: 0 ошибок / 0 advisory notes по 23 ситуациям worksheet. Gate B PASS: authored turn review, coherent replies, cast/scene consistency, English-only authored lines, grammar/chunk coverage и transfer variations. Gate C PASS: Chromium прошёл все 12 A2 situations по порядку; все 12 Mission PASS (100%, `can_do`), один A2.10 Mission FAIL (0%, `learning`); transcript проверен на каждом activity/turn, continuation соответствует последнему semantic learner turn, progression — 12/12. API suite 317/317; web suite 77/77; shared suite 6/6; полный workspace suite 400/400; targeted content/course tests 34/34; recursive typecheck PASS; reseed twice without duplicates. Chromium: 354 passing transcript snapshots, all 12 Missions pass, one Mission fail path. Отчёт и screenshots: [A2 Batch 4 production QA](docs/A2_BATCH4_PRODUCTION_QA.md).
 
+## A2 Batch 5 reference and QA record
+
+Перед авторингом использованы British Council [An email to ask a colleague to do something](https://learnenglish.britishcouncil.org/comment/210092) и [Requests, offers and invitations](https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/requests-offers-invitations): из первого взят только естественный порядок «причина задачи → конкретная вежливая просьба → срок», из второго — register `Could you...?`. Для A2.14 использован порядок приглашения, проверки времени, встречного предложения и подтверждения из British Council [Messaging to make plans](https://learnenglish.britishcouncil.org/free-resources/writing/a2/messaging-make-plans). Для знакомой лексики вещей и потерянных предметов использован официальный [Cambridge A2 Key vocabulary list](https://www.cambridgeenglish.org/Images/506886-a2-key-2020-vocabulary-list.pdf), включая модели “I’ve lost my passport” / “I left my bag in the cinema” как reference-паттерны, не как заимствованные реплики. Все Speak in English lines оригинальны.
+
+A2.13: learner объясняет конкретную проблему с раздаточным материалом, просит проверить имена и даты к сроку; v1 переносит функцию на запрос списка аудиторий, v2 — на проверку диаграммы с согласованием времени, если Daniel занят. `Could you...?` размечено как recycled target; `need to` остаётся явно помеченным lexical chunk. Near A2.12, Far A1.5. A2.14: learner приглашает Алекса на книжную ярмарку, затем действительно переносит согласованную встречу на другое время; v1 — приглашение для Алекса и Майи, v2 содержит authored исходный план фильма и две смены времени/дня. `going to` — target, `Could we... instead?` — lexical chunk. Near A2.9, Far A1.9. A2.15: learner сообщает о пропавшем телефоне, где пользовался им в последний раз, и просит помочь проверить вероятное место; v1 меняет предмет на сумку и обстоятельства после занятия, v2 — ключи и две возможные точки. `I've lost...` и `Have you seen...?` — chunks, Past Simple — target для последнего известного события/места. Far A1.4 vocabulary. Cast/scene: Daniel/office, Alex/cafe, Rosa/street; progression идёт через существующие порядок главы/ситуации и Mission.
+
+Gate A PASS: schema/reference validation, уникальность ID, lesson-item contiguity, published course order, idempotent seed и Near/Far связи; Mission автоматически исключает Practice Variations. Grammar lint: 0 ошибок / 0 advisory notes на 26 V2 worksheet situations. Gate B PASS: ручной transcript read-through, естественные NPC continuations на предыдущую learner line, отсутствие повторной информации/role mismatch/Cyrillic, A2 grammar/chunk coverage и transfer variations. Gate C PASS: Chromium прошёл все 15 A2 situations по порядку и Course progress 15/15; каждый Mission дал PASS (100%, `can_do`), затем отдельный A2.13 Mission FAIL (0%, `learning`). Проверено 838 transcript snapshots; continuation появляется ровно после semantic turn, opener — только в первой session, английский transcript без кириллицы. Для трёх Batch 5 ситуаций создано 51 preview screenshot; JSON-результаты находятся в ignored `artifacts/qa/session-dialogue/results.json`. Полный workspace suite и API/web typecheck прошли после финальной правки; idempotency подтверждена повторным seed-тестом. Подробный отчёт: [A2 Batch 5 production QA](docs/A2_BATCH5_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
-| A2 | 17 | 12 | 5 | 0 |
+| A2 | 17 | 15 | 2 | 0 |
 | B1 | 19 | 0 | 19 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **23** | **46** | **0** |
+| **Total** | **69** | **26** | **43** | **0** |
 
 ---
 

@@ -96,6 +96,15 @@ test("A2 Batch 4 maps shopping and work conversations to Emma and Daniel", () =>
   assert.match(openingLine("sit_a2_work_01"), /What do you do at work/i);
 });
 
+test("A2 Batch 5 maps workplace, social, and lost-item situations to their authored cast", () => {
+  assert.deepEqual(sceneForSituation("sit_a2_work_02"), { scene: "office", cast: "daniel" });
+  assert.deepEqual(sceneForSituation("sit_a2_social_01"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_a2_problems_01"), { scene: "street", cast: "rosa" });
+  assert.match(openingLine("sit_a2_work_02"), /team this week.*working on/i);
+  assert.match(openingLine("sit_a2_social_01"), /free this weekend.*do together/i);
+  assert.match(openingLine("sit_a2_problems_01"), /checking your pockets.*lose something/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

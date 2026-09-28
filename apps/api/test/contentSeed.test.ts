@@ -25,9 +25,9 @@ test("the published catalogue includes A1 and the authored A2 chapters", () => {
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The authored
-  // situational course now includes A1 plus the first seven A2 chapters.
-  assert.equal(published.length, 8);
-  assert.equal(published.filter((m) => m.levelCode === "A2").length, 7);
+  // The situational course now includes A1 plus the first nine A2 chapters.
+  assert.equal(published.length, 10);
+  assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -97,7 +97,7 @@ test("A1.1 Practice Variation keeps Alex and transfers the self-introduction", (
   );
 });
 
-test("A2 Batch 1–4 have authored turns, two practice variations, and no answer gaps", () => {
+test("A2 Batch 1–5 have authored turns, two practice variations, and no answer gaps", () => {
   const bundle = loadSeedContent();
   const situationIds = [
     "sit_a2_people_01",
@@ -112,6 +112,9 @@ test("A2 Batch 1–4 have authored turns, two practice variations, and no answer
     "sit_a2_shop_01",
     "sit_a2_shop_02",
     "sit_a2_work_01",
+    "sit_a2_work_02",
+    "sit_a2_social_01",
+    "sit_a2_problems_01",
   ];
 
   for (const situationId of situationIds) {
@@ -280,7 +283,30 @@ test("A2 Batch 4 connects shop reviews to A1.7 and work review to A2.1", () => {
   assert.deepEqual(reviews("sit_a2_work_01"), ["itm_a2_a21_job_linked"]);
 });
 
-test("A2 Batch 1–4 plans keep semantic turns once and exclude variations from Missions", async () => {
+test("A2 Batch 5 keeps requests, rescheduling, and lost-item language classified and review-linked", () => {
+  const bundle = loadSeedContent();
+  const item = (id: string) => bundle.learningItems.find((row) => row.id === id);
+  assert.match(item("itm_a2_a213_context")?.displayForm ?? "", /need to finish.*handout/i);
+  assert.match(item("itm_a2_a213_request")?.displayForm ?? "", /Could you check.*by two/i);
+  assert.match(item("itm_a2_a213_v2_request")?.npcReplyCorrect ?? "", /I can look at it at half past two/i);
+  assert.match(item("itm_a2_a214_invite")?.displayForm ?? "", /Would you like.*going to/i);
+  assert.match(item("itm_a2_a214_reschedule")?.displayForm ?? "", /Could we change it to Sunday/i);
+  assert.match(item("itm_a2_a214_v2_invite")?.displayForm ?? "", /see a film.*Thursday.*going to book/i);
+  assert.match(item("itm_a2_a214_v2_change2")?.displayForm ?? "", /Could we make it Saturday at four/i);
+  assert.match(item("itm_a2_a215_lost")?.displayForm ?? "", /I've lost my phone.*Have you seen/i);
+  assert.match(item("itm_a2_a215_last_seen")?.displayForm ?? "", /used it outside.*walked to the bus stop/i);
+  assert.doesNotMatch(item("itm_a2_a215_lost")?.displayForm ?? "", /Present Perfect/i);
+  const targets = bundle.lessonItems.filter((row) => row.role === "target");
+  assert.ok(targets.some((row) => row.lessonId === "sit_a2_work_02" && row.contentId === "gr_sie_could_polite"));
+  assert.ok(targets.some((row) => row.lessonId === "sit_a2_social_01" && row.contentId === "gr_a2_going_to_future"));
+  assert.ok(targets.some((row) => row.lessonId === "sit_a2_problems_01" && row.contentId === "gr_a2_past_simple_positive"));
+  const reviews = (lessonId: string) => bundle.lessonItems.filter((row) => row.lessonId === lessonId && row.role === "review").map((row) => row.contentId);
+  assert.deepEqual(reviews("sit_a2_work_02"), ["itm_a2_a212_role", "itm_sie_could_you_change_it"]);
+  assert.deepEqual(reviews("sit_a2_social_01"), ["itm_a2_a29_intention", "itm_sie_a19_suggest_cafe"]);
+  assert.deepEqual(reviews("sit_a2_problems_01"), ["itm_sie_e4_practice_pharmacy"]);
+});
+
+test("A2 Batch 1–5 plans keep semantic turns once and exclude variations from Missions", async () => {
   const { db, sqlite } = createTestDb();
   await seedContent(db);
 
@@ -297,6 +323,9 @@ test("A2 Batch 1–4 plans keep semantic turns once and exclude variations from 
     "sit_a2_shop_01",
     "sit_a2_shop_02",
     "sit_a2_work_01",
+    "sit_a2_work_02",
+    "sit_a2_social_01",
+    "sit_a2_problems_01",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const plan = await planEpisodeSessions(db, "lvl_a2", links);

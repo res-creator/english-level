@@ -1080,5 +1080,173 @@
         "grammarPatternId": "gr_sie_frequency"
       }
     ]
+  },
+  {
+    "situationId": "sit_a2_work_02",
+    "phrases": [
+      {
+        "text": "I’m getting a few things ready for the team this week. What are you working on?",
+        "classification": "chunk",
+        "speaker": "npc opener",
+        "sourceField": "openingLine",
+        "chunkLabel": "Situation opener sets a concrete social/work/lost-item context and is not a learner grammar target."
+      },
+      {
+        "text": "I need to finish the handout for tomorrow's meeting, but the names are too small to read.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a213_context",
+        "chunkLabel": "`need to` remains an explicitly classified V2 lexical chunk; the work task is concrete."
+      },
+      {
+        "text": "Could you check the names and dates with me? The team needs it by two.",
+        "classification": "target",
+        "itemId": "itm_a2_a213_request",
+        "grammarPatternId": "gr_sie_could_polite"
+      },
+      {
+        "text": "Thanks. I need to print ten copies before the meeting, so I'll add the date and print them at one.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a213_agree",
+        "chunkLabel": "Practical task completion; `need to` remains an explicitly classified V2 chunk."
+      },
+      {
+        "text": "Could you send me the room list for tomorrow? I need to add it to the handout.",
+        "classification": "target",
+        "itemId": "itm_a2_a213_v1_info",
+        "grammarPatternId": "gr_sie_could_polite"
+      },
+      {
+        "text": "The room names are enough. Could you send the list before three?",
+        "classification": "target",
+        "itemId": "itm_a2_a213_v1_clarify",
+        "grammarPatternId": "gr_sie_could_polite"
+      },
+      {
+        "text": "Could you look at this chart with me after lunch? I need to check the totals before the team call.",
+        "classification": "target",
+        "itemId": "itm_a2_a213_v2_request",
+        "grammarPatternId": "gr_sie_could_polite"
+      },
+      {
+        "text": "Half past two is fine. Could you check the last two rows first?",
+        "classification": "target",
+        "itemId": "itm_a2_a213_v2_agree",
+        "grammarPatternId": "gr_sie_could_polite"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_social_01",
+    "phrases": [
+      {
+        "text": "I’m free this weekend. Is there anything you’d like to do together?",
+        "classification": "chunk",
+        "speaker": "npc opener",
+        "sourceField": "openingLine",
+        "chunkLabel": "Situation opener sets a concrete social/work/lost-item context and is not a learner grammar target."
+      },
+      {
+        "text": "Would you like to come to the book fair with me on Saturday? I'm going to look for a cookbook.",
+        "classification": "target",
+        "itemId": "itm_a2_a214_invite",
+        "grammarPatternId": "gr_a2_going_to_future"
+      },
+      {
+        "text": "Could we change it to Sunday afternoon instead? I have to visit my aunt on Saturday.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a214_reschedule",
+        "chunkLabel": "`Could we... instead?` is the V2 rescheduling chunk for changing an accepted plan."
+      },
+      {
+        "text": "Three o’clock is great. We can meet by the main entrance.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a214_confirm",
+        "chunkLabel": "Learner confirms revised day, time and place."
+      },
+      {
+        "text": "Would you and Maya like to come to the food market with me on Sunday? I'm going to try the new café there.",
+        "classification": "target",
+        "itemId": "itm_a2_a214_v1_invite",
+        "grammarPatternId": "gr_a2_going_to_future"
+      },
+      {
+        "text": "Could we meet at twelve by the market entrance?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a214_v1_confirm",
+        "chunkLabel": "Variation v1 coordinates a group plan."
+      },
+      {
+        "text": "Could we move our film to Friday evening instead? I'm going to help my brother on Thursday.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a214_v2_change1",
+        "chunkLabel": "Variation v2 makes the first change to an accepted plan."
+      },
+      {
+        "text": "Seven is a little late for me. Could we make it half past six instead?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a214_v2_change2",
+        "chunkLabel": "Variation v2 negotiates a second change after a counteroffer."
+      },
+      {
+        "text": "Would you like to see a film with me on Thursday? I'm going to book two seats.",
+        "classification": "target",
+        "itemId": "itm_a2_a214_v2_invite",
+        "grammarPatternId": "gr_a2_going_to_future"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_problems_01",
+    "phrases": [
+      {
+        "text": "You’re checking your pockets and looking around. Did you lose something?",
+        "classification": "chunk",
+        "speaker": "npc opener",
+        "sourceField": "openingLine",
+        "chunkLabel": "Situation opener sets a concrete social/work/lost-item context and is not a learner grammar target."
+      },
+      {
+        "text": "I've lost my phone. Have you seen it near the library?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a215_lost",
+        "chunkLabel": "`I’ve lost...` is a fixed V2 lexical chunk, not a Present Perfect target; `Have you seen...?` is also a fixed question chunk."
+      },
+      {
+        "text": "I used it outside the library, then I walked to the bus stop.",
+        "classification": "target",
+        "itemId": "itm_a2_a215_last_seen",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "Yes, that stop. I think I left it on the bench by the library. Could you help me check there?",
+        "classification": "target",
+        "itemId": "itm_a2_a215_search",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "I've lost my bag. I had it at the sports centre before I took the bus home.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a215_v1_lost",
+        "chunkLabel": "Variation v1 changes the item and circumstances; `I’ve lost...` remains a fixed chunk."
+      },
+      {
+        "text": "I left it by the lockers after my class, but I didn’t see it on the bus.",
+        "classification": "target",
+        "itemId": "itm_a2_a215_v1_detail",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "I've lost my keys. I last saw them when I paid at the flower shop, but I also went to the post office.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a215_v2_lost",
+        "chunkLabel": "Variation v2 changes the item and possible locations; `I’ve lost...` remains a fixed chunk."
+      },
+      {
+        "text": "I went to the post office after that. Could you help me call the flower shop first?",
+        "classification": "target",
+        "itemId": "itm_a2_a215_v2_search",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      }
+    ]
   }
 ]
