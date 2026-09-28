@@ -54,9 +54,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_a2_restaurant_01` | Бронирование столика | Restaurant & Dining | Leo | **done** | 2 (+phone variation with an explicit call/line interruption, choices repeated by phone) | target: `gr_a2_would_like_booking`; polite clarification/time/name formulas classified as chunks | Gate A/B/C PASS; Near A1.8; BC booking sequence reference |
 | `sit_a2_restaurant_02` | Заказ с особыми пожеланиями | Restaurant & Dining | Leo | **done** | 2 — no cream instead of onions; four bowls instead of two | targets: `gr_a2_without_food`, `gr_a2_some_any_food`; “Could we have…” is a lexical chunk | Gate A/B/C PASS; Near A2.4, Far A1.2; ELLLO A2 request pattern reference |
 | `sit_a2_travel_01` | Опоздание, смена планов | Getting Around | Rosa | **done** | 2 — wrong building/missed meeting; overslept/missed early train and rearranged trip | targets: Past Simple positive/negative (`gr_a2_past_simple_positive`, `gr_a2_past_simple_negative`) and `gr_a2_should`; fixed apology/plan phrases classified as chunks | Gate A/B/C PASS; Near A1.4/A1.8; BC A2 apology rhythm + Cambridge A2 travel vocabulary |
-| `sit_a2_travel_02` | Уточнить маршрут | Getting Around | Rosa | planned | 2 | reported confirmation | |
-| `sit_a2_daily_01` | Рассказать о выходных | Daily Life & Home | Alex | planned | 2 | Past Simple | |
-| `sit_a2_daily_02` | Планы на следующую неделю | Daily Life & Home | Alex | planned | 2 (v2 corrected, no "used to" preview) | going to, Present Continuous | |
+| `sit_a2_travel_02` | Уточнить маршрут | Getting Around | Rosa | **done** | 2 — three-turn route; misheard bus number instead of a direction | target: `gr_a2_reported_confirmation`; Sorry/So I go/Is that right classified as chunks | Gate A/B/C PASS; Far A1.4; prerequisite A1.4; BC A2 route audio + ELLLO A2 directions |
+| `sit_a2_daily_01` | Рассказать о выходных | Daily Life & Home | Alex | **done** | 2 — day trip instead of film; rainy picnic becomes museum café | target: `gr_a2_past_simple_positive`, evidenced by three connected learner sentences | Gate A/B/C PASS; Far A1.3; prerequisite A1.3; ELLLO A2 weekend/Past Simple |
+| `sit_a2_daily_02` | Планы на следующую неделю | Daily Life & Home | Alex | **done** | 2 — plan with Maya instead of Alex; fair opening day changes and learner reschedules one plan | targets: `gr_a2_going_to_future`, `gr_a2_present_continuous_arrangements`; arrangement/request follow-ups classified as chunks | Gate A/B/C PASS; Near A2.8; prerequisite A2.8; BC A2 making plans/arrangements |
 | `sit_a2_shop_01` | Возврат или обмен товара | Shopping & Services | Emma | planned | 2 | Past Simple (corrected from Present Perfect in V2 §2.2) | |
 | `sit_a2_shop_02` | Спросить про скидку | Shopping & Services | Emma | planned | 2 | comparatives | |
 | `sit_a2_work_01` | Чем ты занимаешься подробнее | Work & Study | Daniel | planned | 2 | Present Simple + frequency (recycled) | |
@@ -129,6 +129,12 @@ Before authoring, the reference workflow consulted British Council [Booking a ta
 
 Gate A/B/C PASS for A2.4–A2.6. Grammar lint: 0 errors / 0 advisory notes; full suite 394/394; API and web typechecks PASS; seed/schema/reference/contiguity/idempotency PASS. Chromium ran all six A2 course situations in progression, checked 280 transcript snapshots (including first-session openers, continuation once per semantic turn, no Cyrillic in English transcript), verified all six Mission PASS paths at 100% (`can_do`) and an A2.4 Mission FAIL at 0% (`learning`); course progress reached 6/6. Preview screenshots and detailed report: [A2 Batch 2 production QA](docs/A2_BATCH2_PRODUCTION_QA.md).
 
+## A2 Batch 3 reference and QA record
+
+The approved workflow used British Council [An invitation to a party](https://learnenglish.britishcouncil.org/free-resources/listening/a2/invitation-party?page=1) and ELLLO's [A2 directions exercise](https://www.elllo.org/book/A2/A2-Worksheets4x/A2-17-2-Imperatives-Scramble.pdf) for ordered landmarks and listener confirmation; ELLLO [A2 weekend / Past Simple](https://elllo.org/book/A2/A2-07-Past-Tense-Irregular.html) for short event narratives and follow-up rhythm; and British Council [Messaging to make plans](https://learnenglish.britishcouncil.org/free-resources/writing/a2/messaging-make-plans) plus [Making arrangements (A2)](https://learnenglish.britishcouncil.org/comment/119333) for checking availability, changing a plan and distinguishing intention from a confirmed arrangement. The sources informed function, register and CEFR complexity only; all authored lines are original.
+
+Gate A/B/C PASS for A2.7–A2.9. Grammar lint: 0 errors / 0 advisory notes across 20 worksheet situations; full suite 397/397; API/web typechecks PASS; seed/schema/reference/contiguity/idempotency PASS. Chromium completed all nine A2 course situations in order, checked 456 transcript snapshots, verified Course progress 9/9 and all nine unique Mission PASS paths at 100% (`can_do`), plus one A2.7 Mission FAIL at 0% (`learning`). Details and preview screenshots: [A2 Batch 3 production QA](docs/A2_BATCH3_PRODUCTION_QA.md).
+
 All three situations pass Gates A/B/C. Grammar lint: 0 errors / 0 advisory notes; API and web suites, typechecks, contiguous ordering, seed references and idempotent reseed pass. Chromium verified all three Mission PASS paths (100%, `can_do`), one Mission FAIL path (0%, `learning`), English-only transcripts, opener placement and progression. Screenshots/results are ignored preview artifacts under `artifacts/qa/session-dialogue/`.
 
 ## Totals
@@ -136,10 +142,10 @@ All three situations pass Gates A/B/C. Grammar lint: 0 errors / 0 advisory notes
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
-| A2 | 17 | 6 | 11 | 0 |
+| A2 | 17 | 9 | 8 | 0 |
 | B1 | 19 | 0 | 19 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **17** | **52** | **0** |
+| **Total** | **69** | **20** | **49** | **0** |
 
 ---
 

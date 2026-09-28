@@ -108,7 +108,7 @@ async function main(): Promise<void> {
   const isSieTrack = (id: string) =>
     id.startsWith("les_sie_") ||
     id.startsWith("sit_a1_") ||
-    /^sit_a2_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01)$/.test(
+    /^sit_a2_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01|travel_02|daily_01|daily_02)$/.test(
       id,
     );
 

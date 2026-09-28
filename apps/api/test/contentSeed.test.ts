@@ -25,9 +25,9 @@ test("the published catalogue includes A1 and the authored A2 chapters", () => {
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The authored
-  // situational course now includes A1 plus the first four A2 chapters.
-  assert.equal(published.length, 5);
-  assert.equal(published.filter((m) => m.levelCode === "A2").length, 4);
+  // situational course now includes A1 plus the first five A2 chapters.
+  assert.equal(published.length, 6);
+  assert.equal(published.filter((m) => m.levelCode === "A2").length, 5);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -97,7 +97,7 @@ test("A1.1 Practice Variation keeps Alex and transfers the self-introduction", (
   );
 });
 
-test("A2 Batch 1 and 2 have authored turns, two practice variations, and no answer gaps", () => {
+test("A2 Batch 1–3 have authored turns, two practice variations, and no answer gaps", () => {
   const bundle = loadSeedContent();
   const situationIds = [
     "sit_a2_people_01",
@@ -106,6 +106,9 @@ test("A2 Batch 1 and 2 have authored turns, two practice variations, and no answ
     "sit_a2_restaurant_01",
     "sit_a2_restaurant_02",
     "sit_a2_travel_01",
+    "sit_a2_travel_02",
+    "sit_a2_daily_01",
+    "sit_a2_daily_02",
   ];
 
   for (const situationId of situationIds) {
@@ -182,7 +185,73 @@ test("A2 Batch 2 preserves phone, dietary, group-size, and delay transfer", () =
   assert.match(item("itm_a2_a26_v1_wrong_building")?.examples[0]?.text ?? "", /went to the wrong building.*missed/i);
 });
 
-test("A2 Batch 1 and 2 plans keep semantic turns once and exclude variations from Missions", async () => {
+test("A2 Batch 3 preserves clarification, connected past narrative, and two future-plan forms", () => {
+  const bundle = loadSeedContent();
+  const item = (id: string) => bundle.learningItems.find((row) => row.id === id);
+
+  assert.match(item("itm_a2_a27_check_direction")?.displayForm ?? "", /Sorry, did you say/i);
+  assert.match(item("itm_a2_a27_restate_route")?.displayForm ?? "", /So you said.*Is that right/i);
+  assert.match(item("itm_a2_a27_finish_route")?.displayForm ?? "", /So I go/i);
+  assert.match(item("itm_a2_a27_v1_three_turns")?.displayForm ?? "", /turn left.*turn right.*first left/i);
+  assert.match(item("itm_a2_a27_v2_number_check")?.displayForm ?? "", /bus sixty.*the sixteen/i);
+
+  const weekendStory = ["film", "reaction", "detail"]
+    .map((name) => item(`itm_a2_a28_${name}`)?.displayForm ?? "")
+    .join(" ");
+  assert.match(weekendStory, /watched.*talked.*had a lovely dinner/i);
+  assert.equal((weekendStory.match(/[.!?](?:\s|$)/g) ?? []).length, 3);
+  assert.match(item("itm_a2_a28_v1_trip")?.displayForm ?? "", /took a train/i);
+  assert.match(item("itm_a2_a28_v2_rain")?.displayForm ?? "", /rained.*stayed/i);
+
+  assert.match(item("itm_a2_a29_intention")?.displayForm ?? "", /going to/i);
+  assert.match(item("itm_a2_a29_arrangement")?.displayForm ?? "", /I'm meeting.*we're walking/i);
+  assert.match(item("itm_a2_a29_v1_maya_plan")?.displayForm ?? "", /Maya/i);
+  assert.match(item("itm_a2_a29_v2_change_plan")?.displayForm ?? "", /Friday instead.*still meeting/i);
+});
+
+test("A2 Batch 3 wires the V2 Near/Far reviews and ordered prerequisite path", () => {
+  const bundle = loadSeedContent();
+  const reviews = (lessonId: string) =>
+    bundle.lessonItems
+      .filter((row) => row.lessonId === lessonId && row.role === "review")
+      .map((row) => row.contentId);
+
+  assert.deepEqual(reviews("sit_a2_travel_02"), [
+    "itm_sie_where_is_the",
+    "itm_sie_a18_going_to_oxford",
+  ]);
+  assert.deepEqual(reviews("sit_a2_daily_01"), [
+    "itm_sie_usually",
+    "itm_sie_every_day",
+  ]);
+  assert.deepEqual(reviews("sit_a2_daily_02"), ["itm_a2_a28_film"]);
+
+  const courseOrder = bundle.lessons
+    .filter((lesson) =>
+      ["mod_a2_getting_around", "mod_a2_daily_life"].includes(
+        lesson.moduleId,
+      ),
+    )
+    .sort((a, b) => {
+      const moduleOrder = new Map(
+        bundle.modules.map((module) => [module.id, module.order]),
+      );
+      return (
+        (moduleOrder.get(a.moduleId) ?? 0) -
+          (moduleOrder.get(b.moduleId) ?? 0) ||
+        a.order - b.order
+      );
+    })
+    .map((lesson) => lesson.id);
+  assert.deepEqual(courseOrder, [
+    "sit_a2_travel_01",
+    "sit_a2_travel_02",
+    "sit_a2_daily_01",
+    "sit_a2_daily_02",
+  ]);
+});
+
+test("A2 Batch 1–3 plans keep semantic turns once and exclude variations from Missions", async () => {
   const { db, sqlite } = createTestDb();
   await seedContent(db);
 
@@ -193,6 +262,9 @@ test("A2 Batch 1 and 2 plans keep semantic turns once and exclude variations fro
     "sit_a2_restaurant_01",
     "sit_a2_restaurant_02",
     "sit_a2_travel_01",
+    "sit_a2_travel_02",
+    "sit_a2_daily_01",
+    "sit_a2_daily_02",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const plan = await planEpisodeSessions(db, "lvl_a2", links);

@@ -61,5 +61,14 @@
     "description": "Объяснять задержки и менять планы в дороге.",
     "order": 7,
     "status": "published"
+  },
+  {
+    "id": "mod_a2_daily_life",
+    "levelCode": "A2",
+    "title": "Повседневная жизнь",
+    "slug": "a2-daily-life",
+    "description": "Рассказывать о прошедших выходных и делиться планами на неделю.",
+    "order": 8,
+    "status": "published"
   }
 ]

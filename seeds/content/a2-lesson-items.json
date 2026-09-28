@@ -1132,5 +1132,248 @@
     "role": "practice",
     "order": 12,
     "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_02_confirm_turn",
+    "lessonId": "sit_a2_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a27_check_direction",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_02_restate",
+    "lessonId": "sit_a2_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a27_restate_route",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_02_finish",
+    "lessonId": "sit_a2_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a27_finish_route",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_02_grammar",
+    "lessonId": "sit_a2_travel_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_reported_confirmation",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_02_review_direction",
+    "lessonId": "sit_a2_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_where_is_the",
+    "role": "review",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_02_review_ticket",
+    "lessonId": "sit_a2_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_going_to_oxford",
+    "role": "review",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_02_v1_route",
+    "lessonId": "sit_a2_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a27_v1_three_turns",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_02_v2_number",
+    "lessonId": "sit_a2_travel_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a27_v2_number_check",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_01_film",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a28_film",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_01_reaction",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a28_reaction",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_01_detail",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a28_detail",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_01_grammar",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_positive",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_01_review_routine",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_usually",
+    "role": "review",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_01_review_day",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_every_day",
+    "role": "review",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_01_v1_trip",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a28_v1_trip",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_01_v1_trip_detail",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a28_v1_trip_detail",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_01_v2_rain",
+    "lessonId": "sit_a2_daily_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a28_v2_rain",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_02_intention",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a29_intention",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_02_arrangement",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a29_arrangement",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_02_second_plan",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a29_second_plan",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_02_grammar_going_to",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_going_to_future",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_02_grammar_arrangements",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_present_continuous_arrangements",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_daily_02_review_near",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a28_film",
+    "role": "review",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_02_v1_maya_plan",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a29_v1_maya_plan",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_02_v1_maya_arrangement",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a29_v1_maya_arrangement",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_02_v2_initial_plans",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a29_v2_initial_plans",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_daily_02_v2_change_plan",
+    "lessonId": "sit_a2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a29_v2_change_plan",
+    "role": "practice",
+    "order": 10,
+    "required": false
   }
 ]

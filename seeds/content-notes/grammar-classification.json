@@ -626,5 +626,243 @@
         "sourceField": "npcReplyCorrect"
       }
     ]
+  },
+  {
+    "situationId": "sit_a2_travel_02",
+    "phrases": [
+      {
+        "text": "Sorry, did you say turn right at the bridge?",
+        "itemId": "itm_a2_a27_check_direction",
+        "classification": "chunk",
+        "chunkLabel": "Fixed A2 clarification frame for a possible mishearing."
+      },
+      {
+        "text": "So you said to turn left at the bridge, go past the library, then turn right at the lights. Is that right?",
+        "itemId": "itm_a2_a27_restate_route",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_reported_confirmation"
+      },
+      {
+        "text": "So I go straight across at the next crossing, and the museum is on my left?",
+        "itemId": "itm_a2_a27_finish_route",
+        "classification": "chunk",
+        "chunkLabel": "Spoken So I go... / Is that right? route-checking frame."
+      },
+      {
+        "text": "So I go straight on, turn left at the park, pass the post office, turn right at the bridge, then take the first left. Is that right?",
+        "itemId": "itm_a2_a27_v1_three_turns",
+        "classification": "chunk",
+        "chunkLabel": "Route-reformulation frame exercised with three turns in Practice Variation 1."
+      },
+      {
+        "text": "Sorry, did you say bus sixty? So I take the sixteen and get off by the market, is that right?",
+        "itemId": "itm_a2_a27_v2_number_check",
+        "classification": "chunk",
+        "chunkLabel": "Clarification and confirmation frames transferred to a misheard bus number."
+      },
+      {
+        "text": "Go straight along King Street and turn left at the bridge.",
+        "classification": "chunk",
+        "chunkLabel": "NPC recycles familiar A1 direction imperatives as the route context."
+      },
+      {
+        "text": "No, turn left at the bridge. After the library, turn right at the traffic lights.",
+        "classification": "chunk",
+        "chunkLabel": "NPC gives route instructions; the lesson target is learner confirmation, not new imperative grammar."
+      },
+      {
+        "text": "That's right. The museum is just across the next crossing, on your left.",
+        "classification": "chunk",
+        "chunkLabel": "NPC confirms the route and adds the destination landmark."
+      },
+      {
+        "text": "Exactly. You can't miss it.",
+        "classification": "chunk",
+        "chunkLabel": "Fixed reassuring response after a route is confirmed."
+      },
+      {
+        "text": "Yes, that's the route. After the third turn, the museum entrance is on your right.",
+        "classification": "chunk",
+        "chunkLabel": "NPC confirms the longer transfer route."
+      },
+      {
+        "text": "That's right—bus sixteen. It stops right by the market.",
+        "classification": "chunk",
+        "chunkLabel": "NPC corrects the number and confirms the stop."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_daily_01",
+    "phrases": [
+      {
+        "text": "On Saturday, Maya and I watched a new film downtown.",
+        "itemId": "itm_a2_a28_film",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "Did you enjoy it?",
+        "classification": "chunk",
+        "chunkLabel": "NPC's conversational follow-up; Past Simple question forms are not added as a learner target.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Yes, it was funny, and we talked about it over dinner.",
+        "itemId": "itm_a2_a28_reaction",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "We had a lovely dinner at the little Italian café beside the cinema.",
+        "itemId": "itm_a2_a28_detail",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "How was your weekend? Did you do anything fun?",
+        "classification": "chunk",
+        "chunkLabel": "NPC's familiar opening question; the Mission targets the learner's Past Simple story."
+      },
+      {
+        "text": "Where did you have dinner?",
+        "classification": "chunk",
+        "chunkLabel": "NPC follow-up asks for a place detail and is not a new learner grammar target."
+      },
+      {
+        "text": "That sounds like a lovely evening. Thanks for telling me.",
+        "classification": "chunk",
+        "chunkLabel": "NPC's natural reaction and closing turn."
+      },
+      {
+        "text": "On Saturday, I took a train to Bath with my cousin.",
+        "itemId": "itm_a2_a28_v1_trip",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "We visited the market and had lunch by the river. It was a lovely day.",
+        "itemId": "itm_a2_a28_v1_trip_detail",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "We planned a picnic, but it rained all morning, so we stayed at the museum café instead.",
+        "itemId": "itm_a2_a28_v2_rain",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "At least the museum café kept you dry. Did you enjoy the exhibition?",
+        "classification": "chunk",
+        "chunkLabel": "NPC reacts to the rainy-day change and asks a relevant follow-up."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_daily_02",
+    "phrases": [
+      {
+        "text": "I'm going to visit the art market after work next week.",
+        "itemId": "itm_a2_a29_intention",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_going_to_future"
+      },
+      {
+        "text": "Which day? I finish early on Thursday.",
+        "classification": "chunk",
+        "chunkLabel": "NPC's work availability prompts a realistic arrangement; not a target structure.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Thursday works.",
+        "itemId": "itm_a2_a29_arrangement",
+        "classification": "chunk",
+        "chunkLabel": "Fixed agreement phrase before confirming an arrangement."
+      },
+      {
+        "text": "I'm meeting you at the station at six, and we're walking over together.",
+        "itemId": "itm_a2_a29_arrangement",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_continuous_arrangements"
+      },
+      {
+        "text": "Perfect. What would you like to do after the market?",
+        "classification": "chunk",
+        "chunkLabel": "NPC uses a familiar social question; would like is not a new target here.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I'm going to get dinner nearby.",
+        "itemId": "itm_a2_a29_second_plan",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_going_to_future"
+      },
+      {
+        "text": "We're meeting at the noodle place at eight.",
+        "itemId": "itm_a2_a29_second_plan",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_continuous_arrangements"
+      },
+      {
+        "text": "I'm going to meet Maya for a walk next week.",
+        "itemId": "itm_a2_a29_v1_maya_plan",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_going_to_future"
+      },
+      {
+        "text": "We're meeting by the river on Wednesday after her class.",
+        "itemId": "itm_a2_a29_v1_maya_arrangement",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_continuous_arrangements"
+      },
+      {
+        "text": "I'm going to visit the book fair on Thursday, and I'm meeting Maya for dinner on Saturday.",
+        "itemId": "itm_a2_a29_v2_initial_plans",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_going_to_future"
+      },
+      {
+        "text": "I'm meeting Maya for dinner on Saturday.",
+        "itemId": "itm_a2_a29_v2_initial_plans",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_continuous_arrangements"
+      },
+      {
+        "text": "Oh, then I'm going to visit the book fair on Friday instead. I'm still meeting Maya for dinner on Saturday.",
+        "itemId": "itm_a2_a29_v2_change_plan",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_going_to_future"
+      },
+      {
+        "text": "I'm still meeting Maya for dinner on Saturday.",
+        "itemId": "itm_a2_a29_v2_change_plan",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_continuous_arrangements"
+      },
+      {
+        "text": "Are you free next week? I could use a day out.",
+        "classification": "chunk",
+        "chunkLabel": "NPC opens a social plan conversation; could use is a fixed conversational chunk."
+      },
+      {
+        "text": "Sounds good. I'll look up the menu tonight.",
+        "classification": "chunk",
+        "chunkLabel": "NPC closes with an ordinary promise; will is not a new learner target."
+      },
+      {
+        "text": "I saw the notice—the book fair opens on Friday this week, not Thursday. Maya says Saturday still works.",
+        "classification": "chunk",
+        "chunkLabel": "NPC gives the new condition that triggers a plan correction."
+      },
+      {
+        "text": "All right, enjoy the fair!",
+        "classification": "chunk",
+        "chunkLabel": "NPC closes with a relevant wish about the changed fair plan."
+      }
+    ]
   }
 ]

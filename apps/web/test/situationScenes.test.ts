@@ -68,6 +68,24 @@ test("A2 Batch 2 maps restaurant and station conversations to Leo and Rosa", () 
   assert.match(openingLine("sit_a2_travel_01"), /near the station/i);
 });
 
+test("A2 Batch 3 maps route and daily-life dialogues to Rosa and Alex", () => {
+  assert.deepEqual(sceneForSituation("sit_a2_travel_02"), {
+    scene: "street",
+    cast: "rosa",
+  });
+  assert.deepEqual(sceneForSituation("sit_a2_daily_01"), {
+    scene: "meeting",
+    cast: "alex",
+  });
+  assert.deepEqual(sceneForSituation("sit_a2_daily_02"), {
+    scene: "cafe",
+    cast: "alex",
+  });
+  assert.match(openingLine("sit_a2_travel_02"), /King Street.*left.*bridge/i);
+  assert.match(openingLine("sit_a2_daily_01"), /How was your weekend/i);
+  assert.match(openingLine("sit_a2_daily_02"), /free next week/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",
@@ -103,6 +121,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_a2_restaurant_01",
     "sit_a2_restaurant_02",
     "sit_a2_travel_01",
+    "sit_a2_travel_02",
+    "sit_a2_daily_01",
+    "sit_a2_daily_02",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

@@ -29,22 +29,25 @@ const defaultEpisodes =
         "sit_a2_restaurant_01",
         "sit_a2_restaurant_02",
         "sit_a2_travel_01",
+        "sit_a2_travel_02",
+        "sit_a2_daily_01",
+        "sit_a2_daily_02",
       ]
     : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
-const expectedCourseCount = QA_LEVEL === "A2" ? 6 : 11;
+const expectedCourseCount = QA_LEVEL === "A2" ? 9 : 11;
 const expectedChapterProgress =
   QA_LEVEL === "A2"
-    ? ["0 из 2", "0 из 1", "0 из 2", "0 из 1"]
+    ? ["0 из 2", "0 из 1", "0 из 2", "0 из 2", "0 из 2"]
     : ["0 из 11"];
 const completedChapterProgress =
   QA_LEVEL === "A2"
-    ? ["2 из 2", "1 из 1", "2 из 2", "1 из 1"]
+    ? ["2 из 2", "1 из 1", "2 из 2", "2 из 2", "2 из 2"]
     : ["11 из 11"];
 const episodes = process.argv.slice(2).length
   ? process.argv.slice(2)
   : defaultEpisodes;
 const preferredFailEpisode =
-  QA_LEVEL === "A2" ? "sit_a2_restaurant_01" : episodes[0];
+  QA_LEVEL === "A2" ? "sit_a2_travel_02" : episodes[0];
 const failEpisode = episodes.includes(preferredFailEpisode)
   ? preferredFailEpisode
   : episodes[0];
@@ -355,7 +358,10 @@ async function run(failMission) {
                 stored.targetId.startsWith("itm_a2_a23_") ||
                 stored.targetId.startsWith("itm_a2_a24_") ||
                 stored.targetId.startsWith("itm_a2_a25_") ||
-                stored.targetId.startsWith("itm_a2_a26_"))
+                stored.targetId.startsWith("itm_a2_a26_") ||
+                stored.targetId.startsWith("itm_a2_a27_") ||
+                stored.targetId.startsWith("itm_a2_a28_") ||
+                stored.targetId.startsWith("itm_a2_a29_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,
