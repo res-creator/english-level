@@ -90,6 +90,12 @@ const ABOVE_LEVEL_SIGNATURES: { label: string; re: RegExp }[] = [
   },
 ];
 
+const B1_LEVEL_CONSTRUCTIONS = new Set([
+  "Present Perfect (have/has/had + past participle)",
+  "used to (past habit)",
+  "question tag",
+]);
+
 function loadClassifications(): SituationClassification[] {
   const raw = readFileSync(NOTES_PATH, "utf-8");
   return JSON.parse(raw) as SituationClassification[];
@@ -101,14 +107,23 @@ async function main(): Promise<void> {
   const notesBySituation = new Map(notes.map((n) => [n.situationId, n]));
 
   const realItemIds = new Set(bundle.learningItems.map((i) => i.id));
+  const moduleById = new Map(
+    bundle.modules.map((module) => [module.id, module]),
+  );
+  const levelBySituation = new Map(
+    bundle.lessons.map((lesson) => [
+      lesson.id,
+      moduleById.get(lesson.moduleId)?.levelCode,
+    ]),
+  );
 
   // Scope the continuous-situation curriculum (les_sie_*, sit_a1_*, and
-  // the explicitly authored V2 A2 situation ids). The legacy les_a2_*
-  // mixed-practice track remains out of scope.
-  const isSieTrack = (id: string) =>
+  // the explicitly authored V2 A2/B1 situation ids). Legacy mixed-practice
+  // lessons remain out of scope.
+  const isAuthoredSituation = (id: string) =>
     id.startsWith("les_sie_") ||
     id.startsWith("sit_a1_") ||
-    /^sit_a2_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01|travel_02|daily_01|daily_02|shop_01|shop_02|health_01|work_01|work_02|social_01|problems_01|problems_02)$/.test(
+    /^(sit_a2_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01|travel_02|daily_01|daily_02|shop_01|shop_02|health_01|work_01|work_02|social_01|problems_01|problems_02)|sit_b1_(people_01|people_02|cafe_01))$/.test(
       id,
     );
 
@@ -119,7 +134,7 @@ async function main(): Promise<void> {
   for (const link of bundle.lessonItems) {
     if (link.contentType !== "grammar_pattern") continue;
     if (link.role !== "target" && link.role !== "introduce") continue;
-    if (!isSieTrack(link.lessonId)) {
+    if (!isAuthoredSituation(link.lessonId)) {
       skippedOutOfScope++;
       continue;
     }
@@ -181,6 +196,12 @@ async function main(): Promise<void> {
     for (const phrase of note.phrases) {
       if (phrase.classification !== "target") continue;
       for (const sig of ABOVE_LEVEL_SIGNATURES) {
+        if (
+          levelBySituation.get(note.situationId) === "B1" &&
+          B1_LEVEL_CONSTRUCTIONS.has(sig.label)
+        ) {
+          continue;
+        }
         if (sig.re.test(phrase.text)) {
           console.log(
             `  NOTE  ${note.situationId} / "${phrase.text}" matches "${sig.label}" but is classified "target" — double-check this isn't actually an above-level chunk.`,
@@ -200,7 +221,7 @@ async function main(): Promise<void> {
   }
 
   console.log(
-    `\n${errors} error(s), ${advisories} advisory note(s) across ${notes.length} situation(s) with a worksheet entry, ${attachedPatterns.size} sie-track situation(s) with an attached grammar target ` +
+    `\n${errors} error(s), ${advisories} advisory note(s) across ${notes.length} situation(s) with a worksheet entry, ${attachedPatterns.size} authored situation(s) with an attached grammar target ` +
       `(${skippedOutOfScope} grammar attachment(s) in other tracks skipped as out of scope).`,
   );
   if (errors > 0) {

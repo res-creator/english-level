@@ -70,9 +70,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 | ID | Title | Chapter | NPC | Status | Variations | Grammar | Notes |
 |---|---|---|---|---|---|---|---|
-| `sit_b1_people_01` | Обсудить новости с Алексом | People & Connections | Alex | planned | 2 | Present Perfect (news), "Have you heard" (corrected in V2 §2.2) | |
-| `sit_b1_people_02` | Не согласиться вежливо | People & Connections | Alex | planned | 2 | modal softeners | |
-| `sit_b1_cafe_01` | Порекомендовать и обсудить выбор | Café & Casual Food | Maya | planned | 2 | "if I were you" (chunk) | |
+| `sit_b1_people_01` | Обсудить новости с Алексом | People & Connections | Alex | **done** | 2 — personal news about a friend's move; mildly negative community news with a softer reaction | target: `gr_b1_present_perfect_news` (`Have you heard whether/if…?`); reactions and opinions are lexical chunks | Gate A/B/C PASS; Near A2.1; prerequisite A2.1; BC B1 Responding to news; vocabulary: reaction, event, readers, participate, confirm |
+| `sit_b1_people_02` | Не согласиться вежливо | People & Connections | Alex | **done** | 2 — disagreement over an event plan; Alex pushes back again and learner holds position politely | target: `gr_b1_modal_softeners` (`might/could`); `I see what you mean, but…`, `I don't think…`, `I'm not sure I agree…` are chunks | Gate A/B/C PASS; Near B1.1; prerequisite B1.1; BC B1 Agreeing/disagreeing; vocabulary: market, stalls, volume, residents, forecast, equipment |
+| `sit_b1_cafe_01` | Порекомендовать и обсудить выбор | Café & Casual Food | Maya | **done** | 2 — drinks recommendation transfers to food; snack variation weighs price against freshness | recycled target: `gr_a2_comparatives`; `If I were you…`, preference and recommendation frames are lexical chunks | Gate A/B/C PASS; Near A2.3, Far A1.2 café vocabulary; prerequisite A2.3; BC B1 recommendations + Cambridge B1 vocabulary; no Second Conditional lesson |
 | `sit_b1_restaurant_01` | Особые диетические потребности | Restaurant & Dining | Leo | planned | 2 | Present Simple, could you make sure | |
 | `sit_b1_restaurant_02` | Серьёзная жалоба на обслуживание | Restaurant & Dining | Leo | planned | 2 | Present Perfect Continuous (chunk), should have (chunk) | |
 | `sit_b1_travel_01` | Проблема в поездке | Getting Around | Rosa | planned | 2 | Present Perfect Passive (chunk) | |
@@ -161,15 +161,23 @@ A2.16: Leo приносит itemised bill; learner указывает на apple
 
 Gate A/B/C Batch 6 PASS. Grammar lint: 0 errors / 0 advisory notes на 28 классифицированных V2 situations. Chromium полного уровня (включая A2.4 phone variation): 17/17 situations в PASS-ветке; каждый Mission 100% `can_do`; course progress 17/17. Отдельный H.A2 Mission FAIL вернул 0% `learning`, без completion. Всего проверено 884 transcript snapshots; продолжения NPC идут за semantic turn, opener появляется только в первой session, Cyrillic отсутствует в English transcript. Для A2.16/H.A2 создано 36 preview screenshots; JSON результатов — в ignored `artifacts/qa/session-dialogue/results.json`. Workspace suite 404/404 (API 319, web 79, shared 6); API/web typecheck PASS; seed idempotency, ссылки, порядок и contiguity PASS. Подробности: [A2 Batch 6 production QA](docs/A2_BATCH6_PRODUCTION_QA.md).
 
+## B1 Batch 1 reference and QA record
+
+Перед авторингом использованы British Council [Responding to news (B1)](https://learnenglish.britishcouncil.org/comment/154872) для реакции → эмоции → связанного follow-up; [Agreeing and disagreeing (B1)](https://learnenglish.britishcouncil.org/free-resources/speaking/b1/agreeing-disagreeing?page=6) для мягкого признания чужой точки зрения → причины → предложения; [An email giving holiday advice (B1)](https://learnenglish.britishcouncil.org/free-resources/writing/b1/email-giving-holiday-advice?page=8) для рекомендации с кратким обоснованием. Cambridge [B1 Preliminary vocabulary list](https://www.cambridgeenglish.org/vn/Images/506887-b1-preliminary-vocabulary-list.pdf) и British Council [B1 descriptor](https://learnenglish.britishcouncil.org/level/understand-your-level/b1-intermediate) задали знакомый тематический словарь и объём связного объяснения. Диалоги оригинальные; использованы только register, последовательность речевых функций и уровень.
+
+B1.1: Alex делится новостью о книжном магазине Майи и читательском вечере. Learner реагирует эмоционально, объясняет короткое мнение, спрашивает об участии библиотеки через `Have you heard whether…?`, затем поддерживает тему. Variations: переезд подруги в Бристоль; сокращение небольших библиотечных встреч. B1.2: Alex предлагает закончить музыку на районной ярмарке в семь. Learner признаёт его concern, объясняет несогласие, предлагает снизить громкость и размещает музыку дальше от домов. v1 переносит несогласие на время начала ярмарки; v2 — на отмену кино под открытым небом, Alex возражает дважды, learner спокойно удерживает позицию и предлагает срок решения. B1.3: Maya просит постоянного гостя выбрать напиток для доски; learner сравнивает, выражает preference, обосновывает рекомендацию и добавляет вторую полезную подсказку. Variations переносят функцию на еду и на перекус с компромиссом цена/свежесть.
+
+Gate A/B/C PASS. Grammar lint: 0 errors / 0 advisory notes на 31 размеченной ситуации. Structural/reference/contiguity/idempotent reseed: PASS. Chromium: B1.1–B1.3 Mission PASS, 100% `can_do`; отдельный B1.1 FAIL — 0%, `learning`, без completion; progression 3/3. Проверено 106 transcript snapshots и создано 43 preview screenshots для B1.1–B1.3 в ignored `artifacts/qa/session-dialogue/`. Полный suite **407/407** (API 321, web 80, shared 6); API/web typecheck PASS. Полный отчёт: [B1 Batch 1 Production QA](docs/B1_BATCH1_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
-| B1 | 19 | 0 | 19 | 0 |
+| B1 | 19 | 3 | 16 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **28** | **41** | **0** |
+| **Total** | **69** | **31** | **38** | **0** |
 
 ## A2 level freeze
 

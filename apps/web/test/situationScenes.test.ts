@@ -112,6 +112,15 @@ test("A2 Batch 6 maps the bill error to Leo and OTC shopping to Emma", () => {
   assert.match(openingLine("sit_a2_health_01"), /simple remedies.*on this shelf/i);
 });
 
+test("B1 Batch 1 maps news and disagreement to Alex and recommendations to Maya", () => {
+  assert.deepEqual(sceneForSituation("sit_b1_people_01"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b1_people_02"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b1_cafe_01"), { scene: "cafe", cast: "maya" });
+  assert.match(openingLine("sit_b1_people_01"), /Maya.*bookshop/i);
+  assert.match(openingLine("sit_b1_people_02"), /evening market.*music/i);
+  assert.match(openingLine("sit_b1_cafe_01"), /drinks board.*two new drinks/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",
@@ -150,6 +159,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_a2_travel_02",
     "sit_a2_daily_01",
     "sit_a2_daily_02",
+    "sit_b1_people_01",
+    "sit_b1_people_02",
+    "sit_b1_cafe_01",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

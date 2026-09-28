@@ -95,12 +95,22 @@ test("the published A2 course exposes all nine authored V2 chapters and seventee
   assert.equal(course.episodesTotal, 17);
 });
 
+test("the published B1 course exposes the three authored Batch 1 situations in progression order", async () => {
+  const { db } = await seeded();
+  const course = await getCourse(db, "B1", "usr_test");
+  assert.deepEqual(
+    course.chapters.flatMap((chapter) => chapter.episodes.map((episode) => episode.id)),
+    ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01"],
+  );
+  assert.equal(course.episodesTotal, 3);
+});
+
 test("a level with no seeded content returns an empty course, not an error", async () => {
   const { db } = await seeded();
-  const b1 = await getCourse(db, "B1", "usr_test");
-  assert.deepEqual(b1.chapters, []);
-  assert.equal(b1.episodesTotal, 0);
-  assert.equal(b1.currentEpisodeId, null);
+  const b2 = await getCourse(db, "B2", "usr_test");
+  assert.deepEqual(b2.chapters, []);
+  assert.equal(b2.episodesTotal, 0);
+  assert.equal(b2.currentEpisodeId, null);
 });
 
 test("no verified level yet returns an empty course", async () => {

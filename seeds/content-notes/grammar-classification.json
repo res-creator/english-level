@@ -1522,5 +1522,272 @@
         "sourceField": "npcReplyCorrect"
       }
     ]
+  },
+  {
+    "situationId": "sit_b1_people_01",
+    "phrases": [
+      {
+        "text": "I ran into Maya this morning. She had some exciting news about the bookshop.",
+        "classification": "chunk",
+        "chunkLabel": "NPC opener gives a specific current topic in familiar language.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Oh, that's fantastic! She cares a lot about books, so it sounds like a great fit.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b11_react",
+        "chunkLabel": "Reaction and opinion frame; the short reason supports the view."
+      },
+      {
+        "text": "She was thrilled when she told me. The first event is meant to bring neighbours together.",
+        "classification": "chunk",
+        "chunkLabel": "NPC continuation responds to the learner's positive reaction and adds the event's purpose.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Have you heard whether the library will take part too? Their readers might enjoy it.",
+        "classification": "target",
+        "itemId": "itm_b1_b11_followup",
+        "grammarPatternId": "gr_b1_present_perfect_news",
+        "chunkLabel": "The follow-up question uses the frozen Present Perfect news frame; might enjoy is an ordinary possibility, not the disagreement softener target."
+      },
+      {
+        "text": "Maya said she invited the library team, but they haven't confirmed yet.",
+        "classification": "chunk",
+        "chunkLabel": "NPC directly answers whether the library will participate.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I hope they can come. I think hearing different readers talk about books would make the evening more interesting.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b11_opinion",
+        "chunkLabel": "Short supported opinion and emotional stance; would make is a fixed tentative opinion frame here."
+      },
+      {
+        "text": "Me too. I'll ask Maya when she's planning the first discussion.",
+        "classification": "chunk",
+        "chunkLabel": "NPC responds to the learner's hope and takes a relevant next step.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Oh, that's exciting for Nina! Bristol could be a great change for her, especially with the new job.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b11_v1_personal",
+        "chunkLabel": "Variation transfers reaction and opinion to a friend's move; could be a lexical possibility frame."
+      },
+      {
+        "text": "She is looking forward to the job, though she'll miss her friends here.",
+        "classification": "chunk",
+        "chunkLabel": "NPC responds to the learner's supportive reaction with a relevant mixed feeling.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Oh, that's a shame. The smaller library events are really useful for people who can't get into town.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b11_v2_badnews",
+        "chunkLabel": "Variation transfers the reaction pattern to mildly negative community news."
+      },
+      {
+        "text": "They haven't decided about the Saturday group yet. Maya hopes it can stay because a lot of families go then.",
+        "classification": "chunk",
+        "chunkLabel": "NPC explains the uncertainty and gives a concrete reason connected to the learner's reaction.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Have you heard if they could move one event to the community hall? It might be easier for everyone.",
+        "classification": "target",
+        "itemId": "itm_b1_b11_v2_followup",
+        "grammarPatternId": "gr_b1_present_perfect_news",
+        "chunkLabel": "Variation recycles the Present Perfect news question; could/might express a tentative alternative."
+      },
+      {
+        "text": "I'll check with the organiser. The hall is free on Thursday evenings.",
+        "classification": "chunk",
+        "chunkLabel": "NPC answers the venue suggestion with concrete availability.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_people_02",
+    "phrases": [
+      {
+        "text": "I was at the evening market yesterday. I think the live music should end at seven.",
+        "classification": "chunk",
+        "chunkLabel": "NPC opener establishes Alex's proposal and a concrete low-stakes disagreement.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I see what you mean, but the music makes the market feel welcoming. A lot of families arrive after work and stay to listen.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b12_disagree",
+        "chunkLabel": "Softened disagreement frame with a concrete reason."
+      },
+      {
+        "text": "That's fair, although the stalls say people stay longer when the music is on.",
+        "classification": "chunk",
+        "chunkLabel": "NPC acknowledges the reason before giving a relevant counterpoint.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I'm not sure I agree that it needs to stop so early. We could lower the volume after seven; that might keep it comfortable for everyone.",
+        "classification": "target",
+        "itemId": "itm_b1_b12_softener",
+        "grammarPatternId": "gr_b1_modal_softeners",
+        "chunkLabel": "I’m not sure I agree is a fixed disagreement frame; could/might are the actual modal-softener target."
+      },
+      {
+        "text": "Maybe. But people who live beside the square still need a quiet evening.",
+        "classification": "chunk",
+        "chunkLabel": "Alex adds a second, distinct concern for nearby residents.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "That's true. Perhaps the music could stay near the main entrance, farther from the houses. Then the stalls can keep it, and residents get a quieter street.",
+        "classification": "target",
+        "itemId": "itm_b1_b12_compromise",
+        "grammarPatternId": "gr_b1_modal_softeners",
+        "chunkLabel": "Could is a tentative compromise proposal; the rest supplies a concrete reason."
+      },
+      {
+        "text": "That sounds workable. I'll suggest trying it for one month and asking the neighbours what they think.",
+        "classification": "chunk",
+        "chunkLabel": "NPC accepts a specific compromise and states how it can be tested.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I don't think the six o'clock start will work for everyone, though I see why you'd choose it. A later start could let more neighbours join.",
+        "classification": "target",
+        "itemId": "itm_b1_b12_v1_plan",
+        "grammarPatternId": "gr_b1_modal_softeners",
+        "chunkLabel": "Variation moves disagreement to event planning; I don't think is a fixed softened-opinion chunk and could softens an alternative."
+      },
+      {
+        "text": "I hadn't thought about the people coming from work. What time would you suggest?",
+        "classification": "chunk",
+        "chunkLabel": "NPC responds to the reason and invites a constructive alternative.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I'm not sure about cancelling the outdoor film. The forecast could improve, and we could keep the hall as a backup.",
+        "classification": "target",
+        "itemId": "itm_b1_b12_v2_hold",
+        "grammarPatternId": "gr_b1_modal_softeners",
+        "chunkLabel": "Variation begins a polite disagreement and offers a tentative alternative after an uncertain forecast."
+      },
+      {
+        "text": "The forecast has been poor all week, and the equipment is expensive to move at the last minute.",
+        "classification": "chunk",
+        "chunkLabel": "Alex pushes back again with a distinct practical constraint.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I understand, and I agree we need to protect the equipment. We might wait until Friday morning to decide; that gives us time to check the forecast.",
+        "classification": "target",
+        "itemId": "itm_b1_b12_v2_response",
+        "grammarPatternId": "gr_b1_modal_softeners",
+        "chunkLabel": "Learner recognises Alex's concern, holds the position respectfully, and uses might to make the proposal less absolute."
+      },
+      {
+        "text": "That's a sensible middle ground. I'll ask the team to hold the hall until then.",
+        "classification": "chunk",
+        "chunkLabel": "NPC accepts the learner's conditional decision point.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_cafe_01",
+    "phrases": [
+      {
+        "text": "I'm putting together the café's drinks board. We have two new drinks—which one would you feature?",
+        "classification": "chunk",
+        "chunkLabel": "Maya asks her regular customer for a practical recommendation.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "The ginger iced tea is lighter and less sweet than the vanilla cold brew, so it may suit more people on a warm day.",
+        "classification": "target",
+        "itemId": "itm_b1_b13_compare",
+        "grammarPatternId": "gr_a2_comparatives",
+        "chunkLabel": "Comparatives are recycled and extended to support a real recommendation."
+      },
+      {
+        "text": "That makes sense. The cold brew is popular with guests who like a richer drink.",
+        "classification": "chunk",
+        "chunkLabel": "Maya weighs in with relevant information about the second option.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I prefer the ginger tea for the board because it's refreshing but not too strong. If I were you, I'd recommend it with the lemon cake.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b13_preference",
+        "chunkLabel": "Preference plus reason and the frozen If I were you lexical chunk; not a live Second Conditional target."
+      },
+      {
+        "text": "Nice pairing. Would you mention who might prefer the cold brew?",
+        "classification": "chunk",
+        "chunkLabel": "Maya asks a specific follow-up so the choice guide covers both drinks.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Maybe add a note that the cold brew is for people who like a stronger taste. That gives customers a choice.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b13_reason",
+        "chunkLabel": "Second reasoned recommendation responds to Maya's follow-up."
+      },
+      {
+        "text": "Good idea. I'll put both options on the board with those notes.",
+        "classification": "chunk",
+        "chunkLabel": "Maya accepts the recommendation and states how she will use it.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The mushroom toast would be a better lunch choice than the cheese scone; it's more filling and still works with soup.",
+        "classification": "target",
+        "itemId": "itm_b1_b13_v1_food",
+        "grammarPatternId": "gr_a2_comparatives",
+        "chunkLabel": "Variation transfers comparison and an explained recommendation from drinks to food."
+      },
+      {
+        "text": "I hadn't thought of serving it with soup. I'll try that as the lunch suggestion.",
+        "classification": "chunk",
+        "chunkLabel": "Maya responds to the food recommendation and its reason.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The oat bar is cheaper than the fruit bowl, but the fruit bowl feels fresher. For a light afternoon snack, I'd choose the fruit.",
+        "classification": "target",
+        "itemId": "itm_b1_b13_v2_options",
+        "grammarPatternId": "gr_a2_comparatives",
+        "chunkLabel": "Variation transfers the recommendation to snacks and balances price against freshness; I'd choose is a lexical recommendation chunk."
+      },
+      {
+        "text": "That's helpful. I'll list both and mark the fruit bowl as the lighter option.",
+        "classification": "chunk",
+        "chunkLabel": "Maya responds to the comparison and explains how both options will appear on the board.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
   }
 ]

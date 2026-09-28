@@ -1,0 +1,359 @@
+[
+  {
+    "id": "itm_b1_b11_react",
+    "itemType": "functional_phrase",
+    "lemma": "b11 react",
+    "displayForm": "Oh, that's fantastic! She cares a lot about books, so it sounds like a great fit.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "news and reactions",
+    "ru": {
+      "translation": "О, здорово! Она очень любит книги, так что ей это отлично подходит.",
+      "usageNote": "Learner reacts emotionally to Alex's specific news and adds a brief opinion with a reason."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b11_react_01",
+        "text": "Oh, that's fantastic! She cares a lot about books, so it sounds like a great fit.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "She was thrilled when she told me. The first event is meant to bring neighbours together."
+  },
+  {
+    "id": "itm_b1_b11_followup",
+    "itemType": "functional_phrase",
+    "lemma": "b11 followup",
+    "displayForm": "Have you heard whether the library will take part too? Their readers might enjoy it.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "news and reactions",
+    "ru": {
+      "translation": "Ты слышал(а), будет ли библиотека тоже участвовать? Её читателям это может понравиться.",
+      "usageNote": "Present Perfect news question from frozen V2; follows from the reading event and adds a relevant follow-up."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b11_followup_01",
+        "text": "Have you heard whether the library will take part too? Their readers might enjoy it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Maya said she invited the library team, but they haven't confirmed yet."
+  },
+  {
+    "id": "itm_b1_b11_opinion",
+    "itemType": "functional_phrase",
+    "lemma": "b11 opinion",
+    "displayForm": "I hope they can come. I think hearing different readers talk about books would make the evening more interesting.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "news and reactions",
+    "ru": {
+      "translation": "Надеюсь, они смогут прийти. Думаю, разговоры разных читателей о книгах сделают вечер интереснее.",
+      "usageNote": "Builds on Alex's answer with a short opinion and a supporting reason."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b11_opinion_01",
+        "text": "I hope they can come. I think hearing different readers talk about books would make the evening more interesting.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Me too. I'll ask Maya when she's planning the first discussion."
+  },
+  {
+    "id": "itm_b1_b11_v1_personal",
+    "itemType": "functional_phrase",
+    "lemma": "b11 v1 personal news",
+    "displayForm": "Oh, that's exciting for Nina! Bristol could be a great change for her, especially with the new job.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "news and reactions",
+    "ru": {
+      "translation": "О, я рад(а) за Нину! Переезд в Бристоль может стать для неё хорошим изменением, особенно с новой работой.",
+      "usageNote": "Practice variation transfers the response pattern to personal news about a friend's move."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b11_v1_personal_01",
+        "text": "Oh, that's exciting for Nina! Bristol could be a great change for her, especially with the new job.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "She is looking forward to the job, though she'll miss her friends here."
+  },
+  {
+    "id": "itm_b1_b11_v2_badnews",
+    "itemType": "functional_phrase",
+    "lemma": "b11 v2 bad news",
+    "displayForm": "Oh, that's a shame. The smaller library events are really useful for people who can't get into town.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "news and reactions",
+    "ru": {
+      "translation": "Как жаль. Небольшие библиотечные встречи очень полезны тем, кто не может добраться до центра.",
+      "usageNote": "Practice variation changes the news to a mildly negative community change and requires a softer reaction."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b11_v2_badnews_01",
+        "text": "Oh, that's a shame. The smaller library events are really useful for people who can't get into town.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "They haven't decided about the Saturday group yet. Maya hopes it can stay because a lot of families go then."
+  },
+  {
+    "id": "itm_b1_b11_v2_followup",
+    "itemType": "functional_phrase",
+    "lemma": "b11 v2 followup",
+    "displayForm": "Have you heard if they could move one event to the community hall? It might be easier for everyone.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "news and reactions",
+    "ru": {
+      "translation": "Ты слышал(а), могут ли они перенести одну встречу в общественный зал? Так, возможно, всем будет удобнее.",
+      "usageNote": "Follows the new constraint with a relevant question and a tentative suggestion."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b11_v2_followup_01",
+        "text": "Have you heard if they could move one event to the community hall? It might be easier for everyone.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I'll check with the organiser. The hall is free on Thursday evenings."
+  },
+  {
+    "id": "itm_b1_b12_disagree",
+    "itemType": "functional_phrase",
+    "lemma": "b12 disagree",
+    "displayForm": "I see what you mean, but the music makes the market feel welcoming. A lot of families arrive after work and stay to listen.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "opinions and disagreement",
+    "ru": {
+      "translation": "Понимаю, что ты имеешь в виду, но музыка создаёт на ярмарке гостеприимную атмосферу. Многие семьи приходят после работы и остаются послушать.",
+      "usageNote": "Acknowledges Alex's concern, then states a different view and gives a reason."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b12_disagree_01",
+        "text": "I see what you mean, but the music makes the market feel welcoming. A lot of families arrive after work and stay to listen.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's fair, although the stalls say people stay longer when the music is on."
+  },
+  {
+    "id": "itm_b1_b12_softener",
+    "itemType": "functional_phrase",
+    "lemma": "b12 modal softener",
+    "displayForm": "I'm not sure I agree that it needs to stop so early. We could lower the volume after seven; that might keep it comfortable for everyone.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "opinions and disagreement",
+    "ru": {
+      "translation": "Не уверен(а), что музыку нужно выключать так рано. После семи можно сделать её тише — возможно, так всем будет комфортно.",
+      "usageNote": "Maintains disagreement politely and uses could/might as modal softeners."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b12_softener_01",
+        "text": "I'm not sure I agree that it needs to stop so early. We could lower the volume after seven; that might keep it comfortable for everyone.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Maybe. But people who live beside the square still need a quiet evening."
+  },
+  {
+    "id": "itm_b1_b12_compromise",
+    "itemType": "functional_phrase",
+    "lemma": "b12 compromise",
+    "displayForm": "That's true. Perhaps the music could stay near the main entrance, farther from the houses. Then the stalls can keep it, and residents get a quieter street.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "opinions and disagreement",
+    "ru": {
+      "translation": "Это правда. Возможно, музыку можно оставить у главного входа, подальше от домов. Тогда она останется у торговых рядов, а на улице будет тише.",
+      "usageNote": "Recognises Alex's concern without abandoning the learner's position and offers a reasoned compromise."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b12_compromise_01",
+        "text": "That's true. Perhaps the music could stay near the main entrance, farther from the houses. Then the stalls can keep it, and residents get a quieter street.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds workable. I'll suggest trying it for one month and asking the neighbours what they think."
+  },
+  {
+    "id": "itm_b1_b12_v1_plan",
+    "itemType": "functional_phrase",
+    "lemma": "b12 v1 plan disagreement",
+    "displayForm": "I don't think the six o'clock start will work for everyone, though I see why you'd choose it. A later start could let more neighbours join.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "opinions and disagreement",
+    "ru": {
+      "translation": "Не думаю, что начало в шесть подойдёт всем, хотя я понимаю, почему ты выбираешь раннее время. Если начать позже, смогут прийти и другие соседи.",
+      "usageNote": "Variation changes the issue from a personal opinion to a practical event plan; I don't think is an explicit softened-opinion chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b12_v1_plan_01",
+        "text": "I don't think the six o'clock start will work for everyone, though I see why you'd choose it. A later start could let more neighbours join.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I hadn't thought about the people coming from work. What time would you suggest?"
+  },
+  {
+    "id": "itm_b1_b12_v2_hold",
+    "itemType": "functional_phrase",
+    "lemma": "b12 v2 hold position",
+    "displayForm": "I'm not sure about cancelling the outdoor film. The forecast could improve, and we could keep the hall as a backup.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "opinions and disagreement",
+    "ru": {
+      "translation": "Я не уверен(а) насчёт отмены фильма под открытым небом. Прогноз может улучшиться, а зал можно оставить запасным вариантом.",
+      "usageNote": "Variation changes the topic to an event plan; modal softeners express a reasoned alternative."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b12_v2_hold_01",
+        "text": "I'm not sure about cancelling the outdoor film. The forecast could improve, and we could keep the hall as a backup.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The forecast has been poor all week, and the equipment is expensive to move at the last minute."
+  },
+  {
+    "id": "itm_b1_b12_v2_response",
+    "itemType": "functional_phrase",
+    "lemma": "b12 v2 second response",
+    "displayForm": "I understand, and I agree we need to protect the equipment. We might wait until Friday morning to decide; that gives us time to check the forecast.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "opinions and disagreement",
+    "ru": {
+      "translation": "Понимаю и согласен(на), что оборудование нужно беречь. Возможно, решим в пятницу утром — будет время проверить прогноз.",
+      "usageNote": "After Alex pushes back again, learner keeps the position respectfully and offers a practical condition."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b12_v2_response_01",
+        "text": "I understand, and I agree we need to protect the equipment. We might wait until Friday morning to decide; that gives us time to check the forecast.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's a sensible middle ground. I'll ask the team to hold the hall until then."
+  },
+  {
+    "id": "itm_b1_b13_compare",
+    "itemType": "functional_phrase",
+    "lemma": "b13 compare drinks",
+    "displayForm": "The ginger iced tea is lighter and less sweet than the vanilla cold brew, so it may suit more people on a warm day.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "cafe recommendations",
+    "ru": {
+      "translation": "Имбирный холодный чай легче и менее сладкий, чем ванильный кофе холодного заваривания, поэтому в тёплый день он подойдёт большему числу людей.",
+      "usageNote": "Compares the two drinks and supports the recommendation with a reason."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b13_compare_01",
+        "text": "The ginger iced tea is lighter and less sweet than the vanilla cold brew, so it may suit more people on a warm day.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That makes sense. The cold brew is popular with guests who like a richer drink."
+  },
+  {
+    "id": "itm_b1_b13_preference",
+    "itemType": "functional_phrase",
+    "lemma": "b13 preference",
+    "displayForm": "I prefer the ginger tea for the board because it's refreshing but not too strong. If I were you, I'd recommend it with the lemon cake.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "cafe recommendations",
+    "ru": {
+      "translation": "Для доски я предпочитаю имбирный чай: он освежающий, но не слишком крепкий. На твоём месте я бы рекомендовала его с лимонным пирогом.",
+      "usageNote": "States and explains a preference; `If I were you...` is an explicit lexical chunk, not a Second Conditional target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b13_preference_01",
+        "text": "I prefer the ginger tea for the board because it's refreshing but not too strong. If I were you, I'd recommend it with the lemon cake.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Nice pairing. Would you mention who might prefer the cold brew?"
+  },
+  {
+    "id": "itm_b1_b13_reason",
+    "itemType": "functional_phrase",
+    "lemma": "b13 reasoned recommendation",
+    "displayForm": "Maybe add a note that the cold brew is for people who like a stronger taste. That gives customers a choice.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "cafe recommendations",
+    "ru": {
+      "translation": "Можно добавить, что холодный кофе подойдёт тем, кто любит более насыщенный вкус. Так у посетителей будет выбор.",
+      "usageNote": "Responds to Maya's follow-up by giving a second supported recommendation rather than repeating the first."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b13_reason_01",
+        "text": "Maybe add a note that the cold brew is for people who like a stronger taste. That gives customers a choice.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Good idea. I'll put both options on the board with those notes."
+  },
+  {
+    "id": "itm_b1_b13_v1_food",
+    "itemType": "functional_phrase",
+    "lemma": "b13 v1 food recommendation",
+    "displayForm": "The mushroom toast would be a better lunch choice than the cheese scone; it's more filling and still works with soup.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "cafe recommendations",
+    "ru": {
+      "translation": "Грибной тост лучше подойдёт на обед, чем сырная булочка: он сытнее и сочетается с супом.",
+      "usageNote": "Variation transfers the comparison and supported recommendation from drinks to food."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b13_v1_food_01",
+        "text": "The mushroom toast would be a better lunch choice than the cheese scone; it's more filling and still works with soup.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I hadn't thought of serving it with soup. I'll try that as the lunch suggestion."
+  },
+  {
+    "id": "itm_b1_b13_v2_options",
+    "itemType": "functional_phrase",
+    "lemma": "b13 v2 compare snacks",
+    "displayForm": "The oat bar is cheaper than the fruit bowl, but the fruit bowl feels fresher. For a light afternoon snack, I'd choose the fruit.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "cafe recommendations",
+    "ru": {
+      "translation": "Овсяный батончик дешевле фруктовой тарелки, но фрукты кажутся свежее. Для лёгкого перекуса днём я бы выбрал(а) фрукты.",
+      "usageNote": "Variation changes the recommendation domain and requires weighing price against freshness before choosing."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b13_v2_options_01",
+        "text": "The oat bar is cheaper than the fruit bowl, but the fruit bowl feels fresher. For a light afternoon snack, I'd choose the fruit.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's helpful. I'll list both and mark the fruit bowl as the lighter option."
+  }
+]

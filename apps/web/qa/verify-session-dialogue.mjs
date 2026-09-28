@@ -1,6 +1,6 @@
 /** Local regression QA: real React + Hono handlers + disposable SQLite.
  * Start Vite first. No Cloudflare runtime, remote DB, or canned API responses.
- * Episode IDs may be passed as command-line arguments; defaults cover A1 e1-e5 or the authored A2 situations.
+ * Episode IDs may be passed as command-line arguments; defaults cover the authored A1, A2, or B1 batch/course.
  * Onboarding/placement and course run through the UI; authentication uses signed dev auth.
  */
 import assert from "node:assert/strict";
@@ -18,7 +18,10 @@ const out = fileURLToPath(
   new URL("../../../artifacts/qa/session-dialogue/", import.meta.url),
 );
 const QA_LEVEL = process.env.QA_LEVEL ?? "A1";
-assert.ok(["A1", "A2"].includes(QA_LEVEL), `Unsupported QA_LEVEL=${QA_LEVEL}`);
+assert.ok(
+  ["A1", "A2", "B1"].includes(QA_LEVEL),
+  `Unsupported QA_LEVEL=${QA_LEVEL}`,
+);
 const qaPrefix = QA_LEVEL.toLowerCase();
 const defaultEpisodes =
   QA_LEVEL === "A2"
@@ -41,21 +44,51 @@ const defaultEpisodes =
         "sit_a2_problems_01",
         "sit_a2_problems_02",
       ]
-    : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
-const expectedCourseCount = QA_LEVEL === "A2" ? 17 : 11;
+    : QA_LEVEL === "B1"
+      ? ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01"]
+      : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
+const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 3 : 11;
 const expectedChapterProgress =
   QA_LEVEL === "A2"
-    ? ["0 из 2", "0 из 1", "0 из 2", "0 из 2", "0 из 2", "0 из 3", "0 из 2", "0 из 1", "0 из 2"]
-    : ["0 из 11"];
+    ? [
+        "0 из 2",
+        "0 из 1",
+        "0 из 2",
+        "0 из 2",
+        "0 из 2",
+        "0 из 3",
+        "0 из 2",
+        "0 из 1",
+        "0 из 2",
+      ]
+    : QA_LEVEL === "B1"
+      ? ["0 из 2", "0 из 1"]
+      : ["0 из 11"];
 const completedChapterProgress =
   QA_LEVEL === "A2"
-    ? ["2 из 2", "1 из 1", "2 из 2", "2 из 2", "2 из 2", "3 из 3", "2 из 2", "1 из 1", "2 из 2"]
-    : ["11 из 11"];
+    ? [
+        "2 из 2",
+        "1 из 1",
+        "2 из 2",
+        "2 из 2",
+        "2 из 2",
+        "3 из 3",
+        "2 из 2",
+        "1 из 1",
+        "2 из 2",
+      ]
+    : QA_LEVEL === "B1"
+      ? ["2 из 2", "1 из 1"]
+      : ["11 из 11"];
 const episodes = process.argv.slice(2).length
   ? process.argv.slice(2)
   : defaultEpisodes;
 const preferredFailEpisode =
-  QA_LEVEL === "A2" ? "sit_a2_health_01" : episodes[0];
+  QA_LEVEL === "A2"
+    ? "sit_a2_health_01"
+    : QA_LEVEL === "B1"
+      ? "sit_b1_people_01"
+      : episodes[0];
 const failEpisode = episodes.includes(preferredFailEpisode)
   ? preferredFailEpisode
   : episodes[0];
@@ -167,14 +200,14 @@ async function run(failMission) {
     await page.locator("text=Твой уровень").waitFor();
     assert.match(await page.locator(".hero-screen").innerText(), /A1/i);
     await page.screenshot({ path: `${out}/${qaPrefix}-placement-result.png` });
-    if (QA_LEVEL === "A2") {
+    if (QA_LEVEL === "A2" || QA_LEVEL === "B1") {
       // Local disposable preview only: placement has already been exercised;
-      // set its test user to A2 so the A2 course can be reached in Chromium.
+      // set its test user to the course level under QA so its path is reachable.
       sqlite
         .prepare(
-          "UPDATE users SET current_cefr_level = 'A2' WHERE onboarding_completed = 1",
+          "UPDATE users SET current_cefr_level = ? WHERE onboarding_completed = 1",
         )
-        .run();
+        .run(QA_LEVEL);
     }
     await page.locator(".hero-screen__actions .btn").first().click();
     await page.goto(`${base}/course`, { waitUntil: "networkidle" });
@@ -331,7 +364,7 @@ async function run(failMission) {
           assert.ok(answered?.session, JSON.stringify(answered));
           if (!card) {
             await page
-              .getByRole("button", { name: "Дальше", exact: false })
+              .getByRole("button", { name: "Дальше", exact: true })
               .waitFor();
             assert.equal(
               answered.feedback.correct,
@@ -377,14 +410,17 @@ async function run(failMission) {
                 stored.targetId.startsWith("itm_a2_a214_") ||
                 stored.targetId.startsWith("itm_a2_a215_") ||
                 stored.targetId.startsWith("itm_a2_a216_") ||
-                stored.targetId.startsWith("itm_a2_ha2_"))
+                stored.targetId.startsWith("itm_a2_ha2_") ||
+                stored.targetId.startsWith("itm_b1_b11_") ||
+                stored.targetId.startsWith("itm_b1_b12_") ||
+                stored.targetId.startsWith("itm_b1_b13_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,
               });
             }
             await page
-              .getByRole("button", { name: "Дальше", exact: false })
+              .getByRole("button", { name: "Дальше", exact: true })
               .click();
           }
           if (answered.session.status === "completed") {

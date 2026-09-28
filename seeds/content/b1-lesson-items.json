@@ -1,0 +1,220 @@
+[
+  {
+    "id": "li_sit_b1_people_01_01",
+    "lessonId": "sit_b1_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b11_react",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_people_01_02",
+    "lessonId": "sit_b1_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b11_followup",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_people_01_03",
+    "lessonId": "sit_b1_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b11_opinion",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_people_01_grammar_pp",
+    "lessonId": "sit_b1_people_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_present_perfect_news",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_people_01_v1",
+    "lessonId": "sit_b1_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b11_v1_personal",
+    "role": "practice",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_people_01_v2_news",
+    "lessonId": "sit_b1_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b11_v2_badnews",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_people_01_v2_followup",
+    "lessonId": "sit_b1_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b11_v2_followup",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_people_01_review_near",
+    "lessonId": "sit_b1_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a21_job_linked",
+    "role": "review",
+    "order": 8,
+    "required": false
+  },
+
+  {
+    "id": "li_sit_b1_people_02_01",
+    "lessonId": "sit_b1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b12_disagree",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_people_02_02",
+    "lessonId": "sit_b1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b12_softener",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_people_02_03",
+    "lessonId": "sit_b1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b12_compromise",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_people_02_grammar_modals",
+    "lessonId": "sit_b1_people_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_modal_softeners",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_people_02_v1",
+    "lessonId": "sit_b1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b12_v1_plan",
+    "role": "practice",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_people_02_v2_hold",
+    "lessonId": "sit_b1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b12_v2_hold",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_people_02_v2_response",
+    "lessonId": "sit_b1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b12_v2_response",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_people_02_review_near",
+    "lessonId": "sit_b1_people_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b11_react",
+    "role": "review",
+    "order": 8,
+    "required": false
+  },
+
+  {
+    "id": "li_sit_b1_cafe_01_01",
+    "lessonId": "sit_b1_cafe_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b13_compare",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_cafe_01_02",
+    "lessonId": "sit_b1_cafe_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b13_preference",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_cafe_01_03",
+    "lessonId": "sit_b1_cafe_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b13_reason",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_cafe_01_grammar_comparatives",
+    "lessonId": "sit_b1_cafe_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_comparatives",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_cafe_01_v1",
+    "lessonId": "sit_b1_cafe_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b13_v1_food",
+    "role": "practice",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_cafe_01_v2",
+    "lessonId": "sit_b1_cafe_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b13_v2_options",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_cafe_01_review_near",
+    "lessonId": "sit_b1_cafe_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a23_change_item",
+    "role": "review",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_cafe_01_review_far",
+    "lessonId": "sit_b1_cafe_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_can_i_get",
+    "role": "review",
+    "order": 8,
+    "required": false
+  }
+]

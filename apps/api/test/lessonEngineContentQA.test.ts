@@ -24,7 +24,7 @@ async function allPublishedLessons(
   db: Db,
 ): Promise<{ lessonId: string; levelId: string }[]> {
   const out: { lessonId: string; levelId: string }[] = [];
-  for (const levelId of ["lvl_a1", "lvl_a2"]) {
+  for (const levelId of ["lvl_a1", "lvl_a2", "lvl_b1"]) {
     const modules = await listPublishedModulesByLevel(db, levelId);
     for (const module_ of modules) {
       const lessons = await listPublishedLessonsByModule(db, module_.id);
@@ -45,7 +45,7 @@ async function planFor(
 
 // --- every seeded lesson converts cleanly -------------------------------------
 
-test("every seeded A1/A2 lesson can be converted into a valid activity plan", async () => {
+test("every seeded A1/A2/B1 lesson can be converted into a valid activity plan", async () => {
   const db = await seeded();
   const lessons = await allPublishedLessons(db);
   assert.ok(lessons.length > 0, "expected at least one seeded lesson");

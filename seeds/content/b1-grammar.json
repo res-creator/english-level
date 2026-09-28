@@ -1,0 +1,26 @@
+[
+  {
+    "id": "gr_b1_present_perfect_news",
+    "levelCode": "B1",
+    "title": "Present Perfect — узнавать последние новости",
+    "patternKey": "present_perfect_news",
+    "formula": "Have you heard whether ...?",
+    "explanationEn": "Use Have you heard ...? to ask whether someone knows recent news or a new detail.",
+    "order": 1,
+    "ru": {
+      "explanation": "Используйте Have you heard...? чтобы спросить, известно ли собеседнику о недавней новости или новой детали."
+    }
+  },
+  {
+    "id": "gr_b1_modal_softeners",
+    "levelCode": "B1",
+    "title": "Modal verbs for softening an opinion",
+    "patternKey": "modal_softeners",
+    "formula": "It might/could ...",
+    "explanationEn": "Use might or could to make a disagreement or alternative sound less absolute.",
+    "order": 2,
+    "ru": {
+      "explanation": "Используйте might или could, чтобы смягчить несогласие или предложить альтернативу менее категорично."
+    }
+  }
+]

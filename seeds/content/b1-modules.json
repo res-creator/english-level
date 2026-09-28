@@ -1,0 +1,20 @@
+[
+  {
+    "id": "mod_b1_people_connections",
+    "levelCode": "B1",
+    "title": "Люди и общение",
+    "slug": "b1-people-connections",
+    "description": "Обсуждать новости, выражать мнение и поддерживать содержательный разговор.",
+    "order": 1,
+    "status": "published"
+  },
+  {
+    "id": "mod_b1_cafe_casual_food",
+    "levelCode": "B1",
+    "title": "Кафе и повседневная еда",
+    "slug": "b1-cafe-casual-food",
+    "description": "Сравнивать варианты и давать обоснованные рекомендации.",
+    "order": 2,
+    "status": "published"
+  }
+]

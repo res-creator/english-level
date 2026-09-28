@@ -18,16 +18,17 @@ test("all seed files load and cross-validate without throwing", () => {
   assert.ok(bundle.lessonItems.length > 0);
 });
 
-test("the published catalogue includes A1 and the authored A2 chapters", () => {
+test("the published catalogue includes A1 and authored A2/B1 chapters", () => {
   const bundle = loadSeedContent();
 
   const published = bundle.modules.filter(
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1 plus the first nine authored A2 chapters.
-  assert.equal(published.length, 10);
+  // course now includes A1, authored A2 and the first two B1 chapters.
+  assert.equal(published.length, 12);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
+  assert.equal(published.filter((m) => m.levelCode === "B1").length, 2);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -339,7 +340,7 @@ test("A2 Batch 6 resolves a restaurant bill error and keeps H.A2 a shop transact
   assert.deepEqual(reviews("sit_a2_health_01"), ["itm_sie_a17_do_you_have", "itm_sie_a17_ill_take_it", "gr_a2_comparatives"]);
 });
 
-test("A2 Batch 1–6 plans keep semantic turns once and exclude variations from Missions", async () => {
+test("A2 and B1 plans keep semantic turns once and exclude variations from Missions", async () => {
   const { db, sqlite } = createTestDb();
   await seedContent(db);
 
@@ -361,11 +362,15 @@ test("A2 Batch 1–6 plans keep semantic turns once and exclude variations from 
     "sit_a2_social_01",
     "sit_a2_problems_01",
     "sit_a2_problems_02",
+    "sit_b1_people_01",
+    "sit_b1_people_02",
+    "sit_b1_cafe_01",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
-    const plan = await planEpisodeSessions(db, "lvl_a2", links);
+    const levelId = situationId.startsWith("sit_b1_") ? "lvl_b1" : "lvl_a2";
+    const plan = await planEpisodeSessions(db, levelId, links);
     const activities = plan.sessions.flat();
-    const mission = await buildMissionPlan(db, "lvl_a2", links);
+    const mission = await buildMissionPlan(db, levelId, links);
     const variationIds = new Set(
       links
         .filter((link) => link.role === "practice")
@@ -495,4 +500,40 @@ test("re-seeding updates existing rows in place (upsert, not insert-or-error)", 
     .prepare("SELECT title FROM modules WHERE id = 'mod_a1_01'")
     .get() as { title: string };
   assert.equal(after.title, before.title);
+});
+
+test("B1 Batch 1 authors three connected dialogues with classified targets and transfer practice", () => {
+  const bundle = loadSeedContent();
+  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01"];
+  const lessonById = new Map(bundle.lessons.map((lesson) => [lesson.id, lesson]));
+  const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
+  assert.deepEqual(
+    bundle.lessons.filter((lesson) => ids.includes(lesson.id)).map((lesson) => lesson.id),
+    ids,
+  );
+  for (const id of ids) {
+    const core = bundle.lessonItems.filter(
+      (link) => link.lessonId === id && link.role === "introduce",
+    );
+    assert.equal(core.length, 3, `${id} has three authored semantic learner turns`);
+    for (const link of core) {
+      assert.ok(itemById.get(link.contentId)?.npcReplyCorrect, `${id}/${link.contentId} needs a relevant NPC continuation`);
+    }
+    const module = bundle.modules.find((row) => row.id === lessonById.get(id)?.moduleId);
+    assert.equal(module?.levelCode, "B1");
+    assert.equal(module?.status, "published");
+  }
+  assert.match(itemById.get("itm_b1_b11_followup")?.displayForm ?? "", /^Have you heard/);
+  assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_people_01" && link.contentId === "gr_b1_present_perfect_news" && link.role === "target"));
+  assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_people_02" && link.contentId === "gr_b1_modal_softeners" && link.role === "target"));
+  assert.match(itemById.get("itm_b1_b12_v2_response")?.displayForm ?? "", /We might wait/);
+  assert.ok(bundle.lessonItems.filter((link) => link.lessonId === "sit_b1_people_02" && link.role === "practice").length >= 3);
+  assert.match(itemById.get("itm_b1_b13_preference")?.displayForm ?? "", /If I were you/);
+  assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_cafe_01" && link.contentId === "gr_a2_comparatives" && link.role === "target"));
+  for (const id of ids) {
+    const practice = bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "practice");
+    assert.ok(practice.length >= 2, `${id} has two transfer variations`);
+    const reviews = bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "review");
+    assert.ok(reviews.length >= 1, `${id} has a curriculum-linked review`);
+  }
 });
