@@ -50,6 +50,24 @@ test("A2 Batch 1 uses its authored recurring cast, scene, and dialogue opener", 
   assert.match(openingLine("sit_a2_cafe_01"), /small coffee.*before you pay/);
 });
 
+test("A2 Batch 2 maps restaurant and station conversations to Leo and Rosa", () => {
+  assert.deepEqual(sceneForSituation("sit_a2_restaurant_01"), {
+    scene: "restaurant",
+    cast: "leo",
+  });
+  assert.deepEqual(sceneForSituation("sit_a2_restaurant_02"), {
+    scene: "restaurant",
+    cast: "leo",
+  });
+  assert.deepEqual(sceneForSituation("sit_a2_travel_01"), {
+    scene: "street",
+    cast: "rosa",
+  });
+  assert.match(openingLine("sit_a2_restaurant_01"), /book a table/i);
+  assert.match(openingLine("sit_a2_restaurant_02"), /ready to order/i);
+  assert.match(openingLine("sit_a2_travel_01"), /near the station/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",
@@ -82,6 +100,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_a2_people_01",
     "sit_a2_people_02",
     "sit_a2_cafe_01",
+    "sit_a2_restaurant_01",
+    "sit_a2_restaurant_02",
+    "sit_a2_travel_01",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

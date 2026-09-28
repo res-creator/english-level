@@ -106,5 +106,41 @@
     "ru": {
       "explanation": "Present Perfect используется для жизненного опыта, без указания точного времени."
     }
+  },
+  {
+    "id": "gr_a2_would_like_booking",
+    "levelCode": "A2",
+    "title": "Would like - polite booking requests",
+    "patternKey": "would_like_booking",
+    "formula": "I'd like to book a table, please.",
+    "explanationEn": "Use would like to make a polite request when arranging a booking.",
+    "order": 31,
+    "ru": {
+      "explanation": "Используйте would like, чтобы вежливо попросить или договориться о бронировании."
+    }
+  },
+  {
+    "id": "gr_a2_without_food",
+    "levelCode": "A2",
+    "title": "With and without - food requests",
+    "patternKey": "with_without_food",
+    "formula": "with bread / without onions",
+    "explanationEn": "Use with and without to say what you want included in or left out of a dish.",
+    "order": 32,
+    "ru": {
+      "explanation": "Используйте with и without, чтобы уточнить, что добавить в блюдо или исключить из него."
+    }
+  },
+  {
+    "id": "gr_a2_some_any_food",
+    "levelCode": "A2",
+    "title": "Some and any - food questions and requests",
+    "patternKey": "some_any_food",
+    "formula": "some bread / Are there any onions?",
+    "explanationEn": "Use some in offers and positive requests, and any in questions about food.",
+    "order": 33,
+    "ru": {
+      "explanation": "Используйте some в предложениях и просьбах, а any — в вопросах о еде."
+    }
   }
 ]

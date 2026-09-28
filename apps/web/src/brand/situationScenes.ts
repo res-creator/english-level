@@ -39,6 +39,9 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_a2_people_01: { scene: "meeting", cast: "alex" },
   sit_a2_people_02: { scene: "meeting", cast: "daniel" },
   sit_a2_cafe_01: { scene: "cafe", cast: "maya" },
+  sit_a2_restaurant_01: { scene: "restaurant", cast: "leo" },
+  sit_a2_restaurant_02: { scene: "restaurant", cast: "leo" },
+  sit_a2_travel_01: { scene: "street", cast: "rosa" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -71,6 +74,11 @@ const OPENING_LINES: Record<string, string> = {
     "Hi, I'm Daniel. Glad you made it to the party. How do you know Alex?",
   sit_a2_cafe_01:
     "I've got your small coffee down. Is that right before you pay?",
+  sit_a2_restaurant_01:
+    "Good evening. Welcome to The Lantern. Are you looking to book a table?",
+  sit_a2_restaurant_02: "Hi! Are you ready to order?",
+  sit_a2_travel_01:
+    "Hi, are you near the station? I'm waiting by the main entrance.",
 };
 
 export function openingLine(episodeId: string): string {

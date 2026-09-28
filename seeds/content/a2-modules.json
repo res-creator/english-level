@@ -43,5 +43,23 @@
     "description": "Уточнять и менять уже начатый заказ.",
     "order": 5,
     "status": "published"
+  },
+  {
+    "id": "mod_a2_restaurant_dining",
+    "levelCode": "A2",
+    "title": "Ресторан и заказ еды",
+    "slug": "a2-restaurant-dining",
+    "description": "Бронировать столик и уточнять состав заказа в ресторане.",
+    "order": 6,
+    "status": "published"
+  },
+  {
+    "id": "mod_a2_getting_around",
+    "levelCode": "A2",
+    "title": "В пути",
+    "slug": "a2-getting-around",
+    "description": "Объяснять задержки и менять планы в дороге.",
+    "order": 7,
+    "status": "published"
   }
 ]

@@ -108,7 +108,9 @@ async function main(): Promise<void> {
   const isSieTrack = (id: string) =>
     id.startsWith("les_sie_") ||
     id.startsWith("sit_a1_") ||
-    /^sit_a2_(people_01|people_02|cafe_01)$/.test(id);
+    /^sit_a2_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01)$/.test(
+      id,
+    );
 
   // Which grammar_patterns are actually attached (as target/introduce) to
   // which situations, per the real seed content.

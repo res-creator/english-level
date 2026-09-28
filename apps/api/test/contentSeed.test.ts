@@ -25,9 +25,9 @@ test("the published catalogue includes A1 and the authored A2 chapters", () => {
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The authored
-  // situational course now includes A1 plus the first two A2 chapters.
-  assert.equal(published.length, 3);
-  assert.equal(published.filter((m) => m.levelCode === "A2").length, 2);
+  // situational course now includes A1 plus the first four A2 chapters.
+  assert.equal(published.length, 5);
+  assert.equal(published.filter((m) => m.levelCode === "A2").length, 4);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -97,12 +97,15 @@ test("A1.1 Practice Variation keeps Alex and transfers the self-introduction", (
   );
 });
 
-test("A2 Batch 1 has authored turns, two practice variations, and no answer gaps", () => {
+test("A2 Batch 1 and 2 have authored turns, two practice variations, and no answer gaps", () => {
   const bundle = loadSeedContent();
   const situationIds = [
     "sit_a2_people_01",
     "sit_a2_people_02",
     "sit_a2_cafe_01",
+    "sit_a2_restaurant_01",
+    "sit_a2_restaurant_02",
+    "sit_a2_travel_01",
   ];
 
   for (const situationId of situationIds) {
@@ -135,7 +138,9 @@ test("A2 Batch 1 has authored turns, two practice variations, and no answer gaps
       `${situationId} has a practice turn without an authored NPC continuation`,
     );
     const variationGroups = new Set(
-      practice.map((link) => link.contentId.match(/_v[12](?=_|$)/)?.[0]),
+      practice.map((link) =>
+        link.contentId.match(/_(v[12]|vphone)(?=_|$)/)?.[0],
+      ),
     );
     assert.equal(variationGroups.size, 2, `${situationId} needs v1 and v2`);
   }
@@ -155,7 +160,29 @@ test("A2 Batch 1 has authored turns, two practice variations, and no answer gaps
   );
 });
 
-test("A2 Batch 1 plans keep semantic turns once and exclude variations from Missions", async () => {
+test("A2 Batch 2 preserves phone, dietary, group-size, and delay transfer", () => {
+  const bundle = loadSeedContent();
+  const item = (id: string) => bundle.learningItems.find((row) => row.id === id);
+
+  const phone = item("itm_a2_a24_vphone_repeat");
+  assert.match(phone?.examples[0]?.text ?? "", /calling.*repeat|repeat.*calling/i);
+  assert.match(phone?.examples[0]?.text ?? "", /line cut out/i);
+  assert.match(phone?.npcReplyCorrect ?? "", /six fifteen or eight/i);
+
+  assert.match(item("itm_a2_a25_any_onions")?.examples[0]?.text ?? "", /any onions/i);
+  assert.match(item("itm_a2_a25_without_onions")?.examples[0]?.text ?? "", /without onions/i);
+  assert.match(item("itm_a2_a25_v1_without_cream")?.examples[0]?.text ?? "", /without cream/i);
+  assert.match(item("itm_a2_a25_v2_group_four")?.examples[0]?.text ?? "", /four bowls instead of two/i);
+
+  const lateBus = item("itm_a2_a26_late_bus")?.examples[0]?.text ?? "";
+  const overslept = item("itm_a2_a26_v2_overslept")?.examples[0]?.text ?? "";
+  assert.match(lateBus, /missed the bus/i);
+  assert.match(item("itm_a2_a26_ask_advice")?.examples[0]?.text ?? "", /What should I do/i);
+  assert.match(overslept, /overslept.*didn't ring.*missed/i);
+  assert.match(item("itm_a2_a26_v1_wrong_building")?.examples[0]?.text ?? "", /went to the wrong building.*missed/i);
+});
+
+test("A2 Batch 1 and 2 plans keep semantic turns once and exclude variations from Missions", async () => {
   const { db, sqlite } = createTestDb();
   await seedContent(db);
 
@@ -163,6 +190,9 @@ test("A2 Batch 1 plans keep semantic turns once and exclude variations from Miss
     "sit_a2_people_01",
     "sit_a2_people_02",
     "sit_a2_cafe_01",
+    "sit_a2_restaurant_01",
+    "sit_a2_restaurant_02",
+    "sit_a2_travel_01",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const plan = await planEpisodeSessions(db, "lvl_a2", links);

@@ -445,5 +445,186 @@
         "chunkLabel": "Fixed A1 phrase for reporting how one feels; the sole grammar target is have + symptom noun."
       }
     ]
+  },
+  {
+    "situationId": "sit_a2_restaurant_01",
+    "phrases": [
+      {
+        "text": "I'd like to book a table for Friday evening, please.",
+        "itemId": "itm_a2_a24_booking_request",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_would_like_booking"
+      },
+      {
+        "text": "Two, please. Is seven thirty available?",
+        "itemId": "itm_a2_a24_booking_time",
+        "classification": "chunk",
+        "chunkLabel": "Short spoken booking response plus a fixed question about availability."
+      },
+      {
+        "text": "What name should I put on the booking?",
+        "classification": "chunk",
+        "chunkLabel": "NPC-only fixed booking question; should is not an advice target here.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Sorry, could you repeat the available times? I'm calling to book for Sunday, and the line cut out.",
+        "itemId": "itm_a2_a24_vphone_repeat",
+        "classification": "chunk",
+        "chunkLabel": "Phone-only clarification and call context; no visual menu or table cues."
+      },
+      {
+        "text": "I'd like a table for four, and the name is Anna.",
+        "itemId": "itm_a2_a24_vphone_details",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_would_like_booking"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_restaurant_02",
+    "phrases": [
+      {
+        "text": "Are there any onions in the vegetable soup?",
+        "itemId": "itm_a2_a25_any_onions",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_some_any_food"
+      },
+      {
+        "text": "Yes, there are. I can ask the kitchen to leave them out.",
+        "itemId": "itm_a2_a25_any_onions",
+        "classification": "chunk",
+        "chunkLabel": "Simple service response to the learner's ingredient question."
+      },
+      {
+        "text": "Two bowls without onions, please.",
+        "itemId": "itm_a2_a25_without_onions",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_without_food"
+      },
+      {
+        "text": "Yes, please. Could we have some bread with it too?",
+        "itemId": "itm_a2_a25_some_bread",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_some_any_food"
+      },
+      {
+        "text": "Could we have",
+        "itemId": "itm_a2_a25_some_bread",
+        "classification": "chunk",
+        "chunkLabel": "Fixed polite request frame; could is not taught as a grammar target here."
+      },
+      {
+        "text": "Does the tomato pasta have any cream?",
+        "itemId": "itm_a2_a25_v1_any_cream",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_some_any_food"
+      },
+      {
+        "text": "Yes, please. Could we have it without cream?",
+        "itemId": "itm_a2_a25_v1_without_cream",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_without_food"
+      },
+      {
+        "text": "Could we have",
+        "itemId": "itm_a2_a25_v1_without_cream",
+        "classification": "chunk",
+        "chunkLabel": "Fixed polite request frame for a simple food modification."
+      },
+      {
+        "text": "Could we have four bowls instead of two? And some bread for everyone, please.",
+        "itemId": "itm_a2_a25_v2_group_four",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_some_any_food"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_travel_01",
+    "phrases": [
+      {
+        "text": "I missed the bus",
+        "itemId": "itm_a2_a26_late_bus",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "the next one isn't for twenty minutes",
+        "itemId": "itm_a2_a26_late_bus",
+        "classification": "chunk",
+        "chunkLabel": "Fixed short transport-delay update."
+      },
+      {
+        "text": "What should I do now?",
+        "itemId": "itm_a2_a26_ask_advice",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_should"
+      },
+      {
+        "text": "I don't want to miss our train.",
+        "itemId": "itm_a2_a26_ask_advice",
+        "classification": "chunk",
+        "chunkLabel": "Fixed reason-for-concern phrase after a delay."
+      },
+      {
+        "text": "You should take a taxi to the station.",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_should",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I'll wait by the main entrance.",
+        "classification": "chunk",
+        "chunkLabel": "NPC's fixed offer to wait; will is not a target here.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I went to the wrong building, so I missed it.",
+        "itemId": "itm_a2_a26_v1_wrong_building",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "Yes. What should I do now?",
+        "itemId": "itm_a2_a26_v1_what_next",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_should"
+      },
+      {
+        "text": "I overslept because my alarm didn't ring, and we missed our early train.",
+        "itemId": "itm_a2_a26_v2_overslept",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "my alarm didn't ring",
+        "itemId": "itm_a2_a26_v2_overslept",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_past_simple_negative"
+      },
+      {
+        "text": "Yes, let's go later. What should we do now?",
+        "itemId": "itm_a2_a26_v2_change_plan",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_should"
+      },
+      {
+        "text": "let's go later",
+        "itemId": "itm_a2_a26_v2_change_plan",
+        "classification": "chunk",
+        "chunkLabel": "Fixed A2 suggestion frame; classified lexically, not as a new grammar target."
+      },
+      {
+        "text": "You should call the hotel and tell them we'll arrive later.",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_should",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
   }
 ]

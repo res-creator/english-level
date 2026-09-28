@@ -51,9 +51,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_a2_people_01` | Рассказать о себе подробнее | People & Connections | Alex | **done** | 2 — new job/family profile; new duration detail | target: Present Simple in connected descriptions; “I've lived here for…” is a lexical chunk, no Present Perfect target | Gate A/B/C PASS; near/far reviews wired; references: BC A2 job talk, ELLLO A2 Present Simple |
 | `sit_a2_people_02` | Знакомство на вечеринке у Дэниела | People & Connections | Daniel | **done** | 2 — running-group connection; English-class connection to Maya | Present Simple + Wh-questions (recycled); social reactions are lexical chunks; question tags absent | Gate A/B/C PASS; reviews wired; variation keeps same NPC/scene per V2 §1 and transfers the mutual connection; reference: BC A2 showing interest |
 | `sit_a2_cafe_01` | Изменить заказ | Café & Casual Food | Maya | **done** | 2 — change item to tea; change quantity after payment starts | `can` recycled; “Could I change this to … instead?” and transaction phrases are lexical chunks | Gate A/B/C PASS; near A1.2 review wired; reference: Cambridge A2 Key vocabulary |
-| `sit_a2_restaurant_01` | Бронирование столика | Restaurant & Dining | Leo | planned | 2 (+phone variation) | would like | |
-| `sit_a2_restaurant_02` | Заказ с особыми пожеланиями | Restaurant & Dining | Leo | planned | 2 | without/with, some/any | |
-| `sit_a2_travel_01` | Опоздание, смена планов | Getting Around | Rosa | planned | 2 | Past Simple (reason), should | |
+| `sit_a2_restaurant_01` | Бронирование столика | Restaurant & Dining | Leo | **done** | 2 (+phone variation with an explicit call/line interruption, choices repeated by phone) | target: `gr_a2_would_like_booking`; polite clarification/time/name formulas classified as chunks | Gate A/B/C PASS; Near A1.8; BC booking sequence reference |
+| `sit_a2_restaurant_02` | Заказ с особыми пожеланиями | Restaurant & Dining | Leo | **done** | 2 — no cream instead of onions; four bowls instead of two | targets: `gr_a2_without_food`, `gr_a2_some_any_food`; “Could we have…” is a lexical chunk | Gate A/B/C PASS; Near A2.4, Far A1.2; ELLLO A2 request pattern reference |
+| `sit_a2_travel_01` | Опоздание, смена планов | Getting Around | Rosa | **done** | 2 — wrong building/missed meeting; overslept/missed early train and rearranged trip | targets: Past Simple positive/negative (`gr_a2_past_simple_positive`, `gr_a2_past_simple_negative`) and `gr_a2_should`; fixed apology/plan phrases classified as chunks | Gate A/B/C PASS; Near A1.4/A1.8; BC A2 apology rhythm + Cambridge A2 travel vocabulary |
 | `sit_a2_travel_02` | Уточнить маршрут | Getting Around | Rosa | planned | 2 | reported confirmation | |
 | `sit_a2_daily_01` | Рассказать о выходных | Daily Life & Home | Alex | planned | 2 | Past Simple | |
 | `sit_a2_daily_02` | Планы на следующую неделю | Daily Life & Home | Alex | planned | 2 (v2 corrected, no "used to" preview) | going to, Present Continuous | |
@@ -123,6 +123,12 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 The authoring workflow used the approved references as models for turn order, register, A2 complexity and functional vocabulary; all Speak in English lines are original. British Council's [A2 job conversation](https://learnenglish.britishcouncil.org/free-resources/speaking/a2/talking-about-your-job) informed A2.1's job answer followed by a relevant personal follow-up; [A2 showing interest](https://learnenglish.britishcouncil.org/free-resources/speaking/a2/showing-interest) informed A2.2's open question, reaction and follow-up rhythm. ELLLO's [A2 Present Simple lesson](https://elllo.org/class/A2/A2-01-Present-Simple.html) and Cambridge English's [A2 Key vocabulary list](https://www.cambridgeenglish.org/latinamerica/Images/506886-a2-key-2020-vocabulary-list.pdf) informed the compact grammar and café vocabulary range. See [A2 Batch 1 production QA](docs/A2_BATCH1_PRODUCTION_QA.md).
 
+## A2 Batch 2 reference and QA record
+
+Before authoring, the reference workflow consulted British Council [Booking a table](https://learnenglish.britishcouncil.org/comment/210215) for the booking sequence (date/time → party size → name → confirmation), ELLLO [A2 Can requests](https://www.elllo.org/book/A2/A2-20-Can-Requests.html) for concise restaurant request/response register, British Council [A2 Apologising](https://learnenglish.britishcouncil.org/free-resources/speaking/a2/apologising?page=1) for short apology and response turns, and the [Cambridge A2 Key vocabulary list](https://www.cambridgeenglish.org/latinamerica/Images/506886-a2-key-2020-vocabulary-list.pdf) for familiar travel terms. These informed function, register and level only; all authored dialogue is original.
+
+Gate A/B/C PASS for A2.4–A2.6. Grammar lint: 0 errors / 0 advisory notes; full suite 394/394; API and web typechecks PASS; seed/schema/reference/contiguity/idempotency PASS. Chromium ran all six A2 course situations in progression, checked 280 transcript snapshots (including first-session openers, continuation once per semantic turn, no Cyrillic in English transcript), verified all six Mission PASS paths at 100% (`can_do`) and an A2.4 Mission FAIL at 0% (`learning`); course progress reached 6/6. Preview screenshots and detailed report: [A2 Batch 2 production QA](docs/A2_BATCH2_PRODUCTION_QA.md).
+
 All three situations pass Gates A/B/C. Grammar lint: 0 errors / 0 advisory notes; API and web suites, typechecks, contiguous ordering, seed references and idempotent reseed pass. Chromium verified all three Mission PASS paths (100%, `can_do`), one Mission FAIL path (0%, `learning`), English-only transcripts, opener placement and progression. Screenshots/results are ignored preview artifacts under `artifacts/qa/session-dialogue/`.
 
 ## Totals
@@ -130,10 +136,10 @@ All three situations pass Gates A/B/C. Grammar lint: 0 errors / 0 advisory notes
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
-| A2 | 17 | 3 | 14 | 0 |
+| A2 | 17 | 6 | 11 | 0 |
 | B1 | 19 | 0 | 19 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **14** | **55** | **0** |
+| **Total** | **69** | **17** | **52** | **0** |
 
 ---
 

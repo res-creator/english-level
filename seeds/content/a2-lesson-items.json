@@ -844,5 +844,293 @@
     "role": "practice",
     "order": 7,
     "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_book",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_booking_request",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_time",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_booking_time",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_name",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_booking_name",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_grammar_booking",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_would_like_booking",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_review_time",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_what_time",
+    "role": "review",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_review_ticket",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_one_ticket",
+    "role": "review",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_v1_book",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_v1_booking_request",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_v1_confirm",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_v1_booking_confirm",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_vphone_repeat",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_vphone_repeat",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_01_vphone_details",
+    "lessonId": "sit_a2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_vphone_details",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_any",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a25_any_onions",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_without",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a25_without_onions",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_some",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a25_some_bread",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_grammar_without",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_without_food",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_grammar_some_any",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_some_any_food",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_review_booking",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_booking_request",
+    "role": "review",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_review_cafe",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_can_i_get",
+    "role": "review",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_v1_cream_question",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a25_v1_any_cream",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_v1_cream_request",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a25_v1_without_cream",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_restaurant_02_v2_group",
+    "lessonId": "sit_a2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a25_v2_group_four",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_01_late",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a26_late_bus",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_01_advice_question",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a26_ask_advice",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_01_grammar_past_positive",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_positive",
+    "role": "target",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_01_grammar_past_negative",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_negative",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_01_grammar_should",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_should",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_travel_01_review_directions",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_where_is_the",
+    "role": "review",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_01_review_bus",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_going_to_oxford",
+    "role": "review",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_01_review_time",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a18_what_time",
+    "role": "review",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_01_v1_wrong_building",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a26_v1_wrong_building",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_01_v1_what_next",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a26_v1_what_next",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_01_v2_overslept",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a26_v2_overslept",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_travel_01_v2_change_plan",
+    "lessonId": "sit_a2_travel_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a26_v2_change_plan",
+    "role": "practice",
+    "order": 12,
+    "required": false
   }
 ]
