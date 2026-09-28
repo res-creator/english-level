@@ -1789,5 +1789,263 @@
         "sourceField": "npcReplyCorrect"
       }
     ]
+  },
+  {
+    "situationId": "sit_b1_restaurant_01",
+    "phrases": [
+      {
+        "text": "I can see you're checking the menu carefully. Would you like me to check an ingredient with the kitchen?",
+        "classification": "chunk",
+        "chunkLabel": "Specific restaurant offer to check an ingredient.",
+        "speaker": "npc",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Does the lentil pie contain any nuts?",
+        "classification": "target",
+        "itemId": "itm_b1_b14_restriction",
+        "grammarPatternId": "gr_a1_present_simple_questions",
+        "chunkLabel": "Recycled Present Simple question checks a real ingredient and is attached to the existing A1 target."
+      },
+      {
+        "text": "I have a serious nut allergy.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b14_restriction",
+        "chunkLabel": "The familiar have + noun statement gives the reason for checking."
+      },
+      {
+        "text": "No nuts are listed, but I'll check the full ingredient sheet with the kitchen before I say it's safe.",
+        "classification": "chunk",
+        "chunkLabel": "Leo avoids an unsafe guarantee before checking.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Could you make sure they use a clean pan as well? Even a small amount could be a problem for me.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b14_safeguard",
+        "chunkLabel": "Could you make sure is the V2 fixed polite chunk; not a new modal target."
+      },
+      {
+        "text": "Of course. I'll mark the order clearly and speak to the chef myself; I'll come back once they've checked.",
+        "classification": "chunk",
+        "chunkLabel": "Leo states the specific action he will take.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Thanks. Could you confirm that the chef checked the sauce too, not just the pie?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b14_confirm",
+        "chunkLabel": "Specific check prevents repetition of the initial ingredient question."
+      },
+      {
+        "text": "Yes. The sauce is made separately, and the chef has confirmed both it and the clean pan are suitable.",
+        "classification": "chunk",
+        "chunkLabel": "Leo answers the exact follow-up and closes the safety check.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I don't eat meat, but it's a preference rather than an allergy. Does the mushroom pie contain any meat stock?",
+        "classification": "target",
+        "itemId": "itm_b1_b14_v1_vegetarian",
+        "grammarPatternId": "Variation changes the restriction and keeps the present-simple ingredient question."
+      },
+      {
+        "text": "It does contain beef stock, so that pie isn't suitable for your preference. The vegetable tart is made without meat stock.",
+        "classification": "chunk",
+        "chunkLabel": "Leo directly reports the stock and offers an appropriate menu fact.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I can't have sesame. Could you check both the flatbread and the dressing, please?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b14_v2_two_dishes",
+        "chunkLabel": "Variation requires checking two separate components, not only swapping a food noun."
+      },
+      {
+        "text": "The flatbread contains sesame seeds, but the dressing doesn't. I'll ask the kitchen to bring a different side.",
+        "classification": "chunk",
+        "chunkLabel": "Leo distinguishes both components and offers the next action.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_restaurant_02",
+    "phrases": [
+      {
+        "text": "I'm sorry to keep you waiting. Your main course should be here already; what seems to be the problem?",
+        "classification": "chunk",
+        "chunkLabel": "Leo opens in response to visible delay and invites the concrete issue.",
+        "speaker": "npc",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "We've been waiting for the main course for almost an hour, and nobody has told us what's happening.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b15_wait",
+        "chunkLabel": "Present Perfect Continuous is frozen as a lexical chunk, not a grammar target."
+      },
+      {
+        "text": "I'm sorry. I can see the delay, but I was told the kitchen was finishing your order. Let me check what went wrong.",
+        "classification": "chunk",
+        "chunkLabel": "Leo responds to the wait and commits to checking.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "When it arrived, it was the wrong dish, so this isn't what I expected after such a long wait.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b15_wrong_dish",
+        "chunkLabel": "Adds a separate wrong-dish failure and links it to the wait."
+      },
+      {
+        "text": "You're right; the ticket says grilled fish, not the chicken pasta. I can have the correct meal prepared now.",
+        "classification": "chunk",
+        "chunkLabel": "Leo names the actual mismatch and proposes a repair.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I appreciate that, but the delay has affected our evening. What can you do about the bill?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b15_resolution",
+        "chunkLabel": "Learner states impact and requests a concrete remedy."
+      },
+      {
+        "text": "I should have checked on your table earlier. I'll remove the drinks from the bill and bring the correct main course straight away.",
+        "classification": "chunk",
+        "chunkLabel": "Should have is an explicit frozen chunk; Leo offers service recovery.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "We've been waiting a long time, and the meal that came is not what we ordered. Could you replace it and check the bill?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b15_v1_wrong_order",
+        "chunkLabel": "Variation changes complaint type and asks for two concrete actions."
+      },
+      {
+        "text": "I can see we brought the vegetable pie instead of the fish. I'll replace it and correct the bill.",
+        "classification": "chunk",
+        "chunkLabel": "Leo acknowledges the mismatch and answers both requests.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The main course is cold, and we have been waiting nearly an hour. Could you check what happened?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b15_v2_hold_position",
+        "chunkLabel": "Variation v2 first reports the cold meal and wait; Leo pushes back in the authored continuation."
+      },
+      {
+        "text": "I'm sorry, but the kitchen has been very busy, and the server brought it as soon as it was ready.",
+        "classification": "chunk",
+        "chunkLabel": "Leo initially defends the service with a specific reason, setting up a calm second response.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I understand you were busy, but we still waited nearly an hour and the meal was cold. Could you remove it from the bill?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b15_v2_response",
+        "chunkLabel": "Learner acknowledges the pushback, holds the facts and makes a clear, polite request."
+      },
+      {
+        "text": "That's fair. I'll take the cold meal off the bill and bring you a fresh one if you'd still like it.",
+        "classification": "chunk",
+        "chunkLabel": "Leo agrees to the requested remedy after the learner maintains a reasonable position.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "That's fair. I'll take the cold meal off the bill and bring you a fresh one if you'd still like it.",
+        "classification": "chunk",
+        "chunkLabel": "Leo accepts after the learner holds a reasonable position.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_travel_01",
+    "phrases": [
+      {
+        "text": "The board has just changed. I'm afraid the direct train to Northbridge has been cancelled.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa gives a concrete travel disruption and destination.",
+        "speaker": "npc",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "My train has been cancelled, and I need to get to Northbridge before six. What are my options?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b16_cancelled",
+        "chunkLabel": "Present Perfect Passive is only the frozen lexical chunk, not a grammar target."
+      },
+      {
+        "text": "The direct service is cancelled because of a signal problem. There is a replacement bus at quarter past four, and another train via Central at twenty past four.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa answers with two time-specific alternatives.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The bus is direct, but it may be slow in traffic. I'll take the train via Central because it gets me there earlier.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b16_choose",
+        "chunkLabel": "Learner compares and chooses between offered routes with a reason."
+      },
+      {
+        "text": "That train leaves from platform five. Your ticket is still valid, so go to the platform desk if the gate doesn't accept it.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa gives actionable platform and ticket information.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Thanks. Is platform five the one beside the coffee shop, and do I need to change at Central?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b16_confirm",
+        "chunkLabel": "Learner checks the actual logistics of the selected alternative."
+      },
+      {
+        "text": "Yes, it's next to the coffee shop, and you can stay on the same train all the way to Northbridge.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa confirms both questions and removes a transfer concern.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The train is delayed by fifty minutes, and I'll miss my connection. Is there another way to get to Northbridge before six?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b16_v1_delay",
+        "chunkLabel": "Variation changes cancellation to delay and missed connection."
+      },
+      {
+        "text": "You could take the express to Westfield and change there. It usually reaches Northbridge just before six.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa gives a route fitting the stated deadline.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The bus takes longer but goes straight there; the train is quicker but needs a change. I'll take the bus because I have heavy luggage.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b16_v2_options",
+        "chunkLabel": "Variation requires a trade-off choice and justification under a luggage constraint."
+      },
+      {
+        "text": "Good choice. The bus stop is outside the station, and the driver can put your case underneath.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa acknowledges the choice and provides a relevant next step.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
   }
 ]

@@ -112,13 +112,19 @@ test("A2 Batch 6 maps the bill error to Leo and OTC shopping to Emma", () => {
   assert.match(openingLine("sit_a2_health_01"), /simple remedies.*on this shelf/i);
 });
 
-test("B1 Batch 1 maps news and disagreement to Alex and recommendations to Maya", () => {
+test("B1 Batch 1–2 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_people_01"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_people_02"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_cafe_01"), { scene: "cafe", cast: "maya" });
+  assert.deepEqual(sceneForSituation("sit_b1_restaurant_01"), { scene: "restaurant", cast: "leo" });
+  assert.deepEqual(sceneForSituation("sit_b1_restaurant_02"), { scene: "restaurant", cast: "leo" });
+  assert.deepEqual(sceneForSituation("sit_b1_travel_01"), { scene: "street", cast: "rosa" });
   assert.match(openingLine("sit_b1_people_01"), /Maya.*bookshop/i);
   assert.match(openingLine("sit_b1_people_02"), /evening market.*music/i);
   assert.match(openingLine("sit_b1_cafe_01"), /drinks board.*two new drinks/i);
+  assert.match(openingLine("sit_b1_restaurant_01"), /menu carefully.*check an ingredient/i);
+  assert.match(openingLine("sit_b1_restaurant_02"), /keep you waiting.*main course/i);
+  assert.match(openingLine("sit_b1_travel_01"), /checking the Northbridge trains.*wrong with your service/i)
 });
 
 test("one chapter needs only a handful of places and people", () => {
@@ -162,6 +168,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_b1_people_01",
     "sit_b1_people_02",
     "sit_b1_cafe_01",
+    "sit_b1_restaurant_01",
+    "sit_b1_restaurant_02",
+    "sit_b1_travel_01",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

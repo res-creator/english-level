@@ -355,5 +355,357 @@
       }
     ],
     "npcReplyCorrect": "That's helpful. I'll list both and mark the fruit bowl as the lighter option."
+  },
+  {
+    "id": "itm_b1_b14_restriction",
+    "itemType": "functional_phrase",
+    "lemma": "b14 restriction",
+    "displayForm": "I have a serious nut allergy. Does the lentil pie contain any nuts?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "food and allergies",
+    "ru": {
+      "translation": "У меня сильная аллергия на орехи. В пироге с чечевицей есть орехи?",
+      "usageNote": "Learner names the restriction and asks a precise present-simple question about an ingredient."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b14_restriction_01",
+        "text": "I have a serious nut allergy. Does the lentil pie contain any nuts?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "No nuts are listed, but I'll check the full ingredient sheet with the kitchen before I say it's safe.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b14_safeguard",
+    "itemType": "functional_phrase",
+    "lemma": "b14 safeguard",
+    "displayForm": "Could you make sure they use a clean pan as well? Even a small amount could be a problem for me.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "food and allergies",
+    "ru": {
+      "translation": "Не могли бы вы также убедиться, что они используют чистую сковороду? Даже небольшое количество может быть для меня опасным.",
+      "usageNote": "Could you make sure is a fixed polite chunk; learner explains why cross-contact matters."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b14_safeguard_01",
+        "text": "Could you make sure they use a clean pan as well? Even a small amount could be a problem for me.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Of course. I'll mark the order clearly and speak to the chef myself; I'll come back once they've checked.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b14_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "b14 confirm",
+    "displayForm": "Thanks. Could you confirm that the chef checked the sauce too, not just the pie?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "food and allergies",
+    "ru": {
+      "translation": "Спасибо. Подтвердите, пожалуйста, что повар проверил и соус, а не только пирог?",
+      "usageNote": "Learner verifies a specific second component without repeating the original restriction."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b14_confirm_01",
+        "text": "Thanks. Could you confirm that the chef checked the sauce too, not just the pie?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. The sauce is made separately, and the chef has confirmed both it and the clean pan are suitable.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b14_v1_vegetarian",
+    "itemType": "functional_phrase",
+    "lemma": "b14 v1 vegetarian",
+    "displayForm": "I don't eat meat, but it's a preference rather than an allergy. Does the mushroom pie contain any meat stock?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "food and allergies",
+    "ru": {
+      "translation": "Я не ем мясо, но это предпочтение, а не аллергия. В грибном пироге есть мясной бульон?",
+      "usageNote": "Transfers ingredient-checking to a vegetarian preference and distinguishes it accurately from an allergy."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b14_v1_vegetarian_01",
+        "text": "I don't eat meat, but it's a preference rather than an allergy. Does the mushroom pie contain any meat stock?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It does contain beef stock, so that pie isn't suitable for your preference. The vegetable tart is made without meat stock.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b14_v2_two_dishes",
+    "itemType": "functional_phrase",
+    "lemma": "b14 v2 two dishes",
+    "displayForm": "I can't have sesame. Could you check both the flatbread and the dressing, please?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "food and allergies",
+    "ru": {
+      "translation": "Мне нельзя кунжут. Проверьте, пожалуйста, и лепёшку, и заправку?",
+      "usageNote": "Transfers the restriction to two separate components, requiring the learner to make the scope explicit."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b14_v2_two_dishes_01",
+        "text": "I can't have sesame. Could you check both the flatbread and the dressing, please?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The flatbread contains sesame seeds, but the dressing doesn't. I'll ask the kitchen to bring a different side.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b15_wait",
+    "itemType": "functional_phrase",
+    "lemma": "b15 wait",
+    "displayForm": "We've been waiting for the main course for almost an hour, and nobody has told us what's happening.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "complaints and service",
+    "ru": {
+      "translation": "Мы ждём основное блюдо почти час, и нам никто не сказал, что происходит.",
+      "usageNote": "Present Perfect Continuous is an explicit fixed complaint chunk, not a grammar target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b15_wait_01",
+        "text": "We've been waiting for the main course for almost an hour, and nobody has told us what's happening.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I'm sorry. I can see the delay, but I was told the kitchen was finishing your order. Let me check what went wrong.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b15_wrong_dish",
+    "itemType": "functional_phrase",
+    "lemma": "b15 wrong dish",
+    "displayForm": "When it arrived, it was the wrong dish, so this isn't what I expected after such a long wait.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "complaints and service",
+    "ru": {
+      "translation": "Когда его принесли, это оказалось не то блюдо, поэтому после такого долгого ожидания я ожидал(а) другого.",
+      "usageNote": "Adds a specific, distinct service failure instead of repeating the delay."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b15_wrong_dish_01",
+        "text": "When it arrived, it was the wrong dish, so this isn't what I expected after such a long wait.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You're right; the ticket says grilled fish, not the chicken pasta. I can have the correct meal prepared now.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b15_resolution",
+    "itemType": "functional_phrase",
+    "lemma": "b15 resolution",
+    "displayForm": "I appreciate that, but the delay has affected our evening. What can you do about the bill?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "complaints and service",
+    "ru": {
+      "translation": "Спасибо, но из-за задержки пострадал весь наш вечер. Что вы можете сделать со счётом?",
+      "usageNote": "Learner asks for a specific remedy after stating the practical impact."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b15_resolution_01",
+        "text": "I appreciate that, but the delay has affected our evening. What can you do about the bill?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I should have checked on your table earlier. I'll remove the drinks from the bill and bring the correct main course straight away.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b15_v1_wrong_order",
+    "itemType": "functional_phrase",
+    "lemma": "b15 v1 wrong order",
+    "displayForm": "We've been waiting a long time, and the meal that came is not what we ordered. Could you replace it and check the bill?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "complaints and service",
+    "ru": {
+      "translation": "Мы долго ждали, а принесённое блюдо не совпадает с заказом. Замените его и проверьте счёт, пожалуйста.",
+      "usageNote": "Transfers complaint from a delayed meal to a wrong order and requests two concrete actions."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b15_v1_wrong_order_01",
+        "text": "We've been waiting a long time, and the meal that came is not what we ordered. Could you replace it and check the bill?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can see we brought the vegetable pie instead of the fish. I'll replace it and correct the bill.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b15_v2_hold_position",
+    "itemType": "functional_phrase",
+    "lemma": "report a cold meal and a long wait before the server responds",
+    "displayForm": "The main course is cold, and we have been waiting nearly an hour. Could you check what happened?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "complaints and service",
+    "ru": {
+      "translation": "Основное блюдо холодное, а мы ждём почти час. Проверьте, пожалуйста, что произошло?",
+      "usageNote": "Variation v2 first reports the cold meal and long wait. Leo then initially pushes back in npcReplyCorrect; the following variation turn calmly holds the position."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b15_v2_hold_position_01",
+        "text": "The main course is cold, and we have been waiting nearly an hour. Could you check what happened?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I'm sorry, but the kitchen has been very busy, and the server brought it as soon as it was ready.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b16_cancelled",
+    "itemType": "functional_phrase",
+    "lemma": "b16 cancelled",
+    "displayForm": "My train has been cancelled, and I need to get to Northbridge before six. What are my options?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "travel problems",
+    "ru": {
+      "translation": "Мой поезд отменили, и мне нужно попасть в Нортбридж до шести. Какие у меня есть варианты?",
+      "usageNote": "Has been cancelled is a fixed Present Perfect Passive lexical chunk, not a grammar target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b16_cancelled_01",
+        "text": "My train has been cancelled, and I need to get to Northbridge before six. What are my options?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The direct service is cancelled because of a signal problem. There is a replacement bus at quarter past four, and another train via Central at twenty past four.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b16_choose",
+    "itemType": "functional_phrase",
+    "lemma": "b16 choose",
+    "displayForm": "The bus is direct, but it may be slow in traffic. I'll take the train via Central because it gets me there earlier.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "travel problems",
+    "ru": {
+      "translation": "Автобус идёт напрямую, но из-за пробок он может ехать медленно. Поеду поездом через Сентрал, потому что так я доберусь раньше.",
+      "usageNote": "Learner compares two real options and gives a reason for the choice."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b16_choose_01",
+        "text": "The bus is direct, but it may be slow in traffic. I'll take the train via Central because it gets me there earlier.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That train leaves from platform five. Your ticket is still valid, so go to the platform desk if the gate doesn't accept it.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b16_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "b16 confirm",
+    "displayForm": "Thanks. Is platform five the one beside the coffee shop, and do I need to change at Central?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "travel problems",
+    "ru": {
+      "translation": "Спасибо. Пятая платформа рядом с кофейней? И нужно ли мне пересаживаться в Сентрале?",
+      "usageNote": "Learner checks the practical steps needed to follow the chosen alternative."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b16_confirm_01",
+        "text": "Thanks. Is platform five the one beside the coffee shop, and do I need to change at Central?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, it's next to the coffee shop, and you can stay on the same train all the way to Northbridge.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b16_v1_delay",
+    "itemType": "functional_phrase",
+    "lemma": "b16 v1 delay",
+    "displayForm": "The train is delayed by fifty minutes, and I'll miss my connection. Is there another way to get to Northbridge before six?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "travel problems",
+    "ru": {
+      "translation": "Поезд задерживается на пятьдесят минут, и я опоздаю на пересадку. Есть другой способ попасть в Нортбридж до шести?",
+      "usageNote": "Variation changes the disruption from cancellation to a delay that causes a missed connection."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b16_v1_delay_01",
+        "text": "The train is delayed by fifty minutes, and I'll miss my connection. Is there another way to get to Northbridge before six?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You could take the express to Westfield and change there. It usually reaches Northbridge just before six.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b16_v2_options",
+    "itemType": "functional_phrase",
+    "lemma": "b16 v2 options",
+    "displayForm": "The bus takes longer but goes straight there; the train is quicker but needs a change. I'll take the bus because I have heavy luggage.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "travel problems",
+    "ru": {
+      "translation": "Автобус едет дольше, зато без пересадки; поезд быстрее, но нужна пересадка. Выберу автобус, потому что у меня тяжёлый багаж.",
+      "usageNote": "Variation offers two options with distinct trade-offs; learner chooses and justifies one."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b16_v2_options_01",
+        "text": "The bus takes longer but goes straight there; the train is quicker but needs a change. I'll take the bus because I have heavy luggage.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Good choice. The bus stop is outside the station, and the driver can put your case underneath.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b15_v2_response",
+    "itemType": "functional_phrase",
+    "lemma": "hold a polite position after the server pushes back",
+    "displayForm": "I understand you were busy, but we still waited nearly an hour and the meal was cold. Could you remove it from the bill?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "complaints and service",
+    "ru": {
+      "translation": "Понимаю, что вы были заняты, но мы всё равно ждали почти час, и блюдо было холодным. Уберите его из счёта, пожалуйста.",
+      "usageNote": "The learner acknowledges Leo’s explanation, restates the evidence and asks for a specific remedy without becoming rude."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b15_v2_response_01",
+        "text": "I understand you were busy, but we still waited nearly an hour and the meal was cold. Could you remove it from the bill?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's fair. I'll take the cold meal off the bill and bring you a fresh one if you'd still like it.",
+    "patterns": []
   }
 ]

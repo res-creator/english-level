@@ -16,5 +16,23 @@
     "description": "Сравнивать варианты и давать обоснованные рекомендации.",
     "order": 2,
     "status": "published"
+  },
+  {
+    "id": "mod_b1_restaurant_dining",
+    "levelCode": "B1",
+    "title": "Ресторан и обслуживание",
+    "slug": "b1-restaurant-dining",
+    "description": "Объяснять особые пищевые ограничения и добиваться решения серьёзной проблемы с обслуживанием.",
+    "order": 3,
+    "status": "published"
+  },
+  {
+    "id": "mod_b1_getting_around",
+    "levelCode": "B1",
+    "title": "В пути",
+    "slug": "b1-getting-around",
+    "description": "Разобраться в нарушении поездки и выбрать подходящий дальнейший маршрут.",
+    "order": 4,
+    "status": "published"
   }
 ]

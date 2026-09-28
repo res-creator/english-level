@@ -45,9 +45,9 @@ const defaultEpisodes =
         "sit_a2_problems_02",
       ]
     : QA_LEVEL === "B1"
-      ? ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01"]
+      ? ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01"]
       : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
-const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 3 : 11;
+const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 6 : 11;
 const expectedChapterProgress =
   QA_LEVEL === "A2"
     ? [
@@ -62,7 +62,7 @@ const expectedChapterProgress =
         "0 из 2",
       ]
     : QA_LEVEL === "B1"
-      ? ["0 из 2", "0 из 1"]
+      ? ["0 из 2", "0 из 1", "0 из 2", "0 из 1"]
       : ["0 из 11"];
 const completedChapterProgress =
   QA_LEVEL === "A2"
@@ -78,7 +78,7 @@ const completedChapterProgress =
         "2 из 2",
       ]
     : QA_LEVEL === "B1"
-      ? ["2 из 2", "1 из 1"]
+      ? ["2 из 2", "1 из 1", "2 из 2", "1 из 1"]
       : ["11 из 11"];
 const episodes = process.argv.slice(2).length
   ? process.argv.slice(2)
@@ -413,7 +413,10 @@ async function run(failMission) {
                 stored.targetId.startsWith("itm_a2_ha2_") ||
                 stored.targetId.startsWith("itm_b1_b11_") ||
                 stored.targetId.startsWith("itm_b1_b12_") ||
-                stored.targetId.startsWith("itm_b1_b13_"))
+                stored.targetId.startsWith("itm_b1_b13_") ||
+                stored.targetId.startsWith("itm_b1_b14_") ||
+                stored.targetId.startsWith("itm_b1_b15_") ||
+                stored.targetId.startsWith("itm_b1_b16_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,

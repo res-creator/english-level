@@ -25,10 +25,10 @@ test("the published catalogue includes A1 and authored A2/B1 chapters", () => {
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2 and the first two B1 chapters.
-  assert.equal(published.length, 12);
+  // course now includes A1, authored A2 and four B1 modules.
+  assert.equal(published.length, 14);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
-  assert.equal(published.filter((m) => m.levelCode === "B1").length, 2);
+  assert.equal(published.filter((m) => m.levelCode === "B1").length, 4);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -365,6 +365,9 @@ test("A2 and B1 plans keep semantic turns once and exclude variations from Missi
     "sit_b1_people_01",
     "sit_b1_people_02",
     "sit_b1_cafe_01",
+    "sit_b1_restaurant_01",
+    "sit_b1_restaurant_02",
+    "sit_b1_travel_01",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const levelId = situationId.startsWith("sit_b1_") ? "lvl_b1" : "lvl_a2";
@@ -502,9 +505,9 @@ test("re-seeding updates existing rows in place (upsert, not insert-or-error)", 
   assert.equal(after.title, before.title);
 });
 
-test("B1 Batch 1 authors three connected dialogues with classified targets and transfer practice", () => {
+test("B1 authored situations keep coherent semantic turns, classifications, reviews and transfer practice", () => {
   const bundle = loadSeedContent();
-  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01"];
+  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01"];
   const lessonById = new Map(bundle.lessons.map((lesson) => [lesson.id, lesson]));
   const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
   assert.deepEqual(
@@ -530,6 +533,18 @@ test("B1 Batch 1 authors three connected dialogues with classified targets and t
   assert.ok(bundle.lessonItems.filter((link) => link.lessonId === "sit_b1_people_02" && link.role === "practice").length >= 3);
   assert.match(itemById.get("itm_b1_b13_preference")?.displayForm ?? "", /If I were you/);
   assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_cafe_01" && link.contentId === "gr_a2_comparatives" && link.role === "target"));
+  for (const id of ids.slice(3)) {
+    assert.ok(bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "practice").length >= 2);
+    assert.equal(bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "introduce").length, 3);
+  }
+  assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_restaurant_01" && link.contentId === "gr_a1_present_simple_questions" && link.role === "target"));
+  assert.match(itemById.get("itm_b1_b14_v1_vegetarian")?.displayForm ?? "", /preference rather than an allergy/);
+  assert.match(itemById.get("itm_b1_b14_v2_two_dishes")?.displayForm ?? "", /both the flatbread and the dressing/);
+  assert.match(itemById.get("itm_b1_b15_wait")?.ru.usageNote ?? "", /not a grammar target/);
+  assert.match(itemById.get("itm_b1_b15_v2_hold_position")?.npcReplyCorrect ?? "", /kitchen has been very busy/);
+  assert.match(itemById.get("itm_b1_b15_v2_response")?.displayForm ?? "", /we still waited.*meal was cold/);
+  assert.match(itemById.get("itm_b1_b16_cancelled")?.ru.usageNote ?? "", /not a grammar target/);
+  assert.match(itemById.get("itm_b1_b16_v2_options")?.displayForm ?? "", /take the bus because/);
   for (const id of ids) {
     const practice = bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "practice");
     assert.ok(practice.length >= 2, `${id} has two transfer variations`);
