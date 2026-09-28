@@ -25,9 +25,9 @@ test("the published catalogue includes A1 and the authored A2 chapters", () => {
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The authored
-  // situational course now includes A1 plus the first five A2 chapters.
-  assert.equal(published.length, 6);
-  assert.equal(published.filter((m) => m.levelCode === "A2").length, 5);
+  // situational course now includes A1 plus the first seven A2 chapters.
+  assert.equal(published.length, 8);
+  assert.equal(published.filter((m) => m.levelCode === "A2").length, 7);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -97,7 +97,7 @@ test("A1.1 Practice Variation keeps Alex and transfers the self-introduction", (
   );
 });
 
-test("A2 Batch 1–3 have authored turns, two practice variations, and no answer gaps", () => {
+test("A2 Batch 1–4 have authored turns, two practice variations, and no answer gaps", () => {
   const bundle = loadSeedContent();
   const situationIds = [
     "sit_a2_people_01",
@@ -109,6 +109,9 @@ test("A2 Batch 1–3 have authored turns, two practice variations, and no answer
     "sit_a2_travel_02",
     "sit_a2_daily_01",
     "sit_a2_daily_02",
+    "sit_a2_shop_01",
+    "sit_a2_shop_02",
+    "sit_a2_work_01",
   ];
 
   for (const situationId of situationIds) {
@@ -209,6 +212,22 @@ test("A2 Batch 3 preserves clarification, connected past narrative, and two futu
   assert.match(item("itm_a2_a29_v2_change_plan")?.displayForm ?? "", /Friday instead.*still meeting/i);
 });
 
+test("A2 Batch 4 returns, compares offers, and describes work at A2", () => {
+  const bundle = loadSeedContent();
+  const item = (id: string) => bundle.learningItems.find((row) => row.id === id);
+  assert.match(item("itm_a2_a210_reason")?.displayForm ?? "", /bought.*yesterday/i);
+  assert.doesNotMatch(item("itm_a2_a210_reason")?.displayForm ?? "", /have bought/i);
+  assert.match(item("itm_a2_a211_compare")?.displayForm ?? "", /cheaper than/i);
+  assert.match(item("itm_a2_a211_terms")?.displayForm ?? "", /both jackets.*second one/i);
+  assert.match(item("itm_a2_a212_role")?.displayForm ?? "", /and I help customers/i);
+  assert.ok(bundle.lessonItems.some((row) => row.lessonId === "sit_a2_work_01" && row.contentId === "gr_sie_frequency" && row.role === "target"), "frequency adverbs are an explicit recycled target");
+  assert.match(item("itm_a2_a212_routine")?.displayForm ?? "", /usually check.*then I write/i);
+  assert.match(item("itm_a2_a212_v2_role")?.displayForm ?? "", /part-time.*three afternoons/i);
+  for (const id of ["itm_a2_a212_v2_role", "itm_a2_a212_v2_routine"]) {
+    assert.doesNotMatch(item(id)?.displayForm ?? "", /used to/i);
+  }
+});
+
 test("A2 Batch 3 wires the V2 Near/Far reviews and ordered prerequisite path", () => {
   const bundle = loadSeedContent();
   const reviews = (lessonId: string) =>
@@ -251,7 +270,17 @@ test("A2 Batch 3 wires the V2 Near/Far reviews and ordered prerequisite path", (
   ]);
 });
 
-test("A2 Batch 1–3 plans keep semantic turns once and exclude variations from Missions", async () => {
+test("A2 Batch 4 connects shop reviews to A1.7 and work review to A2.1", () => {
+  const bundle = loadSeedContent();
+  const reviews = (lessonId: string) => bundle.lessonItems
+    .filter((row) => row.lessonId === lessonId && row.role === "review")
+    .map((row) => row.contentId);
+  assert.deepEqual(reviews("sit_a2_shop_01"), ["itm_sie_a17_how_much"]);
+  assert.deepEqual(reviews("sit_a2_shop_02"), ["itm_sie_a17_how_much"]);
+  assert.deepEqual(reviews("sit_a2_work_01"), ["itm_a2_a21_job_linked"]);
+});
+
+test("A2 Batch 1–4 plans keep semantic turns once and exclude variations from Missions", async () => {
   const { db, sqlite } = createTestDb();
   await seedContent(db);
 
@@ -265,6 +294,9 @@ test("A2 Batch 1–3 plans keep semantic turns once and exclude variations from 
     "sit_a2_travel_02",
     "sit_a2_daily_01",
     "sit_a2_daily_02",
+    "sit_a2_shop_01",
+    "sit_a2_shop_02",
+    "sit_a2_work_01",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const plan = await planEpisodeSessions(db, "lvl_a2", links);

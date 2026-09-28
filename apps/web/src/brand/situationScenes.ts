@@ -45,6 +45,9 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_a2_travel_02: { scene: "street", cast: "rosa" },
   sit_a2_daily_01: { scene: "meeting", cast: "alex" },
   sit_a2_daily_02: { scene: "cafe", cast: "alex" },
+  sit_a2_shop_01: { scene: "shop", cast: "emma" },
+  sit_a2_shop_02: { scene: "shop", cast: "emma" },
+  sit_a2_work_01: { scene: "office", cast: "daniel" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -86,6 +89,9 @@ const OPENING_LINES: Record<string, string> = {
     "The museum? Go straight along King Street and turn left at the bridge.",
   sit_a2_daily_01: "How was your weekend? Did you do anything fun?",
   sit_a2_daily_02: "Are you free next week? I could use a day out.",
+  sit_a2_shop_01: "Hello. Is there anything I can help you with today?",
+  sit_a2_shop_02: "We have a few offers on this week. Are you looking at anything in particular?",
+  sit_a2_work_01: "We have a few minutes before the meeting. What do you do at work?",
 };
 
 export function openingLine(episodeId: string): string {

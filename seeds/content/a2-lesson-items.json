@@ -1375,5 +1375,257 @@
     "role": "practice",
     "order": 10,
     "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_01_10_reason",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a210_reason",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_shop_01_10_exchange",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a210_exchange",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_shop_01_10_finish",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a210_finish",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_shop_01_review_far",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_how_much",
+    "role": "review",
+    "order": 4,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_01_grammar_target",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_positive",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_shop_01_10_v1_reason",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a210_v1_reason",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_01_10_v1_exchange",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a210_v1_exchange",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_01_10_v2_reason",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a210_v2_reason",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_01_10_v2_choice",
+    "lessonId": "sit_a2_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a210_v2_choice",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_02_11_offer",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a211_offer",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_shop_02_11_terms",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a211_terms",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_shop_02_11_compare",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a211_compare",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_shop_02_review_far",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_how_much",
+    "role": "review",
+    "order": 4,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_02_grammar_target",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_comparatives",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_shop_02_11_v1_offer",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a211_v1_offer",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_02_11_v1_compare",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a211_v1_compare",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_02_11_v2_offer",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a211_v2_offer",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_shop_02_11_v2_compare",
+    "lessonId": "sit_a2_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a211_v2_compare",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_work_01_12_role",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a212_role",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_work_01_12_routine",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a212_routine",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_work_01_12_team",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a212_team",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_work_01_review_near",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a21_job_linked",
+    "role": "review",
+    "order": 4,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_work_01_grammar_target",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_present_simple_connected_descriptions",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_work_01_12_v1_role",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a212_v1_role",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_work_01_12_v1_routine",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a212_v1_routine",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_work_01_12_v2_role",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a212_v2_role",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_work_01_12_v2_routine",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a212_v2_routine",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_work_01_frequency_target",
+    "lessonId": "sit_a2_work_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_sie_frequency",
+    "role": "target",
+    "order": 6,
+    "required": true
   }
 ]

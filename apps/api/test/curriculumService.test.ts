@@ -64,10 +64,10 @@ test("every episode states the capability it unlocks", async () => {
   }
 });
 
-test("the published A2 course exposes the first five authored V2 chapters", async () => {
+test("the published A2 course exposes the first seven authored V2 chapters", async () => {
   const { db } = await seeded();
   const course = await getCourse(db, "A2", "usr_test");
-  assert.equal(course.chapters.length, 5);
+  assert.equal(course.chapters.length, 7);
   assert.deepEqual(
     course.chapters.flatMap((chapter) =>
       chapter.episodes.map((episode) => episode.id),
@@ -82,9 +82,12 @@ test("the published A2 course exposes the first five authored V2 chapters", asyn
       "sit_a2_travel_02",
       "sit_a2_daily_01",
       "sit_a2_daily_02",
+      "sit_a2_shop_01",
+      "sit_a2_shop_02",
+      "sit_a2_work_01",
     ],
   );
-  assert.equal(course.episodesTotal, 9);
+  assert.equal(course.episodesTotal, 12);
 });
 
 test("a level with no seeded content returns an empty course, not an error", async () => {

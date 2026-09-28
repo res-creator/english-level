@@ -70,5 +70,23 @@
     "description": "Рассказывать о прошедших выходных и делиться планами на неделю.",
     "order": 8,
     "status": "published"
+  },
+  {
+    "id": "mod_a2_shopping_services",
+    "levelCode": "A2",
+    "title": "Покупки и услуги",
+    "slug": "a2-shopping-services",
+    "description": "Решать вопросы с покупками и уточнять предложения в магазине.",
+    "order": 9,
+    "status": "published"
+  },
+  {
+    "id": "mod_a2_work_study",
+    "levelCode": "A2",
+    "title": "Работа и учёба",
+    "slug": "a2-work-study",
+    "description": "Рассказывать о своей работе и повседневных обязанностях.",
+    "order": 10,
+    "status": "published"
   }
 ]

@@ -1723,5 +1723,467 @@
     "examples": [{ "id": "ex_itm_a2_a29_v2_change_plan_01", "text": "Oh, then I'm going to visit the book fair on Friday instead. I'm still meeting Maya for dinner on Saturday.", "isPrimary": true }],
     "npcReplyCorrect": "All right, enjoy the fair!",
     "patterns": []
+  },
+  {
+    "id": "itm_a2_a210_reason",
+    "itemType": "functional_phrase",
+    "lemma": "explain why you are returning a purchase",
+    "displayForm": "I bought this shirt yesterday, but it doesn't fit.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Я купила эту рубашку вчера, но она мне не подходит.",
+      "usageNote": "Past Simple is the target for explaining when the purchase happened."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a210_reason_01",
+        "text": "I bought this shirt yesterday, but it doesn't fit.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I see. Would you like to return it or exchange it for another size?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a210_exchange",
+    "itemType": "functional_phrase",
+    "lemma": "ask to exchange an item for another size",
+    "displayForm": "I'd like to exchange it, please. Do you have it in a smaller size?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Я хотела бы обменять её. У вас есть размер поменьше?",
+      "usageNote": "The polite exchange request is a lexical chunk; the grammar target remains Past Simple."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a210_exchange_01",
+        "text": "I'd like to exchange it, please. Do you have it in a smaller size?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, we have a small. Do you have the receipt?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a210_finish",
+    "itemType": "functional_phrase",
+    "lemma": "confirm the exchange using the receipt",
+    "displayForm": "Yes, here it is. Can I exchange it today?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Да, вот чек. Я могу обменять её сегодня?",
+      "usageNote": "A familiar present modal question used to complete the transaction."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a210_finish_01",
+        "text": "Yes, here it is. Can I exchange it today?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Of course. The small is the same price, so you can take it now.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a210_v1_reason",
+    "itemType": "functional_phrase",
+    "lemma": "explain that an item is the wrong size",
+    "displayForm": "I bought these trousers on Saturday, but I got the wrong size.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Я купила эти брюки в субботу, но ошиблась с размером.",
+      "usageNote": "Practice transfer: a different item and fit problem; Past Simple remains the target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a210_v1_reason_01",
+        "text": "I bought these trousers on Saturday, but I got the wrong size.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I understand. Would you like a different size?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a210_v1_exchange",
+    "itemType": "functional_phrase",
+    "lemma": "request a larger size and show the receipt",
+    "displayForm": "Yes, please. Do you have a larger size? I have the receipt here.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Да, пожалуйста. У вас есть размер побольше? Вот чек.",
+      "usageNote": "The learner applies the exchange function to a new size problem."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a210_v1_exchange_01",
+        "text": "Yes, please. Do you have a larger size? I have the receipt here.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We do. You can try them on, and then we can exchange them.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a210_v2_reason",
+    "itemType": "functional_phrase",
+    "lemma": "explain a problem with a different product",
+    "displayForm": "I bought this kettle yesterday, but it doesn't work.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Я купила этот чайник вчера, но он не работает.",
+      "usageNote": "Practice transfer changes product and reason; learner explains the purchase with Past Simple."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a210_v2_reason_01",
+        "text": "I bought this kettle yesterday, but it doesn't work.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I’m sorry about that. Would you like a refund or another kettle?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a210_v2_choice",
+    "itemType": "functional_phrase",
+    "lemma": "choose an exchange and ask about the condition",
+    "displayForm": "Another kettle, please. Can I exchange it with the receipt?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Другой чайник, пожалуйста. Я могу обменять его с чеком?",
+      "usageNote": "The learner negotiates a different product exchange, not a size swap."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a210_v2_choice_01",
+        "text": "Another kettle, please. Can I exchange it with the receipt?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. I’ll check the box, and then you can take a new one today.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a211_offer",
+    "itemType": "functional_phrase",
+    "lemma": "ask what the two-item offer includes",
+    "displayForm": "Do you have an offer on these jackets?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "На эти куртки есть акция?",
+      "usageNote": "This opens a longer price enquiry; the learner must clarify the offer and compare options."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a211_offer_01",
+        "text": "Do you have an offer on these jackets?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. They are twenty per cent off when you buy two jackets.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a211_terms",
+    "itemType": "functional_phrase",
+    "lemma": "clarify how the discount works",
+    "displayForm": "Does that mean both jackets are cheaper, or only the second one?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Это значит, что обе куртки дешевле или только вторая?",
+      "usageNote": "A direct follow-up checks the promotion condition rather than stopping at whether a sale exists."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a211_terms_01",
+        "text": "Does that mean both jackets are cheaper, or only the second one?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Both jackets are twenty per cent cheaper. The blue one is fifty pounds, and the green one is sixty.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a211_compare",
+    "itemType": "functional_phrase",
+    "lemma": "compare the prices and check the total",
+    "displayForm": "The blue jacket is cheaper than the green one. Are both jackets eighty-eight pounds after the discount?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Синяя куртка дешевле зелёной. Обе куртки будут стоить 88 фунтов со скидкой?",
+      "usageNote": "Comparatives are an explicit Grammar Target and appear in learner language."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a211_compare_01",
+        "text": "The blue jacket is cheaper than the green one. Are both jackets eighty-eight pounds after the discount?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That’s right. You save twenty-two pounds on the two jackets.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a211_v1_offer",
+    "itemType": "functional_phrase",
+    "lemma": "ask about a jacket promotion",
+    "displayForm": "Are these trainers part of the weekend offer?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "На эти кроссовки действует предложение выходного дня?",
+      "usageNote": "Variation v1 changes the product and offer conditions."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a211_v1_offer_01",
+        "text": "Are these trainers part of the weekend offer?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. The black pair is sixty pounds, and the white pair is seventy. The offer is fifteen per cent off one pair until Sunday.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a211_v1_compare",
+    "itemType": "functional_phrase",
+    "lemma": "compare two jackets and clarify the saving",
+    "displayForm": "The black trainers are cheaper than the white pair. Is the discount taken off at the till?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Чёрные кроссовки дешевле белых. Скидка вычитается на кассе?",
+      "usageNote": "The learner compares products and checks where/how the offer applies."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a211_v1_compare_01",
+        "text": "The black trainers are cheaper than the white pair. Is the discount taken off at the till?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, the lower price appears at the till. The offer ends on Sunday.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a211_v2_offer",
+    "itemType": "functional_phrase",
+    "lemma": "ask about a multi-buy offer on two bags",
+    "displayForm": "What is the offer on these two bags?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Какая акция действует на эти две сумки?",
+      "usageNote": "Variation v2 compares two items under a multi-buy condition."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a211_v2_offer_01",
+        "text": "What is the offer on these two bags?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The brown bag is forty pounds, and the black one is fifty-five. Buy one and get the second for half price.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a211_v2_compare",
+    "itemType": "functional_phrase",
+    "lemma": "compare two bags and check the offer total",
+    "displayForm": "The brown bag is cheaper than the black one. Is the second bag half price even if I choose the cheaper one first?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "shopping",
+    "ru": {
+      "translation": "Коричневая сумка дешевле чёрной. Вторая будет вдвое дешевле, даже если сначала выбрать более дешёвую?",
+      "usageNote": "Transfer requires understanding which item is discounted and comparing prices."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a211_v2_compare_01",
+        "text": "The brown bag is cheaper than the black one. Is the second bag half price even if I choose the cheaper one first?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. You can choose either bag first; the other one is half price.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a212_role",
+    "itemType": "functional_phrase",
+    "lemma": "describe a job and its main purpose",
+    "displayForm": "I work full-time in a small office, and I help customers with their orders.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Я работаю полный день в небольшом офисе и помогаю клиентам с заказами.",
+      "usageNote": "Connected Present Simple description; role and purpose form one coherent answer."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a212_role_01",
+        "text": "I work full-time in a small office, and I help customers with their orders.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "What do you usually do first when an order comes in?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a212_routine",
+    "itemType": "functional_phrase",
+    "lemma": "describe regular duties with frequency",
+    "displayForm": "I usually check the details, then I write to the customer if something is missing.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Обычно я проверяю детали, а затем пишу клиенту, если чего-то не хватает.",
+      "usageNote": "Present Simple and the frequency adverb usually are explicit learner targets."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a212_routine_01",
+        "text": "I usually check the details, then I write to the customer if something is missing.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds organised. Do you work with a team?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a212_team",
+    "itemType": "functional_phrase",
+    "lemma": "connect teamwork with a usual responsibility",
+    "displayForm": "Yes, I work with two other people. We share the busy tasks, and I often prepare the weekly order list.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Да, я работаю ещё с двумя людьми. Мы делим срочные задачи, и я часто готовлю еженедельный список заказов.",
+      "usageNote": "Present Simple with often is a second explicit example; related clauses keep the answer connected."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a212_team_01",
+        "text": "Yes, I work with two other people. We share the busy tasks, and I often prepare the weekly order list.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It sounds like you help the whole team stay organised.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a212_v1_role",
+    "itemType": "functional_phrase",
+    "lemma": "describe teaching as a job",
+    "displayForm": "I teach at a primary school, and I work with children every day.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Я преподаю в начальной школе и каждый день работаю с детьми.",
+      "usageNote": "Variation v1 changes the job and setting while keeping a connected A2 description."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a212_v1_role_01",
+        "text": "I teach at a primary school, and I work with children every day.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "What do you usually do before your first class?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a212_v1_routine",
+    "itemType": "functional_phrase",
+    "lemma": "describe regular teaching duties",
+    "displayForm": "I usually prepare a short lesson, and I often read stories with the class.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Обычно я готовлю короткий урок и часто читаю с классом рассказы.",
+      "usageNote": "Frequency adverbs and Present Simple are retained in a different job context."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a212_v1_routine_01",
+        "text": "I usually prepare a short lesson, and I often read stories with the class.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds like a busy teaching week.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a212_v2_role",
+    "itemType": "functional_phrase",
+    "lemma": "explain a part-time work schedule",
+    "displayForm": "I work part-time at a bookshop, so I work three afternoons a week.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Я работаю в книжном магазине неполный день — три дня в неделю по вечерам.",
+      "usageNote": "Variation v2 changes full-time to part-time schedule using A2 language only."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a212_v2_role_01",
+        "text": "I work part-time at a bookshop, so I work three afternoons a week.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "What do you usually do when you are there?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a212_v2_routine",
+    "itemType": "functional_phrase",
+    "lemma": "describe regular duties on a part-time schedule",
+    "displayForm": "I usually help customers and put new books on the shelves.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "work",
+    "ru": {
+      "translation": "Обычно я помогаю покупателям и расставляю новые книги на полках.",
+      "usageNote": "Simple present and usually describe current duties; no used to or B1 preview."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a212_v2_routine_01",
+        "text": "I usually help customers and put new books on the shelves.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds like a friendly place to work.",
+    "patterns": []
   }
 ]

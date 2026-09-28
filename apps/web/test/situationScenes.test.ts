@@ -86,6 +86,16 @@ test("A2 Batch 3 maps route and daily-life dialogues to Rosa and Alex", () => {
   assert.match(openingLine("sit_a2_daily_02"), /free next week/i);
 });
 
+
+test("A2 Batch 4 maps shopping and work conversations to Emma and Daniel", () => {
+  assert.deepEqual(sceneForSituation("sit_a2_shop_01"), { scene: "shop", cast: "emma" });
+  assert.deepEqual(sceneForSituation("sit_a2_shop_02"), { scene: "shop", cast: "emma" });
+  assert.deepEqual(sceneForSituation("sit_a2_work_01"), { scene: "office", cast: "daniel" });
+  assert.match(openingLine("sit_a2_shop_01"), /help you with today/i);
+  assert.match(openingLine("sit_a2_shop_02"), /offers on/i);
+  assert.match(openingLine("sit_a2_work_01"), /What do you do at work/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

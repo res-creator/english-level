@@ -864,5 +864,221 @@
         "chunkLabel": "NPC closes with a relevant wish about the changed fair plan."
       }
     ]
+  },
+  {
+    "situationId": "sit_a2_shop_01",
+    "phrases": [
+      {
+        "text": "I bought this shirt yesterday, but it doesn't fit.",
+        "classification": "target",
+        "itemId": "itm_a2_a210_reason",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "I see. Would you like to return it or exchange it for another size?",
+        "classification": "chunk",
+        "chunkLabel": "Emma offers the two relevant return outcomes."
+      },
+      {
+        "text": "I'd like to exchange it, please. Do you have it in a smaller size?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a210_exchange",
+        "chunkLabel": "Polite exchange request is a fixed functional chunk."
+      },
+      {
+        "text": "Yes, we have a small. Do you have the receipt?",
+        "classification": "chunk",
+        "chunkLabel": "Emma checks size availability and proof of purchase."
+      },
+      {
+        "text": "Yes, here it is. Can I exchange it today?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a210_finish",
+        "chunkLabel": "Familiar present modal used to complete the transaction."
+      },
+      {
+        "text": "Of course. The small is the same price, so you can take it now.",
+        "classification": "chunk",
+        "chunkLabel": "Emma confirms the exchange terms."
+      },
+      {
+        "text": "I bought these trousers on Saturday, but I got the wrong size.",
+        "classification": "target",
+        "itemId": "itm_a2_a210_v1_reason",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "Yes, please. Do you have a larger size? I have the receipt here.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a210_v1_exchange",
+        "chunkLabel": "Learner transfers exchange request to a new size issue."
+      },
+      {
+        "text": "I bought this kettle yesterday, but it doesn't work.",
+        "classification": "target",
+        "itemId": "itm_a2_a210_v2_reason",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "Another kettle, please. Can I exchange it with the receipt?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a210_v2_choice",
+        "chunkLabel": "Learner negotiates exchange for a different product."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_shop_02",
+    "phrases": [
+      {
+        "text": "Do you have an offer on these jackets?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a211_offer",
+        "chunkLabel": "Learner asks about a promotion as the start of an extended enquiry."
+      },
+      {
+        "text": "Yes. They are twenty per cent off when you buy two jackets.",
+        "classification": "chunk",
+        "chunkLabel": "Emma states the multi-buy condition."
+      },
+      {
+        "text": "Both jackets are twenty per cent cheaper. The blue one is fifty pounds, and the green one is sixty.",
+        "classification": "chunk",
+        "chunkLabel": "Emma clarifies the condition and connects each price to its colour.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Does that mean both jackets are cheaper, or only the second one?",
+        "classification": "chunk",
+        "chunkLabel": "Learner checks exactly which purchases qualify for the multi-buy discount.",
+        "itemId": "itm_a2_a211_terms"
+      },
+      {
+        "text": "The blue jacket is cheaper than the green one. Are both jackets eighty-eight pounds after the discount?",
+        "classification": "target",
+        "itemId": "itm_a2_a211_compare",
+        "grammarPatternId": "gr_a2_comparatives"
+      },
+      {
+        "text": "That’s right. You save twenty-two pounds on the two jackets.",
+        "classification": "chunk",
+        "chunkLabel": "Emma confirms total and saving."
+      },
+      {
+        "text": "Are these trainers part of the weekend offer?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a211_v1_offer",
+        "chunkLabel": "Variation changes product and promotion conditions."
+      },
+      {
+        "text": "Yes. The black pair is sixty pounds, and the white pair is seventy. The offer is fifteen per cent off one pair until Sunday.",
+        "classification": "chunk",
+        "chunkLabel": "Emma gives the prices and the single-pair weekend offer terms.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The black trainers are cheaper than the white pair.",
+        "classification": "target",
+        "itemId": "itm_a2_a211_v1_compare",
+        "grammarPatternId": "gr_a2_comparatives"
+      },
+      {
+        "text": "Is the discount taken off at the till?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a211_v1_compare",
+        "chunkLabel": "Learner checks how the promotion is applied."
+      },
+      {
+        "text": "What is the offer on these two bags?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a211_v2_offer",
+        "chunkLabel": "Variation changes product and multi-buy terms."
+      },
+      {
+        "text": "The brown bag is forty pounds, and the black one is fifty-five. Buy one and get the second for half price.",
+        "classification": "chunk",
+        "chunkLabel": "Emma explains both bag prices and which purchase is discounted.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The brown bag is cheaper than the black one.",
+        "classification": "target",
+        "itemId": "itm_a2_a211_v2_compare",
+        "grammarPatternId": "gr_a2_comparatives"
+      },
+      {
+        "text": "Is the second bag half price even if I choose the cheaper one first?",
+        "classification": "chunk",
+        "itemId": "itm_a2_a211_v2_compare",
+        "chunkLabel": "Learner checks offer conditions while comparing prices."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_work_01",
+    "phrases": [
+      {
+        "text": "We have a few minutes before the meeting. What do you do at work?",
+        "classification": "chunk",
+        "chunkLabel": "Daniel asks a natural, work-related opener.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I work full-time in a small office, and I help customers with their orders.",
+        "classification": "target",
+        "itemId": "itm_a2_a212_role",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "What do you usually do first when an order comes in?",
+        "classification": "chunk",
+        "chunkLabel": "Daniel's follow-up responds to the described customer-order work."
+      },
+      {
+        "text": "I usually check the details, then I write to the customer if something is missing.",
+        "classification": "target",
+        "itemId": "itm_a2_a212_routine",
+        "grammarPatternId": "gr_sie_frequency"
+      },
+      {
+        "text": "That sounds organised. Do you work with a team?",
+        "classification": "chunk",
+        "chunkLabel": "Daniel follows up on the learner's description of routine work."
+      },
+      {
+        "text": "Yes, I work with two other people. We share the busy tasks, and I often prepare the weekly order list.",
+        "classification": "target",
+        "itemId": "itm_a2_a212_team",
+        "grammarPatternId": "gr_sie_frequency"
+      },
+      {
+        "text": "I teach at a primary school, and I work with children every day.",
+        "classification": "target",
+        "itemId": "itm_a2_a212_v1_role",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "I usually prepare a short lesson, and I often read stories with the class.",
+        "classification": "target",
+        "itemId": "itm_a2_a212_v1_routine",
+        "grammarPatternId": "gr_sie_frequency"
+      },
+      {
+        "text": "I work part-time at a bookshop, so I work three afternoons a week.",
+        "classification": "target",
+        "itemId": "itm_a2_a212_v2_role",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "I usually help customers and put new books on the shelves.",
+        "classification": "target",
+        "itemId": "itm_a2_a212_v2_routine",
+        "grammarPatternId": "gr_sie_frequency"
+      }
+    ]
   }
 ]
