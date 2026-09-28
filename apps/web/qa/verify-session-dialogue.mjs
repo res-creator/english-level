@@ -17,9 +17,20 @@ const base = "http://localhost:5173";
 const out = fileURLToPath(
   new URL("../../../artifacts/qa/session-dialogue/", import.meta.url),
 );
+const QA_LEVEL = process.env.QA_LEVEL ?? "A1";
+assert.ok(["A1", "A2"].includes(QA_LEVEL), `Unsupported QA_LEVEL=${QA_LEVEL}`);
+const defaultEpisodes =
+  QA_LEVEL === "A2"
+    ? ["sit_a2_people_01", "sit_a2_people_02", "sit_a2_cafe_01"]
+    : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
+const expectedCourseCount = QA_LEVEL === "A2" ? 3 : 11;
+const expectedChapterProgress =
+  QA_LEVEL === "A2" ? ["0 из 2", "0 из 1"] : ["0 из 11"];
+const completedChapterProgress =
+  QA_LEVEL === "A2" ? ["2 из 2", "1 из 1"] : ["11 из 11"];
 const episodes = process.argv.slice(2).length
   ? process.argv.slice(2)
-  : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
+  : defaultEpisodes;
 await mkdir(out, { recursive: true });
 const results = [];
 const snapshots = [];
@@ -128,16 +139,31 @@ async function run(failMission) {
     await page.locator("text=Твой уровень").waitFor();
     assert.match(await page.locator(".hero-screen").innerText(), /A1/i);
     await page.screenshot({ path: `${out}/a1-placement-result.png` });
+    if (QA_LEVEL === "A2") {
+      // Local disposable preview only: placement has already been exercised;
+      // set its test user to A2 so the A2 course can be reached in Chromium.
+      sqlite
+        .prepare(
+          "UPDATE users SET current_cefr_level = 'A2' WHERE onboarding_completed = 1",
+        )
+        .run();
+    }
     await page.locator(".hero-screen__actions .btn").first().click();
     await page.goto(`${base}/course`, { waitUntil: "networkidle" });
-    await page.locator(".situation-list").waitFor();
-    assert.equal(await page.locator(".situation-row").count(), 11);
-    assert.match(
-      await page.locator(".course-progress__count").innerText(),
-      /0 из 11/,
+    await page.locator(".situation-list").first().waitFor();
+    assert.equal(
+      await page.locator(".situation-row").count(),
+      expectedCourseCount,
+    );
+    assert.deepEqual(
+      await page.locator(".course-progress__count").allTextContents(),
+      expectedChapterProgress,
     );
     assert.equal(await page.locator(".situation-row.is-current").count(), 1);
-    assert.equal(await page.locator(".situation-row.is-locked").count(), 10);
+    assert.equal(
+      await page.locator(".situation-row.is-locked").count(),
+      expectedCourseCount - 1,
+    );
     await page.screenshot({
       path: `${out}/a1-course-start.png`,
       fullPage: true,
@@ -302,7 +328,10 @@ async function run(failMission) {
                 stored.targetId.startsWith("itm_sie_a11_") ||
                 stored.targetId.startsWith("itm_sie_a19_") ||
                 stored.targetId.startsWith("itm_sie_a110_") ||
-                stored.targetId.startsWith("itm_sie_ha1_"))
+                stored.targetId.startsWith("itm_sie_ha1_") ||
+                stored.targetId.startsWith("itm_a2_a21_") ||
+                stored.targetId.startsWith("itm_a2_a22_") ||
+                stored.targetId.startsWith("itm_a2_a23_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,
@@ -341,16 +370,19 @@ async function run(failMission) {
       }
       assert.ok(finished, `${episode}: no Mission result`);
     }
-    if (!failMission && episodes.length === 11) {
+    if (!failMission && episodes.length === expectedCourseCount) {
       await page.goto(`${base}/course`, { waitUntil: "networkidle" });
-      await page.locator(".situation-list").waitFor();
-      assert.match(
-        await page.locator(".course-progress__count").innerText(),
-        /11 из 11/,
+      await page.locator(".situation-list").first().waitFor();
+      assert.deepEqual(
+        await page.locator(".course-progress__count").allTextContents(),
+        completedChapterProgress,
       );
-      assert.equal(await page.locator(".situation-row").count(), 11);
+      assert.equal(
+        await page.locator(".situation-row").count(),
+        expectedCourseCount,
+      );
       await page.screenshot({
-        path: `${out}/a1-course-complete.png`,
+        path: `${out}/${QA_LEVEL.toLowerCase()}-course-complete.png`,
         fullPage: true,
       });
     }

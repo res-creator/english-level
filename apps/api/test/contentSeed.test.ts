@@ -3,6 +3,11 @@ import assert from "node:assert/strict";
 import { createTestDb } from "./helpers/testDb.ts";
 import { loadSeedContent } from "../src/content/loadSeedContent.ts";
 import { seedContent } from "../src/content/seedContent.ts";
+import {
+  buildMissionPlan,
+  planEpisodeSessions,
+} from "../src/lessonEngine/episodePlan.ts";
+import { listLessonItemsByLesson } from "../src/repositories/curriculumRepository.ts";
 
 test("all seed files load and cross-validate without throwing", () => {
   const bundle = loadSeedContent();
@@ -13,18 +18,17 @@ test("all seed files load and cross-validate without throwing", () => {
   assert.ok(bundle.lessonItems.length > 0);
 });
 
-test("the published catalogue is the current A1 situation course", () => {
+test("the published catalogue includes A1 and the authored A2 chapters", () => {
   const bundle = loadSeedContent();
 
   const published = bundle.modules.filter(
     (m) => (m.status ?? "published") === "published",
   );
-  // The published course is A1-only: just the one situational starter chapter is
-  // published. The original (pre-pivot) A1 chapters and all three A2
-  // chapters stay in the bundle but archived, so no released content id
-  // ever disappears and A2 can be published later without a rewrite.
-  assert.equal(published.length, 1);
-  assert.equal(bundle.modules.length - published.length, 6);
+  // The original mixed-practice chapters stay archived. The authored
+  // situational course now includes A1 plus the first two A2 chapters.
+  assert.equal(published.length, 3);
+  assert.equal(published.filter((m) => m.levelCode === "A2").length, 2);
+  assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
   assert.equal(starter.length, 11);
@@ -91,6 +95,114 @@ test("A1.1 Practice Variation keeps Alex and transfers the self-introduction", (
     ),
     "variation must not copy a core learner sentence verbatim",
   );
+});
+
+test("A2 Batch 1 has authored turns, two practice variations, and no answer gaps", () => {
+  const bundle = loadSeedContent();
+  const situationIds = [
+    "sit_a2_people_01",
+    "sit_a2_people_02",
+    "sit_a2_cafe_01",
+  ];
+
+  for (const situationId of situationIds) {
+    const links = bundle.lessonItems.filter(
+      (link) => link.lessonId === situationId,
+    );
+    const core = links.filter(
+      (link) =>
+        link.contentType === "learning_item" && link.role === "introduce",
+    );
+    const practice = links.filter(
+      (link) =>
+        link.contentType === "learning_item" && link.role === "practice",
+    );
+    assert.ok(core.length >= 2, `${situationId} needs multiple learner turns`);
+    assert.ok(
+      core.every((link) =>
+        bundle.learningItems
+          .find((item) => item.id === link.contentId)
+          ?.npcReplyCorrect?.trim(),
+      ),
+      `${situationId} has a learner turn without an authored NPC continuation`,
+    );
+    assert.ok(
+      practice.every((link) =>
+        bundle.learningItems
+          .find((item) => item.id === link.contentId)
+          ?.npcReplyCorrect?.trim(),
+      ),
+      `${situationId} has a practice turn without an authored NPC continuation`,
+    );
+    const variationGroups = new Set(
+      practice.map((link) => link.contentId.match(/_v[12](?=_|$)/)?.[0]),
+    );
+    assert.equal(variationGroups.size, 2, `${situationId} needs v1 and v2`);
+  }
+
+  const A21 = bundle.learningItems.find(
+    (item) => item.id === "itm_a2_a21_interest_duration",
+  );
+  assert.ok(A21?.ru.usageNote?.includes("Present Perfect is not taught"));
+  const A23 = bundle.learningItems.find(
+    (item) => item.id === "itm_a2_a23_change_item",
+  );
+  const A23Example = A23?.examples[0]?.text ?? "";
+  assert.match(A23Example, /could I change this .* instead\?/i);
+  assert.ok(
+    !A23Example.includes("can I change"),
+    "the V2 polite request chunk must be authored explicitly",
+  );
+});
+
+test("A2 Batch 1 plans keep semantic turns once and exclude variations from Missions", async () => {
+  const { db, sqlite } = createTestDb();
+  await seedContent(db);
+
+  for (const situationId of [
+    "sit_a2_people_01",
+    "sit_a2_people_02",
+    "sit_a2_cafe_01",
+  ]) {
+    const links = await listLessonItemsByLesson(db, situationId);
+    const plan = await planEpisodeSessions(db, "lvl_a2", links);
+    const activities = plan.sessions.flat();
+    const mission = await buildMissionPlan(db, "lvl_a2", links);
+    const variationIds = new Set(
+      links
+        .filter((link) => link.role === "practice")
+        .map((link) => link.content_id),
+    );
+
+    for (const link of links.filter(
+      (row) =>
+        row.content_type === "learning_item" &&
+        (row.role === "introduce" || row.role === "practice"),
+    )) {
+      const turnActivities = activities.filter(
+        (activity) => activity.dialogueTurnId === link.id,
+      );
+      assert.equal(
+        turnActivities.length,
+        1,
+        `${situationId}/${link.id} must create one semantic turn, not one per activity`,
+      );
+      assert.ok(
+        turnActivities[0]?.npcReply?.correct,
+        `${situationId}/${link.id} needs an authored continuation`,
+      );
+    }
+
+    assert.ok(
+      mission.every((activity) => !variationIds.has(activity.targetId)),
+      `${situationId}: Practice Variations must not enter the Mission`,
+    );
+    assert.ok(
+      mission.length > 0,
+      `${situationId} must build a Mission from core targets`,
+    );
+  }
+  sqlite.close();
 });
 
 test("seed/import succeeds against a fresh database", async () => {

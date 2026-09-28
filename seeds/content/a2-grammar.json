@@ -1,5 +1,17 @@
 [
   {
+    "id": "gr_a2_present_simple_connected_descriptions",
+    "levelCode": "A2",
+    "title": "Present Simple - connected personal descriptions",
+    "patternKey": "present_simple_connected_descriptions",
+    "formula": "I work as a designer, and I live with my sister.",
+    "explanationEn": "Use familiar Present Simple forms together with and to give a short, connected description of work and everyday life.",
+    "order": 30,
+    "ru": {
+      "explanation": "Соединяйте знакомые формы Present Simple с помощью and, чтобы кратко и связно рассказать о работе и повседневной жизни."
+    }
+  },
+  {
     "id": "gr_a2_past_simple_positive",
     "levelCode": "A2",
     "title": "Past Simple - positive",

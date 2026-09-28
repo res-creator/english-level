@@ -1,5 +1,215 @@
 [
   {
+    "situationId": "sit_a2_people_01",
+    "phrases": [
+      {
+        "text": "I work as a graphic designer, and I work from home most days.",
+        "itemId": "itm_a2_a21_job_linked",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "I have one sister, and we often cook dinner together.",
+        "itemId": "itm_a2_a21_family",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "I play tennis at weekends.",
+        "itemId": "itm_a2_a21_interest_duration",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "I've lived here for three years.",
+        "itemId": "itm_a2_a21_interest_duration",
+        "classification": "chunk",
+        "chunkLabel": "Fixed duration phrase; Present Perfect is deferred to B1.8."
+      },
+      {
+        "text": "What do you do for work these days?",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_be_questions",
+        "speaker": "npc",
+        "sourceField": "opener"
+      },
+      {
+        "text": "I'm a primary-school teacher, and I share a flat with my cousin.",
+        "itemId": "itm_a2_a21_v1_job_family",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "We cook together most evenings, and I go swimming on Sundays.",
+        "itemId": "itm_a2_a21_v1_interest",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "I've lived here for six months.",
+        "itemId": "itm_a2_a21_v2_duration",
+        "classification": "chunk",
+        "chunkLabel": "Fixed duration phrase; Present Perfect is deferred to B1.8."
+      },
+      {
+        "text": "I still don't know many cafés.",
+        "itemId": "itm_a2_a21_v2_duration",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_present_simple_connected_descriptions"
+      },
+      {
+        "text": "How long have you lived in this neighbourhood?",
+        "classification": "chunk",
+        "chunkLabel": "NPC-only duration question; fixed receptive chunk, Present Perfect deferred to B1.8.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_people_02",
+    "phrases": [
+      {
+        "text": "Alex and I know each other from the café near my office.",
+        "itemId": "itm_a2_a22_party_intro",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_positive"
+      },
+      {
+        "text": "What do you enjoy most about your work?",
+        "itemId": "itm_a2_a22_followup",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_questions"
+      },
+      {
+        "text": "What do you do?",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_questions",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "How do you know Alex?",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_questions",
+        "speaker": "npc",
+        "sourceField": "opener"
+      },
+      {
+        "text": "Small world—Alex knows everyone around here!",
+        "classification": "chunk",
+        "chunkLabel": "Authored NPC reaction phrase for a shared social connection.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "What do you like doing outside work?",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_questions",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "How do you know Maya?",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_questions",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I work in a small design office.",
+        "itemId": "itm_a2_a22_job_interest",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_positive"
+      },
+      {
+        "text": "What about you?",
+        "itemId": "itm_a2_a22_job_interest",
+        "classification": "chunk",
+        "chunkLabel": "Short reciprocal small-talk prompt; it does not introduce another grammar target."
+      },
+      {
+        "text": "Alex and I are in the same weekend running group. We usually get coffee after the run.",
+        "itemId": "itm_a2_a22_v1_running_group",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_positive"
+      },
+      {
+        "text": "Maya and I are in the same English class. We sit together.",
+        "itemId": "itm_a2_a22_v2_maya",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_present_simple_positive"
+      },
+      {
+        "text": "That sounds interesting.",
+        "itemId": "itm_a2_a22_followup",
+        "classification": "chunk",
+        "chunkLabel": "Common short reaction for showing interest, recycled as a fixed conversational phrase."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_cafe_01",
+    "phrases": [
+      {
+        "text": "Could I change this to a tea instead?",
+        "itemId": "itm_a2_a23_change_item",
+        "classification": "chunk",
+        "chunkLabel": "Explicit fixed polite request frame from V2; could is not a grammar target."
+      },
+      {
+        "text": "I've got your small coffee down.",
+        "classification": "chunk",
+        "chunkLabel": "Authored NPC café opener; fixed service phrase, not a grammar target.",
+        "speaker": "npc",
+        "sourceField": "opener"
+      },
+      {
+        "text": "I haven't made it yet.",
+        "classification": "chunk",
+        "chunkLabel": "Authored NPC continuation uses a fixed Present Perfect phrase; no learner tense target.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Can I have it large?",
+        "itemId": "itm_a2_a23_clarify_size",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_can"
+      },
+      {
+        "text": "Actually, can I make that two teas instead of one?",
+        "itemId": "itm_a2_a23_v1_quantity",
+        "classification": "target",
+        "grammarPatternId": "gr_a1_can"
+      },
+      {
+        "text": "I've just tapped my card.",
+        "itemId": "itm_a2_a23_v2_after_payment_started",
+        "classification": "chunk",
+        "chunkLabel": "Fixed transaction-status phrase; Present Perfect is not taught as a target here."
+      },
+      {
+        "text": "Could I change that to three teas instead?",
+        "itemId": "itm_a2_a23_v2_after_payment_started",
+        "classification": "chunk",
+        "chunkLabel": "Polite change request is a fixed lexical chunk, not a modal grammar target."
+      },
+      {
+        "text": "Hot, please.",
+        "classification": "chunk",
+        "chunkLabel": "Short fixed café response to the NPC's choice question."
+      },
+      {
+        "text": "No problem. Two teas—the card reader is ready when you are.",
+        "classification": "chunk",
+        "chunkLabel": "Authored NPC continuation confirming the revised quantity and beginning payment.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
     "situationId": "les_sie_a1_e1",
     "phrases": [
       {

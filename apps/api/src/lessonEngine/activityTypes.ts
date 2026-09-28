@@ -29,9 +29,10 @@ interface StoredActivityBase {
    * learning item (see SieLearningItemSeedSchema). Attached only to the
    * LAST activity generated for a given item (lessonSessionBuilder.ts),
    * so a multi-activity item (info_card -> MC -> fill_gap -> recall)
-   * gets exactly one NPC turn, not one per activity. Absent for a1/a2
-   * content and for grammar_pattern activities (a "Пауза на правило" is
-   * deliberately not a conversational turn).
+   * gets exactly one NPC turn, not one per activity. Legacy a1/a2 items
+   * without authored continuation copy have none; grammar_pattern
+   * activities do not either (a "Пауза на правило" is deliberately not a
+   * conversational turn).
    */
   npcReply?: { correct: string; incorrect: string | null };
 }

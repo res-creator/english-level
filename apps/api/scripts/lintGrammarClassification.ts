@@ -102,15 +102,13 @@ async function main(): Promise<void> {
 
   const realItemIds = new Set(bundle.learningItems.map((i) => i.id));
 
-  // Scoped to the "sie" track (les_sie_* and sit_a1_*) — the continuous-situation
-  // curriculum CONTENT_MASTER_PLAN_A1_B2_V2.md and this whole production
-  // plan are about. The legacy a1-*/a2-* mixed-practice tracks are a
-  // separate, older content experiment (several of their modules are
-  // already `status: "archived"`) and were never in scope for the V2
-  // grammar audit — including them here would just be noise, not a real
-  // finding, so they're skipped rather than silently misreported.
+  // Scope the continuous-situation curriculum (les_sie_*, sit_a1_*, and
+  // the explicitly authored V2 A2 situation ids). The legacy les_a2_*
+  // mixed-practice track remains out of scope.
   const isSieTrack = (id: string) =>
-    id.startsWith("les_sie_") || id.startsWith("sit_a1_");
+    id.startsWith("les_sie_") ||
+    id.startsWith("sit_a1_") ||
+    /^sit_a2_(people_01|people_02|cafe_01)$/.test(id);
 
   // Which grammar_patterns are actually attached (as target/introduce) to
   // which situations, per the real seed content.

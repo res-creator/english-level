@@ -48,9 +48,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 | ID | Title | Chapter | NPC | Status | Variations | Grammar | Notes |
 |---|---|---|---|---|---|---|---|
-| `sit_a2_people_01` | Рассказать о себе подробнее | People & Connections | Alex | planned | 2 | Present Simple extended, for/since (chunk) | |
-| `sit_a2_people_02` | Знакомство на вечеринке у Дэниела | People & Connections | Daniel | planned | 2 | Present Simple, Wh-questions (recycled) | grammar target corrected in V2 §11 (question tags removed) |
-| `sit_a2_cafe_01` | Изменить заказ | Café & Casual Food | Maya | planned | 2 | can (recycled); "could" chunk | |
+| `sit_a2_people_01` | Рассказать о себе подробнее | People & Connections | Alex | **done** | 2 — new job/family profile; new duration detail | target: Present Simple in connected descriptions; “I've lived here for…” is a lexical chunk, no Present Perfect target | Gate A/B/C PASS; near/far reviews wired; references: BC A2 job talk, ELLLO A2 Present Simple |
+| `sit_a2_people_02` | Знакомство на вечеринке у Дэниела | People & Connections | Daniel | **done** | 2 — running-group connection; English-class connection to Maya | Present Simple + Wh-questions (recycled); social reactions are lexical chunks; question tags absent | Gate A/B/C PASS; reviews wired; variation keeps same NPC/scene per V2 §1 and transfers the mutual connection; reference: BC A2 showing interest |
+| `sit_a2_cafe_01` | Изменить заказ | Café & Casual Food | Maya | **done** | 2 — change item to tea; change quantity after payment starts | `can` recycled; “Could I change this to … instead?” and transaction phrases are lexical chunks | Gate A/B/C PASS; near A1.2 review wired; reference: Cambridge A2 Key vocabulary |
 | `sit_a2_restaurant_01` | Бронирование столика | Restaurant & Dining | Leo | planned | 2 (+phone variation) | would like | |
 | `sit_a2_restaurant_02` | Заказ с особыми пожеланиями | Restaurant & Dining | Leo | planned | 2 | without/with, some/any | |
 | `sit_a2_travel_01` | Опоздание, смена планов | Getting Around | Rosa | planned | 2 | Past Simple (reason), should | |
@@ -119,15 +119,21 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 ---
 
+## A2 Batch 1 reference and QA record
+
+The authoring workflow used the approved references as models for turn order, register, A2 complexity and functional vocabulary; all Speak in English lines are original. British Council's [A2 job conversation](https://learnenglish.britishcouncil.org/free-resources/speaking/a2/talking-about-your-job) informed A2.1's job answer followed by a relevant personal follow-up; [A2 showing interest](https://learnenglish.britishcouncil.org/free-resources/speaking/a2/showing-interest) informed A2.2's open question, reaction and follow-up rhythm. ELLLO's [A2 Present Simple lesson](https://elllo.org/class/A2/A2-01-Present-Simple.html) and Cambridge English's [A2 Key vocabulary list](https://www.cambridgeenglish.org/latinamerica/Images/506886-a2-key-2020-vocabulary-list.pdf) informed the compact grammar and café vocabulary range. See [A2 Batch 1 production QA](docs/A2_BATCH1_PRODUCTION_QA.md).
+
+All three situations pass Gates A/B/C. Grammar lint: 0 errors / 0 advisory notes; API and web suites, typechecks, contiguous ordering, seed references and idempotent reseed pass. Chromium verified all three Mission PASS paths (100%, `can_do`), one Mission FAIL path (0%, `learning`), English-only transcripts, opener placement and progression. Screenshots/results are ignored preview artifacts under `artifacts/qa/session-dialogue/`.
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
-| A2 | 17 | 0 | 17 | 0 |
+| A2 | 17 | 3 | 14 | 0 |
 | B1 | 19 | 0 | 19 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **11** | **58** | **0** |
+| **Total** | **69** | **14** | **55** | **0** |
 
 ---
 

@@ -912,5 +912,335 @@
       }
     ],
     "patterns": []
+  },
+  {
+    "id": "itm_a2_a21_job_linked",
+    "itemType": "phrase",
+    "lemma": "describe work with a connected detail",
+    "displayForm": "I work as a graphic designer, and I work from home most days.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Я работаю графическим дизайнером и большую часть дней работаю из дома.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a21_job_linked_01",
+        "text": "I work as a graphic designer, and I work from home most days.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That must be convenient. Do you have any brothers or sisters?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a21_family",
+    "itemType": "phrase",
+    "lemma": "describe family life",
+    "displayForm": "I have one sister, and we often cook dinner together.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "У меня есть сестра, и мы часто готовим ужин вместе.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a21_family_01",
+        "text": "I have one sister, and we often cook dinner together.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds nice. What do you like doing in your free time?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a21_interest_duration",
+    "itemType": "phrase",
+    "lemma": "connect an interest with a related local detail",
+    "displayForm": "I play tennis at weekends. I've lived here for three years, so I know a couple of good courts.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "По выходным я играю в теннис. Я живу здесь уже три года, поэтому знаю пару хороших кортов.",
+      "usageNote": "I've lived here for three years is a fixed lexical chunk; Present Perfect is not taught as a target here."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a21_interest_duration_01",
+        "text": "I play tennis at weekends. I've lived here for three years, so I know a couple of good courts.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Three years is a good while. Which courts do you like best?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a21_v1_job_family",
+    "itemType": "phrase",
+    "lemma": "introduce different job and family details",
+    "displayForm": "I'm a primary-school teacher, and I share a flat with my cousin.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Я учитель начальной школы и снимаю квартиру вместе с двоюродной сестрой.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a21_v1_job_family_01",
+        "text": "I'm a primary-school teacher, and I share a flat with my cousin.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Primary school must be lively. What do you and your cousin do together?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a21_v1_interest",
+    "itemType": "phrase",
+    "lemma": "add a different shared interest",
+    "displayForm": "We cook together most evenings, and I go swimming on Sundays.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Мы готовим вместе почти каждый вечер, а по воскресеньям я хожу плавать.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a21_v1_interest_01",
+        "text": "We cook together most evenings, and I go swimming on Sundays.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds like a lovely routine. How long have you lived in this neighbourhood?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a21_v2_duration",
+    "itemType": "phrase",
+    "lemma": "say how long you have lived somewhere",
+    "displayForm": "I've lived here for six months, but I still don't know many cafés.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Я живу здесь шесть месяцев, но пока знаю мало кафе.",
+      "usageNote": "I've lived here for six months is a fixed lexical chunk; Present Perfect is not taught as a target here."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a21_v2_duration_01",
+        "text": "I've lived here for six months, but I still don't know many cafés.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "In that case, I can recommend a little place near the park.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a22_party_intro",
+    "itemType": "phrase",
+    "lemma": "answer how you know a mutual friend",
+    "displayForm": "Alex and I know each other from the café near my office.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Мы с Алексом знаем друг друга по кафе рядом с моим офисом.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a22_party_intro_01",
+        "text": "Alex and I know each other from the café near my office.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Small world—Alex knows everyone around here! What do you do?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a22_job_interest",
+    "itemType": "phrase",
+    "lemma": "share work and ask a social question",
+    "displayForm": "I work in a small design office. What about you?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Я работаю в небольшом дизайнерском бюро. А ты?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a22_job_interest_01",
+        "text": "I work in a small design office. What about you?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I'm an architect. I spend most of my day drawing plans.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a22_followup",
+    "itemType": "phrase",
+    "lemma": "show interest with a follow-up question",
+    "displayForm": "That sounds interesting. What do you enjoy most about your work?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Звучит интересно. Что тебе больше всего нравится в твоей работе?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a22_followup_01",
+        "text": "That sounds interesting. What do you enjoy most about your work?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I like seeing a design take shape. What do you like doing outside work?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a22_v1_running_group",
+    "itemType": "phrase",
+    "lemma": "connect with someone through a shared activity",
+    "displayForm": "Alex and I are in the same weekend running group. We usually get coffee after the run.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Мы с Алексом ходим в одну беговую группу по выходным.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a22_v1_running_group_01",
+        "text": "Alex and I are in the same weekend running group. We usually get coffee after the run.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds fun. How do you know Maya?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a22_v2_maya",
+    "itemType": "phrase",
+    "lemma": "explain a different mutual connection",
+    "displayForm": "Maya and I are in the same English class. We sit together.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "people",
+    "ru": {
+      "translation": "Мы с Майей ходим в одну группу английского языка. Мы сидим вместе.",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a22_v2_maya_01",
+        "text": "Maya and I are in the same English class. We sit together.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That makes sense—Maya is good at bringing people together.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a23_change_item",
+    "itemType": "functional_phrase",
+    "lemma": "change an item in an order",
+    "displayForm": "Actually, could I change this to a tea instead?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "food",
+    "ru": {
+      "translation": "Слушай, можно я заменю кофе на чай?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a23_change_item_01",
+        "text": "Actually, could I change this to a tea instead?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Of course. I haven't made it yet. Hot or iced?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a23_clarify_size",
+    "itemType": "functional_phrase",
+    "lemma": "clarify a changed order",
+    "displayForm": "Hot, please. Can I have it large?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "food",
+    "ru": {
+      "translation": "Горячий, пожалуйста. Можно большой?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a23_clarify_size_01",
+        "text": "Hot, please. Can I have it large?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Sure—a large hot tea. I'll update the order before you pay.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a23_v1_quantity",
+    "itemType": "functional_phrase",
+    "lemma": "change the quantity in an order",
+    "displayForm": "Actually, can I make that two teas instead of one?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "food",
+    "ru": {
+      "translation": "Можно я изменю заказ: вместо одного чая будет два?",
+      "usageNote": null
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a23_v1_quantity_01",
+        "text": "Actually, can I make that two teas instead of one?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "No problem. Two teas—the card reader is ready when you are.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a23_v2_after_payment_started",
+    "itemType": "functional_phrase",
+    "lemma": "change an order after payment starts",
+    "displayForm": "Sorry, I've just tapped my card. Could I change that to three teas instead?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "food",
+    "ru": {
+      "translation": "Извините, я только что приложила карту. Можно изменить заказ на три чая?",
+      "usageNote": "I've just tapped my card is a fixed Present Perfect chunk; no Present Perfect target is introduced here."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a23_v2_after_payment_started_01",
+        "text": "Sorry, I've just tapped my card. Could I change that to three teas instead?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's fine. I can cancel that payment and update the order to three teas.",
+    "patterns": []
   }
 ]

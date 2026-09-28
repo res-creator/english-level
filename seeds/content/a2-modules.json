@@ -25,5 +25,23 @@
     "description": "Переспросить, договориться и высказать мнение.",
     "order": 3,
     "status": "archived"
+  },
+  {
+    "id": "mod_a2_people_connections",
+    "levelCode": "A2",
+    "title": "Люди и знакомства",
+    "slug": "a2-people-connections",
+    "description": "Рассказывать о себе и поддерживать непринуждённое знакомство.",
+    "order": 4,
+    "status": "published"
+  },
+  {
+    "id": "mod_a2_cafe_casual_food",
+    "levelCode": "A2",
+    "title": "Кафе и повседневная еда",
+    "slug": "a2-cafe-casual-food",
+    "description": "Уточнять и менять уже начатый заказ.",
+    "order": 5,
+    "status": "published"
   }
 ]

@@ -32,6 +32,24 @@ test("A1.1 practice stays with Alex in the same café scene", () => {
   assert.match(openingLine("les_sie_a1_e1"), /Alex/);
 });
 
+test("A2 Batch 1 uses its authored recurring cast, scene, and dialogue opener", () => {
+  assert.deepEqual(sceneForSituation("sit_a2_people_01"), {
+    scene: "meeting",
+    cast: "alex",
+  });
+  assert.deepEqual(sceneForSituation("sit_a2_people_02"), {
+    scene: "meeting",
+    cast: "daniel",
+  });
+  assert.deepEqual(sceneForSituation("sit_a2_cafe_01"), {
+    scene: "cafe",
+    cast: "maya",
+  });
+  assert.match(openingLine("sit_a2_people_01"), /Good to see you again/);
+  assert.match(openingLine("sit_a2_people_02"), /party.*How do you know Alex/);
+  assert.match(openingLine("sit_a2_cafe_01"), /small coffee.*before you pay/);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",
@@ -61,6 +79,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_a1_social_01",
     "sit_a1_daily_02",
     "sit_a1_health_01",
+    "sit_a2_people_01",
+    "sit_a2_people_02",
+    "sit_a2_cafe_01",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

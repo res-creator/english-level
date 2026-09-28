@@ -64,11 +64,17 @@ test("every episode states the capability it unlocks", async () => {
   }
 });
 
-test("A2's three chapters are archived — public V1 is A1-only, not deleted or exposed", async () => {
+test("the published A2 course exposes the first two authored V2 chapters", async () => {
   const { db } = await seeded();
   const course = await getCourse(db, "A2", "usr_test");
-  assert.deepEqual(course.chapters, []);
-  assert.equal(course.episodesTotal, 0);
+  assert.equal(course.chapters.length, 2);
+  assert.deepEqual(
+    course.chapters.flatMap((chapter) =>
+      chapter.episodes.map((episode) => episode.id),
+    ),
+    ["sit_a2_people_01", "sit_a2_people_02", "sit_a2_cafe_01"],
+  );
+  assert.equal(course.episodesTotal, 3);
 });
 
 test("a level with no seeded content returns an empty course, not an error", async () => {
