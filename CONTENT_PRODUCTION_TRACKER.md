@@ -171,6 +171,10 @@ Gate A/B/C Batch 6 PASS. Grammar lint: 0 errors / 0 advisory notes на 28 кл�
 | B2 | 22 | 0 | 22 | 0 |
 | **Total** | **69** | **28** | **41** | **0** |
 
+## A2 level freeze
+
+**A2 CONTENT FROZEN / PRODUCTION READY.** A2 tracker: **17/17 done**; Gates A/B/C PASS; blocking findings: **0**. Полный audit всех ситуаций и уровня в Chromium зафиксирован в [A2 Level Freeze QA](docs/A2_LEVEL_FREEZE_QA.md). Production deployment не выполнялся.
+
 ---
 
 ## Findings — актуальное состояние на 2026-09-28
