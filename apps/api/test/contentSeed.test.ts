@@ -24,8 +24,8 @@ test("the published catalogue includes A1 and the authored A2 chapters", () => {
   const published = bundle.modules.filter(
     (m) => (m.status ?? "published") === "published",
   );
-  // The original mixed-practice chapters stay archived. The authored
-  // The situational course now includes A1 plus the first nine A2 chapters.
+  // The original mixed-practice chapters stay archived. The situational
+  // course now includes A1 plus the first nine authored A2 chapters.
   assert.equal(published.length, 10);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
@@ -97,7 +97,7 @@ test("A1.1 Practice Variation keeps Alex and transfers the self-introduction", (
   );
 });
 
-test("A2 Batch 1–5 have authored turns, two practice variations, and no answer gaps", () => {
+test("A2 Batch 1–6 have authored turns, two practice variations, and no answer gaps", () => {
   const bundle = loadSeedContent();
   const situationIds = [
     "sit_a2_people_01",
@@ -111,10 +111,12 @@ test("A2 Batch 1–5 have authored turns, two practice variations, and no answer
     "sit_a2_daily_02",
     "sit_a2_shop_01",
     "sit_a2_shop_02",
+    "sit_a2_health_01",
     "sit_a2_work_01",
     "sit_a2_work_02",
     "sit_a2_social_01",
     "sit_a2_problems_01",
+    "sit_a2_problems_02",
   ];
 
   for (const situationId of situationIds) {
@@ -306,7 +308,38 @@ test("A2 Batch 5 keeps requests, rescheduling, and lost-item language classified
   assert.deepEqual(reviews("sit_a2_problems_01"), ["itm_sie_e4_practice_pharmacy"]);
 });
 
-test("A2 Batch 1–5 plans keep semantic turns once and exclude variations from Missions", async () => {
+test("A2 Batch 6 resolves a restaurant bill error and keeps H.A2 a shop transaction", () => {
+  const bundle = loadSeedContent();
+  const item = (id: string) => bundle.learningItems.find((row) => row.id === id);
+  assert.match(item("itm_a2_a216_error")?.displayForm ?? "", /didn't order the apple tart/i);
+  assert.match(item("itm_a2_a216_check")?.displayForm ?? "", /Could you check the bill against the order slip/i);
+  assert.match(item("itm_a2_a216_v1_missing")?.displayForm ?? "", /two tomato soups.*only one/i);
+  assert.match(item("itm_a2_a216_v2_paid")?.displayForm ?? "", /paid by card.*receipt.*didn’t order/i);
+  for (const id of ["itm_a2_ha2_symptom", "itm_a2_ha2_v1_cough", "itm_a2_ha2_v2_headache"]) {
+    assert.match(item(id)?.displayForm ?? "", /I have/i);
+    assert.match(item(id)?.displayForm ?? "", /Do you have/i);
+  }
+  const allHealthLines = bundle.learningItems
+    .filter((row) => row.id.startsWith("itm_a2_ha2_"))
+    .map((row) => `${row.displayForm} ${row.npcReplyCorrect}`)
+    .join(" ");
+  assert.match(allHealthLines, /lozenges|cough sweets|pain-relief products/i);
+  assert.doesNotMatch(allHealthLines, /dose|dosage|diagnos|allerg|you should take|take one every/i);
+  assert.match(item("itm_a2_ha2_v2_compare")?.displayForm ?? "", /cheaper than/i);
+
+  const targets = bundle.lessonItems.filter((row) => row.role === "target");
+  for (const patternId of ["gr_a2_past_simple_negative", "gr_sie_could_polite"]) {
+    assert.ok(targets.some((row) => row.lessonId === "sit_a2_problems_02" && row.contentId === patternId), `${patternId} is a real A2.16 target`);
+  }
+  for (const patternId of ["gr_a1_have", "gr_a1_present_simple_questions"]) {
+    assert.ok(targets.some((row) => row.lessonId === "sit_a2_health_01" && row.contentId === patternId), `${patternId} is recycled explicitly in H.A2`);
+  }
+  const reviews = (lessonId: string) => bundle.lessonItems.filter((row) => row.lessonId === lessonId && row.role === "review").map((row) => row.contentId);
+  assert.deepEqual(reviews("sit_a2_problems_02"), ["itm_a2_a24_booking_time", "itm_a2_a25_without_onions", "itm_sie_theres_been_a_mistake"]);
+  assert.deepEqual(reviews("sit_a2_health_01"), ["itm_sie_a17_do_you_have", "itm_sie_a17_ill_take_it", "gr_a2_comparatives"]);
+});
+
+test("A2 Batch 1–6 plans keep semantic turns once and exclude variations from Missions", async () => {
   const { db, sqlite } = createTestDb();
   await seedContent(db);
 
@@ -322,10 +355,12 @@ test("A2 Batch 1–5 plans keep semantic turns once and exclude variations from 
     "sit_a2_daily_02",
     "sit_a2_shop_01",
     "sit_a2_shop_02",
+    "sit_a2_health_01",
     "sit_a2_work_01",
     "sit_a2_work_02",
     "sit_a2_social_01",
     "sit_a2_problems_01",
+    "sit_a2_problems_02",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const plan = await planEpisodeSessions(db, "lvl_a2", links);

@@ -1248,5 +1248,279 @@
         "grammarPatternId": "gr_a2_past_simple_positive"
       }
     ]
+  },
+  {
+    "situationId": "sit_a2_problems_02",
+    "phrases": [
+      {
+        "text": "Here’s the itemised bill and receipt. Would you like a moment to check them?",
+        "classification": "chunk",
+        "chunkLabel": "Restaurant context invites an itemised check without duplicating the learner response.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I think there's a mistake.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a216_error",
+        "chunkLabel": "Fixed A1.5-style mistake-reporting formula; not the A2 grammar target."
+      },
+      {
+        "text": "I didn't order the apple tart listed here.",
+        "classification": "target",
+        "itemId": "itm_a2_a216_error",
+        "grammarPatternId": "gr_a2_past_simple_negative"
+      },
+      {
+        "text": "Thanks for pointing it out. Let me compare this with the order slip.",
+        "classification": "chunk",
+        "chunkLabel": "Leo acknowledges the specific line and checks the record.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "We ordered the tomato soup and tea.",
+        "classification": "target",
+        "itemId": "itm_a2_a216_check",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "Could you check the bill against the order slip, please?",
+        "classification": "target",
+        "itemId": "itm_a2_a216_check",
+        "grammarPatternId": "gr_sie_could_polite"
+      },
+      {
+        "text": "You're right; the tart belongs to another table. I'll remove it and print a corrected bill.",
+        "classification": "chunk",
+        "chunkLabel": "Leo confirms the source of the error and states the correction.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Thanks. Is the new total eighteen pounds forty? Here's my card.",
+        "classification": "chunk",
+        "itemId": "itm_a2_a216_pay",
+        "chunkLabel": "Learner verifies the corrected total and completes payment."
+      },
+      {
+        "text": "That's right. I'll bring the card machine over.",
+        "classification": "chunk",
+        "chunkLabel": "Leo confirms the amount and advances the payment transaction.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "We ordered two tomato soups, but only one is on the bill.",
+        "classification": "target",
+        "itemId": "itm_a2_a216_v1_missing",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "Let me check the order slip against your table number.",
+        "classification": "chunk",
+        "chunkLabel": "Leo checks the concrete missing-item discrepancy.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Could you check it against our order, please?",
+        "classification": "target",
+        "itemId": "itm_a2_a216_v1_check",
+        "grammarPatternId": "gr_sie_could_polite"
+      },
+      {
+        "text": "We had two soups and a salad.",
+        "classification": "target",
+        "itemId": "itm_a2_a216_v1_check",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "You're right: the slip shows two soups. I'll correct the bill to include the missing soup.",
+        "classification": "chunk",
+        "chunkLabel": "Leo verifies the order and explains how the bill will be corrected.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I paid by card a minute ago, but this receipt includes an apple tart.",
+        "classification": "target",
+        "itemId": "itm_a2_a216_v2_paid",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "I didn't order it.",
+        "classification": "target",
+        "itemId": "itm_a2_a216_v2_paid",
+        "grammarPatternId": "gr_a2_past_simple_negative"
+      },
+      {
+        "text": "I'm sorry. Let me compare the receipt with the order slip.",
+        "classification": "chunk",
+        "chunkLabel": "Leo responds to the post-payment discrepancy by checking both records.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Could you check that extra charge, please?",
+        "classification": "target",
+        "itemId": "itm_a2_a216_v2_refund",
+        "grammarPatternId": "gr_sie_could_polite"
+      },
+      {
+        "text": "I ordered soup and tea.",
+        "classification": "target",
+        "itemId": "itm_a2_a216_v2_refund",
+        "grammarPatternId": "gr_a2_past_simple_positive"
+      },
+      {
+        "text": "You're right. I'll refund four pounds to your card and print an updated receipt.",
+        "classification": "chunk",
+        "chunkLabel": "Leo confirms the charge error and gives the concrete resolution.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_a2_health_01",
+    "phrases": [
+      {
+        "text": "Hello. These simple remedies are on this shelf. What are you looking for?",
+        "classification": "chunk",
+        "chunkLabel": "Emma is a shop assistant offering a shelf transaction; she gives no medical advice.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I have a sore throat today.",
+        "classification": "target",
+        "itemId": "itm_a2_ha2_symptom",
+        "grammarPatternId": "gr_a1_have"
+      },
+      {
+        "text": "Do you have anything for a sore throat?",
+        "classification": "target",
+        "itemId": "itm_a2_ha2_symptom",
+        "grammarPatternId": "gr_a1_present_simple_questions"
+      },
+      {
+        "text": "We have lemon throat lozenges on this shelf. The label says “for sore throats”; they’re three pounds fifty a packet.",
+        "classification": "chunk",
+        "chunkLabel": "Emma reads the product label and price; no diagnosis, treatment advice, or dosage.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I’ll take one packet, please.",
+        "classification": "chunk",
+        "itemId": "itm_a2_ha2_choose",
+        "chunkLabel": "Simple product selection."
+      },
+      {
+        "text": "Of course. That’s three pounds fifty, please.",
+        "classification": "chunk",
+        "chunkLabel": "Emma confirms the item price.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Card, please. Here you are.",
+        "classification": "chunk",
+        "itemId": "itm_a2_ha2_pay",
+        "chunkLabel": "Learner completes payment."
+      },
+      {
+        "text": "Thank you. Here’s your receipt.",
+        "classification": "chunk",
+        "chunkLabel": "Emma closes the shop transaction.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I have a cough today.",
+        "classification": "target",
+        "itemId": "itm_a2_ha2_v1_cough",
+        "grammarPatternId": "gr_a1_have"
+      },
+      {
+        "text": "Do you have any sugar-free cough sweets?",
+        "classification": "target",
+        "itemId": "itm_a2_ha2_v1_cough",
+        "grammarPatternId": "gr_a1_present_simple_questions"
+      },
+      {
+        "text": "Yes, these cough sweets are sugar-free. They’re two pounds eighty a packet.",
+        "classification": "chunk",
+        "chunkLabel": "Emma describes only the shelf product and price.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I’ll take one packet, please.",
+        "classification": "chunk",
+        "itemId": "itm_a2_ha2_v1_buy",
+        "chunkLabel": "Learner buys the requested product."
+      },
+      {
+        "text": "Certainly. That’s two pounds eighty, please.",
+        "classification": "chunk",
+        "chunkLabel": "Emma confirms the transaction price.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I have a headache today.",
+        "classification": "target",
+        "itemId": "itm_a2_ha2_v2_headache",
+        "grammarPatternId": "gr_a1_have"
+      },
+      {
+        "text": "Do you have any simple pain-relief products?",
+        "classification": "target",
+        "itemId": "itm_a2_ha2_v2_headache",
+        "grammarPatternId": "gr_a1_present_simple_questions"
+      },
+      {
+        "text": "We have these two packets. The blue one is two pounds fifty, and the green one is four pounds.",
+        "classification": "chunk",
+        "chunkLabel": "Emma presents two labelled shelf options and their prices, without recommending treatment.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The blue packet is cheaper than the green one.",
+        "classification": "target",
+        "itemId": "itm_a2_ha2_v2_compare",
+        "grammarPatternId": "gr_a2_comparatives",
+        "chunkLabel": "Comparatives are explicitly recycled from A2.11 as the approved v2 product-choice bridge, not taught as a new H.A2 target."
+      },
+      {
+        "text": "I’ll take the blue packet, please.",
+        "classification": "chunk",
+        "itemId": "itm_a2_ha2_v2_compare",
+        "chunkLabel": "Learner chooses a product based on the listed price."
+      },
+      {
+        "text": "Of course. That’s two pounds fifty. Cash or card?",
+        "classification": "chunk",
+        "chunkLabel": "Emma continues the payment transaction.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Card, please.",
+        "classification": "chunk",
+        "itemId": "itm_a2_ha2_v2_pay",
+        "chunkLabel": "Learner completes payment."
+      },
+      {
+        "text": "Thanks. Here’s your receipt.",
+        "classification": "chunk",
+        "chunkLabel": "Emma closes the transaction.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
   }
 ]

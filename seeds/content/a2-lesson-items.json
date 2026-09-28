@@ -1897,5 +1897,239 @@
     "role": "practice",
     "order": 9,
     "required": false
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_01",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a216_error",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_02",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a216_check",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_03",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a216_pay",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_problems_02_review_near_a24",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a24_booking_time",
+    "role": "review",
+    "order": 4,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_problems_02_review_near_a25",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a25_without_onions",
+    "role": "review",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_problems_02_review_far_a15",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_theres_been_a_mistake",
+    "role": "review",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_07",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_negative",
+    "role": "target",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_08",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_past_simple_positive",
+    "role": "target",
+    "order": 8,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_09",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_sie_could_polite",
+    "role": "target",
+    "order": 9,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_10",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a216_v1_missing",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_11",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a216_v1_check",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_12",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a216_v2_paid",
+    "role": "practice",
+    "order": 12,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_problems_02_b6_13",
+    "lessonId": "sit_a2_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a216_v2_refund",
+    "role": "practice",
+    "order": 13,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_01",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_symptom",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_02",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_choose",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_03",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_pay",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_health_01_review_near_have",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_do_you_have",
+    "role": "review",
+    "order": 4,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_health_01_review_near_purchase",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_sie_a17_ill_take_it",
+    "role": "review",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_06",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_have",
+    "role": "target",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_07",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a1_present_simple_questions",
+    "role": "target",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_sit_a2_health_01_review_a211_comparatives",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_comparatives",
+    "role": "review",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_09",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_v1_cough",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_10",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_v1_buy",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_11",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_v2_headache",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_12",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_v2_compare",
+    "role": "practice",
+    "order": 12,
+    "required": false
+  },
+  {
+    "id": "li_sit_a2_health_01_b6_13",
+    "lessonId": "sit_a2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_v2_pay",
+    "role": "practice",
+    "order": 13,
+    "required": false
   }
 ]

@@ -105,6 +105,13 @@ test("A2 Batch 5 maps workplace, social, and lost-item situations to their autho
   assert.match(openingLine("sit_a2_problems_01"), /checking your pockets.*lose something/i);
 });
 
+test("A2 Batch 6 maps the bill error to Leo and OTC shopping to Emma", () => {
+  assert.deepEqual(sceneForSituation("sit_a2_problems_02"), { scene: "restaurant", cast: "leo" });
+  assert.deepEqual(sceneForSituation("sit_a2_health_01"), { scene: "shop", cast: "emma" });
+  assert.match(openingLine("sit_a2_problems_02"), /itemised bill.*check them/i);
+  assert.match(openingLine("sit_a2_health_01"), /simple remedies.*on this shelf/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

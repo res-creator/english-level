@@ -34,26 +34,28 @@ const defaultEpisodes =
         "sit_a2_daily_02",
         "sit_a2_shop_01",
         "sit_a2_shop_02",
+        "sit_a2_health_01",
         "sit_a2_work_01",
         "sit_a2_work_02",
         "sit_a2_social_01",
         "sit_a2_problems_01",
+        "sit_a2_problems_02",
       ]
     : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
-const expectedCourseCount = QA_LEVEL === "A2" ? 15 : 11;
+const expectedCourseCount = QA_LEVEL === "A2" ? 17 : 11;
 const expectedChapterProgress =
   QA_LEVEL === "A2"
-    ? ["0 из 2", "0 из 1", "0 из 2", "0 из 2", "0 из 2", "0 из 2", "0 из 2", "0 из 1", "0 из 1"]
+    ? ["0 из 2", "0 из 1", "0 из 2", "0 из 2", "0 из 2", "0 из 3", "0 из 2", "0 из 1", "0 из 2"]
     : ["0 из 11"];
 const completedChapterProgress =
   QA_LEVEL === "A2"
-    ? ["2 из 2", "1 из 1", "2 из 2", "2 из 2", "2 из 2", "2 из 2", "2 из 2", "1 из 1", "1 из 1"]
+    ? ["2 из 2", "1 из 1", "2 из 2", "2 из 2", "2 из 2", "3 из 3", "2 из 2", "1 из 1", "2 из 2"]
     : ["11 из 11"];
 const episodes = process.argv.slice(2).length
   ? process.argv.slice(2)
   : defaultEpisodes;
 const preferredFailEpisode =
-  QA_LEVEL === "A2" ? "sit_a2_work_02" : episodes[0];
+  QA_LEVEL === "A2" ? "sit_a2_health_01" : episodes[0];
 const failEpisode = episodes.includes(preferredFailEpisode)
   ? preferredFailEpisode
   : episodes[0];
@@ -373,7 +375,9 @@ async function run(failMission) {
                 stored.targetId.startsWith("itm_a2_a212_") ||
                 stored.targetId.startsWith("itm_a2_a213_") ||
                 stored.targetId.startsWith("itm_a2_a214_") ||
-                stored.targetId.startsWith("itm_a2_a215_"))
+                stored.targetId.startsWith("itm_a2_a215_") ||
+                stored.targetId.startsWith("itm_a2_a216_") ||
+                stored.targetId.startsWith("itm_a2_ha2_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,

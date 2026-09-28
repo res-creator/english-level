@@ -2671,4 +2671,335 @@
     "npcReplyCorrect": "Thursday is difficult. Could we go on Friday instead?",
     "patterns": []
   }
+,
+  {
+    "id": "itm_a2_a216_error",
+    "itemType": "functional_phrase",
+    "lemma": "a216 error",
+    "displayForm": "I think there's a mistake. I didn't order the apple tart listed here.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "restaurant",
+    "ru": {
+      "translation": "Кажется, здесь ошибка. Я не заказывал(а) яблочный тарт, указанный в счёте.",
+      "usageNote": "Specific line-item discrepancy; Past Simple negative `didn’t order` is an explicit target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a216_error_01",
+        "text": "I think there's a mistake. I didn't order the apple tart listed here.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thanks for pointing it out. Let me compare this with the order slip.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a216_check",
+    "itemType": "functional_phrase",
+    "lemma": "a216 check",
+    "displayForm": "We ordered the tomato soup and tea. Could you check the bill against the order slip, please?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "restaurant",
+    "ru": {
+      "translation": "Мы заказали томатный суп и чай. Не могли бы вы сверить счёт с бланком заказа?",
+      "usageNote": "Positive Past Simple identifies the original order; `Could you check...?` is the recycled polite request pattern."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a216_check_01",
+        "text": "We ordered the tomato soup and tea. Could you check the bill against the order slip, please?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You’re right; the tart belongs to another table. I’ll remove it and print a corrected bill.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a216_pay",
+    "itemType": "functional_phrase",
+    "lemma": "a216 pay",
+    "displayForm": "Thanks. Is the new total eighteen pounds forty? Here's my card.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "restaurant",
+    "ru": {
+      "translation": "Спасибо. Новая сумма — восемнадцать фунтов сорок? Вот моя карта.",
+      "usageNote": "Learner confirms the corrected amount and completes the payment transaction."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a216_pay_01",
+        "text": "Thanks. Is the new total eighteen pounds forty? Here's my card.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That’s right. I’ll bring the card machine over.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a216_v1_missing",
+    "itemType": "functional_phrase",
+    "lemma": "a216 v1 missing",
+    "displayForm": "We ordered two tomato soups, but only one is on the bill.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "restaurant",
+    "ru": {
+      "translation": "Мы заказали два томатных супа, но в счёте указан только один.",
+      "usageNote": "Variation v1 changes the error from an extra charge to an omitted item."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a216_v1_missing_01",
+        "text": "We ordered two tomato soups, but only one is on the bill.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Let me check the order slip against your table number.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a216_v1_check",
+    "itemType": "functional_phrase",
+    "lemma": "a216 v1 check",
+    "displayForm": "Could you check it against our order, please? We had two soups and a salad.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "restaurant",
+    "ru": {
+      "translation": "Не могли бы вы сверить его с нашим заказом? У нас было два супа и салат.",
+      "usageNote": "Learner asks for verification of a different error type and supplies the order details."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a216_v1_check_01",
+        "text": "Could you check it against our order, please? We had two soups and a salad.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You’re right: the slip shows two soups. I’ll correct the bill to include the missing soup.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a216_v2_paid",
+    "itemType": "functional_phrase",
+    "lemma": "a216 v2 paid",
+    "displayForm": "I paid by card a minute ago, but this receipt includes an apple tart. I didn’t order it.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "restaurant",
+    "ru": {
+      "translation": "Я только что расплатился(лась) картой, но в чеке есть яблочный тарт. Я его не заказывал(а).",
+      "usageNote": "Variation v2 changes when the error is discovered; Past Simple negative remains evidenced."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a216_v2_paid_01",
+        "text": "I paid by card a minute ago, but this receipt includes an apple tart. I didn’t order it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I’m sorry. Let me compare the receipt with the order slip.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_a216_v2_refund",
+    "itemType": "functional_phrase",
+    "lemma": "a216 v2 refund",
+    "displayForm": "Could you check that extra charge, please? I ordered soup and tea.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "restaurant",
+    "ru": {
+      "translation": "Не могли бы вы проверить эту лишнюю позицию? Я заказывал(а) суп и чай.",
+      "usageNote": "Learner requests a check after payment; the NPC can then correct the charge."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_a216_v2_refund_01",
+        "text": "Could you check that extra charge, please? I ordered soup and tea.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You’re right. I’ll refund four pounds to your card and print an updated receipt.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_ha2_symptom",
+    "itemType": "functional_phrase",
+    "lemma": "ha2 symptom",
+    "displayForm": "I have a sore throat today. Do you have anything for a sore throat?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "health",
+    "ru": {
+      "translation": "Сегодня у меня болит горло. У вас есть что-нибудь от боли в горле?",
+      "usageNote": "Recycled A1-level `have + symptom` and `Do you have...?`; this is a shop availability request, not a medical consultation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_ha2_symptom_01",
+        "text": "I have a sore throat today. Do you have anything for a sore throat?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We have lemon throat lozenges on this shelf. The label says “for sore throats”; they’re three pounds fifty a packet.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_ha2_choose",
+    "itemType": "functional_phrase",
+    "lemma": "ha2 choose",
+    "displayForm": "I’ll take one packet, please. Can I pay by card?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "health",
+    "ru": {
+      "translation": "Я возьму одну упаковку, пожалуйста. Можно оплатить картой?",
+      "usageNote": "A simple product choice and service transaction; no advice about treatment or dosage."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_ha2_choose_01",
+        "text": "I’ll take one packet, please. Can I pay by card?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, you can pay here. The card machine is ready.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_ha2_pay",
+    "itemType": "functional_phrase",
+    "lemma": "ha2 pay",
+    "displayForm": "Card, please. Here you are.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "health",
+    "ru": {
+      "translation": "Картой, пожалуйста. Вот, пожалуйста.",
+      "usageNote": "Learner completes the purchase with a short payment turn."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_ha2_pay_01",
+        "text": "Card, please. Here you are.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thank you. Here’s your receipt.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_ha2_v1_cough",
+    "itemType": "functional_phrase",
+    "lemma": "ha2 v1 cough",
+    "displayForm": "I have a cough today. Do you have any sugar-free cough sweets?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "health",
+    "ru": {
+      "translation": "Сегодня я кашляю. У вас есть леденцы от кашля без сахара?",
+      "usageNote": "Variation v1 changes the symptom and requests a specific OTC product type."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_ha2_v1_cough_01",
+        "text": "I have a cough today. Do you have any sugar-free cough sweets?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, these cough sweets are sugar-free. They’re two pounds eighty a packet.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_ha2_v1_buy",
+    "itemType": "functional_phrase",
+    "lemma": "ha2 v1 buy",
+    "displayForm": "I’ll take one packet, please.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "health",
+    "ru": {
+      "translation": "Я возьму одну упаковку, пожалуйста.",
+      "usageNote": "Learner selects and buys the named product without discussing medical use."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_ha2_v1_buy_01",
+        "text": "I’ll take one packet, please.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Certainly. That’s two pounds eighty, please.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_ha2_v2_headache",
+    "itemType": "functional_phrase",
+    "lemma": "ha2 v2 headache",
+    "displayForm": "I have a headache today. Do you have any simple pain-relief products?",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "health",
+    "ru": {
+      "translation": "Сегодня у меня болит голова. У вас есть простые средства от головной боли?",
+      "usageNote": "Variation v2 changes the symptom and asks what products are available on the shelf; no diagnosis or dosage."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_ha2_v2_headache_01",
+        "text": "I have a headache today. Do you have any simple pain-relief products?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We have these two packets. The blue one is two pounds fifty, and the green one is four pounds.",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_ha2_v2_compare",
+    "itemType": "functional_phrase",
+    "lemma": "ha2 v2 compare",
+    "displayForm": "The blue packet is cheaper than the green one. I’ll take the blue packet, please.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "health",
+    "ru": {
+      "translation": "Синяя упаковка дешевле зелёной. Я возьму синюю, пожалуйста.",
+      "usageNote": "Variation v2 reuses the A2.11 comparative target to choose between two shelf products; it is not a new H.A2 grammar target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_ha2_v2_compare_01",
+        "text": "The blue packet is cheaper than the green one. I’ll take the blue packet, please.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Of course. That’s two pounds fifty. Cash or card?",
+    "patterns": []
+  },
+  {
+    "id": "itm_a2_ha2_v2_pay",
+    "itemType": "functional_phrase",
+    "lemma": "ha2 v2 pay",
+    "displayForm": "Card, please.",
+    "levelCode": "A2",
+    "partOfSpeech": null,
+    "topic": "health",
+    "ru": {
+      "translation": "Картой, пожалуйста.",
+      "usageNote": "Learner completes the purchase after choosing between the two options."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_a2_ha2_v2_pay_01",
+        "text": "Card, please.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thanks. Here’s your receipt.",
+    "patterns": []
+  }
 ]

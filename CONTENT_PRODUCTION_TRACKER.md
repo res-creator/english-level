@@ -63,8 +63,8 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_a2_work_02` | Попросить о помощи с задачей | Work & Study | Daniel | **done** | 2 — information favour; a different task with Daniel initially busy and a negotiated time | recycled target: `gr_sie_could_polite`; `need to` explicitly classified as a V2 lexical chunk | Gate A/B/C PASS; Near A2.12, Far A1.5; ordered after A2.12; BC colleague-request reference |
 | `sit_a2_social_01` | Пригласить и изменить планы | Social Life & Leisure | Alex | **done** | 2 — invite Alex and Maya as a group; film plan with two explicit changes and an authored starting agreement | target: `gr_a2_going_to_future`; `Could we... instead?` is a lexical chunk | Gate A/B/C PASS; Near A2.9, Far A1.9; BC plans reference |
 | `sit_a2_problems_01` | Потерял(а) вещь | Problems & Solutions | Rosa | **done** | 2 — bag lost after sports-centre class; keys with two possible shops | `I've lost...` / `Have you seen...?` are lexical chunks; target: `gr_a2_past_simple_positive` for last-seen events | Gate A/B/C PASS; Far A1.4 directions vocabulary; Cambridge A2 Key vocabulary reference |
-| `sit_a2_problems_02` | Ошибка в счёте | Problems & Solutions | Leo | planned | 2 | Past Simple, could you check | |
-| `sit_a2_health_01` (H.A2) | Нужно средство от простуды | Shopping & Services | Emma | planned | 2 | have+symptom, do you have (recycled) | reframed in V2 §11 fix #4b — Emma stays shop assistant, not a pharmacist |
+| `sit_a2_problems_02` | Ошибка в счёте | Problems & Solutions | Leo | **done** | 2 — extra item on bill; missing item; same error noticed only after payment | target: `gr_a2_past_simple_negative` (`didn't order`); recycled targets: Past Simple positive, `gr_sie_could_polite` | Gate A/B/C PASS; Near A2.4/A2.5, Far A1.5; prerequisites A1.5/A2.4; BC purchase-issue sequence + Cambridge A2 bill/receipt vocabulary |
+| `sit_a2_health_01` (H.A2) | Нужно средство от простуды | Shopping & Services | Emma | **done** | 2 — cough with sugar-free cough sweets; headache and choosing between two shelf products | recycled targets: `gr_a1_have`, `gr_a1_present_simple_questions`; A2.11 comparatives reused only for v2 choice | Gate A/B/C PASS; Near A1.7; prerequisites H.A1/A1.7; Emma remains shop assistant; shelf, label, price, payment only; no advice/dosage |
 
 ## B1 — 19 core situations
 
@@ -153,15 +153,23 @@ A2.13: learner объясняет конкретную проблему с ра�
 
 Gate A PASS: schema/reference validation, уникальность ID, lesson-item contiguity, published course order, idempotent seed и Near/Far связи; Mission автоматически исключает Practice Variations. Grammar lint: 0 ошибок / 0 advisory notes на 26 V2 worksheet situations. Gate B PASS: ручной transcript read-through, естественные NPC continuations на предыдущую learner line, отсутствие повторной информации/role mismatch/Cyrillic, A2 grammar/chunk coverage и transfer variations. Gate C PASS: Chromium прошёл все 15 A2 situations по порядку и Course progress 15/15; каждый Mission дал PASS (100%, `can_do`), затем отдельный A2.13 Mission FAIL (0%, `learning`). Проверено 838 transcript snapshots; continuation появляется ровно после semantic turn, opener — только в первой session, английский transcript без кириллицы. Для трёх Batch 5 ситуаций создано 51 preview screenshot; JSON-результаты находятся в ignored `artifacts/qa/session-dialogue/results.json`. Полный workspace suite и API/web typecheck прошли после финальной правки; idempotency подтверждена повторным seed-тестом. Подробный отчёт: [A2 Batch 5 production QA](docs/A2_BATCH5_PRODUCTION_QA.md).
 
+## A2 Batch 6 reference and QA record
+
+Перед авторингом использованы British Council [Elementary Podcast 2.5 support transcript](https://learnenglish.britishcouncil.org/sites/podcasts/files/learnenglish-podcasts-elementary-02-05-support-pack-transcript_0.pdf) для порядка «объяснить конкретную проблему → сотрудник сверяет заказ → исправить операцию», British Council [Shopping (A1–A2)](https://learnenglish.britishcouncil.org/free-resources/vocabulary/a1-a2/shopping?page=1) и Cambridge [A2 Key vocabulary list](https://www.cambridgeenglish.org/vn/Images/506886-a2-key-2020-vocabulary-list.pdf) для retail/bill/receipt register. British Council [At the chemist](https://learnenglish.britishcouncil.org/comment/136011) помечен B1 и использован только как верхняя граница: dosage/allergy/diagnosis/treatment-advice language оттуда намеренно исключён. Уровень сверялся с British Council [A2 description](https://learnenglish.britishcouncil.org/level/understand-your-level/a2-pre-intermediate). Все диалоги оригинальны.
+
+A2.16: Leo приносит itemised bill; learner указывает на apple tart, которого не заказывал(а), называет заказ, просит сверить order slip и подтверждает исправленную сумму. v1 меняет тип ошибки на пропущенную позицию; v2 — та же лишняя позиция, обнаруженная после оплаты. `didn't order` — target `gr_a2_past_simple_negative`; Past Simple positive и `Could you check...?` также явно классифицированы. Near: A2.4/A2.5; Far: A1.5. H.A2: Emma остаётся продавцом в shop scene; learner называет sore throat, спрашивает о товаре, выбирает lozenges и платит. v1 меняет симптом на cough и запрашивает sugar-free cough sweets; v2 — headache и выбор между двумя товарами по цене. Grammar — recycled `gr_a1_have` и `gr_a1_present_simple_questions`; comparatives из A2.11 повторяются только в v2. Без диагноза, рекомендаций, дозировки и обсуждения аллергии. Near: A1.7; prerequisites H.A1/A1.7. Cast: Leo/restaurant, Emma/shop.
+
+Gate A/B/C Batch 6 PASS. Grammar lint: 0 errors / 0 advisory notes на 28 классифицированных V2 situations. Chromium полного уровня (включая A2.4 phone variation): 17/17 situations в PASS-ветке; каждый Mission 100% `can_do`; course progress 17/17. Отдельный H.A2 Mission FAIL вернул 0% `learning`, без completion. Всего проверено 884 transcript snapshots; продолжения NPC идут за semantic turn, opener появляется только в первой session, Cyrillic отсутствует в English transcript. Для A2.16/H.A2 создано 36 preview screenshots; JSON результатов — в ignored `artifacts/qa/session-dialogue/results.json`. Workspace suite 404/404 (API 319, web 79, shared 6); API/web typecheck PASS; seed idempotency, ссылки, порядок и contiguity PASS. Подробности: [A2 Batch 6 production QA](docs/A2_BATCH6_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
-| A2 | 17 | 15 | 2 | 0 |
+| A2 | 17 | 17 | 0 | 0 |
 | B1 | 19 | 0 | 19 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **26** | **43** | **0** |
+| **Total** | **69** | **28** | **41** | **0** |
 
 ---
 
