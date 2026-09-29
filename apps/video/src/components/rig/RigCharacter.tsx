@@ -54,7 +54,6 @@ export const RigCharacter: React.FC<RigCharacterProps> = ({
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
-  const height = width / (rig.canvasWidth / rig.canvasHeight);
   const base = (p: string) => `${rig.basePath}/${p}`;
 
   // Idle head sway/bob (small, around the neck pivot).
@@ -94,7 +93,13 @@ export const RigCharacter: React.FC<RigCharacterProps> = ({
           left: `${left * 100}%`,
           top: `${top * 100}%`,
           width: `${width * 100}%`,
-          height: `${height * 100}%`,
+          // aspectRatio (not a computed height%) keeps this box's actual
+          // pixel proportions locked to the rig canvas regardless of the
+          // parent frame's own aspect ratio -- width% and height% resolve
+          // against different bases (frame width vs. frame height), so a
+          // manually computed height% here would silently distort a
+          // portrait canvas inside a 16:9 (landscape) frame.
+          aspectRatio: `${rig.canvasWidth} / ${rig.canvasHeight}`,
         }}
       >
         <div style={{ position: "relative", width: "100%", height: "100%" }}>
