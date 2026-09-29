@@ -1743,5 +1743,445 @@
     "examples": [{ "id": "ex_itm_b1_b115_v2_replan_01", "text": "Then what if we book the table for half past two? I'll check with everyone again, and we're meeting outside the café at two twenty if they agree.", "isPrimary": true }],
     "npcReplyCorrect": "That solves Daniel's conflict and still gives us the afternoon together. I'll hold the table while you check.",
     "patterns": []
+  },
+  {
+    "id": "itm_b1_b116_decline",
+    "itemType": "functional_phrase",
+    "lemma": "soften a social refusal",
+    "displayForm": "I'd love to come to Maya's dinner, but I'm visiting my sister that evening.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite refusals and alternatives",
+    "ru": {
+      "translation": "Я бы с удовольствием пришёл/пришла на ужин Майи, но в тот вечер я навещаю сестру.",
+      "usageNote": "I'd love to, but is the frozen target: interest first, genuine reason second."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b116_decline_01",
+        "text": "I'd love to come to Maya's dinner, but I'm visiting my sister that evening.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I understand. Maya also mentioned a picnic on Sunday. Would that work for you?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b116_alternative",
+    "itemType": "functional_phrase",
+    "lemma": "offer a specific alternative",
+    "displayForm": "I work on Sunday morning too. How about coffee with Maya on Saturday instead of the picnic?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite refusals and alternatives",
+    "ru": {
+      "translation": "В воскресенье утром я тоже работаю. Как насчёт кофе с Майей в субботу вместо пикника?",
+      "usageNote": "Instead of replaces the declined plan with a concrete alternative rather than ending the conversation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b116_alternative_01",
+        "text": "I work on Sunday morning too. How about coffee with Maya on Saturday instead of the picnic?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Saturday could work. Maya is free after three; what time should I suggest?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b116_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "confirm the alternative politely",
+    "displayForm": "Four o'clock would be great. Could you ask her, or should I message her myself?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite refusals and alternatives",
+    "ru": {
+      "translation": "Четыре часа было бы отлично. Ты спросишь её или мне написать ей самому/самой?",
+      "usageNote": "The learner helps complete the alternative plan instead of repeating the refusal."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b116_confirm_01",
+        "text": "Four o'clock would be great. Could you ask her, or should I message her myself?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I'll ask her now and copy you into the message, so you can confirm directly.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b116_v1_work",
+    "itemType": "functional_phrase",
+    "lemma": "decline a work event in an appropriate register",
+    "displayForm": "I'd love to join your studio talk, but I'm presenting our project that afternoon. How about meeting the speakers for coffee the next morning instead of attending the talk?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite refusals and alternatives",
+    "ru": {
+      "translation": "Я бы с удовольствием пришёл/пришла на встречу в твоей студии, но в тот день я представляю наш проект. Как насчёт кофе со спикерами на следующее утро вместо самой встречи?",
+      "usageNote": "Variation v1 transfers the refusal to a work event and a more formal practical alternative."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b116_v1_work_01",
+        "text": "I'd love to join your studio talk, but I'm presenting our project that afternoon. How about meeting the speakers for coffee the next morning instead of attending the talk?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is a useful alternative. The speakers are staying nearby, so I'll ask whether Friday morning suits them.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b116_v2_decline",
+    "itemType": "functional_phrase",
+    "lemma": "decline a concert without damaging the relationship",
+    "displayForm": "I'd love to come to the concert, but I can't make Saturday. Maybe another time?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite refusals and alternatives",
+    "ru": {
+      "translation": "Я бы с удовольствием пришёл/пришла на концерт, но в субботу не смогу. Может быть, в другой раз?",
+      "usageNote": "Variation v2 begins with a warm refusal before Alex asks for a fuller reason."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b116_v2_decline_01",
+        "text": "I'd love to come to the concert, but I can't make Saturday. Maybe another time?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's a shame. Is the late finish difficult, or do you already have plans?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b116_v2_explain",
+    "itemType": "functional_phrase",
+    "lemma": "give a longer reason and preserve the invitation",
+    "displayForm": "I already promised to help my parents move that day, and it may take all evening. How about the outdoor concert next month instead?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite refusals and alternatives",
+    "ru": {
+      "translation": "Я уже обещал(а) помочь родителям с переездом в тот день, и это может занять весь вечер. Как насчёт концерта на открытом воздухе в следующем месяце?",
+      "usageNote": "The learner answers Alex's follow-up with a fuller reason and a new shared plan."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b116_v2_explain_01",
+        "text": "I already promised to help my parents move that day, and it may take all evening. How about the outdoor concert next month instead?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That makes sense. I'll check the date of the outdoor concert and send it to you tonight.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b117_explain",
+    "itemType": "functional_phrase",
+    "lemma": "explain a service problem from the beginning",
+    "displayForm": "Let me explain from the start. I ordered a desk lamp on Monday. The parcel arrived without the base, and after I used the chat, the warehouse sent another cable instead.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "multi-step service problems",
+    "ru": {
+      "translation": "Позвольте объяснить с самого начала. В понедельник я заказал(а) настольную лампу. Посылка пришла без основания, а после обращения в чат склад вместо него отправил ещё один кабель.",
+      "usageNote": "The frozen opening chunk organizes a multi-step history without introducing above-B1 grammar."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b117_explain_01",
+        "text": "Let me explain from the start. I ordered a desk lamp on Monday. The parcel arrived without the base, and after I used the chat, the warehouse sent another cable instead.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can see both records. The chat request says 'cable missing', so the warehouse followed that note. Let me check how to correct it.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b117_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "restate the agent explanation",
+    "displayForm": "So what you're saying is that the wrong part was recorded first, and I need a new request for the base. Is that right?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "multi-step service problems",
+    "ru": {
+      "translation": "То есть вы говорите, что сначала записали неверную деталь и теперь нужен новый запрос на основание. Верно?",
+      "usageNote": "Reported confirmation is an explicit frozen target used to verify Emma's explanation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b117_confirm_01",
+        "text": "So what you're saying is that the wrong part was recorded first, and I need a new request for the base. Is that right?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Exactly. I can either arrange a collection for the whole lamp or send the missing base separately on Friday.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b117_solution",
+    "itemType": "functional_phrase",
+    "lemma": "sequence the agreed solution",
+    "displayForm": "First, please cancel the incorrect cable request. Then send the base to my work address. That should work because someone will be there on Friday.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "multi-step service problems",
+    "ru": {
+      "translation": "Сначала отмените ошибочный запрос на кабель. Затем отправьте основание на мой рабочий адрес. Это должно сработать, потому что в пятницу там кто-нибудь будет.",
+      "usageNote": "First/then/so language turns the options into an agreed step-by-step solution; that should work is the frozen resolution chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b117_solution_01",
+        "text": "First, please cancel the incorrect cable request. Then send the base to my work address. That should work because someone will be there on Friday.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Done. The cable request is cancelled, and the base will go to your work address under reference L-284.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b117_v1_delivery",
+    "itemType": "functional_phrase",
+    "lemma": "explain a delivery problem in a new domain",
+    "displayForm": "Let me explain from the start. The courier marked my book parcel as delivered, but the photo shows a different building, and none of my neighbours has it.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "multi-step service problems",
+    "ru": {
+      "translation": "Позвольте объяснить с самого начала. Курьер отметил посылку с книгами как доставленную, но на фото другое здание, и ни у кого из соседей её нет.",
+      "usageNote": "Variation v1 changes a parts error into a delivery-location investigation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b117_v1_delivery_01",
+        "text": "Let me explain from the start. The courier marked my book parcel as delivered, but the photo shows a different building, and none of my neighbours has it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The door number in the photo is 18, but your address is 80. I can ask the courier to retrieve it or send a replacement today.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b117_v1_solution",
+    "itemType": "functional_phrase",
+    "lemma": "confirm and choose the delivery solution",
+    "displayForm": "So the parcel went to number 18, not 80. First, please contact the courier; then send a replacement if they cannot collect it today. That should work.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "multi-step service problems",
+    "ru": {
+      "translation": "То есть посылка попала в дом 18, а не 80. Сначала свяжитесь с курьером, затем отправьте замену, если сегодня забрать её не получится. Это должно сработать.",
+      "usageNote": "The learner confirms the new facts and orders two conditional service steps."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b117_v1_solution_01",
+        "text": "So the parcel went to number 18, not 80. First, please contact the courier; then send a replacement if they cannot collect it today. That should work.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Agreed. I'll call the courier now and email you by four; if they cannot recover it, the replacement will leave today.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b117_vvoicemail",
+    "itemType": "functional_phrase",
+    "lemma": "leave a structured service voicemail",
+    "displayForm": "Hello, this is Anna Kowalski. I'm calling about order L-4821. The lamp arrived today without its base. Please call me back on 07123 445566 so we can arrange the missing part. Thank you.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "multi-step service problems",
+    "ru": {
+      "translation": "Здравствуйте, это Анна Ковальски. Я звоню по поводу заказа L-4821. Лампа пришла сегодня без основания. Пожалуйста, перезвоните мне по номеру 07123 445566, чтобы мы организовали доставку недостающей детали. Спасибо.",
+      "usageNote": "Voicemail modality includes name, order, exact problem and callback request without visual cues or live negotiation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b117_vvoicemail_01",
+        "text": "Hello, this is Anna Kowalski. I'm calling about order L-4821. The lamp arrived today without its base. Please call me back on 07123 445566 so we can arrange the missing part. Thank you.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thanks for the clear message, Anna. I found order L-4821 and can arrange the missing base when you return my call.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b118_position",
+    "itemType": "functional_phrase",
+    "lemma": "acknowledge policy and state the unresolved claim",
+    "displayForm": "I understand the deposit policy, but I still think the deposit should be returned. We cancelled before the deadline in the confirmation email.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite persistence and service resolution",
+    "ru": {
+      "translation": "Я понимаю правило о депозите, но всё же считаю, что депозит нужно вернуть. Мы отменили бронь до срока, указанного в письме-подтверждении.",
+      "usageNote": "I understand, but I still is the explicit concessive-persistence target, not a light exposure."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b118_position_01",
+        "text": "I understand the deposit policy, but I still think the deposit should be returned. We cancelled before the deadline in the confirmation email.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Our booking screen shows the cancellation at five ten, ten minutes after the deadline, so I cannot release it from this screen.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b118_evidence",
+    "itemType": "functional_phrase",
+    "lemma": "respond to resistance with evidence",
+    "displayForm": "I see the timestamp, but my cancellation email was sent at four forty-five. Could we find another way to check when it reached your system?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite persistence and service resolution",
+    "ru": {
+      "translation": "Я вижу отметку времени, но моё письмо об отмене было отправлено в 4:45. Можно ли как-то иначе проверить, когда оно поступило в вашу систему?",
+      "usageNote": "The learner answers Leo's exact objection with evidence; could we find another way is a frozen persistence chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b118_evidence_01",
+        "text": "I see the timestamp, but my cancellation email was sent at four forty-five. Could we find another way to check when it reached your system?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can ask the manager to check the email log. It may take two working days before we know which timestamp is correct.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b118_resolution",
+    "itemType": "functional_phrase",
+    "lemma": "request a timely final action",
+    "displayForm": "Two days is fine, but I'd really like this resolved before the card charge closes on Friday. Could you ask the manager today and email me the decision?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite persistence and service resolution",
+    "ru": {
+      "translation": "Два дня подходят, но мне очень хотелось бы решить вопрос до закрытия карточного списания в пятницу. Можете сегодня обратиться к менеджеру и прислать решение по электронной почте?",
+      "usageNote": "I'd really like this resolved is the frozen goal-focused chunk; the request remains calm and specific."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b118_resolution_01",
+        "text": "Two days is fine, but I'd really like this resolved before the card charge closes on Friday. Could you ask the manager today and email me the decision?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. I'll send the manager the email record today and confirm the decision to you before Friday.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b118_v1_table",
+    "itemType": "functional_phrase",
+    "lemma": "persist when a restaurant table is needed back",
+    "displayForm": "I understand you need this table for the next booking, but my grandfather cannot use the bar seats. Could we move somewhere else while we finish dessert?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite persistence and service resolution",
+    "ru": {
+      "translation": "Я понимаю, что этот стол нужен для следующей брони, но мой дедушка не может сидеть у бара. Можно ли нам пересесть в другое место, пока мы заканчиваем десерт?",
+      "usageNote": "Corrected v1 keeps Leo and the restaurant scene while transferring persistence from billing to an accessibility constraint."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b118_v1_table_01",
+        "text": "I understand you need this table for the next booking, but my grandfather cannot use the bar seats. Could we move somewhere else while we finish dessert?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The bar is the only indoor space I have, and the next guests will arrive in ten minutes.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b118_v1_alternative",
+    "itemType": "functional_phrase",
+    "lemma": "persist with a workable restaurant alternative",
+    "displayForm": "I appreciate that, but the bar still won't work for him. Could we find another way? We'd be happy to move to the covered terrace.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite persistence and service resolution",
+    "ru": {
+      "translation": "Я это понимаю, но бар ему всё равно не подойдёт. Можно ли найти другой вариант? Мы с удовольствием пересядем на крытую террасу.",
+      "usageNote": "The learner holds the position after Leo's resistance and proposes a practical compromise."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b118_v1_alternative_01",
+        "text": "I appreciate that, but the bar still won't work for him. Could we find another way? We'd be happy to move to the covered terrace.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The covered terrace is available and has suitable chairs. I'll move your desserts there and keep the heater on.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b118_v2_fee",
+    "itemType": "functional_phrase",
+    "lemma": "challenge an unexpected service fee politely",
+    "displayForm": "I understand the cake service usually costs extra, but our booking email says it is included in the birthday package. I'd really like the fee removed.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite persistence and service resolution",
+    "ru": {
+      "translation": "Я понимаю, что подача торта обычно оплачивается отдельно, но в нашем письме о бронировании сказано, что она входит в праздничный пакет. Я хотел(а) бы, чтобы сбор убрали.",
+      "usageNote": "Variation v2 starts a new evidence-based dispute and requires two rounds of calm persistence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b118_v2_fee_01",
+        "text": "I understand the cake service usually costs extra, but our booking email says it is included in the birthday package. I'd really like the fee removed.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The printed package at reception does not include cake service, so I can only reduce the fee by two pounds.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b118_v2_check",
+    "itemType": "functional_phrase",
+    "lemma": "answer the first pushback with a verification request",
+    "displayForm": "I appreciate the reduction, but the written confirmation says 'no extra service fee'. Could you check the booking note as well?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite persistence and service resolution",
+    "ru": {
+      "translation": "Спасибо за снижение суммы, но в письменном подтверждении сказано «без дополнительного сбора за обслуживание». Можете также проверить примечание к брони?",
+      "usageNote": "The learner acknowledges Leo's offer, keeps the claim and asks for a specific second check."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b118_v2_check_01",
+        "text": "I appreciate the reduction, but the written confirmation says 'no extra service fee'. Could you check the booking note as well?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The booking note mentions the birthday package but not the cake. I could remove half the remaining fee as a compromise.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b118_v2_final",
+    "itemType": "functional_phrase",
+    "lemma": "persist through a second round of resistance",
+    "displayForm": "Thank you, but half the fee still doesn't match the confirmation we received. Could we find another way to honour the written offer?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "polite persistence and service resolution",
+    "ru": {
+      "translation": "Спасибо, но половина сбора всё равно не соответствует полученному подтверждению. Можно ли найти другой способ выполнить письменное предложение?",
+      "usageNote": "The final turn maintains a polite position after two pushbacks without escalating beyond B1."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b118_v2_final_01",
+        "text": "Thank you, but half the fee still doesn't match the confirmation we received. Could we find another way to honour the written offer?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You're right that the written offer should be honoured. I'll remove the full service fee and print a corrected bill.",
+    "patterns": []
   }
 ]

@@ -45,9 +45,9 @@ const defaultEpisodes =
         "sit_a2_problems_02",
       ]
     : QA_LEVEL === "B1"
-      ? ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01"]
+      ? ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01", "sit_b1_social_02", "sit_b1_problems_01", "sit_b1_problems_02"]
       : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
-const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 15 : 11;
+const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 18 : 11;
 const expectedChapterProgress =
   QA_LEVEL === "A2"
     ? [
@@ -62,7 +62,7 @@ const expectedChapterProgress =
         "0 из 2",
       ]
     : QA_LEVEL === "B1"
-      ? ["0 из 2", "0 из 1", "0 из 2", "0 из 2", "0 из 2", "0 из 2", "0 из 3", "0 из 1"]
+      ? ["0 из 2", "0 из 1", "0 из 2", "0 из 2", "0 из 2", "0 из 2", "0 из 3", "0 из 2", "0 из 2"]
       : ["0 из 11"];
 const completedChapterProgress =
   QA_LEVEL === "A2"
@@ -78,7 +78,7 @@ const completedChapterProgress =
         "2 из 2",
       ]
     : QA_LEVEL === "B1"
-      ? ["2 из 2", "1 из 1", "2 из 2", "2 из 2", "2 из 2", "2 из 2", "3 из 3", "1 из 1"]
+      ? ["2 из 2", "1 из 1", "2 из 2", "2 из 2", "2 из 2", "2 из 2", "3 из 3", "2 из 2", "2 из 2"]
       : ["11 из 11"];
 const episodes = process.argv.slice(2).length
   ? process.argv.slice(2)
@@ -425,7 +425,10 @@ async function run(failMission) {
                 stored.targetId.startsWith("itm_b1_b112_") ||
                 stored.targetId.startsWith("itm_b1_b113_") ||
                 stored.targetId.startsWith("itm_b1_b114_") ||
-                stored.targetId.startsWith("itm_b1_b115_"))
+                stored.targetId.startsWith("itm_b1_b115_") ||
+                stored.targetId.startsWith("itm_b1_b116_") ||
+                stored.targetId.startsWith("itm_b1_b117_") ||
+                stored.targetId.startsWith("itm_b1_b118_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,

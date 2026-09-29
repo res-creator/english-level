@@ -70,5 +70,14 @@
     "description": "Согласовывать групповые планы с несколькими участниками и ограничениями.",
     "order": 8,
     "status": "published"
+  },
+  {
+    "id": "mod_b1_problems_solutions",
+    "levelCode": "B1",
+    "title": "Проблемы и решения",
+    "slug": "b1-problems-solutions",
+    "description": "Пошагово решать сервисные проблемы и вежливо добиваться обоснованного решения.",
+    "order": 9,
+    "status": "published"
   }
 ]

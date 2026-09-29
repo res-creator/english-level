@@ -85,9 +85,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b1_work_02` | Попросить об услуге на работе | Work & Study | Daniel | **done** | 2 — reception cover with reciprocal help; written update with an agreed condition | target: `gr_b1_would_mind_favour`; appreciation, `only if...` and recycled `could` are chunks | Gate A/B/C PASS; Near B1.12, Far A2.13; prerequisite B1.12; concrete favour → details → timing/constraint |
 | `sit_b1_work_03` | Простое собеседование | Work & Study | Daniel | **done** | 2 — software-support role; harder “why should we hire you?” answer | targets: recycled `gr_b1_present_perfect_experience`, `gr_b1_because_interview_reasons`; strength and recycled `should` frames are chunks | Gate A/B/C PASS; Near B1.8, Far A2.12; prerequisites B1.8/A2.12; exact V2 duration phrase retained |
 | `sit_b1_social_01` | Организовать групповую встречу | Social Life & Leisure | Alex | **done** | 2 — group day trip; lunch plan with one participant unavailable at the first time | targets: `gr_b1_what_if_coordination`, `gr_b1_will_coordination`, recycled arrangements | Gate A/B/C PASS; Near/Far A2.14; prerequisite A2.14; real multi-party negotiation and confirmation |
-| `sit_b1_social_02` | Вежливо отказаться | Social Life & Leisure | Alex | planned | 2 | would love to (but) | |
-| `sit_b1_problems_01` | Решить проблему через несколько шагов | Problems & Solutions | Emma | planned | 2 (+voicemail variation) | sequencing language | |
-| `sit_b1_problems_02` | Настоять на своём вежливо | Problems & Solutions | Leo | planned | 2 | I understand, but... | |
+| `sit_b1_social_02` | Вежливо отказаться | Social Life & Leisure | Alex | **done** | 2 — decline a studio event in a work register; concert refusal with a longer reason after follow-up | targets: `gr_b1_would_love_but_refusal`, `gr_b1_instead_of_alternative`; `maybe another time` is a chunk | Gate A/B/C PASS; Near B1.15; prerequisite B1.15; warm refusal → reason → concrete alternative |
+| `sit_b1_problems_01` | Решить проблему через несколько шагов | Problems & Solutions | Emma | **done** | 2 — wrong-address delivery investigation; structured voicemail with no visual/live cues | targets: `gr_b1_sequencing_problem_steps`, `gr_b1_reported_confirmation_problem`; service frames are chunks | Gate A/B/C PASS; Far B1.10; prerequisite B1.10; history → confirmation → options → ordered solution |
+| `sit_b1_problems_02` | Настоять на своём вежливо | Problems & Solutions | Leo | **done** | 2 — table/accessibility constraint with Leo; fee dispute with two rounds of pushback | target: `gr_b1_concessive_persistence`; `Could we find another way?` and `I'd really like this resolved` are chunks | Gate A/B/C PASS; Near B1.17, Far B1.5; prerequisites B1.5/B1.17; V2 v1 corrected locally to preserve same NPC/scene |
 | `sit_b1_health_01` (H.B1) | У врача | Shopping & Services | Dr. Kim | planned | 2 | **Present Perfect with duration** (real new target) | new NPC — see cast.tsx |
 
 ## B2 — 22 core situations
@@ -213,15 +213,23 @@ B1.13: Daniel заканчивает event schedule; learner просит про
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 43 worksheet situations. Seed/schema/reference validation, module/lesson/item contiguity, Near/Far links and idempotent reseed PASS. Gate B confirms coherent authored continuations, speaker-role/cast consistency, English-only transcript, one semantic learner turn per dialogue step, no generic reply, repeated information, repeated opener or grammar above frozen B1 classification. Gate C Chromium completed all fifteen authored B1 situations in order; B1.13–B1.15 Missions passed at 100% (`can_do`), and the separate FAIL path remained 0% (`learning`) without completion. Full suite and API/web typechecks PASS. See [B1 Batch 5 production QA](docs/B1_BATCH5_PRODUCTION_QA.md).
 
+## B1 Batch 6 reference and QA record
+
+Перед авторингом использованы British Council [Requests, offers and invitations](https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/requests-offers-invitations) и [will and would](https://learnenglish.britishcouncil.org/free-resources/grammar/english-grammar-reference/will-and-would) для invitation/refusal register и вежливой дистанции; British Council [Dealing with a problem](https://learnenglish.britishcouncil.org/free-resources/speaking/b2/dealing-problem?page=1) только для функциональной последовательности «проблема → проверка → варианты → действие», с лексикой и сложностью пониженной до frozen B1; Cambridge [B1 Preliminary vocabulary list](https://www.cambridgeenglish.org/Images/506887-b1-preliminary-vocabulary-list.pdf) и [B1 Preliminary for Schools vocabulary booklet](https://www.cambridgeenglish.org/Images/648172-b1-preliminary-for-schools-vocabulary-booklet.pdf) для знакомой service/social лексики и функции «предложить → обсудить альтернативы → договориться». Диалоги оригинальные.
+
+B1.16: Alex передаёт приглашение Maya; learner показывает желание прийти, называет причину отказа, предлагает coffee вместо picnic и помогает подтвердить новый план. v1 переносит функцию в рабочий register; v2 добавляет follow-up Alex и требует более длинной причины. B1.17: learner восстанавливает историю ошибочной детали заказа, пересказывает объяснение Emma, выбирает и упорядочивает решение. v1 меняет проблему на доставку по неверному адресу; v-voicemail требует без визуальных подсказок оставить имя, номер заказа, проблему и callback request. B1.18: learner оспаривает депозит на основании timestamp и спокойно добивается проверки manager. v1 после локальной коррекции V2 сохраняет Leo/restaurant и переносит persistence на table/accessibility constraint; v2 содержит два раунда сопротивления по service fee.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 46 worksheet situations. Seed/schema/reference validation, contiguous ordering, Near/Far references and idempotent reseed PASS. Gate B confirms B1-level targets/chunks, coherent authored replies, correct roles/cast, original transfer variations and no duplicate utterance, generic continuation, repeated opener or Russian in English transcript. Gate C Chromium completed all eighteen authored B1 situations in order; B1.16–B1.18 Missions passed at 100% (`can_do`), and a separate FAIL path remained 0% (`learning`) without completion. Chromium: 549 transcript snapshots and 44 new-batch screenshots. Full suite **407/407** (API 321, web 80, shared 6); API/web typechecks PASS. See [B1 Batch 6 production QA](docs/B1_BATCH6_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
-| B1 | 19 | 15 | 4 | 0 |
+| B1 | 19 | 18 | 1 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **43** | **26** | **0** |
+| **Total** | **69** | **46** | **23** | **0** |
 
 ## A2 level freeze
 

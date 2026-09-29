@@ -166,5 +166,65 @@
     "ru": {
       "explanation": "Используйте I'll + начальную форму глагола для шага по организации, который вы решаете или предлагаете выполнить во время разговора."
     }
+  },
+  {
+    "id": "gr_b1_would_love_but_refusal",
+    "levelCode": "B1",
+    "title": "I'd love to, but — смягчить отказ",
+    "patternKey": "would_love_but_refusal",
+    "formula": "I'd love to, but + reason",
+    "explanationEn": "Use I'd love to, but to show interest before giving a genuine reason why you cannot accept an invitation.",
+    "order": 15,
+    "ru": {
+      "explanation": "Используйте I'd love to, but, чтобы сначала показать интерес, а затем назвать реальную причину отказа."
+    }
+  },
+  {
+    "id": "gr_b1_instead_of_alternative",
+    "levelCode": "B1",
+    "title": "instead of — предложить альтернативу",
+    "patternKey": "instead_of_alternative",
+    "formula": "How about + noun/-ing + instead of + noun/-ing?",
+    "explanationEn": "Use instead of to replace the original activity or time with a clear alternative.",
+    "order": 16,
+    "ru": {
+      "explanation": "Используйте instead of, чтобы заменить исходное занятие или время конкретной альтернативой."
+    }
+  },
+  {
+    "id": "gr_b1_sequencing_problem_steps",
+    "levelCode": "B1",
+    "title": "first, then, so — выстроить проблему по шагам",
+    "patternKey": "sequencing_problem_steps",
+    "formula": "First ..., then ..., so ...",
+    "explanationEn": "Use sequencing words to make the history of a problem and the agreed next steps easy to follow.",
+    "order": 17,
+    "ru": {
+      "explanation": "Используйте слова последовательности, чтобы понятно изложить историю проблемы и согласованные дальнейшие шаги."
+    }
+  },
+  {
+    "id": "gr_b1_reported_confirmation_problem",
+    "levelCode": "B1",
+    "title": "So what you're saying is... — проверить понимание",
+    "patternKey": "reported_confirmation_problem",
+    "formula": "So what you're saying is + summary. Is that right?",
+    "explanationEn": "Use this frame to restate the service agent's explanation and check that you understood it correctly.",
+    "order": 18,
+    "ru": {
+      "explanation": "Используйте эту рамку, чтобы пересказать объяснение сотрудника и проверить, правильно ли вы его поняли."
+    }
+  },
+  {
+    "id": "gr_b1_concessive_persistence",
+    "levelCode": "B1",
+    "title": "I understand, but... — вежливо сохранить позицию",
+    "patternKey": "concessive_persistence",
+    "formula": "I understand/appreciate ..., but I still ...",
+    "explanationEn": "Acknowledge the other person's position with I understand or I appreciate, then use but to state the unresolved need calmly.",
+    "order": 19,
+    "ru": {
+      "explanation": "Признайте позицию собеседника через I understand или I appreciate, затем спокойно обозначьте нерешённую потребность после but."
+    }
   }
 ]

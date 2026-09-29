@@ -2712,5 +2712,197 @@
         "grammarPatternId": "gr_a2_present_continuous_arrangements"
       }
     ]
+  },
+  {
+    "situationId": "sit_b1_social_02",
+    "phrases": [
+      {
+        "text": "Maya is planning a housewarming dinner on Friday. She asked whether you'd like to come.",
+        "classification": "chunk",
+        "chunkLabel": "Alex's authored invitation opener establishes the relationship and event.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I'd love to come to Maya's dinner, but I'm visiting my sister that evening.",
+        "classification": "target",
+        "itemId": "itm_b1_b116_decline",
+        "grammarPatternId": "gr_b1_would_love_but_refusal"
+      },
+      {
+        "text": "How about coffee with Maya on Saturday instead of the picnic?",
+        "classification": "target",
+        "itemId": "itm_b1_b116_alternative",
+        "grammarPatternId": "gr_b1_instead_of_alternative"
+      },
+      {
+        "text": "Four o'clock would be great. Could you ask her, or should I message her myself?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b116_confirm",
+        "chunkLabel": "Recycled polite modals complete the alternative plan; they are not new targets."
+      },
+      {
+        "text": "I'd love to join your studio talk, but I'm presenting our project that afternoon.",
+        "classification": "target",
+        "itemId": "itm_b1_b116_v1_work",
+        "grammarPatternId": "gr_b1_would_love_but_refusal"
+      },
+      {
+        "text": "instead of attending the talk",
+        "classification": "target",
+        "itemId": "itm_b1_b116_v1_work",
+        "grammarPatternId": "gr_b1_instead_of_alternative"
+      },
+      {
+        "text": "I'd love to come to the concert, but I can't make Saturday.",
+        "classification": "target",
+        "itemId": "itm_b1_b116_v2_decline",
+        "grammarPatternId": "gr_b1_would_love_but_refusal"
+      },
+      {
+        "text": "Maybe another time?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b116_v2_decline",
+        "chunkLabel": "Frozen relationship-preserving refusal formula."
+      },
+      {
+        "text": "How about the outdoor concert next month instead?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b116_v2_explain",
+        "chunkLabel": "Frozen alternative suggestion using instead without an instead-of complement."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_problems_01",
+    "phrases": [
+      {
+        "text": "Customer service, Emma speaking. I have your order record open. What went wrong?",
+        "classification": "chunk",
+        "chunkLabel": "Emma's authored service opener invites the problem history without supplying it.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Let me explain from the start.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b117_explain",
+        "chunkLabel": "Frozen problem-organisation opener."
+      },
+      {
+        "text": "So what you're saying is that the wrong part was recorded first, and I need a new request for the base. Is that right?",
+        "classification": "target",
+        "itemId": "itm_b1_b117_confirm",
+        "grammarPatternId": "gr_b1_reported_confirmation_problem"
+      },
+      {
+        "text": "First, please cancel the incorrect cable request. Then send the base to my work address.",
+        "classification": "target",
+        "itemId": "itm_b1_b117_solution",
+        "grammarPatternId": "gr_b1_sequencing_problem_steps"
+      },
+      {
+        "text": "That should work",
+        "classification": "chunk",
+        "itemId": "itm_b1_b117_solution",
+        "chunkLabel": "Frozen resolution-acceptance formula; should is recycled rather than retaught."
+      },
+      {
+        "text": "Let me explain from the start.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b117_v1_delivery",
+        "chunkLabel": "Reused discourse opener in a new delivery domain."
+      },
+      {
+        "text": "So the parcel went to number 18, not 80. First, please contact the courier; then send a replacement if they cannot collect it today.",
+        "classification": "target",
+        "itemId": "itm_b1_b117_v1_solution",
+        "grammarPatternId": "gr_b1_sequencing_problem_steps"
+      },
+      {
+        "text": "That should work.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b117_v1_solution",
+        "chunkLabel": "Frozen resolution formula."
+      },
+      {
+        "text": "Hello, this is Anna Kowalski. I'm calling about order L-4821. The lamp arrived today without its base. Please call me back on 07123 445566 so we can arrange the missing part. Thank you.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b117_vvoicemail",
+        "chunkLabel": "Structured voicemail frame: name, reference, exact problem and callback request; modality transfer, not a new grammar lesson."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_problems_02",
+    "phrases": [
+      {
+        "text": "I've checked your booking. The set-menu deposit is normally non-refundable. What would you like me to review?",
+        "classification": "chunk",
+        "chunkLabel": "Leo's authored opener states the initial policy position and invites evidence.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I understand the deposit policy, but I still think the deposit should be returned.",
+        "classification": "target",
+        "itemId": "itm_b1_b118_position",
+        "grammarPatternId": "gr_b1_concessive_persistence"
+      },
+      {
+        "text": "Could we find another way to check when it reached your system?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b118_evidence",
+        "chunkLabel": "Frozen polite persistence request; could is recycled."
+      },
+      {
+        "text": "I'd really like this resolved",
+        "classification": "chunk",
+        "itemId": "itm_b1_b118_resolution",
+        "chunkLabel": "Frozen goal-focused persistence formula; passive resolved is kept inside the fixed chunk."
+      },
+      {
+        "text": "I understand you need this table for the next booking, but my grandfather cannot use the bar seats.",
+        "classification": "target",
+        "itemId": "itm_b1_b118_v1_table",
+        "grammarPatternId": "gr_b1_concessive_persistence"
+      },
+      {
+        "text": "I appreciate that, but the bar still won't work for him.",
+        "classification": "target",
+        "itemId": "itm_b1_b118_v1_alternative",
+        "grammarPatternId": "gr_b1_concessive_persistence"
+      },
+      {
+        "text": "Could we find another way?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b118_v1_alternative",
+        "chunkLabel": "Frozen persistence request with recycled could."
+      },
+      {
+        "text": "I understand the cake service usually costs extra, but our booking email says it is included in the birthday package.",
+        "classification": "target",
+        "itemId": "itm_b1_b118_v2_fee",
+        "grammarPatternId": "gr_b1_concessive_persistence"
+      },
+      {
+        "text": "I'd really like the fee removed.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b118_v2_fee",
+        "chunkLabel": "Frozen persistence formula; removed remains inside a fixed service chunk."
+      },
+      {
+        "text": "I appreciate the reduction, but the written confirmation says 'no extra service fee'.",
+        "classification": "target",
+        "itemId": "itm_b1_b118_v2_check",
+        "grammarPatternId": "gr_b1_concessive_persistence"
+      },
+      {
+        "text": "Thank you, but half the fee still doesn't match the confirmation we received.",
+        "classification": "target",
+        "itemId": "itm_b1_b118_v2_final",
+        "grammarPatternId": "gr_b1_concessive_persistence"
+      }
+    ]
   }
 ]

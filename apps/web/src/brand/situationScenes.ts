@@ -68,6 +68,9 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_b1_work_02: { scene: "office", cast: "daniel" },
   sit_b1_work_03: { scene: "office", cast: "daniel" },
   sit_b1_social_01: { scene: "cafe", cast: "alex" },
+  sit_b1_social_02: { scene: "cafe", cast: "alex" },
+  sit_b1_problems_01: { scene: "shop", cast: "emma" },
+  sit_b1_problems_02: { scene: "restaurant", cast: "leo" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -152,6 +155,12 @@ const OPENING_LINES: Record<string, string> = {
     "Thanks for applying for the team coordinator role. Could you tell me about your recent experience?",
   sit_b1_social_01:
     "Maya and Daniel both want to meet this weekend, but their schedules are different. Where should we start?",
+  sit_b1_social_02:
+    "Maya is planning a housewarming dinner on Friday. She asked whether you'd like to come.",
+  sit_b1_problems_01:
+    "Customer service, Emma speaking. I have your order record open. What went wrong?",
+  sit_b1_problems_02:
+    "I've checked your booking. The set-menu deposit is normally non-refundable. What would you like me to review?",
 };
 
 export function openingLine(episodeId: string): string {

@@ -25,10 +25,10 @@ test("the published catalogue includes A1 and authored A2/B1 chapters", () => {
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2 and eight B1 modules.
-  assert.equal(published.length, 18);
+  // course now includes A1, authored A2 and nine B1 modules.
+  assert.equal(published.length, 19);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
-  assert.equal(published.filter((m) => m.levelCode === "B1").length, 8);
+  assert.equal(published.filter((m) => m.levelCode === "B1").length, 9);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -510,7 +510,7 @@ test("re-seeding updates existing rows in place (upsert, not insert-or-error)", 
 
 test("B1 authored situations keep coherent semantic turns, classifications, reviews and transfer practice", () => {
   const bundle = loadSeedContent();
-  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01"];
+  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01", "sit_b1_social_02", "sit_b1_problems_01", "sit_b1_problems_02"];
   const lessonById = new Map(bundle.lessons.map((lesson) => [lesson.id, lesson]));
   const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
   assert.deepEqual(
@@ -652,6 +652,21 @@ test("B1 authored situations keep coherent semantic turns, classifications, revi
   assert.match(itemById.get("itm_b1_b115_v1_trip")?.displayForm ?? "", /nine o'clock train.*station entrance/i);
   assert.match(itemById.get("itm_b1_b115_v2_replan")?.displayForm ?? "", /half past two.*if they agree/i);
   assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_social_01" && link.contentId === "gr_b1_what_if_coordination" && link.role === "target"));
+  assert.match(itemById.get("itm_b1_b116_decline")?.displayForm ?? "", /I'd love to.*but/i);
+  assert.match(itemById.get("itm_b1_b116_alternative")?.displayForm ?? "", /instead of the picnic/i);
+  assert.match(itemById.get("itm_b1_b116_v1_work")?.displayForm ?? "", /studio talk.*presenting our project/i);
+  assert.match(itemById.get("itm_b1_b116_v2_explain")?.displayForm ?? "", /promised to help my parents move.*outdoor concert/i);
+  assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_social_02" && link.contentId === "gr_b1_would_love_but_refusal" && link.role === "target"));
+  assert.match(itemById.get("itm_b1_b117_explain")?.displayForm ?? "", /from the start.*without the base.*another cable/i);
+  assert.match(itemById.get("itm_b1_b117_confirm")?.displayForm ?? "", /So what you're saying is.*Is that right/i);
+  assert.match(itemById.get("itm_b1_b117_v1_solution")?.displayForm ?? "", /First.*courier.*then.*replacement/i);
+  assert.match(itemById.get("itm_b1_b117_vvoicemail")?.displayForm ?? "", /this is Anna Kowalski.*order L-4821.*call me back/i);
+  assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_problems_01" && link.contentId === "gr_b1_reported_confirmation_problem" && link.role === "target"));
+  assert.match(itemById.get("itm_b1_b118_position")?.displayForm ?? "", /I understand.*but I still/i);
+  assert.match(itemById.get("itm_b1_b118_v1_table")?.displayForm ?? "", /grandfather.*bar seats/i);
+  assert.match(itemById.get("itm_b1_b118_v1_alternative")?.displayForm ?? "", /covered terrace/i);
+  assert.match(itemById.get("itm_b1_b118_v2_final")?.displayForm ?? "", /half the fee.*honour the written offer/i);
+  assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_problems_02" && link.contentId === "gr_b1_concessive_persistence" && link.role === "target"));
   const reviewIds = (id: string) => bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "review").map((link) => link.contentId);
   assert.deepEqual(reviewIds("sit_b1_travel_02"), ["itm_b1_b16_cancelled", "itm_a2_a26_late_bus", "itm_a2_a27_restate_route"]);
   assert.deepEqual(reviewIds("sit_b1_daily_01"), ["itm_a2_a28_film", "itm_a2_a28_reaction", "itm_a1_have_breakfast"]);
@@ -662,6 +677,9 @@ test("B1 authored situations keep coherent semantic turns, classifications, revi
   assert.deepEqual(reviewIds("sit_b1_work_02"), ["itm_b1_b112_task_result", "itm_a2_a213_request"]);
   assert.deepEqual(reviewIds("sit_b1_work_03"), ["itm_b1_b18_trip_experience", "itm_a2_a212_role"]);
   assert.deepEqual(reviewIds("sit_b1_social_01"), ["itm_a2_a214_reschedule"]);
+  assert.deepEqual(reviewIds("sit_b1_social_02"), ["itm_b1_b115_what_if"]);
+  assert.deepEqual(reviewIds("sit_b1_problems_01"), ["itm_b1_b110_duplicate_charge"]);
+  assert.deepEqual(reviewIds("sit_b1_problems_02"), ["itm_b1_b117_solution", "itm_b1_b15_v2_response"]);
   for (const id of ids) {
     const practice = bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "practice");
     assert.ok(practice.length >= 2, `${id} has two transfer variations`);

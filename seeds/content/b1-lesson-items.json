@@ -1213,5 +1213,266 @@
     "role": "review",
     "order": 11,
     "required": false
+  },
+  {
+    "id": "li_sit_b1_social_02_introduce_1",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b116_decline",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_social_02_introduce_2",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b116_alternative",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_social_02_introduce_3",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b116_confirm",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_social_02_target_4",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_would_love_but_refusal",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_social_02_target_5",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_instead_of_alternative",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_social_02_practice_6",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b116_v1_work",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_social_02_practice_7",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b116_v2_decline",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_social_02_practice_8",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b116_v2_explain",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_social_02_review_9",
+    "lessonId": "sit_b1_social_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b115_what_if",
+    "role": "review",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_01_introduce_1",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b117_explain",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_01_introduce_2",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b117_confirm",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_01_introduce_3",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b117_solution",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_01_target_4",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_sequencing_problem_steps",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_01_target_5",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_reported_confirmation_problem",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_01_practice_6",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b117_v1_delivery",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_01_practice_7",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b117_v1_solution",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_01_practice_8",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b117_vvoicemail",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_01_review_9",
+    "lessonId": "sit_b1_problems_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b110_duplicate_charge",
+    "role": "review",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_02_introduce_1",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_position",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_02_introduce_2",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_evidence",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_02_introduce_3",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_resolution",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_02_target_4",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_concessive_persistence",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_problems_02_practice_5",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_v1_table",
+    "role": "practice",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_02_practice_6",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_v1_alternative",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_02_practice_7",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_v2_fee",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_02_practice_8",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_v2_check",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_02_practice_9",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_v2_final",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_02_review_10",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b117_solution",
+    "role": "review",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_problems_02_review_11",
+    "lessonId": "sit_b1_problems_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b15_v2_response",
+    "role": "review",
+    "order": 11,
+    "required": false
   }
 ]

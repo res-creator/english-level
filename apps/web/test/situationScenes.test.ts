@@ -112,7 +112,7 @@ test("A2 Batch 6 maps the bill error to Leo and OTC shopping to Emma", () => {
   assert.match(openingLine("sit_a2_health_01"), /simple remedies.*on this shelf/i);
 });
 
-test("B1 Batch 1–5 maps each dialogue to its authored cast and scene", () => {
+test("B1 Batch 1–6 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_people_01"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_people_02"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_cafe_01"), { scene: "cafe", cast: "maya" });
@@ -128,6 +128,9 @@ test("B1 Batch 1–5 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_work_02"), { scene: "office", cast: "daniel" });
   assert.deepEqual(sceneForSituation("sit_b1_work_03"), { scene: "office", cast: "daniel" });
   assert.deepEqual(sceneForSituation("sit_b1_social_01"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b1_social_02"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b1_problems_01"), { scene: "shop", cast: "emma" });
+  assert.deepEqual(sceneForSituation("sit_b1_problems_02"), { scene: "restaurant", cast: "leo" });
   assert.match(openingLine("sit_b1_people_01"), /Maya.*bookshop/i);
   assert.match(openingLine("sit_b1_people_02"), /evening market.*music/i);
   assert.match(openingLine("sit_b1_cafe_01"), /drinks board.*two new drinks/i);
@@ -143,6 +146,9 @@ test("B1 Batch 1–5 maps each dialogue to its authored cast and scene", () => {
   assert.match(openingLine("sit_b1_work_02"), /event schedule.*What do you need/i);
   assert.match(openingLine("sit_b1_work_03"), /team coordinator role.*recent experience/i);
   assert.match(openingLine("sit_b1_social_01"), /Maya and Daniel.*schedules are different/i);
+  assert.match(openingLine("sit_b1_social_02"), /housewarming dinner.*like to come/i);
+  assert.match(openingLine("sit_b1_problems_01"), /Customer service.*order record.*went wrong/i);
+  assert.match(openingLine("sit_b1_problems_02"), /deposit.*non-refundable.*review/i);
 });
 
 test("one chapter needs only a handful of places and people", () => {
@@ -198,6 +204,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_b1_work_02",
     "sit_b1_work_03",
     "sit_b1_social_01",
+    "sit_b1_social_02",
+    "sit_b1_problems_01",
+    "sit_b1_problems_02",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

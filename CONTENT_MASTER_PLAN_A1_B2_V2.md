@@ -309,7 +309,7 @@ Format: **Core ID → Variation** | what concretely changes | transfer skill tes
 | B1.16 | v2 | Alex asks why, requiring a longer polite explanation | Same pattern, adds follow-up |
 | B1.17 | v1 | Problem is a delivery issue, not a billing one | Same multi-step pattern, new domain |
 | B1.17 | v-voicemail | See §4 | Modality transfer |
-| B1.18 | v1 | Persistence needed with Emma, not Leo | Same pattern, new NPC/context |
+| B1.18 | v1 | Leo needs the table back, but the proposed bar seats do not work for the learner’s grandfather | Same polite-persistence pattern, new problem and constraint; same NPC/scene per §1 |
 | B1.18 | v2 | Two rounds of pushback before resolution | Same pattern, extended persistence |
 | H.B1 | v1 | Different symptom set (joint pain, longer duration) | Same Present-Perfect-duration target, new content |
 | H.B1 | v2 | Learner has already seen another doctor about it | Same pattern, adds reported-history complexity |
