@@ -21,6 +21,7 @@ export const brunetteBustRig: RigConfig = {
   mouthOpen: "mouth_open.png",
   headHairFront: "head_hair_front.png",
   neckPivot: { x: 0.5, y: 300 / 1340 },
+  bodyPivot: { x: 0.5, y: 650 / 1340 },
   armRight: {
     upper: "arm_right_upper.png",
     fore: "arm_right_fore.png",

@@ -21,6 +21,8 @@ export interface RigConfig {
   mouthOpen: string;
   headHairFront: string;
   neckPivot: Pivot;
+  /** Waist-ish point the whole-body idle sway rotates around. Defaults to (0.5, 0.485) if omitted. */
+  bodyPivot?: Pivot;
   armRight: {
     upper: string;
     fore: string;

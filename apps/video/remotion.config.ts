@@ -9,3 +9,5 @@ import { Config } from "@remotion/cli/config";
 
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
+// Locks render quality per the project regulation (~CRF 16, high quality).
+Config.setCrf(16);
