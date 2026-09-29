@@ -16,5 +16,23 @@
     "description": "Координировать сложный групповой заказ и договариваться о справедливом решении сервисной проблемы.",
     "order": 2,
     "status": "published"
+  },
+  {
+    "id": "mod_b2_getting_around",
+    "levelCode": "B2",
+    "title": "В пути",
+    "slug": "b2-getting-around",
+    "description": "Договариваться о решении серьёзного сбоя и планировать маршрут с несколькими ограничениями.",
+    "order": 3,
+    "status": "published"
+  },
+  {
+    "id": "mod_b2_daily_life",
+    "levelCode": "B2",
+    "title": "Повседневная жизнь и выбор",
+    "slug": "b2-daily-life",
+    "description": "Взвешенно обсуждать преимущества и недостатки жизненных решений.",
+    "order": 4,
+    "status": "published"
   }
 ]

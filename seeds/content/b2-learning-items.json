@@ -607,5 +607,635 @@
       }
     ],
     "npcReplyCorrect": "Given the lost booking and delay, yes. I'll remove the full service fee."
+  },
+  {
+    "id": "itm_b2_b24_impact",
+    "itemType": "functional_phrase",
+    "lemma": "b24 impact",
+    "displayForm": "The replacement train gets me there tomorrow afternoon. Given that the cancellation was announced after the last bus left, I had to pay for a hotel tonight.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "Поезд на замену доставит меня туда только завтра днём. Учитывая, что об отмене объявили после последнего автобуса, мне пришлось оплатить гостиницу на ночь.",
+      "usageNote": "Links the late cancellation to a concrete extra cost and introduces the formal reason marker."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_impact_01",
+        "text": "The replacement train gets me there tomorrow afternoon. Given that the cancellation was announced after the last bus left, I had to pay for a hotel tonight.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I understand. The standard policy covers a new ticket, but hotel costs are reviewed separately when the last service is cancelled."
+  },
+  {
+    "id": "itm_b2_b24_expect",
+    "itemType": "functional_phrase",
+    "lemma": "b24 expect",
+    "displayForm": "I have the hotel receipt. Given the circumstances, I'd expect a contribution towards that cost as well as a replacement ticket.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "У меня есть чек из гостиницы. Учитывая обстоятельства, я ожидаю частичное возмещение этой суммы вместе с билетом на замену.",
+      "usageNote": "States an evidence-based expectation without demanding unlimited compensation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_expect_01",
+        "text": "I have the hotel receipt. Given the circumstances, I'd expect a contribution towards that cost as well as a replacement ticket.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "With the receipt, I can offer a forty-pound accommodation voucher and rebook you at no extra charge."
+  },
+  {
+    "id": "itm_b2_b24_flexibility",
+    "itemType": "functional_phrase",
+    "lemma": "b24 flexibility",
+    "displayForm": "The room cost eighty-six pounds because the cheaper hotels were full. Is there any flexibility on the voucher amount if I submit the full receipt?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "Номер стоил восемьдесят шесть фунтов, потому что дешёвые гостиницы были заполнены. Можно ли изменить сумму ваучера, если я предоставлю полный чек?",
+      "usageNote": "Responds to the first offer with specific evidence and asks about policy flexibility."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_flexibility_01",
+        "text": "The room cost eighty-six pounds because the cheaper hotels were full. Is there any flexibility on the voucher amount if I submit the full receipt?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can raise it to sixty pounds today. A claim for the remaining amount would need a separate review and could take two weeks."
+  },
+  {
+    "id": "itm_b2_b24_settlement",
+    "itemType": "functional_phrase",
+    "lemma": "b24 settlement",
+    "displayForm": "If you can rebook me and reimburse sixty pounds now, I'd accept that and submit the remaining amount for review. Could you confirm both steps in writing?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "Если вы перебронируете меня и сейчас возместите шестьдесят фунтов, я соглашусь и подам оставшуюся сумму на рассмотрение. Подтвердите, пожалуйста, оба шага письменно.",
+      "usageNote": "Turns the negotiation into a bounded conditional settlement with clear next steps."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_settlement_01",
+        "text": "If you can rebook me and reimburse sixty pounds now, I'd accept that and submit the remaining amount for review. Could you confirm both steps in writing?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. I'll issue the new ticket, process sixty pounds, and give you the claim reference for the balance."
+  },
+  {
+    "id": "itm_b2_b24_v1_hotel",
+    "itemType": "functional_phrase",
+    "lemma": "b24 v1 hotel",
+    "displayForm": "The hotel in my travel package had no accessible room when I arrived, although the booking confirmed one. Given that I had to move to another hotel, I'd expect the extra taxi cost to be covered.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "В гостинице из моего туристического пакета по приезде не оказалось доступного номера, хотя он был подтверждён. Поскольку мне пришлось переехать в другую гостиницу, я ожидаю возмещения дополнительных расходов на такси.",
+      "usageNote": "Transfers the function to a hotel-package failure while Rosa remains the travel-service contact."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_v1_hotel_01",
+        "text": "The hotel in my travel package had no accessible room when I arrived, although the booking confirmed one. Given that I had to move to another hotel, I'd expect the extra taxi cost to be covered.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can see the accessible room was confirmed. The package normally excludes local transport, but this move resulted from the hotel's error."
+  },
+  {
+    "id": "itm_b2_b24_v1_resolve",
+    "itemType": "functional_phrase",
+    "lemma": "b24 v1 resolve",
+    "displayForm": "I have both taxi receipts. If you can reimburse those and confirm the accessible room at the new hotel, I'd consider the issue resolved.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "У меня есть оба чека за такси. Если вы возместите их и подтвердите доступный номер в новой гостинице, я буду считать вопрос решённым.",
+      "usageNote": "Combines evidence and a non-financial condition in the settlement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_v1_resolve_01",
+        "text": "I have both taxi receipts. If you can reimburse those and confirm the accessible room at the new hotel, I'd consider the issue resolved.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is reasonable. I'll process the receipts and call the new hotel before you leave the desk."
+  },
+  {
+    "id": "itm_b2_b24_v2_low_offer",
+    "itemType": "functional_phrase",
+    "lemma": "b24 v2 low offer",
+    "displayForm": "I appreciate the twenty-pound voucher, but it covers less than a quarter of the hotel cost. Given that the cancellation left no public transport, I'd expect a more substantial contribution.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "Спасибо за ваучер на двадцать фунтов, но он покрывает меньше четверти стоимости гостиницы. Учитывая, что после отмены общественного транспорта уже не было, я ожидаю более существенного возмещения.",
+      "usageNote": "Adds a negotiation round after an explicitly insufficient first offer."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_v2_low_offer_01",
+        "text": "I appreciate the twenty-pound voucher, but it covers less than a quarter of the hotel cost. Given that the cancellation left no public transport, I'd expect a more substantial contribution.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The first amount is automatic. I could increase it to forty pounds without referring the case to a supervisor."
+  },
+  {
+    "id": "itm_b2_b24_v2_counter",
+    "itemType": "functional_phrase",
+    "lemma": "b24 v2 counter",
+    "displayForm": "Forty pounds still leaves most of an unavoidable cost with me. If a supervisor can authorise sixty pounds today, I'd accept that rather than open a longer complaint.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "Сорок фунтов всё равно оставляют большую часть неизбежных расходов на мне. Если руководитель может сегодня одобрить шестьдесят фунтов, я соглашусь вместо долгой жалобы.",
+      "usageNote": "Makes a reasoned conditional counteroffer instead of repeating the complaint."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_v2_counter_01",
+        "text": "Forty pounds still leaves most of an unavoidable cost with me. If a supervisor can authorise sixty pounds today, I'd accept that rather than open a longer complaint.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can ask for that authorisation. Please give me a moment while I call the supervisor."
+  },
+  {
+    "id": "itm_b2_b24_v3_consequence",
+    "itemType": "functional_phrase",
+    "lemma": "b24 v3 consequence",
+    "displayForm": "The cancellation meant I missed the first day of a training course and had to pay to change my hotel booking. Given that both costs came from the disruption, I'd expect the claim to consider them together.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "Из-за отмены я пропустил(а) первый день учебного курса и заплатил(а) за изменение бронирования гостиницы. Поскольку обе траты возникли из-за сбоя, я ожидаю, что их рассмотрят вместе.",
+      "usageNote": "Requires a specific consequence and lets Rosa distinguish covered from uncovered loss."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_v3_consequence_01",
+        "text": "The cancellation meant I missed the first day of a training course and had to pay to change my hotel booking. Given that both costs came from the disruption, I'd expect the claim to consider them together.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The missed course itself is not covered, but the hotel change fee can be included if you have the invoice."
+  },
+  {
+    "id": "itm_b2_b24_v3_scope",
+    "itemType": "functional_phrase",
+    "lemma": "b24 v3 scope",
+    "displayForm": "I understand the course fee is outside the policy. If the hotel change fee and replacement journey are covered, I'd accept that outcome and keep the course details only as context.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "travel disruption and compensation",
+    "ru": {
+      "translation": "Я понимаю, что стоимость курса не входит в правила. Если оплатят изменение гостиницы и поездку на замену, я соглашусь и оставлю сведения о курсе только как контекст.",
+      "usageNote": "Shows nuance by conceding an uncovered point while retaining the evidence-based claim."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b24_v3_scope_01",
+        "text": "I understand the course fee is outside the policy. If the hotel change fee and replacement journey are covered, I'd accept that outcome and keep the course details only as context.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's a clear claim. I'll record the disruption and process the two covered parts."
+  },
+  {
+    "id": "itm_b2_b25_constraints",
+    "itemType": "functional_phrase",
+    "lemma": "b25 constraints",
+    "displayForm": "Taking into account the heavy rain and my two-thirty deadline, the direct coach seems safer than changing trains, even though it takes longer.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "Учитывая сильный дождь и необходимость приехать к половине третьего, прямой автобус кажется надёжнее пересадки на поезда, хотя он едет дольше.",
+      "usageNote": "Opens with an integrated decision based on time and weather, not a list of constraints."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_constraints_01",
+        "text": "Taking into account the heavy rain and my two-thirty deadline, the direct coach seems safer than changing trains, even though it takes longer.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It should arrive by two, but it costs twenty-two pounds and the last return coach leaves at eight."
+  },
+  {
+    "id": "itm_b2_b25_tradeoff",
+    "itemType": "functional_phrase",
+    "lemma": "b25 tradeoff",
+    "displayForm": "The downside is the early return. Could I take the coach there and a train back, or would separate tickets push the cost above thirty pounds?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "Недостаток — раннее возвращение. Можно ли ехать туда автобусом, а обратно поездом, или отдельные билеты обойдутся дороже тридцати фунтов?",
+      "usageNote": "Requests a hybrid option and tests its budget/weather cost."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_tradeoff_01",
+        "text": "The downside is the early return. Could I take the coach there and a train back, or would separate tickets push the cost above thirty pounds?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That combination costs twenty-eight pounds. The return train leaves later, but you change at Central and part of the platform is uncovered."
+  },
+  {
+    "id": "itm_b2_b25_evaluate",
+    "itemType": "functional_phrase",
+    "lemma": "b25 evaluate",
+    "displayForm": "It might be worth paying the extra six pounds for the later return. We could use the covered route through the station if the connection leaves enough time.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "Возможно, стоит заплатить на шесть фунтов больше за более позднее возвращение. Можно пройти по крытому пути через вокзал, если на пересадку хватит времени.",
+      "usageNote": "Uses tentative modals to evaluate a possible route rather than assert certainty."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_evaluate_01",
+        "text": "It might be worth paying the extra six pounds for the later return. We could use the covered route through the station if the connection leaves enough time.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "There are twenty minutes between trains, and the lifts connect both covered platforms."
+  },
+  {
+    "id": "itm_b2_b25_decide",
+    "itemType": "functional_phrase",
+    "lemma": "b25 decide",
+    "displayForm": "Then I'll take the direct coach out and the train back. Taking into account the deadline, rain, budget, and later return, that option handles the important constraints best.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "Тогда туда я поеду прямым автобусом, а обратно поездом. С учётом срока, дождя, бюджета и более позднего возвращения этот вариант лучше всего отвечает важным условиям.",
+      "usageNote": "Closes by restating how the chosen route satisfies the combined constraints."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_decide_01",
+        "text": "Then I'll take the direct coach out and the train back. Taking into account the deadline, rain, budget, and later return, that option handles the important constraints best.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That gives you a reliable outward journey and more time in Hillview. I'll write down both departure points."
+  },
+  {
+    "id": "itm_b2_b25_v1_budget_weather",
+    "itemType": "functional_phrase",
+    "lemma": "b25 v1 budget weather",
+    "displayForm": "Taking into account the fifteen-pound budget and the storm forecast, I'd avoid the open-top bus. The local train and indoor museum shuttle cost fourteen pounds together.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "С учётом бюджета в пятнадцать фунтов и прогноза шторма я бы не выбирал(а) автобус с открытым верхом. Местный поезд и крытый музейный шаттл вместе стоят четырнадцать фунтов.",
+      "usageNote": "Transfers planning to budget and weather without relying on an arrival deadline."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_v1_budget_weather_01",
+        "text": "Taking into account the fifteen-pound budget and the storm forecast, I'd avoid the open-top bus. The local train and indoor museum shuttle cost fourteen pounds together.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That stays within budget and keeps most of the journey indoors, although the shuttle only runs once an hour."
+  },
+  {
+    "id": "itm_b2_b25_v1_frequency",
+    "itemType": "functional_phrase",
+    "lemma": "b25 v1 frequency",
+    "displayForm": "The downside is the hourly shuttle. It might be worth taking the earlier train so a delay doesn't leave us waiting outside.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "Недостаток — шаттл раз в час. Возможно, стоит поехать на более раннем поезде, чтобы из-за задержки не пришлось ждать на улице.",
+      "usageNote": "Adds service frequency as a trade-off and adjusts the route within budget."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_v1_frequency_01",
+        "text": "The downside is the hourly shuttle. It might be worth taking the earlier train so a delay doesn't leave us waiting outside.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The earlier train gives you a thirty-minute margin and costs the same."
+  },
+  {
+    "id": "itm_b2_b25_v2_pushback",
+    "itemType": "functional_phrase",
+    "lemma": "b25 v2 pushback",
+    "displayForm": "Cycling would be cheap, but I have a heavy suitcase and the final hill is steep. Taking those constraints into account, I don't think Rosa's cycle route is practical today.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "Велосипед был бы дешёвым вариантом, но у меня тяжёлый чемодан, а последний подъём крутой. С учётом этих условий я не думаю, что предложенный Розой веломаршрут сегодня практичен.",
+      "usageNote": "Learner evaluates and rejects Rosa’s proposal using two relevant constraints."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_v2_pushback_01",
+        "text": "Cycling would be cheap, but I have a heavy suitcase and the final hill is steep. Taking those constraints into account, I don't think Rosa's cycle route is practical today.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The luggage rack can take the suitcase, but I agree the hill would still be demanding. What alternative would you choose?"
+  },
+  {
+    "id": "itm_b2_b25_v2_alternative",
+    "itemType": "functional_phrase",
+    "lemma": "b25 v2 alternative",
+    "displayForm": "We could take the tram to North Gate and a taxi for the last kilometre. The downside is the taxi fare, but it avoids both the hill and carrying the case through a transfer.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "Можно доехать на трамвае до North Gate, а последний километр — на такси. Недостаток — стоимость такси, но так мы избежим подъёма и переноса чемодана при пересадке.",
+      "usageNote": "Provides a better-scoped alternative after disagreement rather than merely refusing."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_v2_alternative_01",
+        "text": "We could take the tram to North Gate and a taxi for the last kilometre. The downside is the taxi fare, but it avoids both the hill and carrying the case through a transfer.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is more expensive than cycling, but it fits the luggage and access needs much better."
+  },
+  {
+    "id": "itm_b2_b25_v3_four",
+    "itemType": "functional_phrase",
+    "lemma": "b25 v3 four",
+    "displayForm": "Taking into account the wheelchair, two suitcases, the twenty-five-pound budget, and the five o'clock arrival, the step-free train is the best starting point.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "С учётом инвалидной коляски, двух чемоданов, бюджета в двадцать пять фунтов и прибытия к пяти часам лучше начать с поезда без ступеней.",
+      "usageNote": "Raises information load to four independent constraints."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_v3_four_01",
+        "text": "Taking into account the wheelchair, two suitcases, the twenty-five-pound budget, and the five o'clock arrival, the step-free train is the best starting point.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The train fits the access and time limits, but the connecting bus would take the total to twenty-seven pounds."
+  },
+  {
+    "id": "itm_b2_b25_v3_refine",
+    "itemType": "functional_phrase",
+    "lemma": "b25 v3 refine",
+    "displayForm": "We could walk the final short section if the pavement is level. That would keep us within budget; however, it only works if the station exit has a lift.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "route planning and trade-offs",
+    "ru": {
+      "translation": "Последний короткий участок можно пройти пешком, если тротуар ровный. Это позволит уложиться в бюджет; однако вариант работает, только если на выходе со станции есть лифт.",
+      "usageNote": "Refines the route after a new cost conflict and checks the decisive access detail."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b25_v3_refine_01",
+        "text": "We could walk the final short section if the pavement is level. That would keep us within budget; however, it only works if the station exit has a lift.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The east exit has a lift and a level pavement for the final six hundred metres, so all four constraints are covered."
+  },
+  {
+    "id": "itm_b2_b26_advantage",
+    "itemType": "functional_phrase",
+    "lemma": "b26 advantage",
+    "displayForm": "The main advantage of a four-day week is having a full day to rest or manage life outside work. However, a lower salary could make that extra time stressful rather than useful.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "lifestyle advantages and disadvantages",
+    "ru": {
+      "translation": "Главное преимущество четырёхдневной недели — целый день для отдыха или личных дел. Однако меньшая зарплата может сделать это время скорее тревожным, чем полезным.",
+      "usageNote": "Balances a meaningful benefit with a linked financial downside."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_advantage_01",
+        "text": "The main advantage of a four-day week is having a full day to rest or manage life outside work. However, a lower salary could make that extra time stressful rather than useful.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's true, although some people might value the time more than the lost income. What else would affect the choice?"
+  },
+  {
+    "id": "itm_b2_b26_pressure",
+    "itemType": "functional_phrase",
+    "lemma": "b26 pressure",
+    "displayForm": "Another advantage is fewer commuting days. Nevertheless, if the same workload is compressed into four long days, people may finish the week more exhausted.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "lifestyle advantages and disadvantages",
+    "ru": {
+      "translation": "Ещё одно преимущество — меньше поездок на работу. Тем не менее, если ту же нагрузку сжать в четыре длинных дня, люди могут заканчивать неделю ещё более уставшими.",
+      "usageNote": "Uses nevertheless to qualify a second benefit with a realistic implementation risk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_pressure_01",
+        "text": "Another advantage is fewer commuting days. Nevertheless, if the same workload is compressed into four long days, people may finish the week more exhausted.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "So the policy could improve balance or simply move the pressure into longer days."
+  },
+  {
+    "id": "itm_b2_b26_condition",
+    "itemType": "functional_phrase",
+    "lemma": "b26 condition",
+    "displayForm": "Exactly. It really depends on whether the employer reduces the workload or only reduces the number of days.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "lifestyle advantages and disadvantages",
+    "ru": {
+      "translation": "Именно. Всё зависит от того, сокращает ли работодатель нагрузку или только количество дней.",
+      "usageNote": "Names the condition that determines which outcome is more likely."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_condition_01",
+        "text": "Exactly. It really depends on whether the employer reduces the workload or only reduces the number of days.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "And I suppose people with caring responsibilities might judge that trade-off differently from people living alone."
+  },
+  {
+    "id": "itm_b2_b26_balance",
+    "itemType": "functional_phrase",
+    "lemma": "b26 balance",
+    "displayForm": "On balance, I'd consider a four-day week if the workload and salary remained manageable. The extra time is a real benefit, but it isn't automatically a better lifestyle for everyone.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "lifestyle advantages and disadvantages",
+    "ru": {
+      "translation": "В целом я бы рассмотрел(а) четырёхдневную неделю, если нагрузка и зарплата останутся приемлемыми. Дополнительное время — реальное преимущество, но такой образ жизни не становится автоматически лучше для всех.",
+      "usageNote": "Ends with a conditional, balanced judgement rather than a universal claim."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_balance_01",
+        "text": "On balance, I'd consider a four-day week if the workload and salary remained manageable. The extra time is a real benefit, but it isn't automatically a better lifestyle for everyone.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That feels fair. The details of the arrangement matter as much as the shorter week itself."
+  },
+  {
+    "id": "itm_b2_b26_v1_career",
+    "itemType": "functional_phrase",
+    "lemma": "b26 v1 career",
+    "displayForm": "The advantage of taking the training role is the chance to develop new skills. However, leaving a stable team for a one-year contract creates real uncertainty.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "career advantages and disadvantages",
+    "ru": {
+      "translation": "Преимущество учебной должности — возможность развить новые навыки. Однако уход из стабильной команды ради годового контракта создаёт реальную неопределённость.",
+      "usageNote": "Transfers the balanced function to a career decision and a fixed-term constraint."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_v1_career_01",
+        "text": "The advantage of taking the training role is the chance to develop new skills. However, leaving a stable team for a one-year contract creates real uncertainty.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The experience could open other doors later, but the short contract would be difficult if you need predictable income."
+  },
+  {
+    "id": "itm_b2_b26_v1_condition",
+    "itemType": "functional_phrase",
+    "lemma": "b26 v1 condition",
+    "displayForm": "It depends on whether the role includes a clear path after the first year. Without that, the development opportunity may not outweigh the loss of stability.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "career advantages and disadvantages",
+    "ru": {
+      "translation": "Всё зависит от того, есть ли у должности ясная перспектива после первого года. Без этого возможность развития может не перевесить потерю стабильности.",
+      "usageNote": "Identifies the decisive career condition instead of choosing from enthusiasm alone."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_v1_condition_01",
+        "text": "It depends on whether the role includes a clear path after the first year. Without that, the development opportunity may not outweigh the loss of stability.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I'd ask about that path before deciding. It is the condition that changes the whole balance."
+  },
+  {
+    "id": "itm_b2_b26_v2_one_sided",
+    "itemType": "functional_phrase",
+    "lemma": "b26 v2 one sided",
+    "displayForm": "City life offers more jobs and activities. Nevertheless, saying it is always better ignores higher rent, noise, and the time some people lose commuting.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "lifestyle advantages and disadvantages",
+    "ru": {
+      "translation": "Жизнь в городе предлагает больше работы и занятий. Тем не менее утверждение, что она всегда лучше, игнорирует высокую аренду, шум и время, которое некоторые тратят на дорогу.",
+      "usageNote": "Alex holds a one-sided urban view; learner introduces several counterweights."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_v2_one_sided_01",
+        "text": "City life offers more jobs and activities. Nevertheless, saying it is always better ignores higher rent, noise, and the time some people lose commuting.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "But having everything nearby seems worth those costs. In a small town, you can feel cut off."
+  },
+  {
+    "id": "itm_b2_b26_v2_balance",
+    "itemType": "functional_phrase",
+    "lemma": "b26 v2 balance",
+    "displayForm": "That can be true. However, it depends on whether someone values access to events more than space, quiet, and a lower cost of living.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "lifestyle advantages and disadvantages",
+    "ru": {
+      "translation": "Это может быть правдой. Однако всё зависит от того, ценит ли человек доступ к мероприятиям больше, чем пространство, тишину и низкую стоимость жизни.",
+      "usageNote": "Maintains a balanced position after pushback and makes priorities decisive."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_v2_balance_01",
+        "text": "That can be true. However, it depends on whether someone values access to events more than space, quiet, and a lower cost of living.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I see your point. The better choice comes from a person's priorities, not the size of the place."
+  },
+  {
+    "id": "itm_b2_b26_v3_anecdote",
+    "itemType": "functional_phrase",
+    "lemma": "b26 v3 anecdote",
+    "displayForm": "I tried compressed hours for three months. The advantage was a free Friday; however, I often spent Thursday evening recovering from a ten-hour day.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "lifestyle advantages and disadvantages",
+    "ru": {
+      "translation": "Я три месяца работал(а) по сжатому графику. Преимуществом была свободная пятница; однако вечер четверга часто уходил на восстановление после десятичасового дня.",
+      "usageNote": "Adds a concise personal anecdote as evidence for both sides."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_v3_anecdote_01",
+        "text": "I tried compressed hours for three months. The advantage was a free Friday; however, I often spent Thursday evening recovering from a ten-hour day.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "So the extra day felt valuable, but the longer shifts reduced part of the benefit."
+  },
+  {
+    "id": "itm_b2_b26_v3_reflect",
+    "itemType": "functional_phrase",
+    "lemma": "b26 v3 reflect",
+    "displayForm": "Yes. It depended on whether the week was busy: in a quiet week I loved the schedule, but during deadlines the downside outweighed the free day.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "lifestyle advantages and disadvantages",
+    "ru": {
+      "translation": "Да. Всё зависело от загруженности недели: в спокойную неделю график мне нравился, но во время дедлайнов недостатки перевешивали свободный день.",
+      "usageNote": "Uses the anecdote to reach a nuanced conditional conclusion."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b26_v3_reflect_01",
+        "text": "Yes. It depended on whether the week was busy: in a quiet week I loved the schedule, but during deadlines the downside outweighed the free day.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That example shows why the same arrangement can work well in one context and badly in another."
   }
 ]

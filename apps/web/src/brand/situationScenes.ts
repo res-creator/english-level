@@ -75,6 +75,9 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_b2_people_01: { scene: "cafe", cast: "alex" },
   sit_b2_restaurant_01: { scene: "restaurant", cast: "leo" },
   sit_b2_restaurant_02: { scene: "restaurant", cast: "leo" },
+  sit_b2_travel_01: { scene: "street", cast: "rosa" },
+  sit_b2_travel_02: { scene: "street", cast: "rosa" },
+  sit_b2_daily_01: { scene: "cafe", cast: "alex" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -173,6 +176,12 @@ const OPENING_LINES: Record<string, string> = {
     "I’m ready to take the group’s order. Shall we go through everyone’s choices and any dietary requirements?",
   sit_b2_restaurant_02:
     "I know dinner did not go as planned. I’ve brought the revised bill; would you check whether it now reflects what happened?",
+  sit_b2_travel_01:
+    "I can see your overnight train was cancelled after the two-hour delay. I can rebook you on tomorrow's nine-ten service.",
+  sit_b2_travel_02:
+    "You need to reach Hillview by half past two, keep the trip near twenty-five pounds, and the forecast says heavy rain. Which option should we examine first?",
+  sit_b2_daily_01:
+    "Maya is considering a four-day working week with slightly lower pay. Do you think the extra day off would improve her lifestyle?",
 };
 
 export function openingLine(episodeId: string): string {

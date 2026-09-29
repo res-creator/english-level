@@ -97,9 +97,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b2_people_01` | Обсудить спорную тему с другом | People & Connections | Alex | **done** | 3 — workplace space trade-off; stronger opposition around clinic access; partial agreement around market deliveries | target: `gr_b2_concession_clauses`; viewpoint connectors/evidence questions are chunks | Gate A/B/C PASS; Far B1.2; prerequisite B1.2; position → counterweight → evidence → qualified common ground |
 | `sit_b2_restaurant_01` | Организовать сложный групповой заказ | Restaurant & Dining | Leo | **done** | 3 — dietary conflict in a shared menu; changed order after relay; uneven bill split | targets: `gr_b2_reported_speech_orders`, `gr_b2_summarising_order`; service requests are recycled chunks | Gate A/B/C PASS; Far B1.4/B1.5; prerequisites B1.4/B1.5; choices → constraint/correction → full summary → bill allocation |
 | `sit_b2_restaurant_02` | Оспорить счёт и добиться компенсации | Restaurant & Dining | Leo | **done** | 3 — missing item and recalculated fee; insufficient first offer; prior-visit context | targets: `gr_b2_fair_that`, `gr_b2_expect_compensation`; `Could we agree on...` is a negotiation chunk | Gate A/B/C PASS; Far B1.5/B1.18; prerequisites B1.5/B1.18; evidence → fairness → proportionate remedy → settlement |
-| `sit_b2_travel_01` | Переговоры о компенсации за поездку | Getting Around | Rosa | planned | 3 | given that, conditionals | |
-| `sit_b2_travel_02` | Сложный маршрут с ограничениями | Getting Around | Rosa | planned | 3 | taking into account, might/could | |
-| `sit_b2_daily_01` | Плюсы и минусы образа жизни | Daily Life & Home | Alex | planned | 3 | however/nevertheless | |
+| `sit_b2_travel_01` | Переговоры о компенсации за поездку | Getting Around | Rosa | **done** | 3 — inaccessible hotel room and taxi evidence; insufficient first offer; specific consequential loss with a bounded claim | targets: `gr_b2_given_that_reason`, `gr_b2_would_expect_compensation`; negotiation frames are chunks | Gate A/B/C PASS; Far B1.6; prerequisite B1.6; disruption → impact/evidence → first offer → bounded settlement |
+| `sit_b2_travel_02` | Сложный маршрут с ограничениями | Getting Around | Rosa | **done** | 3 — budget plus severe weather; pushback on Rosa's cycling proposal; four simultaneous access/baggage/budget/time constraints | targets: `gr_b2_taking_into_account`, `gr_b2_might_could_tradeoff`; route-evaluation frames are chunks | Gate A/B/C PASS; Near B2.4, Far B1.7; prerequisite B1.7; constraints → alternatives → downside → justified decision |
+| `sit_b2_daily_01` | Плюсы и минусы образа жизни | Daily Life & Home | Alex | **done** | 3 — career choice; Alex's one-sided city view; personal anecdote as evidence | targets: `gr_b2_contrast_connectors`, `gr_b2_depends_whether`; advantage/conclusion frames are chunks | Gate A/B/C PASS; Far B1.9; prerequisite B1.9; benefit → counterweight → condition → qualified conclusion |
 | `sit_b2_shop_01` | Оспорить условия услуги | Shopping & Services | Emma | planned | 3 (+call variation) | Passive, conditionals | |
 | `sit_b2_work_01` | Высказать мнение на рабочей встрече | Work & Study | Daniel | planned | 3 | I'd like to propose | |
 | `sit_b2_work_02` | Конструктивно не согласиться с коллегой | Work & Study | Daniel | planned | 3 | would it help if | |
@@ -237,6 +237,14 @@ B2.1: learner обсуждает car-free centre, признаёт аргуме�
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 50 worksheet situations. Targeted API/content/course/engine checks **56/56**, scene/opener checks **15/15**, static B2 dialogue audit PASS. Full suite **409/409** (API 322, web 81, shared 6); API/web typechecks PASS; seed-twice idempotency, schema/reference validation and contiguity PASS. Chromium: 166 transcript snapshots, 68 screenshots, all three Missions at 100% / `can_do` (B2.1 5/5, B2.2 6/6, B2.3 6/6), separate B2.1 FAIL 0/5 / `learning`, progression 3/3. People chapter completion awarded the existing `rw_shelf`; no duplicate reward was created. See [B2 Batch 1 production QA](docs/B2_BATCH1_PRODUCTION_QA.md).
 
+## B2 Batch 2 reference and QA record
+
+Перед authoring использованы British Council [Dealing with a problem](https://learnenglish.britishcouncil.org/sites/podcasts/files/LearnEnglish-Speaking-B2-Dealing-with-a-problem.pdf) для движения «сбой → конкретное последствие → оценка ответа → ограниченное требование», British Council [Discussing advantages and disadvantages](https://learnenglish.britishcouncil.org/comment/188444) для сбалансированного B2.6, Cambridge [B2 First](https://www.cambridgeenglish.org/exams-and-tests/first/index.aspx/?trk=profile_certification_title) и [B2 speaking format](https://www.cambridgeenglish.org/exams-and-tests/first-for-schools/exam-format/?level=independent&skill=grammar) для уровня reasoning/negotiation, а также ELLLO [B2 Sound Grammar](https://www.elllo.org/act/freebooks/B2-Book-Sound-Grammar.pdf) для естественных weather/travel constraints. Источники повлияли только на register, conversation order, function и CEFR difficulty; диалоги оригинальные.
+
+B2.4: отмена ночного поезда приводит к подтверждённым расходам; learner связывает обстоятельства с ожиданием компенсации, аргументирует сумму и достигает конкретного settlement. B2.5: learner сравнивает маршруты по времени, бюджету и погоде, выявляет downside и обосновывает комбинированный план; variations меняют сами constraints и требуют pushback/refinement. B2.6: learner строит сбалансированную позицию о четырёхдневной неделе через преимущества, downside, условие и qualified conclusion; variations переносят функцию на карьеру, городскую жизнь и личный опыт.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 53 worksheet situations. Targeted API/content/course/engine checks **70/70**, scene/opener checks **16/16**, static dialogue audit PASS. Chromium прошёл все шесть доступных B2 situations: B2.4–B2.6 Missions 6/6, 100% / `can_do`; отдельный B2.1 FAIL 0/5 / `learning`, без completion и reward. Проверено 299 transcript snapshots, создано 60 batch screenshots. Full suite **411/411** (API 323, web 82, shared 6), API/web typechecks PASS; seed-twice idempotency, schema/reference validation и contiguity PASS. See [B2 Batch 2 production QA](docs/B2_BATCH2_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
@@ -244,8 +252,8 @@ Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 50 workshe
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
 | B1 | 19 | 19 | 0 | 0 |
-| B2 | 22 | 3 | 19 | 0 |
-| **Total** | **69** | **50** | **19** | **0** |
+| B2 | 22 | 6 | 16 | 0 |
+| **Total** | **69** | **53** | **16** | **0** |
 
 ## A2 level freeze
 

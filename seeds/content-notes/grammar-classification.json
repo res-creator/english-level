@@ -3201,5 +3201,281 @@
         "grammarPatternId": "gr_b2_expect_compensation"
       }
     ]
+  },
+  {
+    "situationId": "sit_b2_travel_01",
+    "phrases": [
+      {
+        "text": "I can see your overnight train was cancelled after the two-hour delay. I can rebook you on tomorrow's nine-ten service.",
+        "classification": "chunk",
+        "chunkLabel": "Authored travel-service opener establishes the disruption and initial policy response.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Given that the cancellation was announced after the last bus left, I had to pay for a hotel tonight.",
+        "itemId": "itm_b2_b24_impact",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_given_that_reason"
+      },
+      {
+        "text": "Given the circumstances, I'd expect a contribution towards that cost as well as a replacement ticket.",
+        "itemId": "itm_b2_b24_expect",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_given_that_reason"
+      },
+      {
+        "text": "I'd expect a contribution towards that cost as well as a replacement ticket.",
+        "itemId": "itm_b2_b24_expect",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_expect_compensation"
+      },
+      {
+        "text": "Is there any flexibility on the voucher amount if I submit the full receipt?",
+        "itemId": "itm_b2_b24_flexibility",
+        "classification": "chunk",
+        "chunkLabel": "Frozen formal flexibility question plus a recycled real-condition clause."
+      },
+      {
+        "text": "If you can rebook me and reimburse sixty pounds now, I'd accept that.",
+        "itemId": "itm_b2_b24_settlement",
+        "classification": "chunk",
+        "chunkLabel": "Conditional settlement frame; functional negotiation chunk, not a separate conditional lesson."
+      },
+      {
+        "text": "Given that I had to move to another hotel, I'd expect the extra taxi cost to be covered.",
+        "itemId": "itm_b2_b24_v1_hotel",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_given_that_reason"
+      },
+      {
+        "text": "I'd expect the extra taxi cost to be covered.",
+        "itemId": "itm_b2_b24_v1_hotel",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_expect_compensation"
+      },
+      {
+        "text": "If you can reimburse those and confirm the accessible room at the new hotel, I'd consider the issue resolved.",
+        "itemId": "itm_b2_b24_v1_resolve",
+        "classification": "chunk",
+        "chunkLabel": "Bounded settlement chunk combining financial and access conditions."
+      },
+      {
+        "text": "Given that the cancellation left no public transport, I'd expect a more substantial contribution.",
+        "itemId": "itm_b2_b24_v2_low_offer",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_given_that_reason"
+      },
+      {
+        "text": "I'd expect a more substantial contribution.",
+        "itemId": "itm_b2_b24_v2_low_offer",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_expect_compensation"
+      },
+      {
+        "text": "If a supervisor can authorise sixty pounds today, I'd accept that rather than open a longer complaint.",
+        "itemId": "itm_b2_b24_v2_counter",
+        "classification": "chunk",
+        "chunkLabel": "Conditional counteroffer, kept as a functional chunk."
+      },
+      {
+        "text": "Given that both costs came from the disruption, I'd expect the claim to consider them together.",
+        "itemId": "itm_b2_b24_v3_consequence",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_given_that_reason"
+      },
+      {
+        "text": "I'd expect the claim to consider them together.",
+        "itemId": "itm_b2_b24_v3_consequence",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_expect_compensation"
+      },
+      {
+        "text": "If the hotel change fee and replacement journey are covered, I'd accept that outcome.",
+        "itemId": "itm_b2_b24_v3_scope",
+        "classification": "chunk",
+        "chunkLabel": "Conditional settlement that concedes the uncovered course fee."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_travel_02",
+    "phrases": [
+      {
+        "text": "You need to reach Hillview by half past two, keep the trip near twenty-five pounds, and the forecast says heavy rain. Which option should we examine first?",
+        "classification": "chunk",
+        "chunkLabel": "Authored opener supplies three constraints without deciding for the learner.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Taking into account the heavy rain and my two-thirty deadline, the direct coach seems safer than changing trains.",
+        "itemId": "itm_b2_b25_constraints",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_taking_into_account"
+      },
+      {
+        "text": "The downside is the early return.",
+        "itemId": "itm_b2_b25_tradeoff",
+        "classification": "chunk",
+        "chunkLabel": "Frozen trade-off label; vocabulary/discourse chunk rather than a grammar target."
+      },
+      {
+        "text": "Could I take the coach there and a train back?",
+        "itemId": "itm_b2_b25_tradeoff",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_could_tradeoff"
+      },
+      {
+        "text": "It might be worth paying the extra six pounds for the later return.",
+        "itemId": "itm_b2_b25_evaluate",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_could_tradeoff"
+      },
+      {
+        "text": "We could use the covered route through the station.",
+        "itemId": "itm_b2_b25_evaluate",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_could_tradeoff"
+      },
+      {
+        "text": "Taking into account the deadline, rain, budget, and later return, that option handles the important constraints best.",
+        "itemId": "itm_b2_b25_decide",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_taking_into_account"
+      },
+      {
+        "text": "Taking into account the fifteen-pound budget and the storm forecast, I'd avoid the open-top bus.",
+        "itemId": "itm_b2_b25_v1_budget_weather",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_taking_into_account"
+      },
+      {
+        "text": "It might be worth taking the earlier train.",
+        "itemId": "itm_b2_b25_v1_frequency",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_could_tradeoff"
+      },
+      {
+        "text": "Taking those constraints into account, I don't think Rosa's cycle route is practical today.",
+        "itemId": "itm_b2_b25_v2_pushback",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_taking_into_account"
+      },
+      {
+        "text": "We could take the tram to North Gate and a taxi for the last kilometre.",
+        "itemId": "itm_b2_b25_v2_alternative",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_could_tradeoff"
+      },
+      {
+        "text": "Taking into account the wheelchair, two suitcases, the twenty-five-pound budget, and the five o’clock arrival, the step-free train is the best starting point.",
+        "itemId": "itm_b2_b25_v3_four",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_taking_into_account"
+      },
+      {
+        "text": "We could walk the final short section if the pavement is level.",
+        "itemId": "itm_b2_b25_v3_refine",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_could_tradeoff"
+      },
+      {
+        "text": "however, it only works if the station exit has a lift",
+        "itemId": "itm_b2_b25_v3_refine",
+        "classification": "chunk",
+        "chunkLabel": "Recycled contrast and real-condition language; route modals/accounting frame remain the active targets."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_daily_01",
+    "phrases": [
+      {
+        "text": "Maya is considering a four-day working week with slightly lower pay. Do you think the extra day off would improve her lifestyle?",
+        "classification": "chunk",
+        "chunkLabel": "Authored opener presents a genuine choice and invites evaluation rather than a predetermined answer.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "However, a lower salary could make that extra time stressful rather than useful.",
+        "itemId": "itm_b2_b26_advantage",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_contrast_connectors"
+      },
+      {
+        "text": "The main advantage of a four-day week is having a full day to rest or manage life outside work.",
+        "itemId": "itm_b2_b26_advantage",
+        "classification": "chunk",
+        "chunkLabel": "Frozen advantages frame; discourse vocabulary, not a separate grammar paradigm."
+      },
+      {
+        "text": "Nevertheless, if the same workload is compressed into four long days, people may finish the week more exhausted.",
+        "itemId": "itm_b2_b26_pressure",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_contrast_connectors"
+      },
+      {
+        "text": "It really depends on whether the employer reduces the workload or only reduces the number of days.",
+        "itemId": "itm_b2_b26_condition",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_depends_whether"
+      },
+      {
+        "text": "On balance, I'd consider a four-day week if the workload and salary remained manageable.",
+        "itemId": "itm_b2_b26_balance",
+        "classification": "chunk",
+        "chunkLabel": "Balanced-conclusion and conditional-choice chunk; no new conditional target."
+      },
+      {
+        "text": "However, leaving a stable team for a one-year contract creates real uncertainty.",
+        "itemId": "itm_b2_b26_v1_career",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_contrast_connectors"
+      },
+      {
+        "text": "It depends on whether the role includes a clear path after the first year.",
+        "itemId": "itm_b2_b26_v1_condition",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_depends_whether"
+      },
+      {
+        "text": "Nevertheless, saying it is always better ignores higher rent, noise, and commuting time.",
+        "itemId": "itm_b2_b26_v2_one_sided",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_contrast_connectors"
+      },
+      {
+        "text": "However, it depends on whether someone values access to events more than space, quiet, and a lower cost of living.",
+        "itemId": "itm_b2_b26_v2_balance",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_contrast_connectors"
+      },
+      {
+        "text": "it depends on whether someone values access to events more than space, quiet, and a lower cost of living",
+        "itemId": "itm_b2_b26_v2_balance",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_depends_whether"
+      },
+      {
+        "text": "however, I often spent Thursday evening recovering from a ten-hour day",
+        "itemId": "itm_b2_b26_v3_anecdote",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_contrast_connectors"
+      },
+      {
+        "text": "It depended on whether the week was busy.",
+        "itemId": "itm_b2_b26_v3_reflect",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_depends_whether"
+      },
+      {
+        "text": "the downside outweighed the free day",
+        "itemId": "itm_b2_b26_v3_reflect",
+        "classification": "chunk",
+        "chunkLabel": "Frozen pros/cons evaluation chunk supporting a personal anecdote."
+      }
+    ]
   }
 ]

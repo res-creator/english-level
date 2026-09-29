@@ -105,16 +105,23 @@ test("the published B1 course exposes all nineteen authored situations in frozen
   assert.equal(course.episodesTotal, 19);
 });
 
-test("the published B2 course starts with the first three frozen situations", async () => {
+test("the published B2 course exposes the first six frozen situations in order", async () => {
   const { db } = await seeded();
   const b2 = await getCourse(db, "B2", "usr_test");
   assert.deepEqual(
     b2.chapters.flatMap((chapter) =>
       chapter.episodes.map((episode) => episode.id),
     ),
-    ["sit_b2_people_01", "sit_b2_restaurant_01", "sit_b2_restaurant_02"],
+    [
+      "sit_b2_people_01",
+      "sit_b2_restaurant_01",
+      "sit_b2_restaurant_02",
+      "sit_b2_travel_01",
+      "sit_b2_travel_02",
+      "sit_b2_daily_01",
+    ],
   );
-  assert.equal(b2.episodesTotal, 3);
+  assert.equal(b2.episodesTotal, 6);
   assert.equal(b2.currentEpisodeId, "sit_b2_people_01");
 });
 

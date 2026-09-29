@@ -25,11 +25,11 @@ test("the published catalogue includes A1 and authored A2/B1/B2 chapters", () =>
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2/B1, and the first two B2 modules.
-  assert.equal(published.length, 21);
+  // course now includes A1, authored A2/B1, and the first four B2 modules.
+  assert.equal(published.length, 23);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
   assert.equal(published.filter((m) => m.levelCode === "B1").length, 9);
-  assert.equal(published.filter((m) => m.levelCode === "B2").length, 2);
+  assert.equal(published.filter((m) => m.levelCode === "B2").length, 4);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -375,6 +375,9 @@ test("A2, B1 and B2 plans keep semantic turns once and exclude variations from M
     "sit_b2_people_01",
     "sit_b2_restaurant_01",
     "sit_b2_restaurant_02",
+    "sit_b2_travel_01",
+    "sit_b2_travel_02",
+    "sit_b2_daily_01",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const levelId = situationId.startsWith("sit_b2_")
@@ -816,4 +819,47 @@ test("B2 Batch 1 adds nuanced viewpoints, group-order coordination, and proporti
     links("sit_b2_restaurant_02", "review").map((x) => x.contentId),
     ["itm_b1_b15_resolution", "itm_b1_b118_position"],
   );
+});
+
+test("B2 Batch 2 negotiates disruption, solves multi-constraint routes, and balances lifestyle choices", () => {
+  const bundle = loadSeedContent();
+  const ids = ["sit_b2_travel_01", "sit_b2_travel_02", "sit_b2_daily_01"];
+  const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
+  const links = (lessonId: string, role: string) =>
+    bundle.lessonItems.filter((link) => link.lessonId === lessonId && link.role === role);
+
+  for (const id of ids) {
+    assert.equal(links(id, "introduce").length, 4, `${id} core turns`);
+    assert.equal(links(id, "practice").length, 6, `${id} three transfer variations`);
+    assert.ok(links(id, "review").length >= 1, `${id} Near/Far review`);
+    for (const link of [...links(id, "introduce"), ...links(id, "practice")]) {
+      assert.ok(itemById.get(link.contentId)?.npcReplyCorrect, `${id}/${link.contentId} authored continuation`);
+    }
+  }
+
+  assert.match(itemById.get("itm_b2_b24_impact")?.displayForm ?? "", /Given that.*last bus.*hotel/i);
+  assert.match(itemById.get("itm_b2_b24_expect")?.displayForm ?? "", /receipt.*I'd expect.*replacement ticket/i);
+  assert.match(itemById.get("itm_b2_b24_v1_hotel")?.displayForm ?? "", /accessible room.*taxi cost/i);
+  assert.match(itemById.get("itm_b2_b24_v2_counter")?.displayForm ?? "", /supervisor.*sixty pounds.*accept/i);
+  assert.match(itemById.get("itm_b2_b24_v3_consequence")?.displayForm ?? "", /missed the first day.*change my hotel booking/i);
+
+  assert.match(itemById.get("itm_b2_b25_constraints")?.displayForm ?? "", /Taking into account.*rain.*deadline/i);
+  assert.match(itemById.get("itm_b2_b25_evaluate")?.displayForm ?? "", /might be worth.*could use/i);
+  assert.match(itemById.get("itm_b2_b25_v1_budget_weather")?.displayForm ?? "", /fifteen-pound budget.*storm/i);
+  assert.match(itemById.get("itm_b2_b25_v2_pushback")?.displayForm ?? "", /heavy suitcase.*hill.*don't think.*practical/i);
+  assert.match(itemById.get("itm_b2_b25_v3_four")?.displayForm ?? "", /wheelchair.*two suitcases.*twenty-five-pound.*five o'clock/i);
+
+  assert.match(itemById.get("itm_b2_b26_advantage")?.displayForm ?? "", /advantage.*However.*lower salary/i);
+  assert.match(itemById.get("itm_b2_b26_condition")?.displayForm ?? "", /depends on whether.*workload/i);
+  assert.match(itemById.get("itm_b2_b26_v1_career")?.displayForm ?? "", /training role.*one-year contract/i);
+  assert.match(itemById.get("itm_b2_b26_v2_balance")?.displayForm ?? "", /depends on whether.*events.*space/i);
+  assert.match(itemById.get("itm_b2_b26_v3_anecdote")?.displayForm ?? "", /three months.*free Friday.*ten-hour day/i);
+
+  const targetIds = new Set(bundle.lessonItems.filter((link) => link.role === "target").map((link) => link.contentId));
+  for (const patternId of ["gr_b2_given_that_reason", "gr_b2_would_expect_compensation", "gr_b2_taking_into_account", "gr_b2_might_could_tradeoff", "gr_b2_contrast_connectors", "gr_b2_depends_whether"]) {
+    assert.ok(targetIds.has(patternId), patternId);
+  }
+  assert.deepEqual(links("sit_b2_travel_01", "review").map((x) => x.contentId), ["itm_b1_b16_cancelled"]);
+  assert.deepEqual(links("sit_b2_travel_02", "review").map((x) => x.contentId), ["itm_b2_b24_settlement", "itm_b1_b17_plan"]);
+  assert.deepEqual(links("sit_b2_daily_01", "review").map((x) => x.contentId), ["itm_b1_b19_habit_change"]);
 });

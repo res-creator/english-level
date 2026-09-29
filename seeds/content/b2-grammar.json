@@ -58,5 +58,77 @@
     "ru": {
       "explanation": "Используйте What I would expect is, чтобы после фактов назвать конкретное и соразмерное решение."
     }
+  },
+  {
+    "id": "gr_b2_given_that_reason",
+    "levelCode": "B2",
+    "title": "given that — связать требование с обстоятельствами",
+    "patternKey": "given_that_reason",
+    "formula": "Given that + circumstance, result/expectation",
+    "explanationEn": "Use given that to make the relevant circumstance the explicit reason for a request or expectation in a formal negotiation.",
+    "order": 6,
+    "ru": {
+      "explanation": "Используйте given that, чтобы сделать существенное обстоятельство явным основанием просьбы или ожидания в формальных переговорах."
+    }
+  },
+  {
+    "id": "gr_b2_would_expect_compensation",
+    "levelCode": "B2",
+    "title": "would expect — обозначить обоснованное ожидание",
+    "patternKey": "would_expect_compensation",
+    "formula": "I'd expect + noun / for + noun + to-infinitive",
+    "explanationEn": "Use would expect to state a firm but measured expectation based on evidence rather than issue a demand.",
+    "order": 7,
+    "ru": {
+      "explanation": "Используйте would expect, чтобы твёрдо, но сдержанно сформулировать ожидание на основе фактов, а не ультиматум."
+    }
+  },
+  {
+    "id": "gr_b2_taking_into_account",
+    "levelCode": "B2",
+    "title": "taking into account — учесть несколько условий",
+    "patternKey": "taking_into_account",
+    "formula": "Taking into account + constraints, conclusion",
+    "explanationEn": "Use taking into account to show which constraints support a route decision.",
+    "order": 8,
+    "ru": {
+      "explanation": "Используйте taking into account, чтобы явно показать, какие ограничения определяют выбор маршрута."
+    }
+  },
+  {
+    "id": "gr_b2_might_could_tradeoff",
+    "levelCode": "B2",
+    "title": "might / could — оценить возможный маршрут",
+    "patternKey": "might_could_tradeoff",
+    "formula": "It might be worth + -ing / We could + verb",
+    "explanationEn": "Use might and could to evaluate possible route choices without presenting uncertain outcomes as facts.",
+    "order": 9,
+    "ru": {
+      "explanation": "Используйте might и could, чтобы оценивать возможные маршруты, не выдавая неопределённый результат за факт."
+    }
+  },
+  {
+    "id": "gr_b2_contrast_connectors",
+    "levelCode": "B2",
+    "title": "however / nevertheless — сбалансировать аргументы",
+    "patternKey": "contrast_connectors",
+    "formula": "Point. However/Nevertheless, contrasting point.",
+    "explanationEn": "Use however and nevertheless to connect substantial advantages and disadvantages in a balanced viewpoint.",
+    "order": 10,
+    "ru": {
+      "explanation": "Используйте however и nevertheless, чтобы связать существенные преимущества и недостатки в сбалансированной позиции."
+    }
+  },
+  {
+    "id": "gr_b2_depends_whether",
+    "levelCode": "B2",
+    "title": "it depends on whether — назвать решающее условие",
+    "patternKey": "depends_whether",
+    "formula": "It depends on whether + clause",
+    "explanationEn": "Use it depends on whether to identify the condition that determines which side of a choice carries more weight.",
+    "order": 11,
+    "ru": {
+      "explanation": "Используйте it depends on whether, чтобы назвать условие, от которого зависит, какая сторона выбора важнее."
+    }
   }
 ]

@@ -162,6 +162,15 @@ test("B2 Batch 1 keeps Alex in the café and Leo in the restaurant", () => {
   assert.match(openingLine("sit_b2_restaurant_02"), /revised bill.*reflects what happened/i);
 });
 
+test("B2 Batch 2 maps travel reasoning to Rosa and lifestyle balance to Alex", () => {
+  assert.deepEqual(sceneForSituation("sit_b2_travel_01"), { scene: "street", cast: "rosa" });
+  assert.deepEqual(sceneForSituation("sit_b2_travel_02"), { scene: "street", cast: "rosa" });
+  assert.deepEqual(sceneForSituation("sit_b2_daily_01"), { scene: "cafe", cast: "alex" });
+  assert.match(openingLine("sit_b2_travel_01"), /overnight train.*cancelled.*rebook/i);
+  assert.match(openingLine("sit_b2_travel_02"), /Hillview.*twenty-five pounds.*heavy rain/i);
+  assert.match(openingLine("sit_b2_daily_01"), /four-day working week.*lower pay/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",
