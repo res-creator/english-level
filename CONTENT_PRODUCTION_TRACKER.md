@@ -78,10 +78,10 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b1_travel_01` | Проблема в поездке | Getting Around | Rosa | **done** | 2 — delay with missed connection; choose between direct bus and faster train | `has been cancelled` is an explicit lexical chunk, not a grammar target | Gate A/B/C PASS; Near A2.6, Far A2.7; prerequisite A2.6; compare, choose and confirm route details |
 | `sit_b1_travel_02` | Спросить совет о маршруте на день | Getting Around | Rosa | **done** | 2 — local lunch recommendation; plan constrained to two hours | target: `gr_b1_worth_ing_recommendations`, recycled `gr_a2_comparatives`; recommendation frames are chunks | Gate A/B/C PASS; Near B1.6, Far A2.6/A2.7; prerequisite B1.6; BC B1 travel advice and Cambridge B1 vocabulary |
 | `sit_b1_daily_01` | Рассказать историю из жизни | Daily Life & Home | Alex | **done** | 2 — travel mistake with resolution; two-event festival story | first real target: `gr_b1_present_perfect_experience` + recycled `gr_a2_past_simple_positive`; “I’ll never forget…” is a chunk | Gate A/B/C PASS; Near A2.8, Far A1 daily routine; prerequisite A2.8; connected start/middle/resolution narrative |
-| `sit_b1_daily_02` | Обсудить изменение в жизни | Daily Life & Home | Alex | planned | 2 | used to | |
-| `sit_b1_shop_01` | Проблема с подпиской/счётом | Shopping & Services | Emma | planned | 2 | Passive | |
-| `sit_b1_shop_02` | Сравнить варианты перед покупкой | Shopping & Services | Emma | planned | 2 | comparatives/superlatives, would rather | |
-| `sit_b1_work_01` | Объяснить задачу коллеге | Work & Study | Daniel | planned | 2 (+phone variation) | need+noun/infinitive, time expressions | |
+| `sit_b1_daily_02` | Обсудить изменение в жизни | Daily Life & Home | Alex | **done** | 2 — bus reading/listening habit; gradual commuting change | target: `gr_b1_used_to_past_habits`; sequencing language is supporting vocabulary | Gate A/B/C PASS in Batch 3; Near B1.8, Far A2.8; ELLLO B1 past-versus-now reference |
+| `sit_b1_shop_01` | Проблема с подпиской/счётом | Shopping & Services | Emma | **done** | 2 — wrong subscription tier; unresolved duplicate charge followed up on a second call | target: `gr_b1_past_passive_billing`; `Can you look into this?` and `I'd like this fixed` are chunks | Gate A/B/C PASS; Far A2.10; prerequisite A2.10; Cambridge B1 services/shopping vocabulary; no Present Perfect target |
+| `sit_b1_shop_02` | Сравнить варианты перед покупкой | Shopping & Services | Emma | **done** | 2 — compare service terms; compare three bags under a travel constraint | targets: recycled `gr_a2_comparatives`, `gr_b1_superlatives_choice`, `gr_b1_would_rather_preference` | Gate A/B/C PASS; Far A2.11; prerequisite A2.11; criteria → comparison → justified choice; Cambridge B1 shopping vocabulary |
+| `sit_b1_work_01` | Объяснить задачу коллеге | Work & Study | Daniel | **done** | 2 — document-summary hand-off; phone task with every visual cue verbalised | targets: `gr_b1_need_task_requirements`, `gr_b1_by_end_deadline`; `Does that make sense?` is a chunk | Gate A/B/C PASS; Far A2.13; prerequisite A2.13; BC B1 workplace/meeting sequence; phone modality verified |
 | `sit_b1_work_02` | Попросить об услуге на работе | Work & Study | Daniel | planned | 2 | Would you mind + -ing | |
 | `sit_b1_work_03` | Простое собеседование | Work & Study | Daniel | planned | 2 | Present Perfect (experience, recycled) | |
 | `sit_b1_social_01` | Организовать групповую встречу | Social Life & Leisure | Alex | planned | 2 | conditionals (what if) | |
@@ -193,15 +193,27 @@ B1.9: Alex asks about a life change. The learner contrasts a former home/commute
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 37 worksheet situations. Seed/schema/reference validation, lesson/item contiguity, Near/Far references, and idempotent reseed PASS. Gate B confirms authored continuations respond to the immediately preceding semantic turn; roles/scenes match Rosa/street and Alex/meeting; openers fit both core and variation contexts; no repeated opener, generic NPC reply, duplicate learner turn, Russian inside English lines, or unclassified above-level construction. Gate C Chromium ran all nine available B1 situations in frozen order; all nine Missions passed at 100% (`can_do`), course progression reached 9/9, and a separate B1.1 Mission FAIL returned 0% (`learning`) without completion. Final run: **269 transcript snapshots** and **39 screenshots** for B1.7–B1.9 under ignored `artifacts/qa/session-dialogue/`. Full suite **407/407** (API 321, web 80, shared 6); API/web typecheck PASS. See [B1 Batch 3 production QA](docs/B1_BATCH3_PRODUCTION_QA.md).
 
+## B1 Batch 4 reference and QA record
+
+Before authoring, consulted Cambridge [B1 Preliminary vocabulary list](https://www.cambridgeenglish.org/Images/506887-b1-preliminary-vocabulary-list.pdf) for B1 services/shopping language (`bill`, `customer`, `complain`, `cost`, `choose`, `reasonable`, `return`); British Council [B1 speaking resources](https://learnenglish.britishcouncil.org/free-resources/speaking/b1) and [Meeting face-to-face](https://learnenglish.britishcouncil.org/free-resources/speaking/b1/meeting-face-face) for natural workplace question/response order; and British Council [Managing meetings](https://learnenglish.britishcouncil.org/comment/221157) for clarifying, checking understanding and recording action points. Sources informed register, sequence and level only; all dialogue is original.
+
+B1.10: Emma asks what is wrong with the bill. The learner identifies two charges for one month and uses the target “I was charged twice”, confirms the dates and monthly plan, asks Emma to investigate, then chooses a refund and account correction. v1 changes the issue to the wrong subscription tier; v2 follows up after an earlier call failed to complete the refund. Sole new target: `gr_b1_past_passive_billing`; Present Perfect is absent as a target. Far review: A2.10.
+
+B1.11: Emma presents two tablets and asks for priorities. The learner states travel/work criteria, reformulates two feature differences, weighs price against the best battery life and makes a justified choice. v1 transfers the function from products to monthly/yearly services; v2 compares three bags under laptop and cabin-size constraints. Targets: recycled comparatives, superlatives and `would rather`. Far review: A2.11.
+
+B1.12: Daniel asks which part of the event project to handle. The learner specifies the guest-list result, data sources, deadline and rule for missing details, then checks understanding. v1 transfers the hand-off to a two-page survey summary. v-phone removes visual cues and requires folder, file, three sources, output and deadline to be verbalised. Targets: need + noun/infinitive and `by the end of`; `Does that make sense?` is a lexical chunk. Far review: A2.13.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 40 worksheet situations. Seed schemas, IDs, references, module/lesson/item contiguity and idempotent reseed PASS. Gate B confirms relevant authored continuations, correct speaker roles/cast, no generic reply, repeated information, duplicate learner turn, repeated opener, Russian in English transcript or early B1+ grammar jump. Gate C Chromium completed all twelve authored B1 situations in order; every Mission passed at 100% (`can_do`), and a separate B1.1 FAIL path scored 0% (`learning`) without completion. New batch produced **93 transcript snapshots** and **45 screenshots** under ignored `artifacts/qa/session-dialogue/`. See [B1 Batch 4 production QA](docs/B1_BATCH4_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
-| B1 | 19 | 9 | 10 | 0 |
+| B1 | 19 | 12 | 7 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **37** | **32** | **0** |
+| **Total** | **69** | **40** | **29** | **0** |
 
 ## A2 level freeze
 

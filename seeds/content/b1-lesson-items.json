@@ -709,5 +709,248 @@
     "role": "review",
     "order": 8,
     "required": false
+  },
+  {
+    "id": "li_sit_b1_shop_01_introduce_1",
+    "lessonId": "sit_b1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b110_duplicate_charge",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_01_introduce_2",
+    "lessonId": "sit_b1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b110_confirm_dates",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_01_introduce_3",
+    "lessonId": "sit_b1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b110_investigate",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_01_introduce_4",
+    "lessonId": "sit_b1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b110_resolution",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_01_target_5",
+    "lessonId": "sit_b1_shop_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_past_passive_billing",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_01_practice_6",
+    "lessonId": "sit_b1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b110_v1_wrong_tier",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_shop_01_practice_7",
+    "lessonId": "sit_b1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b110_v2_second_call",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_shop_01_review_8",
+    "lessonId": "sit_b1_shop_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a210_exchange",
+    "role": "review",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_shop_02_introduce_1",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b111_priorities",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_02_introduce_2",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b111_compare_features",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_02_introduce_3",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b111_weigh_tradeoff",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_02_introduce_4",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b111_choose",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_02_target_5",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_comparatives",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_02_target_6",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_superlatives_choice",
+    "role": "target",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_02_target_7",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_would_rather_preference",
+    "role": "target",
+    "order": 7,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_shop_02_practice_8",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b111_v1_services",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_shop_02_practice_9",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b111_v2_three_options",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_shop_02_review_10",
+    "lessonId": "sit_b1_shop_02",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a211_compare",
+    "role": "review",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_work_01_introduce_1",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b112_task_result",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_work_01_introduce_2",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b112_source",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_work_01_introduce_3",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b112_deadline",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_work_01_introduce_4",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b112_check_understanding",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_work_01_target_5",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_need_task_requirements",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_work_01_target_6",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_by_end_deadline",
+    "role": "target",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_work_01_practice_7",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b112_v1_document",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_work_01_practice_8",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b112_vphone_remote",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_work_01_review_9",
+    "lessonId": "sit_b1_work_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_a213_request",
+    "role": "review",
+    "order": 9,
+    "required": false
   }
 ]

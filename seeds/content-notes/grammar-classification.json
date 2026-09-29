@@ -2352,5 +2352,173 @@
         "sourceField": "npcReplyCorrect"
       }
     ]
+  },
+  {
+    "situationId": "sit_b1_shop_01",
+    "phrases": [
+      {
+        "text": "Hello. I can help with your account today. What seems to be wrong with the bill?",
+        "classification": "chunk",
+        "chunkLabel": "Emma's authored service opener establishes the account problem without supplying the learner's evidence.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "There are two charges for the same month on my bill. I was charged twice for my music subscription.",
+        "classification": "target",
+        "itemId": "itm_b1_b110_duplicate_charge",
+        "grammarPatternId": "gr_b1_past_passive_billing"
+      },
+      {
+        "text": "Yes, they were both taken on 3 May, but my plan should only be billed once a month.",
+        "classification": "target",
+        "itemId": "itm_b1_b110_confirm_dates",
+        "grammarPatternId": "gr_b1_past_passive_billing"
+      },
+      {
+        "text": "Can you look into this?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b110_investigate",
+        "chunkLabel": "Fixed service-investigation request; can is recycled and not a new target."
+      },
+      {
+        "text": "I'd like this fixed before my next bill.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b110_resolution",
+        "chunkLabel": "Fixed service-resolution phrase from frozen V2; the only new grammar target remains Passive."
+      },
+      {
+        "text": "I was charged for the premium plan this month.",
+        "classification": "target",
+        "itemId": "itm_b1_b110_v1_wrong_tier",
+        "grammarPatternId": "gr_b1_past_passive_billing"
+      },
+      {
+        "text": "I called on Monday about a duplicate charge and was told it would be removed, but it is still on my bill.",
+        "classification": "target",
+        "itemId": "itm_b1_b110_v2_second_call",
+        "grammarPatternId": "gr_b1_past_passive_billing"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_shop_02",
+    "phrases": [
+      {
+        "text": "These two tablets are our most popular models. What matters most to you?",
+        "classification": "chunk",
+        "chunkLabel": "Emma's authored opener elicits decision criteria before comparison.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Compared to the grey tablet, the blue one is lighter, but the grey one has the larger screen.",
+        "classification": "target",
+        "itemId": "itm_b1_b111_compare_features",
+        "grammarPatternId": "gr_a2_comparatives"
+      },
+      {
+        "text": "The blue one is cheaper, but the grey one has the best battery life.",
+        "classification": "target",
+        "itemId": "itm_b1_b111_weigh_tradeoff",
+        "grammarPatternId": "gr_b1_superlatives_choice"
+      },
+      {
+        "text": "I'd rather pay more for that on long trips.",
+        "classification": "target",
+        "itemId": "itm_b1_b111_weigh_tradeoff",
+        "grammarPatternId": "gr_b1_would_rather_preference"
+      },
+      {
+        "text": "I'll take the grey one because it is better for long work trips, even though it costs more.",
+        "classification": "target",
+        "itemId": "itm_b1_b111_choose",
+        "grammarPatternId": "gr_a2_comparatives"
+      },
+      {
+        "text": "The monthly service is cheaper and easier to cancel, while the yearly service gives me more offline downloads. I'd rather pay monthly because my travel schedule changes.",
+        "classification": "target",
+        "itemId": "itm_b1_b111_v1_services",
+        "grammarPatternId": "gr_b1_would_rather_preference"
+      },
+      {
+        "text": "The small bag is the cheapest, the black one is stronger, and the green one is the lightest.",
+        "classification": "target",
+        "itemId": "itm_b1_b111_v2_three_options",
+        "grammarPatternId": "gr_b1_superlatives_choice"
+      },
+      {
+        "text": "I'd rather choose the black one because it protects my laptop and still fits under the seat.",
+        "classification": "target",
+        "itemId": "itm_b1_b111_v2_three_options",
+        "grammarPatternId": "gr_b1_would_rather_preference"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_work_01",
+    "phrases": [
+      {
+        "text": "Thanks for meeting me. Which part of the event project do you want me to handle?",
+        "classification": "chunk",
+        "chunkLabel": "Daniel's authored opener establishes a real task hand-off and asks for the deliverable.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "What I need is a final guest list for Friday's event.",
+        "classification": "target",
+        "itemId": "itm_b1_b112_task_result",
+        "grammarPatternId": "gr_b1_need_task_requirements"
+      },
+      {
+        "text": "You also need to add any changes from yesterday's emails.",
+        "classification": "target",
+        "itemId": "itm_b1_b112_source",
+        "grammarPatternId": "gr_b1_need_task_requirements"
+      },
+      {
+        "text": "I need the completed list by the end of Thursday so I can send it to reception before they close.",
+        "classification": "target",
+        "itemId": "itm_b1_b112_deadline",
+        "grammarPatternId": "gr_b1_need_task_requirements"
+      },
+      {
+        "text": "by the end of Thursday",
+        "classification": "target",
+        "itemId": "itm_b1_b112_deadline",
+        "grammarPatternId": "gr_b1_by_end_deadline"
+      },
+      {
+        "text": "Does that make sense?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b112_check_understanding",
+        "chunkLabel": "Fixed workplace understanding check from frozen V2."
+      },
+      {
+        "text": "What I need is a two-page summary of the survey.",
+        "classification": "target",
+        "itemId": "itm_b1_b112_v1_document",
+        "grammarPatternId": "gr_b1_need_task_requirements"
+      },
+      {
+        "text": "by the end of Wednesday",
+        "classification": "target",
+        "itemId": "itm_b1_b112_v1_document",
+        "grammarPatternId": "gr_b1_by_end_deadline"
+      },
+      {
+        "text": "Since you can't see the project board, I'll explain the task fully.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b112_vphone_remote",
+        "chunkLabel": "Phone-modality context marker; no future-form lesson is introduced."
+      },
+      {
+        "text": "by the end of today",
+        "classification": "target",
+        "itemId": "itm_b1_b112_vphone_remote",
+        "grammarPatternId": "gr_b1_by_end_deadline"
+      }
+    ]
   }
 ]

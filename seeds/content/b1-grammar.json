@@ -58,5 +58,65 @@
     "ru": {
       "explanation": "Используйте used to + начальную форму глагола для прежней привычки или состояния, которые изменились."
     }
+  },
+  {
+    "id": "gr_b1_past_passive_billing",
+    "levelCode": "B1",
+    "title": "Past Passive — описать списание",
+    "patternKey": "past_passive_billing",
+    "formula": "I was charged ...",
+    "explanationEn": "Use was/were + past participle when the important point is what happened to the customer or account, rather than who caused it.",
+    "order": 6,
+    "ru": {
+      "explanation": "Используйте was/were + третью форму глагола, когда важно, что произошло с клиентом или счётом, а не кто совершил действие."
+    }
+  },
+  {
+    "id": "gr_b1_superlatives_choice",
+    "levelCode": "B1",
+    "title": "Superlatives — выделить лучший вариант",
+    "patternKey": "superlatives_choice",
+    "formula": "the lightest / the best ...",
+    "explanationEn": "Use the + superlative adjective to identify the option with the highest or lowest degree of a quality in a group.",
+    "order": 7,
+    "ru": {
+      "explanation": "Используйте the + превосходную степень прилагательного, чтобы выделить вариант с наибольшей или наименьшей степенью качества в группе."
+    }
+  },
+  {
+    "id": "gr_b1_would_rather_preference",
+    "levelCode": "B1",
+    "title": "would rather — выразить предпочтение",
+    "patternKey": "would_rather_preference",
+    "formula": "I'd rather + base verb ...",
+    "explanationEn": "Use would rather + base verb to state which option you prefer after considering alternatives.",
+    "order": 8,
+    "ru": {
+      "explanation": "Используйте would rather + начальную форму глагола, чтобы сказать, какой вариант вы предпочитаете после сравнения."
+    }
+  },
+  {
+    "id": "gr_b1_need_task_requirements",
+    "levelCode": "B1",
+    "title": "need — объяснить требования задачи",
+    "patternKey": "need_task_requirements",
+    "formula": "I need + noun / need to + base verb",
+    "explanationEn": "Use need + a noun for a required result or thing, and need to + base verb for a required action.",
+    "order": 9,
+    "ru": {
+      "explanation": "Используйте need + существительное для необходимого результата или предмета и need to + начальную форму глагола для необходимого действия."
+    }
+  },
+  {
+    "id": "gr_b1_by_end_deadline",
+    "levelCode": "B1",
+    "title": "by the end of — обозначить срок",
+    "patternKey": "by_end_deadline",
+    "formula": "by the end of + time period",
+    "explanationEn": "Use by the end of to say that a task must be completed no later than the end of a stated period.",
+    "order": 10,
+    "ru": {
+      "explanation": "Используйте by the end of, чтобы сказать, что задача должна быть завершена не позднее конца указанного периода."
+    }
   }
 ]

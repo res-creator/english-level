@@ -43,5 +43,23 @@
     "description": "Рассказывать связные истории об опыте и обсуждать, как менялись повседневные привычки.",
     "order": 5,
     "status": "published"
+  },
+  {
+    "id": "mod_b1_shopping_services",
+    "levelCode": "B1",
+    "title": "Покупки и услуги",
+    "slug": "b1-shopping-services",
+    "description": "Решать проблемы со счётом и сравнивать варианты перед обоснованным выбором.",
+    "order": 6,
+    "status": "published"
+  },
+  {
+    "id": "mod_b1_work_study",
+    "levelCode": "B1",
+    "title": "Работа и учёба",
+    "slug": "b1-work-study",
+    "description": "Понятно объяснять рабочие задачи, требования и сроки.",
+    "order": 7,
+    "status": "published"
   }
 ]

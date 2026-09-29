@@ -112,7 +112,7 @@ test("A2 Batch 6 maps the bill error to Leo and OTC shopping to Emma", () => {
   assert.match(openingLine("sit_a2_health_01"), /simple remedies.*on this shelf/i);
 });
 
-test("B1 Batch 1–3 maps each dialogue to its authored cast and scene", () => {
+test("B1 Batch 1–4 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_people_01"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_people_02"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_cafe_01"), { scene: "cafe", cast: "maya" });
@@ -122,6 +122,9 @@ test("B1 Batch 1–3 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_travel_02"), { scene: "street", cast: "rosa" });
   assert.deepEqual(sceneForSituation("sit_b1_daily_01"), { scene: "meeting", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_daily_02"), { scene: "meeting", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b1_shop_01"), { scene: "shop", cast: "emma" });
+  assert.deepEqual(sceneForSituation("sit_b1_shop_02"), { scene: "shop", cast: "emma" });
+  assert.deepEqual(sceneForSituation("sit_b1_work_01"), { scene: "office", cast: "daniel" });
   assert.match(openingLine("sit_b1_people_01"), /Maya.*bookshop/i);
   assert.match(openingLine("sit_b1_people_02"), /evening market.*music/i);
   assert.match(openingLine("sit_b1_cafe_01"), /drinks board.*two new drinks/i);
@@ -130,7 +133,10 @@ test("B1 Batch 1–3 maps each dialogue to its authored cast and scene", () => {
   assert.match(openingLine("sit_b1_travel_01"), /checking the Northbridge trains.*wrong with your service/i);
   assert.match(openingLine("sit_b1_travel_02"), /before your train.*stop worthwhile/i);
   assert.match(openingLine("sit_b1_daily_01"), /Have you ever had a trip/i);
-  assert.match(openingLine("sit_b1_daily_02"), /Last year brought a big change.*everyday life now/i)
+  assert.match(openingLine("sit_b1_daily_02"), /Last year brought a big change.*everyday life now/i);
+  assert.match(openingLine("sit_b1_shop_01"), /account today.*wrong with the bill/i);
+  assert.match(openingLine("sit_b1_shop_02"), /two tablets.*matters most/i);
+  assert.match(openingLine("sit_b1_work_01"), /event project.*handle/i);
 });
 
 test("one chapter needs only a handful of places and people", () => {
@@ -180,6 +186,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_b1_travel_02",
     "sit_b1_daily_01",
     "sit_b1_daily_02",
+    "sit_b1_shop_01",
+    "sit_b1_shop_02",
+    "sit_b1_work_01",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

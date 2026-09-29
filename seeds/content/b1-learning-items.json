@@ -1059,5 +1059,401 @@
     ],
     "npcReplyCorrect": "That is quite a change. What made you decide to keep cycling more often?",
     "patterns": []
+  },
+  {
+    "id": "itm_b1_b110_duplicate_charge",
+    "itemType": "functional_phrase",
+    "lemma": "describe a duplicate subscription charge",
+    "displayForm": "There are two charges for the same month on my bill. I was charged twice for my music subscription.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "billing and subscriptions",
+    "ru": {
+      "translation": "В моём счёте два списания за один и тот же месяц. С меня дважды списали плату за музыкальную подписку.",
+      "usageNote": "The learner opens with the concrete billing evidence and the frozen V2 past-passive target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b110_duplicate_charge_01",
+        "text": "There are two charges for the same month on my bill. I was charged twice for my music subscription.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can see both payments on the account. Were they taken on the same date?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b110_confirm_dates",
+    "itemType": "functional_phrase",
+    "lemma": "confirm billing dates and terms",
+    "displayForm": "Yes, they were both taken on 3 May, but my plan should only be billed once a month.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "billing and subscriptions",
+    "ru": {
+      "translation": "Да, оба списания были 3 мая, но по моему тарифу плата должна списываться только раз в месяц.",
+      "usageNote": "Adds requested evidence without repeating the opening complaint; should only is recycled service language."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b110_confirm_dates_01",
+        "text": "Yes, they were both taken on 3 May, but my plan should only be billed once a month.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You're right. One is the monthly payment and the other appears to be a duplicate. Do you want me to check how it happened?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b110_investigate",
+    "itemType": "functional_phrase",
+    "lemma": "ask a service agent to investigate",
+    "displayForm": "Yes, can you look into this? I don't want the same problem on next month's bill.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "billing and subscriptions",
+    "ru": {
+      "translation": "Да, можете разобраться? Я не хочу, чтобы такая же проблема появилась в счёте за следующий месяц.",
+      "usageNote": "Can you look into this? is an explicit service-resolution lexical chunk, not another grammar lesson."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b110_investigate_01",
+        "text": "Yes, can you look into this? I don't want the same problem on next month's bill.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The renewal was processed twice by mistake. I can refund the extra payment today and remove the duplicate renewal.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b110_resolution",
+    "itemType": "functional_phrase",
+    "lemma": "request and confirm a billing resolution",
+    "displayForm": "Please refund the extra payment and remove the duplicate renewal. I'd like this fixed before my next bill.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "billing and subscriptions",
+    "ru": {
+      "translation": "Пожалуйста, верните лишний платёж и удалите повторное продление. Я хочу, чтобы это исправили до следующего счёта.",
+      "usageNote": "The learner chooses the concrete remedy; I'd like this fixed is classified as a lexical service chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b110_resolution_01",
+        "text": "Please refund the extra payment and remove the duplicate renewal. I'd like this fixed before my next bill.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Done. The refund will appear within three working days, and your account now has only one monthly renewal.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b110_v1_wrong_tier",
+    "itemType": "functional_phrase",
+    "lemma": "challenge a charge for the wrong subscription tier",
+    "displayForm": "I signed up for the basic plan, but I was charged for the premium plan this month. Can you change the account and refund the difference?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "billing and subscriptions",
+    "ru": {
+      "translation": "Я оформил(а) базовый тариф, но в этом месяце с меня списали плату за премиум-тариф. Можете изменить тариф и вернуть разницу?",
+      "usageNote": "Variation v1 transfers the same passive complaint and resolution skill to a wrong subscription tier."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b110_v1_wrong_tier_01",
+        "text": "I signed up for the basic plan, but I was charged for the premium plan this month. Can you change the account and refund the difference?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can see the wrong tier on the account. I'll move you to the basic plan now and refund the difference.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b110_v2_second_call",
+    "itemType": "functional_phrase",
+    "lemma": "follow up on an unresolved billing issue",
+    "displayForm": "I called on Monday about a duplicate charge and was told it would be removed, but it is still on my bill. Could you check the case and tell me when it will be fixed?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "billing and subscriptions",
+    "ru": {
+      "translation": "Я звонил(а) в понедельник по поводу повторного списания, и мне сказали, что его удалят, но оно всё ещё есть в счёте. Можете проверить обращение и сказать, когда проблему исправят?",
+      "usageNote": "Variation v2 adds persistence after an earlier call and requires a dated, case-specific follow-up."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b110_v2_second_call_01",
+        "text": "I called on Monday about a duplicate charge and was told it would be removed, but it is still on my bill. Could you check the case and tell me when it will be fixed?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I found Monday's case. The refund was approved but not sent, so I've released it now and emailed you the confirmation.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b111_priorities",
+    "itemType": "functional_phrase",
+    "lemma": "state priorities before comparing products",
+    "displayForm": "I need something light for travel, but the screen also needs to be large enough for work.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "comparing products and services",
+    "ru": {
+      "translation": "Мне нужно что-то лёгкое для поездок, но экран также должен быть достаточно большим для работы.",
+      "usageNote": "The learner gives two real decision criteria before comparing products."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b111_priorities_01",
+        "text": "I need something light for travel, but the screen also needs to be large enough for work.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The blue tablet is lighter, while the grey one has a larger screen. Would you like to compare the prices too?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b111_compare_features",
+    "itemType": "functional_phrase",
+    "lemma": "compare two product features",
+    "displayForm": "Compared to the grey tablet, the blue one is lighter, but the grey one has the larger screen.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "comparing products and services",
+    "ru": {
+      "translation": "По сравнению с серым планшетом синий легче, но у серого экран больше.",
+      "usageNote": "The learner reformulates the two feature differences rather than repeating Emma's wording exactly."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b111_compare_features_01",
+        "text": "Compared to the grey tablet, the blue one is lighter, but the grey one has the larger screen.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Exactly. The blue one is also cheaper, but the grey model has our longest battery life.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b111_weigh_tradeoff",
+    "itemType": "functional_phrase",
+    "lemma": "weigh price against battery life",
+    "displayForm": "The blue one is cheaper, but the grey one has the best battery life. I'd rather pay more for that on long trips.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "comparing products and services",
+    "ru": {
+      "translation": "Синий дешевле, но у серого самое долгое время работы от батареи. Для долгих поездок я предпочту заплатить за это больше.",
+      "usageNote": "Evidences the frozen comparative, superlative and would rather targets in one reasoned trade-off."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b111_weigh_tradeoff_01",
+        "text": "The blue one is cheaper, but the grey one has the best battery life. I'd rather pay more for that on long trips.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That makes sense if you travel often. The grey one also includes a two-year guarantee. Which one will you choose?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b111_choose",
+    "itemType": "functional_phrase",
+    "lemma": "make and justify a final product choice",
+    "displayForm": "I'll take the grey one because it is better for long work trips, even though it costs more.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "comparing products and services",
+    "ru": {
+      "translation": "Я возьму серый, потому что он лучше подходит для долгих рабочих поездок, хотя и стоит дороже.",
+      "usageNote": "Closes the decision with a reason linked to the learner's opening priorities."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b111_choose_01",
+        "text": "I'll take the grey one because it is better for long work trips, even though it costs more.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Good choice. I'll bring you a new grey one from the stockroom and add the guarantee details.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b111_v1_services",
+    "itemType": "functional_phrase",
+    "lemma": "compare two streaming services",
+    "displayForm": "The monthly service is cheaper and easier to cancel, while the yearly service gives me more offline downloads. I'd rather pay monthly because my travel schedule changes.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "comparing products and services",
+    "ru": {
+      "translation": "Ежемесячная услуга дешевле, и её легче отменить, а годовая даёт больше загрузок для просмотра без интернета. Я предпочту платить ежемесячно, потому что мой график поездок меняется.",
+      "usageNote": "Variation v1 transfers comparison and preference from physical products to service terms."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b111_v1_services_01",
+        "text": "The monthly service is cheaper and easier to cancel, while the yearly service gives me more offline downloads. I'd rather pay monthly because my travel schedule changes.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The monthly plan fits that priority. You can still switch to the yearly service later if your schedule becomes more regular.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b111_v2_three_options",
+    "itemType": "functional_phrase",
+    "lemma": "compare three bags under a travel constraint",
+    "displayForm": "The small bag is the cheapest, the black one is stronger, and the green one is the lightest. I'd rather choose the black one because it protects my laptop and still fits under the seat.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "comparing products and services",
+    "ru": {
+      "translation": "Маленькая сумка самая дешёвая, чёрная прочнее, а зелёная самая лёгкая. Я предпочту чёрную, потому что она защищает ноутбук и всё же помещается под сиденьем.",
+      "usageNote": "Variation v2 raises complexity to three options and requires a constraint-based choice, not a noun swap."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b111_v2_three_options_01",
+        "text": "The small bag is the cheapest, the black one is stronger, and the green one is the lightest. I'd rather choose the black one because it protects my laptop and still fits under the seat.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The black bag is the best match for those two needs. It also comes with a cover for wet weather.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b112_task_result",
+    "itemType": "functional_phrase",
+    "lemma": "state the required task result",
+    "displayForm": "What I need is a final guest list for Friday's event. Please check every name and contact detail.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "tasks and deadlines",
+    "ru": {
+      "translation": "Мне нужен окончательный список гостей для пятничного мероприятия. Пожалуйста, проверь каждое имя и контактные данные.",
+      "usageNote": "The task begins with a concrete deliverable and the frozen need + noun target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b112_task_result_01",
+        "text": "What I need is a final guest list for Friday's event. Please check every name and contact detail.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "All right. Which file should I use as the main list?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b112_source",
+    "itemType": "functional_phrase",
+    "lemma": "explain the task source and update step",
+    "displayForm": "Use the registration file as the main list. You also need to add any changes from yesterday's emails.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "tasks and deadlines",
+    "ru": {
+      "translation": "Используй файл регистрации как основной список. Также нужно добавить все изменения из вчерашних писем.",
+      "usageNote": "Adds the source and an action with need + infinitive; Daniel's next question moves to timing."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b112_source_01",
+        "text": "Use the registration file as the main list. You also need to add any changes from yesterday's emails.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Got it. I have the file and the email folder. When do you need the completed list?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b112_deadline",
+    "itemType": "functional_phrase",
+    "lemma": "give a task deadline and reason",
+    "displayForm": "I need the completed list by the end of Thursday so I can send it to reception before they close.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "tasks and deadlines",
+    "ru": {
+      "translation": "Мне нужен готовый список к концу четверга, чтобы я успел(а) отправить его на стойку регистрации до закрытия.",
+      "usageNote": "Evidences both frozen targets: need + noun and the deadline expression by the end of."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b112_deadline_01",
+        "text": "I need the completed list by the end of Thursday so I can send it to reception before they close.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thursday is fine. What should I do if a phone number is missing?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b112_check_understanding",
+    "itemType": "functional_phrase",
+    "lemma": "clarify an exception and check understanding",
+    "displayForm": "Mark any missing phone numbers in yellow instead of guessing. Does that make sense?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "tasks and deadlines",
+    "ru": {
+      "translation": "Отметь все отсутствующие номера телефонов жёлтым цветом, а не пытайся угадать. Понятно?",
+      "usageNote": "The learner explains an exception and checks understanding; Does that make sense? is a workplace lexical chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b112_check_understanding_01",
+        "text": "Mark any missing phone numbers in yellow instead of guessing. Does that make sense?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. I'll check the registration file and emails, mark missing numbers in yellow, and send you the list by Thursday afternoon.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b112_v1_document",
+    "itemType": "functional_phrase",
+    "lemma": "hand over a document editing task",
+    "displayForm": "What I need is a two-page summary of the survey. Use the final results, explain the three main findings, and send me the document by the end of Wednesday.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "tasks and deadlines",
+    "ru": {
+      "translation": "Мне нужно двухстраничное резюме опроса. Используй окончательные результаты, объясни три главных вывода и пришли мне документ к концу среды.",
+      "usageNote": "Variation v1 transfers the task hand-off from a project step to a document with its own content requirements."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b112_v1_document_01",
+        "text": "What I need is a two-page summary of the survey. Use the final results, explain the three main findings, and send me the document by the end of Wednesday.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Understood. I'll keep it to two pages, cover the three main findings, and send it on Wednesday afternoon.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b112_vphone_remote",
+    "itemType": "functional_phrase",
+    "lemma": "explain a task fully without visual cues",
+    "displayForm": "Since you can't see the project board, I'll explain the task fully. Open the folder called June Launch, check the budget sheet against the three supplier emails, and send me a list of any differences by the end of today.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "tasks and deadlines",
+    "ru": {
+      "translation": "Поскольку ты не видишь доску проекта, я полностью объясню задачу. Открой папку June Launch, сверь таблицу бюджета с тремя письмами поставщиков и пришли мне список всех расхождений к концу дня.",
+      "usageNote": "Phone variation removes pointing and visual context; folder name, file, sources, output and deadline must all be verbalised."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b112_vphone_remote_01",
+        "text": "Since you can't see the project board, I'll explain the task fully. Open the folder called June Launch, check the budget sheet against the three supplier emails, and send me a list of any differences by the end of today.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Let me check: June Launch folder, budget sheet against three supplier emails, then a list of differences by the end of today. That's clear.",
+    "patterns": []
   }
 ]

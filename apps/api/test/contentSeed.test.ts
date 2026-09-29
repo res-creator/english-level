@@ -25,10 +25,10 @@ test("the published catalogue includes A1 and authored A2/B1 chapters", () => {
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2 and five B1 modules.
-  assert.equal(published.length, 15);
+  // course now includes A1, authored A2 and seven B1 modules.
+  assert.equal(published.length, 17);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
-  assert.equal(published.filter((m) => m.levelCode === "B1").length, 5);
+  assert.equal(published.filter((m) => m.levelCode === "B1").length, 7);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -510,7 +510,7 @@ test("re-seeding updates existing rows in place (upsert, not insert-or-error)", 
 
 test("B1 authored situations keep coherent semantic turns, classifications, reviews and transfer practice", () => {
   const bundle = loadSeedContent();
-  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02"];
+  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_work_01"];
   const lessonById = new Map(bundle.lessons.map((lesson) => [lesson.id, lesson]));
   const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
   assert.deepEqual(
@@ -521,7 +521,7 @@ test("B1 authored situations keep coherent semantic turns, classifications, revi
     const core = bundle.lessonItems.filter(
       (link) => link.lessonId === id && link.role === "introduce",
     );
-    assert.equal(core.length, 3, `${id} has three authored semantic learner turns`);
+    assert.ok(core.length >= 3, `${id} has at least three authored semantic learner turns`);
     for (const link of core) {
       assert.ok(itemById.get(link.contentId)?.npcReplyCorrect, `${id}/${link.contentId} needs a relevant NPC continuation`);
     }
@@ -538,7 +538,7 @@ test("B1 authored situations keep coherent semantic turns, classifications, revi
   assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_cafe_01" && link.contentId === "gr_a2_comparatives" && link.role === "target"));
   for (const id of ids.slice(3)) {
     assert.ok(bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "practice").length >= 2);
-    assert.equal(bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "introduce").length, 3);
+    assert.ok(bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "introduce").length >= 3);
   }
   assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_restaurant_01" && link.contentId === "gr_a1_present_simple_questions" && link.role === "target"));
   assert.match(itemById.get("itm_b1_b14_v1_vegetarian")?.displayForm ?? "", /preference rather than an allergy/);
@@ -557,6 +557,84 @@ test("B1 authored situations keep coherent semantic turns, classifications, revi
   assert.match(itemById.get("itm_b1_b18_v2_two_events")?.displayForm ?? "", /first.*and then.*We moved/);
   assert.match(itemById.get("itm_b1_b19_v1_habit")?.displayForm ?? "", /used to read.*but now/);
   assert.match(itemById.get("itm_b1_b19_v2_gradual")?.displayForm ?? "", /used to drive.*gradual/);
+  assert.match(
+    itemById.get("itm_b1_b110_duplicate_charge")?.displayForm ?? "",
+    /was charged twice/i,
+  );
+  assert.match(
+    itemById.get("itm_b1_b110_v1_wrong_tier")?.displayForm ?? "",
+    /basic plan.*charged for the premium/i,
+  );
+  assert.match(
+    itemById.get("itm_b1_b110_v2_second_call")?.displayForm ?? "",
+    /called on Monday.*still on my bill/i,
+  );
+  assert.ok(
+    bundle.lessonItems.some(
+      (link) =>
+        link.lessonId === "sit_b1_shop_01" &&
+        link.contentId === "gr_b1_past_passive_billing" &&
+        link.role === "target",
+    ),
+  );
+  assert.match(
+    itemById.get("itm_b1_b111_weigh_tradeoff")?.displayForm ?? "",
+    /cheaper.*best battery life.*rather/i,
+  );
+  assert.match(
+    itemById.get("itm_b1_b111_v1_services")?.displayForm ?? "",
+    /monthly service.*yearly service/i,
+  );
+  assert.match(
+    itemById.get("itm_b1_b111_v2_three_options")?.displayForm ?? "",
+    /cheapest.*stronger.*lightest/i,
+  );
+  for (const grammarId of [
+    "gr_a2_comparatives",
+    "gr_b1_superlatives_choice",
+    "gr_b1_would_rather_preference",
+  ]) {
+    assert.ok(
+      bundle.lessonItems.some(
+        (link) =>
+          link.lessonId === "sit_b1_shop_02" &&
+          link.contentId === grammarId &&
+          link.role === "target",
+      ),
+    );
+  }
+  assert.match(
+    itemById.get("itm_b1_b112_task_result")?.displayForm ?? "",
+    /What I need is.*guest list/i,
+  );
+  assert.match(
+    itemById.get("itm_b1_b112_deadline")?.displayForm ?? "",
+    /by the end of Thursday/i,
+  );
+  assert.match(
+    itemById.get("itm_b1_b112_v1_document")?.displayForm ?? "",
+    /two-page summary.*by the end of Wednesday/i,
+  );
+  assert.match(
+    itemById.get("itm_b1_b112_vphone_remote")?.displayForm ?? "",
+    /can't see the project board.*folder called June Launch/i,
+  );
+  assert.ok(
+    bundle.lessonItems.some(
+      (link) =>
+        link.lessonId === "sit_b1_work_01" &&
+        link.contentId === "gr_b1_need_task_requirements" &&
+        link.role === "target",
+    ),
+  );
+  assert.ok(
+    bundle.lessonItems.some(
+      (link) =>
+        link.lessonId === "sit_b1_work_01" &&
+        link.contentId === "gr_b1_by_end_deadline" &&
+        link.role === "target",
+    ),
+  );
   assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_travel_02" && link.contentId === "gr_a2_comparatives" && link.role === "target"));
   assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_daily_01" && link.contentId === "gr_a2_past_simple_positive" && link.role === "target"));
   assert.ok(bundle.lessonItems.filter((link) => link.lessonId === "sit_b1_daily_01" && link.role === "practice").length >= 3);
@@ -564,6 +642,9 @@ test("B1 authored situations keep coherent semantic turns, classifications, revi
   assert.deepEqual(reviewIds("sit_b1_travel_02"), ["itm_b1_b16_cancelled", "itm_a2_a26_late_bus", "itm_a2_a27_restate_route"]);
   assert.deepEqual(reviewIds("sit_b1_daily_01"), ["itm_a2_a28_film", "itm_a2_a28_reaction", "itm_a1_have_breakfast"]);
   assert.deepEqual(reviewIds("sit_b1_daily_02"), ["itm_b1_b18_trip_experience", "itm_a2_a28_film"]);
+  assert.deepEqual(reviewIds("sit_b1_shop_01"), ["itm_a2_a210_exchange"]);
+  assert.deepEqual(reviewIds("sit_b1_shop_02"), ["itm_a2_a211_compare"]);
+  assert.deepEqual(reviewIds("sit_b1_work_01"), ["itm_a2_a213_request"]);
   for (const id of ids) {
     const practice = bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "practice");
     assert.ok(practice.length >= 2, `${id} has two transfer variations`);
