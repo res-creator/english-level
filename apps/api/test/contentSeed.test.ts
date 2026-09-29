@@ -25,11 +25,11 @@ test("the published catalogue includes A1 and authored A2/B1/B2 chapters", () =>
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2/B1, and nine B2 modules.
-  assert.equal(published.length, 28);
+  // course now includes A1, authored A2/B1, and twelve B2 modules.
+  assert.equal(published.length, 31);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
   assert.equal(published.filter((m) => m.levelCode === "B1").length, 9);
-  assert.equal(published.filter((m) => m.levelCode === "B2").length, 9);
+  assert.equal(published.filter((m) => m.levelCode === "B2").length, 12);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -387,6 +387,9 @@ test("A2, B1 and B2 plans keep semantic turns once and exclude variations from M
     "sit_b2_problems_01",
     "sit_b2_problems_02",
     "sit_b2_people_03",
+    "sit_b2_work_05",
+    "sit_b2_people_04",
+    "sit_b2_social_02",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const levelId = situationId.startsWith("sit_b2_")
@@ -974,4 +977,29 @@ test("B2 Batch 5 negotiates refunds, stays firm, and compares cultural viewpoint
   assert.match(itemById.get("itm_b2_b214_v3_close")?.displayForm ?? "", /agree to disagree.*service charge/i);
   assert.match(itemById.get("itm_b2_b215_compare")?.displayForm ?? "", /Compared with the book.*more energetic/i);
   assert.match(itemById.get("itm_b2_b215_v3_creator")?.displayForm ?? "", /director's earlier film.*quieter style/i);
+});
+
+test("B2 Batch 6 discusses technology, weighs causes, and manages topic shifts", () => {
+  const bundle = loadSeedContent();
+  const ids = ["sit_b2_work_05", "sit_b2_people_04", "sit_b2_social_02"];
+  const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
+  const links = (lessonId: string, role: string) => bundle.lessonItems.filter((x) => x.lessonId === lessonId && x.role === role);
+  for (const id of ids) {
+    assert.equal(links(id, "introduce").length, 4);
+    assert.equal(links(id, "practice").length, 6);
+    assert.ok(links(id, "review").length >= 1);
+    for (const link of [...links(id, "introduce"), ...links(id, "practice")]) assert.ok(itemById.get(link.contentId)?.npcReplyCorrect, link.contentId);
+  }
+  assert.match(itemById.get("itm_b2_b216_explain")?.displayForm ?? "", /tool would create a first draft.*could mean/i);
+  assert.match(itemById.get("itm_b2_b216_v2_skeptic")?.displayForm ?? "", /doubt the delay-prediction dashboard.*start a discussion/i);
+  assert.match(itemById.get("itm_b2_b216_v3_risk")?.displayForm ?? "", /confidential detail.*specific risk/i);
+  assert.match(itemById.get("itm_b2_b217_newsletter")?.displayForm ?? "", /I wonder whether.*newsletter/i);
+  assert.match(itemById.get("itm_b2_b217_v2_compete")?.displayForm ?? "", /rain.*earlier start/i);
+  assert.match(itemById.get("itm_b2_b217_v3_payoff")?.displayForm ?? "", /real reason was planned.*different/i);
+  assert.match(itemById.get("itm_b2_b218_market")?.displayForm ?? "", /Speaking of which/i);
+  assert.match(itemById.get("itm_b2_b218_v2_continue")?.displayForm ?? "", /That reminds me.*going back|before we plan another outing/i);
+  assert.match(itemById.get("itm_b2_b218_v3_steer")?.displayForm ?? "", /going back to Maya/i);
+  assert.deepEqual(links("sit_b2_work_05", "review").map((x) => x.contentId), ["itm_b2_b25_tradeoff"]);
+  assert.deepEqual(links("sit_b2_people_04", "review").map((x) => x.contentId), ["itm_b2_b216_uncertainty"]);
+  assert.deepEqual(links("sit_b2_social_02", "review").map((x) => x.contentId), ["itm_b1_b11_followup"]);
 });

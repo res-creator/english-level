@@ -346,5 +346,53 @@
     "ru": {
       "explanation": "Используйте квалифицированную оценку с контрастом, чтобы выразить нюансированное мнение."
     }
+  },
+  {
+    "id": "gr_b2_hard_to_say_effect",
+    "levelCode": "B2",
+    "title": "it's hard to say how — осторожно оценить эффект",
+    "patternKey": "hard_to_say_effect",
+    "formula": "It's hard to say how + clause until/unless...",
+    "explanationEn": "Use this hedging frame when the available evidence does not yet support a confident prediction.",
+    "order": 30,
+    "ru": {
+      "explanation": "Используйте эту рамку, когда данных ещё недостаточно для уверенного прогноза."
+    }
+  },
+  {
+    "id": "gr_b2_wonder_if_reason",
+    "levelCode": "B2",
+    "title": "I wonder if/whether — предположить причину",
+    "patternKey": "wonder_if_reason",
+    "formula": "I wonder if/whether + subordinate clause",
+    "explanationEn": "Use I wonder if or whether to introduce a possible explanation without presenting it as fact.",
+    "order": 31,
+    "ru": {
+      "explanation": "Используйте I wonder if/whether, чтобы предложить возможное объяснение, не выдавая его за факт."
+    }
+  },
+  {
+    "id": "gr_b2_speaking_of_which",
+    "levelCode": "B2",
+    "title": "speaking of which — естественно сменить тему",
+    "patternKey": "speaking_of_which",
+    "formula": "Speaking of which, + related new topic",
+    "explanationEn": "Use this discourse marker to move from the current topic to a clearly related one.",
+    "order": 32,
+    "ru": {
+      "explanation": "Используйте этот дискурсивный маркер для перехода к новой, явно связанной теме."
+    }
+  },
+  {
+    "id": "gr_b2_that_reminds_me",
+    "levelCode": "B2",
+    "title": "that reminds me — связать разговор с новой мыслью",
+    "patternKey": "that_reminds_me",
+    "formula": "That reminds me, + related memory/question",
+    "explanationEn": "Use this discourse marker to introduce a related memory or question while keeping the interaction coherent.",
+    "order": 33,
+    "ru": {
+      "explanation": "Используйте этот маркер, чтобы добавить связанную мысль, воспоминание или вопрос."
+    }
   }
 ]

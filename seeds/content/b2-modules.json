@@ -79,5 +79,32 @@
     "description": "Сравнивать художественные решения и обсуждать разные интерпретации произведения.",
     "order": 9,
     "status": "published"
+  },
+  {
+    "id": "mod_b2_work_study_extended",
+    "levelCode": "B2",
+    "title": "Работа и технологии",
+    "slug": "b2-work-technology",
+    "description": "Объяснять новую технологию, оценивать возможные последствия и обозначать условия безопасного применения.",
+    "order": 10,
+    "status": "published"
+  },
+  {
+    "id": "mod_b2_people_connections_reasoning",
+    "levelCode": "B2",
+    "title": "Люди и причины",
+    "slug": "b2-people-reasoning",
+    "description": "Строить и сопоставлять обоснованные предположения о причинах событий и поведения.",
+    "order": 11,
+    "status": "published"
+  },
+  {
+    "id": "mod_b2_social_life_discourse",
+    "levelCode": "B2",
+    "title": "Непринуждённый разговор",
+    "slug": "b2-social-discourse",
+    "description": "Поддерживать длинный разговор, естественно менять тему и возвращать беседу к главной линии.",
+    "order": 12,
+    "status": "published"
   }
 ]

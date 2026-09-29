@@ -208,6 +208,15 @@ test("B2 Batch 5 keeps refund, restaurant dispute, and cultural discussion casts
   assert.match(openingLine("sit_b2_problems_02"), /eight set menus.*six guests/i);
 });
 
+test("B2 Batch 6 maps workplace technology and extended conversation to recurring cast", () => {
+  assert.deepEqual(sceneForSituation("sit_b2_work_05"), { scene: "meeting", cast: "daniel" });
+  assert.deepEqual(sceneForSituation("sit_b2_people_04"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b2_social_02"), { scene: "cafe", cast: "alex" });
+  assert.match(openingLine("sit_b2_work_05"), /AI tool.*client meetings.*change for our team/i);
+  assert.match(openingLine("sit_b2_people_04"), /language exchange.*every table was full/i);
+  assert.match(openingLine("sit_b2_social_02"), /street market.*bread.*hour/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

@@ -109,9 +109,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b2_problems_01` | Сложные переговоры о возврате денег | Problems & Solutions | Emma | **done** | 3 — cancelled cleaning service; store credit with collection/expiry constraints; two failed resolution attempts | targets: `gr_b2_willing_compromise`, `gr_b2_solution_works_both`; bounded settlement frames are chunks | Gate A/B/C PASS; Near B1.17/B2.3; evidence → risk → mutual solution → confirmed settlement |
 | `sit_b2_problems_02` | Отстоять свою позицию в споре | Problems & Solutions | Leo | **done** | 3 — undisclosed outside-cake fee with same Leo/restaurant; concede late confirmation while holding main point; agree to disagree with a bounded outcome | targets: `gr_b2_have_to_insist`, `gr_b2_respectful_firmness`; concession/evidence frames are chunks | Gate A/B/C PASS; Near B2.9/B2.13, Far B1.18; capstone; frozen V2 changed only in B2.14-v1 to resolve the NPC/scene contradiction |
 | `sit_b2_people_03` (B2.15) | Обсудить фильм или книгу глубже | People & Connections | Alex | **done** | 3 — TV-series pacing/depth; Alex holds the opposite view; compare an earlier work by the same director | targets: `gr_b2_compared_viewpoints`, `gr_b2_qualified_opinion`; evaluation/recommendation frames are chunks | Gate A/B/C PASS; Far B1.3; connected evaluation → comparison → disagreement → qualified recommendation |
-| `sit_b2_work_05` (B2.16) | Обсудить новую технологию на работе | Work & Study | Daniel | planned | 3 | speculation modals | new in V2 |
-| `sit_b2_people_04` (B2.17) | Предположить, почему что-то произошло | People & Connections | Alex | planned | 3 | **I wonder if/whether** (real new target) | new in V2 |
-| `sit_b2_social_02` (B2.18) | Свободный разговор без определённой темы | Social Life & Leisure | Alex | planned | 3 | **discourse markers** (real new target) | new in V2 |
+| `sit_b2_work_05` (B2.16) | Обсудить новую технологию на работе | Work & Study | Daniel | **done** | 3 — archive-search tool; skeptical Daniel challenges a delay dashboard; client-email assistant with a confidentiality risk | recycled target: `gr_b2_might_could_tradeoff`; target: `gr_b2_hard_to_say_effect`; viewpoint/pilot frames are chunks | Gate A/B/C PASS; Far B2.5; prerequisites B2.5/B2.8; explanation → prediction → evidence → guardrails |
+| `sit_b2_people_04` (B2.17) | Предположить, почему что-то произошло | People & Connections | Alex | **done** | 3 — Maya's behaviour; two competing causes for low attendance; apparent closure with a film-shoot twist | target: `gr_b2_wonder_if_reason`; `maybe it's because` and `that would explain why` are chunks | Gate A/B/C PASS; Near B2.16; prerequisite B2.16; hypothesis → new evidence → revision → weighted conclusion |
+| `sit_b2_social_02` (B2.18) | Свободный разговор без определённой темы | Social Life & Leisure | Alex | **done** | 3 — cooking-class anchor; three linked topic shifts; steer back from a lunch tangent to Maya's new job | targets: `gr_b2_speaking_of_which`, `gr_b2_that_reminds_me`; return/development markers classified as chunks | Gate A/B/C PASS; Far B1.1; prerequisites B1.1/B1.16; sustained natural discourse with explicit topic control |
 | `sit_b2_daily_02` (B2.19) | Убедить друга попробовать что-то новое | Daily Life & Home | Alex | planned | 3 | should (persuasion, recycled) | new in V2 |
 | `sit_b2_people_05` (B2.20) | Рассказать сложную историю с нюансами | People & Connections | Alex | planned | 3 | **cleft sentences** (real new target) | new in V2 |
 | `sit_b2_work_06` (B2.21) | Обсудить последствия решения | Work & Study | Daniel | planned | 3 | conditional for consequences | new in V2 |
@@ -265,6 +265,12 @@ Gate A/B/C PASS. Grammar lint **0/0** across 59 worksheet situations; targeted *
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 62 worksheet situations. Targeted API/content/course/engine **73/73**, scene/opener **19/19**, full suite **417/417** (API 326, web 85, shared 6), API/web typechecks PASS; seed idempotency, references and contiguity PASS. Chromium прошёл все 15 authored B2 situations: B2.13–B2.15 Mission PASS / `can_do`, отдельный B2.1 FAIL / `learning`; 699 transcript snapshots и 60 Batch 5 screenshots. B2 tracker: **15/22 done**, 7 planned. See [B2 Batch 5 production QA](docs/B2_BATCH5_PRODUCTION_QA.md).
 
+## B2 Batch 6 reference and QA record
+
+British Council B2 speaking and modal-probability materials informed calibrated predictions and explicit uncertainty in B2.16; ELLLO B2 Technology/AI conversations informed the move from a concrete tool to consequences and reservations. ELLLO B2 causal discussion informed competing explanations in B2.17. British Council Keeping a conversation going and Cambridge B2 discourse-management criteria informed B2.18's related topic shifts, cohesive devices and return after a tangent. All Speak in English dialogue is original.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 65 worksheet situations. Targeted API/content/course/engine **74/74**, scene/opener **20/20**, full suite **419/419** (API 327, web 86, shared 6), API/web typechecks PASS; seed idempotency, references and contiguity PASS. Chromium прошёл все 18 authored B2 situations: B2.16–B2.18 Mission PASS / `can_do`, отдельный B2.1 FAIL / `learning`; 829 transcript snapshots и 60 Batch 6 screenshots. B2 tracker: **18/22 done**, 4 planned. See [B2 Batch 6 production QA](docs/B2_BATCH6_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
@@ -272,8 +278,8 @@ Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 62 workshe
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
 | B1 | 19 | 19 | 0 | 0 |
-| B2 | 22 | 15 | 7 | 0 |
-| **Total** | **69** | **62** | **7** | **0** |
+| B2 | 22 | 18 | 4 | 0 |
+| **Total** | **69** | **65** | **4** | **0** |
 
 ## A2 level freeze
 

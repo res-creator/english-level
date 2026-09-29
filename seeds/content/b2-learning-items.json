@@ -3127,5 +3127,635 @@
       }
     ],
     "npcReplyCorrect": "That is a useful distinction: stronger emotional direction, but fewer memorable formal choices."
+  },
+  {
+    "id": "itm_b2_b216_explain",
+    "itemType": "functional_phrase",
+    "lemma": "b216 explain",
+    "displayForm": "The way I see it, the tool would create a first draft rather than make decisions for us. That could mean coordinators spend less time typing and more time checking client priorities.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "По-моему, инструмент будет создавать первый черновик, а не принимать решения. Координаторы смогут меньше печатать и больше проверять приоритеты клиента.",
+      "usageNote": "Explains the technology before predicting a practical effect."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_explain_01",
+        "text": "The way I see it, the tool would create a first draft rather than make decisions for us. That could mean coordinators spend less time typing and more time checking client priorities.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds useful, but client meetings are rarely tidy. What happens when several people speak or change their minds?"
+  },
+  {
+    "id": "itm_b2_b216_uncertainty",
+    "itemType": "functional_phrase",
+    "lemma": "b216 uncertainty",
+    "displayForm": "It's hard to say how it'll affect accuracy until we test real meetings. It might miss context when several people speak, so every summary would still need a named reviewer.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Трудно сказать, как это повлияет на точность, пока мы не проверим реальные встречи. Инструмент может упустить контекст, поэтому у каждого резюме должен быть ответственный проверяющий.",
+      "usageNote": "Hedges the prediction and connects uncertainty to a safeguard."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_uncertainty_01",
+        "text": "It's hard to say how it'll affect accuracy until we test real meetings. It might miss context when several people speak, so every summary would still need a named reviewer.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "If someone must review every line, I am not yet convinced that the tool will save enough time."
+  },
+  {
+    "id": "itm_b2_b216_measure",
+    "itemType": "functional_phrase",
+    "lemma": "b216 measure",
+    "displayForm": "That risk is real, but reviewing a draft could still be quicker than writing notes from scratch. I'd measure time saved and the correction rate during a two-week pilot rather than assume it will help.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Риск реален, но проверка черновика всё же может быть быстрее записей с нуля. Я бы измерил экономию времени и долю исправлений за двухнедельный пилот.",
+      "usageNote": "Responds to skepticism with measurable evidence rather than certainty."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_measure_01",
+        "text": "That risk is real, but reviewing a draft could still be quicker than writing notes from scratch. I'd measure time saved and the correction rate during a two-week pilot rather than assume it will help.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A limited pilot makes sense. I am also concerned about recordings that contain confidential client information."
+  },
+  {
+    "id": "itm_b2_b216_guardrail",
+    "itemType": "functional_phrase",
+    "lemma": "b216 guardrail",
+    "displayForm": "If recordings stay inside our approved system and are deleted after the summary is checked, the privacy risk could be limited. I'd pause the pilot if correction or consent problems remained high.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Если записи останутся внутри одобренной системы и будут удаляться после проверки, риск для конфиденциальности можно ограничить. Я бы остановил пилот при высокой доле ошибок или проблемах с согласием.",
+      "usageNote": "Ends with explicit guardrails and a stop condition."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_guardrail_01",
+        "text": "If recordings stay inside our approved system and are deleted after the summary is checked, the privacy risk could be limited. I'd pause the pilot if correction or consent problems remained high.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Agreed. We will test it with consenting internal teams, track those two measures and stop if either threshold is missed."
+  },
+  {
+    "id": "itm_b2_b216_v1_tool",
+    "itemType": "functional_phrase",
+    "lemma": "b216 v1 tool",
+    "displayForm": "This search tool would scan our approved design archive and suggest reusable layouts. It could reduce duplicate work, but it might also surface old material that no longer meets the client's standards.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Этот поиск будет просматривать архив утверждённых дизайнов и предлагать повторно используемые макеты. Он может сократить дублирование, но также показать устаревшие материалы.",
+      "usageNote": "Transfers prediction to a new tool and a different benefit-risk pair."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_v1_tool_01",
+        "text": "This search tool would scan our approved design archive and suggest reusable layouts. It could reduce duplicate work, but it might also surface old material that no longer meets the client's standards.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Then the speed benefit depends on whether people can tell which results are still valid."
+  },
+  {
+    "id": "itm_b2_b216_v1_filter",
+    "itemType": "functional_phrase",
+    "lemma": "b216 v1 filter",
+    "displayForm": "Exactly. I'd require every result to show its owner, approval date and current status. It's hard to say how much time we'd save until those filters are tested on a real project.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Именно. Каждый результат должен показывать владельца, дату утверждения и текущий статус. Пока фильтры не проверены на реальном проекте, трудно оценить экономию времени.",
+      "usageNote": "Makes the new tool useful only under testable constraints."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_v1_filter_01",
+        "text": "Exactly. I'd require every result to show its owner, approval date and current status. It's hard to say how much time we'd save until those filters are tested on a real project.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That gives us a sensible pilot: one live project, current assets only and a record of rejected suggestions."
+  },
+  {
+    "id": "itm_b2_b216_v2_skeptic",
+    "itemType": "functional_phrase",
+    "lemma": "b216 v2 skeptic",
+    "displayForm": "I understand why you doubt the delay-prediction dashboard: a coloured warning cannot explain every project. The way I see it, the forecast should start a discussion, not automatically change a deadline.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Я понимаю сомнения насчёт панели прогнозирования задержек: цветовое предупреждение не объяснит каждый проект. Прогноз должен начинать обсуждение, а не автоматически менять срок.",
+      "usageNote": "Responds to Daniel's skepticism by narrowing the technology's role."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_v2_skeptic_01",
+        "text": "I understand why you doubt the delay-prediction dashboard: a coloured warning cannot explain every project. The way I see it, the forecast should start a discussion, not automatically change a deadline.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is better, but teams may still treat a red warning as a fact and stop questioning the data."
+  },
+  {
+    "id": "itm_b2_b216_v2_evidence",
+    "itemType": "functional_phrase",
+    "lemma": "b216 v2 evidence",
+    "displayForm": "Then each warning should show the evidence behind it and let the project owner challenge missing context. It might improve early decisions, but I'd compare its forecasts with actual outcomes before expanding it.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Тогда каждое предупреждение должно показывать основания и позволять владельцу проекта оспорить отсутствующий контекст. Оно может улучшить ранние решения, но сначала нужно сравнить прогнозы с результатами.",
+      "usageNote": "Maintains a qualified case after resistance and defines evaluation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_v2_evidence_01",
+        "text": "Then each warning should show the evidence behind it and let the project owner challenge missing context. It might improve early decisions, but I'd compare its forecasts with actual outcomes before expanding it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I could support that, provided the pilot reports both correct warnings and false alarms."
+  },
+  {
+    "id": "itm_b2_b216_v3_risk",
+    "itemType": "functional_phrase",
+    "lemma": "b216 v3 risk",
+    "displayForm": "An email-drafting assistant could speed up routine client updates, although a polished draft might hide an incorrect confidential detail. That specific risk matters more than whether the wording sounds fluent.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Помощник для писем может ускорить обычные обновления клиентам, хотя гладкий черновик способен скрыть неверную конфиденциальную деталь. Этот риск важнее беглости текста.",
+      "usageNote": "Flags a specific material risk instead of discussing technology vaguely."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_v3_risk_01",
+        "text": "An email-drafting assistant could speed up routine client updates, although a polished draft might hide an incorrect confidential detail. That specific risk matters more than whether the wording sounds fluent.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "So how would you keep a convenient draft from being sent before anyone notices the error?"
+  },
+  {
+    "id": "itm_b2_b216_v3_control",
+    "itemType": "functional_phrase",
+    "lemma": "b216 v3 control",
+    "displayForm": "I would block automatic sending, mark every generated claim and require the account owner to verify names, figures and attachments. It's hard to say how useful the tool is unless that review is included in the trial.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace technology",
+    "ru": {
+      "translation": "Я бы запретил автоматическую отправку, отмечал каждое сгенерированное утверждение и требовал проверки имён, цифр и вложений. Без такой проверки нельзя оценить полезность инструмента.",
+      "usageNote": "Turns the identified risk into concrete controls and a fair test."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b216_v3_control_01",
+        "text": "I would block automatic sending, mark every generated claim and require the account owner to verify names, figures and attachments. It's hard to say how useful the tool is unless that review is included in the trial.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Good. We can test drafting speed without allowing the system to send or approve anything itself."
+  },
+  {
+    "id": "itm_b2_b217_newsletter",
+    "itemType": "functional_phrase",
+    "lemma": "b217 newsletter",
+    "displayForm": "I wonder whether the library mentioned the language exchange in its newsletter. A new audience would explain why so many people seemed to be there for the first time.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "Интересно, упомянула ли библиотека языковой вечер в рассылке. Новая аудитория объяснила бы, почему было так много новых людей.",
+      "usageNote": "Introduces a plausible cause without presenting it as fact."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_newsletter_01",
+        "text": "I wonder whether the library mentioned the language exchange in its newsletter. A new audience would explain why so many people seemed to be there for the first time.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I asked Maya about that. The library did not send a newsletter this month, so the newcomers must have heard elsewhere."
+  },
+  {
+    "id": "itm_b2_b217_timing",
+    "itemType": "functional_phrase",
+    "lemma": "b217 timing",
+    "displayForm": "Maybe it's because Maya moved it from Monday to Thursday. People might have been freer before the weekend, although that alone may not explain such a sudden increase.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "Возможно, дело в переносе с понедельника на четверг. Перед выходными люди могли быть свободнее, хотя одного этого недостаточно для такого скачка.",
+      "usageNote": "Offers another cause and qualifies its explanatory power."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_timing_01",
+        "text": "Maybe it's because Maya moved it from Monday to Thursday. People might have been freer before the weekend, although that alone may not explain such a sudden increase.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Possibly, but the posters have shown Thursday for two months and attendance only changed yesterday."
+  },
+  {
+    "id": "itm_b2_b217_video",
+    "itemType": "functional_phrase",
+    "lemma": "b217 video",
+    "displayForm": "Then I wonder if the short video Daniel posted was shared beyond his usual group. That would explain why several visitors were filming clips of their own.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "Тогда интересно, разошлось ли короткое видео Дэниела за пределы его группы. Это объяснило бы, почему несколько посетителей сами снимали ролики.",
+      "usageNote": "Revises the hypothesis in response to evidence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_video_01",
+        "text": "Then I wonder if the short video Daniel posted was shared beyond his usual group. That would explain why several visitors were filming clips of their own.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That fits. A local college shared his video on Tuesday, and its view count rose sharply afterwards."
+  },
+  {
+    "id": "itm_b2_b217_weigh",
+    "itemType": "functional_phrase",
+    "lemma": "b217 weigh",
+    "displayForm": "The college share seems the strongest cause, while the Thursday timing probably made it easier for newcomers to stay. We cannot prove each factor, but the evidence fits both.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "Публикация колледжа кажется главной причиной, а четверг, вероятно, помог новым участникам остаться дольше. Мы не можем доказать вклад каждого фактора, но данные подходят обоим.",
+      "usageNote": "Weighs a primary and supporting explanation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_weigh_01",
+        "text": "The college share seems the strongest cause, while the Thursday timing probably made it easier for newcomers to stay. We cannot prove each factor, but the evidence fits both.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I agree. Maya can ask the newcomers how they heard about it and whether Thursday suited them."
+  },
+  {
+    "id": "itm_b2_b217_v1_behaviour",
+    "itemType": "functional_phrase",
+    "lemma": "b217 v1 behaviour",
+    "displayForm": "Maya was unusually quiet at dinner and left before dessert. I wonder if she was worried about today's café inspection rather than upset with anyone at the table.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "Майя была необычно тихой за ужином и ушла до десерта. Возможно, она переживала из-за сегодняшней проверки кафе, а не сердилась на кого-то.",
+      "usageNote": "Transfers speculation from an event to a mutual acquaintance's behaviour."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_v1_behaviour_01",
+        "text": "Maya was unusually quiet at dinner and left before dessert. I wonder if she was worried about today's café inspection rather than upset with anyone at the table.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "She did mention preparing documents for the inspection, but she normally tells us when work is the problem."
+  },
+  {
+    "id": "itm_b2_b217_v1_follow",
+    "itemType": "functional_phrase",
+    "lemma": "b217 v1 follow",
+    "displayForm": "True. Maybe she also left early because the morning delivery was moved forward. That would explain both her silence and why she kept checking the time, without assuming it was personal.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "Верно. Возможно, она ушла из-за перенесённой на раннее утро доставки. Это объясняет и молчание, и постоянные взгляды на часы, не делая ситуацию личной.",
+      "usageNote": "Refines the explanation while avoiding an unsupported personal conclusion."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_v1_follow_01",
+        "text": "True. Maybe she also left early because the morning delivery was moved forward. That would explain both her silence and why she kept checking the time, without assuming it was personal.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is likely—I remember her saying the driver would arrive at six. I will ask how the inspection went instead of guessing about us."
+  },
+  {
+    "id": "itm_b2_b217_v2_compete",
+    "itemType": "functional_phrase",
+    "lemma": "b217 v2 compete",
+    "displayForm": "The volunteer day may have been quiet because of the rain, but I wonder whether the earlier start mattered more. The forecast improved by noon, yet most people may already have made other plans.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "На дне волонтёров могло быть мало людей из-за дождя, но, возможно, важнее было раннее начало. К полудню погода улучшилась, но люди уже могли составить другие планы.",
+      "usageNote": "Places two competing explanations against the timeline."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_v2_compete_01",
+        "text": "The volunteer day may have been quiet because of the rain, but I wonder whether the earlier start mattered more. The forecast improved by noon, yet most people may already have made other plans.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The organisers blamed the weather, while several regular volunteers said they had not noticed the new start time."
+  },
+  {
+    "id": "itm_b2_b217_v2_weigh",
+    "itemType": "functional_phrase",
+    "lemma": "b217 v2 weigh",
+    "displayForm": "Both probably contributed, but the unnoticed time change explains why regular volunteers were absent even after the rain stopped. A message confirming the start next time would test that explanation.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "Вероятно, повлияли оба фактора, но незамеченная смена времени объясняет отсутствие постоянных волонтёров после дождя. Подтверждение времени в следующий раз позволит проверить гипотезу.",
+      "usageNote": "Chooses the better-supported explanation and proposes a test."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_v2_weigh_01",
+        "text": "Both probably contributed, but the unnoticed time change explains why regular volunteers were absent even after the rain stopped. A message confirming the start next time would test that explanation.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is more convincing than blaming the weather alone. I will suggest a reminder the day before."
+  },
+  {
+    "id": "itm_b2_b217_v3_twist",
+    "itemType": "functional_phrase",
+    "lemma": "b217 v3 twist",
+    "displayForm": "The café lights were off on Saturday, but there was no closure notice. I wonder if an electrical fault forced Maya to close suddenly.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "В субботу в кафе не горел свет, но объявления о закрытии не было. Возможно, Майя срочно закрылась из-за неисправности электричества.",
+      "usageNote": "Starts from limited evidence and a reasonable initial hypothesis."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_v3_twist_01",
+        "text": "The café lights were off on Saturday, but there was no closure notice. I wonder if an electrical fault forced Maya to close suddenly.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That was my guess too, but Maya has just said the power was deliberately switched off for a private film shoot."
+  },
+  {
+    "id": "itm_b2_b217_v3_payoff",
+    "itemType": "functional_phrase",
+    "lemma": "b217 v3 payoff",
+    "displayForm": "That explains why the tables were still in place and people were moving quietly inside. So it looked like an emergency closure, but the real reason was planned and completely different.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "speculating about reasons",
+    "ru": {
+      "translation": "Это объясняет, почему столы стояли на месте, а люди тихо двигались внутри. Всё выглядело как срочное закрытие, но настоящая причина была запланированной и совсем другой.",
+      "usageNote": "Updates the inference cleanly when the twist is revealed."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b217_v3_payoff_01",
+        "text": "That explains why the tables were still in place and people were moving quietly inside. So it looked like an emergency closure, but the real reason was planned and completely different.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Exactly. The unusual evidence fitted two stories, and we only learned which one was true when Maya told us."
+  },
+  {
+    "id": "itm_b2_b218_market",
+    "itemType": "functional_phrase",
+    "lemma": "b218 market",
+    "displayForm": "I know what you mean—the music kept people at the market longer. Speaking of which, have you heard that Maya is organising a small outdoor concert next month?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Понимаю — музыка удерживала людей на рынке. Кстати об этом, ты слышал, что Майя организует небольшой концерт под открытым небом?",
+      "usageNote": "Builds a clear bridge from the current topic to a related one."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_market_01",
+        "text": "I know what you mean—the music kept people at the market longer. Speaking of which, have you heard that Maya is organising a small outdoor concert next month?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, it will be beside the river. She is excited, although she is already worried about the weather."
+  },
+  {
+    "id": "itm_b2_b218_river",
+    "itemType": "functional_phrase",
+    "lemma": "b218 river",
+    "displayForm": "That reminds me, my weekend walk by the river was cut short by rain, but I found a new photography exhibition nearby instead.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Это напомнило мне: дождь прервал мою прогулку у реки, зато рядом я нашёл новую фотовыставку.",
+      "usageNote": "Uses a shared detail to introduce a connected personal experience."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_river_01",
+        "text": "That reminds me, my weekend walk by the river was cut short by rain, but I found a new photography exhibition nearby instead.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That was a useful discovery. What kind of photographs did they show?"
+  },
+  {
+    "id": "itm_b2_b218_camera",
+    "itemType": "functional_phrase",
+    "lemma": "b218 camera",
+    "displayForm": "It focused on everyday city life. Anyway, seeing it made me want to use my camera more instead of taking quick phone pictures.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Выставка была о повседневной городской жизни. В любом случае она заставила меня захотеть чаще пользоваться камерой вместо быстрых снимков на телефон.",
+      "usageNote": "Develops the new topic rather than dropping an isolated fact."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_camera_01",
+        "text": "It focused on everyday city life. Anyway, seeing it made me want to use my camera more instead of taking quick phone pictures.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I understand that. Phone pictures are convenient, but using a camera makes me pay more attention."
+  },
+  {
+    "id": "itm_b2_b218_return",
+    "itemType": "functional_phrase",
+    "lemma": "b218 return",
+    "displayForm": "Speaking of cameras, you once mentioned finding an old one at home. Did you ever get it repaired, or did that plan disappear like some of ours do?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Кстати о камерах, ты как-то говорил, что нашёл дома старую. Ты её отремонтировал или этот план исчез, как иногда бывает с нашими планами?",
+      "usageNote": "Returns to an earlier shared thread with a relevant follow-up."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_return_01",
+        "text": "Speaking of cameras, you once mentioned finding an old one at home. Did you ever get it repaired, or did that plan disappear like some of ours do?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I did get it repaired, and I am taking it to Maya's concert. That brings us neatly back to where we started."
+  },
+  {
+    "id": "itm_b2_b218_v1_cooking",
+    "itemType": "functional_phrase",
+    "lemma": "b218 v1 cooking",
+    "displayForm": "I tried a bread-making class yesterday, and the teacher had worked in several countries. Speaking of which, have you decided where you want to travel this summer?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Вчера я был на занятии по выпечке хлеба, а преподаватель работал в нескольких странах. Кстати, ты уже решил, куда поедешь летом?",
+      "usageNote": "Transfers the topic bridge from a market to a cooking-class anchor."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_v1_cooking_01",
+        "text": "I tried a bread-making class yesterday, and the teacher had worked in several countries. Speaking of which, have you decided where you want to travel this summer?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I am considering Portugal, partly because I would like to learn more about the food rather than only visit the main sights."
+  },
+  {
+    "id": "itm_b2_b218_v1_language",
+    "itemType": "functional_phrase",
+    "lemma": "b218 v1 language",
+    "displayForm": "That reminds me, Daniel recommended a Portuguese conversation group near his office. It might be useful before the trip, even if you only learn a few practical phrases.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Это напомнило мне: Дэниел советовал разговорную группу португальского рядом с офисом. Она пригодится перед поездкой, даже ради нескольких практических фраз.",
+      "usageNote": "Extends the new anchor through a meaningful second connection."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_v1_language_01",
+        "text": "That reminds me, Daniel recommended a Portuguese conversation group near his office. It might be useful before the trip, even if you only learn a few practical phrases.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Good connection. I will ask Daniel about the group before I book anything."
+  },
+  {
+    "id": "itm_b2_b218_v2_three",
+    "itemType": "functional_phrase",
+    "lemma": "b218 v2 three",
+    "displayForm": "Your cycling story reminds me of getting caught in yesterday's storm. Speaking of bad weather, I finally watched the film you recommended while I was indoors, and its soundtrack made me look up that concert venue Maya mentioned.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Твоя история о велосипеде напомнила мне вчерашнюю грозу. Кстати о плохой погоде, дома я посмотрел рекомендованный тобой фильм, а его музыка заставила меня найти площадку концерта Майи.",
+      "usageNote": "Handles several linked shifts without listing unrelated facts."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_v2_three_01",
+        "text": "Your cycling story reminds me of getting caught in yesterday's storm. Speaking of bad weather, I finally watched the film you recommended while I was indoors, and its soundtrack made me look up that concert venue Maya mentioned.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is quite a route from cycling to a concert, but each link makes sense. The venue is unusual, isn't it?"
+  },
+  {
+    "id": "itm_b2_b218_v2_continue",
+    "itemType": "functional_phrase",
+    "lemma": "b218 v2 continue",
+    "displayForm": "It is an old railway hall. That reminds me, Rosa said the station exhibition there is excellent. Anyway, before we plan another outing, did you enjoy the cycling route despite the storm?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Это старый железнодорожный зал. Это напомнило мне, что Роза хвалила вокзальную выставку. Но прежде чем планировать новую прогулку, понравился ли тебе веломаршрут несмотря на грозу?",
+      "usageNote": "Completes three shifts and deliberately reconnects with the opening topic."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_v2_continue_01",
+        "text": "It is an old railway hall. That reminds me, Rosa said the station exhibition there is excellent. Anyway, before we plan another outing, did you enjoy the cycling route despite the storm?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I did, especially the quiet section by the canal. Thanks for coming back to the question before we designed an entire weekend."
+  },
+  {
+    "id": "itm_b2_b218_v3_tangent",
+    "itemType": "functional_phrase",
+    "lemma": "b218 v3 tangent",
+    "displayForm": "You mentioned Maya's new job, and I was wondering whether she likes the team. The office café sounds impressive, but we have drifted into comparing lunches rather than talking about how she is settling in.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Ты упомянул новую работу Майи, и мне интересно, нравится ли ей команда. Офисное кафе звучит отлично, но мы ушли в сравнение обедов вместо разговора о том, как она осваивается.",
+      "usageNote": "Recognises a tangent without rejecting the other speaker's contribution."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_v3_tangent_01",
+        "text": "You mentioned Maya's new job, and I was wondering whether she likes the team. The office café sounds impressive, but we have drifted into comparing lunches rather than talking about how she is settling in.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Fair point. The food distracted me. She said the team is friendly, though the new responsibilities are more demanding than she expected."
+  },
+  {
+    "id": "itm_b2_b218_v3_steer",
+    "itemType": "functional_phrase",
+    "lemma": "b218 v3 steer",
+    "displayForm": "That reminds me of her concern about leading meetings. Anyway, going back to Maya, has she found anyone who can show her how the team prepares them?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "conversation management",
+    "ru": {
+      "translation": "Это напоминает о её тревоге насчёт ведения встреч. Возвращаясь к Майе: нашёлся ли кто-то, кто покажет ей, как команда к ним готовится?",
+      "usageNote": "Uses a bridge and an explicit return to regain conversational control."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b218_v3_steer_01",
+        "text": "That reminds me of her concern about leading meetings. Anyway, going back to Maya, has she found anyone who can show her how the team prepares them?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, her manager paired her with an experienced colleague for the first month, so she already feels less exposed."
   }
 ]

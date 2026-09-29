@@ -4209,5 +4209,98 @@
         "chunkLabel": "Modal-perfect literary interpretation kept lexical; comparison remains the target."
       }
     ]
+  },
+  {
+    "situationId": "sit_b2_work_05",
+    "phrases": [
+      {
+        "text": "That could mean coordinators spend less time typing",
+        "itemId": "itm_b2_b216_explain",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_could_tradeoff"
+      },
+      {
+        "text": "It's hard to say how it'll affect accuracy until we test real meetings",
+        "itemId": "itm_b2_b216_uncertainty",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_hard_to_say_effect"
+      },
+      {
+        "text": "The way I see it",
+        "itemId": "itm_b2_b216_explain",
+        "classification": "chunk",
+        "chunkLabel": "viewpoint frame"
+      },
+      {
+        "text": "rather than assume it will help",
+        "itemId": "itm_b2_b216_measure",
+        "classification": "chunk",
+        "chunkLabel": "evidence-before-expansion frame"
+      },
+      {
+        "text": "I'd pause the pilot if",
+        "itemId": "itm_b2_b216_guardrail",
+        "classification": "chunk",
+        "chunkLabel": "pilot stop condition"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_people_04",
+    "phrases": [
+      {
+        "text": "I wonder whether the library mentioned it in their newsletter",
+        "itemId": "itm_b2_b217_newsletter",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_wonder_if_reason"
+      },
+      {
+        "text": "Maybe it's because",
+        "itemId": "itm_b2_b217_timing",
+        "classification": "chunk",
+        "chunkLabel": "speculative cause"
+      },
+      {
+        "text": "That would explain why",
+        "itemId": "itm_b2_b217_video",
+        "classification": "chunk",
+        "chunkLabel": "inference link"
+      },
+      {
+        "text": "seems the strongest cause",
+        "itemId": "itm_b2_b217_weigh",
+        "classification": "chunk",
+        "chunkLabel": "weighing explanations"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_social_02",
+    "phrases": [
+      {
+        "text": "Speaking of which",
+        "itemId": "itm_b2_b218_market",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_speaking_of_which"
+      },
+      {
+        "text": "That reminds me, my weekend walk",
+        "itemId": "itm_b2_b218_river",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_that_reminds_me"
+      },
+      {
+        "text": "Anyway, seeing it made me want",
+        "itemId": "itm_b2_b218_camera",
+        "classification": "chunk",
+        "chunkLabel": "topic development marker"
+      },
+      {
+        "text": "going back to Maya",
+        "itemId": "itm_b2_b218_v3_steer",
+        "classification": "chunk",
+        "chunkLabel": "return from tangent"
+      }
+    ]
   }
 ]
