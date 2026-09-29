@@ -1474,5 +1474,86 @@
     "role": "review",
     "order": 11,
     "required": false
+  },
+  {
+    "id": "li_sit_b1_health_01_introduce_1",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_hb1_symptoms",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_health_01_introduce_2",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_hb1_worse",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_health_01_introduce_3",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_hb1_tried",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_health_01_target_4",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b1_present_perfect_duration",
+    "role": "target",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b1_health_01_practice_5",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_hb1_v1_joint",
+    "role": "practice",
+    "order": 5,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_health_01_practice_6",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_hb1_v1_tried",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_health_01_practice_7",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_hb1_v2_history",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_health_01_practice_8",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_hb1_v2_followup",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b1_health_01_review_9",
+    "lessonId": "sit_b1_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_a2_ha2_symptom",
+    "role": "review",
+    "order": 9,
+    "required": false
   }
 ]

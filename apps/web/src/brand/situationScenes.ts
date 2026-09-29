@@ -64,6 +64,7 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_b1_daily_02: { scene: "meeting", cast: "alex" },
   sit_b1_shop_01: { scene: "shop", cast: "emma" },
   sit_b1_shop_02: { scene: "shop", cast: "emma" },
+  sit_b1_health_01: { scene: "clinic", cast: "drkim" },
   sit_b1_work_01: { scene: "office", cast: "daniel" },
   sit_b1_work_02: { scene: "office", cast: "daniel" },
   sit_b1_work_03: { scene: "office", cast: "daniel" },
@@ -147,6 +148,8 @@ const OPENING_LINES: Record<string, string> = {
     "Hello. I can help with your account today. What seems to be wrong with the bill?",
   sit_b1_shop_02:
     "These two tablets are our most popular models. What matters most to you?",
+  sit_b1_health_01:
+    "Hello, I'm Dr. Kim. Tell me what has been bothering you.",
   sit_b1_work_01:
     "Thanks for meeting me. Which part of the event project do you want me to handle?",
   sit_b1_work_02:

@@ -112,7 +112,7 @@ test("A2 Batch 6 maps the bill error to Leo and OTC shopping to Emma", () => {
   assert.match(openingLine("sit_a2_health_01"), /simple remedies.*on this shelf/i);
 });
 
-test("B1 Batch 1–6 maps each dialogue to its authored cast and scene", () => {
+test("B1 complete level maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_people_01"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_people_02"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_cafe_01"), { scene: "cafe", cast: "maya" });
@@ -124,6 +124,7 @@ test("B1 Batch 1–6 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_daily_02"), { scene: "meeting", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_shop_01"), { scene: "shop", cast: "emma" });
   assert.deepEqual(sceneForSituation("sit_b1_shop_02"), { scene: "shop", cast: "emma" });
+  assert.deepEqual(sceneForSituation("sit_b1_health_01"), { scene: "clinic", cast: "drkim" });
   assert.deepEqual(sceneForSituation("sit_b1_work_01"), { scene: "office", cast: "daniel" });
   assert.deepEqual(sceneForSituation("sit_b1_work_02"), { scene: "office", cast: "daniel" });
   assert.deepEqual(sceneForSituation("sit_b1_work_03"), { scene: "office", cast: "daniel" });
@@ -142,6 +143,7 @@ test("B1 Batch 1–6 maps each dialogue to its authored cast and scene", () => {
   assert.match(openingLine("sit_b1_daily_02"), /Last year brought a big change.*everyday life now/i);
   assert.match(openingLine("sit_b1_shop_01"), /account today.*wrong with the bill/i);
   assert.match(openingLine("sit_b1_shop_02"), /two tablets.*matters most/i);
+  assert.match(openingLine("sit_b1_health_01"), /Dr\. Kim.*bothering you/i);
   assert.match(openingLine("sit_b1_work_01"), /event project.*handle/i);
   assert.match(openingLine("sit_b1_work_02"), /event schedule.*What do you need/i);
   assert.match(openingLine("sit_b1_work_03"), /team coordinator role.*recent experience/i);
@@ -200,6 +202,7 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_b1_daily_02",
     "sit_b1_shop_01",
     "sit_b1_shop_02",
+    "sit_b1_health_01",
     "sit_b1_work_01",
     "sit_b1_work_02",
     "sit_b1_work_03",

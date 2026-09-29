@@ -88,7 +88,7 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b1_social_02` | Вежливо отказаться | Social Life & Leisure | Alex | **done** | 2 — decline a studio event in a work register; concert refusal with a longer reason after follow-up | targets: `gr_b1_would_love_but_refusal`, `gr_b1_instead_of_alternative`; `maybe another time` is a chunk | Gate A/B/C PASS; Near B1.15; prerequisite B1.15; warm refusal → reason → concrete alternative |
 | `sit_b1_problems_01` | Решить проблему через несколько шагов | Problems & Solutions | Emma | **done** | 2 — wrong-address delivery investigation; structured voicemail with no visual/live cues | targets: `gr_b1_sequencing_problem_steps`, `gr_b1_reported_confirmation_problem`; service frames are chunks | Gate A/B/C PASS; Far B1.10; prerequisite B1.10; history → confirmation → options → ordered solution |
 | `sit_b1_problems_02` | Настоять на своём вежливо | Problems & Solutions | Leo | **done** | 2 — table/accessibility constraint with Leo; fee dispute with two rounds of pushback | target: `gr_b1_concessive_persistence`; `Could we find another way?` and `I'd really like this resolved` are chunks | Gate A/B/C PASS; Near B1.17, Far B1.5; prerequisites B1.5/B1.17; V2 v1 corrected locally to preserve same NPC/scene |
-| `sit_b1_health_01` (H.B1) | У врача | Shopping & Services | Dr. Kim | planned | 2 | **Present Perfect with duration** (real new target) | new NPC — see cast.tsx |
+| `sit_b1_health_01` (H.B1) | У врача | Shopping & Services | Dr. Kim | **done** | 2 — knee pain over a longer period; headaches after a previous doctor visit | target: `gr_b1_present_perfect_duration`; `I've already tried` and `it gets worse when` are lexical chunks | Gate A/B/C PASS; Far H.A2; prerequisites H.A2/B1.8; Dr. Kim/clinic; sustained symptom history without diagnosis language |
 
 ## B2 — 22 core situations
 
@@ -221,15 +221,23 @@ B1.16: Alex передаёт приглашение Maya; learner показыв
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 46 worksheet situations. Seed/schema/reference validation, contiguous ordering, Near/Far references and idempotent reseed PASS. Gate B confirms B1-level targets/chunks, coherent authored replies, correct roles/cast, original transfer variations and no duplicate utterance, generic continuation, repeated opener or Russian in English transcript. Gate C Chromium completed all eighteen authored B1 situations in order; B1.16–B1.18 Missions passed at 100% (`can_do`), and a separate FAIL path remained 0% (`learning`) without completion. Chromium: 549 transcript snapshots and 44 new-batch screenshots. Full suite **407/407** (API 321, web 80, shared 6); API/web typechecks PASS. See [B1 Batch 6 production QA](docs/B1_BATCH6_PRODUCTION_QA.md).
 
+## B1 final situation reference and QA record
+
+Перед authoring H.B1 использованы Cambridge [B1 Preliminary vocabulary list — Health, Medicine and Exercise](https://www.cambridgeenglish.org/Images/506887-b1-preliminary-vocabulary-list.pdf) и [B1 health role-play activity](https://www.cambridgeenglish.org/Images/648172-b1-preliminary-for-schools-vocabulary-booklet.pdf) для словаря симптомов и естественного порядка `problem → duration → what makes it worse → what was tried`; ELLLO [B1 Should — doctor conversation](https://www.elllo.org/class/B1/B1-05-Should.html) только как reference для doctor/patient turn order и duration question. Диалог оригинальный; `should` не добавлялся как target.
+
+H.B1: Dr. Kim просит описать проблему; learner сообщает sore throat/cough и трёхдневную длительность, уточняет, что cough хуже лёжа ночью, затем перечисляет warm lemon drinks и lozenges, которые уже пробовал. Dr. Kim собирает историю и переходит к осмотру без преждевременного диагноза. v1 переносит цель на knee pain в течение двух недель и aggravating movement; v2 добавляет prior doctor visit и результат четырёх дней следования прежнему совету. Present Perfect with `for + duration` — единственный новый target; `I've already tried/seen` и `it gets worse when` явно chunks. Far review: H.A2; prerequisites H.A2/B1.8.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 47 worksheet situations. Full structural/reference/contiguity/idempotent-seed checks, full suite **407/407** (API 321, web 80, shared 6), API/web typechecks and full-level Chromium PASS. Chromium проверил 580 transcript snapshots и 20 Mission results; H.B1 Mission passed at 4/4, 100% (`can_do`), а отдельный B1.1 Mission FAIL остался 0/4, 0% (`learning`) без completion. Для H.B1 создано 15 preview screenshots. See [H.B1 production QA](docs/B1_HEALTH_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
-| B1 | 19 | 18 | 1 | 0 |
+| B1 | 19 | 19 | 0 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **46** | **23** | **0** |
+| **Total** | **69** | **47** | **22** | **0** |
 
 ## A2 level freeze
 

@@ -510,7 +510,7 @@ test("re-seeding updates existing rows in place (upsert, not insert-or-error)", 
 
 test("B1 authored situations keep coherent semantic turns, classifications, reviews and transfer practice", () => {
   const bundle = loadSeedContent();
-  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01", "sit_b1_social_02", "sit_b1_problems_01", "sit_b1_problems_02"];
+  const ids = ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01", "sit_b1_social_02", "sit_b1_problems_01", "sit_b1_problems_02", "sit_b1_health_01"];
   const lessonById = new Map(bundle.lessons.map((lesson) => [lesson.id, lesson]));
   const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
   assert.deepEqual(
@@ -667,12 +667,19 @@ test("B1 authored situations keep coherent semantic turns, classifications, revi
   assert.match(itemById.get("itm_b1_b118_v1_alternative")?.displayForm ?? "", /covered terrace/i);
   assert.match(itemById.get("itm_b1_b118_v2_final")?.displayForm ?? "", /half the fee.*honour the written offer/i);
   assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_problems_02" && link.contentId === "gr_b1_concessive_persistence" && link.role === "target"));
+  assert.match(itemById.get("itm_b1_hb1_symptoms")?.displayForm ?? "", /I've had.*for three days/i);
+  assert.match(itemById.get("itm_b1_hb1_worse")?.displayForm ?? "", /gets worse when.*lie down/i);
+  assert.match(itemById.get("itm_b1_hb1_tried")?.displayForm ?? "", /already tried.*lozenges/i);
+  assert.match(itemById.get("itm_b1_hb1_v1_joint")?.displayForm ?? "", /right knee for two weeks.*downstairs/i);
+  assert.match(itemById.get("itm_b1_hb1_v2_history")?.displayForm ?? "", /headaches for ten days.*another doctor/i);
+  assert.ok(bundle.lessonItems.some((link) => link.lessonId === "sit_b1_health_01" && link.contentId === "gr_b1_present_perfect_duration" && link.role === "target"));
   const reviewIds = (id: string) => bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "review").map((link) => link.contentId);
   assert.deepEqual(reviewIds("sit_b1_travel_02"), ["itm_b1_b16_cancelled", "itm_a2_a26_late_bus", "itm_a2_a27_restate_route"]);
   assert.deepEqual(reviewIds("sit_b1_daily_01"), ["itm_a2_a28_film", "itm_a2_a28_reaction", "itm_a1_have_breakfast"]);
   assert.deepEqual(reviewIds("sit_b1_daily_02"), ["itm_b1_b18_trip_experience", "itm_a2_a28_film"]);
   assert.deepEqual(reviewIds("sit_b1_shop_01"), ["itm_a2_a210_exchange"]);
   assert.deepEqual(reviewIds("sit_b1_shop_02"), ["itm_a2_a211_compare"]);
+  assert.deepEqual(reviewIds("sit_b1_health_01"), ["itm_a2_ha2_symptom"]);
   assert.deepEqual(reviewIds("sit_b1_work_01"), ["itm_a2_a213_request"]);
   assert.deepEqual(reviewIds("sit_b1_work_02"), ["itm_b1_b112_task_result", "itm_a2_a213_request"]);
   assert.deepEqual(reviewIds("sit_b1_work_03"), ["itm_b1_b18_trip_experience", "itm_a2_a212_role"]);

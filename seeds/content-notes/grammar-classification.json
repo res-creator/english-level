@@ -2904,5 +2904,83 @@
         "grammarPatternId": "gr_b1_concessive_persistence"
       }
     ]
+  },
+  {
+    "situationId": "sit_b1_health_01",
+    "phrases": [
+      {
+        "text": "Hello, I'm Dr. Kim. Tell me what has been bothering you.",
+        "classification": "chunk",
+        "chunkLabel": "Dr. Kim's authored clinical opener invites the learner's symptom history without suggesting a diagnosis.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I've had a sore throat and a cough for three days.",
+        "classification": "target",
+        "itemId": "itm_b1_hb1_symptoms",
+        "grammarPatternId": "gr_b1_present_perfect_duration"
+      },
+      {
+        "text": "the cough gets worse when I lie down at night",
+        "classification": "chunk",
+        "itemId": "itm_b1_hb1_worse",
+        "chunkLabel": "Frozen zero-conditional aggravating-factor chunk; no zero-conditional lesson is introduced."
+      },
+      {
+        "text": "I've already tried warm lemon drinks and throat lozenges",
+        "classification": "chunk",
+        "itemId": "itm_b1_hb1_tried",
+        "chunkLabel": "Frozen/recycled Present Perfect result chunk; duration with for remains the active target."
+      },
+      {
+        "text": "they haven't helped much",
+        "classification": "chunk",
+        "itemId": "itm_b1_hb1_tried",
+        "chunkLabel": "Fixed report of an unsuccessful attempt, not a separate Present Perfect target."
+      },
+      {
+        "text": "I've had pain in my right knee for two weeks.",
+        "classification": "target",
+        "itemId": "itm_b1_hb1_v1_joint",
+        "grammarPatternId": "gr_b1_present_perfect_duration"
+      },
+      {
+        "text": "It gets worse when I go downstairs.",
+        "classification": "chunk",
+        "itemId": "itm_b1_hb1_v1_joint",
+        "chunkLabel": "Frozen aggravating-factor chunk in a transferred symptom context."
+      },
+      {
+        "text": "I've already tried resting it and using a cold pack",
+        "classification": "chunk",
+        "itemId": "itm_b1_hb1_v1_tried",
+        "chunkLabel": "Recycled tried-remedy chunk."
+      },
+      {
+        "text": "I've had headaches for ten days",
+        "classification": "target",
+        "itemId": "itm_b1_hb1_v2_history",
+        "grammarPatternId": "gr_b1_present_perfect_duration"
+      },
+      {
+        "text": "I've already seen another doctor about them.",
+        "classification": "chunk",
+        "itemId": "itm_b1_hb1_v2_history",
+        "chunkLabel": "Prior-visit history is kept as a Present Perfect lexical chunk; it is not the duration target."
+      },
+      {
+        "text": "I've tried that for four days",
+        "classification": "target",
+        "itemId": "itm_b1_hb1_v2_followup",
+        "grammarPatternId": "gr_b1_present_perfect_duration"
+      },
+      {
+        "text": "the headaches still return when I work at a screen",
+        "classification": "chunk",
+        "itemId": "itm_b1_hb1_v2_followup",
+        "chunkLabel": "Aggravating-factor chunk transferred to a screen-work context."
+      }
+    ]
   }
 ]

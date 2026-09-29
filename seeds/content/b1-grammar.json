@@ -226,5 +226,17 @@
     "ru": {
       "explanation": "Признайте позицию собеседника через I understand или I appreciate, затем спокойно обозначьте нерешённую потребность после but."
     }
+  },
+  {
+    "id": "gr_b1_present_perfect_duration",
+    "levelCode": "B1",
+    "title": "Present Perfect with for — длительность симптома",
+    "patternKey": "present_perfect_duration",
+    "formula": "I've had + symptom + for + time period",
+    "explanationEn": "Use the Present Perfect with for to say that a symptom began in the past and has continued for a stated period up to now.",
+    "order": 20,
+    "ru": {
+      "explanation": "Используйте Present Perfect с for, чтобы сказать, что симптом начался в прошлом и продолжается указанный период до настоящего момента."
+    }
   }
 ]

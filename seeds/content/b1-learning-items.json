@@ -2183,5 +2183,159 @@
     ],
     "npcReplyCorrect": "You're right that the written offer should be honoured. I'll remove the full service fee and print a corrected bill.",
     "patterns": []
+  },
+  {
+    "id": "itm_b1_hb1_symptoms",
+    "itemType": "functional_phrase",
+    "lemma": "describe symptoms with duration",
+    "displayForm": "I've had a sore throat and a cough for three days.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "doctor visit and symptom history",
+    "ru": {
+      "translation": "У меня болит горло и кашель уже три дня.",
+      "usageNote": "Present Perfect with for is the genuine new duration target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_hb1_symptoms_01",
+        "text": "I've had a sore throat and a cough for three days.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Have you had a fever, and does the cough get worse at any particular time?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_hb1_worse",
+    "itemType": "functional_phrase",
+    "lemma": "describe an aggravating factor",
+    "displayForm": "I don't have a fever, but the cough gets worse when I lie down at night.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "doctor visit and symptom history",
+    "ru": {
+      "translation": "Температуры у меня нет, но кашель усиливается, когда я ложусь ночью.",
+      "usageNote": "It gets worse when is the frozen zero-conditional lexical chunk, not a grammar target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_hb1_worse_01",
+        "text": "I don't have a fever, but the cough gets worse when I lie down at night.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thank you. Have you already tried anything for the cough or sore throat?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_hb1_tried",
+    "itemType": "functional_phrase",
+    "lemma": "explain what has already been tried",
+    "displayForm": "I've already tried warm lemon drinks and throat lozenges, but they haven't helped much.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "doctor visit and symptom history",
+    "ru": {
+      "translation": "Я уже пробовал(а) тёплые напитки с лимоном и леденцы для горла, но они почти не помогли.",
+      "usageNote": "I've already tried is a recycled/fixed Present Perfect result chunk; the lesson target remains duration with for."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_hb1_tried_01",
+        "text": "I've already tried warm lemon drinks and throat lozenges, but they haven't helped much.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That gives me a clear history. I'll check your throat and breathing before I recommend the next step.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_hb1_v1_joint",
+    "itemType": "functional_phrase",
+    "lemma": "describe longer joint pain and aggravating movement",
+    "displayForm": "I've had pain in my right knee for two weeks. It gets worse when I go downstairs.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "doctor visit and symptom history",
+    "ru": {
+      "translation": "У меня болит правое колено уже две недели. Боль усиливается, когда я спускаюсь по лестнице.",
+      "usageNote": "Variation v1 transfers duration and aggravating-factor language to joint pain over a longer period."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_hb1_v1_joint_01",
+        "text": "I've had pain in my right knee for two weeks. It gets worse when I go downstairs.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Did you injure the knee, and have you tried anything to reduce the pain?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_hb1_v1_tried",
+    "itemType": "functional_phrase",
+    "lemma": "give joint-pain history and attempted self-care",
+    "displayForm": "I didn't injure it. I've already tried resting it and using a cold pack, but the pain returns when I walk far.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "doctor visit and symptom history",
+    "ru": {
+      "translation": "Я его не травмировал(а). Я уже пробовал(а) давать ему отдых и прикладывать холод, но боль возвращается при долгой ходьбе.",
+      "usageNote": "The learner combines recycled Past Simple history with the frozen tried/aggravating-factor chunks."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_hb1_v1_tried_01",
+        "text": "I didn't injure it. I've already tried resting it and using a cold pack, but the pain returns when I walk far.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thanks. I'll examine how the knee moves and where it hurts before we discuss the next step.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_hb1_v2_history",
+    "itemType": "functional_phrase",
+    "lemma": "describe duration and a previous doctor visit",
+    "displayForm": "I've had headaches for ten days, mostly in the afternoon. I've already seen another doctor about them.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "doctor visit and symptom history",
+    "ru": {
+      "translation": "У меня головные боли уже десять дней, в основном после обеда. Я уже обращался/обращалась к другому врачу.",
+      "usageNote": "Variation v2 adds prior clinical history while keeping the same duration target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_hb1_v2_history_01",
+        "text": "I've had headaches for ten days, mostly in the afternoon. I've already seen another doctor about them.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "What did the other doctor check, and what have you tried since that visit?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_hb1_v2_followup",
+    "itemType": "functional_phrase",
+    "lemma": "report earlier advice and what happened afterwards",
+    "displayForm": "They checked my eyes and suggested more rest. I've tried that for four days, but the headaches still return when I work at a screen.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "doctor visit and symptom history",
+    "ru": {
+      "translation": "Врач проверил мои глаза и посоветовал больше отдыхать. Я следую этому совету четыре дня, но головные боли всё ещё возвращаются, когда я работаю за экраном.",
+      "usageNote": "The learner reports prior history at B1 and reuses duration plus the aggravating-factor chunk without adding a new grammar target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_hb1_v2_followup_01",
+        "text": "They checked my eyes and suggested more rest. I've tried that for four days, but the headaches still return when I work at a screen.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's useful to know. I'll review that history and examine you before deciding what to recommend next.",
+    "patterns": []
   }
 ]
