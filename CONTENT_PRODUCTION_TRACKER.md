@@ -103,9 +103,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b2_shop_01` | Оспорить условия услуги | Shopping & Services | Emma | **done** | 3 — gym membership; phone-only verbal read-back; modified terms as a third option | targets: `gr_b2_passive_terms`, `gr_b2_conditional_service_consequence`; renegotiation/options/read-back frames are chunks | Gate A/B/C PASS; Far B1.10; prerequisite B1.10; evidence → options → consequence → bounded written settlement |
 | `sit_b2_work_01` | Высказать мнение на рабочей встрече | Work & Study | Daniel | **done** | 3 — process change with urgent exception; differentiation from Maya's idea; immediate scepticism with ownership/stop condition | targets: `gr_b2_perspective_proposal`, `gr_b2_would_like_propose`; reason/pilot/evidence frames are chunks | Gate A/B/C PASS; Far B1.12; prerequisite B1.12; diagnosis → proposal → concern → pilot and measure |
 | `sit_b2_work_02` | Конструктивно не согласиться с коллегой | Work & Study | Daniel | **done** | 3 — priorities; Daniel initiates middle ground; changed facts reopen a prior agreement | targets: `gr_b2_would_help_if`, `gr_b2_lets_constructive_action`; disagreement/refinement frames are chunks | Gate A/B/C PASS; Near B2.8; prerequisite B2.8; acknowledge → risk/evidence → compromise → ownership/review |
-| `sit_b2_work_03` | Договориться о новом дедлайне | Work & Study | Daniel | planned | 3 (+call variation) | would it be possible to | |
-| `sit_b2_work_04` | Дать сложную обратную связь | Work & Study | Daniel | planned | 3 | it might be worth + -ing | |
-| `sit_b2_social_01` | Уладить недопонимание с другом | Social Life & Leisure | Alex | planned | 3 | what I meant was | |
+| `sit_b2_work_03` | Договориться о новом дедлайне | Work & Study | Daniel | **done** | 3 — budget/scope; phone read-back; initial refusal and staged compromise | targets: `gr_b2_would_possible_deadline`, `gr_b2_realistically_estimate`; overpromise/read-back frames are chunks | Gate A/B/C PASS; Far B1.12/B2.9; prerequisites B1.12/B2.9 |
+| `sit_b2_work_04` | Дать сложную обратную связь | Work & Study | Daniel | **done** | 3 — communication style; defensive response; positive with one caveat | targets: `gr_b2_might_worth_feedback`, `gr_b2_one_thing_suggest`; positive open/close frames are chunks | Gate A/B/C PASS; Near B2.9; prerequisite B2.9 |
+| `sit_b2_social_01` | Уладить недопонимание с другом | Social Life & Leisure | Alex | **done** | 3 — schedule ambiguity; Alex remains upset; learner owns their share | targets: `gr_b2_what_meant_was`, `gr_b2_didnt_mean_to`; repair/conditional frames are chunks | Gate A/B/C PASS; Far B1.16; prerequisite B1.16 |
 | `sit_b2_problems_01` | Сложные переговоры о возврате денег | Problems & Solutions | Emma | planned | 3 | I'm willing to | |
 | `sit_b2_problems_02` | Отстоять свою позицию в споре | Problems & Solutions | Leo | planned | 3 | I have to insist | capstone |
 | `sit_b2_people_03` (B2.15) | Обсудить фильм или книгу глубже | People & Connections | Alex | planned | 3 | comparing-viewpoints language | new in V2 |
@@ -253,6 +253,12 @@ B2.7: learner отделяет явно показанную цену от не�
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 56 worksheet situations. Targeted API/content/course/engine **71/71**, scene/opener **17/17**, static dialogue audit PASS. Chromium прошёл все девять доступных B2 situations: B2.7–B2.9 Missions 6/6, 100% / `can_do`; отдельный B2.1 FAIL 0/5 / `learning`, без completion/reward. Проверено 431 transcript snapshots, создано 60 Batch 3 screenshots. Full suite **413/413** (API 324, web 83, shared 6), API/web typechecks PASS; seed-twice idempotency, schema/reference validation и contiguity PASS. See [B2 Batch 3 production QA](docs/B2_BATCH3_PRODUCTION_QA.md).
 
+## B2 Batch 4 reference and QA record
+
+British Council B2 speaking, Giving advice и Dealing with a problem использованы для face-saving feedback и problem-to-solution flow; Cambridge B2 interactive communication — для linked contributions и negotiation towards an outcome; ELLLO B2 — для pacing. Диалоги оригинальные. B2.10 согласует новый срок через staged delivery и realistic estimate; B2.11 даёт конкретную сложную обратную связь с применимым улучшением; B2.12 исправляет смысл, признаёт собственную часть и восстанавливает план.
+
+Gate A/B/C PASS. Grammar lint **0/0** across 59 worksheet situations; targeted **72/72**, scene/opener **18/18**, full suite **415/415** (API 325, web 84, shared 6), API/web typechecks PASS, seed idempotency/references/contiguity PASS. Chromium: B2.10–B2.12 Mission 6/6, 100% `can_do`; B2.1 FAIL 0/5 `learning`; 564 snapshots, 60 Batch 4 screenshots. See [B2 Batch 4 production QA](docs/B2_BATCH4_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
@@ -260,8 +266,8 @@ Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 56 workshe
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
 | B1 | 19 | 19 | 0 | 0 |
-| B2 | 22 | 9 | 13 | 0 |
-| **Total** | **69** | **56** | **13** | **0** |
+| B2 | 22 | 12 | 10 | 0 |
+| **Total** | **69** | **59** | **10** | **0** |
 
 ## A2 level freeze
 

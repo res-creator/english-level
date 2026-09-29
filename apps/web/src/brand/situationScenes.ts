@@ -81,6 +81,9 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_b2_shop_01: { scene: "shop", cast: "emma" },
   sit_b2_work_01: { scene: "meeting", cast: "daniel" },
   sit_b2_work_02: { scene: "meeting", cast: "daniel" },
+  sit_b2_work_03: { scene: "meeting", cast: "daniel" },
+  sit_b2_work_04: { scene: "meeting", cast: "daniel" },
+  sit_b2_social_01: { scene: "cafe", cast: "alex" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -191,6 +194,12 @@ const OPENING_LINES: Record<string, string> = {
     "Our project updates are still reaching people too late. I would like us to leave this meeting with one small change we can test. What do you suggest?",
   sit_b2_work_02:
     "I want designers to put full notes in the tracker immediately after every client call, instead of waiting for the project coordinator. That should keep everyone up to date. Do you agree?",
+  sit_b2_work_03:
+    "The supplier figures are late, but the client report is still marked for Wednesday. I need a realistic delivery plan, including anything you can send earlier.",
+  sit_b2_work_04:
+    "You have read my draft client report. I need honest feedback before I send it, especially on whether the recommendation is clear and properly supported.",
+  sit_b2_social_01:
+    "When you said my dinner plan would not work and then left, Maya and I thought you did not want to spend the evening with us. I would rather understand what happened than keep guessing.",
 };
 
 export function openingLine(episodeId: string): string {

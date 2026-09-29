@@ -3729,5 +3729,239 @@
         "grammarPatternId": "gr_b2_lets_constructive_action"
       }
     ]
+  },
+  {
+    "situationId": "sit_b2_work_03",
+    "phrases": [
+      {
+        "text": "The supplier figures are late, but the client report is still marked for Wednesday. I need a realistic delivery plan, including anything you can send earlier.",
+        "classification": "chunk",
+        "chunkLabel": "Authored opener establishes dependency, deadline, and staged-delivery need.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Realistically, I'd need until Friday afternoon",
+        "itemId": "itm_b2_b210_estimate",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_realistically_estimate"
+      },
+      {
+        "text": "Would it be possible to send the verified sections on Thursday morning and push the complete report to Friday?",
+        "itemId": "itm_b2_b210_split",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_possible_deadline"
+      },
+      {
+        "text": "I don't want to overpromise",
+        "itemId": "itm_b2_b210_split",
+        "classification": "chunk",
+        "chunkLabel": "Frozen responsible-estimate chunk."
+      },
+      {
+        "text": "Realistically, noon on Friday gives you a review window",
+        "itemId": "itm_b2_b210_buffer",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_realistically_estimate"
+      },
+      {
+        "text": "Friday at two is realistic.",
+        "itemId": "itm_b2_b210_agree",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_realistically_estimate"
+      },
+      {
+        "text": "Realistically, the accessibility work takes the project to fourteen and a half thousand",
+        "itemId": "itm_b2_b210_v1_budget",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_realistically_estimate"
+      },
+      {
+        "text": "Would it be possible to keep the navigation and screen-reader changes now, then move the optional animation work to the next budget period?",
+        "itemId": "itm_b2_b210_v1_scope",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_possible_deadline"
+      },
+      {
+        "text": "Sorry, you cut out after “Thursday”. Since I can't see the schedule, could you repeat which version is due then and when the final client copy is needed?",
+        "itemId": "itm_b2_b210_vcall_clarify",
+        "classification": "chunk",
+        "chunkLabel": "Phone-only clarification with no visual schedule."
+      },
+      {
+        "text": "Realistically, I can meet those times if the data file arrives by Wednesday morning",
+        "itemId": "itm_b2_b210_vcall_confirm",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_realistically_estimate"
+      },
+      {
+        "text": "realistically the accurate training pack will be ready Wednesday",
+        "itemId": "itm_b2_b210_v2_refusal",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_realistically_estimate"
+      },
+      {
+        "text": "Would it be possible to move the deadline from Monday?",
+        "itemId": "itm_b2_b210_v2_refusal",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_possible_deadline"
+      },
+      {
+        "text": "I don't want to overpromise a fully reviewed pack",
+        "itemId": "itm_b2_b210_v2_compromise",
+        "classification": "chunk",
+        "chunkLabel": "Frozen responsible-estimate chunk."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_work_04",
+    "phrases": [
+      {
+        "text": "You have read my draft client report. I need honest feedback before I send it, especially on whether the recommendation is clear and properly supported.",
+        "classification": "chunk",
+        "chunkLabel": "Authored feedback opener invites both evaluation and evidence.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Overall, the report has a clear structure",
+        "itemId": "itm_b2_b211_positive",
+        "classification": "chunk",
+        "chunkLabel": "Positive evidence-based opening frame."
+      },
+      {
+        "text": "One thing I'd suggest is shortening the first section.",
+        "itemId": "itm_b2_b211_focus",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_one_thing_suggest"
+      },
+      {
+        "text": "It might be worth moving the two detailed examples to an appendix",
+        "itemId": "itm_b2_b211_worth",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_worth_feedback"
+      },
+      {
+        "text": "Overall, though, the tone is constructive and specific.",
+        "itemId": "itm_b2_b211_close",
+        "classification": "chunk",
+        "chunkLabel": "Frozen positive closing frame."
+      },
+      {
+        "text": "One thing I'd suggest is pausing after each decision and inviting questions",
+        "itemId": "itm_b2_b211_v1_style",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_one_thing_suggest"
+      },
+      {
+        "text": "It might be worth shortening the background section",
+        "itemId": "itm_b2_b211_v1_adjust",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_worth_feedback"
+      },
+      {
+        "text": "One thing I'd suggest is adding a one-page summary",
+        "itemId": "itm_b2_b211_v2_defensive",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_one_thing_suggest"
+      },
+      {
+        "text": "It might be worth treating the summary as a route into the evidence, not a replacement for it.",
+        "itemId": "itm_b2_b211_v2_stay_tactful",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_worth_feedback"
+      },
+      {
+        "text": "One thing I'd suggest is relabelling the final chart",
+        "itemId": "itm_b2_b211_v3_caveat",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_one_thing_suggest"
+      },
+      {
+        "text": "Overall, though, the story is focused, the evidence is credible",
+        "itemId": "itm_b2_b211_v3_finish",
+        "classification": "chunk",
+        "chunkLabel": "Positive close after one caveat."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_social_01",
+    "phrases": [
+      {
+        "text": "When you said my dinner plan would not work and then left, Maya and I thought you did not want to spend the evening with us. I would rather understand what happened than keep guessing.",
+        "classification": "chunk",
+        "chunkLabel": "Authored relational opener states impact and invites repair.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I think there's been a misunderstanding.",
+        "itemId": "itm_b2_b212_clarify",
+        "classification": "chunk",
+        "chunkLabel": "Frozen repair opener."
+      },
+      {
+        "text": "What I meant was that seven o'clock doesn't work for me",
+        "itemId": "itm_b2_b212_clarify",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_what_meant_was"
+      },
+      {
+        "text": "I didn't mean to dismiss it.",
+        "itemId": "itm_b2_b212_intent",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_didnt_mean_to"
+      },
+      {
+        "text": "What I meant was that I can come if we start at eight.",
+        "itemId": "itm_b2_b212_share",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_what_meant_was"
+      },
+      {
+        "text": "If eight isn't possible, I'll join you after my call",
+        "itemId": "itm_b2_b212_repair",
+        "classification": "chunk",
+        "chunkLabel": "Recycled real conditional supporting the repair."
+      },
+      {
+        "text": "What I meant in the group chat was Thursday at the café",
+        "itemId": "itm_b2_b212_v1_schedule",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_what_meant_was"
+      },
+      {
+        "text": "I didn't mean to leave you waiting.",
+        "itemId": "itm_b2_b212_v1_fix",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_didnt_mean_to"
+      },
+      {
+        "text": "I didn't mean to exclude you from the concert.",
+        "itemId": "itm_b2_b212_v2_upset",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_didnt_mean_to"
+      },
+      {
+        "text": "What I meant was that the ticket was already committed",
+        "itemId": "itm_b2_b212_v2_persist",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_what_meant_was"
+      },
+      {
+        "text": "I didn't mean to assume she would tell you as well.",
+        "itemId": "itm_b2_b212_v3_own",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_didnt_mean_to"
+      },
+      {
+        "text": "I should have messaged each person. I'll do that now and come to meet you at the main gate.",
+        "itemId": "itm_b2_b212_v3_repair",
+        "classification": "chunk",
+        "chunkLabel": "Ownership and concrete repair chunk; modal-perfect meaning kept lexical."
+      }
+    ]
   }
 ]

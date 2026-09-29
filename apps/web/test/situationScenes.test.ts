@@ -186,6 +186,21 @@ test("B2 Batch 3 maps service terms to Emma and workplace discussion to Daniel",
   assert.match(openingLine("sit_b2_shop_01"), /renewal.*minimum term/i);
 });
 
+test("B2 Batch 4 maps deadline and feedback to Daniel and repair to Alex", () => {
+  for (const id of ["sit_b2_work_03", "sit_b2_work_04"]) {
+    assert.deepEqual(sceneForSituation(id), {
+      scene: "meeting",
+      cast: "daniel",
+    });
+  }
+  assert.deepEqual(sceneForSituation("sit_b2_social_01"), {
+    scene: "cafe",
+    cast: "alex",
+  });
+  assert.match(openingLine("sit_b2_work_03"), /supplier figures.*delivery plan/i);
+  assert.match(openingLine("sit_b2_social_01"), /dinner plan.*understand/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

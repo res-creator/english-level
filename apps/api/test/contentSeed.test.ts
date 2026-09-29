@@ -25,11 +25,11 @@ test("the published catalogue includes A1 and authored A2/B1/B2 chapters", () =>
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2/B1, and the first six B2 modules.
-  assert.equal(published.length, 25);
+  // course now includes A1, authored A2/B1, and the first seven B2 modules.
+  assert.equal(published.length, 26);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
   assert.equal(published.filter((m) => m.levelCode === "B1").length, 9);
-  assert.equal(published.filter((m) => m.levelCode === "B2").length, 6);
+  assert.equal(published.filter((m) => m.levelCode === "B2").length, 7);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -381,6 +381,9 @@ test("A2, B1 and B2 plans keep semantic turns once and exclude variations from M
     "sit_b2_shop_01",
     "sit_b2_work_01",
     "sit_b2_work_02",
+    "sit_b2_work_03",
+    "sit_b2_work_04",
+    "sit_b2_social_01",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const levelId = situationId.startsWith("sit_b2_")
@@ -923,4 +926,29 @@ test("B2 Batch 3 disputes service terms, proposes change, and disagrees construc
   assert.deepEqual(links("sit_b2_shop_01", "review").map((x) => x.contentId), ["itm_b1_b110_resolution"]);
   assert.deepEqual(links("sit_b2_work_01", "review").map((x) => x.contentId), ["itm_b1_b112_check_understanding"]);
   assert.deepEqual(links("sit_b2_work_02", "review").map((x) => x.contentId), ["itm_b2_b28_measure"]);
+});
+
+test("B2 Batch 4 renegotiates deadlines, gives tactful feedback, and repairs misunderstandings", () => {
+  const bundle = loadSeedContent();
+  const ids = ["sit_b2_work_03", "sit_b2_work_04", "sit_b2_social_01"];
+  const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
+  const links = (lessonId: string, role: string) =>
+    bundle.lessonItems.filter((link) => link.lessonId === lessonId && link.role === role);
+  for (const id of ids) {
+    assert.equal(links(id, "introduce").length, 4);
+    assert.equal(links(id, "practice").length, 6);
+    assert.ok(links(id, "review").length >= 1);
+    for (const link of [...links(id, "introduce"), ...links(id, "practice")])
+      assert.ok(itemById.get(link.contentId)?.npcReplyCorrect, link.contentId);
+  }
+  assert.match(itemById.get("itm_b2_b210_split")?.displayForm ?? "", /Would it be possible.*verified sections.*Friday/i);
+  assert.match(itemById.get("itm_b2_b210_vcall_confirm")?.displayForm ?? "", /Let me confirm.*Thursday.*Friday/i);
+  assert.match(itemById.get("itm_b2_b210_v2_compromise")?.displayForm ?? "", /core participant guide.*Wednesday appendix/i);
+  assert.match(itemById.get("itm_b2_b211_focus")?.displayForm ?? "", /One thing I'd suggest.*first section/i);
+  assert.match(itemById.get("itm_b2_b211_v2_stay_tactful")?.displayForm ?? "", /full analysis should remain.*route into the evidence/i);
+  assert.match(itemById.get("itm_b2_b212_clarify")?.displayForm ?? "", /misunderstanding.*What I meant was/i);
+  assert.match(itemById.get("itm_b2_b212_v3_own")?.displayForm ?? "", /partly my fault.*didn't mean to assume/i);
+  assert.deepEqual(links("sit_b2_work_03", "review").map((x) => x.contentId), ["itm_b1_b112_deadline", "itm_b2_b29_agreement"]);
+  assert.deepEqual(links("sit_b2_work_04", "review").map((x) => x.contentId), ["itm_b2_b29_compromise"]);
+  assert.deepEqual(links("sit_b2_social_01", "review").map((x) => x.contentId), ["itm_b1_b116_confirm"]);
 });

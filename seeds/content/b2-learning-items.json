@@ -1867,5 +1867,635 @@
       }
     ],
     "npcReplyCorrect": "A phased delivery is easier to defend than a full delay. I'll arrange the client call and present the two dates clearly."
+  },
+  {
+    "id": "itm_b2_b210_estimate",
+    "itemType": "functional_phrase",
+    "lemma": "b210 estimate",
+    "displayForm": "Realistically, I'd need until Friday afternoon for the full report because the supplier figures will not arrive until Tuesday.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Реалистично мне понадобится время до пятницы после обеда для полного отчёта, потому что данные поставщика придут только во вторник.",
+      "usageNote": "Connects the estimate to the delayed dependency."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_estimate_01",
+        "text": "Realistically, I'd need until Friday afternoon for the full report because the supplier figures will not arrive until Tuesday.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The launch team needs something on Thursday morning. Waiting until Friday leaves them with no figures at all."
+  },
+  {
+    "id": "itm_b2_b210_split",
+    "itemType": "functional_phrase",
+    "lemma": "b210 split",
+    "displayForm": "Would it be possible to send the verified sections on Thursday morning and push the complete report to Friday? I don't want to overpromise while the figures are still missing.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Можно ли отправить проверенные разделы в четверг утром, а полный отчёт перенести на пятницу? Я не хочу обещать лишнего, пока данных нет.",
+      "usageNote": "Offers a staged alternative instead of a vague delay."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_split_01",
+        "text": "Would it be possible to send the verified sections on Thursday morning and push the complete report to Friday? I don't want to overpromise while the figures are still missing.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A partial report helps, but the client review is Friday afternoon. We need the final version early enough to check it."
+  },
+  {
+    "id": "itm_b2_b210_buffer",
+    "itemType": "functional_phrase",
+    "lemma": "b210 buffer",
+    "displayForm": "I can protect two hours on Thursday for the final calculations. Realistically, noon on Friday gives you a review window without assuming the supplier sends everything early.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Я могу зарезервировать два часа в четверг для расчётов. Реалистично полдень пятницы даст время на проверку без лишних предположений.",
+      "usageNote": "Answers the review constraint with a buffer."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_buffer_01",
+        "text": "I can protect two hours on Thursday for the final calculations. Realistically, noon on Friday gives you a review window without assuming the supplier sends everything early.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "If I move the client review to three, I can give you until two. I need the verified sections at ten on Thursday and an immediate warning if the figures slip again."
+  },
+  {
+    "id": "itm_b2_b210_agree",
+    "itemType": "functional_phrase",
+    "lemma": "b210 agree",
+    "displayForm": "Friday at two is realistic. I'll send the verified sections at ten on Thursday and flag any new delay as soon as I know, rather than wait until the deadline.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Пятница к двум — реалистично. Я отправлю проверенные разделы в десять в четверг и сразу сообщу о новой задержке.",
+      "usageNote": "Confirms deliverables, times, and escalation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_agree_01",
+        "text": "Friday at two is realistic. I'll send the verified sections at ten on Thursday and flag any new delay as soon as I know, rather than wait until the deadline.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Agreed. I will update the plan with those two milestones and tell the client when to expect the checked report."
+  },
+  {
+    "id": "itm_b2_b210_v1_budget",
+    "itemType": "functional_phrase",
+    "lemma": "b210 v1 budget",
+    "displayForm": "Realistically, the accessibility work takes the project to fourteen and a half thousand, not twelve. I'd need either a larger budget or a narrower first phase.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Реалистично работа по доступности увеличит стоимость до четырнадцати с половиной тысяч. Нужен больший бюджет или более узкий первый этап.",
+      "usageNote": "Transfers negotiation from time to budget."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_v1_budget_01",
+        "text": "Realistically, the accessibility work takes the project to fourteen and a half thousand, not twelve. I'd need either a larger budget or a narrower first phase.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The twelve-thousand limit is fixed. Which part could move without weakening essential accessibility work?"
+  },
+  {
+    "id": "itm_b2_b210_v1_scope",
+    "itemType": "functional_phrase",
+    "lemma": "b210 v1 scope",
+    "displayForm": "Would it be possible to keep the navigation and screen-reader changes now, then move the optional animation work to the next budget period?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Можно ли сейчас сохранить навигацию и поддержку экранного диктора, а необязательную анимацию перенести?",
+      "usageNote": "Negotiates scope by priority."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_v1_scope_01",
+        "text": "Would it be possible to keep the navigation and screen-reader changes now, then move the optional animation work to the next budget period?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. Protect accessibility, defer animation, and send me the revised cost split today."
+  },
+  {
+    "id": "itm_b2_b210_vcall_clarify",
+    "itemType": "functional_phrase",
+    "lemma": "b210 vcall clarify",
+    "displayForm": "Sorry, you cut out after “Thursday”. Since I can't see the schedule, could you repeat which version is due then and when the final client copy is needed?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Извините, связь пропала после слова «четверг». Поскольку расписания не видно, повторите сроки обеих версий.",
+      "usageNote": "Requires verbal clarification without visual context."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_vcall_clarify_01",
+        "text": "Sorry, you cut out after “Thursday”. Since I can't see the schedule, could you repeat which version is due then and when the final client copy is needed?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The checked summary is due Thursday at four, and the full client copy is due Friday at noon. Can you meet both times?"
+  },
+  {
+    "id": "itm_b2_b210_vcall_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "b210 vcall confirm",
+    "displayForm": "Let me confirm: the checked summary is Thursday at four and the full copy is Friday at noon. Realistically, I can meet those times if the data file arrives by Wednesday morning; otherwise I'll call immediately.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Подтверждаю: сводка в четверг к четырём, полный текст в пятницу к полудню. Я успею, если файл придёт к среде, иначе сразу позвоню.",
+      "usageNote": "Reads back both deadlines and dependency."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_vcall_confirm_01",
+        "text": "Let me confirm: the checked summary is Thursday at four and the full copy is Friday at noon. Realistically, I can meet those times if the data file arrives by Wednesday morning; otherwise I'll call immediately.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is exactly the agreement. I will email both milestones and confirm Wednesday with the data team."
+  },
+  {
+    "id": "itm_b2_b210_v2_refusal",
+    "itemType": "functional_phrase",
+    "lemma": "b210 v2 refusal",
+    "displayForm": "The reviewer is away until Tuesday, so realistically the accurate training pack will be ready Wednesday. Would it be possible to move the deadline from Monday?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Проверяющего не будет до вторника, поэтому точный пакет будет готов в среду. Можно перенести срок с понедельника?",
+      "usageNote": "Justifies a request Daniel can refuse."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_v2_refusal_01",
+        "text": "The reviewer is away until Tuesday, so realistically the accurate training pack will be ready Wednesday. Would it be possible to move the deadline from Monday?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "No, the workshop begins Tuesday morning. We need something usable by Monday."
+  },
+  {
+    "id": "itm_b2_b210_v2_compromise",
+    "itemType": "functional_phrase",
+    "lemma": "b210 v2 compromise",
+    "displayForm": "Then I'd deliver the core participant guide on Monday and have the reviewer check the optional exercises for a Wednesday appendix. I don't want to overpromise a fully reviewed pack.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deadline negotiation",
+    "ru": {
+      "translation": "Тогда основной путеводитель будет в понедельник, а проверенные дополнительные упражнения — в приложении в среду. Я не хочу обещать полностью проверенный пакет.",
+      "usageNote": "Separates essential and optional deliverables after refusal."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b210_v2_compromise_01",
+        "text": "Then I'd deliver the core participant guide on Monday and have the reviewer check the optional exercises for a Wednesday appendix. I don't want to overpromise a fully reviewed pack.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That protects the workshop and the review. Send the core guide Monday and label the exercises as a Wednesday appendix."
+  },
+  {
+    "id": "itm_b2_b211_positive",
+    "itemType": "functional_phrase",
+    "lemma": "b211 positive",
+    "displayForm": "Overall, the report has a clear structure, and the final recommendation is supported by strong customer evidence.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "В целом у отчёта ясная структура, а итоговая рекомендация подкреплена убедительными данными клиентов.",
+      "usageNote": "Begins with specific credible value."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_positive_01",
+        "text": "Overall, the report has a clear structure, and the final recommendation is supported by strong customer evidence.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Good. Is there anything that makes the recommendation harder to follow?"
+  },
+  {
+    "id": "itm_b2_b211_focus",
+    "itemType": "functional_phrase",
+    "lemma": "b211 focus",
+    "displayForm": "One thing I'd suggest is shortening the first section. The three similar examples delay the main recommendation, so a busy client may miss it.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "Я бы предложил сократить первый раздел. Три похожих примера задерживают главную рекомендацию.",
+      "usageNote": "Identifies one priority and its reader impact."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_focus_01",
+        "text": "One thing I'd suggest is shortening the first section. The three similar examples delay the main recommendation, so a busy client may miss it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I included all three because the client asked for context. I do not want the report to look unsupported."
+  },
+  {
+    "id": "itm_b2_b211_worth",
+    "itemType": "functional_phrase",
+    "lemma": "b211 worth",
+    "displayForm": "It might be worth moving the two detailed examples to an appendix and keeping the strongest one beside the recommendation. That preserves the evidence while making the decision easier to see.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "Возможно, стоит перенести два подробных примера в приложение, а самый сильный оставить рядом с рекомендацией.",
+      "usageNote": "Answers a concern with a face-saving change."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_worth_01",
+        "text": "It might be worth moving the two detailed examples to an appendix and keeping the strongest one beside the recommendation. That preserves the evidence while making the decision easier to see.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That would keep the context. Is the recommendation direct enough for this client?"
+  },
+  {
+    "id": "itm_b2_b211_close",
+    "itemType": "functional_phrase",
+    "lemma": "b211 close",
+    "displayForm": "Yes. Overall, though, the tone is constructive and specific. I'd only add one sentence acknowledging the client's budget constraint, then the recommendation is ready to test with Maya.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "Да. В целом тон конструктивный. Я бы лишь добавил предложение о бюджетном ограничении клиента.",
+      "usageNote": "Ends positively with one bounded action."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_close_01",
+        "text": "Yes. Overall, though, the tone is constructive and specific. I'd only add one sentence acknowledging the client's budget constraint, then the recommendation is ready to test with Maya.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is useful and manageable. I will move the examples, add the sentence, and ask Maya for a final read."
+  },
+  {
+    "id": "itm_b2_b211_v1_style",
+    "itemType": "functional_phrase",
+    "lemma": "b211 v1 style",
+    "displayForm": "Your meeting updates are well prepared. One thing I'd suggest is pausing after each decision and inviting questions, because colleagues are sometimes unsure when to speak.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "Ваши обновления хорошо подготовлены. Я бы предложил делать паузу после каждого решения и приглашать вопросы.",
+      "usageNote": "Transfers feedback to communication style."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_v1_style_01",
+        "text": "Your meeting updates are well prepared. One thing I'd suggest is pausing after each decision and inviting questions, because colleagues are sometimes unsure when to speak.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I move quickly because the agenda is crowded. More pauses could make us run late."
+  },
+  {
+    "id": "itm_b2_b211_v1_adjust",
+    "itemType": "functional_phrase",
+    "lemma": "b211 v1 adjust",
+    "displayForm": "It might be worth shortening the background section to create those pauses rather than extending the meeting. Overall, your decisions are clear.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "Возможно, стоит сократить вводную часть, чтобы появились паузы без удлинения встречи. В целом решения ясны.",
+      "usageNote": "Preserves the time concern and proposes a trade-off."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_v1_adjust_01",
+        "text": "It might be worth shortening the background section to create those pauses rather than extending the meeting. Overall, your decisions are clear.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That feels practical. I will reduce the background and add a question point after each decision."
+  },
+  {
+    "id": "itm_b2_b211_v2_defensive",
+    "itemType": "functional_phrase",
+    "lemma": "b211 v2 defensive",
+    "displayForm": "The report is thorough, and I know the client requested detail. One thing I'd suggest is adding a one-page summary, because senior readers may need the decision before the full evidence.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "Отчёт подробный. Я бы предложил добавить одностраничную сводку для руководителей.",
+      "usageNote": "Recognises the brief before difficult feedback."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_v2_defensive_01",
+        "text": "The report is thorough, and I know the client requested detail. One thing I'd suggest is adding a one-page summary, because senior readers may need the decision before the full evidence.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "But the brief asked for complete analysis. A summary could make months of work look superficial."
+  },
+  {
+    "id": "itm_b2_b211_v2_stay_tactful",
+    "itemType": "functional_phrase",
+    "lemma": "b211 v2 stay tactful",
+    "displayForm": "I agree the full analysis should remain. It might be worth treating the summary as a route into the evidence, not a replacement for it. Overall, the depth is a strength.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "Я согласен сохранить анализ. Возможно, стоит сделать сводку путём к доказательствам, а не их заменой.",
+      "usageNote": "Stays tactful after defensiveness."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_v2_stay_tactful_01",
+        "text": "I agree the full analysis should remain. It might be worth treating the summary as a route into the evidence, not a replacement for it. Overall, the depth is a strength.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can accept that distinction. I will keep the analysis and draft a summary linking to each section."
+  },
+  {
+    "id": "itm_b2_b211_v3_caveat",
+    "itemType": "functional_phrase",
+    "lemma": "b211 v3 caveat",
+    "displayForm": "Overall, the presentation is persuasive and the comparison slide makes the choice clear. One thing I'd suggest is relabelling the final chart, because “growth” could mean customers or revenue.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "В целом презентация убедительная. Я бы предложил переименовать последний график: «рост» может означать клиентов или выручку.",
+      "usageNote": "Provides one precise caveat in positive feedback."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_v3_caveat_01",
+        "text": "Overall, the presentation is persuasive and the comparison slide makes the choice clear. One thing I'd suggest is relabelling the final chart, because “growth” could mean customers or revenue.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is a small but important ambiguity. The chart shows revenue, so I will label it explicitly."
+  },
+  {
+    "id": "itm_b2_b211_v3_finish",
+    "itemType": "functional_phrase",
+    "lemma": "b211 v3 finish",
+    "displayForm": "That resolves my only concern. Overall, though, the story is focused, the evidence is credible, and the presentation is ready once that label changes.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "tactful workplace feedback",
+    "ru": {
+      "translation": "Это решает моё единственное замечание. В целом история сфокусирована, а доказательства убедительны.",
+      "usageNote": "Ends with an honest positive judgement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b211_v3_finish_01",
+        "text": "That resolves my only concern. Overall, though, the story is focused, the evidence is credible, and the presentation is ready once that label changes.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thanks. I will change the label and leave the rest of the structure as it is."
+  },
+  {
+    "id": "itm_b2_b212_clarify",
+    "itemType": "functional_phrase",
+    "lemma": "b212 clarify",
+    "displayForm": "I think there's been a misunderstanding. What I meant was that seven o'clock doesn't work for me, not that I don't want to come to dinner.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Думаю, произошло недопонимание. Я имел в виду, что мне не подходит семь, а не что я не хочу приходить.",
+      "usageNote": "Replaces the hurtful interpretation precisely."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_clarify_01",
+        "text": "I think there's been a misunderstanding. What I meant was that seven o'clock doesn't work for me, not that I don't want to come to dinner.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "But you said it would not work and then left. It sounded as if you were dismissing the whole plan."
+  },
+  {
+    "id": "itm_b2_b212_intent",
+    "itemType": "functional_phrase",
+    "lemma": "b212 intent",
+    "displayForm": "I didn't mean to dismiss it. I had to join a work call, but I should have explained that instead of leaving you to guess.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Я не хотел отвергать план. Мне нужно было подключиться к звонку, но следовало это объяснить.",
+      "usageNote": "Clarifies intent while acknowledging effect."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_intent_01",
+        "text": "I didn't mean to dismiss it. I had to join a work call, but I should have explained that instead of leaving you to guess.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I wish you had messaged afterwards. Maya and I thought you were annoyed with us."
+  },
+  {
+    "id": "itm_b2_b212_share",
+    "itemType": "functional_phrase",
+    "lemma": "b212 share",
+    "displayForm": "You're right. I assumed Maya would pass on my explanation, and that was my part in the mix-up. What I meant was that I can come if we start at eight.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Ты прав. Я предположил, что Майя всё объяснит, и это была моя часть путаницы. Я смогу прийти к восьми.",
+      "usageNote": "Accepts responsibility and restates intent."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_share_01",
+        "text": "You're right. I assumed Maya would pass on my explanation, and that was my part in the mix-up. What I meant was that I can come if we start at eight.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thank you for saying that. I thought seven was fixed, but I can ask whether eight is possible."
+  },
+  {
+    "id": "itm_b2_b212_repair",
+    "itemType": "functional_phrase",
+    "lemma": "b212 repair",
+    "displayForm": "I understand that changing the booking creates work. If eight isn't possible, I'll join you after my call rather than miss the evening. I do want to be there.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Я понимаю, что изменение брони создаёт работу. Если восемь невозможно, я присоединюсь после звонка. Я хочу прийти.",
+      "usageNote": "Restores trust through concrete flexibility."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_repair_01",
+        "text": "I understand that changing the booking creates work. If eight isn't possible, I'll join you after my call rather than miss the evening. I do want to be there.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That clears it up. I will check the booking, and either way we will expect you after the call."
+  },
+  {
+    "id": "itm_b2_b212_v1_schedule",
+    "itemType": "functional_phrase",
+    "lemma": "b212 v1 schedule",
+    "displayForm": "I think there's been a scheduling misunderstanding. What I meant in the group chat was Thursday at the café; I didn't realise you were confirming Tuesday.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Думаю, возникло недопонимание по расписанию. Я имел в виду четверг, а не вторник.",
+      "usageNote": "Transfers repair to scheduling ambiguity."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_v1_schedule_01",
+        "text": "I think there's been a scheduling misunderstanding. What I meant in the group chat was Thursday at the café; I didn't realise you were confirming Tuesday.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I waited there on Tuesday because your reply came directly after my message about that day."
+  },
+  {
+    "id": "itm_b2_b212_v1_fix",
+    "itemType": "functional_phrase",
+    "lemma": "b212 v1 fix",
+    "displayForm": "I see why you read it that way, and I should have named the day again. I didn't mean to leave you waiting. Could we meet Thursday, and I'll confirm it separately now?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Я понимаю, почему ты так прочитал. Я не хотел заставлять тебя ждать. Встретимся в четверг, и я сейчас подтвержу отдельно.",
+      "usageNote": "Owns ambiguity and makes a clear repair."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_v1_fix_01",
+        "text": "I see why you read it that way, and I should have named the day again. I didn't mean to leave you waiting. Could we meet Thursday, and I'll confirm it separately now?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, Thursday works. A separate confirmation will prevent the same mix-up."
+  },
+  {
+    "id": "itm_b2_b212_v2_upset",
+    "itemType": "functional_phrase",
+    "lemma": "b212 v2 upset",
+    "displayForm": "I didn't mean to exclude you from the concert. I had one spare ticket and had already promised it to my sister before we spoke.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Я не хотел исключать тебя из похода на концерт. Запасной билет уже был обещан сестре.",
+      "usageNote": "Clarifies prior commitment without denying feeling."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_v2_upset_01",
+        "text": "I didn't mean to exclude you from the concert. I had one spare ticket and had already promised it to my sister before we spoke.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It still felt personal because you changed the subject when I asked who was going."
+  },
+  {
+    "id": "itm_b2_b212_v2_persist",
+    "itemType": "functional_phrase",
+    "lemma": "b212 v2 persist",
+    "displayForm": "I understand why that hurt. I changed the subject because I felt awkward, and that made it look worse. What I meant was that the ticket was already committed, not that I didn't want to go with you.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Я понимаю, почему это задело. Я сменил тему из-за неловкости. Билет уже был обещан, но я хотел бы пойти с тобой.",
+      "usageNote": "Owns avoidance and repairs the meaning."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_v2_persist_01",
+        "text": "I understand why that hurt. I changed the subject because I felt awkward, and that made it look worse. What I meant was that the ticket was already committed, not that I didn't want to go with you.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That explanation makes more sense. Next time, please tell me directly."
+  },
+  {
+    "id": "itm_b2_b212_v3_own",
+    "itemType": "functional_phrase",
+    "lemma": "b212 v3 own",
+    "displayForm": "The entrance mix-up was partly my fault. I told Maya that the picnic had moved to the east gate, but I didn't mean to assume she would tell you as well.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Путаница со входом была отчасти моей ошибкой. Я сообщил Майе о восточных воротах, но ошибочно предположил, что она скажет тебе.",
+      "usageNote": "Makes self-correction central."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_v3_own_01",
+        "text": "The entrance mix-up was partly my fault. I told Maya that the picnic had moved to the east gate, but I didn't mean to assume she would tell you as well.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I was frustrated because everyone else seemed to know, and I thought I had been left out deliberately."
+  },
+  {
+    "id": "itm_b2_b212_v3_repair",
+    "itemType": "functional_phrase",
+    "lemma": "b212 v3 repair",
+    "displayForm": "I can see why it felt deliberate, even though it wasn't. I should have messaged each person. I'll do that now and come to meet you at the main gate.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "repairing a misunderstanding",
+    "ru": {
+      "translation": "Я понимаю, почему это выглядело намеренно. Мне следовало написать каждому. Сейчас я встречу тебя у главных ворот.",
+      "usageNote": "Acknowledges impact and repairs the immediate situation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b212_v3_repair_01",
+        "text": "I can see why it felt deliberate, even though it wasn't. I should have messaged each person. I'll do that now and come to meet you at the main gate.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Thank you. Meeting me there fixes today, and messaging everyone directly will prevent it next time."
   }
 ]

@@ -202,5 +202,77 @@
     "ru": {
       "explanation": "Используйте let’s с начальной формой глагола, чтобы перевести разногласие в совместный следующий шаг."
     }
+  },
+  {
+    "id": "gr_b2_would_possible_deadline",
+    "levelCode": "B2",
+    "title": "would it be possible to — обсудить изменение срока",
+    "patternKey": "would_possible_deadline",
+    "formula": "Would it be possible to + verb...?",
+    "explanationEn": "Use this frame to open a deadline negotiation with a specific alternative rather than a vague request for more time.",
+    "order": 18,
+    "ru": {
+      "explanation": "Используйте эту рамку, чтобы начать переговоры о сроке с конкретной альтернативой."
+    }
+  },
+  {
+    "id": "gr_b2_realistically_estimate",
+    "levelCode": "B2",
+    "title": "realistically — дать ответственную оценку",
+    "patternKey": "realistically_estimate",
+    "formula": "Realistically, subject + would need/could + time",
+    "explanationEn": "Use realistically to signal an evidence-based estimate rather than an optimistic promise.",
+    "order": 19,
+    "ru": {
+      "explanation": "Используйте realistically для оценки на основе фактов, а не оптимистичного обещания."
+    }
+  },
+  {
+    "id": "gr_b2_might_worth_feedback",
+    "levelCode": "B2",
+    "title": "it might be worth + -ing — предложить улучшение тактично",
+    "patternKey": "might_worth_feedback",
+    "formula": "It might be worth + verb-ing",
+    "explanationEn": "Use this form to suggest a meaningful improvement without presenting it as an order.",
+    "order": 20,
+    "ru": {
+      "explanation": "Используйте эту форму, чтобы предложить улучшение без приказа."
+    }
+  },
+  {
+    "id": "gr_b2_one_thing_suggest",
+    "levelCode": "B2",
+    "title": "one thing I'd suggest is — сфокусировать обратную связь",
+    "patternKey": "one_thing_suggest",
+    "formula": "One thing I'd suggest is + noun / verb-ing",
+    "explanationEn": "Use this frame to identify one manageable priority for improvement.",
+    "order": 21,
+    "ru": {
+      "explanation": "Используйте эту рамку, чтобы выделить один выполнимый приоритет улучшения."
+    }
+  },
+  {
+    "id": "gr_b2_what_meant_was",
+    "levelCode": "B2",
+    "title": "what I meant was — исправить неверное толкование",
+    "patternKey": "what_meant_was",
+    "formula": "What I meant was + clause",
+    "explanationEn": "Use this repair structure to replace an unintended interpretation with the intended meaning.",
+    "order": 22,
+    "ru": {
+      "explanation": "Используйте эту конструкцию, чтобы заменить неверное толкование нужным смыслом."
+    }
+  },
+  {
+    "id": "gr_b2_didnt_mean_to",
+    "levelCode": "B2",
+    "title": "I didn't mean to — признать непреднамеренный эффект",
+    "patternKey": "didnt_mean_to",
+    "formula": "I didn't mean to + base verb",
+    "explanationEn": "Use this form to acknowledge an effect while clarifying that it was not your intention.",
+    "order": 23,
+    "ru": {
+      "explanation": "Используйте эту форму, чтобы признать эффект и прояснить отсутствие такого намерения."
+    }
   }
 ]
