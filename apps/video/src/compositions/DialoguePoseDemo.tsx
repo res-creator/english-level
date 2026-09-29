@@ -145,26 +145,31 @@ export const DialoguePoseDemo: React.FC = () => {
         }}
       >
         {/*
-          width/top sized off the placeholder art's real content bbox
-          (head-to-torso-bottom is ~59% of the 800x1000 canvas -- the rest
-          is transparent margin) so each character's actual visible size
-          lands around ~52% of frame height, not just "some box that size."
-          Recompute if a new art pack changes the content bounding box.
+          width/top sized per character to match FACE size, not just
+          content-bbox size -- A (dialogue-a) is a bust-only rig-pack
+          composite whose content is mostly head+arms, B (dialogue-b) is a
+          head-to-toe portrait where the head is a much smaller fraction
+          of the total content. Matching content-bbox height alone (an
+          earlier pass) left B's face reading noticeably smaller than A's.
+          These widths equalize on-screen head height instead; top is
+          nudged per character so both heads land at a similar vertical
+          position. Recompute if a new art pack changes either character's
+          proportions.
         */}
         <PoseCharacter
           config={characterA}
           left={0.03}
-          top={0.1}
-          width={0.46}
+          top={0.08}
+          width={0.42}
           emphasisAmount={0}
           eyeState={aEye}
           mouthState={aMouth}
         />
         <PoseCharacter
           config={characterB}
-          left={0.51}
-          top={0.1}
-          width={0.46}
+          left={0.53}
+          top={0.045}
+          width={0.36}
           emphasisAmount={bEmphasisAmount}
           eyeState={bEye}
           mouthState={bMouth}
