@@ -61,5 +61,23 @@
     "description": "Прояснять эмоционально значимые недопонимания и восстанавливать контакт.",
     "order": 7,
     "status": "published"
+  },
+  {
+    "id": "mod_b2_problems_solutions",
+    "levelCode": "B2",
+    "title": "Проблемы и решения",
+    "slug": "b2-problems-solutions",
+    "description": "Вести сложные переговоры и сохранять уважительную твёрдость в споре.",
+    "order": 8,
+    "status": "published"
+  },
+  {
+    "id": "mod_b2_people_connections_extended",
+    "levelCode": "B2",
+    "title": "Люди и общение: культура",
+    "slug": "b2-people-connections-culture",
+    "description": "Сравнивать художественные решения и обсуждать разные интерпретации произведения.",
+    "order": 9,
+    "status": "published"
   }
 ]

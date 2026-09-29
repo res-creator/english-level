@@ -274,5 +274,77 @@
     "ru": {
       "explanation": "Используйте эту форму, чтобы признать эффект и прояснить отсутствие такого намерения."
     }
+  },
+  {
+    "id": "gr_b2_willing_compromise",
+    "levelCode": "B2",
+    "title": "I'm willing to — обозначить границу компромисса",
+    "patternKey": "willing_compromise",
+    "formula": "I'm willing to + verb, but/if...",
+    "explanationEn": "Use this frame to state what you can concede while keeping the essential condition explicit.",
+    "order": 24,
+    "ru": {
+      "explanation": "Используйте эту рамку, чтобы обозначить допустимую уступку и сохранить главное условие."
+    }
+  },
+  {
+    "id": "gr_b2_solution_works_both",
+    "levelCode": "B2",
+    "title": "a solution that works for both — искать взаимный результат",
+    "patternKey": "solution_works_both",
+    "formula": "a solution that works for both of us",
+    "explanationEn": "Use this relative-clause frame to make mutual practicality an explicit negotiation criterion.",
+    "order": 25,
+    "ru": {
+      "explanation": "Используйте эту рамку, чтобы сделать взаимную практичность явным критерием переговоров."
+    }
+  },
+  {
+    "id": "gr_b2_have_to_insist",
+    "levelCode": "B2",
+    "title": "I have to insist — сохранить главную позицию",
+    "patternKey": "have_to_insist",
+    "formula": "I hear you, but I have to insist + clause",
+    "explanationEn": "Use this frame to acknowledge the other side and remain firm on an essential point.",
+    "order": 26,
+    "ru": {
+      "explanation": "Используйте эту рамку, чтобы признать аргумент собеседника и твёрдо сохранить существенную позицию."
+    }
+  },
+  {
+    "id": "gr_b2_respectful_firmness",
+    "levelCode": "B2",
+    "title": "with respect / agree to disagree — уважительная твёрдость",
+    "patternKey": "respectful_firmness",
+    "formula": "With respect, I still believe... / Let us agree to disagree...",
+    "explanationEn": "Use respectful framing to separate disagreement about the issue from disrespect towards the person.",
+    "order": 27,
+    "ru": {
+      "explanation": "Используйте уважительную рамку, чтобы отделить несогласие по вопросу от отношения к человеку."
+    }
+  },
+  {
+    "id": "gr_b2_compared_viewpoints",
+    "levelCode": "B2",
+    "title": "compared with/to — сопоставить художественные решения",
+    "patternKey": "compared_viewpoints",
+    "formula": "Compared with/to + work/viewpoint, clause",
+    "explanationEn": "Use compared with or compared to to evaluate how a work or viewpoint changes meaning, effect, or emphasis.",
+    "order": 28,
+    "ru": {
+      "explanation": "Используйте compared with/to, чтобы оценить изменение смысла, эффекта или акцента."
+    }
+  },
+  {
+    "id": "gr_b2_qualified_opinion",
+    "levelCode": "B2",
+    "title": "I found it quite — дать квалифицированную оценку",
+    "patternKey": "qualified_opinion",
+    "formula": "I found it quite + adjective, but/although...",
+    "explanationEn": "Use a qualified opinion adjective with supporting contrast to give a nuanced evaluation rather than a bare preference.",
+    "order": 29,
+    "ru": {
+      "explanation": "Используйте квалифицированную оценку с контрастом, чтобы выразить нюансированное мнение."
+    }
   }
 ]

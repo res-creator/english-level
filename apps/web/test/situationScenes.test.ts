@@ -201,6 +201,13 @@ test("B2 Batch 4 maps deadline and feedback to Daniel and repair to Alex", () =>
   assert.match(openingLine("sit_b2_social_01"), /dinner plan.*understand/i);
 });
 
+test("B2 Batch 5 keeps refund, restaurant dispute, and cultural discussion casts", () => {
+  assert.deepEqual(sceneForSituation("sit_b2_problems_01"), { scene: "shop", cast: "emma" });
+  assert.deepEqual(sceneForSituation("sit_b2_problems_02"), { scene: "restaurant", cast: "leo" });
+  assert.deepEqual(sceneForSituation("sit_b2_people_03"), { scene: "cafe", cast: "alex" });
+  assert.match(openingLine("sit_b2_problems_02"), /eight set menus.*six guests/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

@@ -3963,5 +3963,251 @@
         "chunkLabel": "Ownership and concrete repair chunk; modal-perfect meaning kept lexical."
       }
     ]
+  },
+  {
+    "situationId": "sit_b2_problems_01",
+    "phrases": [
+      {
+        "text": "I have confirmed the battery fault, but because the tablet is outside the fourteen-day return period, our standard option is a repair. What outcome are you looking for?",
+        "classification": "chunk",
+        "chunkLabel": "Authored opener states policy and invites a negotiated outcome.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I'm willing to let a technician verify the fault today",
+        "itemId": "itm_b2_b213_mutual",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_willing_compromise"
+      },
+      {
+        "text": "a solution that works for both of us",
+        "itemId": "itm_b2_b213_mutual",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_solution_works_both"
+      },
+      {
+        "text": "I'm willing to accept store credit if it covers the full price",
+        "itemId": "itm_b2_b213_risk",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_willing_compromise"
+      },
+      {
+        "text": "a solution that works for both of us",
+        "itemId": "itm_b2_b213_settle",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_solution_works_both"
+      },
+      {
+        "text": "I'm willing to accept the documented travel fee",
+        "itemId": "itm_b2_b213_v1_service",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_willing_compromise"
+      },
+      {
+        "text": "a solution that works for both of us",
+        "itemId": "itm_b2_b213_v1_balance",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_solution_works_both"
+      },
+      {
+        "text": "I'm willing to accept store credit instead",
+        "itemId": "itm_b2_b213_v2_credit",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_willing_compromise"
+      },
+      {
+        "text": "provided the faulty headphones are collected at no extra cost",
+        "itemId": "itm_b2_b213_v2_confirm",
+        "classification": "chunk",
+        "chunkLabel": "Bounded settlement condition."
+      },
+      {
+        "text": "I'm willing to arrange one final collection",
+        "itemId": "itm_b2_b213_v3_history",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_willing_compromise"
+      },
+      {
+        "text": "That avoids another missed visit and gives both sides a clear final step.",
+        "itemId": "itm_b2_b213_v3_resolution",
+        "classification": "chunk",
+        "chunkLabel": "Mutual-resolution summary."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_problems_02",
+    "phrases": [
+      {
+        "text": "The original group booking was for eight, so the bill includes eight set menus even though only six guests came. The kitchen prepared for the original number.",
+        "classification": "chunk",
+        "chunkLabel": "Authored dispute opener gives Leo a substantive position.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I hear you, but I have to insist that the bill reflect the six guests confirmed in writing.",
+        "itemId": "itm_b2_b214_position",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_have_to_insist"
+      },
+      {
+        "text": "With respect, your confirmation says the final number could change until noon",
+        "itemId": "itm_b2_b214_evidence",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_respectful_firmness"
+      },
+      {
+        "text": "I still believe the restaurant should follow that written condition.",
+        "itemId": "itm_b2_b214_evidence",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_respectful_firmness"
+      },
+      {
+        "text": "I have to insist that the two full set-menu charges are removed.",
+        "itemId": "itm_b2_b214_boundary",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_have_to_insist"
+      },
+      {
+        "text": "I have to insist that the undisclosed thirty-pound fee is removed.",
+        "itemId": "itm_b2_b214_v1_cake",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_have_to_insist"
+      },
+      {
+        "text": "With respect",
+        "itemId": "itm_b2_b214_v1_limit",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_respectful_firmness"
+      },
+      {
+        "text": "I have to insist that two complete unused meals are not charged.",
+        "itemId": "itm_b2_b214_v2_concede",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_have_to_insist"
+      },
+      {
+        "text": "I'm willing to pay the administration charge",
+        "itemId": "itm_b2_b214_v2_terms",
+        "classification": "chunk",
+        "chunkLabel": "A bounded concession recycled from B2.13, not a new target here."
+      },
+      {
+        "text": "With respect, I still believe it fell below the service we were promised.",
+        "itemId": "itm_b2_b214_v3_disagree",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_respectful_firmness"
+      },
+      {
+        "text": "Let's agree to disagree about the standard of service.",
+        "itemId": "itm_b2_b214_v3_close",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_respectful_firmness"
+      },
+      {
+        "text": "I have to insist only that the optional service charge is removed",
+        "itemId": "itm_b2_b214_v3_close",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_have_to_insist"
+      },
+      {
+        "text": "I would have decided differently if the fee had been disclosed.",
+        "itemId": "itm_b2_b214_v1_limit",
+        "classification": "chunk",
+        "chunkLabel": "Modal-perfect counterfactual kept as a functional negotiation chunk."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_people_03",
+    "phrases": [
+      {
+        "text": "I finally watched The Last Station after reading the novel. The adaptation felt very different to me. What did you make of it?",
+        "classification": "chunk",
+        "chunkLabel": "Authored cultural-discussion opener uses the frozen invitation phrase.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I found The Last Station quite visually impressive, but the middle felt rushed",
+        "itemId": "itm_b2_b215_open",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_qualified_opinion"
+      },
+      {
+        "text": "Compared with the book, the film is more energetic",
+        "itemId": "itm_b2_b215_compare",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_compared_viewpoints"
+      },
+      {
+        "text": "I found the ending quite powerful as an image.",
+        "itemId": "itm_b2_b215_ending",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_qualified_opinion"
+      },
+      {
+        "text": "compared with the novel's ambiguity",
+        "itemId": "itm_b2_b215_ending",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_compared_viewpoints"
+      },
+      {
+        "text": "I'd describe it as a strong adaptation rather than a complete one",
+        "itemId": "itm_b2_b215_recommend",
+        "classification": "chunk",
+        "chunkLabel": "Qualified recommendation chunk."
+      },
+      {
+        "text": "I found the first season quite uneven",
+        "itemId": "itm_b2_b215_v1_series",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_qualified_opinion"
+      },
+      {
+        "text": "Compared with a two-hour film, the series can show why loyalties change",
+        "itemId": "itm_b2_b215_v1_depth",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_compared_viewpoints"
+      },
+      {
+        "text": "I found it quite forced.",
+        "itemId": "itm_b2_b215_v2_opposite",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_qualified_opinion"
+      },
+      {
+        "text": "Compared with a neat confession",
+        "itemId": "itm_b2_b215_v2_hold",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_compared_viewpoints"
+      },
+      {
+        "text": "Compared with the director's earlier film, this one is less visually playful",
+        "itemId": "itm_b2_b215_v3_creator",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_compared_viewpoints"
+      },
+      {
+        "text": "I found the quieter style quite effective",
+        "itemId": "itm_b2_b215_v3_creator",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_qualified_opinion"
+      },
+      {
+        "text": "compared with the earlier work, some scenes feel less distinctive",
+        "itemId": "itm_b2_b215_v3_judge",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_compared_viewpoints"
+      },
+      {
+        "text": "uncertainty would have matched the character's earlier choices more honestly",
+        "itemId": "itm_b2_b215_v2_hold",
+        "classification": "chunk",
+        "chunkLabel": "Modal-perfect literary interpretation kept lexical; comparison remains the target."
+      }
+    ]
   }
 ]

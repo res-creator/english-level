@@ -106,9 +106,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b2_work_03` | Договориться о новом дедлайне | Work & Study | Daniel | **done** | 3 — budget/scope; phone read-back; initial refusal and staged compromise | targets: `gr_b2_would_possible_deadline`, `gr_b2_realistically_estimate`; overpromise/read-back frames are chunks | Gate A/B/C PASS; Far B1.12/B2.9; prerequisites B1.12/B2.9 |
 | `sit_b2_work_04` | Дать сложную обратную связь | Work & Study | Daniel | **done** | 3 — communication style; defensive response; positive with one caveat | targets: `gr_b2_might_worth_feedback`, `gr_b2_one_thing_suggest`; positive open/close frames are chunks | Gate A/B/C PASS; Near B2.9; prerequisite B2.9 |
 | `sit_b2_social_01` | Уладить недопонимание с другом | Social Life & Leisure | Alex | **done** | 3 — schedule ambiguity; Alex remains upset; learner owns their share | targets: `gr_b2_what_meant_was`, `gr_b2_didnt_mean_to`; repair/conditional frames are chunks | Gate A/B/C PASS; Far B1.16; prerequisite B1.16 |
-| `sit_b2_problems_01` | Сложные переговоры о возврате денег | Problems & Solutions | Emma | planned | 3 | I'm willing to | |
-| `sit_b2_problems_02` | Отстоять свою позицию в споре | Problems & Solutions | Leo | planned | 3 | I have to insist | capstone |
-| `sit_b2_people_03` (B2.15) | Обсудить фильм или книгу глубже | People & Connections | Alex | planned | 3 | comparing-viewpoints language | new in V2 |
+| `sit_b2_problems_01` | Сложные переговоры о возврате денег | Problems & Solutions | Emma | **done** | 3 — cancelled cleaning service; store credit with collection/expiry constraints; two failed resolution attempts | targets: `gr_b2_willing_compromise`, `gr_b2_solution_works_both`; bounded settlement frames are chunks | Gate A/B/C PASS; Near B1.17/B2.3; evidence → risk → mutual solution → confirmed settlement |
+| `sit_b2_problems_02` | Отстоять свою позицию в споре | Problems & Solutions | Leo | **done** | 3 — undisclosed outside-cake fee with same Leo/restaurant; concede late confirmation while holding main point; agree to disagree with a bounded outcome | targets: `gr_b2_have_to_insist`, `gr_b2_respectful_firmness`; concession/evidence frames are chunks | Gate A/B/C PASS; Near B2.9/B2.13, Far B1.18; capstone; frozen V2 changed only in B2.14-v1 to resolve the NPC/scene contradiction |
+| `sit_b2_people_03` (B2.15) | Обсудить фильм или книгу глубже | People & Connections | Alex | **done** | 3 — TV-series pacing/depth; Alex holds the opposite view; compare an earlier work by the same director | targets: `gr_b2_compared_viewpoints`, `gr_b2_qualified_opinion`; evaluation/recommendation frames are chunks | Gate A/B/C PASS; Far B1.3; connected evaluation → comparison → disagreement → qualified recommendation |
 | `sit_b2_work_05` (B2.16) | Обсудить новую технологию на работе | Work & Study | Daniel | planned | 3 | speculation modals | new in V2 |
 | `sit_b2_people_04` (B2.17) | Предположить, почему что-то произошло | People & Connections | Alex | planned | 3 | **I wonder if/whether** (real new target) | new in V2 |
 | `sit_b2_social_02` (B2.18) | Свободный разговор без определённой темы | Social Life & Leisure | Alex | planned | 3 | **discourse markers** (real new target) | new in V2 |
@@ -259,6 +259,12 @@ British Council B2 speaking, Giving advice и Dealing with a problem испол�
 
 Gate A/B/C PASS. Grammar lint **0/0** across 59 worksheet situations; targeted **72/72**, scene/opener **18/18**, full suite **415/415** (API 325, web 84, shared 6), API/web typechecks PASS, seed idempotency/references/contiguity PASS. Chromium: B2.10–B2.12 Mission 6/6, 100% `can_do`; B2.1 FAIL 0/5 `learning`; 564 snapshots, 60 Batch 4 screenshots. See [B2 Batch 4 production QA](docs/B2_BATCH4_PRODUCTION_QA.md).
 
+## B2 Batch 5 reference and QA record
+
+Перед authoring использованы British Council B2 speaking, Challenging someone's ideas и Dealing with a problem для последовательности acknowledgement → evidence → polite resistance → bounded outcome; Cambridge B2 interactive communication — для linked contributions, comparison, justification и negotiated decisions; ELLLO B2 material — для conversational pacing. Все Speak in English dialogues оригинальные. Frozen V2 изменён только в строке B2.14-v1: variation сохраняет Leo и restaurant scene, а новый предмет спора — нераскрытый сбор за принесённый торт.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 62 worksheet situations. Targeted API/content/course/engine **73/73**, scene/opener **19/19**, full suite **417/417** (API 326, web 85, shared 6), API/web typechecks PASS; seed idempotency, references and contiguity PASS. Chromium прошёл все 15 authored B2 situations: B2.13–B2.15 Mission PASS / `can_do`, отдельный B2.1 FAIL / `learning`; 699 transcript snapshots и 60 Batch 5 screenshots. B2 tracker: **15/22 done**, 7 planned. See [B2 Batch 5 production QA](docs/B2_BATCH5_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
@@ -266,8 +272,8 @@ Gate A/B/C PASS. Grammar lint **0/0** across 59 worksheet situations; targeted *
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
 | B1 | 19 | 19 | 0 | 0 |
-| B2 | 22 | 12 | 10 | 0 |
-| **Total** | **69** | **59** | **10** | **0** |
+| B2 | 22 | 15 | 7 | 0 |
+| **Total** | **69** | **62** | **7** | **0** |
 
 ## A2 level freeze
 

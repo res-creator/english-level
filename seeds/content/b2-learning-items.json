@@ -2497,5 +2497,635 @@
       }
     ],
     "npcReplyCorrect": "Thank you. Meeting me there fixes today, and messaging everyone directly will prevent it next time."
+  },
+  {
+    "id": "itm_b2_b213_problem",
+    "itemType": "functional_phrase",
+    "lemma": "b213 problem",
+    "displayForm": "The tablet battery now lasts less than an hour, although I bought it three weeks ago. A repair would leave me without the device I need for work.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Батарея планшета теперь работает меньше часа, хотя я купил его три недели назад. Ремонт оставит меня без устройства для работы.",
+      "usageNote": "Establishes evidence and impact before negotiating."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_problem_01",
+        "text": "The tablet battery now lasts less than an hour, although I bought it three weeks ago. A repair would leave me without the device I need for work.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can confirm the battery fault. After fourteen days our standard policy is a repair, which normally takes five working days."
+  },
+  {
+    "id": "itm_b2_b213_mutual",
+    "itemType": "functional_phrase",
+    "lemma": "b213 mutual",
+    "displayForm": "Let's see if we can find a solution that works for both of us. I'm willing to let a technician verify the fault today, but I cannot manage a week without a device.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Давайте найдём решение, которое подойдёт нам обоим. Я готов сегодня дать технику проверить неисправность, но не могу неделю быть без устройства.",
+      "usageNote": "Offers cooperation with a clear boundary."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_mutual_01",
+        "text": "Let's see if we can find a solution that works for both of us. I'm willing to let a technician verify the fault today, but I cannot manage a week without a device.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "If the fault is confirmed, I can offer an immediate replacement of the same model instead of sending yours away."
+  },
+  {
+    "id": "itm_b2_b213_risk",
+    "itemType": "functional_phrase",
+    "lemma": "b213 risk",
+    "displayForm": "The replacement helps with timing, but this model has several recent battery complaints. In that case, I'm willing to accept store credit if it covers the full price and lets me choose a different model.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Замена решает проблему времени, но на эту модель есть жалобы. Я готов принять кредит магазина на полную сумму для другой модели.",
+      "usageNote": "Evaluates risk and introduces a bounded third option."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_risk_01",
+        "text": "The replacement helps with timing, but this model has several recent battery complaints. In that case, I'm willing to accept store credit if it covers the full price and lets me choose a different model.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can issue full-value credit today. It normally expires in six months, and a different model may cost more."
+  },
+  {
+    "id": "itm_b2_b213_settle",
+    "itemType": "functional_phrase",
+    "lemma": "b213 settle",
+    "displayForm": "A six-month credit works if I can use it online as well as here. I'll pay any difference for the model I choose; that feels like a solution that works for both of us.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Кредит на шесть месяцев подходит, если им можно воспользоваться онлайн и здесь. Разницу за другую модель я оплачу.",
+      "usageNote": "Closes with reciprocal responsibilities."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_settle_01",
+        "text": "A six-month credit works if I can use it online as well as here. I'll pay any difference for the model I choose; that feels like a solution that works for both of us.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Agreed. The credit will cover the original price, work online and in store, and remain valid for six months."
+  },
+  {
+    "id": "itm_b2_b213_v1_service",
+    "itemType": "functional_phrase",
+    "lemma": "b213 v1 service",
+    "displayForm": "The cleaning service cancelled twice after taking my deposit. I'm willing to accept the documented travel fee, but I'd like the remaining deposit refunded rather than another booking.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Сервис уборки дважды отменил визит после получения депозита. Я готов принять подтверждённую дорожную плату, но остальную сумму хочу вернуть.",
+      "usageNote": "Transfers the negotiation to a failed service."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_v1_service_01",
+        "text": "The cleaning service cancelled twice after taking my deposit. I'm willing to accept the documented travel fee, but I'd like the remaining deposit refunded rather than another booking.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We can offer priority rebooking next week, but refunds normally deduct both travel visits."
+  },
+  {
+    "id": "itm_b2_b213_v1_balance",
+    "itemType": "functional_phrase",
+    "lemma": "b213 v1 balance",
+    "displayForm": "No cleaner reached my address on either date, so charging two visits would not work for me. Could we keep one reasonable administration fee and refund the rest as a solution that works for both of us?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Ни в одну дату уборщик не приехал. Можно удержать одну разумную административную плату и вернуть остальное?",
+      "usageNote": "Counters with a proportionate shared solution."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_v1_balance_01",
+        "text": "No cleaner reached my address on either date, so charging two visits would not work for me. Could we keep one reasonable administration fee and refund the rest as a solution that works for both of us?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is fair. I will retain one small administration fee and refund the rest today."
+  },
+  {
+    "id": "itm_b2_b213_v2_credit",
+    "itemType": "functional_phrase",
+    "lemma": "b213 v2 credit",
+    "displayForm": "I understand cash refunds take longer. I'm willing to accept store credit instead if it is for the full headphone price and has no short expiry date.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Я понимаю, что денежный возврат дольше. Я готов принять кредит магазина на полную стоимость без короткого срока действия.",
+      "usageNote": "Evaluates store credit as a genuine third option."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_v2_credit_01",
+        "text": "I understand cash refunds take longer. I'm willing to accept store credit instead if it is for the full headphone price and has no short expiry date.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can provide full credit immediately, valid for twelve months on any audio product."
+  },
+  {
+    "id": "itm_b2_b213_v2_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "b213 v2 confirm",
+    "displayForm": "In that case, the twelve-month credit works for me, provided the faulty headphones are collected at no extra cost.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "В таком случае кредит на двенадцать месяцев подходит при бесплатном возврате неисправных наушников.",
+      "usageNote": "Adds a necessary practical condition before agreement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_v2_confirm_01",
+        "text": "In that case, the twelve-month credit works for me, provided the faulty headphones are collected at no extra cost.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Agreed. Collection is free, and the credit will activate when the courier scans the return."
+  },
+  {
+    "id": "itm_b2_b213_v3_history",
+    "itemType": "functional_phrase",
+    "lemma": "b213 v3 history",
+    "displayForm": "I've already reported the damaged desk twice: the first replacement had the same crack, and yesterday's collection never arrived. I'm willing to arrange one final collection, but I now need a refund rather than a third desk.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Я уже дважды сообщал о повреждённом столе: замена была с такой же трещиной, а вчера за товаром не приехали. Я готов на последний вывоз, но теперь нужен возврат.",
+      "usageNote": "Uses two failed attempts as relevant continuity."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_v3_history_01",
+        "text": "I've already reported the damaged desk twice: the first replacement had the same crack, and yesterday's collection never arrived. I'm willing to arrange one final collection, but I now need a refund rather than a third desk.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I see both case notes. I can authorise a refund after collection, but the next courier slot is Friday."
+  },
+  {
+    "id": "itm_b2_b213_v3_resolution",
+    "itemType": "functional_phrase",
+    "lemma": "b213 v3 resolution",
+    "displayForm": "Friday is acceptable if you confirm the collection window and refund date today. That avoids another missed visit and gives both sides a clear final step.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "refund negotiation",
+    "ru": {
+      "translation": "Пятница подходит, если сегодня подтвердят окно вывоза и дату возврата. Так у обеих сторон будет ясный финальный шаг.",
+      "usageNote": "Turns history into safeguards for the final resolution."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b213_v3_resolution_01",
+        "text": "Friday is acceptable if you confirm the collection window and refund date today. That avoids another missed visit and gives both sides a clear final step.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I will confirm the two-hour window now, and the refund will be released within one day of collection."
+  },
+  {
+    "id": "itm_b2_b214_position",
+    "itemType": "functional_phrase",
+    "lemma": "b214 position",
+    "displayForm": "I hear you, but I have to insist that the bill reflect the six guests confirmed in writing. We should not be charged for two meals that were neither ordered nor served.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "Я вас слышу, но должен настаивать, чтобы счёт отражал шесть гостей, подтверждённых письменно. Мы не должны платить за два незаказанных блюда.",
+      "usageNote": "Acknowledges Leo before stating the essential position and evidence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_position_01",
+        "text": "I hear you, but I have to insist that the bill reflect the six guests confirmed in writing. We should not be charged for two meals that were neither ordered nor served.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The kitchen prepared ingredients for eight because the original booking was for eight. Reducing the number created a cost we could not recover."
+  },
+  {
+    "id": "itm_b2_b214_evidence",
+    "itemType": "functional_phrase",
+    "lemma": "b214 evidence",
+    "displayForm": "With respect, your confirmation says the final number could change until noon, and we changed it at ten. I still believe the restaurant should follow that written condition.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "При всём уважении, в подтверждении сказано, что число можно изменить до полудня, и мы изменили его в десять. Ресторан должен соблюдать это условие.",
+      "usageNote": "Answers the counterargument without personal attack."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_evidence_01",
+        "text": "With respect, your confirmation says the final number could change until noon, and we changed it at ten. I still believe the restaurant should follow that written condition.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I accept that the message was on time. However, the supplier order had already been placed, so I cannot remove every related cost."
+  },
+  {
+    "id": "itm_b2_b214_boundary",
+    "itemType": "functional_phrase",
+    "lemma": "b214 boundary",
+    "displayForm": "I'm willing to discuss a small ingredient cost if you show it separately, but I have to insist that the two full set-menu charges are removed.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "Я готов обсудить небольшую стоимость ингредиентов, если она указана отдельно, но настаиваю на снятии двух полных меню.",
+      "usageNote": "Offers a bounded concession while protecting the main point."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_boundary_01",
+        "text": "I'm willing to discuss a small ingredient cost if you show it separately, but I have to insist that the two full set-menu charges are removed.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can remove the two meals and add a ten-pound preparation charge with an explanation on the bill."
+  },
+  {
+    "id": "itm_b2_b214_resolve",
+    "itemType": "functional_phrase",
+    "lemma": "b214 resolve",
+    "displayForm": "That is a reasonable distinction. Please remove the two meals and show the ten-pound preparation charge clearly; then we can settle the bill now.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "Это разумное различие. Уберите два блюда и отдельно укажите десять фунтов за подготовку; тогда мы оплатим счёт.",
+      "usageNote": "Accepts a transparent resolution without abandoning the core position."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_resolve_01",
+        "text": "That is a reasonable distinction. Please remove the two meals and show the ten-pound preparation charge clearly; then we can settle the bill now.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Agreed. I will bring the corrected bill and attach the written explanation."
+  },
+  {
+    "id": "itm_b2_b214_v1_cake",
+    "itemType": "functional_phrase",
+    "lemma": "b214 v1 cake",
+    "displayForm": "I hear that outside cakes create extra work, but I have to insist that the undisclosed thirty-pound fee is removed. Your booking email says outside cakes are allowed and mentions no charge.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "Я понимаю, что принесённый торт создаёт работу, но настаиваю на снятии неуказанной платы в тридцать фунтов. В письме разрешён торт без упоминания сбора.",
+      "usageNote": "Transfers firmness to a new restaurant fee with Leo retained."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_v1_cake_01",
+        "text": "I hear that outside cakes create extra work, but I have to insist that the undisclosed thirty-pound fee is removed. Your booking email says outside cakes are allowed and mentions no charge.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We still provide plates, storage and cleanup. Those services have a real cost even if the email omitted the fee."
+  },
+  {
+    "id": "itm_b2_b214_v1_limit",
+    "itemType": "functional_phrase",
+    "lemma": "b214 v1 limit",
+    "displayForm": "With respect, I would have decided differently if the fee had been disclosed. I'm willing to pay ten pounds for the actual cleanup, but not a charge introduced after the meal.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "При всём уважении, при известной плате я решил бы иначе. Я готов заплатить десять фунтов за уборку, но не сбор, введённый после ужина.",
+      "usageNote": "Uses the new constraint to define a proportionate concession."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_v1_limit_01",
+        "text": "With respect, I would have decided differently if the fee had been disclosed. I'm willing to pay ten pounds for the actual cleanup, but not a charge introduced after the meal.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can accept ten pounds for the service used and remove the undisclosed balance."
+  },
+  {
+    "id": "itm_b2_b214_v2_concede",
+    "itemType": "functional_phrase",
+    "lemma": "b214 v2 concede",
+    "displayForm": "I accept that our final guest count arrived thirty minutes late, and a small administration charge is reasonable. However, I have to insist that two complete unused meals are not charged.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "Я признаю, что итоговое число гостей пришло на тридцать минут позже, и небольшая административная плата разумна. Но настаиваю, чтобы два неиспользованных меню не оплачивались.",
+      "usageNote": "Concedes the minor procedural point while holding the main one."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_v2_concede_01",
+        "text": "I accept that our final guest count arrived thirty minutes late, and a small administration charge is reasonable. However, I have to insist that two complete unused meals are not charged.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The late notice did create work, but I agree it is different from serving two meals."
+  },
+  {
+    "id": "itm_b2_b214_v2_terms",
+    "itemType": "functional_phrase",
+    "lemma": "b214 v2 terms",
+    "displayForm": "Then let's separate those issues: I'm willing to pay the administration charge, provided the two meal charges are removed and the reason is shown clearly.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "Тогда разделим вопросы: я готов оплатить административный сбор при снятии двух блюд и ясном объяснении.",
+      "usageNote": "Converts nuance into transparent settlement terms."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_v2_terms_01",
+        "text": "Then let's separate those issues: I'm willing to pay the administration charge, provided the two meal charges are removed and the reason is shown clearly.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is acceptable. I will itemise the administration charge and remove both meals."
+  },
+  {
+    "id": "itm_b2_b214_v3_disagree",
+    "itemType": "functional_phrase",
+    "lemma": "b214 v3 disagree",
+    "displayForm": "I hear your view that the forty-minute delay was acceptable on a busy night. With respect, I still believe it fell below the service we were promised.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "Я слышу вашу позицию, что сорок минут ожидания допустимы в загруженный вечер. При всём уважении, я по-прежнему считаю, что сервис был хуже обещанного.",
+      "usageNote": "Maintains a respectful evaluative disagreement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_v3_disagree_01",
+        "text": "I hear your view that the forty-minute delay was acceptable on a busy night. With respect, I still believe it fell below the service we were promised.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We may not agree about the delay, and I cannot change the menu prices after the food was served."
+  },
+  {
+    "id": "itm_b2_b214_v3_close",
+    "itemType": "functional_phrase",
+    "lemma": "b214 v3 close",
+    "displayForm": "Let's agree to disagree about the standard of service. I have to insist only that the optional service charge is removed; I'll pay the full food and drink total now.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful firmness",
+    "ru": {
+      "translation": "Давайте останемся при своих взглядах на качество сервиса. Я настаиваю лишь на снятии добровольного сервисного сбора и оплачу еду и напитки.",
+      "usageNote": "Ends without forced agreement while resolving the actionable point."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b214_v3_close_01",
+        "text": "Let's agree to disagree about the standard of service. I have to insist only that the optional service charge is removed; I'll pay the full food and drink total now.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We can do that. I will remove the optional charge, and we will leave our different views on the delay on record."
+  },
+  {
+    "id": "itm_b2_b215_open",
+    "itemType": "functional_phrase",
+    "lemma": "b215 open",
+    "displayForm": "I found The Last Station quite visually impressive, but the middle felt rushed because the film compressed several important choices into one scene.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "«Последняя станция» показалась мне визуально впечатляющей, но середина была скомкана из-за объединения важных решений в одну сцену.",
+      "usageNote": "Gives a qualified evaluation with evidence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_open_01",
+        "text": "I found The Last Station quite visually impressive, but the middle felt rushed because the film compressed several important choices into one scene.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I liked the faster middle. The book spends much longer on the sister's doubts, and I thought the film gained energy by cutting them."
+  },
+  {
+    "id": "itm_b2_b215_compare",
+    "itemType": "functional_phrase",
+    "lemma": "b215 compare",
+    "displayForm": "Compared with the book, the film is more energetic, but the sister's final decision feels less convincing because we see fewer of her doubts.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "По сравнению с книгой фильм динамичнее, но решение сестры менее убедительно, потому что мы видим меньше сомнений.",
+      "usageNote": "Compares effect rather than listing plot differences."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_compare_01",
+        "text": "Compared with the book, the film is more energetic, but the sister's final decision feels less convincing because we see fewer of her doubts.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is fair. I cared more about the central journey, so I did not miss all of her internal conflict. What did you make of the ending?"
+  },
+  {
+    "id": "itm_b2_b215_ending",
+    "itemType": "functional_phrase",
+    "lemma": "b215 ending",
+    "displayForm": "I found the ending quite powerful as an image. However, compared with the novel's ambiguity, it explains the message too neatly and gives the audience less to interpret.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "Финал показался мне сильным визуально. Однако по сравнению с неоднозначностью романа он слишком аккуратно объясняет посыл.",
+      "usageNote": "Evaluates a creative trade-off and responds to Alex."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_ending_01",
+        "text": "I found the ending quite powerful as an image. However, compared with the novel's ambiguity, it explains the message too neatly and gives the audience less to interpret.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I preferred that clarity, although I can see why the open ending suits the book. Would you still recommend the film?"
+  },
+  {
+    "id": "itm_b2_b215_recommend",
+    "itemType": "functional_phrase",
+    "lemma": "b215 recommend",
+    "displayForm": "Yes, especially to someone who has not read the novel. I'd describe it as a strong adaptation rather than a complete one: it captures the atmosphere, but not every viewpoint.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "Да, особенно тому, кто не читал роман. Это сильная, но не полная адаптация: она передаёт атмосферу, но не все точки зрения.",
+      "usageNote": "Ends with a qualified recommendation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_recommend_01",
+        "text": "Yes, especially to someone who has not read the novel. I'd describe it as a strong adaptation rather than a complete one: it captures the atmosphere, but not every viewpoint.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That distinction makes sense. I would recommend the film for its momentum and the book for its fuller character perspective."
+  },
+  {
+    "id": "itm_b2_b215_v1_series",
+    "itemType": "functional_phrase",
+    "lemma": "b215 v1 series",
+    "displayForm": "I found the first season quite uneven, but the slower episodes gave the supporting characters room to change rather than simply moving the mystery forward.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "Первый сезон показался мне неровным, но медленные серии дали второстепенным героям возможность измениться.",
+      "usageNote": "Transfers evaluation to serial storytelling."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_v1_series_01",
+        "text": "I found the first season quite uneven, but the slower episodes gave the supporting characters room to change rather than simply moving the mystery forward.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I thought those episodes interrupted the suspense. Did the character development justify the slower pace for you?"
+  },
+  {
+    "id": "itm_b2_b215_v1_depth",
+    "itemType": "functional_phrase",
+    "lemma": "b215 v1 depth",
+    "displayForm": "Mostly, yes. Compared with a two-hour film, the series can show why loyalties change, although two episodes repeated the same conflict.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "В основном да. По сравнению с двухчасовым фильмом сериал показывает причины изменений, хотя две серии повторяют конфликт.",
+      "usageNote": "Weighs the medium's advantage against repetition."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_v1_depth_01",
+        "text": "Mostly, yes. Compared with a two-hour film, the series can show why loyalties change, although two episodes repeated the same conflict.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is a balanced criticism. The extra time deepened the characters, but the structure could have been tighter."
+  },
+  {
+    "id": "itm_b2_b215_v2_opposite",
+    "itemType": "functional_phrase",
+    "lemma": "b215 v2 opposite",
+    "displayForm": "I know you found the ending satisfying, but I found it quite forced. The sudden confession solves a conflict that the film had treated as morally complicated.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "Я знаю, что финал тебя удовлетворил, но мне он показался натянутым. Внезапное признание решает морально сложный конфликт.",
+      "usageNote": "Maintains an opposite opinion with a reason."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_v2_opposite_01",
+        "text": "I know you found the ending satisfying, but I found it quite forced. The sudden confession solves a conflict that the film had treated as morally complicated.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "For me, the confession completed the character's arc. Without it, the ending might have felt unfinished."
+  },
+  {
+    "id": "itm_b2_b215_v2_hold",
+    "itemType": "functional_phrase",
+    "lemma": "b215 v2 hold",
+    "displayForm": "I see that structure, but I still prefer the unresolved version. Compared with a neat confession, uncertainty would have matched the character's earlier choices more honestly.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "Я понимаю структуру, но предпочитаю нерешённый вариант. По сравнению с аккуратным признанием неопределённость честнее соответствовала прежним решениям героя.",
+      "usageNote": "Responds directly without collapsing disagreement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_v2_hold_01",
+        "text": "I see that structure, but I still prefer the unresolved version. Compared with a neat confession, uncertainty would have matched the character's earlier choices more honestly.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We value different kinds of resolution, then. Your reading is consistent even though I prefer the clearer ending."
+  },
+  {
+    "id": "itm_b2_b215_v3_creator",
+    "itemType": "functional_phrase",
+    "lemma": "b215 v3 creator",
+    "displayForm": "Compared with the director's earlier film, this one is less visually playful but more emotionally controlled. I found the quieter style quite effective for the family story.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "По сравнению с ранним фильмом режиссёра этот менее визуально игривый, но эмоционально сдержаннее. Тихий стиль подходит семейной истории.",
+      "usageNote": "Adds creator-level comparison as evidence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_v3_creator_01",
+        "text": "Compared with the director's earlier film, this one is less visually playful but more emotionally controlled. I found the quieter style quite effective for the family story.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The earlier film took more risks with colour and editing. Do you think this restraint shows growth or caution?"
+  },
+  {
+    "id": "itm_b2_b215_v3_judge",
+    "itemType": "functional_phrase",
+    "lemma": "b215 v3 judge",
+    "displayForm": "A bit of both. The restraint shows greater confidence with actors, but compared with the earlier work, some scenes feel less distinctive. I would call it a deeper film, not necessarily a more original one.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "deeper work discussion",
+    "ru": {
+      "translation": "И то и другое. Сдержанность показывает уверенность в работе с актёрами, но сцены менее самобытны. Фильм глубже, но не обязательно оригинальнее.",
+      "usageNote": "Makes a nuanced comparative judgement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b215_v3_judge_01",
+        "text": "A bit of both. The restraint shows greater confidence with actors, but compared with the earlier work, some scenes feel less distinctive. I would call it a deeper film, not necessarily a more original one.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is a useful distinction: stronger emotional direction, but fewer memorable formal choices."
   }
 ]

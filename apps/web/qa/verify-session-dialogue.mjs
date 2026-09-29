@@ -47,9 +47,9 @@ const defaultEpisodes =
     : QA_LEVEL === "B1"
       ? ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_health_01", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01", "sit_b1_social_02", "sit_b1_problems_01", "sit_b1_problems_02"]
       : QA_LEVEL === "B2"
-        ? ["sit_b2_people_01", "sit_b2_restaurant_01", "sit_b2_restaurant_02", "sit_b2_travel_01", "sit_b2_travel_02", "sit_b2_daily_01", "sit_b2_shop_01", "sit_b2_work_01", "sit_b2_work_02", "sit_b2_work_03", "sit_b2_work_04", "sit_b2_social_01"]
+        ? ["sit_b2_people_01", "sit_b2_restaurant_01", "sit_b2_restaurant_02", "sit_b2_travel_01", "sit_b2_travel_02", "sit_b2_daily_01", "sit_b2_shop_01", "sit_b2_work_01", "sit_b2_work_02", "sit_b2_work_03", "sit_b2_work_04", "sit_b2_social_01", "sit_b2_problems_01", "sit_b2_problems_02", "sit_b2_people_03"]
         : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
-const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 19 : QA_LEVEL === "B2" ? 12 : 11;
+const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 19 : QA_LEVEL === "B2" ? 15 : 11;
 const expectedChapterProgress =
   QA_LEVEL === "A2"
     ? [
@@ -66,7 +66,7 @@ const expectedChapterProgress =
     : QA_LEVEL === "B1"
       ? ["0 из 2", "0 из 1", "0 из 2", "0 из 2", "0 из 2", "0 из 3", "0 из 3", "0 из 2", "0 из 2"]
       : QA_LEVEL === "B2"
-        ? ["0 из 1", "0 из 2", "0 из 2", "0 из 1", "0 из 1", "0 из 4", "0 из 1"]
+        ? ["0 из 1", "0 из 2", "0 из 2", "0 из 1", "0 из 1", "0 из 4", "0 из 1", "0 из 2", "0 из 1"]
         : ["0 из 11"];
 const completedChapterProgress =
   QA_LEVEL === "A2"
@@ -84,7 +84,7 @@ const completedChapterProgress =
     : QA_LEVEL === "B1"
       ? ["2 из 2", "1 из 1", "2 из 2", "2 из 2", "2 из 2", "3 из 3", "3 из 3", "2 из 2", "2 из 2"]
       : QA_LEVEL === "B2"
-        ? ["1 из 1", "2 из 2", "2 из 2", "1 из 1", "1 из 1", "4 из 4", "1 из 1"]
+        ? ["1 из 1", "2 из 2", "2 из 2", "1 из 1", "1 из 1", "4 из 4", "1 из 1", "2 из 2", "1 из 1"]
         : ["11 из 11"];
 const episodes = process.argv.slice(2).length
   ? process.argv.slice(2)
@@ -449,7 +449,10 @@ async function run(failMission) {
                 stored.targetId.startsWith("itm_b2_b29_") ||
                 stored.targetId.startsWith("itm_b2_b210_") ||
                 stored.targetId.startsWith("itm_b2_b211_") ||
-                stored.targetId.startsWith("itm_b2_b212_"))
+                stored.targetId.startsWith("itm_b2_b212_") ||
+                stored.targetId.startsWith("itm_b2_b213_") ||
+                stored.targetId.startsWith("itm_b2_b214_") ||
+                stored.targetId.startsWith("itm_b2_b215_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,

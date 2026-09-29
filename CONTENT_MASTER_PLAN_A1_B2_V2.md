@@ -357,7 +357,7 @@ Format: **Core ID → Variation** | what concretely changes | transfer skill tes
 | B2.13 | v1 | Refund dispute is about a service, not a product | Same pattern, new domain |
 | B2.13 | v2 | Emma proposes store credit instead of cash | Same pattern, adds a third option |
 | B2.13 | v3 | Two prior failed resolution attempts are referenced | Same pattern, adds narrative continuity |
-| B2.14 | v1 | Dispute is with Emma, not Leo | Same pattern, new NPC/context |
+| B2.14 | v1 | Same restaurant and Leo; dispute is about an undisclosed outside-cake fee, not the core minimum-guest charge | Same polite-firmness pattern, new problem and constraint; same NPC/scene per §1 |
 | B2.14 | v2 | Learner must concede one minor point while holding the main one | Same pattern, adds nuance |
 | B2.14 | v3 | Resolution is "agree to disagree," not a win | Same pattern, different resolution shape |
 | B2.15 | v1 | Topic is a TV series, not a film | Same pattern, new medium |
