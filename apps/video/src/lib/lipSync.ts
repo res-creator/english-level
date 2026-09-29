@@ -21,18 +21,16 @@ const rawAmplitudeAt = (audioData: AudioData, fps: number, frame: number): numbe
 };
 
 /**
- * Precomputes the mouth state for every frame of the clip in one
- * deterministic pass. This must be a pure function of `audioData` (not
- * sequential React state) because Remotion renders frames across parallel
- * workers -- there is no guarantee frame N-1 rendered before frame N, so
- * any hysteresis/hold-time logic has to look at the whole track at once
- * rather than "the previously rendered frame's state".
+ * The smoothing + hysteresis + minimum-hold state machine, generalized
+ * over any per-frame amplitude array (0-1 scale). Real audio (below) is
+ * one source; a synthetic/authored amplitude curve for a proof-of-concept
+ * scene without recorded voiceover yet is another valid one -- both need
+ * the exact same anti-flicker treatment, so this is the single place that
+ * logic lives.
  */
-export const computeMouthStates = (
-  audioData: AudioData,
-  fps: number,
-  durationInFrames: number,
-): MouthState[] => {
+export const statesFromAmplitudes = (rawAmplitudes: number[]): MouthState[] => {
+  const durationInFrames = rawAmplitudes.length;
+
   // Moving-average amplitude removes per-sample jitter before we even get
   // to the state machine, so a single loud/quiet frame can't flip the mouth.
   const smoothed: number[] = new Array(durationInFrames);
@@ -42,7 +40,7 @@ export const computeMouthStates = (
     for (let d = -SMOOTH_WINDOW_FRAMES; d <= SMOOTH_WINDOW_FRAMES; d++) {
       const ff = f + d;
       if (ff < 0 || ff >= durationInFrames) continue;
-      sum += rawAmplitudeAt(audioData, fps, ff);
+      sum += rawAmplitudes[ff];
       count++;
     }
     smoothed[f] = sum / count;
@@ -77,4 +75,24 @@ export const computeMouthStates = (
   }
 
   return states;
+};
+
+/**
+ * Precomputes the mouth state for every frame of the clip in one
+ * deterministic pass. This must be a pure function of `audioData` (not
+ * sequential React state) because Remotion renders frames across parallel
+ * workers -- there is no guarantee frame N-1 rendered before frame N, so
+ * any hysteresis/hold-time logic has to look at the whole track at once
+ * rather than "the previously rendered frame's state".
+ */
+export const computeMouthStates = (
+  audioData: AudioData,
+  fps: number,
+  durationInFrames: number,
+): MouthState[] => {
+  const raw: number[] = new Array(durationInFrames);
+  for (let f = 0; f < durationInFrames; f++) {
+    raw[f] = rawAmplitudeAt(audioData, fps, f);
+  }
+  return statesFromAmplitudes(raw);
 };
