@@ -105,12 +105,17 @@ test("the published B1 course exposes all nineteen authored situations in frozen
   assert.equal(course.episodesTotal, 19);
 });
 
-test("a level with no seeded content returns an empty course, not an error", async () => {
+test("the published B2 course starts with the first three frozen situations", async () => {
   const { db } = await seeded();
   const b2 = await getCourse(db, "B2", "usr_test");
-  assert.deepEqual(b2.chapters, []);
-  assert.equal(b2.episodesTotal, 0);
-  assert.equal(b2.currentEpisodeId, null);
+  assert.deepEqual(
+    b2.chapters.flatMap((chapter) =>
+      chapter.episodes.map((episode) => episode.id),
+    ),
+    ["sit_b2_people_01", "sit_b2_restaurant_01", "sit_b2_restaurant_02"],
+  );
+  assert.equal(b2.episodesTotal, 3);
+  assert.equal(b2.currentEpisodeId, "sit_b2_people_01");
 });
 
 test("no verified level yet returns an empty course", async () => {

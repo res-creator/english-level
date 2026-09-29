@@ -1,0 +1,20 @@
+[
+  {
+    "id": "mod_b2_people_connections",
+    "levelCode": "B2",
+    "title": "Люди и общение",
+    "slug": "b2-people-connections",
+    "description": "Аргументированно обсуждать неоднозначные темы и учитывать противоположную точку зрения.",
+    "order": 1,
+    "status": "published"
+  },
+  {
+    "id": "mod_b2_restaurant_dining",
+    "levelCode": "B2",
+    "title": "Ресторан и обслуживание",
+    "slug": "b2-restaurant-dining",
+    "description": "Координировать сложный групповой заказ и договариваться о справедливом решении сервисной проблемы.",
+    "order": 2,
+    "status": "published"
+  }
+]

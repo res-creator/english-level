@@ -1,0 +1,353 @@
+[
+  {
+    "id": "li_sit_b2_people_01_01",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_position",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_01_02",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_alternative",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_01_03",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_probe",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_01_04",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_resolution",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_01_05",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_concession_clauses",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_01_06",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_v1_work",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_01_07",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_v1_evidence",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_01_08",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_v2_hold",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_01_09",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_v2_persist",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_01_10",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b21_v3_partial",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_01_11",
+    "lessonId": "sit_b2_people_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b12_softener",
+    "role": "review",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_01",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_collect",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_02",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_update",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_03",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_summary",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_04",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_bill",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_05",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_reported_speech_orders",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_06",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_summarising_order",
+    "role": "target",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_07",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_v1_diet",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_08",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_v1_resolve",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_09",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_v2_change",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_10",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_v2_confirm",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_11",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_v3_split",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_12",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b22_v3_finish",
+    "role": "practice",
+    "order": 12,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_13",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b14_restriction",
+    "role": "review",
+    "order": 13,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_01_14",
+    "lessonId": "sit_b2_restaurant_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b15_wait",
+    "role": "review",
+    "order": 14,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_01",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_evidence",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_02",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_fairness",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_03",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_expect",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_04",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_agree",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_05",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_fair_that",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_06",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_expect_compensation",
+    "role": "target",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_07",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_v1_missing",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_08",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_v1_resolve",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_09",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_v2_partial",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_10",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_v2_counter",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_11",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_v3_history",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_12",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b23_v3_settle",
+    "role": "practice",
+    "order": 12,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_13",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b15_resolution",
+    "role": "review",
+    "order": 13,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_restaurant_02_14",
+    "lessonId": "sit_b2_restaurant_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b118_position",
+    "role": "review",
+    "order": 14,
+    "required": false
+  }
+]

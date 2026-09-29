@@ -1,0 +1,611 @@
+[
+  {
+    "id": "itm_b2_b21_position",
+    "itemType": "functional_phrase",
+    "lemma": "b21 position",
+    "displayForm": "I can see why that sounds attractive. Although fewer cars would make the centre quieter, people who cannot walk far could find it harder to get there.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "viewpoints and public space",
+    "ru": {
+      "translation": "Понимаю, почему это звучит привлекательно. Хотя меньше машин сделало бы центр тише, людям, которые не могут далеко ходить, было бы сложнее туда добраться.",
+      "usageNote": "Acknowledges Alex’s case, introduces a meaningful counterweight, and evidences the concession target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_position_01",
+        "text": "I can see why that sounds attractive. Although fewer cars would make the centre quieter, people who cannot walk far could find it harder to get there.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's the main concern for me too. Still, the current traffic makes the square unpleasant for almost everyone."
+  },
+  {
+    "id": "itm_b2_b21_alternative",
+    "itemType": "functional_phrase",
+    "lemma": "b21 alternative",
+    "displayForm": "That's true. On the other hand, the council could run a frequent shuttle from the car parks, so access would not depend on driving into the centre.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "viewpoints and public space",
+    "ru": {
+      "translation": "Это правда. С другой стороны, город мог бы запустить частый шаттл от парковок, чтобы доступ не зависел от въезда в центр на машине.",
+      "usageNote": "Develops the argument with a practical alternative rather than repeating a position."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_alternative_01",
+        "text": "That's true. On the other hand, the council could run a frequent shuttle from the car parks, so access would not depend on driving into the centre.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A shuttle would help, but it would cost money and might be empty outside the busiest hours."
+  },
+  {
+    "id": "itm_b2_b21_probe",
+    "itemType": "functional_phrase",
+    "lemma": "b21 probe",
+    "displayForm": "Even though the cost matters, a three-month trial would show how many people actually use it. What makes you think a permanent ban is better from the start?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "viewpoints and public space",
+    "ru": {
+      "translation": "Хотя стоимость важна, трёхмесячный пробный период показал бы, сколько людей действительно пользуются шаттлом. Почему ты считаешь, что сразу нужен постоянный запрет?",
+      "usageNote": "Uses concession, evidence-seeking, and a genuine follow-up to test Alex’s stronger claim."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_probe_01",
+        "text": "Even though the cost matters, a three-month trial would show how many people actually use it. What makes you think a permanent ban is better from the start?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I suppose a trial would give us evidence. I worry that drivers would ignore a temporary scheme."
+  },
+  {
+    "id": "itm_b2_b21_resolution",
+    "itemType": "functional_phrase",
+    "lemma": "b21 resolution",
+    "displayForm": "We may not agree on a permanent ban, but we do agree that the square needs less traffic. I'd support a weekend trial if access and enforcement were reviewed after three months.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "viewpoints and public space",
+    "ru": {
+      "translation": "Возможно, мы не согласны насчёт постоянного запрета, но согласны, что площади нужно меньше машин. Я поддержал(а) бы пробный режим по выходным, если через три месяца пересмотрят доступность и соблюдение правил.",
+      "usageNote": "Ends with a qualified position and partial common ground rather than an artificial win."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_resolution_01",
+        "text": "We may not agree on a permanent ban, but we do agree that the square needs less traffic. I'd support a weekend trial if access and enforcement were reviewed after three months.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That seems reasonable. We could judge the idea by the results rather than by our assumptions."
+  },
+  {
+    "id": "itm_b2_b21_v1_work",
+    "itemType": "functional_phrase",
+    "lemma": "b21 v1 work",
+    "displayForm": "Although a shared office would make collaboration easier, removing every quiet room would make focused work much harder. I'd keep two rooms for tasks that need concentration.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace viewpoints",
+    "ru": {
+      "translation": "Хотя общее пространство упростило бы сотрудничество, отказ от всех тихих комнат сильно усложнил бы сосредоточенную работу. Я бы оставил(а) две комнаты для задач, требующих концентрации.",
+      "usageNote": "Transfers concession and reasoning to a workplace register with a new constraint."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_v1_work_01",
+        "text": "Although a shared office would make collaboration easier, removing every quiet room would make focused work much harder. I'd keep two rooms for tasks that need concentration.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The manager says separate rooms waste space when most people are in meetings. Why keep two?"
+  },
+  {
+    "id": "itm_b2_b21_v1_evidence",
+    "itemType": "functional_phrase",
+    "lemma": "b21 v1 evidence",
+    "displayForm": "Even though the rooms are not occupied all day, the team uses them for confidential calls and detailed reports. We could review bookings before removing either one.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace viewpoints",
+    "ru": {
+      "translation": "Хотя комнаты заняты не весь день, команда использует их для конфиденциальных звонков и подробных отчётов. Можно сначала проверить бронирования, прежде чем убирать любую из них.",
+      "usageNote": "Defends the proposal with evidence and a process, not a noun swap."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_v1_evidence_01",
+        "text": "Even though the rooms are not occupied all day, the team uses them for confidential calls and detailed reports. We could review bookings before removing either one.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That evidence would make the decision more informed. I'll ask Daniel for the booking figures."
+  },
+  {
+    "id": "itm_b2_b21_v2_hold",
+    "itemType": "functional_phrase",
+    "lemma": "b21 v2 hold",
+    "displayForm": "I understand why you want every parking space removed, but local carers sometimes need short access near the clinic. Although the street should be safer, a few timed spaces could protect that access.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "viewpoints and public space",
+    "ru": {
+      "translation": "Понимаю, почему ты хочешь убрать все парковочные места, но местным людям, ухаживающим за близкими, иногда нужен короткий доступ рядом с клиникой. Хотя улица должна быть безопаснее, несколько мест с ограничением времени могли бы сохранить такой доступ.",
+      "usageNote": "Alex takes a stronger opposing view; learner maintains nuance and offers a bounded exception."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_v2_hold_01",
+        "text": "I understand why you want every parking space removed, but local carers sometimes need short access near the clinic. Although the street should be safer, a few timed spaces could protect that access.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Exceptions usually weaken a rule. If some cars are allowed, the street may never become properly safe."
+  },
+  {
+    "id": "itm_b2_b21_v2_persist",
+    "itemType": "functional_phrase",
+    "lemma": "b21 v2 persist",
+    "displayForm": "Even though a simple rule is easier to enforce, access to the clinic is not a minor exception. We could require permits and limit stops to fifteen minutes rather than abandon the safety plan.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "viewpoints and public space",
+    "ru": {
+      "translation": "Хотя простое правило легче соблюдать, доступ к клинике — не мелкое исключение. Можно ввести разрешения и ограничить остановки пятнадцатью минутами, не отказываясь от плана безопасности.",
+      "usageNote": "Requires persistence after resistance while still engaging with Alex’s concern."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_v2_persist_01",
+        "text": "Even though a simple rule is easier to enforce, access to the clinic is not a minor exception. We could require permits and limit stops to fifteen minutes rather than abandon the safety plan.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A permit system answers my concern better than open access. I'd be willing to consider that."
+  },
+  {
+    "id": "itm_b2_b21_v3_partial",
+    "itemType": "functional_phrase",
+    "lemma": "b21 v3 partial",
+    "displayForm": "Although I still prefer a full weekend closure, I accept that Saturday mornings are difficult for market deliveries. What if vehicles left by ten and the streets closed after that?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "viewpoints and public space",
+    "ru": {
+      "translation": "Хотя я всё ещё предпочитаю полное закрытие на выходных, я понимаю, что субботнее утро сложно для поставок на рынок. Что если машины будут уезжать к десяти, а после этого улицы закроют?",
+      "usageNote": "Changes the resolution shape: learner concedes one constraint and reaches partial agreement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b21_v3_partial_01",
+        "text": "Although I still prefer a full weekend closure, I accept that Saturday mornings are difficult for market deliveries. What if vehicles left by ten and the streets closed after that?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That would protect deliveries and still give most of the day to pedestrians. I could support it."
+  },
+  {
+    "id": "itm_b2_b22_collect",
+    "itemType": "functional_phrase",
+    "lemma": "b22 collect",
+    "displayForm": "Let's see: Maya said she wanted the mushroom pasta, Daniel wants the grilled fish, and Alex is having the salad without cheese.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Итак: Майя сказала, что хочет пасту с грибами, Дэниел хочет рыбу на гриле, а Алекс берёт салат без сыра.",
+      "usageNote": "Relays different diners’ choices and directly evidences reported speech."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_collect_01",
+        "text": "Let's see: Maya said she wanted the mushroom pasta, Daniel wants the grilled fish, and Alex is having the salad without cheese.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I've noted those. The grilled fish has sold out, but Daniel can choose the baked vegetables or the chicken."
+  },
+  {
+    "id": "itm_b2_b22_update",
+    "itemType": "functional_phrase",
+    "lemma": "b22 update",
+    "displayForm": "Daniel said he didn't mind changing, as long as the dish was dairy-free. Could he have the baked vegetables, and could you confirm the sauce is suitable?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Дэниел сказал, что не против изменить заказ, если блюдо без молочных продуктов. Можно ему запечённые овощи, и подтвердите, пожалуйста, что соус подходит?",
+      "usageNote": "Reports an earlier condition and resolves the newly unavailable dish."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_update_01",
+        "text": "Daniel said he didn't mind changing, as long as the dish was dairy-free. Could he have the baked vegetables, and could you confirm the sauce is suitable?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes, the vegetables and sauce are dairy-free. Would the table like any starters to share?"
+  },
+  {
+    "id": "itm_b2_b22_summary",
+    "itemType": "functional_phrase",
+    "lemma": "b22 summary",
+    "displayForm": "Two soups for the table, please, and bring the bread separately because Maya cannot eat nuts. To summarise, that's one pasta, one baked vegetable dish, and one salad without cheese.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Два супа на стол, пожалуйста, а хлеб принесите отдельно, потому что Майе нельзя орехи. Подведу итог: одна паста, одно блюдо с запечёнными овощами и один салат без сыра.",
+      "usageNote": "Combines an allergy constraint with an explicit order summary."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_summary_01",
+        "text": "Two soups for the table, please, and bring the bread separately because Maya cannot eat nuts. To summarise, that's one pasta, one baked vegetable dish, and one salad without cheese.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's clear, and I'll mark Maya's nut restriction separately. How would you like the bill arranged?"
+  },
+  {
+    "id": "itm_b2_b22_bill",
+    "itemType": "functional_phrase",
+    "lemma": "b22 bill",
+    "displayForm": "Please put the drinks on one bill and split the food three ways. Maya ordered the extra starter, so I'll pay for that separately rather than divide it equally.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Напитки, пожалуйста, в один счёт, а еду разделите на троих. Дополнительную закуску заказала Майя, поэтому я оплачу её отдельно, а не буду делить поровну.",
+      "usageNote": "Negotiates a non-trivial bill arrangement after the order is confirmed."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_bill_01",
+        "text": "Please put the drinks on one bill and split the food three ways. Maya ordered the extra starter, so I'll pay for that separately rather than divide it equally.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "No problem. I'll separate the starter, divide the remaining food, and keep all the drinks together."
+  },
+  {
+    "id": "itm_b2_b22_v1_diet",
+    "itemType": "functional_phrase",
+    "lemma": "b22 v1 diet",
+    "displayForm": "Nina said she wanted the sharing menu, but she cannot eat gluten. The other three guests want it too, so could we replace the bread and keep the rest of the dishes?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Нина сказала, что хочет общее меню, но ей нельзя глютен. Остальные трое тоже его хотят, поэтому можно заменить хлеб и оставить остальные блюда?",
+      "usageNote": "Adds a dietary conflict that affects a shared order rather than one individual dish."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_v1_diet_01",
+        "text": "Nina said she wanted the sharing menu, but she cannot eat gluten. The other three guests want it too, so could we replace the bread and keep the rest of the dishes?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We can replace it with gluten-free flatbread, but the fried starter uses the same fryer as the regular bread."
+  },
+  {
+    "id": "itm_b2_b22_v1_resolve",
+    "itemType": "functional_phrase",
+    "lemma": "b22 v1 resolve",
+    "displayForm": "In that case, leave out the fried starter as well. To summarise, four sharing menus, gluten-free bread, and no fried starter for the table.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Тогда исключите и жареную закуску. Итак: четыре общих меню, хлеб без глютена и без жареной закуски на стол.",
+      "usageNote": "Rebuilds and summarises the order after Leo reveals an additional constraint."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_v1_resolve_01",
+        "text": "In that case, leave out the fried starter as well. To summarise, four sharing menus, gluten-free bread, and no fried starter for the table.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Understood. I'll mark the whole table order with those two changes."
+  },
+  {
+    "id": "itm_b2_b22_v2_change",
+    "itemType": "functional_phrase",
+    "lemma": "b22 v2 change",
+    "displayForm": "I need to correct one part of the order. Alex said he wanted the steak earlier, but he's changed his mind and would like the lentil pie instead.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Мне нужно исправить одну часть заказа. Раньше Алекс сказал, что хочет стейк, но передумал и теперь хочет чечевичный пирог.",
+      "usageNote": "Transfers reported speech to a correction after an order has already been relayed."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_v2_change_01",
+        "text": "I need to correct one part of the order. Alex said he wanted the steak earlier, but he's changed his mind and would like the lentil pie instead.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The steak hasn't gone to the kitchen yet, so I can change it. Does everything else stay the same?"
+  },
+  {
+    "id": "itm_b2_b22_v2_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "b22 v2 confirm",
+    "displayForm": "Yes. To summarise, only Alex's main course changes; Maya and Daniel keep their original dishes, and the shared starters stay as ordered.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Да. Подведу итог: меняется только основное блюдо Алекса; у Майи и Дэниела остаются прежние блюда, а общие закуски — как заказали.",
+      "usageNote": "Confirms the scope of a correction so unchanged details are not repeated ambiguously."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_v2_confirm_01",
+        "text": "Yes. To summarise, only Alex's main course changes; Maya and Daniel keep their original dishes, and the shared starters stay as ordered.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Perfect. I'll update that one dish without changing the rest of the ticket."
+  },
+  {
+    "id": "itm_b2_b22_v3_split",
+    "itemType": "functional_phrase",
+    "lemma": "b22 v3 split",
+    "displayForm": "The bill shouldn't be divided equally. Maya and I shared the set menu, Daniel ordered two courses, and Alex only had soup and tea.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Счёт не следует делить поровну. Мы с Майей брали комплексное меню, Дэниел заказал два блюда, а Алекс — только суп и чай.",
+      "usageNote": "Changes the constraint to uneven consumption and requires accurate allocation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_v3_split_01",
+        "text": "The bill shouldn't be divided equally. Maya and I shared the set menu, Daniel ordered two courses, and Alex only had soup and tea.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can separate it by what each person had. Who is paying for the shared bottle of water?"
+  },
+  {
+    "id": "itm_b2_b22_v3_finish",
+    "itemType": "functional_phrase",
+    "lemma": "b22 v3 finish",
+    "displayForm": "Split the water between all four of us. To summarise, two halves of the set menu, Daniel's two courses, Alex's soup and tea, plus a quarter of the water on each bill.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "group orders",
+    "ru": {
+      "translation": "Воду разделите на четверых. Итак: две половины комплексного меню, два блюда Дэниела, суп и чай Алекса и четверть стоимости воды в каждом счёте.",
+      "usageNote": "Completes the negotiation math with a coherent summary."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b22_v3_finish_01",
+        "text": "Split the water between all four of us. To summarise, two halves of the set menu, Daniel's two courses, Alex's soup and tea, plus a quarter of the water on each bill.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's precise. I'll prepare four bills using that breakdown."
+  },
+  {
+    "id": "itm_b2_b23_evidence",
+    "itemType": "functional_phrase",
+    "lemma": "b23 evidence",
+    "displayForm": "Thanks for checking it, but both main courses are still on the bill. They arrived forty-five minutes late, and one was returned because it was cold.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Спасибо, что проверили, но оба основных блюда всё ещё в счёте. Их принесли на сорок пять минут позже, а одно вернули, потому что оно было холодным.",
+      "usageNote": "States the specific bill issue and relevant service evidence before requesting compensation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_evidence_01",
+        "text": "Thanks for checking it, but both main courses are still on the bill. They arrived forty-five minutes late, and one was returned because it was cold.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You're right about the delay. I can remove the returned dish and offer dessert for the wait."
+  },
+  {
+    "id": "itm_b2_b23_fairness",
+    "itemType": "functional_phrase",
+    "lemma": "b23 fairness",
+    "displayForm": "I appreciate the offer, but I don't think it's fair that we pay full price for the other main course when we had to eat at different times.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Спасибо за предложение, но я не считаю справедливым платить полную цену за второе основное блюдо, когда нам пришлось есть в разное время.",
+      "usageNote": "Directly evidences the frozen fairness target and links it to a concrete consequence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_fairness_01",
+        "text": "I appreciate the offer, but I don't think it's fair that we pay full price for the other main course when we had to eat at different times.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I understand the evening was disrupted. I could reduce the second main course by half."
+  },
+  {
+    "id": "itm_b2_b23_expect",
+    "itemType": "functional_phrase",
+    "lemma": "b23 expect",
+    "displayForm": "What I'd expect is for both delayed main courses to be removed. The rest of the order was fine, and we're happy to pay for it.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Я бы ожидал(а), что оба задержанных основных блюда уберут из счёта. С остальным заказом всё было в порядке, и мы готовы за него заплатить.",
+      "usageNote": "Names a proportionate remedy while conceding the parts of the bill that were satisfactory."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_expect_01",
+        "text": "What I'd expect is for both delayed main courses to be removed. The rest of the order was fine, and we're happy to pay for it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Removing both is more than I can approve myself, but I can ask the manager if you are willing to wait a moment."
+  },
+  {
+    "id": "itm_b2_b23_agree",
+    "itemType": "functional_phrase",
+    "lemma": "b23 agree",
+    "displayForm": "Yes, please ask. Could we agree on removing both main courses and keeping the drinks and starters on the bill? That would reflect what was actually served properly.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Да, пожалуйста, спросите. Можем договориться убрать оба основных блюда, а напитки и закуски оставить в счёте? Это отразит то, что действительно подали как следует.",
+      "usageNote": "Turns the evidence and expectation into a precise settlement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_agree_01",
+        "text": "Yes, please ask. Could we agree on removing both main courses and keeping the drinks and starters on the bill? That would reflect what was actually served properly.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The manager has approved that. I'll bring the revised bill with both main courses removed."
+  },
+  {
+    "id": "itm_b2_b23_v1_missing",
+    "itemType": "functional_phrase",
+    "lemma": "b23 v1 missing",
+    "displayForm": "The bill includes all four desserts, but only three arrived. I don't think it's fair that we pay for an item the table never received.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "В счёте указаны четыре десерта, но принесли только три. Я не считаю справедливым платить за то, чего стол вообще не получил.",
+      "usageNote": "Transfers the dispute from poor experience to a missing item."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_v1_missing_01",
+        "text": "The bill includes all four desserts, but only three arrived. I don't think it's fair that we pay for an item the table never received.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can remove the missing dessert immediately. Was there another problem with that course?"
+  },
+  {
+    "id": "itm_b2_b23_v1_resolve",
+    "itemType": "functional_phrase",
+    "lemma": "b23 v1 resolve",
+    "displayForm": "Removing it resolves the charge. What I'd also expect is for the service fee to be recalculated from the corrected total.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Если убрать его, вопрос с позицией решён. Я также ожидаю, что сервисный сбор пересчитают от исправленной суммы.",
+      "usageNote": "Requires a second-order correction tied to the missing item."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_v1_resolve_01",
+        "text": "Removing it resolves the charge. What I'd also expect is for the service fee to be recalculated from the corrected total.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's correct. I'll recalculate the fee after taking off the dessert."
+  },
+  {
+    "id": "itm_b2_b23_v2_partial",
+    "itemType": "functional_phrase",
+    "lemma": "b23 v2 partial",
+    "displayForm": "I appreciate the ten-percent reduction, but I don't think it's fair after the table waited over an hour and the kitchen remade two dishes.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Спасибо за скидку в десять процентов, но я не считаю её справедливой, учитывая, что стол ждал больше часа и два блюда пришлось готовить заново.",
+      "usageNote": "Leo offers insufficient compensation first, creating a real negotiation round."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_v2_partial_01",
+        "text": "I appreciate the ten-percent reduction, but I don't think it's fair after the table waited over an hour and the kitchen remade two dishes.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can increase it to fifteen percent, but I cannot remove the dishes entirely without a manager."
+  },
+  {
+    "id": "itm_b2_b23_v2_counter",
+    "itemType": "functional_phrase",
+    "lemma": "b23 v2 counter",
+    "displayForm": "What I'd expect is a twenty-five-percent reduction, because the delay affected the whole meal. Could we agree on that if the dishes remain on the bill?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Я бы ожидал(а) скидку в двадцать пять процентов, потому что задержка повлияла на весь ужин. Можем договориться об этом, если блюда останутся в счёте?",
+      "usageNote": "Counters with a reasoned compromise rather than simply repeating the complaint."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_v2_counter_01",
+        "text": "What I'd expect is a twenty-five-percent reduction, because the delay affected the whole meal. Could we agree on that if the dishes remain on the bill?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is a clear compromise. I'll authorise twenty-five percent and bring the revised total."
+  },
+  {
+    "id": "itm_b2_b23_v3_history",
+    "itemType": "functional_phrase",
+    "lemma": "b23 v3 history",
+    "displayForm": "We came back because our previous visit was handled well, but tonight the booking was missing and our table was given away. I don't think it's fair that the full service fee remains.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Мы вернулись, потому что в прошлый раз всё было организовано хорошо, но сегодня бронирование потеряли и наш стол отдали. Я не считаю справедливым оставлять полный сервисный сбор.",
+      "usageNote": "Uses a prior visit as relevant context without turning it into unrelated narrative."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_v3_history_01",
+        "text": "We came back because our previous visit was handled well, but tonight the booking was missing and our table was given away. I don't think it's fair that the full service fee remains.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I'm sorry the second visit did not meet that standard. I can remove half the service fee now."
+  },
+  {
+    "id": "itm_b2_b23_v3_settle",
+    "itemType": "functional_phrase",
+    "lemma": "b23 v3 settle",
+    "displayForm": "I appreciate that. What I'd expect is for the whole service fee to be removed, while we pay for the food and drinks we received. Could we agree on that?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "billing and compensation",
+    "ru": {
+      "translation": "Спасибо. Я бы ожидал(а), что сервисный сбор уберут полностью, а мы оплатим полученные еду и напитки. Можем на этом договориться?",
+      "usageNote": "Uses the prior context to define a proportionate, bounded settlement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b23_v3_settle_01",
+        "text": "I appreciate that. What I'd expect is for the whole service fee to be removed, while we pay for the food and drinks we received. Could we agree on that?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Given the lost booking and delay, yes. I'll remove the full service fee."
+  }
+]

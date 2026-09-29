@@ -118,12 +118,12 @@ async function main(): Promise<void> {
   );
 
   // Scope the continuous-situation curriculum (les_sie_*, sit_a1_*, and
-  // the explicitly authored V2 A2/B1 situation ids). Legacy mixed-practice
+  // the explicitly authored V2 A2/B1/B2 situation ids). Legacy mixed-practice
   // lessons remain out of scope.
   const isAuthoredSituation = (id: string) =>
     id.startsWith("les_sie_") ||
     id.startsWith("sit_a1_") ||
-    /^(sit_a2_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01|travel_02|daily_01|daily_02|shop_01|shop_02|health_01|work_01|work_02|social_01|problems_01|problems_02)|sit_b1_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01|travel_02|daily_01|daily_02|shop_01|shop_02|health_01|work_01|work_02|work_03|social_01|social_02|problems_01|problems_02))$/.test(
+    /^(sit_a2_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01|travel_02|daily_01|daily_02|shop_01|shop_02|health_01|work_01|work_02|social_01|problems_01|problems_02)|sit_b1_(people_01|people_02|cafe_01|restaurant_01|restaurant_02|travel_01|travel_02|daily_01|daily_02|shop_01|shop_02|health_01|work_01|work_02|work_03|social_01|social_02|problems_01|problems_02)|sit_b2_(people_01|restaurant_01|restaurant_02))$/.test(
       id,
     );
 

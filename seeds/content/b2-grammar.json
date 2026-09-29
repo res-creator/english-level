@@ -1,0 +1,62 @@
+[
+  {
+    "id": "gr_b2_concession_clauses",
+    "levelCode": "B2",
+    "title": "although / even though — признать аргумент и сохранить позицию",
+    "patternKey": "concession_clauses",
+    "formula": "Although/Even though + opposing point, main position",
+    "explanationEn": "Use although or even though to acknowledge a relevant opposing point while making your own position and reasoning clear.",
+    "order": 1,
+    "ru": {
+      "explanation": "Используйте although или even though, чтобы признать существенный аргумент собеседника и при этом ясно сохранить собственную позицию."
+    }
+  },
+  {
+    "id": "gr_b2_reported_speech_orders",
+    "levelCode": "B2",
+    "title": "Reported speech — передать выбор другого человека",
+    "patternKey": "reported_speech_orders",
+    "formula": "She said (that) she wanted... / He said (that) he did not mind...",
+    "explanationEn": "Use reported speech to relay another person’s earlier choice or condition accurately while coordinating a group.",
+    "order": 2,
+    "ru": {
+      "explanation": "Используйте косвенную речь, чтобы точно передать ранее высказанный выбор или условие другого участника группы."
+    }
+  },
+  {
+    "id": "gr_b2_summarising_order",
+    "levelCode": "B2",
+    "title": "To summarise — собрать несколько условий",
+    "patternKey": "summarising_order",
+    "formula": "To summarise, that is...",
+    "explanationEn": "Use a summarising marker to combine several choices and constraints into one clear confirmation.",
+    "order": 3,
+    "ru": {
+      "explanation": "Используйте маркер подведения итога, чтобы собрать несколько вариантов и ограничений в одно ясное подтверждение."
+    }
+  },
+  {
+    "id": "gr_b2_fair_that",
+    "levelCode": "B2",
+    "title": "I do not think it is fair that — обосновать претензию",
+    "patternKey": "fair_that",
+    "formula": "I don't think it's fair that + clause",
+    "explanationEn": "Use this frame to connect a service outcome with a clear reason why the charge or proposed solution is disproportionate.",
+    "order": 4,
+    "ru": {
+      "explanation": "Используйте эту конструкцию, чтобы связать результат обслуживания с ясной причиной, почему сумма или предложенное решение несоразмерны."
+    }
+  },
+  {
+    "id": "gr_b2_expect_compensation",
+    "levelCode": "B2",
+    "title": "What I would expect is — назвать соразмерное решение",
+    "patternKey": "expect_compensation",
+    "formula": "What I would expect is + noun/-ing clause",
+    "explanationEn": "Use What I would expect is to state a specific, proportionate remedy after giving the relevant evidence.",
+    "order": 5,
+    "ru": {
+      "explanation": "Используйте What I would expect is, чтобы после фактов назвать конкретное и соразмерное решение."
+    }
+  }
+]

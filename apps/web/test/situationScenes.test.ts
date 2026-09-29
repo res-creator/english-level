@@ -153,6 +153,15 @@ test("B1 complete level maps each dialogue to its authored cast and scene", () =
   assert.match(openingLine("sit_b1_problems_02"), /deposit.*non-refundable.*review/i);
 });
 
+test("B2 Batch 1 keeps Alex in the café and Leo in the restaurant", () => {
+  assert.deepEqual(sceneForSituation("sit_b2_people_01"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b2_restaurant_01"), { scene: "restaurant", cast: "leo" });
+  assert.deepEqual(sceneForSituation("sit_b2_restaurant_02"), { scene: "restaurant", cast: "leo" });
+  assert.match(openingLine("sit_b2_people_01"), /council.*car-free/i);
+  assert.match(openingLine("sit_b2_restaurant_01"), /group.*order.*dietary/i);
+  assert.match(openingLine("sit_b2_restaurant_02"), /revised bill.*reflects what happened/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

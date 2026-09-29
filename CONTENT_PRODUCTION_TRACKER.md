@@ -94,9 +94,9 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 
 | ID | Title | Chapter | NPC | Status | Variations | Grammar | Notes |
 |---|---|---|---|---|---|---|---|
-| `sit_b2_people_01` | Обсудить спорную тему с другом | People & Connections | Alex | planned | 3 | concession clauses (although/even though) — corrected from "mixed conditionals" in V2 §2.1/§11 | |
-| `sit_b2_restaurant_01` | Организовать сложный групповой заказ | Restaurant & Dining | Leo | planned | 3 | reported speech, summarising | |
-| `sit_b2_restaurant_02` | Оспорить счёт и добиться компенсации | Restaurant & Dining | Leo | planned | 3 | I don't think it's fair that | |
+| `sit_b2_people_01` | Обсудить спорную тему с другом | People & Connections | Alex | **done** | 3 — workplace space trade-off; stronger opposition around clinic access; partial agreement around market deliveries | target: `gr_b2_concession_clauses`; viewpoint connectors/evidence questions are chunks | Gate A/B/C PASS; Far B1.2; prerequisite B1.2; position → counterweight → evidence → qualified common ground |
+| `sit_b2_restaurant_01` | Организовать сложный групповой заказ | Restaurant & Dining | Leo | **done** | 3 — dietary conflict in a shared menu; changed order after relay; uneven bill split | targets: `gr_b2_reported_speech_orders`, `gr_b2_summarising_order`; service requests are recycled chunks | Gate A/B/C PASS; Far B1.4/B1.5; prerequisites B1.4/B1.5; choices → constraint/correction → full summary → bill allocation |
+| `sit_b2_restaurant_02` | Оспорить счёт и добиться компенсации | Restaurant & Dining | Leo | **done** | 3 — missing item and recalculated fee; insufficient first offer; prior-visit context | targets: `gr_b2_fair_that`, `gr_b2_expect_compensation`; `Could we agree on...` is a negotiation chunk | Gate A/B/C PASS; Far B1.5/B1.18; prerequisites B1.5/B1.18; evidence → fairness → proportionate remedy → settlement |
 | `sit_b2_travel_01` | Переговоры о компенсации за поездку | Getting Around | Rosa | planned | 3 | given that, conditionals | |
 | `sit_b2_travel_02` | Сложный маршрут с ограничениями | Getting Around | Rosa | planned | 3 | taking into account, might/could | |
 | `sit_b2_daily_01` | Плюсы и минусы образа жизни | Daily Life & Home | Alex | planned | 3 | however/nevertheless | |
@@ -229,6 +229,14 @@ H.B1: Dr. Kim просит описать проблему; learner сообща
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 47 worksheet situations. Full structural/reference/contiguity/idempotent-seed checks, full suite **407/407** (API 321, web 80, shared 6), API/web typechecks and full-level Chromium PASS. Chromium проверил 580 transcript snapshots и 20 Mission results; H.B1 Mission passed at 4/4, 100% (`can_do`), а отдельный B1.1 Mission FAIL остался 0/4, 0% (`learning`) без completion. Для H.B1 создано 15 preview screenshots. See [H.B1 production QA](docs/B1_HEALTH_PRODUCTION_QA.md).
 
+## B2 Batch 1 reference and QA record
+
+Перед authoring использованы British Council [Challenging someone's ideas](https://learnenglish.britishcouncil.org/sites/podcasts/files/LearnEnglish-Speaking-B2-Challenging-someones-ideas.pdf) для последовательности «признать точку зрения → проверить основание → сохранить позицию», British Council [B2 speaking](https://learnenglish.britishcouncil.org/free-resources/speaking/b2) и Cambridge [B2 First exam format](https://www.cambridgeenglish.org/exams-and-tests/qualifications/first/format/?skill=speaking) для extended coherent contributions, justification, evaluation and negotiated decisions. British Council [Starting Out 6 — I'll pay](https://learnenglish.britishcouncil.org/sites/podcasts/files/LearnEnglish-Starting-Out-episode-06-transcript.pdf) и ELLLO [Burger Barn](https://www.elllo.org/english/1401/1449-Todd-BurgerBarn.htm) использованы только как reference порядка restaurant turns «собрать позиции → подтвердить → заменить недоступное → итог»; B2 complexity добавлена через несколько участников и constraints. British Council [A letter of complaint](https://learnenglish.britishcouncil.org/free-resources/writing/b2/letter-complaint) повлиял на B2.3 через принцип «существенные факты → что должно произойти», адаптированный в устные переговоры. Все Speak in English dialogues оригинальные.
+
+B2.1: learner обсуждает car-free centre, признаёт аргумент Alex через `although/even though`, вводит access constraint, предлагает проверяемый trial и достигает ограниченного common ground. B2.2: learner передаёт выборы трёх гостей, корректирует недоступное блюдо, удерживает dietary requirement, подводит итог и задаёт неравное распределение счёта. B2.3: learner связывает конкретные ошибки обслуживания с последствиями, оценивает справедливость предложения и формулирует ограниченную компенсацию вместо требования бесплатного ужина. Каждая ситуация имеет три variation по frozen V2; Near/Far остаётся отдельным curriculum review и не изменяет Leitner/SRS.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 50 worksheet situations. Targeted API/content/course/engine checks **56/56**, scene/opener checks **15/15**, static B2 dialogue audit PASS. Full suite **409/409** (API 322, web 81, shared 6); API/web typechecks PASS; seed-twice idempotency, schema/reference validation and contiguity PASS. Chromium: 166 transcript snapshots, 68 screenshots, all three Missions at 100% / `can_do` (B2.1 5/5, B2.2 6/6, B2.3 6/6), separate B2.1 FAIL 0/5 / `learning`, progression 3/3. People chapter completion awarded the existing `rw_shelf`; no duplicate reward was created. See [B2 Batch 1 production QA](docs/B2_BATCH1_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
@@ -236,8 +244,8 @@ Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 47 workshe
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
 | B1 | 19 | 19 | 0 | 0 |
-| B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **47** | **22** | **0** |
+| B2 | 22 | 3 | 19 | 0 |
+| **Total** | **69** | **50** | **19** | **0** |
 
 ## A2 level freeze
 

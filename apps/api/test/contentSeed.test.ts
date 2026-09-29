@@ -18,17 +18,18 @@ test("all seed files load and cross-validate without throwing", () => {
   assert.ok(bundle.lessonItems.length > 0);
 });
 
-test("the published catalogue includes A1 and authored A2/B1 chapters", () => {
+test("the published catalogue includes A1 and authored A2/B1/B2 chapters", () => {
   const bundle = loadSeedContent();
 
   const published = bundle.modules.filter(
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2 and nine B1 modules.
-  assert.equal(published.length, 19);
+  // course now includes A1, authored A2/B1, and the first two B2 modules.
+  assert.equal(published.length, 21);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
   assert.equal(published.filter((m) => m.levelCode === "B1").length, 9);
+  assert.equal(published.filter((m) => m.levelCode === "B2").length, 2);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -340,7 +341,7 @@ test("A2 Batch 6 resolves a restaurant bill error and keeps H.A2 a shop transact
   assert.deepEqual(reviews("sit_a2_health_01"), ["itm_sie_a17_do_you_have", "itm_sie_a17_ill_take_it", "gr_a2_comparatives"]);
 });
 
-test("A2 and B1 plans keep semantic turns once and exclude variations from Missions", async () => {
+test("A2, B1 and B2 plans keep semantic turns once and exclude variations from Missions", async () => {
   const { db, sqlite } = createTestDb();
   await seedContent(db);
 
@@ -371,9 +372,16 @@ test("A2 and B1 plans keep semantic turns once and exclude variations from Missi
     "sit_b1_travel_02",
     "sit_b1_daily_01",
     "sit_b1_daily_02",
+    "sit_b2_people_01",
+    "sit_b2_restaurant_01",
+    "sit_b2_restaurant_02",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
-    const levelId = situationId.startsWith("sit_b1_") ? "lvl_b1" : "lvl_a2";
+    const levelId = situationId.startsWith("sit_b2_")
+      ? "lvl_b2"
+      : situationId.startsWith("sit_b1_")
+        ? "lvl_b1"
+        : "lvl_a2";
     const plan = await planEpisodeSessions(db, levelId, links);
     const activities = plan.sessions.flat();
     const mission = await buildMissionPlan(db, levelId, links);
@@ -693,4 +701,119 @@ test("B1 authored situations keep coherent semantic turns, classifications, revi
     const reviews = bundle.lessonItems.filter((link) => link.lessonId === id && link.role === "review");
     assert.ok(reviews.length >= 1, `${id} has a curriculum-linked review`);
   }
+});
+
+test("B2 Batch 1 adds nuanced viewpoints, group-order coordination, and proportionate compensation", () => {
+  const bundle = loadSeedContent();
+  const ids = [
+    "sit_b2_people_01",
+    "sit_b2_restaurant_01",
+    "sit_b2_restaurant_02",
+  ];
+  const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
+  const links = (lessonId: string, role: string) =>
+    bundle.lessonItems.filter(
+      (link) => link.lessonId === lessonId && link.role === role,
+    );
+
+  for (const id of ids) {
+    assert.equal(links(id, "introduce").length, 4, `${id} core turns`);
+    assert.ok(links(id, "practice").length >= 5, `${id} transfer practice`);
+    assert.ok(links(id, "review").length >= 1, `${id} Near/Far review`);
+    for (const link of [...links(id, "introduce"), ...links(id, "practice")]) {
+      assert.ok(
+        itemById.get(link.contentId)?.npcReplyCorrect,
+        `${id}/${link.contentId} has authored NPC continuation`,
+      );
+    }
+  }
+
+  assert.match(
+    itemById.get("itm_b2_b21_position")?.displayForm ?? "",
+    /Although.*people who cannot walk far/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b21_probe")?.displayForm ?? "",
+    /Even though.*What makes you think/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b21_v1_work")?.displayForm ?? "",
+    /shared office.*quiet room/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b21_v2_persist")?.displayForm ?? "",
+    /clinic.*permit/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b21_v3_partial")?.displayForm ?? "",
+    /market deliveries.*closed after/i,
+  );
+
+  assert.match(
+    itemById.get("itm_b2_b22_collect")?.displayForm ?? "",
+    /Maya said she wanted.*Daniel wants/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b22_summary")?.displayForm ?? "",
+    /To summarise.*without cheese/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b22_v1_diet")?.displayForm ?? "",
+    /sharing menu.*cannot eat gluten/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b22_v2_change")?.displayForm ?? "",
+    /changed his mind.*lentil pie/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b22_v3_finish")?.displayForm ?? "",
+    /quarter of the water.*each bill/i,
+  );
+
+  assert.match(
+    itemById.get("itm_b2_b23_fairness")?.displayForm ?? "",
+    /don't think it's fair.*eat at different times/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b23_expect")?.displayForm ?? "",
+    /What I'd expect.*both delayed main courses/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b23_v1_missing")?.displayForm ?? "",
+    /only three arrived/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b23_v2_counter")?.displayForm ?? "",
+    /twenty-five-percent reduction/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_b23_v3_history")?.displayForm ?? "",
+    /previous visit.*booking was missing/i,
+  );
+
+  const targets = bundle.lessonItems.filter((link) => link.role === "target");
+  for (const patternId of [
+    "gr_b2_concession_clauses",
+    "gr_b2_reported_speech_orders",
+    "gr_b2_summarising_order",
+    "gr_b2_fair_that",
+    "gr_b2_expect_compensation",
+  ]) {
+    assert.ok(
+      targets.some((link) => link.contentId === patternId),
+      patternId,
+    );
+  }
+  assert.deepEqual(
+    links("sit_b2_people_01", "review").map((x) => x.contentId),
+    ["itm_b1_b12_softener"],
+  );
+  assert.deepEqual(
+    links("sit_b2_restaurant_01", "review").map((x) => x.contentId),
+    ["itm_b1_b14_restriction", "itm_b1_b15_wait"],
+  );
+  assert.deepEqual(
+    links("sit_b2_restaurant_02", "review").map((x) => x.contentId),
+    ["itm_b1_b15_resolution", "itm_b1_b118_position"],
+  );
 });

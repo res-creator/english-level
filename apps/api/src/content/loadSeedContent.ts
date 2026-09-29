@@ -65,12 +65,14 @@ export function loadSeedContent(): ContentBundle {
     ...parseArray("a1-modules.json", ModuleSeedSchema),
     ...parseArray("a2-modules.json", ModuleSeedSchema),
     ...parseArray("b1-modules.json", ModuleSeedSchema),
+    ...parseArray("b2-modules.json", ModuleSeedSchema),
   ];
   const lessons = [
     ...parseArray("sie-a1-lessons.json", LessonSeedSchema),
     ...parseArray("a1-lessons.json", LessonSeedSchema),
     ...parseArray("a2-lessons.json", LessonSeedSchema),
     ...parseArray("b1-lessons.json", LessonSeedSchema),
+    ...parseArray("b2-lessons.json", LessonSeedSchema),
   ];
   const learningItems = [
     // Stricter schema: sie-a1 is the one live "one continuous situation"
@@ -80,6 +82,7 @@ export function loadSeedContent(): ContentBundle {
     ...parseArray("a1-learning-items.json", LearningItemSeedSchema),
     ...parseArray("a2-learning-items.json", LearningItemSeedSchema),
     ...parseArray("b1-learning-items.json", LearningItemSeedSchema),
+    ...parseArray("b2-learning-items.json", LearningItemSeedSchema),
   ];
   const itemRelations = [
     ...parseArray("a1-item-relations.json", ItemRelationSeedSchema),
@@ -90,6 +93,7 @@ export function loadSeedContent(): ContentBundle {
     ...parseArray("a1-grammar.json", GrammarPatternSeedSchema),
     ...parseArray("a2-grammar.json", GrammarPatternSeedSchema),
     ...parseArray("b1-grammar.json", GrammarPatternSeedSchema),
+    ...parseArray("b2-grammar.json", GrammarPatternSeedSchema),
   ];
   const grammarRelations = parseArray(
     "grammar-relations.json",
@@ -100,6 +104,7 @@ export function loadSeedContent(): ContentBundle {
     ...parseArray("a1-lesson-items.json", LessonItemSeedSchema),
     ...parseArray("a2-lesson-items.json", LessonItemSeedSchema),
     ...parseArray("b1-lesson-items.json", LessonItemSeedSchema),
+    ...parseArray("b2-lesson-items.json", LessonItemSeedSchema),
   ];
 
   assertUnique(

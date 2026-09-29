@@ -2982,5 +2982,224 @@
         "chunkLabel": "Aggravating-factor chunk transferred to a screen-work context."
       }
     ]
+  },
+  {
+    "situationId": "sit_b2_people_01",
+    "phrases": [
+      {
+        "text": "Although fewer cars would make the centre quieter, people who cannot walk far could find it harder to get there.",
+        "itemId": "itm_b2_b21_position",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_concession_clauses"
+      },
+      {
+        "text": "I can see why that sounds attractive.",
+        "itemId": "itm_b2_b21_position",
+        "classification": "chunk",
+        "chunkLabel": "Recycled viewpoint acknowledgement; fixed discourse chunk, not a new grammar lesson."
+      },
+      {
+        "text": "On the other hand",
+        "itemId": "itm_b2_b21_alternative",
+        "classification": "chunk",
+        "chunkLabel": "Argumentation connector used to organise a counterpoint."
+      },
+      {
+        "text": "Even though the cost matters, a three-month trial would show how many people actually use it.",
+        "itemId": "itm_b2_b21_probe",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_concession_clauses"
+      },
+      {
+        "text": "What makes you think a permanent ban is better from the start?",
+        "itemId": "itm_b2_b21_probe",
+        "classification": "chunk",
+        "chunkLabel": "Frozen evidence-seeking follow-up for contesting a viewpoint."
+      },
+      {
+        "text": "I'd support a weekend trial if access and enforcement were reviewed after three months.",
+        "itemId": "itm_b2_b21_resolution",
+        "classification": "chunk",
+        "chunkLabel": "Qualified compromise with recycled conditional/passive language; concession clauses remain the target."
+      },
+      {
+        "text": "Although a shared office would make collaboration easier, removing every quiet room would make focused work much harder.",
+        "itemId": "itm_b2_b21_v1_work",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_concession_clauses"
+      },
+      {
+        "text": "Even though the rooms are not occupied all day, the team uses them for confidential calls and detailed reports.",
+        "itemId": "itm_b2_b21_v1_evidence",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_concession_clauses"
+      },
+      {
+        "text": "Although the street should be safer, a few timed spaces could protect that access.",
+        "itemId": "itm_b2_b21_v2_hold",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_concession_clauses"
+      },
+      {
+        "text": "Even though a simple rule is easier to enforce, access to the clinic is not a minor exception.",
+        "itemId": "itm_b2_b21_v2_persist",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_concession_clauses"
+      },
+      {
+        "text": "Although I still prefer a full weekend closure, I accept that Saturday mornings are difficult for market deliveries.",
+        "itemId": "itm_b2_b21_v3_partial",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_concession_clauses"
+      },
+      {
+        "text": "What if vehicles left by ten and the streets closed after that?",
+        "itemId": "itm_b2_b21_v3_partial",
+        "classification": "chunk",
+        "chunkLabel": "Recycled hypothetical compromise frame; the variation tests a partial-agreement resolution."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_restaurant_01",
+    "phrases": [
+      {
+        "text": "Maya said she wanted the mushroom pasta.",
+        "itemId": "itm_b2_b22_collect",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_reported_speech_orders"
+      },
+      {
+        "text": "Daniel said he didn't mind changing, as long as the dish was dairy-free.",
+        "itemId": "itm_b2_b22_update",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_reported_speech_orders"
+      },
+      {
+        "text": "Could he have the baked vegetables, and could you confirm the sauce is suitable?",
+        "itemId": "itm_b2_b22_update",
+        "classification": "chunk",
+        "chunkLabel": "Polite coordination request using recycled could."
+      },
+      {
+        "text": "To summarise, that's one pasta, one baked vegetable dish, and one salad without cheese.",
+        "itemId": "itm_b2_b22_summary",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_summarising_order"
+      },
+      {
+        "text": "Please put the drinks on one bill and split the food three ways.",
+        "itemId": "itm_b2_b22_bill",
+        "classification": "chunk",
+        "chunkLabel": "Group bill-splitting instruction; functional service chunk."
+      },
+      {
+        "text": "Nina said she wanted the sharing menu.",
+        "itemId": "itm_b2_b22_v1_diet",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_reported_speech_orders"
+      },
+      {
+        "text": "To summarise, four sharing menus, gluten-free bread, and no fried starter for the table.",
+        "itemId": "itm_b2_b22_v1_resolve",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_summarising_order"
+      },
+      {
+        "text": "Alex said he wanted the steak earlier, but he has changed his mind.",
+        "itemId": "itm_b2_b22_v2_change",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_reported_speech_orders"
+      },
+      {
+        "text": "he's changed his mind and would like the lentil pie instead",
+        "itemId": "itm_b2_b22_v2_change",
+        "classification": "chunk",
+        "chunkLabel": "Order-correction chunk; Present Perfect result and would like are recycled rather than retaught."
+      },
+      {
+        "text": "To summarise, only Alex's main course changes.",
+        "itemId": "itm_b2_b22_v2_confirm",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_summarising_order"
+      },
+      {
+        "text": "The bill shouldn't be divided equally.",
+        "itemId": "itm_b2_b22_v3_split",
+        "classification": "chunk",
+        "chunkLabel": "Service-negotiation chunk with passive modal; not a separate grammar target."
+      },
+      {
+        "text": "To summarise, two halves of the set menu, Daniel's two courses, Alex's soup and tea, plus a quarter of the water on each bill.",
+        "itemId": "itm_b2_b22_v3_finish",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_summarising_order"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_restaurant_02",
+    "phrases": [
+      {
+        "text": "They arrived forty-five minutes late, and one was returned because it was cold.",
+        "itemId": "itm_b2_b23_evidence",
+        "classification": "chunk",
+        "chunkLabel": "Recycled Past Simple/passive evidence report; no new tense lesson."
+      },
+      {
+        "text": "I don't think it's fair that we pay full price for the other main course when we had to eat at different times.",
+        "itemId": "itm_b2_b23_fairness",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_fair_that"
+      },
+      {
+        "text": "What I'd expect is for both delayed main courses to be removed.",
+        "itemId": "itm_b2_b23_expect",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_expect_compensation"
+      },
+      {
+        "text": "Could we agree on removing both main courses and keeping the drinks and starters on the bill?",
+        "itemId": "itm_b2_b23_agree",
+        "classification": "chunk",
+        "chunkLabel": "Frozen negotiation proposal; could is recycled and not a new grammar target."
+      },
+      {
+        "text": "I don't think it's fair that we pay for an item the table never received.",
+        "itemId": "itm_b2_b23_v1_missing",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_fair_that"
+      },
+      {
+        "text": "What I'd also expect is for the service fee to be recalculated from the corrected total.",
+        "itemId": "itm_b2_b23_v1_resolve",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_expect_compensation"
+      },
+      {
+        "text": "I don't think it's fair after the table waited over an hour and the kitchen remade two dishes.",
+        "itemId": "itm_b2_b23_v2_partial",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_fair_that"
+      },
+      {
+        "text": "What I'd expect is a twenty-five-percent reduction, because the delay affected the whole meal.",
+        "itemId": "itm_b2_b23_v2_counter",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_expect_compensation"
+      },
+      {
+        "text": "I don't think it's fair that the full service fee remains.",
+        "itemId": "itm_b2_b23_v3_history",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_fair_that"
+      },
+      {
+        "text": "What I'd expect is for the whole service fee to be removed.",
+        "itemId": "itm_b2_b23_v3_settle",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_expect_compensation"
+      }
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 /** Local regression QA: real React + Hono handlers + disposable SQLite.
  * Start Vite first. No Cloudflare runtime, remote DB, or canned API responses.
- * Episode IDs may be passed as command-line arguments; defaults cover the authored A1, A2, or B1 batch/course.
+ * Episode IDs may be passed as command-line arguments; defaults cover the authored A1, A2, B1, or B2 batch/course.
  * Onboarding/placement and course run through the UI; authentication uses signed dev auth.
  */
 import assert from "node:assert/strict";
@@ -19,7 +19,7 @@ const out = fileURLToPath(
 );
 const QA_LEVEL = process.env.QA_LEVEL ?? "A1";
 assert.ok(
-  ["A1", "A2", "B1"].includes(QA_LEVEL),
+  ["A1", "A2", "B1", "B2"].includes(QA_LEVEL),
   `Unsupported QA_LEVEL=${QA_LEVEL}`,
 );
 const qaPrefix = QA_LEVEL.toLowerCase();
@@ -46,8 +46,10 @@ const defaultEpisodes =
       ]
     : QA_LEVEL === "B1"
       ? ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_health_01", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01", "sit_b1_social_02", "sit_b1_problems_01", "sit_b1_problems_02"]
-      : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
-const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 19 : 11;
+      : QA_LEVEL === "B2"
+        ? ["sit_b2_people_01", "sit_b2_restaurant_01", "sit_b2_restaurant_02"]
+        : [1, 2, 3, 4, 5].map((n) => `les_sie_a1_e${n}`);
+const expectedCourseCount = QA_LEVEL === "A2" ? 17 : QA_LEVEL === "B1" ? 19 : QA_LEVEL === "B2" ? 3 : 11;
 const expectedChapterProgress =
   QA_LEVEL === "A2"
     ? [
@@ -63,7 +65,9 @@ const expectedChapterProgress =
       ]
     : QA_LEVEL === "B1"
       ? ["0 из 2", "0 из 1", "0 из 2", "0 из 2", "0 из 2", "0 из 3", "0 из 3", "0 из 2", "0 из 2"]
-      : ["0 из 11"];
+      : QA_LEVEL === "B2"
+        ? ["0 из 1", "0 из 2"]
+        : ["0 из 11"];
 const completedChapterProgress =
   QA_LEVEL === "A2"
     ? [
@@ -79,7 +83,9 @@ const completedChapterProgress =
       ]
     : QA_LEVEL === "B1"
       ? ["2 из 2", "1 из 1", "2 из 2", "2 из 2", "2 из 2", "3 из 3", "3 из 3", "2 из 2", "2 из 2"]
-      : ["11 из 11"];
+      : QA_LEVEL === "B2"
+        ? ["1 из 1", "2 из 2"]
+        : ["11 из 11"];
 const episodes = process.argv.slice(2).length
   ? process.argv.slice(2)
   : defaultEpisodes;
@@ -88,7 +94,9 @@ const preferredFailEpisode =
     ? "sit_a2_health_01"
     : QA_LEVEL === "B1"
       ? "sit_b1_people_01"
-      : episodes[0];
+      : QA_LEVEL === "B2"
+        ? "sit_b2_people_01"
+        : episodes[0];
 const failEpisode = episodes.includes(preferredFailEpisode)
   ? preferredFailEpisode
   : episodes[0];
@@ -200,7 +208,7 @@ async function run(failMission) {
     await page.locator("text=Твой уровень").waitFor();
     assert.match(await page.locator(".hero-screen").innerText(), /A1/i);
     await page.screenshot({ path: `${out}/${qaPrefix}-placement-result.png` });
-    if (QA_LEVEL === "A2" || QA_LEVEL === "B1") {
+    if (QA_LEVEL !== "A1") {
       // Local disposable preview only: placement has already been exercised;
       // set its test user to the course level under QA so its path is reachable.
       sqlite
@@ -429,7 +437,10 @@ async function run(failMission) {
                 stored.targetId.startsWith("itm_b1_b116_") ||
                 stored.targetId.startsWith("itm_b1_b117_") ||
                 stored.targetId.startsWith("itm_b1_b118_") ||
-                stored.targetId.startsWith("itm_b1_hb1_"))
+                stored.targetId.startsWith("itm_b1_hb1_") ||
+                stored.targetId.startsWith("itm_b2_b21_") ||
+                stored.targetId.startsWith("itm_b2_b22_") ||
+                stored.targetId.startsWith("itm_b2_b23_"))
             ) {
               await page.screenshot({
                 path: `${out}/${suffix}-${stored.targetId}.png`,
