@@ -112,19 +112,25 @@ test("A2 Batch 6 maps the bill error to Leo and OTC shopping to Emma", () => {
   assert.match(openingLine("sit_a2_health_01"), /simple remedies.*on this shelf/i);
 });
 
-test("B1 Batch 1–2 maps each dialogue to its authored cast and scene", () => {
+test("B1 Batch 1–3 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_people_01"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_people_02"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_cafe_01"), { scene: "cafe", cast: "maya" });
   assert.deepEqual(sceneForSituation("sit_b1_restaurant_01"), { scene: "restaurant", cast: "leo" });
   assert.deepEqual(sceneForSituation("sit_b1_restaurant_02"), { scene: "restaurant", cast: "leo" });
   assert.deepEqual(sceneForSituation("sit_b1_travel_01"), { scene: "street", cast: "rosa" });
+  assert.deepEqual(sceneForSituation("sit_b1_travel_02"), { scene: "street", cast: "rosa" });
+  assert.deepEqual(sceneForSituation("sit_b1_daily_01"), { scene: "meeting", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b1_daily_02"), { scene: "meeting", cast: "alex" });
   assert.match(openingLine("sit_b1_people_01"), /Maya.*bookshop/i);
   assert.match(openingLine("sit_b1_people_02"), /evening market.*music/i);
   assert.match(openingLine("sit_b1_cafe_01"), /drinks board.*two new drinks/i);
   assert.match(openingLine("sit_b1_restaurant_01"), /menu carefully.*check an ingredient/i);
   assert.match(openingLine("sit_b1_restaurant_02"), /keep you waiting.*main course/i);
-  assert.match(openingLine("sit_b1_travel_01"), /checking the Northbridge trains.*wrong with your service/i)
+  assert.match(openingLine("sit_b1_travel_01"), /checking the Northbridge trains.*wrong with your service/i);
+  assert.match(openingLine("sit_b1_travel_02"), /before your train.*stop worthwhile/i);
+  assert.match(openingLine("sit_b1_daily_01"), /Have you ever had a trip/i);
+  assert.match(openingLine("sit_b1_daily_02"), /Last year brought a big change.*everyday life now/i)
 });
 
 test("one chapter needs only a handful of places and people", () => {
@@ -171,6 +177,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_b1_restaurant_01",
     "sit_b1_restaurant_02",
     "sit_b1_travel_01",
+    "sit_b1_travel_02",
+    "sit_b1_daily_01",
+    "sit_b1_daily_02",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

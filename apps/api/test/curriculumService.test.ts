@@ -95,14 +95,14 @@ test("the published A2 course exposes all nine authored V2 chapters and seventee
   assert.equal(course.episodesTotal, 17);
 });
 
-test("the published B1 course exposes six authored situations in progression order", async () => {
+test("the published B1 course exposes nine authored situations in frozen progression order", async () => {
   const { db } = await seeded();
   const course = await getCourse(db, "B1", "usr_test");
   assert.deepEqual(
     course.chapters.flatMap((chapter) => chapter.episodes.map((episode) => episode.id)),
-    ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01"],
+    ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02"],
   );
-  assert.equal(course.episodesTotal, 6);
+  assert.equal(course.episodesTotal, 9);
 });
 
 test("a level with no seeded content returns an empty course, not an error", async () => {

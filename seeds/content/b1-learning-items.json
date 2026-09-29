@@ -707,5 +707,357 @@
     ],
     "npcReplyCorrect": "That's fair. I'll take the cold meal off the bill and bring you a fresh one if you'd still like it.",
     "patterns": []
+  },
+  {
+    "id": "itm_b1_b17_recommend",
+    "itemType": "functional_phrase",
+    "lemma": "b17 recommend",
+    "displayForm": "What would you suggest seeing first? I'm interested in local history, but I don't want to spend the whole day indoors.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "city recommendations",
+    "ru": {
+      "translation": "Что вы посоветуете посмотреть сначала? Мне интересна местная история, но я не хочу провести весь день в помещении.",
+      "usageNote": "Asks for a useful first stop and gives a preference that Rosa can use."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b17_recommend_01",
+        "text": "What would you suggest seeing first? I'm interested in local history, but I don't want to spend the whole day indoors.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The small city museum is a good start. After that, the canal path is nearby and mostly outdoors.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b17_evaluate",
+    "itemType": "functional_phrase",
+    "lemma": "b17 evaluate",
+    "displayForm": "The museum is closer than the riverside path, but is the riverside walk worth doing this afternoon?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "city recommendations",
+    "ru": {
+      "translation": "Музей ближе, чем набережная, но стоит ли сегодня прогуляться вдоль реки?",
+      "usageNote": "Evidence for recycled comparatives and the real B1 target worth + -ing; evaluates the walk against the learner's preference."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b17_evaluate_01",
+        "text": "The museum is closer than the riverside path, but is the riverside walk worth doing this afternoon?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. The path takes about thirty-five minutes, and you can turn back at the old bridge if you need to.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b17_plan",
+    "itemType": "functional_phrase",
+    "lemma": "b17 plan",
+    "displayForm": "Then I'll walk along the canal first and visit the museum afterwards if I have time. How long does it take to get back to the station?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "city recommendations",
+    "ru": {
+      "translation": "Тогда сначала пройдусь вдоль канала, а потом зайду в музей, если останется время. Сколько идти обратно до вокзала?",
+      "usageNote": "Turns the advice into a feasible order and checks the return time."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b17_plan_01",
+        "text": "Then I'll walk along the canal first and visit the museum afterwards if I have time. How long does it take to get back to the station?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It's about twenty minutes from the museum entrance, or thirty from the far end of the canal path.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b17_v1_food",
+    "itemType": "functional_phrase",
+    "lemma": "b17 v1 food",
+    "displayForm": "I'm hungry before my train. Is the covered market worth trying for lunch, and what local dish would you recommend that is quick?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "city recommendations",
+    "ru": {
+      "translation": "Я проголодался(ась) перед поездом. Стоит ли зайти пообедать на крытый рынок и какое местное блюдо вы посоветуете, чтобы быстро перекусить?",
+      "usageNote": "Transfers the recommendation/evaluation function from sightseeing to local food and asks for a reasoned, time-sensitive choice."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b17_v1_food_01",
+        "text": "I'm hungry before my train. Is the covered market worth trying for lunch, and what local dish would you recommend that is quick?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The market café is worth a visit. Try their vegetable soup; they serve it quickly.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b17_v2_time",
+    "itemType": "functional_phrase",
+    "lemma": "b17 v2 time",
+    "displayForm": "I have only two hours before my train. The museum and canal path both sound good; is it worth trying both, or should I choose one? Which would you recommend first?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "city recommendations",
+    "ru": {
+      "translation": "До поезда у меня всего два часа. И музей, и канал звучат заманчиво; стоит ли успевать оба места или лучше выбрать одно? Что вы посоветуете сначала?",
+      "usageNote": "Transfers route planning to a strict time limit and requires evaluating what fits instead of repeating an unconstrained itinerary."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b17_v2_time_01",
+        "text": "I have only two hours before my train. The museum and canal path both sound good; is it worth trying both, or should I choose one? Which would you recommend first?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "With two hours, I'd choose the museum and the short canal section near the bridge. You'll have time to return without rushing.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b18_trip_experience",
+    "itemType": "functional_phrase",
+    "lemma": "b18 trip experience",
+    "displayForm": "I've had one trip I'll never forget. I went to York on my own for a weekend when I was at college.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "personal experiences and stories",
+    "ru": {
+      "translation": "У меня была поездка, которую я никогда не забуду. Во время учёбы в колледже я один(одна) съездил(а) на выходные в Йорк.",
+      "usageNote": "Present Perfect introduces life experience without a finished-time marker; Past Simple starts its narrative details."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b18_trip_experience_01",
+        "text": "I've had one trip I'll never forget. I went to York on my own for a weekend when I was at college.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "What happened on the first day?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b18_wrong_bus",
+    "itemType": "functional_phrase",
+    "lemma": "b18 wrong bus",
+    "displayForm": "I took the wrong bus and ended up outside the city. It started to rain, so I went into a small café and asked for directions.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "personal experiences and stories",
+    "ru": {
+      "translation": "Я сел(а) не на тот автобус и оказался(ась) за городом. Начался дождь, поэтому я зашёл(зашла) в маленькое кафе и спросил(а), как пройти.",
+      "usageNote": "Connected Past Simple events develop the middle of the story with clear cause and response."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b18_wrong_bus_01",
+        "text": "I took the wrong bus and ended up outside the city. It started to rain, so I went into a small café and asked for directions.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds stressful, especially on your own. Did someone help you find your way back?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b18_ending",
+    "itemType": "functional_phrase",
+    "lemma": "b18 ending",
+    "displayForm": "The owner drew me a map, and I got back just in time for a walking tour. I was late, but the guide waited for me. I'll never forget how kind they were.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "personal experiences and stories",
+    "ru": {
+      "translation": "Хозяин нарисовал мне карту, и я успел(а) вернуться как раз к пешей экскурсии. Я опоздал(а), но гид меня дождался. Никогда не забуду, как добры они были.",
+      "usageNote": "Finishes the narrative with a resolution and reflection; I'll never forget is a fixed chunk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b18_ending_01",
+        "text": "The owner drew me a map, and I got back just in time for a walking tour. I was late, but the guide waited for me. I'll never forget how kind they were.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That was kind of them. It sounds like the unexpected stop became the best part of the trip.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b18_v1_mistake",
+    "itemType": "functional_phrase",
+    "lemma": "b18 v1 mistake",
+    "displayForm": "I've made one travel mistake I still laugh about. I booked a room in Bath, but went to the wrong hotel because there were two hotels with very similar names.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "personal experiences and stories",
+    "ru": {
+      "translation": "Я совершил(а) одну дорожную ошибку, над которой до сих пор смеюсь. Я забронировал(а) комнату в Бате, но приехал(а) не в тот отель, потому что два отеля назывались очень похоже.",
+      "usageNote": "Variation changes the emotional tone from a memorable highlight to a mistake; Present Perfect introduces it and Past Simple narrates it."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b18_v1_mistake_01",
+        "text": "I've made one travel mistake I still laugh about. I booked a room in Bath, but went to the wrong hotel because there were two hotels with very similar names.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Oh no, that sounds confusing. How did you find the right place?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b18_v1_resolution",
+    "itemType": "functional_phrase",
+    "lemma": "b18 v1 resolution",
+    "displayForm": "I showed the receptionist my booking email. She called the other hotel, and a taxi took me there in ten minutes.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "personal experiences and stories",
+    "ru": {
+      "translation": "Я показал(а) администратору письмо с бронированием. Она позвонила во второй отель, и такси отвезло меня туда за десять минут.",
+      "usageNote": "Completes the variation as a connected problem-and-resolution story in Past Simple."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b18_v1_resolution_01",
+        "text": "I showed the receptionist my booking email. She called the other hotel, and a taxi took me there in ten minutes.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I'm glad they sorted it out quickly. I can see why you still remember it.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b18_v2_two_events",
+    "itemType": "functional_phrase",
+    "lemma": "b18 v2 two events",
+    "displayForm": "I've had a weekend I'll always remember. I helped at a street festival: first the singer's car broke down, and then heavy rain started just before the show. We moved everything into the library hall and the audience came with us.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "personal experiences and stories",
+    "ru": {
+      "translation": "У меня были выходные, которые я всегда буду помнить. Я помогал(а) на уличном фестивале: сначала сломалась машина певца, а затем прямо перед выступлением пошёл сильный дождь. Мы перенесли всё в библиотечный зал, и зрители пошли за нами.",
+      "usageNote": "Variation contains two connected setbacks and a resolution, requiring sequencing across more than one event."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b18_v2_two_events_01",
+        "text": "I've had a weekend I'll always remember. I helped at a street festival: first the singer's car broke down, and then heavy rain started just before the show. We moved everything into the library hall and the audience came with us.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You had to change the whole plan at the last minute. Did the show still go ahead?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b19_location_change",
+    "itemType": "functional_phrase",
+    "lemma": "b19 location change",
+    "displayForm": "I used to live near the old market, but now I rent a flat beside my office. I moved because the bus ride took nearly an hour each way.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "life changes and habits",
+    "ru": {
+      "translation": "Раньше я жил(а) рядом со старым рынком, а теперь снимаю квартиру рядом с офисом. Я переехал(а), потому что дорога на автобусе занимала почти час в одну сторону.",
+      "usageNote": "The used to target contrasts a former state with the present and gives a clear reason for the change."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b19_location_change_01",
+        "text": "I used to live near the old market, but now I rent a flat beside my office. I moved because the bus ride took nearly an hour each way.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is a big difference. What else changed in your everyday routine after the move?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b19_habit_change",
+    "itemType": "functional_phrase",
+    "lemma": "b19 habit change",
+    "displayForm": "I used to spend most evenings at home, but now I walk along the river on my way back. It helps me relax after work.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "life changes and habits",
+    "ru": {
+      "translation": "Раньше я почти все вечера проводил(а) дома, а теперь по дороге обратно гуляю вдоль реки. Это помогает мне отдохнуть после работы.",
+      "usageNote": "Extends the comparison from location to a changed habit and explains its present benefit."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b19_habit_change_01",
+        "text": "I used to spend most evenings at home, but now I walk along the river on my way back. It helps me relax after work.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds like a good way to finish the day. Do you go even when the weather is not ideal?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b19_gradual_change",
+    "itemType": "functional_phrase",
+    "lemma": "b19 gradual change",
+    "displayForm": "The change happened slowly. At first I walked once a week, then twice, and now I go almost every day. I realised I sleep better when I get some fresh air.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "life changes and habits",
+    "ru": {
+      "translation": "Перемены происходили постепенно. Сначала я гулял(а) раз в неделю, потом два, а теперь почти каждый день. Я понял(а), что лучше сплю, когда бываю на свежем воздухе.",
+      "usageNote": "Variation v2 makes the change gradual and shows stages, rather than swapping one habit noun."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b19_gradual_change_01",
+        "text": "The change happened slowly. At first I walked once a week, then twice, and now I go almost every day. I realised I sleep better when I get some fresh air.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It makes sense that you kept doing it once you noticed the difference.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b19_v1_habit",
+    "itemType": "functional_phrase",
+    "lemma": "b19 v1 habit",
+    "displayForm": "I used to read the news on my phone during the bus ride, but now I listen to a podcast instead. I wanted a break from looking at a screen.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "life changes and habits",
+    "ru": {
+      "translation": "Раньше я читал(а) новости в телефоне в автобусе, а теперь вместо этого слушаю подкаст. Мне захотелось отдохнуть от экрана.",
+      "usageNote": "Variation changes the change from location/after-work routine to a travel habit and states its cause."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b19_v1_habit_01",
+        "text": "I used to read the news on my phone during the bus ride, but now I listen to a podcast instead. I wanted a break from looking at a screen.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That sounds like a useful change. Do you listen to the same kind of programme each day?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b19_v2_gradual",
+    "itemType": "functional_phrase",
+    "lemma": "b19 v2 gradual",
+    "displayForm": "I used to drive to work every day. The change was gradual: I started cycling on Fridays, then added another day, and now I cycle most of the week.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "life changes and habits",
+    "ru": {
+      "translation": "Раньше я каждый день ездил(а) на работу на машине. Перемены шли постепенно: сначала я стал(а) ездить на велосипеде по пятницам, потом добавил(а) ещё один день, а теперь езжу так большую часть недели.",
+      "usageNote": "Variation v2 changes the domain to commuting and expresses a gradual multi-stage shift with the same used to target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b1_b19_v2_gradual_01",
+        "text": "I used to drive to work every day. The change was gradual: I started cycling on Fridays, then added another day, and now I cycle most of the week.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is quite a change. What made you decide to keep cycling more often?",
+    "patterns": []
   }
 ]

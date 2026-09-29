@@ -28,5 +28,20 @@
     "fromPatternId": "gr_a1_have",
     "toPatternId": "gr_a1_there_is_are",
     "relationType": "related"
+  },
+  {
+    "fromPatternId": "gr_a2_comparatives",
+    "toPatternId": "gr_b1_worth_ing_recommendations",
+    "relationType": "related"
+  },
+  {
+    "fromPatternId": "gr_a2_past_simple_positive",
+    "toPatternId": "gr_b1_present_perfect_experience",
+    "relationType": "prerequisite"
+  },
+  {
+    "fromPatternId": "gr_b1_present_perfect_experience",
+    "toPatternId": "gr_b1_used_to_past_habits",
+    "relationType": "related"
   }
 ]

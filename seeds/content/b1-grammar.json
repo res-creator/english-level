@@ -22,5 +22,41 @@
     "ru": {
       "explanation": "Используйте might или could, чтобы смягчить несогласие или предложить альтернативу менее категорично."
     }
+  },
+  {
+    "id": "gr_b1_worth_ing_recommendations",
+    "levelCode": "B1",
+    "title": "worth + -ing — оценить рекомендацию",
+    "patternKey": "worth_ing_recommendations",
+    "formula": "Is it worth doing/visiting/trying ...?",
+    "explanationEn": "Use worth + -ing to ask whether an activity or place deserves the time or effort.",
+    "order": 3,
+    "ru": {
+      "explanation": "Используйте worth + глагол с -ing, чтобы спросить, стоит ли тратить время или усилия на занятие или место."
+    }
+  },
+  {
+    "id": "gr_b1_present_perfect_experience",
+    "levelCode": "B1",
+    "title": "Present Perfect — жизненный опыт",
+    "patternKey": "present_perfect_experience",
+    "formula": "Have you ever ...? / I have ...",
+    "explanationEn": "Use the Present Perfect to ask about or introduce an experience without saying exactly when it happened; use the Past Simple for the details of the event.",
+    "order": 4,
+    "ru": {
+      "explanation": "Используйте Present Perfect, чтобы спросить о жизненном опыте или представить его без точного времени; детали события рассказывайте в Past Simple."
+    }
+  },
+  {
+    "id": "gr_b1_used_to_past_habits",
+    "levelCode": "B1",
+    "title": "used to — прежние привычки и состояния",
+    "patternKey": "used_to_past_habits",
+    "formula": "I used to ..., but now ...",
+    "explanationEn": "Use used to + base verb for a past habit or state that is no longer true.",
+    "order": 5,
+    "ru": {
+      "explanation": "Используйте used to + начальную форму глагола для прежней привычки или состояния, которые изменились."
+    }
   }
 ]

@@ -76,8 +76,8 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b1_restaurant_01` | Особые диетические потребности | Restaurant & Dining | Leo | **done** | 2 — vegetarian preference without allergy; sesame restriction across two components | target: recycled `gr_a1_present_simple_questions`; `could you make sure` is a lexical chunk | Gate A/B/C PASS; Near A2.5, Far A1.7; prerequisite A2.5; ingredient check + explicit kitchen confirmation |
 | `sit_b1_restaurant_02` | Серьёзная жалоба на обслуживание | Restaurant & Dining | Leo | **done** | 2 — wrong order; cold meal with Leo pushback and learner follow-through | Present Perfect Continuous and `should have` are explicit lexical chunks, no new grammar target | Gate A/B/C PASS; Near A2.16, Far A1.5; prerequisites A2.16/B1.4; concrete bill remedy |
 | `sit_b1_travel_01` | Проблема в поездке | Getting Around | Rosa | **done** | 2 — delay with missed connection; choose between direct bus and faster train | `has been cancelled` is an explicit lexical chunk, not a grammar target | Gate A/B/C PASS; Near A2.6, Far A2.7; prerequisite A2.6; compare, choose and confirm route details |
-| `sit_b1_travel_02` | Спросить совет о маршруте на день | Getting Around | Rosa | planned | 2 | worth + -ing, comparatives | |
-| `sit_b1_daily_01` | Рассказать историю из жизни | Daily Life & Home | Alex | planned | 2 | Present Perfect (experience) + Past Simple | first REAL target for this facet |
+| `sit_b1_travel_02` | Спросить совет о маршруте на день | Getting Around | Rosa | **done** | 2 — local lunch recommendation; plan constrained to two hours | target: `gr_b1_worth_ing_recommendations`, recycled `gr_a2_comparatives`; recommendation frames are chunks | Gate A/B/C PASS; Near B1.6, Far A2.6/A2.7; prerequisite B1.6; BC B1 travel advice and Cambridge B1 vocabulary |
+| `sit_b1_daily_01` | Рассказать историю из жизни | Daily Life & Home | Alex | **done** | 2 — travel mistake with resolution; two-event festival story | first real target: `gr_b1_present_perfect_experience` + recycled `gr_a2_past_simple_positive`; “I’ll never forget…” is a chunk | Gate A/B/C PASS; Near A2.8, Far A1 daily routine; prerequisite A2.8; connected start/middle/resolution narrative |
 | `sit_b1_daily_02` | Обсудить изменение в жизни | Daily Life & Home | Alex | planned | 2 | used to | |
 | `sit_b1_shop_01` | Проблема с подпиской/счётом | Shopping & Services | Emma | planned | 2 | Passive | |
 | `sit_b1_shop_02` | Сравнить варианты перед покупкой | Shopping & Services | Emma | planned | 2 | comparatives/superlatives, would rather | |
@@ -181,15 +181,27 @@ B1.6: Rosa opens by noticing the learner checking trains without repeating the d
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 34 worksheet situations; all seed/schema/reference and contiguity checks pass, and the full suite confirms reseeding twice without duplicate rows. Gate B: manual dialogue review confirms speaker-role consistency, authored relevant continuations, no generic NPC replies, no Russian in English lines, no repeated opener/context, B1-appropriate language, frozen classifications and transfer variations. Gate C: Chromium ran B1.1–B1.6 in order; each Mission passed at 100% (`can_do`), course progression reached 6/6, and a separate B1.1 Mission failed at 0% (`learning`) without completion. Final run: **183 transcript snapshots** and **37 screenshots** for B1.4–B1.6 under ignored `artifacts/qa/session-dialogue/`. Full workspace suite **407/407** (API 321, web 80, shared 6); API/web typecheck PASS. See [B1 Batch 2 production QA](docs/B1_BATCH2_PRODUCTION_QA.md).
 
+## B1 Batch 3 reference and QA record
+
+Before authoring, consulted British Council [An email giving holiday advice (B1)](https://learnenglish.britishcouncil.org/free-resources/writing/b1/email-giving-holiday-advice?page=8) for the natural `worth + -ing` recommendation followed by a reason; British Council [B1 Intermediate descriptor](https://learnenglish.britishcouncil.org/level/understand-your-level/b1-intermediate) and [B1 speaking resources](https://learnenglish.britishcouncil.org/free-resources/speaking/b1) for connected personal accounts and relevant follow-up; ELLLO [Life in the 80s (B1)](https://www.elllo.org/english/1501/1525-RachelTodd-PastNow-Teens.htm) for past-versus-now framing; and Cambridge [B1 Preliminary Speaking format](https://www.cambridgeenglish.org/exams-and-tests/qualifications/preliminary/format/) for familiar-topic experience, narrative and opinion expectations. These informed register, sequence and level only. Dialogue is original.
+
+B1.7: Rosa asks what would make the learner’s stop worthwhile. The learner gives a preference, compares the nearer museum with a riverside walk, asks whether it is worth doing, then uses Rosa’s durations to order the visit and return to the station. v1 transfers recommendation to local lunch and a quick-service constraint; v2 requires choosing an itinerary under a two-hour limit. Targets: `gr_b1_worth_ing_recommendations` and recycled `gr_a2_comparatives`. Near: B1.6; Far: A2.6/A2.7.
+
+B1.8: Alex asks about a trip that did not go to plan. The learner introduces an experience with Present Perfect, then narrates a wrong bus, rain, help from a café owner and catching a walking tour in connected Past Simple. v1 changes the tone to a travel mistake and includes its resolution; v2 connects two festival setbacks with a solution. Present Perfect experience is the first genuine target for this facet; Past Simple is recycled from A2.8. “I’ll never forget…” is explicitly a chunk. Near: A2.8; Far: A1 routine vocabulary.
+
+B1.9: Alex asks about a life change. The learner contrasts a former home/commute with the current situation, then discusses a changed evening routine and its benefit. v1 transfers the contrast to a bus reading/listening habit; v2 requires describing several stages of a gradual change in commuting. `used to + base verb` is the genuine target; no later-level grammar is introduced. Near: B1.8; Far: A2.8.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 37 worksheet situations. Seed/schema/reference validation, lesson/item contiguity, Near/Far references, and idempotent reseed PASS. Gate B confirms authored continuations respond to the immediately preceding semantic turn; roles/scenes match Rosa/street and Alex/meeting; openers fit both core and variation contexts; no repeated opener, generic NPC reply, duplicate learner turn, Russian inside English lines, or unclassified above-level construction. Gate C Chromium ran all nine available B1 situations in frozen order; all nine Missions passed at 100% (`can_do`), course progression reached 9/9, and a separate B1.1 Mission FAIL returned 0% (`learning`) without completion. Final run: **269 transcript snapshots** and **39 screenshots** for B1.7–B1.9 under ignored `artifacts/qa/session-dialogue/`. Full suite **407/407** (API 321, web 80, shared 6); API/web typecheck PASS. See [B1 Batch 3 production QA](docs/B1_BATCH3_PRODUCTION_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
 |---|---|---|---|---|
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
-| B1 | 19 | 6 | 13 | 0 |
+| B1 | 19 | 9 | 10 | 0 |
 | B2 | 22 | 0 | 22 | 0 |
-| **Total** | **69** | **34** | **35** | **0** |
+| **Total** | **69** | **37** | **32** | **0** |
 
 ## A2 level freeze
 

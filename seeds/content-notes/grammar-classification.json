@@ -2047,5 +2047,310 @@
         "sourceField": "npcReplyCorrect"
       }
     ]
+  },
+  {
+    "situationId": "sit_b1_travel_02",
+    "phrases": [
+      {
+        "text": "You've got some time before your train. What would make the stop worthwhile for you?",
+        "classification": "chunk",
+        "chunkLabel": "Rosa asks about available time and preferences; the same opener fits route and food variations.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "What would you suggest seeing first? I'm interested in local history, but I don't want to spend the whole day indoors.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b17_recommend",
+        "chunkLabel": "Would suggest is a fixed recommendation frame; the learner gives a preference for relevant advice."
+      },
+      {
+        "text": "The small city museum is a good start. After that, the canal path is nearby and mostly outdoors.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa suggests two named, contrasting city activities.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The museum is closer than the riverside path, but is the riverside walk worth doing this afternoon?",
+        "classification": "target",
+        "itemId": "itm_b1_b17_evaluate",
+        "grammarPatternId": "gr_b1_worth_ing_recommendations",
+        "chunkLabel": "Worth + -ing is the new target; nearer than evidences the recycled A2 comparative."
+      },
+      {
+        "text": "The museum is closer than the riverside path, but is the riverside walk worth doing this afternoon?",
+        "classification": "target",
+        "itemId": "itm_b1_b17_evaluate",
+        "grammarPatternId": "gr_a2_comparatives",
+        "chunkLabel": "Recycled comparative form evaluates the relative distance between the two real options."
+      },
+      {
+        "text": "Yes. The path takes about thirty-five minutes, and you can turn back at the old bridge if you need to.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa gives duration and a practical turn-back point.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "Then I'll walk along the canal first and visit the museum afterwards if I have time. How long does it take to get back to the station?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b17_plan",
+        "chunkLabel": "Learner converts advice into a sequence and checks return duration."
+      },
+      {
+        "text": "It's about twenty minutes from the museum entrance, or thirty from the far end of the canal path.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa gives different durations depending on how far the learner walks.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I'm hungry before my train. Is the covered market worth trying for lunch, and what local dish would you recommend that is quick?",
+        "classification": "target",
+        "itemId": "itm_b1_b17_v1_food",
+        "grammarPatternId": "gr_b1_worth_ing_recommendations",
+        "chunkLabel": "Transfers worth + -ing and recommendation to a food choice with a quick-service constraint."
+      },
+      {
+        "text": "What local dish would you recommend that is quick?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b17_v1_food",
+        "chunkLabel": "Fixed recommendation frame from the frozen capability; does not create a new conditional grammar target."
+      },
+      {
+        "text": "The market is worth a visit. Try the vegetable pasty stall near the south entrance; they serve it quickly.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa names a specific local lunch and its location.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I have only two hours before my train. The museum and canal path both sound good; is it worth trying both, or should I choose one? Which would you recommend first?",
+        "classification": "target",
+        "itemId": "itm_b1_b17_v2_time",
+        "grammarPatternId": "gr_b1_worth_ing_recommendations",
+        "chunkLabel": "Variation adds a two-hour limit and asks whether to combine or choose activities."
+      },
+      {
+        "text": "Should I choose one?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b17_v2_time",
+        "chunkLabel": "Recycled A2 advice question supports the new B1 evaluation target."
+      },
+      {
+        "text": "With two hours, I'd choose the museum and the short canal section near the bridge. You'll have time to return without rushing.",
+        "classification": "chunk",
+        "chunkLabel": "Rosa scopes a feasible plan within the stated time.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_daily_01",
+    "phrases": [
+      {
+        "text": "Have you ever had a trip that didn't go quite as planned?",
+        "classification": "target",
+        "grammarPatternId": "gr_b1_present_perfect_experience",
+        "chunkLabel": "NPC question models the same first-real Present Perfect experience target taught in this situation.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I've had one trip I'll never forget. I went to York on my own for a weekend when I was at college.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_trip_experience",
+        "grammarPatternId": "gr_b1_present_perfect_experience",
+        "chunkLabel": "Present Perfect introduces an experience; the turn starts its Past Simple narrative."
+      },
+      {
+        "text": "I went to York on my own for a weekend when I was at college.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_trip_experience",
+        "grammarPatternId": "gr_a2_past_simple_positive",
+        "chunkLabel": "Past Simple gives a finished-time context for the experience."
+      },
+      {
+        "text": "What happened on the first day?",
+        "classification": "chunk",
+        "chunkLabel": "Alex asks for the first event, inviting a connected narrative.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I took the wrong bus and ended up outside the city. It started to rain, so I went into a small café and asked for directions.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_wrong_bus",
+        "grammarPatternId": "gr_a2_past_simple_positive",
+        "chunkLabel": "Two connected Past Simple events develop the narrative and their consequence."
+      },
+      {
+        "text": "That sounds stressful, especially on your own. Did someone help you find your way back?",
+        "classification": "chunk",
+        "chunkLabel": "Alex reacts to the difficulty and asks how the learner returned.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The owner drew me a map, and I got back just in time for a walking tour. I was late, but the guide waited for me. I'll never forget how kind they were.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_ending",
+        "grammarPatternId": "gr_a2_past_simple_positive",
+        "chunkLabel": "Past Simple closes the story; I'll never forget is a fixed reflective chunk."
+      },
+      {
+        "text": "I'll never forget how kind they were.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b18_ending",
+        "chunkLabel": "Frozen V2 reflection phrase retained as a fixed chunk, separate from the Past Simple narrative target."
+      },
+      {
+        "text": "That was kind of them. It sounds like the unexpected stop became the best part of the trip.",
+        "classification": "chunk",
+        "chunkLabel": "Alex responds to the story's kind resolution.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I've made one travel mistake I still laugh about. I booked a room in Bath, but went to the wrong hotel because there were two hotels with very similar names.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_v1_mistake",
+        "grammarPatternId": "gr_b1_present_perfect_experience",
+        "chunkLabel": "Variation introduces a humorous mistake with Present Perfect and narrates its setup in Past Simple."
+      },
+      {
+        "text": "I booked a room in Bath, but went to the wrong hotel because there were two hotels with very similar names.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_v1_mistake",
+        "grammarPatternId": "gr_a2_past_simple_positive",
+        "chunkLabel": "Past Simple develops the concrete event in this variation."
+      },
+      {
+        "text": "Oh no, that must have been confusing. How did you find the right place?",
+        "classification": "chunk",
+        "chunkLabel": "Alex reacts to the mistake and asks how the situation was resolved.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I showed the receptionist my booking email. She called the other hotel, and a taxi took me there in ten minutes.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_v1_resolution",
+        "grammarPatternId": "gr_a2_past_simple_positive",
+        "chunkLabel": "Variation resolves the mistake in connected Past Simple."
+      },
+      {
+        "text": "I'm glad they sorted it out quickly. I can see why you still remember it.",
+        "classification": "chunk",
+        "chunkLabel": "Alex acknowledges the resolution without repeating story details.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I've had a weekend I'll always remember. I helped at a street festival: first the singer's car broke down, and then heavy rain started just before the show. We moved everything into the library hall and the audience came with us.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_v2_two_events",
+        "grammarPatternId": "gr_b1_present_perfect_experience",
+        "chunkLabel": "Variation transfers the storytelling frame to two linked setbacks and their resolution."
+      },
+      {
+        "text": "First the singer's car broke down, and then heavy rain started just before the show. We moved everything into the library hall and the audience came with us.",
+        "classification": "target",
+        "itemId": "itm_b1_b18_v2_two_events",
+        "grammarPatternId": "gr_a2_past_simple_positive",
+        "chunkLabel": "Past Simple sequences the two connected events and the resolution."
+      },
+      {
+        "text": "You had to change the whole plan at the last minute. Did the show still go ahead?",
+        "classification": "chunk",
+        "chunkLabel": "Alex asks a focused follow-up about the outcome.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_daily_02",
+    "phrases": [
+      {
+        "text": "Last year brought a big change for you. What's different about your everyday life now?",
+        "classification": "chunk",
+        "chunkLabel": "Alex refers to a specific life change and asks a focused present-day follow-up without pre-supplying details the learner must explain.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I used to live near the old market, but now I rent a flat beside my office. I moved because the bus ride took nearly an hour each way.",
+        "classification": "target",
+        "itemId": "itm_b1_b19_location_change",
+        "grammarPatternId": "gr_b1_used_to_past_habits",
+        "chunkLabel": "Used to + base verb describes a former state; Present Simple and Past Simple are recycled supporting language."
+      },
+      {
+        "text": "That is a big difference. What else changed in your everyday routine after the move?",
+        "classification": "chunk",
+        "chunkLabel": "Alex responds to the commute change and asks about another routine.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I used to spend most evenings at home, but now I walk along the river on my way back. It helps me relax after work.",
+        "classification": "target",
+        "itemId": "itm_b1_b19_habit_change",
+        "grammarPatternId": "gr_b1_used_to_past_habits",
+        "chunkLabel": "Transfers used to from a past location/state to an evening habit and contrasts now."
+      },
+      {
+        "text": "That sounds like a good way to finish the day. Do you go even when the weather is not ideal?",
+        "classification": "chunk",
+        "chunkLabel": "Alex responds to the new habit and asks about consistency.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "The change happened slowly. At first I walked once a week, then twice, and now I go almost every day. I realised I sleep better when I get some fresh air.",
+        "classification": "target",
+        "itemId": "itm_b1_b19_gradual_change",
+        "grammarPatternId": "gr_b1_used_to_past_habits",
+        "chunkLabel": "Used to remains the real B1 target inside the gradual-change variation; sequencing expressions are supporting language."
+      },
+      {
+        "text": "It makes sense that you kept doing it once you noticed the difference.",
+        "classification": "chunk",
+        "chunkLabel": "Alex responds to the gradual progress and reported benefit.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I used to read the news on my phone during the bus ride, but now I listen to a podcast instead. I wanted a break from looking at a screen.",
+        "classification": "target",
+        "itemId": "itm_b1_b19_v1_habit",
+        "grammarPatternId": "gr_b1_used_to_past_habits",
+        "chunkLabel": "Variation changes the domain to a bus habit and explains its cause."
+      },
+      {
+        "text": "That sounds like a useful change. Do you listen to the same kind of programme each day?",
+        "classification": "chunk",
+        "chunkLabel": "Alex responds to the screen break and asks about the podcast.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      },
+      {
+        "text": "I used to drive to work every day. The change was gradual: I started cycling on Fridays, then added another day, and now I cycle most of the week.",
+        "classification": "target",
+        "itemId": "itm_b1_b19_v2_gradual",
+        "grammarPatternId": "gr_b1_used_to_past_habits",
+        "chunkLabel": "Variation changes the domain to commuting and adds several stages to a gradual change."
+      },
+      {
+        "text": "That is quite a change. What made you decide to keep cycling more often?",
+        "classification": "chunk",
+        "chunkLabel": "Alex responds to the new commute habit and asks what motivated it.",
+        "speaker": "npc",
+        "sourceField": "npcReplyCorrect"
+      }
+    ]
   }
 ]
