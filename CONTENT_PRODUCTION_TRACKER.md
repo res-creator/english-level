@@ -243,6 +243,10 @@ Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 47 workshe
 
 **A2 CONTENT FROZEN / PRODUCTION READY.** A2 tracker: **17/17 done**; Gates A/B/C PASS; blocking findings: **0**. Полный audit всех ситуаций и уровня в Chromium зафиксирован в [A2 Level Freeze QA](docs/A2_LEVEL_FREEZE_QA.md). Production deployment не выполнялся.
 
+## B1 level freeze
+
+**B1 CONTENT FROZEN / PRODUCTION READY.** B1 tracker: **19/19 done**; Gates A/B/C PASS; blocking findings: **0**. Полный audit подтвердил dialogue coherence, speaker-role consistency, target/chunk classification, две transfer variations на ситуацию, Near/Far review, progression, semantic spoken turns, opener continuity и Mission PASS/FAIL. Chromium: 580 transcript snapshots, 19 Mission PASS по 100% / `can_do`, один независимый Mission FAIL 0% / `learning`; automated suite 407/407, API/web typechecks и seed idempotency PASS. Полный отчёт: [B1 Level Freeze QA](docs/B1_LEVEL_FREEZE_QA.md). Production deployment не выполнялся.
+
 ---
 
 ## Findings — актуальное состояние на 2026-09-28
