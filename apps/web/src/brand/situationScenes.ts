@@ -78,6 +78,9 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_b2_travel_01: { scene: "street", cast: "rosa" },
   sit_b2_travel_02: { scene: "street", cast: "rosa" },
   sit_b2_daily_01: { scene: "cafe", cast: "alex" },
+  sit_b2_shop_01: { scene: "shop", cast: "emma" },
+  sit_b2_work_01: { scene: "meeting", cast: "daniel" },
+  sit_b2_work_02: { scene: "meeting", cast: "daniel" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -182,6 +185,12 @@ const OPENING_LINES: Record<string, string> = {
     "You need to reach Hillview by half past two, keep the trip near twenty-five pounds, and the forecast says heavy rain. Which option should we examine first?",
   sit_b2_daily_01:
     "Maya is considering a four-day working week with slightly lower pay. Do you think the extra day off would improve her lifestyle?",
+  sit_b2_shop_01:
+    "I have your renewal details here. The monthly price changed last week, and the account now shows a six-month minimum term. What would you like me to check?",
+  sit_b2_work_01:
+    "Our project updates are still reaching people too late. I would like us to leave this meeting with one small change we can test. What do you suggest?",
+  sit_b2_work_02:
+    "I want designers to put full notes in the tracker immediately after every client call, instead of waiting for the project coordinator. That should keep everyone up to date. Do you agree?",
 };
 
 export function openingLine(episodeId: string): string {

@@ -3477,5 +3477,257 @@
         "chunkLabel": "Frozen pros/cons evaluation chunk supporting a personal anecdote."
       }
     ]
+  },
+  {
+    "situationId": "sit_b2_shop_01",
+    "phrases": [
+      {
+        "text": "I have your renewal details here. The monthly price changed last week, and the account now shows a six-month minimum term. What would you like me to check?",
+        "classification": "chunk",
+        "chunkLabel": "Authored service opener identifies the disputed abstract term without deciding the outcome.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "That change wasn't made clear to me when I agreed to the new price.",
+        "itemId": "itm_b2_b27_unclear",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_passive_terms"
+      },
+      {
+        "text": "I'd like to renegotiate rather than accept a term I wasn't properly told about.",
+        "itemId": "itm_b2_b27_options",
+        "classification": "chunk",
+        "chunkLabel": "Frozen formal renegotiation frame; the passive target is separately evidenced in the preceding turn."
+      },
+      {
+        "text": "What are my options here?",
+        "itemId": "itm_b2_b27_options",
+        "classification": "chunk",
+        "chunkLabel": "Frozen option-seeking service chunk."
+      },
+      {
+        "text": "If this isn't resolved without an exit fee, I'll need to consider other providers.",
+        "itemId": "itm_b2_b27_consequence",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_conditional_service_consequence"
+      },
+      {
+        "text": "provided the flexible terms start today and the absence of an exit fee is confirmed in writing",
+        "itemId": "itm_b2_b27_settlement",
+        "classification": "chunk",
+        "chunkLabel": "Formal bounded-settlement chunk; the core passive and real conditional remain the active targets."
+      },
+      {
+        "text": "that commitment wasn't made clear when I joined",
+        "itemId": "itm_b2_b27_v1_gym",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_passive_terms"
+      },
+      {
+        "text": "If you review the sign-up screen, you'll see that only the trial price was displayed",
+        "itemId": "itm_b2_b27_v1_evidence",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_conditional_service_consequence"
+      },
+      {
+        "text": "I'm calling because my renewal now includes a six-month notice period, and I can't see the contract while we're speaking.",
+        "itemId": "itm_b2_b27_vcall_terms",
+        "classification": "chunk",
+        "chunkLabel": "Phone-modality frame that removes visual support and requires verbal clarification."
+      },
+      {
+        "text": "Let me confirm that verbally",
+        "itemId": "itm_b2_b27_vcall_confirm",
+        "classification": "chunk",
+        "chunkLabel": "Phone read-back chunk used because the learner cannot see the contract."
+      },
+      {
+        "text": "Since the change was made by the provider, I do not think the remaining term should apply.",
+        "itemId": "itm_b2_b27_v2_modify",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_passive_terms"
+      },
+      {
+        "text": "That third option could work if the total stays below my current price and it doesn't create a new minimum term.",
+        "itemId": "itm_b2_b27_v2_third_option",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_conditional_service_consequence"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_work_01",
+    "phrases": [
+      {
+        "text": "Our project updates are still reaching people too late. I would like us to leave this meeting with one small change we can test. What do you suggest?",
+        "classification": "chunk",
+        "chunkLabel": "Authored meeting opener establishes a decision need and invites a proposal.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "From my perspective, the delays come from project updates being scattered across email threads.",
+        "itemId": "itm_b2_b28_perspective",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_perspective_proposal"
+      },
+      {
+        "text": "I'd like to propose one shared status page and a ten-minute review every Tuesday.",
+        "itemId": "itm_b2_b28_perspective",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_like_propose"
+      },
+      {
+        "text": "The reason I think this would save time is that each owner would update only three fields before the meeting.",
+        "itemId": "itm_b2_b28_reason",
+        "classification": "chunk",
+        "chunkLabel": "Frozen reason-giving frame plus a hypothetical result, supporting the proposal rather than adding a conditional target."
+      },
+      {
+        "text": "I'd make one person responsible for sending a Monday reminder and run the process for two weeks.",
+        "itemId": "itm_b2_b28_pilot",
+        "classification": "chunk",
+        "chunkLabel": "Bounded pilot proposal using would as functional softening."
+      },
+      {
+        "text": "Let's compare the number of missed handovers with the previous two weeks",
+        "itemId": "itm_b2_b28_measure",
+        "classification": "chunk",
+        "chunkLabel": "Recycled collaborative action frame used to define evidence."
+      },
+      {
+        "text": "From my perspective, invoice approvals are slow because requests arrive in three different email chains.",
+        "itemId": "itm_b2_b28_v1_process",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_perspective_proposal"
+      },
+      {
+        "text": "I'd like to propose a single intake form with a two-day response target.",
+        "itemId": "itm_b2_b28_v1_process",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_like_propose"
+      },
+      {
+        "text": "The reason I think the form still helps is that it can include an urgent category with a named approver.",
+        "itemId": "itm_b2_b28_v1_refine",
+        "classification": "chunk",
+        "chunkLabel": "Frozen reason-giving frame supporting a refined process proposal."
+      },
+      {
+        "text": "From my perspective, the two ideas serve different needs.",
+        "itemId": "itm_b2_b28_v2_similar",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_perspective_proposal"
+      },
+      {
+        "text": "I'd like to propose a live decision log that records what was agreed, who owns the next step, and when it is due.",
+        "itemId": "itm_b2_b28_v2_similar",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_like_propose"
+      },
+      {
+        "text": "I think they can complement each other if the summary is generated from the log.",
+        "itemId": "itm_b2_b28_v2_complement",
+        "classification": "chunk",
+        "chunkLabel": "Integration proposal using a recycled conditional, not a new target."
+      },
+      {
+        "text": "Even so, I'd like to propose a one-week trial of shorter handover notes",
+        "itemId": "itm_b2_b28_v3_skepticism",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_like_propose"
+      },
+      {
+        "text": "Then I'll prepare the template myself and stop the trial after a week unless it prevents at least two clarification calls.",
+        "itemId": "itm_b2_b28_v3_resistance",
+        "classification": "chunk",
+        "chunkLabel": "Evidence-based pilot condition retained as a functional proposal chunk."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_work_02",
+    "phrases": [
+      {
+        "text": "I want designers to put full notes in the tracker immediately after every client call, instead of waiting for the project coordinator. That should keep everyone up to date. Do you agree?",
+        "classification": "chunk",
+        "chunkLabel": "Authored workplace opener states a debatable method and invites a real response.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I see it differently.",
+        "itemId": "itm_b2_b29_difference",
+        "classification": "chunk",
+        "chunkLabel": "Frozen constructive-disagreement signal; discourse chunk rather than a grammar paradigm."
+      },
+      {
+        "text": "Would it help if designers recorded the decisions and action points the same day, while the coordinator checked completeness the next morning?",
+        "itemId": "itm_b2_b29_compromise",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_help_if"
+      },
+      {
+        "text": "Let's use three required fields: the client's decision, the reason, and the next owner.",
+        "itemId": "itm_b2_b29_fields",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_lets_constructive_action"
+      },
+      {
+        "text": "Let's review the arrangement after a month rather than assume it works.",
+        "itemId": "itm_b2_b29_agreement",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_lets_constructive_action"
+      },
+      {
+        "text": "I see the presentation deadline differently.",
+        "itemId": "itm_b2_b29_v1_priorities",
+        "classification": "chunk",
+        "chunkLabel": "Transferred disagreement signal in a priorities dispute."
+      },
+      {
+        "text": "Would it help if we protected one designer for the presentation and moved the other two to the critical accessibility checks?",
+        "itemId": "itm_b2_b29_v1_balance",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_help_if"
+      },
+      {
+        "text": "Let's review the non-critical issues after launch.",
+        "itemId": "itm_b2_b29_v1_balance",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_lets_constructive_action"
+      },
+      {
+        "text": "Your middle ground is useful, but I'd refine it.",
+        "itemId": "itm_b2_b29_v2_middle",
+        "classification": "chunk",
+        "chunkLabel": "Constructive refinement frame responding to an NPC-initiated compromise."
+      },
+      {
+        "text": "Let's replace the detailed project history with a five-line timeline and use that space for the three main risks.",
+        "itemId": "itm_b2_b29_v2_refine",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_lets_constructive_action"
+      },
+      {
+        "text": "I don't think the old schedule is realistic because the basis of our agreement has changed.",
+        "itemId": "itm_b2_b29_v3_changed",
+        "classification": "chunk",
+        "chunkLabel": "Evidence-based reopening of a prior agreement; no new grammar target."
+      },
+      {
+        "text": "Would it help if we kept the promised date for the original pages and delivered the new payment flow three days later?",
+        "itemId": "itm_b2_b29_v3_phase",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_would_help_if"
+      },
+      {
+        "text": "Let's confirm both phases with the client today.",
+        "itemId": "itm_b2_b29_v3_phase",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_lets_constructive_action"
+      }
+    ]
   }
 ]

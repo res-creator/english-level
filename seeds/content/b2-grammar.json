@@ -130,5 +130,77 @@
     "ru": {
       "explanation": "Используйте it depends on whether, чтобы назвать условие, от которого зависит, какая сторона выбора важнее."
     }
+  },
+  {
+    "id": "gr_b2_passive_terms",
+    "levelCode": "B2",
+    "title": "was not made clear — оспорить непрозрачное условие",
+    "patternKey": "passive_terms",
+    "formula": "The change/condition was not made clear (to me)",
+    "explanationEn": "Use the passive to focus on information that was not communicated clearly, without making the negotiation a personal accusation.",
+    "order": 12,
+    "ru": {
+      "explanation": "Используйте пассив, чтобы сосредоточиться на информации, которую не сообщили ясно, и не превращать переговоры в личное обвинение."
+    }
+  },
+  {
+    "id": "gr_b2_conditional_service_consequence",
+    "levelCode": "B2",
+    "title": "if + present, will/need to — обозначить следующий шаг",
+    "patternKey": "conditional_service_consequence",
+    "formula": "If + present simple, I'll / we'll + verb",
+    "explanationEn": "Use a real conditional to state the practical consequence if a service issue remains unresolved.",
+    "order": 13,
+    "ru": {
+      "explanation": "Используйте реальное условное предложение, чтобы обозначить практический следующий шаг, если проблема с услугой не будет решена."
+    }
+  },
+  {
+    "id": "gr_b2_perspective_proposal",
+    "levelCode": "B2",
+    "title": "from my perspective — обозначить позицию на встрече",
+    "patternKey": "perspective_proposal",
+    "formula": "From my perspective, + reasoned viewpoint",
+    "explanationEn": "Use a perspective frame to introduce a work-related viewpoint and connect it to relevant evidence.",
+    "order": 14,
+    "ru": {
+      "explanation": "Используйте рамку перспективы, чтобы представить рабочую позицию и связать её с существенными основаниями."
+    }
+  },
+  {
+    "id": "gr_b2_would_like_propose",
+    "levelCode": "B2",
+    "title": "I'd like to propose — внести конкретное предложение",
+    "patternKey": "would_like_propose",
+    "formula": "I'd like to propose + noun / -ing clause",
+    "explanationEn": "Use this formal proposal frame to put a specific, discussable action before a group.",
+    "order": 15,
+    "ru": {
+      "explanation": "Используйте эту формальную рамку, чтобы вынести на обсуждение конкретное действие."
+    }
+  },
+  {
+    "id": "gr_b2_would_help_if",
+    "levelCode": "B2",
+    "title": "would it help if — предложить компромисс",
+    "patternKey": "would_help_if",
+    "formula": "Would it help if + past simple?",
+    "explanationEn": "Use would it help if to test a practical compromise while keeping the other speaker involved in the decision.",
+    "order": 16,
+    "ru": {
+      "explanation": "Используйте would it help if, чтобы проверить практичный компромисс и сохранить участие собеседника в решении."
+    }
+  },
+  {
+    "id": "gr_b2_lets_constructive_action",
+    "levelCode": "B2",
+    "title": "let's + verb — превратить разногласие в действие",
+    "patternKey": "lets_constructive_action",
+    "formula": "Let's + base verb",
+    "explanationEn": "Use let us plus the base verb to turn a disagreement into a shared next step.",
+    "order": 17,
+    "ru": {
+      "explanation": "Используйте let’s с начальной формой глагола, чтобы перевести разногласие в совместный следующий шаг."
+    }
   }
 ]

@@ -171,6 +171,21 @@ test("B2 Batch 2 maps travel reasoning to Rosa and lifestyle balance to Alex", (
   assert.match(openingLine("sit_b2_daily_01"), /four-day working week.*lower pay/i);
 });
 
+test("B2 Batch 3 maps service terms to Emma and workplace discussion to Daniel", () => {
+  assert.deepEqual(sceneForSituation("sit_b2_shop_01"), {
+    scene: "shop",
+    cast: "emma",
+  });
+  for (const id of ["sit_b2_work_01", "sit_b2_work_02"]) {
+    assert.deepEqual(sceneForSituation(id), {
+      scene: "meeting",
+      cast: "daniel",
+    });
+    assert.ok(openingLine(id).length > 30);
+  }
+  assert.match(openingLine("sit_b2_shop_01"), /renewal.*minimum term/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

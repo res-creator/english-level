@@ -34,5 +34,23 @@
     "description": "Взвешенно обсуждать преимущества и недостатки жизненных решений.",
     "order": 4,
     "status": "published"
+  },
+  {
+    "id": "mod_b2_shopping_services",
+    "levelCode": "B2",
+    "title": "Покупки и услуги",
+    "slug": "b2-shopping-services",
+    "description": "Оспаривать непрозрачные условия услуги и договариваться о конкретном изменении.",
+    "order": 5,
+    "status": "published"
+  },
+  {
+    "id": "mod_b2_work_study",
+    "levelCode": "B2",
+    "title": "Работа и учёба",
+    "slug": "b2-work-study",
+    "description": "Вносить обоснованные предложения и конструктивно обсуждать рабочие разногласия.",
+    "order": 6,
+    "status": "published"
   }
 ]

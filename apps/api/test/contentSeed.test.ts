@@ -25,11 +25,11 @@ test("the published catalogue includes A1 and authored A2/B1/B2 chapters", () =>
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2/B1, and the first four B2 modules.
-  assert.equal(published.length, 23);
+  // course now includes A1, authored A2/B1, and the first six B2 modules.
+  assert.equal(published.length, 25);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
   assert.equal(published.filter((m) => m.levelCode === "B1").length, 9);
-  assert.equal(published.filter((m) => m.levelCode === "B2").length, 4);
+  assert.equal(published.filter((m) => m.levelCode === "B2").length, 6);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -378,6 +378,9 @@ test("A2, B1 and B2 plans keep semantic turns once and exclude variations from M
     "sit_b2_travel_01",
     "sit_b2_travel_02",
     "sit_b2_daily_01",
+    "sit_b2_shop_01",
+    "sit_b2_work_01",
+    "sit_b2_work_02",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const levelId = situationId.startsWith("sit_b2_")
@@ -862,4 +865,62 @@ test("B2 Batch 2 negotiates disruption, solves multi-constraint routes, and bala
   assert.deepEqual(links("sit_b2_travel_01", "review").map((x) => x.contentId), ["itm_b1_b16_cancelled"]);
   assert.deepEqual(links("sit_b2_travel_02", "review").map((x) => x.contentId), ["itm_b2_b24_settlement", "itm_b1_b17_plan"]);
   assert.deepEqual(links("sit_b2_daily_01", "review").map((x) => x.contentId), ["itm_b1_b19_habit_change"]);
+});
+
+test("B2 Batch 3 disputes service terms, proposes change, and disagrees constructively", () => {
+  const bundle = loadSeedContent();
+  const ids = ["sit_b2_shop_01", "sit_b2_work_01", "sit_b2_work_02"];
+  const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
+  const links = (lessonId: string, role: string) =>
+    bundle.lessonItems.filter(
+      (link) => link.lessonId === lessonId && link.role === role,
+    );
+
+  for (const id of ids) {
+    assert.equal(links(id, "introduce").length, 4, `${id} core turns`);
+    assert.equal(links(id, "practice").length, 6, `${id} three transfer variations`);
+    assert.ok(links(id, "review").length >= 1, `${id} Near/Far review`);
+    for (const link of [...links(id, "introduce"), ...links(id, "practice")]) {
+      assert.ok(
+        itemById.get(link.contentId)?.npcReplyCorrect,
+        `${id}/${link.contentId} authored continuation`,
+      );
+    }
+  }
+
+  assert.match(itemById.get("itm_b2_b27_unclear")?.displayForm ?? "", /monthly plan.*six-month.*wasn't made clear/i);
+  assert.match(itemById.get("itm_b2_b27_consequence")?.displayForm ?? "", /If this isn't resolved.*consider other providers/i);
+  assert.match(itemById.get("itm_b2_b27_v1_gym")?.displayForm ?? "", /gym trial.*twelve-month membership/i);
+  assert.match(itemById.get("itm_b2_b27_vcall_confirm")?.displayForm ?? "", /confirm that verbally.*leave at any time/i);
+  assert.match(itemById.get("itm_b2_b27_v2_third_option")?.displayForm ?? "", /third option.*new minimum term/i);
+
+  assert.match(itemById.get("itm_b2_b28_perspective")?.displayForm ?? "", /From my perspective.*I'd like to propose/i);
+  assert.match(itemById.get("itm_b2_b28_v1_process")?.displayForm ?? "", /invoice approvals.*single intake form/i);
+  assert.match(itemById.get("itm_b2_b28_v2_similar")?.displayForm ?? "", /Maya's weekly summary.*live decision log/i);
+  assert.match(itemById.get("itm_b2_b28_v3_resistance")?.displayForm ?? "", /prepare the template myself.*clear exit point/i);
+
+  assert.match(itemById.get("itm_b2_b29_difference")?.displayForm ?? "", /I see it differently.*rushed or incomplete/i);
+  assert.match(itemById.get("itm_b2_b29_compromise")?.displayForm ?? "", /Would it help if.*same day/i);
+  assert.match(itemById.get("itm_b2_b29_v1_balance")?.displayForm ?? "", /one designer.*accessibility checks/i);
+  assert.match(itemById.get("itm_b2_b29_v2_middle")?.displayForm ?? "", /middle ground.*risk section/i);
+  assert.match(itemById.get("itm_b2_b29_v3_changed")?.displayForm ?? "", /agreed to freeze.*client has since added/i);
+
+  const targetIds = new Set(
+    bundle.lessonItems
+      .filter((link) => link.role === "target")
+      .map((link) => link.contentId),
+  );
+  for (const patternId of [
+    "gr_b2_passive_terms",
+    "gr_b2_conditional_service_consequence",
+    "gr_b2_perspective_proposal",
+    "gr_b2_would_like_propose",
+    "gr_b2_would_help_if",
+    "gr_b2_lets_constructive_action",
+  ]) {
+    assert.ok(targetIds.has(patternId), patternId);
+  }
+  assert.deepEqual(links("sit_b2_shop_01", "review").map((x) => x.contentId), ["itm_b1_b110_resolution"]);
+  assert.deepEqual(links("sit_b2_work_01", "review").map((x) => x.contentId), ["itm_b1_b112_check_understanding"]);
+  assert.deepEqual(links("sit_b2_work_02", "review").map((x) => x.contentId), ["itm_b2_b28_measure"]);
 });

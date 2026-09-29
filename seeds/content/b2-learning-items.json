@@ -1237,5 +1237,635 @@
       }
     ],
     "npcReplyCorrect": "That example shows why the same arrangement can work well in one context and badly in another."
+  },
+  {
+    "id": "itm_b2_b27_unclear",
+    "itemType": "functional_phrase",
+    "lemma": "b27 unclear",
+    "displayForm": "I signed up for a rolling monthly plan, but this renewal adds a six-month minimum term. That change wasn't made clear to me when I agreed to the new price.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Я оформлял помесячный тариф, но при продлении появился минимальный срок в шесть месяцев. Когда я соглашался на новую цену, это изменение мне ясно не объяснили.",
+      "usageNote": "States the original agreement and the disputed abstract term without blaming the employee personally."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_unclear_01",
+        "text": "I signed up for a rolling monthly plan, but this renewal adds a six-month minimum term. That change wasn't made clear to me when I agreed to the new price.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can see why that concerns you. The email summary showed the new price, while the minimum term appeared in the linked conditions."
+  },
+  {
+    "id": "itm_b2_b27_options",
+    "itemType": "functional_phrase",
+    "lemma": "b27 options",
+    "displayForm": "The summary referred to the price, not a binding period. I'd like to renegotiate rather than accept a term I wasn't properly told about. What are my options here?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "В кратком описании была указана цена, а не обязательный срок. Я хотел бы пересмотреть условия, а не принимать пункт, о котором меня должным образом не уведомили. Какие у меня есть варианты?",
+      "usageNote": "Uses the frozen renegotiation and options frames after referring to specific evidence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_options_01",
+        "text": "The summary referred to the price, not a binding period. I'd like to renegotiate rather than accept a term I wasn't properly told about. What are my options here?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You can keep the twenty-seven-pound plan for six months, or move to a flexible plan at thirty pounds with no cancellation fee."
+  },
+  {
+    "id": "itm_b2_b27_consequence",
+    "itemType": "functional_phrase",
+    "lemma": "b27 consequence",
+    "displayForm": "A higher flexible price still leaves me paying for unclear information. If this isn't resolved without an exit fee, I'll need to consider other providers.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Более высокая цена гибкого тарифа всё равно означает, что я плачу из-за неясной информации. Если вопрос не решится без платы за выход, мне придётся рассмотреть других поставщиков.",
+      "usageNote": "Rejects the first options with a measured real consequence rather than an empty threat."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_consequence_01",
+        "text": "A higher flexible price still leaves me paying for unclear information. If this isn't resolved without an exit fee, I'll need to consider other providers.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I can ask my supervisor to authorise a flexible plan at twenty-nine pounds and remove the exit fee. Would that address the main issue?"
+  },
+  {
+    "id": "itm_b2_b27_settlement",
+    "itemType": "functional_phrase",
+    "lemma": "b27 settlement",
+    "displayForm": "It would, provided the flexible terms start today and the absence of an exit fee is confirmed in writing. On that basis, I'm happy to stay.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Да, при условии, что гибкие условия начнут действовать сегодня, а отсутствие платы за выход подтвердят письменно. На этом основании я готов остаться.",
+      "usageNote": "Closes the negotiation with explicit boundaries and a clear decision."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_settlement_01",
+        "text": "It would, provided the flexible terms start today and the absence of an exit fee is confirmed in writing. On that basis, I'm happy to stay.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Agreed. I'll update the plan today and email confirmation of the monthly terms and zero exit fee before you leave."
+  },
+  {
+    "id": "itm_b2_b27_v1_gym",
+    "itemType": "functional_phrase",
+    "lemma": "b27 v1 gym",
+    "displayForm": "My gym trial has been converted into a twelve-month membership, but that commitment wasn't made clear when I joined. I'd like to cancel without the annual fee.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Мой пробный абонемент в спортзал превратили в годовой, но при оформлении такой срок ясно не обозначили. Я хотел бы отменить его без годовой платы.",
+      "usageNote": "Transfers the passive dispute to a gym membership and requests a specific remedy."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_v1_gym_01",
+        "text": "My gym trial has been converted into a twelve-month membership, but that commitment wasn't made clear when I joined. I'd like to cancel without the annual fee.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The welcome email links to the annual terms. I could freeze the membership for three months, but cancellation normally carries a fee."
+  },
+  {
+    "id": "itm_b2_b27_v1_evidence",
+    "itemType": "functional_phrase",
+    "lemma": "b27 v1 evidence",
+    "displayForm": "A freeze doesn't solve the problem because I'm moving away. If you review the sign-up screen, you'll see that only the trial price was displayed; could you waive the fee on that basis?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Заморозка не решает проблему, потому что я переезжаю. Если вы проверите экран регистрации, вы увидите, что там была только пробная цена; можете ли вы на этом основании отменить плату?",
+      "usageNote": "Responds to a new option with relevant evidence and a conditional request."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_v1_evidence_01",
+        "text": "A freeze doesn't solve the problem because I'm moving away. If you review the sign-up screen, you'll see that only the trial price was displayed; could you waive the fee on that basis?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That evidence is specific enough for an exception. I'll close the membership without the annual fee and send the decision today."
+  },
+  {
+    "id": "itm_b2_b27_vcall_terms",
+    "itemType": "functional_phrase",
+    "lemma": "b27 vcall terms",
+    "displayForm": "I'm calling because my renewal now includes a six-month notice period, and I can't see the contract while we're speaking. Could you read the exact cancellation term and explain what options are available?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Я звоню, потому что теперь при продлении указан шестимесячный срок уведомления, а договора перед глазами нет. Можете прочитать точное условие отмены и объяснить доступные варианты?",
+      "usageNote": "Makes the phone modality real by requiring the unseen clause and options to be spoken aloud."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_vcall_terms_01",
+        "text": "I'm calling because my renewal now includes a six-month notice period, and I can't see the contract while we're speaking. Could you read the exact cancellation term and explain what options are available?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Certainly. The clause says six months on the discounted plan; the alternative is a monthly plan at two pounds more, with no exit fee."
+  },
+  {
+    "id": "itm_b2_b27_vcall_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "b27 vcall confirm",
+    "displayForm": "Let me confirm that verbally: I can pay two pounds more each month and leave at any time without a fee. If that is correct and starts today, please move me to that plan.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Позвольте подтвержу устно: я могу платить на два фунта больше в месяц и отказаться в любое время без платы. Если всё верно и это начнёт действовать сегодня, переведите меня на этот тариф.",
+      "usageNote": "Confirms all unseen terms aloud before accepting the phone agreement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_vcall_confirm_01",
+        "text": "Let me confirm that verbally: I can pay two pounds more each month and leave at any time without a fee. If that is correct and starts today, please move me to that plan.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's correct. I've changed it from today, and I'll read back the confirmation number before we finish the call."
+  },
+  {
+    "id": "itm_b2_b27_v2_modify",
+    "itemType": "functional_phrase",
+    "lemma": "b27 v2 modify",
+    "displayForm": "The main feature I paid for has been removed, so I'd like to end the subscription. Since the change was made by the provider, I don't think the remaining term should apply.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Основную функцию, за которую я платил, убрали, поэтому я хочу завершить подписку. Поскольку изменение внёс поставщик, я не считаю, что оставшийся срок должен применяться.",
+      "usageNote": "Opens a new service dispute where the provider changed the product."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_v2_modify_01",
+        "text": "The main feature I paid for has been removed, so I'd like to end the subscription. Since the change was made by the provider, I don't think the remaining term should apply.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Instead of cancelling, I can move you to a cheaper basic plan and add the missing feature separately for three months."
+  },
+  {
+    "id": "itm_b2_b27_v2_third_option",
+    "itemType": "functional_phrase",
+    "lemma": "b27 v2 third option",
+    "displayForm": "That third option could work if the total stays below my current price and it doesn't create a new minimum term. Could you confirm both conditions before I agree?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "service terms and negotiation",
+    "ru": {
+      "translation": "Этот третий вариант может подойти, если итоговая цена останется ниже нынешней и не появится новый минимальный срок. Подтвердите оба условия до моего согласия.",
+      "usageNote": "Evaluates a modification rather than treating cancellation as the only acceptable outcome."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b27_v2_third_option_01",
+        "text": "That third option could work if the total stays below my current price and it doesn't create a new minimum term. Could you confirm both conditions before I agree?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Yes. The total will be three pounds lower, and the added feature can be removed monthly. I'll put both points in the confirmation."
+  },
+  {
+    "id": "itm_b2_b28_perspective",
+    "itemType": "functional_phrase",
+    "lemma": "b28 perspective",
+    "displayForm": "From my perspective, the delays come from project updates being scattered across email threads. I'd like to propose one shared status page and a ten-minute review every Tuesday.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "С моей точки зрения, задержки возникают из-за того, что обновления проекта разбросаны по цепочкам писем. Я хотел бы предложить одну общую страницу статуса и десятиминутный обзор каждый вторник.",
+      "usageNote": "Introduces a diagnosis and a concrete meeting proposal as one connected contribution."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_perspective_01",
+        "text": "From my perspective, the delays come from project updates being scattered across email threads. I'd like to propose one shared status page and a ten-minute review every Tuesday.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A shared page would improve visibility, but people already say they spend too much time on administration. How would your idea avoid adding work?"
+  },
+  {
+    "id": "itm_b2_b28_reason",
+    "itemType": "functional_phrase",
+    "lemma": "b28 reason",
+    "displayForm": "The reason I think this would save time is that each owner would update only three fields before the meeting: progress, next action, and one risk. We could stop writing separate summary emails.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "Я думаю, это сэкономит время, потому что каждый ответственный будет обновлять перед встречей только три поля: прогресс, следующее действие и один риск. От отдельных итоговых писем можно будет отказаться.",
+      "usageNote": "Justifies the proposal through a concrete replacement rather than asserting that it is efficient."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_reason_01",
+        "text": "The reason I think this would save time is that each owner would update only three fields before the meeting: progress, next action, and one risk. We could stop writing separate summary emails.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is more focused than a full report. My remaining concern is whether people will update the page before the review."
+  },
+  {
+    "id": "itm_b2_b28_pilot",
+    "itemType": "functional_phrase",
+    "lemma": "b28 pilot",
+    "displayForm": "I'd make one person responsible for sending a Monday reminder and run the process for two weeks. That gives us a limited pilot rather than another permanent system.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "Я бы назначил одного человека ответственным за напоминание в понедельник и запустил процесс на две недели. Так мы получим ограниченный пилот, а не ещё одну постоянную систему.",
+      "usageNote": "Answers the implementation concern with ownership and a bounded trial."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_pilot_01",
+        "text": "I'd make one person responsible for sending a Monday reminder and run the process for two weeks. That gives us a limited pilot rather than another permanent system.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A pilot lowers the risk. What result would show that it is worth continuing?"
+  },
+  {
+    "id": "itm_b2_b28_measure",
+    "itemType": "functional_phrase",
+    "lemma": "b28 measure",
+    "displayForm": "Let's compare the number of missed handovers with the previous two weeks and ask the team whether the review replaced any emails. If both improve, I'd propose keeping it.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "Давайте сравним количество пропущенных передач задач с предыдущими двумя неделями и спросим команду, заменил ли обзор какие-либо письма. Если оба показателя улучшатся, я предложу сохранить процесс.",
+      "usageNote": "Ends with observable criteria and a conditional recommendation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_measure_01",
+        "text": "Let's compare the number of missed handovers with the previous two weeks and ask the team whether the review replaced any emails. If both improve, I'd propose keeping it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's measurable and proportionate. I'll give you ten minutes at the team meeting to present the pilot."
+  },
+  {
+    "id": "itm_b2_b28_v1_process",
+    "itemType": "functional_phrase",
+    "lemma": "b28 v1 process",
+    "displayForm": "From my perspective, invoice approvals are slow because requests arrive in three different email chains. I'd like to propose a single intake form with a two-day response target.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "С моей точки зрения, согласование счетов идёт медленно, потому что запросы приходят в трёх разных цепочках писем. Я хотел бы предложить единую форму с целевым сроком ответа в два дня.",
+      "usageNote": "Transfers the proposal function from a project idea to an operational process."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_v1_process_01",
+        "text": "From my perspective, invoice approvals are slow because requests arrive in three different email chains. I'd like to propose a single intake form with a two-day response target.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A single form sounds orderly, but urgent supplier payments cannot always wait two days."
+  },
+  {
+    "id": "itm_b2_b28_v1_refine",
+    "itemType": "functional_phrase",
+    "lemma": "b28 v1 refine",
+    "displayForm": "That's a fair concern. The reason I think the form still helps is that it can include an urgent category with a named approver, while routine requests follow the normal queue.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "Это справедливое замечание. Я всё же считаю форму полезной, потому что в ней можно предусмотреть срочную категорию с назначенным согласующим, а обычные запросы пойдут по стандартной очереди.",
+      "usageNote": "Refines the process proposal around a valid exception instead of ignoring it."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_v1_refine_01",
+        "text": "That's a fair concern. The reason I think the form still helps is that it can include an urgent category with a named approver, while routine requests follow the normal queue.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That distinction protects urgent work without returning to several inboxes. Let's test the form with one supplier group."
+  },
+  {
+    "id": "itm_b2_b28_v2_similar",
+    "itemType": "functional_phrase",
+    "lemma": "b28 v2 similar",
+    "displayForm": "Maya's weekly summary would help people see completed work. From my perspective, the two ideas serve different needs: I'd like to propose a live decision log that records what was agreed, who owns the next step, and when it is due.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "Еженедельная сводка Майи поможет видеть завершённую работу. С моей точки зрения, эти идеи решают разные задачи: я хотел бы предложить живой журнал решений, который фиксирует договорённость, следующего ответственного и срок.",
+      "usageNote": "Differentiates the new proposal by function rather than claiming originality without evidence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_v2_similar_01",
+        "text": "Maya's weekly summary would help people see completed work. From my perspective, the two ideas serve different needs: I'd like to propose a live decision log that records what was agreed, who owns the next step, and when it is due.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "So her summary looks backwards, while your log guides current action. Do we need both?"
+  },
+  {
+    "id": "itm_b2_b28_v2_complement",
+    "itemType": "functional_phrase",
+    "lemma": "b28 v2 complement",
+    "displayForm": "I think they can complement each other if the summary is generated from the log. That avoids duplicate writing and gives Maya reliable source material.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "Я думаю, они могут дополнять друг друга, если сводка будет формироваться из журнала. Это устранит двойную работу и даст Майе надёжный исходный материал.",
+      "usageNote": "Builds on a colleague’s prior idea and reduces duplication."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_v2_complement_01",
+        "text": "I think they can complement each other if the summary is generated from the log. That avoids duplicate writing and gives Maya reliable source material.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That makes the distinction useful rather than competitive. Please show Maya the combined workflow before the next meeting."
+  },
+  {
+    "id": "itm_b2_b28_v3_skepticism",
+    "itemType": "functional_phrase",
+    "lemma": "b28 v3 skepticism",
+    "displayForm": "I understand that the team has little capacity this month. Even so, I'd like to propose a one-week trial of shorter handover notes because the current gaps are already costing us time.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "Я понимаю, что в этом месяце у команды мало ресурсов. Несмотря на это, я хотел бы предложить недельный тест коротких заметок при передаче задач, потому что нынешние пробелы уже отнимают время.",
+      "usageNote": "Meets immediate skepticism by acknowledging capacity and narrowing the proposal."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_v3_skepticism_01",
+        "text": "I understand that the team has little capacity this month. Even so, I'd like to propose a one-week trial of shorter handover notes because the current gaps are already costing us time.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Even a short trial needs someone to set it up, and I don't want another unfinished initiative."
+  },
+  {
+    "id": "itm_b2_b28_v3_resistance",
+    "itemType": "functional_phrase",
+    "lemma": "b28 v3 resistance",
+    "displayForm": "Then I'll prepare the template myself and stop the trial after a week unless it prevents at least two clarification calls. That keeps the cost with me and gives us a clear exit point.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "workplace proposals and meetings",
+    "ru": {
+      "translation": "Тогда я сам подготовлю шаблон и остановлю тест через неделю, если он не предотвратит хотя бы два уточняющих звонка. Так затраты останутся на мне, а у теста будет ясная точка выхода.",
+      "usageNote": "Responds to resistance with ownership, evidence, and a stop condition."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b28_v3_resistance_01",
+        "text": "Then I'll prepare the template myself and stop the trial after a week unless it prevents at least two clarification calls. That keeps the cost with me and gives us a clear exit point.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "With that limit and measure, I'm willing to let you test it. Report the result at next Friday's meeting."
+  },
+  {
+    "id": "itm_b2_b29_difference",
+    "itemType": "functional_phrase",
+    "lemma": "b29 difference",
+    "displayForm": "I see it differently. Speed matters, but asking designers to write full client notes between calls may lead to rushed or incomplete records.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Я вижу это иначе. Скорость важна, но если дизайнеров просить писать полные заметки между звонками, записи могут оказаться поспешными или неполными.",
+      "usageNote": "Acknowledges the shared goal before stating a concrete risk."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_difference_01",
+        "text": "I see it differently. Speed matters, but asking designers to write full client notes between calls may lead to rushed or incomplete records.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The coordinator's notes are accurate, but they sometimes appear a day later. That delay leaves the rest of the team waiting."
+  },
+  {
+    "id": "itm_b2_b29_compromise",
+    "itemType": "functional_phrase",
+    "lemma": "b29 compromise",
+    "displayForm": "I agree that a day's delay is too long. Would it help if designers recorded the decisions and action points the same day, while the coordinator checked completeness the next morning?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Я согласен, что задержка на день слишком велика. Поможет ли, если дизайнеры будут записывать решения и следующие действия в тот же день, а координатор утром проверит полноту?",
+      "usageNote": "Responds directly to Daniel’s evidence and tests a shared compromise."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_compromise_01",
+        "text": "I agree that a day's delay is too long. Would it help if designers recorded the decisions and action points the same day, while the coordinator checked completeness the next morning?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That would be faster, but important context could still disappear if each designer decides what counts as essential."
+  },
+  {
+    "id": "itm_b2_b29_fields",
+    "itemType": "functional_phrase",
+    "lemma": "b29 fields",
+    "displayForm": "Let's use three required fields: the client's decision, the reason, and the next owner. Designers can add context, but those points cannot be skipped.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Давайте введём три обязательных поля: решение клиента, причину и следующего ответственного. Дизайнеры смогут добавить контекст, но эти пункты нельзя будет пропустить.",
+      "usageNote": "Turns the second concern into a specific shared process."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_fields_01",
+        "text": "Let's use three required fields: the client's decision, the reason, and the next owner. Designers can add context, but those points cannot be skipped.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That gives everyone the same minimum standard. Who should remain responsible for the final record?"
+  },
+  {
+    "id": "itm_b2_b29_agreement",
+    "itemType": "functional_phrase",
+    "lemma": "b29 agreement",
+    "displayForm": "The designer should own the accuracy of the decisions, and the coordinator should check that the record is complete. Let's review the arrangement after a month rather than assume it works.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Дизайнер должен отвечать за точность решений, а координатор — проверять полноту записи. Давайте пересмотрим договорённость через месяц, а не будем считать, что она работает автоматически.",
+      "usageNote": "Clarifies ownership and creates a review point instead of forcing full agreement."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_agreement_01",
+        "text": "The designer should own the accuracy of the decisions, and the coordinator should check that the record is complete. Let's review the arrangement after a month rather than assume it works.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That's a workable middle ground. I'll draft the required fields, and we'll review the evidence after four weeks."
+  },
+  {
+    "id": "itm_b2_b29_v1_priorities",
+    "itemType": "functional_phrase",
+    "lemma": "b29 v1 priorities",
+    "displayForm": "I see the presentation deadline differently. Launch materials matter, but accessibility testing should come first because unresolved barriers could exclude users from the product itself.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Я иначе расставляю приоритеты по сроку презентации. Материалы запуска важны, но сначала нужно провести тестирование доступности, потому что нерешённые барьеры могут исключить пользователей из самого продукта.",
+      "usageNote": "Transfers disagreement from method to competing priorities and explains the consequence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_v1_priorities_01",
+        "text": "I see the presentation deadline differently. Launch materials matter, but accessibility testing should come first because unresolved barriers could exclude users from the product itself.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "If the presentation slips, the sales team loses its booking. We cannot simply move all design time to testing."
+  },
+  {
+    "id": "itm_b2_b29_v1_balance",
+    "itemType": "functional_phrase",
+    "lemma": "b29 v1 balance",
+    "displayForm": "Would it help if we protected one designer for the presentation and moved the other two to the critical accessibility checks? Let's review the non-critical issues after launch.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Поможет ли, если мы оставим одного дизайнера на презентации, а двух переведём на критические проверки доступности? Давайте вернёмся к некритичным вопросам после запуска.",
+      "usageNote": "Creates a resource compromise that respects both priorities."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_v1_balance_01",
+        "text": "Would it help if we protected one designer for the presentation and moved the other two to the critical accessibility checks? Let's review the non-critical issues after launch.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That protects the booking and the essential checks. I'll confirm which accessibility issues are critical today."
+  },
+  {
+    "id": "itm_b2_b29_v2_middle",
+    "itemType": "functional_phrase",
+    "lemma": "b29 v2 middle",
+    "displayForm": "Your middle ground is useful, but I'd refine it. A short report now should include the risk section, while background detail can move to the later appendix; otherwise the decision-makers still lack the key evidence.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Ваш компромисс полезен, но я бы его уточнил. Короткий отчёт сейчас должен включать раздел о рисках, а справочную информацию можно перенести в приложение позже; иначе принимающим решение всё ещё не хватит ключевых данных.",
+      "usageNote": "Responds to Daniel’s compromise by improving its information priority."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_v2_middle_01",
+        "text": "Your middle ground is useful, but I'd refine it. A short report now should include the risk section, while background detail can move to the later appendix; otherwise the decision-makers still lack the key evidence.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Including the risks will make the short report longer. Which section would you reduce to keep Friday's deadline?"
+  },
+  {
+    "id": "itm_b2_b29_v2_refine",
+    "itemType": "functional_phrase",
+    "lemma": "b29 v2 refine",
+    "displayForm": "Let's replace the detailed project history with a five-line timeline and use that space for the three main risks. The appendix can preserve the full history next week.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Давайте заменим подробную историю проекта хронологией из пяти строк и используем место для трёх основных рисков. Полную историю можно сохранить в приложении на следующей неделе.",
+      "usageNote": "Refines an initiated compromise without taking over or rejecting it."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_v2_refine_01",
+        "text": "Let's replace the detailed project history with a five-line timeline and use that space for the three main risks. The appendix can preserve the full history next week.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That keeps the immediate report decision-ready. I'll ask the analyst to prepare the risk summary."
+  },
+  {
+    "id": "itm_b2_b29_v3_changed",
+    "itemType": "functional_phrase",
+    "lemma": "b29 v3 changed",
+    "displayForm": "We agreed to freeze the website design, but the client has since added a new payment step. I don't think the old schedule is realistic because the basis of our agreement has changed.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Мы договорились зафиксировать дизайн сайта, но с тех пор клиент добавил новый шаг оплаты. Я не считаю прежний график реалистичным, потому что основание нашей договорённости изменилось.",
+      "usageNote": "Reopens a prior agreement only after naming the material new fact."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_v3_changed_01",
+        "text": "We agreed to freeze the website design, but the client has since added a new payment step. I don't think the old schedule is realistic because the basis of our agreement has changed.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I understand the change, but reopening the schedule may undermine the date we already promised."
+  },
+  {
+    "id": "itm_b2_b29_v3_phase",
+    "itemType": "functional_phrase",
+    "lemma": "b29 v3 phase",
+    "displayForm": "I share that concern. Would it help if we kept the promised date for the original pages and delivered the new payment flow three days later? Let's confirm both phases with the client today.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "constructive workplace disagreement",
+    "ru": {
+      "translation": "Я разделяю это опасение. Поможет ли, если мы сохраним обещанный срок для исходных страниц, а новый процесс оплаты выпустим на три дня позже? Давайте сегодня подтвердим клиенту оба этапа.",
+      "usageNote": "Preserves as much of the prior agreement as possible while adapting to changed conditions."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b29_v3_phase_01",
+        "text": "I share that concern. Would it help if we kept the promised date for the original pages and delivered the new payment flow three days later? Let's confirm both phases with the client today.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A phased delivery is easier to defend than a full delay. I'll arrange the client call and present the two dates clearly."
   }
 ]
