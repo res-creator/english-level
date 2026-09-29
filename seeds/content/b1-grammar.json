@@ -118,5 +118,53 @@
     "ru": {
       "explanation": "Используйте by the end of, чтобы сказать, что задача должна быть завершена не позднее конца указанного периода."
     }
+  },
+  {
+    "id": "gr_b1_would_mind_favour",
+    "levelCode": "B1",
+    "title": "Would you mind + -ing — попросить об услуге",
+    "patternKey": "would_mind_favour",
+    "formula": "Would you mind + verb-ing ...?",
+    "explanationEn": "Use Would you mind + -ing to make a considerate request when a colleague will need to spend time or effort helping you.",
+    "order": 11,
+    "ru": {
+      "explanation": "Используйте Would you mind + глагол с -ing для тактичной просьбы, когда коллеге потребуется потратить время или усилия."
+    }
+  },
+  {
+    "id": "gr_b1_because_interview_reasons",
+    "levelCode": "B1",
+    "title": "because — обосновать ответ на собеседовании",
+    "patternKey": "because_interview_reasons",
+    "formula": "I ... because + reason",
+    "explanationEn": "Use because to connect an interview claim directly to a relevant reason or example.",
+    "order": 12,
+    "ru": {
+      "explanation": "Используйте because, чтобы напрямую связать утверждение на собеседовании с уместной причиной или примером."
+    }
+  },
+  {
+    "id": "gr_b1_what_if_coordination",
+    "levelCode": "B1",
+    "title": "What if ...? — предложить решение группе",
+    "patternKey": "what_if_coordination",
+    "formula": "What if we + base verb ...?",
+    "explanationEn": "Use What if we ...? to suggest a possible solution when several people's plans or constraints need to be considered.",
+    "order": 13,
+    "ru": {
+      "explanation": "Используйте What if we...?, чтобы предложить возможное решение с учётом планов или ограничений нескольких людей."
+    }
+  },
+  {
+    "id": "gr_b1_will_coordination",
+    "levelCode": "B1",
+    "title": "will — взять следующий шаг на себя",
+    "patternKey": "will_coordination",
+    "formula": "I'll check/ask/confirm ...",
+    "explanationEn": "Use I'll + base verb for a coordination step you decide or offer to take during the conversation.",
+    "order": 14,
+    "ru": {
+      "explanation": "Используйте I'll + начальную форму глагола для шага по организации, который вы решаете или предлагаете выполнить во время разговора."
+    }
   }
 ]

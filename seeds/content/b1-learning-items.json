@@ -1455,5 +1455,293 @@
     ],
     "npcReplyCorrect": "Let me check: June Launch folder, budget sheet against three supplier emails, then a list of differences by the end of today. That's clear.",
     "patterns": []
+  },
+  {
+    "id": "itm_b1_b113_request",
+    "itemType": "functional_phrase",
+    "lemma": "ask a colleague to check room bookings",
+    "displayForm": "Would you mind checking the room bookings while I update the guest list?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "workplace favours and polite requests",
+    "ru": {
+      "translation": "Не мог(ла) бы ты проверить бронирование комнат, пока я обновляю список гостей?",
+      "usageNote": "The opening request uses the frozen Would you mind + -ing target for a specific workplace favour."
+    },
+    "examples": [{ "id": "ex_itm_b1_b113_request_01", "text": "Would you mind checking the room bookings while I update the guest list?", "isPrimary": true }],
+    "npcReplyCorrect": "I can check them after I finish the event schedule. Which details do you need me to confirm?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b113_details",
+    "itemType": "functional_phrase",
+    "lemma": "specify the favour and show appreciation",
+    "displayForm": "Could you confirm the room names and times against the booking emails? I'd really appreciate it.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "workplace favours and polite requests",
+    "ru": {
+      "translation": "Можешь сверить названия комнат и время с письмами о бронировании? Я буду очень признателен(на).",
+      "usageNote": "Could you and I'd really appreciate it are recycled/fixed politeness chunks supporting the new target."
+    },
+    "examples": [{ "id": "ex_itm_b1_b113_details_01", "text": "Could you confirm the room names and times against the booking emails? I'd really appreciate it.", "isPrimary": true }],
+    "npcReplyCorrect": "Of course. I should finish my schedule at eleven, so I can check the emails then. When do you need the corrections?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b113_timing",
+    "itemType": "functional_phrase",
+    "lemma": "agree a realistic deadline for a favour",
+    "displayForm": "Before one would be perfect, but only if it's not too much trouble. That gives me time to contact reception.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "workplace favours and polite requests",
+    "ru": {
+      "translation": "До часу было бы идеально, но только если это не доставит слишком много хлопот. Тогда у меня останется время связаться со стойкой регистрации.",
+      "usageNote": "Only if it's not too much trouble is the frozen politeness chunk; the learner accepts Daniel's timing instead of repeating the request."
+    },
+    "examples": [{ "id": "ex_itm_b1_b113_timing_01", "text": "Before one would be perfect, but only if it's not too much trouble. That gives me time to contact reception.", "isPrimary": true }],
+    "npcReplyCorrect": "That works. I'll send you the checked list before one and flag anything that needs a call.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b113_v1_schedule",
+    "itemType": "functional_phrase",
+    "lemma": "ask a scheduling favour at reception",
+    "displayForm": "Would you mind covering reception from two until three while I meet the supplier? I'd really appreciate it, and I can cover your last hour tomorrow.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "workplace favours and polite requests",
+    "ru": {
+      "translation": "Не мог(ла) бы ты подменить меня на стойке регистрации с двух до трёх, пока я встречаюсь с поставщиком? Я буду очень признателен(на) и завтра смогу подменить тебя в последний час.",
+      "usageNote": "Variation v1 transfers the favour from checking a task to a scheduling exchange with a reciprocal offer."
+    },
+    "examples": [{ "id": "ex_itm_b1_b113_v1_schedule_01", "text": "Would you mind covering reception from two until three while I meet the supplier? I'd really appreciate it, and I can cover your last hour tomorrow.", "isPrimary": true }],
+    "npcReplyCorrect": "That exchange works for me. I'll cover reception at two, and you can take my last hour tomorrow.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b113_v2_request",
+    "itemType": "functional_phrase",
+    "lemma": "ask for help preparing meeting notes",
+    "displayForm": "Would you mind turning my meeting notes into a short update for the team? I need to deal with the supplier problem this afternoon.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "workplace favours and polite requests",
+    "ru": {
+      "translation": "Не мог(ла) бы ты превратить мои заметки со встречи в короткое обновление для команды? Сегодня днём мне нужно заняться проблемой с поставщиком.",
+      "usageNote": "Variation v2 changes the type of help and creates a real condition to negotiate."
+    },
+    "examples": [{ "id": "ex_itm_b1_b113_v2_request_01", "text": "Would you mind turning my meeting notes into a short update for the team? I need to deal with the supplier problem this afternoon.", "isPrimary": true }],
+    "npcReplyCorrect": "I can do that if you send me the final notes before lunch. Is that possible?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b113_v2_condition",
+    "itemType": "functional_phrase",
+    "lemma": "accept a condition on a workplace favour",
+    "displayForm": "Yes, I'll send them by eleven. Could you keep the update to one page and send it before four?",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "workplace favours and polite requests",
+    "ru": {
+      "translation": "Да, я отправлю их до одиннадцати. Можешь ограничить обновление одной страницей и прислать его до четырёх?",
+      "usageNote": "The learner accepts Daniel's condition, then clarifies output and deadline rather than simply repeating the favour."
+    },
+    "examples": [{ "id": "ex_itm_b1_b113_v2_condition_01", "text": "Yes, I'll send them by eleven. Could you keep the update to one page and send it before four?", "isPrimary": true }],
+    "npcReplyCorrect": "Agreed. Once the notes arrive, I'll prepare a one-page update and send it before four.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b114_experience",
+    "itemType": "functional_phrase",
+    "lemma": "summarise relevant work experience",
+    "displayForm": "I've worked in this field for three years. I mainly support customers, and I currently coordinate the morning shift.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "job interviews and experience",
+    "ru": {
+      "translation": "Я работаю в поддержке клиентов три года и сейчас координирую утреннюю смену.",
+      "usageNote": "The exact V2 Present Perfect experience phrase anchors a relevant, concise interview answer."
+    },
+    "examples": [{ "id": "ex_itm_b1_b114_experience_01", "text": "I've worked in this field for three years. I mainly support customers, and I currently coordinate the morning shift.", "isPrimary": true }],
+    "npcReplyCorrect": "That experience is relevant to the coordinator role. What would you say is your main strength at work?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b114_strength",
+    "itemType": "functional_phrase",
+    "lemma": "support an interview strength with an example",
+    "displayForm": "My main strength is staying organised when several requests arrive at once. For example, I created a shared priority list for my team.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "job interviews and experience",
+    "ru": {
+      "translation": "Моя главная сильная сторона — сохранять организованность, когда одновременно поступает несколько запросов. Например, я создал(а) общий список приоритетов для команды.",
+      "usageNote": "The learner gives evidence for the strength instead of listing an unsupported quality."
+    },
+    "examples": [{ "id": "ex_itm_b1_b114_strength_01", "text": "My main strength is staying organised when several requests arrive at once. For example, I created a shared priority list for my team.", "isPrimary": true }],
+    "npcReplyCorrect": "A clear priority system would help this team. Why are you interested in moving into this role now?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b114_interest",
+    "itemType": "functional_phrase",
+    "lemma": "explain interest in an internal role",
+    "displayForm": "I'm interested in this role because I enjoy helping colleagues work together, and I want more responsibility for planning.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "job interviews and experience",
+    "ru": {
+      "translation": "Меня интересует эта роль, потому что мне нравится помогать коллегам работать вместе и я хочу взять больше ответственности за планирование.",
+      "usageNote": "The because-clause links motivation directly to the role rather than adding an unrelated personal fact."
+    },
+    "examples": [{ "id": "ex_itm_b1_b114_interest_01", "text": "I'm interested in this role because I enjoy helping colleagues work together, and I want more responsibility for planning.", "isPrimary": true }],
+    "npcReplyCorrect": "Thank you. Your support experience, practical example and reason for applying give me a clear picture.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b114_v1_support_role",
+    "itemType": "functional_phrase",
+    "lemma": "interview for a technical support role",
+    "displayForm": "I've helped colleagues with software problems for two years. My strength is explaining steps clearly, and I'm interested in the support role because I enjoy solving practical problems.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "job interviews and experience",
+    "ru": {
+      "translation": "Я два года помогаю коллегам с проблемами в программах. Моя сильная сторона — ясно объяснять шаги, а эта роль в поддержке интересует меня, потому что мне нравится решать практические задачи.",
+      "usageNote": "Variation v1 transfers the interview structure to a support role with different experience, strength and motivation."
+    },
+    "examples": [{ "id": "ex_itm_b1_b114_v1_support_role_01", "text": "I've helped colleagues with software problems for two years. My strength is explaining steps clearly, and I'm interested in the support role because I enjoy solving practical problems.", "isPrimary": true }],
+    "npcReplyCorrect": "Those examples fit the support role well, especially the clear explanations. Thank you.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b114_v2_hire_reason",
+    "itemType": "functional_phrase",
+    "lemma": "answer why the company should choose you",
+    "displayForm": "You should choose me because I've already coordinated busy shifts, and I know how to keep the team informed when plans change.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "job interviews and experience",
+    "ru": {
+      "translation": "Вам стоит выбрать меня, потому что я уже координировал(а) загруженные смены и умею держать команду в курсе, когда планы меняются.",
+      "usageNote": "Variation v2 answers Daniel's harder question with relevant evidence; should is recycled, not a new target."
+    },
+    "examples": [{ "id": "ex_itm_b1_b114_v2_hire_reason_01", "text": "You should choose me because I've already coordinated busy shifts, and I know how to keep the team informed when plans change.", "isPrimary": true }],
+    "npcReplyCorrect": "That is a focused answer: you connected real experience to the main challenge of this role.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b115_find_time",
+    "itemType": "functional_phrase",
+    "lemma": "start coordinating a group meeting",
+    "displayForm": "Let's find a time that works for everyone. I'm free on Saturday afternoon, and Maya said she is too.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "group arrangements",
+    "ru": {
+      "translation": "Давай найдём время, которое подходит всем. Я свободен(на) в субботу днём, и Майя сказала, что она тоже.",
+      "usageNote": "The learner starts with known availability and the frozen group-coordination chunk."
+    },
+    "examples": [{ "id": "ex_itm_b1_b115_find_time_01", "text": "Let's find a time that works for everyone. I'm free on Saturday afternoon, and Maya said she is too.", "isPrimary": true }],
+    "npcReplyCorrect": "Daniel is working until four on Saturday, but he can come afterwards. What time should we suggest?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b115_what_if",
+    "itemType": "functional_phrase",
+    "lemma": "suggest a group time and practical location",
+    "displayForm": "What if we meet at five? We could have dinner near the station so Daniel can join us after work.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "group arrangements",
+    "ru": {
+      "translation": "Что, если встретиться в пять? Мы могли бы поужинать возле вокзала, чтобы Дэниел присоединился после работы.",
+      "usageNote": "What if introduces a concrete solution to Daniel's constraint; could is recycled suggestion language."
+    },
+    "examples": [{ "id": "ex_itm_b1_b115_what_if_01", "text": "What if we meet at five? We could have dinner near the station so Daniel can join us after work.", "isPrimary": true }],
+    "npcReplyCorrect": "Five works for Daniel. Maya needs to leave by seven, so a place near the station would suit her too. Which place should we choose?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b115_check_group",
+    "itemType": "functional_phrase",
+    "lemma": "choose a venue and check with the group",
+    "displayForm": "The café beside the station has a large table. I'll check with Maya and Daniel and book it if they agree.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "group arrangements",
+    "ru": {
+      "translation": "В кафе рядом с вокзалом есть большой стол. Я уточню у Майи и Дэниела и забронирую его, если они согласятся.",
+      "usageNote": "I'll check with is the frozen coordination phrase; if they agree is a real first-conditional decision step."
+    },
+    "examples": [{ "id": "ex_itm_b1_b115_check_group_01", "text": "The café beside the station has a large table. I'll check with Maya and Daniel and book it if they agree.", "isPrimary": true }],
+    "npcReplyCorrect": "Good plan. Daniel also asked whether Emma could come. Will the table be large enough for four?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b115_confirm",
+    "itemType": "functional_phrase",
+    "lemma": "confirm the group arrangement and final participant",
+    "displayForm": "Yes, it seats four. We're meeting there at five on Saturday, and I'll ask Emma today before I confirm the table.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "group arrangements",
+    "ru": {
+      "translation": "Да, там четыре места. Мы встречаемся там в пять в субботу, и сегодня я приглашу Эмму, прежде чем подтвержу стол.",
+      "usageNote": "Present Continuous confirms the arrangement; will reports the learner's immediate coordination decision."
+    },
+    "examples": [{ "id": "ex_itm_b1_b115_confirm_01", "text": "Yes, it seats four. We're meeting there at five on Saturday, and I'll ask Emma today before I confirm the table.", "isPrimary": true }],
+    "npcReplyCorrect": "Perfect. We have a time, a place and the guest list; send me the confirmation once Emma replies.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b115_v1_trip",
+    "itemType": "functional_phrase",
+    "lemma": "coordinate a group day trip",
+    "displayForm": "Let's find a time that works for everyone. What if we take the nine o'clock train on Sunday and meet at the station entrance at quarter to nine? I'll check with Maya and Daniel before I buy the group tickets.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "group arrangements",
+    "ru": {
+      "translation": "Давай найдём время, которое подходит всем. Что, если поехать на девятичасовом поезде в воскресенье и встретиться у входа на вокзал без четверти девять? Я уточню у Майи и Дэниела, прежде чем покупать групповые билеты.",
+      "usageNote": "Variation v1 transfers coordination from dinner to a trip with departure, meeting point and ticket dependency."
+    },
+    "examples": [{ "id": "ex_itm_b1_b115_v1_trip_01", "text": "Let's find a time that works for everyone. What if we take the nine o'clock train on Sunday and meet at the station entrance at quarter to nine? I'll check with Maya and Daniel before I buy the group tickets.", "isPrimary": true }],
+    "npcReplyCorrect": "That covers the important details. Ask them tonight so we can still get the cheaper group tickets.",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b115_v2_conflict",
+    "itemType": "functional_phrase",
+    "lemma": "propose a first group time with a constraint",
+    "displayForm": "What if we meet for lunch at one on Saturday? Maya and Emma are free then, and the market café takes group bookings.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "group arrangements",
+    "ru": {
+      "translation": "Что, если встретиться на обед в час в субботу? Майя и Эмма в это время свободны, а кафе на рынке принимает групповые бронирования.",
+      "usageNote": "Variation v2 establishes a valid first proposal before Alex introduces one participant's conflict."
+    },
+    "examples": [{ "id": "ex_itm_b1_b115_v2_conflict_01", "text": "What if we meet for lunch at one on Saturday? Maya and Emma are free then, and the market café takes group bookings.", "isPrimary": true }],
+    "npcReplyCorrect": "Maya and Emma can make it, but Daniel has a class until two. Could we move it later without losing the table?",
+    "patterns": []
+  },
+  {
+    "id": "itm_b1_b115_v2_replan",
+    "itemType": "functional_phrase",
+    "lemma": "revise a group plan after one conflict",
+    "displayForm": "Then what if we book the table for half past two? I'll check with everyone again, and we're meeting outside the café at two twenty if they agree.",
+    "levelCode": "B1",
+    "partOfSpeech": null,
+    "topic": "group arrangements",
+    "ru": {
+      "translation": "Тогда что, если забронировать стол на половину третьего? Я ещё раз уточню у всех, и, если они согласятся, мы встречаемся у кафе в два двадцать.",
+      "usageNote": "The learner responds to the conflict by revising both booking and meeting time, then reconfirms the group."
+    },
+    "examples": [{ "id": "ex_itm_b1_b115_v2_replan_01", "text": "Then what if we book the table for half past two? I'll check with everyone again, and we're meeting outside the café at two twenty if they agree.", "isPrimary": true }],
+    "npcReplyCorrect": "That solves Daniel's conflict and still gives us the afternoon together. I'll hold the table while you check.",
+    "patterns": []
   }
 ]

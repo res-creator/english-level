@@ -61,5 +61,14 @@
     "description": "Понятно объяснять рабочие задачи, требования и сроки.",
     "order": 7,
     "status": "published"
+  },
+  {
+    "id": "mod_b1_social_life",
+    "levelCode": "B1",
+    "title": "Общение и досуг",
+    "slug": "b1-social-life",
+    "description": "Согласовывать групповые планы с несколькими участниками и ограничениями.",
+    "order": 8,
+    "status": "published"
   }
 ]

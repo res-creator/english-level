@@ -112,7 +112,7 @@ test("A2 Batch 6 maps the bill error to Leo and OTC shopping to Emma", () => {
   assert.match(openingLine("sit_a2_health_01"), /simple remedies.*on this shelf/i);
 });
 
-test("B1 Batch 1–4 maps each dialogue to its authored cast and scene", () => {
+test("B1 Batch 1–5 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_people_01"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_people_02"), { scene: "cafe", cast: "alex" });
   assert.deepEqual(sceneForSituation("sit_b1_cafe_01"), { scene: "cafe", cast: "maya" });
@@ -125,6 +125,9 @@ test("B1 Batch 1–4 maps each dialogue to its authored cast and scene", () => {
   assert.deepEqual(sceneForSituation("sit_b1_shop_01"), { scene: "shop", cast: "emma" });
   assert.deepEqual(sceneForSituation("sit_b1_shop_02"), { scene: "shop", cast: "emma" });
   assert.deepEqual(sceneForSituation("sit_b1_work_01"), { scene: "office", cast: "daniel" });
+  assert.deepEqual(sceneForSituation("sit_b1_work_02"), { scene: "office", cast: "daniel" });
+  assert.deepEqual(sceneForSituation("sit_b1_work_03"), { scene: "office", cast: "daniel" });
+  assert.deepEqual(sceneForSituation("sit_b1_social_01"), { scene: "cafe", cast: "alex" });
   assert.match(openingLine("sit_b1_people_01"), /Maya.*bookshop/i);
   assert.match(openingLine("sit_b1_people_02"), /evening market.*music/i);
   assert.match(openingLine("sit_b1_cafe_01"), /drinks board.*two new drinks/i);
@@ -137,6 +140,9 @@ test("B1 Batch 1–4 maps each dialogue to its authored cast and scene", () => {
   assert.match(openingLine("sit_b1_shop_01"), /account today.*wrong with the bill/i);
   assert.match(openingLine("sit_b1_shop_02"), /two tablets.*matters most/i);
   assert.match(openingLine("sit_b1_work_01"), /event project.*handle/i);
+  assert.match(openingLine("sit_b1_work_02"), /event schedule.*What do you need/i);
+  assert.match(openingLine("sit_b1_work_03"), /team coordinator role.*recent experience/i);
+  assert.match(openingLine("sit_b1_social_01"), /Maya and Daniel.*schedules are different/i);
 });
 
 test("one chapter needs only a handful of places and people", () => {
@@ -189,6 +195,9 @@ test("every situation opens mid-conversation, in English", () => {
     "sit_b1_shop_01",
     "sit_b1_shop_02",
     "sit_b1_work_01",
+    "sit_b1_work_02",
+    "sit_b1_work_03",
+    "sit_b1_social_01",
   ]) {
     const line = openingLine(id);
     assert.ok(line.length > 0);

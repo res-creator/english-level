@@ -2520,5 +2520,197 @@
         "grammarPatternId": "gr_b1_by_end_deadline"
       }
     ]
+  },
+  {
+    "situationId": "sit_b1_work_02",
+    "phrases": [
+      {
+        "text": "I'm finishing the event schedule before lunch. What do you need?",
+        "classification": "chunk",
+        "chunkLabel": "Daniel's authored opener establishes current workload and invites a concrete request.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Would you mind checking the room bookings while I update the guest list?",
+        "classification": "target",
+        "itemId": "itm_b1_b113_request",
+        "grammarPatternId": "gr_b1_would_mind_favour"
+      },
+      {
+        "text": "Could you confirm the room names and times against the booking emails?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b113_details",
+        "chunkLabel": "Recycled could request from A1.5/A2.13, not the new grammar target."
+      },
+      {
+        "text": "I'd really appreciate it.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b113_details",
+        "chunkLabel": "Frozen polite appreciation formula."
+      },
+      {
+        "text": "only if it's not too much trouble",
+        "classification": "chunk",
+        "itemId": "itm_b1_b113_timing",
+        "chunkLabel": "Frozen softening formula; it does not introduce a conditional lesson."
+      },
+      {
+        "text": "Would you mind covering reception from two until three while I meet the supplier?",
+        "classification": "target",
+        "itemId": "itm_b1_b113_v1_schedule",
+        "grammarPatternId": "gr_b1_would_mind_favour"
+      },
+      {
+        "text": "Would you mind turning my meeting notes into a short update for the team?",
+        "classification": "target",
+        "itemId": "itm_b1_b113_v2_request",
+        "grammarPatternId": "gr_b1_would_mind_favour"
+      },
+      {
+        "text": "Yes, I'll send them by eleven. Could you keep the update to one page and send it before four?",
+        "classification": "chunk",
+        "itemId": "itm_b1_b113_v2_condition",
+        "chunkLabel": "Negotiated acceptance uses recycled will and could; the lesson remains focused on Would you mind + -ing."
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_work_03",
+    "phrases": [
+      {
+        "text": "Thanks for applying for the team coordinator role. Could you tell me about your recent experience?",
+        "classification": "chunk",
+        "chunkLabel": "Daniel's authored interviewer prompt elicits relevant experience without supplying the learner's answer.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "I've worked in this field for three years.",
+        "classification": "target",
+        "itemId": "itm_b1_b114_experience",
+        "grammarPatternId": "gr_b1_present_perfect_experience"
+      },
+      {
+        "text": "My main strength is staying organised when several requests arrive at once.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b114_strength",
+        "chunkLabel": "Frozen interview strength frame followed by a concrete example."
+      },
+      {
+        "text": "I'm interested in this role because I enjoy helping colleagues work together.",
+        "classification": "target",
+        "itemId": "itm_b1_b114_interest",
+        "grammarPatternId": "gr_b1_because_interview_reasons"
+      },
+      {
+        "text": "I've helped colleagues with software problems for two years.",
+        "classification": "target",
+        "itemId": "itm_b1_b114_v1_support_role",
+        "grammarPatternId": "gr_b1_present_perfect_experience"
+      },
+      {
+        "text": "I'm interested in the support role because I enjoy solving practical problems.",
+        "classification": "target",
+        "itemId": "itm_b1_b114_v1_support_role",
+        "grammarPatternId": "gr_b1_because_interview_reasons"
+      },
+      {
+        "text": "You should choose me because I've already coordinated busy shifts.",
+        "classification": "target",
+        "itemId": "itm_b1_b114_v2_hire_reason",
+        "grammarPatternId": "gr_b1_because_interview_reasons"
+      },
+      {
+        "text": "You should choose me",
+        "classification": "chunk",
+        "itemId": "itm_b1_b114_v2_hire_reason",
+        "chunkLabel": "Recycled A2 should recommendation inside the interview answer; because remains the active target."
+      },
+      {
+        "text": "I've already coordinated busy shifts.",
+        "classification": "target",
+        "itemId": "itm_b1_b114_v2_hire_reason",
+        "grammarPatternId": "gr_b1_present_perfect_experience"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b1_social_01",
+    "phrases": [
+      {
+        "text": "Maya and Daniel both want to meet this weekend, but their schedules are different. Where should we start?",
+        "classification": "chunk",
+        "chunkLabel": "Alex's authored opener establishes a multi-party constraint and invites coordination.",
+        "speaker": "npc opener",
+        "sourceField": "openingLine"
+      },
+      {
+        "text": "Let's find a time that works for everyone.",
+        "classification": "chunk",
+        "itemId": "itm_b1_b115_find_time",
+        "chunkLabel": "Frozen group-coordination formula."
+      },
+      {
+        "text": "What if we meet at five?",
+        "classification": "target",
+        "itemId": "itm_b1_b115_what_if",
+        "grammarPatternId": "gr_b1_what_if_coordination"
+      },
+      {
+        "text": "I'll check with Maya and Daniel and book it if they agree.",
+        "classification": "target",
+        "itemId": "itm_b1_b115_check_group",
+        "grammarPatternId": "gr_b1_will_coordination"
+      },
+      {
+        "text": "book it if they agree",
+        "classification": "chunk",
+        "itemId": "itm_b1_b115_check_group",
+        "chunkLabel": "A fixed practical condition supporting the frozen what-if target; no wider conditional paradigm is introduced."
+      },
+      {
+        "text": "We're meeting there at five on Saturday.",
+        "classification": "target",
+        "itemId": "itm_b1_b115_confirm",
+        "grammarPatternId": "gr_a2_present_continuous_arrangements"
+      },
+      {
+        "text": "I'll ask Emma today before I confirm the table.",
+        "classification": "target",
+        "itemId": "itm_b1_b115_confirm",
+        "grammarPatternId": "gr_b1_will_coordination"
+      },
+      {
+        "text": "What if we take the nine o'clock train on Sunday and meet at the station entrance at quarter to nine?",
+        "classification": "target",
+        "itemId": "itm_b1_b115_v1_trip",
+        "grammarPatternId": "gr_b1_what_if_coordination"
+      },
+      {
+        "text": "I'll check with Maya and Daniel before I buy the group tickets.",
+        "classification": "target",
+        "itemId": "itm_b1_b115_v1_trip",
+        "grammarPatternId": "gr_b1_will_coordination"
+      },
+      {
+        "text": "What if we meet for lunch at one on Saturday?",
+        "classification": "target",
+        "itemId": "itm_b1_b115_v2_conflict",
+        "grammarPatternId": "gr_b1_what_if_coordination"
+      },
+      {
+        "text": "Then what if we book the table for half past two?",
+        "classification": "target",
+        "itemId": "itm_b1_b115_v2_replan",
+        "grammarPatternId": "gr_b1_what_if_coordination"
+      },
+      {
+        "text": "We're meeting outside the café at two twenty if they agree.",
+        "classification": "target",
+        "itemId": "itm_b1_b115_v2_replan",
+        "grammarPatternId": "gr_a2_present_continuous_arrangements"
+      }
+    ]
   }
 ]
