@@ -1,6 +1,7 @@
 import { Composition } from "remotion";
 import { EnglishLevelSegment } from "./compositions/EnglishLevelSegment";
 import { askingForDirections } from "./data/segments/askingForDirections";
+import { RigTest } from "./compositions/RigTest";
 
 const AskingForDirectionsComp = () => <EnglishLevelSegment segment={askingForDirections} />;
 
@@ -14,6 +15,15 @@ export const RemotionRoot: React.FC = () => {
           askingForDirections.durationInSeconds * askingForDirections.fps,
         )}
         fps={askingForDirections.fps}
+        width={1920}
+        height={1080}
+      />
+      {/* Rig proof-of-concept -- isolated from the segment above on purpose. */}
+      <Composition
+        id="RigTest"
+        component={RigTest}
+        durationInFrames={30 * 12}
+        fps={30}
         width={1920}
         height={1080}
       />
