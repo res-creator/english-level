@@ -40,6 +40,12 @@ test("a situation already underway is continued, never restarted", () => {
   assert.equal(resolveTodayEyebrow("session", started), "Продолжаем ситуацию");
 });
 
+test("the first unfinished session resumes even before a session is completed", () => {
+  const active = episode({ sessionsDone: 0, state: "learning" });
+  assert.equal(resolveTodayCta("session", active), "Продолжить");
+  assert.equal(resolveTodayEyebrow("session", active), "Продолжаем ситуацию");
+});
+
 test("the Mission is named as a Mission, not as another session", () => {
   const ready = episode({
     sessionsDone: 3,

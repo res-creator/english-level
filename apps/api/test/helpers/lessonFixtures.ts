@@ -25,6 +25,49 @@ export async function makeVerifiedUser(
   return user;
 }
 
+/** Test setup for focused engine tests that intentionally exercise a later
+ * situation without replaying the entire sequential course first. */
+export function unlockLessonPrerequisites(
+  sqlite: DatabaseSync,
+  userId: string,
+  lessonId: string,
+) {
+  const target = sqlite
+    .prepare(
+      `SELECT m.level_id, m.order_index AS module_order,
+              l.order_index AS lesson_order
+       FROM lessons l JOIN modules m ON m.id = l.module_id
+       WHERE l.id = ?`,
+    )
+    .get(lessonId) as
+    | { level_id: string; module_order: number; lesson_order: number }
+    | undefined;
+  if (!target) throw new Error(`unknown lesson ${lessonId}`);
+  const prerequisites = sqlite
+    .prepare(
+      `SELECT l.id
+       FROM lessons l JOIN modules m ON m.id = l.module_id
+       WHERE m.level_id = ? AND l.status = 'published' AND m.status = 'published'
+         AND (m.order_index < ? OR
+              (m.order_index = ? AND l.order_index < ?))
+       ORDER BY m.order_index, l.order_index`,
+    )
+    .all(
+      target.level_id,
+      target.module_order,
+      target.module_order,
+      target.lesson_order,
+    ) as Array<{ id: string }>;
+  const insert = sqlite.prepare(
+    `INSERT OR IGNORE INTO user_capabilities
+      (user_id, lesson_id, state, sessions_done, sessions_total,
+       mission_attempts, can_do_at, started_at, updated_at)
+     VALUES (?, ?, 'can_do', 3, 3, 1, CURRENT_TIMESTAMP,
+             CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+  );
+  for (const prerequisite of prerequisites) insert.run(userId, prerequisite.id);
+}
+
 interface StoredActivityLike {
   id: string;
   kind: string;

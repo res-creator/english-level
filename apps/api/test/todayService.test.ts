@@ -50,13 +50,15 @@ test("a fresh verified user is pointed at the first situation", async () => {
 test("an unfinished session is always what Today offers", async () => {
   const { db } = await seeded();
   const user = await makeVerifiedUser(db, 102, "A1");
-  const start = await startLessonSession(db, user.id, SECOND_EPISODE);
+  const start = await startLessonSession(db, user.id, FIRST_EPISODE);
   assert.equal(start.ok, true);
   if (!start.ok) return;
 
   const today = await getToday(db, user.id, "A1");
   assert.equal(today.action, "session");
-  assert.equal(today.episode?.id, SECOND_EPISODE);
+  assert.equal(today.episode?.id, FIRST_EPISODE);
+  assert.equal(today.episode?.state, "learning");
+  assert.equal(today.episode?.sessionsDone, 0);
 });
 
 test("once every session of an episode is done, Today offers the Mission", async () => {
@@ -118,7 +120,7 @@ test("coming back after a long absence never presents a pile of review debt", as
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 107, "A1");
   await driveLessonToCompletion(db, sqlite, user.id, FIRST_EPISODE);
-  await driveLessonToCompletion(db, sqlite, user.id, SECOND_EPISODE);
+  await driveLessonToCompletion(db, sqlite, user.id, FIRST_EPISODE);
 
   // Everything fell due weeks ago and the learner hasn't been back.
   const longAgo = new Date(Date.now() - 30 * 86_400_000).toISOString();

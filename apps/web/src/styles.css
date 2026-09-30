@@ -366,9 +366,10 @@ a {
 .has-blobs {
   position: relative;
   isolation: isolate;
+  overflow: clip;
 }
 
-.has-blobs > * {
+.has-blobs > :not(.blob) {
   position: relative;
   z-index: 1;
 }

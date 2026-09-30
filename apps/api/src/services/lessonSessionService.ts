@@ -16,9 +16,7 @@ import type {
 } from "../db/types.ts";
 import {
   findPublishedLessonById,
-  findPublishedModuleById,
   listLessonItemsByLesson,
-  listPublishedLessonsByModule,
 } from "../repositories/curriculumRepository.ts";
 import { findUserById } from "../repositories/usersRepository.ts";
 import {
@@ -69,6 +67,12 @@ import {
   grantMissionReward,
 } from "./rewardService.ts";
 import { eventStatement } from "./analyticsService.ts";
+import {
+  checkLessonAccess,
+  levelTransitionStatement,
+  nextPublishedLessonId,
+  resolveCourseLevel,
+} from "./courseProgressionService.ts";
 
 /** A wrong scored answer gets one alternate retry this many positions
  * later in the plan — not immediate, but soon. See
@@ -79,6 +83,7 @@ export type LessonSessionFailure =
   | { code: "not_found"; message: string }
   | { code: "not_eligible"; message: string }
   | { code: "wrong_level"; message: string }
+  | { code: "prerequisite_locked"; message: string }
   | { code: "session_not_active"; message: string }
   | { code: "activity_not_current"; message: string }
   | { code: "not_completed"; message: string }
@@ -104,10 +109,6 @@ export type AnswerActivityResult =
         | { status: "completed"; result: SessionResultDTO };
     }
   | { ok: false; error: LessonSessionFailure };
-
-function levelIdFor(cefrCode: string): string {
-  return `lvl_${cefrCode.toLowerCase()}`;
-}
 
 function parsePlan(session: LearningSessionRow): StoredActivity[] {
   return restoreDialogueTurns(
@@ -178,37 +179,13 @@ type EligibilityResult =
   | { ok: true; lesson: LessonRow; module: ModuleRow }
   | { ok: false; error: LessonSessionFailure };
 
-/** No prerequisite/unlock system: an episode is eligible if it's published
- * and its chapter belongs to the user's currently verified CEFR level. */
 async function checkLessonEligibility(
   db: Db,
+  userId: string,
   lessonId: string,
   cefrLevel: string,
 ): Promise<EligibilityResult> {
-  const lesson = await findPublishedLessonById(db, lessonId);
-  if (!lesson) {
-    return {
-      ok: false,
-      error: { code: "not_found", message: "lesson not found" },
-    };
-  }
-  const module_ = await findPublishedModuleById(db, lesson.module_id);
-  if (!module_) {
-    return {
-      ok: false,
-      error: { code: "not_found", message: "lesson not found" },
-    };
-  }
-  if (module_.level_id !== levelIdFor(cefrLevel)) {
-    return {
-      ok: false,
-      error: {
-        code: "wrong_level",
-        message: "this lesson is not available at your current level",
-      },
-    };
-  }
-  return { ok: true, lesson, module: module_ };
+  return checkLessonAccess(db, userId, lessonId, cefrLevel);
 }
 
 // ---------------------------------------------------------------------------
@@ -252,7 +229,12 @@ export async function startLessonSession(
   const user = await findUserById(db, userId);
   if (!user) throw new Error(`User ${userId} not found`);
 
-  if (!user.current_cefr_level) {
+  const currentLevel = await resolveCourseLevel(
+    db,
+    userId,
+    user.current_cefr_level,
+  );
+  if (!currentLevel) {
     return {
       ok: false,
       error: { code: "not_eligible", message: "no verified level yet" },
@@ -261,8 +243,9 @@ export async function startLessonSession(
 
   const eligibility = await checkLessonEligibility(
     db,
+    userId,
     lessonId,
-    user.current_cefr_level,
+    currentLevel,
   );
   if (!eligibility.ok) return eligibility;
   const { lesson, module: module_ } = eligibility;
@@ -363,17 +346,6 @@ function accuracyOf(session: LearningSessionRow): number {
   return scored === 0 ? 0 : Math.round((100 * session.correct_count) / scored);
 }
 
-/** Which episode follows this one inside the same chapter, if any. */
-async function findNextEpisodeId(
-  db: Db,
-  lesson: LessonRow,
-): Promise<string | null> {
-  const siblings = await listPublishedLessonsByModule(db, lesson.module_id);
-  const index = siblings.findIndex((l) => l.id === lesson.id);
-  if (index === -1) return null;
-  return siblings[index + 1]?.id ?? null;
-}
-
 /**
  * The result of a finished session. Every number is read back off the
  * persisted row, so reloading the result screen shows exactly what the
@@ -417,7 +389,7 @@ async function buildSessionResult(
     capabilityState: episode.state,
     missionReady: episode.missionReady,
     teaser: lesson.teaser,
-    nextEpisodeId: await findNextEpisodeId(db, lesson),
+    nextEpisodeId: await nextPublishedLessonId(db, lesson),
     rewards,
     reviewDue: due?.n ?? 0,
   };
@@ -657,6 +629,17 @@ export async function answerActivity(
     const isMission = session.session_kind === "mission";
     const missionPassed = isMission && accuracy >= MISSION_PASS_ACCURACY;
     const capability = await findCapability(db, userId, session.lesson_id);
+    const user = missionPassed ? await findUserById(db, userId) : null;
+    const levelTransition =
+      missionPassed && user?.current_cefr_level
+        ? await levelTransitionStatement(
+            db,
+            userId,
+            user.current_cefr_level,
+            session.lesson_id,
+            now,
+          )
+        : null;
 
     await db.batch([
       attemptStatement,
@@ -698,6 +681,7 @@ export async function answerActivity(
             ),
             now,
           ),
+      ...(levelTransition ? [levelTransition] : []),
       ...seedStatementsFor(userId, session.lesson_id, nextPlan, completedAt),
       isMission
         ? eventStatement(

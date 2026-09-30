@@ -249,7 +249,7 @@ test("the weekly goal counts both people's real sessions and nothing else", asyn
 
   await driveLessonToCompletion(db, sqlite, a.id, EPISODE_1);
   await driveLessonToCompletion(db, sqlite, b.id, EPISODE_1);
-  await driveLessonToCompletion(db, sqlite, b.id, EPISODE_2);
+  await driveLessonToCompletion(db, sqlite, b.id, EPISODE_1);
 
   const state = await getFriendState(db, a.id);
   assert.equal(state.goal.mine, 1);

@@ -249,7 +249,9 @@ function SituationRow({
             </span>
             <Button onClick={() => navigate(`/course/${episode.id}/session`)}>
               <IconPlay size={16} />{" "}
-              {episode.sessionsDone > 0 ? "Продолжить" : "Начать"}{" "}
+              {episode.state === "learning" || episode.sessionsDone > 0
+                ? "Продолжить"
+                : "Начать"}{" "}
               <IconArrowRight size={16} />
             </Button>
           </div>

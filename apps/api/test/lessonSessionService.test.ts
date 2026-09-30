@@ -18,6 +18,7 @@ import {
   driveEpisodeToCanDo,
   driveLessonToCompletion,
   makeVerifiedUser,
+  unlockLessonPrerequisites,
   walkToActivityKind,
 } from "./helpers/lessonFixtures.ts";
 
@@ -414,6 +415,7 @@ test("fill_gap_choice is graded server-side from the selected option id", async 
 test("typed_recall normalizes whitespace/case before grading", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 15, "A1");
+  unlockLessonPrerequisites(sqlite, user.id, "les_sie_a1_e2");
   const { sessionId, activity } = await walkToActivityKind(
     db,
     sqlite,
@@ -440,6 +442,7 @@ test("typed_recall normalizes whitespace/case before grading", async () => {
 test("sentence_build is graded server-side against the original sentence", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 16, "A1");
+  unlockLessonPrerequisites(sqlite, user.id, "les_sie_a1_e2");
   const { sessionId, activity } = await walkToActivityKind(
     db,
     sqlite,
@@ -465,6 +468,7 @@ test("sentence_build grading uses the canonical sentence order, not the shuffled
   async function walkToSentenceBuild(userId: number) {
     const { db, sqlite } = await seeded();
     const user = await makeVerifiedUser(db, userId, "A1");
+    unlockLessonPrerequisites(sqlite, user.id, "les_sie_a1_e2");
     const started = await startLessonSession(db, user.id, "les_sie_a1_e2");
     assert.equal(started.ok, true);
     if (!started.ok) throw new Error("start failed");
@@ -526,6 +530,7 @@ test("sentence_build grading uses the canonical sentence order, not the shuffled
 test("grammar_card and its recognition check both work", async () => {
   const { db, sqlite } = await seeded();
   const user = await makeVerifiedUser(db, 17, "A1");
+  unlockLessonPrerequisites(sqlite, user.id, GRAMMAR_LESSON);
   const { sessionId, activity } = await walkToActivityKind(
     db,
     sqlite,

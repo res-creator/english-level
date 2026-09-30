@@ -20,6 +20,7 @@ import {
 import type { DialogueLine } from "../../web/src/scene/dialogueTypes.ts";
 import {
   makeVerifiedUser,
+  unlockLessonPrerequisites,
   driveEpisodeToCanDo,
   driveLessonToCompletion,
 } from "./helpers/lessonFixtures.ts";
@@ -161,6 +162,7 @@ test("real successive A1.4 sessions open once, then Mission pass/fail still sets
   const { db, sqlite } = createTestDb();
   await seedContent(db);
   const user = await makeVerifiedUser(db, 7401, "A1");
+  unlockLessonPrerequisites(sqlite, user.id, "les_sie_a1_e4");
   const first = await startLessonSession(db, user.id, "les_sie_a1_e4");
   assert.ok(first.ok);
   assert.equal(
@@ -181,6 +183,7 @@ test("real successive A1.4 sessions open once, then Mission pass/fail still sets
   assert.equal(passed.missionPassed, true);
   assert.equal(passed.capabilityState, "can_do");
   const failing = await makeVerifiedUser(db, 7402, "A1");
+  unlockLessonPrerequisites(sqlite, failing.id, "les_sie_a1_e4");
   for (let i = 0; i < 8; i++) {
     const start = await startLessonSession(db, failing.id, "les_sie_a1_e4");
     assert.ok(start.ok);

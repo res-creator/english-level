@@ -20,7 +20,11 @@ const GLYPHS: Record<string, ReactNode> = {
 };
 
 export function situationGlyph(episodeId: string, position: number): ReactNode {
-  return GLYPHS[episodeId] ?? <span className="node2__num">{position}</span>;
+  if (GLYPHS[episodeId]) return GLYPHS[episodeId];
+  // Result screens do not have a course-path position. Showing their sentinel
+  // value (0) exposes an implementation detail as if it were a learner score.
+  if (position <= 0) return <Pin />;
+  return <span className="node2__num">{position}</span>;
 }
 
 function stroke(size = 26) {

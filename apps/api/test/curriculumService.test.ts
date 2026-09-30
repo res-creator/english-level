@@ -99,8 +99,30 @@ test("the published B1 course exposes all nineteen authored situations in frozen
   const { db } = await seeded();
   const course = await getCourse(db, "B1", "usr_test");
   assert.deepEqual(
-    course.chapters.flatMap((chapter) => chapter.episodes.map((episode) => episode.id)),
-    ["sit_b1_people_01", "sit_b1_people_02", "sit_b1_cafe_01", "sit_b1_restaurant_01", "sit_b1_restaurant_02", "sit_b1_travel_01", "sit_b1_travel_02", "sit_b1_daily_01", "sit_b1_daily_02", "sit_b1_shop_01", "sit_b1_shop_02", "sit_b1_health_01", "sit_b1_work_01", "sit_b1_work_02", "sit_b1_work_03", "sit_b1_social_01", "sit_b1_social_02", "sit_b1_problems_01", "sit_b1_problems_02"],
+    course.chapters.flatMap((chapter) =>
+      chapter.episodes.map((episode) => episode.id),
+    ),
+    [
+      "sit_b1_people_01",
+      "sit_b1_people_02",
+      "sit_b1_cafe_01",
+      "sit_b1_restaurant_01",
+      "sit_b1_restaurant_02",
+      "sit_b1_travel_01",
+      "sit_b1_travel_02",
+      "sit_b1_daily_01",
+      "sit_b1_daily_02",
+      "sit_b1_shop_01",
+      "sit_b1_shop_02",
+      "sit_b1_health_01",
+      "sit_b1_work_01",
+      "sit_b1_work_02",
+      "sit_b1_work_03",
+      "sit_b1_social_01",
+      "sit_b1_social_02",
+      "sit_b1_problems_01",
+      "sit_b1_problems_02",
+    ],
   );
   assert.equal(course.episodesTotal, 19);
 });
@@ -289,6 +311,19 @@ test("an unknown lesson id returns not_found", async () => {
   const result = await getLessonContent(db, "les_does_not_exist", "usr_test");
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.error.code, "not_found");
+});
+
+test("a locked lesson cannot be opened directly or started through the API service", async () => {
+  const { db } = await seeded();
+  const user = await makeVerifiedUser(db, 190, "A1");
+
+  const preview = await getLessonContent(db, EPISODE_2, user.id, "A1");
+  assert.equal(preview.ok, false);
+  if (!preview.ok) assert.equal(preview.error.code, "prerequisite_locked");
+
+  const start = await startLessonSession(db, user.id, EPISODE_2);
+  assert.equal(start.ok, false);
+  if (!start.ok) assert.equal(start.error.code, "prerequisite_locked");
 });
 
 test("an archived lesson is not returned", async () => {

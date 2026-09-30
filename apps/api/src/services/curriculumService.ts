@@ -25,6 +25,7 @@ import {
 import { findProgress } from "../repositories/userLessonProgressRepository.ts";
 import { listCapabilitiesForLessons } from "../repositories/capabilitiesRepository.ts";
 import { buildEpisodeDTO } from "./lessonSessionService.ts";
+import { checkLessonAccess } from "./courseProgressionService.ts";
 
 /** Only Russian is seeded for V1 — no language negotiation yet. */
 const CONTENT_LANGUAGE = "ru";
@@ -35,7 +36,14 @@ function levelId(code: CefrLevel): string {
 
 export type LessonContentResult =
   | { ok: true; content: LessonContentDTO }
-  | { ok: false; error: { code: "not_found"; message: string } };
+  | {
+      ok: false;
+      error: {
+        code:
+          "not_found" | "not_eligible" | "wrong_level" | "prerequisite_locked";
+        message: string;
+      };
+    };
 
 /**
  * Lesson content STRUCTURE only — target learning items and grammar
@@ -49,7 +57,17 @@ export async function getLessonContent(
   db: Db,
   lessonId: string,
   userId: string,
+  currentCefrLevel?: string | null,
 ): Promise<LessonContentResult> {
+  if (currentCefrLevel !== undefined) {
+    const access = await checkLessonAccess(
+      db,
+      userId,
+      lessonId,
+      currentCefrLevel,
+    );
+    if (!access.ok) return access;
+  }
   const lesson = await findPublishedLessonById(db, lessonId);
   if (!lesson) {
     return {
@@ -139,8 +157,8 @@ export async function getLessonContent(
  *
  * "Current" is a single episode across the whole course — the first one
  * whose capability isn't earned yet. Everything before it is done,
- * everything after it is simply ahead; there is no locking, because a
- * guided path doesn't need a gate to be clear.
+ * everything after it is locked by the same sequential prerequisite rule
+ * that protects previews and session starts.
  */
 export async function getCourse(
   db: Db,

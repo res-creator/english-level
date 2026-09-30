@@ -12,7 +12,9 @@ export function resolveTodayCta(
   if (action === "mission") return "Пройти миссию";
   if (action === "review") return "Повторить";
   if (!episode) return "Открыть курс";
-  return episode.sessionsDone > 0 ? "Продолжить" : "Начать";
+  return episode.state === "learning" || episode.sessionsDone > 0
+    ? "Продолжить"
+    : "Начать";
 }
 
 export function resolveTodayEyebrow(
@@ -21,7 +23,9 @@ export function resolveTodayEyebrow(
 ): string {
   if (action === "mission") return "Проверим на деле";
   if (action === "review") return "Сегодня";
-  if (episode && episode.sessionsDone > 0) return "Продолжаем ситуацию";
+  if (episode && (episode.state === "learning" || episode.sessionsDone > 0)) {
+    return "Продолжаем ситуацию";
+  }
   return "Сегодняшняя ситуация";
 }
 

@@ -28,6 +28,7 @@ function statusFor(code: LessonSessionFailure["code"]): 400 | 403 | 404 | 409 {
       return 400;
     case "not_eligible":
     case "wrong_level":
+    case "prerequisite_locked":
       return 403;
     case "not_found":
       return 404;

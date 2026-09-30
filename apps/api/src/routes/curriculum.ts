@@ -9,6 +9,7 @@ import { requireAuth } from "../auth/middleware.ts";
 import { getCourse, getLessonContent } from "../services/curriculumService.ts";
 import { getToday } from "../services/todayService.ts";
 import type { AppEnv } from "../types/appEnv.ts";
+import { resolveCourseLevel } from "../services/courseProgressionService.ts";
 
 const curriculum = new Hono<AppEnv>();
 
@@ -23,26 +24,34 @@ const curriculum = new Hono<AppEnv>();
 curriculum.get("/course", requireAuth, async (c) => {
   const db = createD1Db(c.env.DB);
   const user = c.get("currentUser");
-  const course = await getCourse(db, user.current_cefr_level, user.id);
+  const level = await resolveCourseLevel(db, user.id, user.current_cefr_level);
+  const course = await getCourse(db, level, user.id);
   return c.json(CourseResponseSchema.parse(course));
 });
 
 curriculum.get("/today", requireAuth, async (c) => {
   const db = createD1Db(c.env.DB);
   const user = c.get("currentUser");
-  const today = await getToday(db, user.id, user.current_cefr_level);
+  const level = await resolveCourseLevel(db, user.id, user.current_cefr_level);
+  const today = await getToday(db, user.id, level);
   return c.json(TodayResponseSchema.parse(today));
 });
 
 curriculum.get("/lessons/:lessonId", requireAuth, async (c) => {
   const db = createD1Db(c.env.DB);
+  const user = c.get("currentUser");
+  const level = await resolveCourseLevel(db, user.id, user.current_cefr_level);
   const result = await getLessonContent(
     db,
     c.req.param("lessonId"),
-    c.get("currentUser").id,
+    user.id,
+    level,
   );
   if (!result.ok) {
-    return c.json({ error: result.error.message }, 404);
+    return c.json(
+      { error: result.error.message },
+      result.error.code === "not_found" ? 404 : 403,
+    );
   }
   return c.json(LessonContentDTOSchema.parse(result.content));
 });
