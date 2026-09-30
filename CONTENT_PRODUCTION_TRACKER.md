@@ -115,7 +115,7 @@ Situation metadata · capability · coherent dialogue flow · NPC opener · lear
 | `sit_b2_daily_02` (B2.19) | Убедить друга попробовать что-то новое | Daily Life & Home | Alex | **done** | 3 — meal-planning habit; choir with a real schedule objection; partial agreement on a shorter cycling route | recycled target: `gr_a2_should`; perspective/rhetorical/no-pressure frames are chunks | Gate A/B/C PASS; Far B1.13; prerequisites B1.13/B2.6; proposal → objection → tailored reason → bounded agreement |
 | `sit_b2_people_05` (B2.20) | Рассказать сложную историю с нюансами | People & Connections | Alex | **done** | 3 — returned notebook; missed train after a lost wallet; Alex's follow-up reframes a thank-you speech | target: `gr_b2_what_made_strange_was`; uncertainty/reflection/reconsideration frames are chunks | Gate A/B/C PASS; Far B1.8; event → complication → mixed response → reflective qualification |
 | `sit_b2_work_06` (B2.21) | Обсудить последствия решения | Work & Study | Daniel | **done** | 3 — training/event budget; Daniel confident about removing a meeting; contractual downside emerges mid-discussion | targets: `gr_b2_conditional_consequences`, recycled `gr_b2_might_could_tradeoff`; forecast/balance/revision frames are chunks | Gate A/B/C PASS; Near B2.16, Far B2.6; benefit → downstream risk → uncertainty → staged decision |
-| `sit_b2_health_01` (H.B2) | Уточнить рекомендации врача | Shopping & Services | Dr. Kim | planned | 3 | will-future | |
+| `sit_b2_health_01` (H.B2) | Уточнить рекомендации врача | Shopping & Services | Dr. Kim | **done** | 3 — different treatment format; weigh tablet/spray options; lifestyle-change alternative | target: `gr_b2_will_health_prediction`; risk, alternative-seeking and comparison questions are chunks/recycled language | Gate A/B/C PASS; Near H.B1, Far B1.11; repeat clinic visit → risks → alternative → timing → reasoned choice |
 
 ---
 
@@ -277,6 +277,12 @@ British Council B2 persuasion material informed B2.19's proposal → genuine obj
 
 Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 68 worksheet situations. Targeted API/content/course/engine **75/75**, scene/opener **21/21**, full suite **421/421** (API 328, web 87, shared 6), API/web typechecks PASS; seed idempotency, references and contiguity PASS. Chromium прошёл все 21 authored B2 situations: B2.19–B2.21 Mission PASS / `can_do`, отдельный B2.1 FAIL / `learning`; 958 transcript snapshots и 60 Batch 7 screenshots. B2 tracker: **21/22 done**, 1 planned. See [B2 Batch 7 production QA](docs/B2_BATCH7_PRODUCTION_QA.md).
 
+## H.B2 and B2 level freeze QA record
+
+British Council B2 speaking guidance informed the advice-evaluation sequence; Cambridge B2 discourse and interaction criteria informed connected questions, comparison and a reasoned choice. H.B2 remains a follow-up appointment with Dr. Kim: risks → alternative → predictive timing → evaluation. All dialogue is original. The three frozen variations transfer the function to another treatment format, two options that must be weighed, and a lifestyle-change alternative.
+
+Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across all 69 worksheet situations. H.B2 targeted content/course **46/46** and scene/opener **22/22**; full suite **423/423** (API 329, web 88, shared 6); API/web typechecks PASS. Fresh seed, idempotent reseed, schemas, references, lesson/module contiguity and tracker consistency PASS. Chromium completed all **22/22 B2** situations in frozen order, with 22 Mission PASS results at 100% / `can_do`, one independent B2.1 Mission FAIL at 0% / `learning`, and **1001 transcript snapshots**. Full-level artifacts include 444 situation screenshots and 4 course/onboarding screenshots; H.B2 contributes 20 representative screenshots. See [B2 Level Freeze QA](docs/B2_LEVEL_FREEZE_QA.md).
+
 ## Totals
 
 | Level | Core situations | Done | Planned | Blocked |
@@ -284,8 +290,8 @@ Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 68 workshe
 | A1 | 11 | 11 | 0 | 0 |
 | A2 | 17 | 17 | 0 | 0 |
 | B1 | 19 | 19 | 0 | 0 |
-| B2 | 22 | 21 | 1 | 0 |
-| **Total** | **69** | **68** | **1** | **0** |
+| B2 | 22 | 22 | 0 | 0 |
+| **Total** | **69** | **69** | **0** | **0** |
 
 ## A2 level freeze
 
@@ -295,9 +301,13 @@ Gate A/B/C PASS. Grammar lint: **0 errors / 0 advisory notes** across 68 workshe
 
 **B1 CONTENT FROZEN / PRODUCTION READY.** B1 tracker: **19/19 done**; Gates A/B/C PASS; blocking findings: **0**. Полный audit подтвердил dialogue coherence, speaker-role consistency, target/chunk classification, две transfer variations на ситуацию, Near/Far review, progression, semantic spoken turns, opener continuity и Mission PASS/FAIL. Chromium: 580 transcript snapshots, 19 Mission PASS по 100% / `can_do`, один независимый Mission FAIL 0% / `learning`; automated suite 407/407, API/web typechecks и seed idempotency PASS. Полный отчёт: [B1 Level Freeze QA](docs/B1_LEVEL_FREEZE_QA.md). Production deployment не выполнялся.
 
+## B2 level freeze
+
+**B2 CONTENT FROZEN / PRODUCTION READY.** B2 tracker: **22/22 done**; Gates A/B/C PASS; blocking findings: **0**. Полный audit подтвердил dialogue coherence, B2-level reasoning and discourse, speaker-role consistency, target/chunk classification, три transfer variations на ситуацию, Near/Far review, prerequisites, progression/rewards, semantic spoken turns, opener continuity и Mission PASS/FAIL. Chromium: 1001 transcript snapshot, 22 Mission PASS по 100% / `can_do`, один независимый Mission FAIL 0% / `learning`; automated suite 423/423, API/web typechecks и seed idempotency PASS. Полный отчёт: [B2 Level Freeze QA](docs/B2_LEVEL_FREEZE_QA.md). Production deployment не выполнялся.
+
 ---
 
-## Findings — актуальное состояние на 2026-09-28
+## Findings — актуальное состояние на 2026-09-30
 
 1. **RESOLVED (локально, без deploy): A1.4 — `gr_a1_there_is_are` без опорной реплики.** Минимально изменён только `npcReplyCorrect` у `itm_sie_where_is_the`: «Go straight, then turn left. There's a bank next to the station.» Роза естественно отвечает на вопрос о вокзале и указывает прежний ориентир. Grammar target, learner phrases, примеры, порядок, Mission и frozen curriculum не изменены. В worksheet добавлена классификация NPC-реплики как target. Grammar lint: 0 ошибок / 0 замечаний; targeted QA: 76/76; полный suite: 371/371; typecheck API/web: PASS. Mission: PASS 8/8 (100%, `can_do`), FAIL 0/8 (0%, `learning`, без наград). Успешный Mission подтверждён и в браузере. [Полный отчёт](docs/A1_4_REPAIR_QA.md).
 
