@@ -14,6 +14,8 @@
     "../src/curriculum/coursePath.ts",
     "../src/routes/lessonPreviewCta.ts",
     "../src/lessonEngine/promptTranslations.ts",
+    "../src/lessonEngine/grammarPresentation.ts",
+    "../src/scene/sessionPresentation.ts",
     "../src/vite-env.d.ts"
   ]
 }

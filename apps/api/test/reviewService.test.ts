@@ -99,6 +99,7 @@ test("a learner who has met no language has nothing to review", async () => {
   const state = await getReviewState(db, user.id);
   assert.equal(state.due, 0);
   assert.equal(state.estimatedMinutes, 0);
+  assert.equal(state.availableForExtra, false);
 
   const started = await startReviewSession(db, user.id);
   assert.equal(started.ok, false);
@@ -117,6 +118,7 @@ test("language met today is not due today — the first review is tomorrow", asy
 
   const state = await getReviewState(db, user.id);
   assert.equal(state.due, 0);
+  assert.equal(state.availableForExtra, true);
 });
 
 // --- the queue -------------------------------------------------------------

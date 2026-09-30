@@ -7,8 +7,9 @@ import type {
 } from "@english-level/contracts";
 import { getCourse } from "../api/productClient.ts";
 import { Kvo } from "../brand/Kvo.tsx";
+import { CastGlyph } from "../brand/cast.tsx";
 import { ArtLayer } from "../brand/Art.tsx";
-import { artName, hasArt } from "../brand/artRegistry.ts";
+import { artName } from "../brand/artRegistry.ts";
 import { sceneForSituation } from "../brand/situationScenes.ts";
 import { sceneIcon } from "../scene/SceneStage.tsx";
 import { Button } from "../ui/Button.tsx";
@@ -42,6 +43,21 @@ export function Course() {
   }
 
   useEffect(load, []);
+
+  useEffect(() => {
+    if (state.status !== "ready" || !state.course.currentEpisodeId) return;
+    const chapterIndex = state.course.chapters.findIndex((chapter) =>
+      chapter.episodes.some(
+        (episode) => episode.id === state.course.currentEpisodeId,
+      ),
+    );
+    if (chapterIndex <= 0) return;
+    requestAnimationFrame(() => {
+      document
+        .querySelector<HTMLElement>("[data-current-chapter='true']")
+        ?.scrollIntoView({ block: "start", behavior: "auto" });
+    });
+  }, [state]);
 
   if (state.status === "loading") {
     return (
@@ -93,35 +109,31 @@ export function Course() {
 
   return (
     <section className="stack-lg">
+      <CourseHeader course={course} />
       {course.chapters.map((chapter, index) => (
         <ChapterPath
           key={chapter.id}
           chapter={chapter}
           index={index}
           currentEpisodeId={course.currentEpisodeId}
+          openByDefault={
+            chapter.episodes.some(
+              (episode) => episode.id === course.currentEpisodeId,
+            ) ||
+            (!course.currentEpisodeId && index === course.chapters.length - 1)
+          }
         />
       ))}
     </section>
   );
 }
 
-function ChapterPath({
-  chapter,
-  index,
-  currentEpisodeId,
-}: {
-  chapter: ChapterDTO;
-  index: number;
-  currentEpisodeId: string | null;
-}) {
-  const done = chapter.episodes.filter(
-    (e) => e.state === "can_do" || e.state === "consolidated",
-  ).length;
-  const total = chapter.episodes.length;
-  const pct = total ? Math.round((done / total) * 100) : 0;
-
+function CourseHeader({ course }: { course: CourseResponse }) {
+  const pct = course.episodesTotal
+    ? Math.round((course.episodesDone / course.episodesTotal) * 100)
+    : 0;
   return (
-    <div className="course-chapter">
+    <>
       <div className="course-hero ambient-stage">
         <ArtLayer
           name={artName.heroBackdrop("course")}
@@ -131,19 +143,16 @@ function ChapterPath({
         <div className="course-hero__kvo">
           <Kvo size={92} state="idle" />
         </div>
-        <h1 className="course-hero__title">
-          {index === 0 ? "Курс" : "Дальше"}
-        </h1>
+        <h1 className="course-hero__title">Курс</h1>
         <p className="course-hero__subtitle">
-          Глава {index + 1} · {chapter.title}
+          Твой путь через реальные ситуации
         </p>
       </div>
-
-      <div className="course-progress">
-        <span className="small muted">Твой прогресс в курсе</span>
+      <div className="course-progress course-progress--overall">
+        <span className="small muted">Общий прогресс</span>
         <div className="row-between">
           <span className="course-progress__count">
-            {done} из {total}
+            {course.episodesDone} из {course.episodesTotal}
           </span>
           <span className="course-progress__pct">{pct}%</span>
         </div>
@@ -151,18 +160,63 @@ function ChapterPath({
           <div className="progress-bar__fill" style={{ width: `${pct}%` }} />
         </div>
       </div>
+    </>
+  );
+}
 
-      <ol className="situation-list">
-        {chapter.episodes.map((episode, i) => (
-          <SituationRow
-            key={episode.id}
-            episode={episode}
-            position={i + 1}
-            isCurrent={episode.id === currentEpisodeId}
-          />
-        ))}
-      </ol>
-    </div>
+function ChapterPath({
+  chapter,
+  index,
+  currentEpisodeId,
+  openByDefault,
+}: {
+  chapter: ChapterDTO;
+  index: number;
+  currentEpisodeId: string | null;
+  openByDefault: boolean;
+}) {
+  const [open, setOpen] = useState(openByDefault);
+  const done = chapter.episodes.filter(
+    (e) => e.state === "can_do" || e.state === "consolidated",
+  ).length;
+  const total = chapter.episodes.length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+
+  return (
+    <details
+      className="course-chapter"
+      open={open}
+      onToggle={(event) => setOpen(event.currentTarget.open)}
+      data-current-chapter={openByDefault && !!currentEpisodeId}
+    >
+      <summary className="course-chapter__summary">
+        <span className="course-chapter__index">{index + 1}</span>
+        <span className="course-chapter__heading">
+          <span className="course-chapter__title">{chapter.title}</span>
+          <span className="small muted">
+            {done} из {total} · {pct}%
+          </span>
+        </span>
+        <span className="course-chapter__chevron" aria-hidden="true">
+          ⌄
+        </span>
+      </summary>
+      <div className="course-chapter__body">
+        <div className="progress-bar">
+          <div className="progress-bar__fill" style={{ width: `${pct}%` }} />
+        </div>
+        <ol className="situation-list">
+          {chapter.episodes.map((episode, i) => (
+            <SituationRow
+              key={episode.id}
+              episode={episode}
+              position={i + 1}
+              isCurrent={episode.id === currentEpisodeId}
+            />
+          ))}
+        </ol>
+      </div>
+    </details>
   );
 }
 
@@ -179,7 +233,7 @@ function SituationRow({
   const nodeState = resolvePathNodeState(episode, isCurrent);
   const earned = nodeState === "done";
   const locked = nodeState === "locked";
-  const { scene } = sceneForSituation(episode.id);
+  const { scene, cast } = sceneForSituation(episode.id);
   const title = episode.situationTitle ?? episode.title;
 
   // A locked situation stays visible — title, number, everything — it
@@ -190,7 +244,6 @@ function SituationRow({
     navigate(`/course/${episode.id}`);
   }
 
-  const thumbArtName = artName.courseThumb(episode.id);
   const thumb = (
     <span
       className={
@@ -198,15 +251,14 @@ function SituationRow({
       }
       aria-hidden="true"
     >
-      {hasArt(thumbArtName) ? (
-        <ArtLayer name={thumbArtName} />
-      ) : (
-        // No thumbnail illustrated for this situation yet — a plain
-        // scene icon is honest about that instead of pretending.
+      <span className={`situation-row__thumb-scene is-${scene}`}>
         <span className="situation-row__thumb-icon">
-          {sceneIcon(scene, 26)}
+          {sceneIcon(scene, 18)}
         </span>
-      )}
+        <span className="situation-row__thumb-cast">
+          <CastGlyph cast={cast} state="smiling" width={72} />
+        </span>
+      </span>
     </span>
   );
 

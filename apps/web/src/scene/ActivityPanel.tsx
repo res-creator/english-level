@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { ActivityDTO, AnswerFeedback } from "@english-level/contracts";
 import { translatePrompt } from "../lessonEngine/promptTranslations.ts";
+import { grammarDisplayTitle } from "../lessonEngine/grammarPresentation.ts";
 
 /**
  * The sheet under the scene: the only part of the screen that changes
@@ -47,7 +48,9 @@ export function ActivityPanel({
       return (
         <>
           <span className="overline">Пауза на правило</span>
-          <h2 className="task-sheet__title">{activity.content.title}</h2>
+          <h2 className="task-sheet__title">
+            {grammarDisplayTitle(activity.content.title)}
+          </h2>
           {activity.content.formula ? (
             <p className="example en">{activity.content.formula}</p>
           ) : null}

@@ -264,7 +264,7 @@ function ReviewIdle({
         </div>
       </div>
 
-      {nothingDue ? (
+      {nothingDue && overview.availableForExtra ? (
         <button
           type="button"
           className="btn btn-ghost"
@@ -272,6 +272,11 @@ function ReviewIdle({
         >
           Хочу ещё
         </button>
+      ) : nothingDue ? (
+        <p className="small muted" style={{ textAlign: "center" }}>
+          Пройди первую ситуацию — после неё здесь появятся фразы для
+          повторения.
+        </p>
       ) : null}
     </section>
   );

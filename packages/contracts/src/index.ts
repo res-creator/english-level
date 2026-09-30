@@ -626,6 +626,8 @@ export type SessionResultDTO = z.infer<typeof SessionResultDTOSchema>;
 
 export const ReviewStateResponseSchema = z.object({
   due: z.number().int().nonnegative(),
+  /** At least one memory item exists and can support optional extra practice. */
+  availableForExtra: z.boolean(),
   /** Items whose last answer was wrong — worth a second look. */
   weak: z.number().int().nonnegative(),
   /** Capabilities waiting for a spaced retrieval to become CONSOLIDATED. */

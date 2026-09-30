@@ -129,6 +129,7 @@ export async function getReviewState(
   const count = Math.min(due?.n ?? 0, MAX_REVIEW_ITEMS);
   return {
     due: count,
+    availableForExtra: memory.length > 0,
     weak,
     awaitingConsolidation: awaiting,
     // ~20 seconds per retrieval, rounded up to a whole minute.

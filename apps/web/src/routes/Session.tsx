@@ -17,6 +17,7 @@ import { sceneForSituation } from "../brand/situationScenes.ts";
 import { CAST, castArtNames } from "../brand/cast.tsx";
 import { artName, preloadArt } from "../brand/artRegistry.ts";
 import type { CastState } from "../brand/cast.tsx";
+import { shouldShowSituationIntro } from "../scene/sessionPresentation.ts";
 import { Button, IconButton } from "../ui/Button.tsx";
 import { LoadingScreen, ErrorState } from "../ui/states.tsx";
 import { IconArrowRight, IconClose } from "../ui/icons.tsx";
@@ -40,6 +41,7 @@ import {
 interface Active {
   status: "active";
   sessionId: string;
+  sessionIndex: number;
   kind: SessionKind;
   episodeId: string;
   title: string;
@@ -96,6 +98,7 @@ export function Session() {
         setState({
           status: "active",
           sessionId: session.sessionId,
+          sessionIndex: session.sessionIndex,
           kind: session.kind,
           episodeId,
           title: session.episode.situationTitle ?? session.episode.title,
@@ -200,6 +203,11 @@ export function Session() {
   const { activity, feedback, submitting, kind, misses, hintUsed } = state;
   const { scene, cast } = sceneForSituation(state.episodeId);
   const card = isCard(activity.kind);
+  const showSituationIntro = shouldShowSituationIntro(
+    kind,
+    state.sessionIndex,
+    activity.progress.current,
+  );
   const canSubmit = card || answer.trim().length > 0;
 
   // Kvo speaks at most once per mini-scene, and only after a real miss.
@@ -251,10 +259,11 @@ export function Session() {
               <b style={{ color: "var(--violet-600)" }}>Миссия</b> ·{" "}
               {state.title}
             </>
-          ) : (
+          ) : showSituationIntro ? (
             sceneChip(scene)
-          )
+          ) : null
         }
+        labelMode={kind === "mission" ? "persistent" : "intro"}
       />
 
       <div className="task-sheet">

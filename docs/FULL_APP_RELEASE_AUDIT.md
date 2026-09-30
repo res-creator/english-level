@@ -8,17 +8,17 @@
 
 ## Итог
 
-Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс проходит A1→A2→B1→B2, последовательные prerequisites одинаково применяются в UI/API, а финальный B2 state остаётся стабильным. Frozen curriculum/content не менялись; production не затрагивался.
+Release Fix Block 2 завершён: все **P0/P1/P2 закрыты**. Daily routes имеют единый auth state, session context больше не перекрывает диалог, Course масштабируется до B2, визуальные fallback единообразны, а grammar, My English и Review используют learner-facing presentation. Frozen curriculum/content не менялись; production не затрагивался.
 
 Сводка backlog:
 
-| Severity            | Количество | Beta status                                                                               |
-| ------------------- | ---------: | ----------------------------------------------------------------------------------------- |
-| P0 blocker          |          0 | закрыто Release Fix Block 1                                                               |
-| P1 release-critical |          0 | закрыто Release Fix Block 1                                                               |
-| P2 polish           |          7 | желательно исправить до широкой beta; допустимо переносить по одному после закрытия P0/P1 |
-| P3 nice-to-have     |          2 | можно оставить на post-beta                                                               |
-| **Открыто**         |      **9** | только P2/P3                                                                              |
+| Severity            | Количество | Beta status                 |
+| ------------------- | ---------: | --------------------------- |
+| P0 blocker          |          0 | закрыто Release Fix Block 1 |
+| P1 release-critical |          0 | закрыто Release Fix Block 1 |
+| P2 polish           |          0 | закрыто Release Fix Block 2 |
+| P3 nice-to-have     |          2 | можно оставить на post-beta |
+| **Открыто**         |      **2** | только P3                   |
 
 ## Как проводился аудит
 
@@ -90,7 +90,7 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - **Рекомендуемое исправление:** добавить в DTO явный resume-state либо различать `start`/`resume` action на сервере; не выводить resume из счётчика завершённых sessions.
 - **Исправление:** `state = learning` считается resume даже при `sessionsDone = 0`; Today и Course показывают «Продолжить», backend возвращает тот же active session.
 
-### REL-006 — прямые защищённые страницы вне Telegram сообщают об ошибке сети
+### REL-006 — прямые защищённые страницы вне Telegram сообщают об ошибке сети — **ЗАКРЫТО**
 
 - **Экран/flow:** `/today`, `/course`, `/my`, `/my/space` вне Telegram.
 - **Как воспроизвести:** открыть production-mode preview прямым URL без Telegram initData.
@@ -99,8 +99,9 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - **Severity:** **P2 polish**.
 - **Предполагаемая причина:** эти routes находятся вне `RequireAuthenticated`; каждая страница преобразует 401 в общий network `ErrorState`.
 - **Рекомендуемое исправление:** поместить daily shell под auth gate либо типизировать 401 отдельно от transport/server errors.
+- **Исправление:** весь daily shell (`Today`, `Course`, `My English`, `My Space`, preview/privacy) помещён под общий `RequireAuthenticated`; прямой вход показывает единый Telegram-specific state.
 
-### REL-007 — `Ситуация: …` остаётся поверх сцены и пересекается с dialogue bubble
+### REL-007 — `Ситуация: …` остаётся поверх сцены и пересекается с dialogue bubble — **ЗАКРЫТО**
 
 - **Экран/flow:** любая Session, каждый activity.
 - **Как воспроизвести:** открыть `les_sie_a1_e1/session` или любую authored situation.
@@ -109,8 +110,9 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - **Severity:** **P2 polish**.
 - **Предполагаемая причина:** `Session` всегда передаёт `sceneChip(scene)`, а `.scene__label` и `.scene__dialogue` используют пересекающиеся absolute offsets.
 - **Рекомендуемое исправление:** показывать label только при первом входе/коротко анимировать исчезновение; оставить dialogue layout стабильным.
+- **Исправление:** situation chip показывается только на первом activity первой session, имеет отдельное место и плавно исчезает; последующие activities/sessions его не рендерят. Mission label остаётся осмысленным persistent context.
 
-### REL-008 — Course плохо масштабируется на B2
+### REL-008 — Course плохо масштабируется на B2 — **ЗАКРЫТО**
 
 - **Экран/flow:** Course пользователя B2.
 - **Как воспроизвести:** открыть B2 Course с 22 situations.
@@ -119,8 +121,9 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - **Severity:** **P2 polish**.
 - **Предполагаемая причина:** `ChapterPath` повторяет `course-hero` для каждого module, а Course не сворачивает завершённые главы и не скроллит к `currentEpisodeId`.
 - **Рекомендуемое исправление:** один level header, компактные chapter headers/progress, сворачивание завершённых глав или безопасный scroll-to-current.
+- **Исправление:** Course имеет один общий hero/progress; главы стали компактными раскрываемыми секциями, открыта только текущая, а поздний current chapter автоматически приводится в viewport. B2 сократился с 8293 px до менее 3500 px без horizontal overflow.
 
-### REL-009 — визуальная система контента не покрывает весь A1–B2
+### REL-009 — визуальная система контента не покрывает весь A1–B2 — **ЗАКРЫТО**
 
 - **Экран/flow:** Course thumbnails и Session cast после первых A1 situations.
 - **Как воспроизвести:** сравнить первые пять A1 rows/sessions с поздними A1, A2, B1 и B2.
@@ -129,8 +132,9 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - **Severity:** **P2 polish**.
 - **Предполагаемая причина:** art manifest предусматривает fallback, но production art set заполнен частично.
 - **Рекомендуемое исправление:** подготовить release art inventory и закрыть наиболее заметные recurring cast states/thumbnails; сохранить существующие scene/cast mappings.
+- **Исправление:** до появления полного атомарного raster-набора все recurring cast states используют одну завершённую editorial SVG-систему; каждый Course thumbnail теперь системно собирается из authored scene/cast mapping. Частичный raster-набор больше не меняет стиль персонажа посреди курса.
 
-### REL-010 — статистика My English обрезает русские подписи
+### REL-010 — статистика My English обрезает русские подписи — **ЗАКРЫТО**
 
 - **Экран/flow:** My English, верхние три metric cards, viewport 390 px и уже.
 - **Как воспроизвести:** открыть `/my` на `390×844`.
@@ -139,8 +143,9 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - **Severity:** **P2 polish**.
 - **Предполагаемая причина:** три flex-карточки с фиксированными icon/padding и принудительным `text-overflow: ellipsis`.
 - **Рекомендуемое исправление:** уменьшить gap/padding, разрешить перенос или перейти на компактный grid при узкой ширине.
+- **Исправление:** метрики переведены на responsive grid; подписи не используют ellipsis, а на 320 px вторичные иконки скрываются, сохраняя полные «встречено / закреплено / пройдено».
 
-### REL-011 — grammar card использует внутренние англоязычные названия правил
+### REL-011 — grammar card использует внутренние англоязычные названия правил — **ЗАКРЫТО**
 
 - **Экран/flow:** grammar activities, особенно A1/A2.
 - **Как воспроизвести:** дойти до grammar card `gr_a1_be_positive`.
@@ -149,8 +154,9 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - **Severity:** **P2 polish**.
 - **Предполагаемая причина:** `ActivityPanel` напрямую выводит `activity.content.title` из grammar seed; отдельного presentation label нет.
 - **Рекомендуемое исправление:** добавить UI-localized display title/presentation mapping без изменения frozen grammar classification и authored targets.
+- **Исправление:** UI-only presentation mapping показывает русскую коммуникативную функцию; authored pattern title, ID, formula, explanation и scoring не менялись.
 
-### REL-012 — пустой Review показывает действие, которое ничего не делает
+### REL-012 — пустой Review показывает действие, которое ничего не делает — **ЗАКРЫТО**
 
 - **Экран/flow:** новый пользователь → Review empty → «Хочу ещё».
 - **Как воспроизвести:** открыть Review до встречи с любым learning item и нажать «Хочу ещё».
@@ -159,6 +165,7 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - **Severity:** **P2 polish**.
 - **Предполагаемая причина:** CTA зависит только от `due === 0`, а не от общего числа memory items/возможности extra practice.
 - **Рекомендуемое исправление:** вернуть `availableForExtra`/memory count в overview и условно показывать CTA.
+- **Исправление:** review overview возвращает `availableForExtra`; «Хочу ещё» показывается только при существующей памяти, а новый пользователь видит объяснение, что сначала нужно пройти ситуацию.
 
 ### REL-013 — число `+15` в пустом My Space не объяснено
 
@@ -182,28 +189,28 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 
 ## Результаты по системам
 
-| Область                     | Результат                 | Примечание                                                                                  |
-| --------------------------- | ------------------------- | ------------------------------------------------------------------------------------------- |
-| Welcome + Demo              | PASS                      | Нет horizontal overflow на 390/320; dialogue order и word bank работают                     |
-| Onboarding                  | PASS                      | REL-003 закрыт; CTA и overflow проверены на 320×568 и 390×844                               |
-| Placement / level selection | PASS                      | Adaptive A1/A2/B1/B2 classification, persistence, idempotency и result UI проходят          |
-| Today                       | PASS с polish             | Межуровневое продолжение и resume исправлены; остаются только P2/P3                         |
-| Course                      | PASS с polish             | Locks совпадают с API; остаются REL-008 и REL-014                                           |
-| My English                  | PASS с polish             | capability `learning` не выдаётся за `can_do`; consolidated отдельный; REL-010              |
-| My Space                    | PASS с polish             | persistence/rewards/companion покрыты; REL-009 и REL-013                                    |
-| Session / transcript        | PASS с polish             | semantic spoken turns, opener continuity, authored replies, reload/resume проходят; REL-007 |
-| Mission PASS/FAIL           | PASS                      | scoring/capability/rewards сохранены; технический `0` устранён                              |
-| Practice Variations         | PASS                      | transfer plans и separation от Mission проходят frozen QA/tests                             |
-| Near/Far Review             | PASS с empty-state defect | SRS отдельно от Practice; resume, scheduling, consolidation проходят; REL-012               |
-| Межуровневый переход        | PASS                      | A1→A2→B1→B2 и финальный B2 state проверены                                                  |
-| Locked/prerequisites        | PASS                      | Course, preview и start используют одну sequential policy                                   |
-| Loading/error/empty         | PASS с P2                 | skeleton/error/empty states существуют; auth copy и empty Review требуют правки             |
-| Mobile/keyboard/scroll      | PASS с polish             | Onboarding P1 закрыт; оставшиеся visual findings имеют P2/P3                                |
-| Frozen A1–B2 regression     | PASS                      | 69 plans structurally valid; grammar/content/reference checks зелёные                       |
+| Область                     | Результат | Примечание                                                                         |
+| --------------------------- | --------- | ---------------------------------------------------------------------------------- |
+| Welcome + Demo              | PASS      | Нет horizontal overflow на 390/320; dialogue order и word bank работают            |
+| Onboarding                  | PASS      | REL-003 закрыт; CTA и overflow проверены на 320×568 и 390×844                      |
+| Placement / level selection | PASS      | Adaptive A1/A2/B1/B2 classification, persistence, idempotency и result UI проходят |
+| Today                       | PASS      | Межуровневое продолжение, resume и auth entry согласованы                          |
+| Course                      | PASS с P3 | Locks/API и B2 scaling проходят; остаётся только REL-014                           |
+| My English                  | PASS      | capability states честны, все mobile metric labels читаются                        |
+| My Space                    | PASS с P3 | persistence/rewards/companion покрыты; остаётся REL-013                            |
+| Session / transcript        | PASS      | semantic turns, intro-only context, authored replies и reload/resume проходят      |
+| Mission PASS/FAIL           | PASS      | scoring/capability/rewards сохранены; технический `0` устранён                     |
+| Practice Variations         | PASS      | transfer plans и separation от Mission проходят frozen QA/tests                    |
+| Near/Far Review             | PASS      | SRS отдельно от Practice; empty/extra/resume/scheduling/consolidation проходят     |
+| Межуровневый переход        | PASS      | A1→A2→B1→B2 и финальный B2 state проверены                                         |
+| Locked/prerequisites        | PASS      | Course, preview и start используют одну sequential policy                          |
+| Loading/error/empty         | PASS      | единый auth entry и честный Review empty state                                     |
+| Mobile/keyboard/scroll      | PASS      | 320/390/430, keyboard-height, safe-area, CTA и horizontal overflow проверены       |
+| Frozen A1–B2 regression     | PASS      | 69 plans structurally valid; grammar/content/reference checks зелёные              |
 
 ## Automated QA
 
-- `pnpm test`: **427/427 PASS** — API 332, web 89, shared 6.
+- `pnpm test`: **429/429 PASS** — API 332, web 91, shared 6.
 - `pnpm typecheck`: **PASS** — contracts, shared, learning-engine, API, web и test/QA tsconfigs.
 - Preview build: **PASS**.
 - Grammar classification lint: **0 errors, 0 advisory notes**, 69 worksheet situations, 67 situations с grammar target.
@@ -217,6 +224,7 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 - Свежий Chromium A1 smoke: A1.1–A1.5 Mission PASS, A1.1 Mission FAIL, transcript assertions: **PASS**.
 - Полные freeze Chromium-артефакты остальных A1, всех A2/B1/B2 сохранены; после freeze frozen content не менялся.
 - Release Fix Block 1 Chromium regression (`verify-release-fix-block1.mjs`): **PASS** — level boundaries, final B2, locks, resume, onboarding mobile и B2 Mission FAIL.
+- Release Fix Block 2 Chromium regression (`verify-release-fix-block2.mjs`): **PASS** — auth entry, intro fade, compact B2 Course/autoscroll, unified art, My English 320/390, localized grammar, Review empty и keyboard-height CTA.
 
 ## Скриншоты и артефакты
 
@@ -234,11 +242,11 @@ Release Fix Block 1 завершён: все **P0/P1 закрыты**. Курс 
 
 Публичный preview QA обновил `artifacts/qa/findings.json` и screenshots Welcome/Demo/unauthenticated states. Полные session/Mission snapshots находятся в `artifacts/qa/session-dialogue/`, включая PASS/FAIL результаты и B2 Course.
 
+Release Fix Block 2 before/after screenshots находятся в `artifacts/qa/release-fix-block2/`: auth entry, A1/B2 Course, Session intro, grammar card, My English 320/390 и Review empty.
+
 ## Что мешает beta
 
-P0/P1 blockers отсутствуют. Release Fix Block 1 не оставляет технических препятствий для beta по progression, prerequisites, onboarding CTA, Mission FAIL или resume. Открыты 7 P2 и 2 P3; они остаются в polish backlog и в этом блоке намеренно не исправлялись.
-
-Перед широкой beta полезно отдельно закрыть auth-specific error state, persistent situation overlay, empty Review CTA и самые заметные пробелы art coverage. Course compression, grammar presentation, My English labels и мелкие context labels можно выпускать последующим polish-блоком без изменения frozen content.
+P0/P1/P2 findings отсутствуют. Открыты только два P3: пояснение `+15` в пустом My Space (REL-013) и CEFR context в Course header (REL-014). Они не блокируют beta и в Release Fix Block 2 намеренно не менялись.
 
 ## Release Fix Block 1 — verification
 
@@ -247,3 +255,11 @@ P0/P1 blockers отсутствуют. Release Fix Block 1 не оставляе
 - Chromium: Today после каждого level completion, resume первой session, Mission FAIL B2, onboarding 320×568 и 390×844 — **PASS**.
 - Representative screenshots: `artifacts/qa/release-fix-block1/`.
 - Frozen A1–B2 content/curriculum: без изменений.
+
+## Release Fix Block 2 — verification
+
+- Все семь P2 (REL-006–REL-012): **закрыты**.
+- Chromium/mobile: 320×420, 320×568, 390×844; changed screens reviewed — **PASS**.
+- B2 Course: один hero, 16 компактных глав, одна раскрытая current chapter, autoscroll; document height <3500 px — **PASS**.
+- UI presentation: authored grammar/content IDs, classifications, scene/cast mappings и scoring не менялись.
+- Representative before/after screenshots: `artifacts/qa/release-fix-block2/`.

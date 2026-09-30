@@ -18,17 +18,10 @@
  * member is drawn by the same component — only the tokens change — so
  * the cast can never drift apart stylistically.
  */
-import { Art } from "./Art.tsx";
 import { artName } from "./artRegistry.ts";
 
 export type CastId =
-  | "maya"
-  | "alex"
-  | "emma"
-  | "daniel"
-  | "leo"
-  | "rosa"
-  | "drkim";
+  "maya" | "alex" | "emma" | "daniel" | "leo" | "rosa" | "drkim";
 
 /** The four states a scene needs. `showing` is only meaningful where the
  * situation actually involves handing something over. */
@@ -143,19 +136,11 @@ interface Props {
  * is what keeps a situation feeling like one continuous scene.
  */
 export function CastMember(props: Props) {
-  const { cast, state = "speaking", width = 240 } = props;
-  const look = CAST[cast];
-  return (
-    <Art
-      name={artName.cast(cast, state)}
-      alt={look.name}
-      fit="contain"
-      position="center bottom"
-      priority
-      style={{ width, height: width * 1.05 }}
-      fallback={<CastGlyph {...props} />}
-    />
-  );
+  // The release set contains only a few raster cast states. Mixing those
+  // with coded portraits made the same recurring person change art style
+  // mid-course. Use the complete shared illustration system until a whole
+  // cast set can replace it atomically.
+  return <CastGlyph {...props} />;
 }
 
 /** How every state of every cast member is named, so a situation can warm
@@ -166,7 +151,7 @@ export function castArtNames(cast: CastId): string[] {
 }
 
 /** The coded placeholder, kept simple on purpose. */
-function CastGlyph({ cast, state = "speaking", width = 240 }: Props) {
+export function CastGlyph({ cast, state = "speaking", width = 240 }: Props) {
   const look = CAST[cast];
   const height = width * 1.05;
   return (

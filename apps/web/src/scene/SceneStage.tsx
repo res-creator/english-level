@@ -66,6 +66,8 @@ interface Props {
   kvoState?: KvoState;
   /** Chip over the scene, e.g. «Ситуация: В кафе». */
   label?: ReactNode;
+  /** Session context appears once and fades; preview/Mission labels persist. */
+  labelMode?: "persistent" | "intro";
   compact?: boolean;
 }
 
@@ -81,13 +83,22 @@ export function SceneStage({
   kvoHint = null,
   kvoState = "idle",
   label,
+  labelMode = "persistent",
   compact = false,
 }: Props) {
   const visible = dialogue.slice(-VISIBLE_LINES);
   const newestIndex = visible.length - 1;
 
   return (
-    <div className={compact ? "scene scene--compact" : "scene"}>
+    <div
+      className={[
+        "scene",
+        compact ? "scene--compact" : "",
+        label && labelMode === "intro" ? "scene--intro-label" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {/* Layer 1 — the place. Real artwork when it exists; a plain
           neutral backdrop when it doesn't. The old flat-vector
           SceneBackdrop illustration (cups, lamps, a sketched window)
@@ -102,7 +113,17 @@ export function SceneStage({
         fallback={<div className="scene__backdrop-neutral" />}
       />
 
-      {label ? <div className="scene__label">{label}</div> : null}
+      {label ? (
+        <div
+          className={
+            labelMode === "intro"
+              ? "scene__label scene__label--intro"
+              : "scene__label"
+          }
+        >
+          {label}
+        </div>
+      ) : null}
 
       {/* Layer 2 — the person. */}
       <div className="scene__person">

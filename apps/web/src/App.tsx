@@ -33,18 +33,6 @@ export function App() {
           <Routes>
             <Route path="/" element={<RootRedirect />} />
 
-            {/* The four daily destinations keep the bottom navigation.
-                Review is deliberately not one of them — it surfaces from
-                Today and from My Space, where it has a reason to exist. */}
-            <Route element={<Layout />}>
-              <Route path="/today" element={<Today />} />
-              <Route path="/course" element={<Course />} />
-              <Route path="/course/:episodeId" element={<EpisodePreview />} />
-              <Route path="/my" element={<MyEnglish />} />
-              <Route path="/my/space" element={<MySpace />} />
-              <Route path="/my/privacy" element={<Privacy />} />
-            </Route>
-
             {/* Focus mode and first use render full-screen, without the
                 product navigation. The hook and the demo run before
                 anything is asked for:
@@ -54,6 +42,17 @@ export function App() {
             <Route path="/demo/result" element={<DemoResult />} />
 
             <Route element={<RequireAuthenticated />}>
+              {/* The four daily destinations keep the bottom navigation.
+                  Review is deliberately not one of them — it surfaces from
+                  Today and from My Space, where it has a reason to exist. */}
+              <Route element={<Layout />}>
+                <Route path="/today" element={<Today />} />
+                <Route path="/course" element={<Course />} />
+                <Route path="/course/:episodeId" element={<EpisodePreview />} />
+                <Route path="/my" element={<MyEnglish />} />
+                <Route path="/my/space" element={<MySpace />} />
+                <Route path="/my/privacy" element={<Privacy />} />
+              </Route>
               <Route path="/review" element={<Review />} />
               <Route
                 path="/onboarding/companion"
