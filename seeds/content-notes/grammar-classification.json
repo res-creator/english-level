@@ -4302,5 +4302,98 @@
         "chunkLabel": "return from tangent"
       }
     ]
+  },
+  {
+    "situationId": "sit_b2_daily_02",
+    "phrases": [
+      {
+        "text": "You should really consider the pottery workshop",
+        "itemId": "itm_b2_b219_consider",
+        "classification": "target",
+        "grammarPatternId": "gr_a2_should"
+      },
+      {
+        "text": "Think about it this way",
+        "itemId": "itm_b2_b219_consider",
+        "classification": "chunk",
+        "chunkLabel": "persuasive reframing"
+      },
+      {
+        "text": "What have you got to lose",
+        "itemId": "itm_b2_b219_trial",
+        "classification": "chunk",
+        "chunkLabel": "rhetorical persuasion device, not a grammar target"
+      },
+      {
+        "text": "there is no pressure to continue",
+        "itemId": "itm_b2_b219_agree",
+        "classification": "chunk",
+        "chunkLabel": "autonomy-preserving close"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_people_05",
+    "phrases": [
+      {
+        "text": "What made it strange was seeing my old photograph",
+        "itemId": "itm_b2_b220_strange",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_what_made_strange_was"
+      },
+      {
+        "text": "I still don't know if",
+        "itemId": "itm_b2_b220_reflect",
+        "classification": "chunk",
+        "chunkLabel": "unresolved-feeling frame"
+      },
+      {
+        "text": "Looking back now",
+        "itemId": "itm_b2_b220_reflect",
+        "classification": "chunk",
+        "chunkLabel": "retrospective reflection marker"
+      },
+      {
+        "text": "That question changes it",
+        "itemId": "itm_b2_b220_v3_reconsider",
+        "classification": "chunk",
+        "chunkLabel": "real-time narrative reassessment"
+      }
+    ]
+  },
+  {
+    "situationId": "sit_b2_work_06",
+    "phrases": [
+      {
+        "text": "If we go ahead with a company-wide rollout next month, it could lead to more consistent notes",
+        "itemId": "itm_b2_b221_scale",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_conditional_consequences"
+      },
+      {
+        "text": "teams might stop recording exceptions",
+        "itemId": "itm_b2_b221_scale",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_might_could_tradeoff"
+      },
+      {
+        "text": "I'm not sure how this will play out",
+        "itemId": "itm_b2_b221_consent",
+        "classification": "chunk",
+        "chunkLabel": "uncertain-outcome frame"
+      },
+      {
+        "text": "On balance",
+        "itemId": "itm_b2_b221_balance",
+        "classification": "chunk",
+        "chunkLabel": "recycled balanced-conclusion marker"
+      },
+      {
+        "text": "That changes the consequence",
+        "itemId": "itm_b2_b221_v3_revise",
+        "classification": "chunk",
+        "chunkLabel": "real-time consequence revision"
+      }
+    ]
   }
 ]

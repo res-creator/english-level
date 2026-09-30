@@ -2140,5 +2140,347 @@
     "role": "review",
     "order": 13,
     "required": false
+  },
+  {
+    "id": "li_sit_b2_daily_02_01",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_consider",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_daily_02_02",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_trial",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_daily_02_03",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_value",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_daily_02_04",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_agree",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_daily_02_05",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_a2_should",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_daily_02_06",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_v1_habit",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_daily_02_07",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_v1_flexible",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_daily_02_08",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_v2_objection",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_daily_02_09",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_v2_answer",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_daily_02_10",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_v3_route",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_daily_02_11",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b219_v3_compromise",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_daily_02_12",
+    "lessonId": "sit_b2_daily_02",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b113_request",
+    "role": "review",
+    "order": 12,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_05_01",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_strange",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_05_02",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_conflict",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_05_03",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_twist",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_05_04",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_reflect",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_05_05",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_what_made_strange_was",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_people_05_06",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_v1_stranger",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_05_07",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_v1_resolution",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_05_08",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_v2_choice",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_05_09",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_v2_unresolved",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_05_10",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_v3_speech",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_05_11",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b220_v3_reconsider",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_people_05_12",
+    "lessonId": "sit_b2_people_05",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b18_ending",
+    "role": "review",
+    "order": 12,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_work_06_01",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_scale",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_work_06_02",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_accountability",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_work_06_03",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_consent",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_work_06_04",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_balance",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_work_06_05",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_conditional_consequences",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_work_06_06",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_might_could_tradeoff",
+    "role": "target",
+    "order": 6,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_work_06_07",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_v1_budget",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_work_06_08",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_v1_stage",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_work_06_09",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_v2_confident",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_work_06_10",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_v2_safeguard",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_work_06_11",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_v3_initial",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_work_06_12",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b221_v3_revise",
+    "role": "practice",
+    "order": 12,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_work_06_13",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b216_guardrail",
+    "role": "review",
+    "order": 13,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_work_06_14",
+    "lessonId": "sit_b2_work_06",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_b26_balance",
+    "role": "review",
+    "order": 14,
+    "required": false
   }
 ]

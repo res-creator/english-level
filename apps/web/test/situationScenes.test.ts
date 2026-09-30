@@ -217,6 +217,15 @@ test("B2 Batch 6 maps workplace technology and extended conversation to recurrin
   assert.match(openingLine("sit_b2_social_02"), /street market.*bread.*hour/i);
 });
 
+test("B2 Batch 7 maps persuasion, narrative, and consequence discussions to recurring cast", () => {
+  assert.deepEqual(sceneForSituation("sit_b2_daily_02"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b2_people_05"), { scene: "cafe", cast: "alex" });
+  assert.deepEqual(sceneForSituation("sit_b2_work_06"), { scene: "meeting", cast: "daniel" });
+  assert.match(openingLine("sit_b2_daily_02"), /pottery workshop.*avoid classes/i);
+  assert.match(openingLine("sit_b2_people_05"), /reopening.*exciting and uncomfortable/i);
+  assert.match(openingLine("sit_b2_work_06"), /pilot saved time.*consequences/i);
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

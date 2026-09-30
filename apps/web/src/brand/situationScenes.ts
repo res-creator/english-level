@@ -90,6 +90,9 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_b2_work_05: { scene: "meeting", cast: "daniel" },
   sit_b2_people_04: { scene: "cafe", cast: "alex" },
   sit_b2_social_02: { scene: "cafe", cast: "alex" },
+  sit_b2_daily_02: { scene: "cafe", cast: "alex" },
+  sit_b2_people_05: { scene: "cafe", cast: "alex" },
+  sit_b2_work_06: { scene: "meeting", cast: "daniel" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -218,6 +221,12 @@ const OPENING_LINES: Record<string, string> = {
     "The café's evening language exchange was almost empty last month, but yesterday every table was full. Nobody seems to know what changed.",
   sit_b2_social_02:
     "That street market was much busier than usual today. I only went for bread and ended up staying for an hour.",
+  sit_b2_daily_02:
+    "Maya invited us to a beginner pottery workshop on Sunday. I am curious, but I usually avoid classes where everyone can see my mistakes.",
+  sit_b2_people_05:
+    "You said Maya's café reopening felt exciting and uncomfortable at the same time. What happened at the exhibition?",
+  sit_b2_work_06:
+    "The meeting-summary pilot saved time, and leadership now wants to use the tool for every client call next month. Before they decide, what consequences do you see?",
 };
 
 export function openingLine(episodeId: string): string {

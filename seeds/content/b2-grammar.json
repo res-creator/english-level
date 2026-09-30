@@ -394,5 +394,29 @@
     "ru": {
       "explanation": "Используйте этот маркер, чтобы добавить связанную мысль, воспоминание или вопрос."
     }
+  },
+  {
+    "id": "gr_b2_what_made_strange_was",
+    "levelCode": "B2",
+    "title": "what made it ... was — выделить значимый момент",
+    "patternKey": "what_made_strange_was",
+    "formula": "What made it + adjective + was + noun/-ing/clause",
+    "explanationEn": "Use this cleft structure to emphasise the detail that gives an experience its defining quality.",
+    "order": 34,
+    "ru": {
+      "explanation": "Используйте cleft-конструкцию, чтобы выделить деталь, которая определяет впечатление от события."
+    }
+  },
+  {
+    "id": "gr_b2_conditional_consequences",
+    "levelCode": "B2",
+    "title": "if we go ahead, it could lead to — проследить последствие",
+    "patternKey": "conditional_consequences",
+    "formula": "If + present simple, it could/might/will + consequence",
+    "explanationEn": "Use this conditional frame to connect a proposed decision with a plausible consequence without overstating certainty.",
+    "order": 35,
+    "ru": {
+      "explanation": "Используйте эту условную рамку, чтобы связать решение с вероятным последствием без чрезмерной уверенности."
+    }
   }
 ]

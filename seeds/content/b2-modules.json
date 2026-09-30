@@ -106,5 +106,32 @@
     "description": "Поддерживать длинный разговор, естественно менять тему и возвращать беседу к главной линии.",
     "order": 12,
     "status": "published"
+  },
+  {
+    "id": "mod_b2_daily_life_persuasion",
+    "levelCode": "B2",
+    "title": "Повседневный выбор",
+    "slug": "b2-daily-persuasion",
+    "description": "Убеждать попробовать новый опыт с помощью причин, ответов на возражения и уважительного компромисса.",
+    "order": 13,
+    "status": "published"
+  },
+  {
+    "id": "mod_b2_people_connections_narrative",
+    "levelCode": "B2",
+    "title": "Люди и истории",
+    "slug": "b2-people-narrative",
+    "description": "Рассказывать сложные личные истории, выделять значимые моменты и сохранять неоднозначность.",
+    "order": 14,
+    "status": "published"
+  },
+  {
+    "id": "mod_b2_work_study_consequences",
+    "levelCode": "B2",
+    "title": "Рабочие решения",
+    "slug": "b2-work-consequences",
+    "description": "Прослеживать последствия рабочих решений, учитывать новые ограничения и формулировать осторожный вывод.",
+    "order": 15,
+    "status": "published"
   }
 ]

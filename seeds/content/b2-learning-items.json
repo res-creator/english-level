@@ -3757,5 +3757,635 @@
       }
     ],
     "npcReplyCorrect": "Yes, her manager paired her with an experienced colleague for the first month, so she already feels less exposed."
+  },
+  {
+    "id": "itm_b2_b219_consider",
+    "itemType": "functional_phrase",
+    "lemma": "b219 consider",
+    "displayForm": "You should really consider the pottery workshop. Beginners are expected to make uneven things, so think about it this way: you would be learning with people at the same stage, not performing for experts.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Тебе правда стоит подумать о мастер-классе по керамике. От новичков ждут неровных работ, поэтому ты будешь учиться с людьми того же уровня, а не выступать перед экспертами.",
+      "usageNote": "Persuades by reframing the feared situation rather than dismissing it."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_consider_01",
+        "text": "You should really consider the pottery workshop. Beginners are expected to make uneven things, so think about it this way: you would be learning with people at the same stage, not performing for experts.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That makes it sound less intimidating, but the full workshop lasts all afternoon and I do not want to commit that much time."
+  },
+  {
+    "id": "itm_b2_b219_trial",
+    "itemType": "functional_phrase",
+    "lemma": "b219 trial",
+    "displayForm": "What have you got to lose if the first hour can be booked separately? You could try the introduction and leave afterwards if you are not enjoying it.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Что ты теряешь, если первый час можно забронировать отдельно? Можно попробовать вводную часть и уйти, если не понравится.",
+      "usageNote": "Answers the time objection with a low-risk trial."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_trial_01",
+        "text": "What have you got to lose if the first hour can be booked separately? You could try the introduction and leave afterwards if you are not enjoying it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "An hour is more realistic, although I would not want to pay for materials I may never use again."
+  },
+  {
+    "id": "itm_b2_b219_value",
+    "itemType": "functional_phrase",
+    "lemma": "b219 value",
+    "displayForm": "The introductory fee includes the clay and tools, and Maya has a spare voucher. Your only real cost is an hour; even if you dislike it, you will know from experience rather than assumption.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Во вводную цену входят глина и инструменты, а у Майи есть лишний сертификат. Реальная цена — один час, и даже если не понравится, ты узнаешь это на опыте.",
+      "usageNote": "Responds with relevant evidence instead of repeating the invitation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_value_01",
+        "text": "The introductory fee includes the clay and tools, and Maya has a spare voucher. Your only real cost is an hour; even if you dislike it, you will know from experience rather than assumption.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That deals with the cost. I am still slightly uncomfortable about going into a new group alone."
+  },
+  {
+    "id": "itm_b2_b219_agree",
+    "itemType": "functional_phrase",
+    "lemma": "b219 agree",
+    "displayForm": "Let's book the same introduction slot but choose our own projects. That way you have company without feeling watched, and there is no pressure to continue beyond the first hour.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Давай запишемся на одну вводную группу, но выберем разные проекты. Так у тебя будет компания без ощущения контроля и без давления продолжать.",
+      "usageNote": "Offers support while preserving Alex's choice and boundary."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_agree_01",
+        "text": "Let's book the same introduction slot but choose our own projects. That way you have company without feeling watched, and there is no pressure to continue beyond the first hour.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "All right, I will try the introductory hour with you. I am not promising a new hobby, but I am willing to give it a fair chance."
+  },
+  {
+    "id": "itm_b2_b219_v1_habit",
+    "itemType": "functional_phrase",
+    "lemma": "b219 v1 habit",
+    "displayForm": "You should really consider planning two evening meals before the week starts. Think about it this way: ten minutes on Sunday could remove two rushed decisions when you get home tired.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Тебе стоит заранее планировать два вечерних блюда. Десять минут в воскресенье могут убрать два поспешных решения после работы.",
+      "usageNote": "Transfers persuasion from an activity to a manageable habit."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_v1_habit_01",
+        "text": "You should really consider planning two evening meals before the week starts. Think about it this way: ten minutes on Sunday could remove two rushed decisions when you get home tired.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I see the advantage, but detailed weekly plans make me feel trapped when my schedule changes."
+  },
+  {
+    "id": "itm_b2_b219_v1_flexible",
+    "itemType": "functional_phrase",
+    "lemma": "b219 v1 flexible",
+    "displayForm": "Then keep it flexible: choose two ingredients that can become different meals rather than assigning food to fixed days. What have you got to lose by testing that for one week?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Тогда сохрани гибкость: выбери два набора продуктов для разных блюд, не назначая их на дни. Что ты теряешь, попробовав неделю?",
+      "usageNote": "Adapts the habit to the objection instead of pushing the original version."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_v1_flexible_01",
+        "text": "Then keep it flexible: choose two ingredients that can become different meals rather than assigning food to fixed days. What have you got to lose by testing that for one week?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A one-week test with flexible ingredients sounds useful. I can try that without turning every evening into a timetable."
+  },
+  {
+    "id": "itm_b2_b219_v2_objection",
+    "itemType": "functional_phrase",
+    "lemma": "b219 v2 objection",
+    "displayForm": "You should consider the community choir because you enjoy singing and the group welcomes beginners. It could be a relaxed way to meet people outside work.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Тебе стоит подумать о районном хоре: ты любишь петь, группа принимает новичков, и это спокойный способ познакомиться с людьми вне работы.",
+      "usageNote": "Presents relevant benefits before Alex raises a practical objection."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_v2_objection_01",
+        "text": "You should consider the community choir because you enjoy singing and the group welcomes beginners. It could be a relaxed way to meet people outside work.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I would enjoy that, but rehearsals are every Wednesday and I work late on alternate weeks. I do not want to let the group down."
+  },
+  {
+    "id": "itm_b2_b219_v2_answer",
+    "itemType": "functional_phrase",
+    "lemma": "b219 v2 answer",
+    "displayForm": "That is a real constraint. The conductor also runs a Saturday drop-in session with no performance commitment, so you could join that first and only consider the main choir if your schedule changes.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Это реальное ограничение. Дирижёр проводит субботнюю открытую встречу без обязательства выступать, поэтому можно начать с неё.",
+      "usageNote": "Acknowledges resistance and changes the proposal materially."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_v2_answer_01",
+        "text": "That is a real constraint. The conductor also runs a Saturday drop-in session with no performance commitment, so you could join that first and only consider the main choir if your schedule changes.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The drop-in session answers my concern. I will try one Saturday before deciding whether the regular group is realistic."
+  },
+  {
+    "id": "itm_b2_b219_v3_route",
+    "itemType": "functional_phrase",
+    "lemma": "b219 v3 route",
+    "displayForm": "You should really consider the weekend cycling group. The quiet riverside route is easier with people who know where to stop, and your bike has been unused for months.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Тебе стоит подумать о велогруппе выходного дня. Спокойный маршрут у реки проще с людьми, знающими остановки, а велосипед давно не используется.",
+      "usageNote": "Makes a reasoned invitation to a different activity."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_v3_route_01",
+        "text": "You should really consider the weekend cycling group. The quiet riverside route is easier with people who know where to stop, and your bike has been unused for months.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I might enjoy the riverside section, but I am not ready for their full thirty-kilometre route."
+  },
+  {
+    "id": "itm_b2_b219_v3_compromise",
+    "itemType": "functional_phrase",
+    "lemma": "b219 v3 compromise",
+    "displayForm": "Then do only the first eight kilometres with me and turn back at the café. You can try the group without committing to the whole route, and we can decide afterwards whether to repeat it.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "respectful persuasion",
+    "ru": {
+      "translation": "Тогда проедем только первые восемь километров и повернём у кафе. Ты попробуешь группу без обязательства ехать весь маршрут.",
+      "usageNote": "Accepts partial success as a respectful outcome."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b219_v3_compromise_01",
+        "text": "Then do only the first eight kilometres with me and turn back at the café. You can try the group without committing to the whole route, and we can decide afterwards whether to repeat it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That compromise works. I will join the short section, but I am leaving the full route for another time."
+  },
+  {
+    "id": "itm_b2_b220_strange",
+    "itemType": "functional_phrase",
+    "lemma": "b220 strange",
+    "displayForm": "What made it strange was seeing my old photograph in the centre of Maya's exhibition. I had given her the picture years ago and forgotten about it, but she had enlarged it for the reopening.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Странным было увидеть мою старую фотографию в центре выставки Майи. Я отдал ей снимок много лет назад и забыл, а она увеличила его к открытию.",
+      "usageNote": "Opens the story by emphasising the detail that shaped the experience."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_strange_01",
+        "text": "What made it strange was seeing my old photograph in the centre of Maya's exhibition. I had given her the picture years ago and forgotten about it, but she had enlarged it for the reopening.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That must have been a surprise. Were you pleased that she valued it, or uncomfortable about being asked so late?"
+  },
+  {
+    "id": "itm_b2_b220_conflict",
+    "itemType": "functional_phrase",
+    "lemma": "b220 conflict",
+    "displayForm": "At first I felt proud, then uneasy because the photograph showed Daniel during a difficult project and he did not know it would be displayed. Maya thought she had permission because I had sent her the file.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Сначала я гордился, потом почувствовал неловкость: на фотографии был Дэниел во время сложного проекта, и он не знал о выставке. Майя считала, что разрешение есть, раз я отправил файл.",
+      "usageNote": "Develops mixed feelings through a concrete ethical conflict."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_conflict_01",
+        "text": "At first I felt proud, then uneasy because the photograph showed Daniel during a difficult project and he did not know it would be displayed. Maya thought she had permission because I had sent her the file.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "So the picture mattered to both of you, but Daniel was the person most affected. Did he see it that evening?"
+  },
+  {
+    "id": "itm_b2_b220_twist",
+    "itemType": "functional_phrase",
+    "lemma": "b220 twist",
+    "displayForm": "That was the unexpected part: Daniel walked in while we were discussing whether to remove it. He loved the picture itself, but said he wished someone had asked before using a private moment.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Неожиданность была в том, что Дэниел вошёл, когда мы обсуждали, снять ли фотографию. Снимок ему понравился, но он хотел, чтобы его спросили до использования личного момента.",
+      "usageNote": "Introduces a twist that complicates rather than erases the conflict."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_twist_01",
+        "text": "That was the unexpected part: Daniel walked in while we were discussing whether to remove it. He loved the picture itself, but said he wished someone had asked before using a private moment.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "His reaction sounds generous but clear. What did the three of you decide to do with the photograph?"
+  },
+  {
+    "id": "itm_b2_b220_reflect",
+    "itemType": "functional_phrase",
+    "lemma": "b220 reflect",
+    "displayForm": "We removed it from sale and kept it in a quiet corner only after he agreed. Looking back now, I am glad he saw it, but I still don't know if a good reaction excuses the fact that we forgot to ask.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Мы сняли фотографию с продажи и оставили в тихом углу только с его согласия. Теперь я рад, что он её увидел, но не знаю, оправдывает ли хорошая реакция то, что мы забыли спросить.",
+      "usageNote": "Closes with changed action and unresolved mixed feelings."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_reflect_01",
+        "text": "We removed it from sale and kept it in a quiet corner only after he agreed. Looking back now, I am glad he saw it, but I still don't know if a good reaction excuses the fact that we forgot to ask.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I do not think his kindness removes the mistake, but the way you responded may be the part worth keeping from the story."
+  },
+  {
+    "id": "itm_b2_b220_v1_stranger",
+    "itemType": "functional_phrase",
+    "lemma": "b220 v1 stranger",
+    "displayForm": "What made the journey unusual was a stranger running after me with the notebook I had left on the train. I was relieved, but also embarrassed because my name was beside several very personal notes.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Необычным в поездке был незнакомец, который догнал меня с забытым в поезде блокнотом. Я обрадовался, но смутился: рядом с именем были личные записи.",
+      "usageNote": "Transfers the story to an encounter with a stranger."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_v1_stranger_01",
+        "text": "What made the journey unusual was a stranger running after me with the notebook I had left on the train. I was relieved, but also embarrassed because my name was beside several very personal notes.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Returning it was kind, but I can see why you wondered how much the stranger had read."
+  },
+  {
+    "id": "itm_b2_b220_v1_resolution",
+    "itemType": "functional_phrase",
+    "lemma": "b220 v1 resolution",
+    "displayForm": "He explained that he had opened only the first page to find my name, then asked station staff where I had gone. Looking back now, his effort matters more than the awkward minute, although both feelings were real.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Он открыл только первую страницу, чтобы найти имя, а потом спросил сотрудников, куда я ушёл. Теперь его усилие важнее неловкой минуты, хотя оба чувства были настоящими.",
+      "usageNote": "Resolves the uncertainty without flattening the original emotion."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_v1_resolution_01",
+        "text": "He explained that he had opened only the first page to find my name, then asked station staff where I had gone. Looking back now, his effort matters more than the awkward minute, although both feelings were real.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That balance makes sense: the uncomfortable detail is part of why his careful explanation meant so much."
+  },
+  {
+    "id": "itm_b2_b220_v2_choice",
+    "itemType": "functional_phrase",
+    "lemma": "b220 v2 choice",
+    "displayForm": "What made the afternoon difficult was finding a lost wallet just before my final train. I took it to the station office and missed the train, but the owner collected it ten minutes later.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Сложность дня была в том, что я нашёл кошелёк перед последним поездом. Я отнёс его в бюро и пропустил поезд, но владелец забрал кошелёк через десять минут.",
+      "usageNote": "Builds an event around a meaningful choice and consequence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_v2_choice_01",
+        "text": "What made the afternoon difficult was finding a lost wallet just before my final train. I took it to the station office and missed the train, but the owner collected it ten minutes later.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You helped someone quickly, but missing the final train must have turned one good decision into a difficult night."
+  },
+  {
+    "id": "itm_b2_b220_v2_unresolved",
+    "itemType": "functional_phrase",
+    "lemma": "b220 v2 unresolved",
+    "displayForm": "Exactly. I had to pay for a hotel, and I still don't know if I should have left the wallet with a guard nearer the platform. Looking back, I value returning it safely, but I cannot pretend the cost did not matter.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Именно. Мне пришлось платить за гостиницу, и я до сих пор не знаю, стоило ли оставить кошелёк охраннику ближе к платформе. Я ценю безопасный возврат, но цена решения тоже важна.",
+      "usageNote": "Preserves unresolved feeling instead of manufacturing a neat moral."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_v2_unresolved_01",
+        "text": "Exactly. I had to pay for a hotel, and I still don't know if I should have left the wallet with a guard nearer the platform. Looking back, I value returning it safely, but I cannot pretend the cost did not matter.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "It may remain one of those choices that was decent without being obviously optimal."
+  },
+  {
+    "id": "itm_b2_b220_v3_speech",
+    "itemType": "functional_phrase",
+    "lemma": "b220 v3 speech",
+    "displayForm": "What made the volunteer dinner uncomfortable was an unexpected thank-you speech about my work. I had assumed nobody noticed what I did, yet suddenly everyone was looking at me.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Неловким на волонтёрском ужине стала неожиданная благодарственная речь о моей работе. Я думал, что никто не замечает мой вклад, а затем все смотрели на меня.",
+      "usageNote": "Sets up mixed pride and discomfort before Alex's follow-up."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_v3_speech_01",
+        "text": "What made the volunteer dinner uncomfortable was an unexpected thank-you speech about my work. I had assumed nobody noticed what I did, yet suddenly everyone was looking at me.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Were you upset that they thanked you, or was it the loss of control over how the attention happened?"
+  },
+  {
+    "id": "itm_b2_b220_v3_reconsider",
+    "itemType": "functional_phrase",
+    "lemma": "b220 v3 reconsider",
+    "displayForm": "That question changes it. I was not unhappy about the appreciation; I was uncomfortable because I had no warning and could not choose how to respond. Looking back now, the surprise was the problem, not the gratitude.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "nuanced storytelling",
+    "ru": {
+      "translation": "Этот вопрос меняет взгляд. Меня радовала благодарность, но смущало отсутствие предупреждения и возможности выбрать реакцию. Проблемой был сюрприз, а не признание.",
+      "usageNote": "Reconsiders the story in real time after a genuine follow-up."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b220_v3_reconsider_01",
+        "text": "That question changes it. I was not unhappy about the appreciation; I was uncomfortable because I had no warning and could not choose how to respond. Looking back now, the surprise was the problem, not the gratitude.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That distinction makes the ending clearer without making your first reaction any less real."
+  },
+  {
+    "id": "itm_b2_b221_scale",
+    "itemType": "functional_phrase",
+    "lemma": "b221 scale",
+    "displayForm": "If we go ahead with a company-wide rollout next month, it could lead to more consistent notes, but teams might stop recording exceptions the tool does not recognise.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Если запустить инструмент во всей компании в следующем месяце, заметки могут стать единообразнее, но команды могут перестать фиксировать исключения, которые система не распознаёт.",
+      "usageNote": "Connects the decision to both benefit and behavioural consequence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_scale_01",
+        "text": "If we go ahead with a company-wide rollout next month, it could lead to more consistent notes, but teams might stop recording exceptions the tool does not recognise.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The pilot teams handled that with training, so I am fairly confident everyone else can learn the same process."
+  },
+  {
+    "id": "itm_b2_b221_accountability",
+    "itemType": "functional_phrase",
+    "lemma": "b221 accountability",
+    "displayForm": "Training would help, although the larger consequence may be accountability. If a summary is wrong, people need to know whether the reviewer or the system owner must correct it before the error reaches a client.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Обучение поможет, но более серьёзное последствие — ответственность. Если резюме неверно, нужно знать, кто исправляет ошибку до её попадания клиенту.",
+      "usageNote": "Answers confidence by identifying a consequence at a different level."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_accountability_01",
+        "text": "Training would help, although the larger consequence may be accountability. If a summary is wrong, people need to know whether the reviewer or the system owner must correct it before the error reaches a client.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We could make the meeting owner responsible for approval. That would keep the final decision with a person."
+  },
+  {
+    "id": "itm_b2_b221_consent",
+    "itemType": "functional_phrase",
+    "lemma": "b221 consent",
+    "displayForm": "That solves ownership, but wider use will increase the number of clients asked to consent to recording. I'm not sure how this will play out when someone refuses, so we need an equally efficient manual route.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Это решает вопрос ответственности, но расширение увеличит число клиентов, у которых запрашивают согласие на запись. Неясно, что произойдёт при отказе, поэтому нужен равноценный ручной процесс.",
+      "usageNote": "Adds a second-order consequence and explicit uncertainty."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_consent_01",
+        "text": "That solves ownership, but wider use will increase the number of clients asked to consent to recording. I'm not sure how this will play out when someone refuses, so we need an equally efficient manual route.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "We can keep a structured manual template for non-recorded meetings, although it may reduce the time saving."
+  },
+  {
+    "id": "itm_b2_b221_balance",
+    "itemType": "functional_phrase",
+    "lemma": "b221 balance",
+    "displayForm": "On balance, I'd expand to two more teams first, with a named reviewer and the manual alternative. If quality remains stable for a month, a broader rollout could follow without locking us into a risky decision.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "В целом я бы сначала расширил пилот на две команды с ответственным проверяющим и ручной альтернативой. Если качество будет стабильным месяц, можно расширяться дальше.",
+      "usageNote": "Ends with a staged decision tied to evidence."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_balance_01",
+        "text": "On balance, I'd expand to two more teams first, with a named reviewer and the manual alternative. If quality remains stable for a month, a broader rollout could follow without locking us into a risky decision.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is a proportionate next step. I will propose the two-team expansion and review the quality and consent data after one month."
+  },
+  {
+    "id": "itm_b2_b221_v1_budget",
+    "itemType": "functional_phrase",
+    "lemma": "b221 v1 budget",
+    "displayForm": "If we move half the training budget into one large client event, it could improve visibility this quarter, but fewer staff would develop the skills needed for next year's projects.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Если перенести половину бюджета обучения на одно крупное клиентское мероприятие, это повысит заметность в квартале, но меньше сотрудников получат навыки для будущих проектов.",
+      "usageNote": "Transfers consequence reasoning from technology to budget allocation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_v1_budget_01",
+        "text": "If we move half the training budget into one large client event, it could improve visibility this quarter, but fewer staff would develop the skills needed for next year's projects.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The event may bring immediate work, while training benefits are harder to measure. How would you compare them fairly?"
+  },
+  {
+    "id": "itm_b2_b221_v1_stage",
+    "itemType": "functional_phrase",
+    "lemma": "b221 v1 stage",
+    "displayForm": "I'd protect the essential training places and fund a smaller event from the remainder. On balance, that limits the short-term reach, but it avoids treating future capability as if it had no value.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Я бы сохранил ключевые места на обучении и оплатил меньшее мероприятие из остатка. Это ограничит краткосрочный охват, но не обесценит будущие навыки.",
+      "usageNote": "Balances immediate and delayed consequences in the new domain."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_v1_stage_01",
+        "text": "I'd protect the essential training places and fund a smaller event from the remainder. On balance, that limits the short-term reach, but it avoids treating future capability as if it had no value.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That gives both outcomes a clear minimum instead of betting the whole budget on one uncertain return."
+  },
+  {
+    "id": "itm_b2_b221_v2_confident",
+    "itemType": "functional_phrase",
+    "lemma": "b221 v2 confident",
+    "displayForm": "You may be right that removing the Friday meeting will free up time, but I'm less certain that written updates will surface disagreements early enough. Silence could look like agreement when people are simply busy.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Возможно, отмена пятничной встречи освободит время, но я не уверен, что письменные обновления достаточно рано выявят разногласия. Молчание может выглядеть согласием.",
+      "usageNote": "Creates contrast between Daniel's confidence and the learner's qualified doubt."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_v2_confident_01",
+        "text": "You may be right that removing the Friday meeting will free up time, but I'm less certain that written updates will surface disagreements early enough. Silence could look like agreement when people are simply busy.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I think the shared page will make every issue visible, and the team already writes most updates there."
+  },
+  {
+    "id": "itm_b2_b221_v2_safeguard",
+    "itemType": "functional_phrase",
+    "lemma": "b221 v2 safeguard",
+    "displayForm": "That makes success plausible, but I would still add a short call when an update is challenged by two people. If we remove every live discussion, unresolved risks might remain hidden behind tidy text.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Это делает успех вероятным, но при двух возражениях я бы добавил короткий звонок. Если убрать все живые обсуждения, нерешённые риски могут скрыться за аккуратным текстом.",
+      "usageNote": "Maintains uncertainty and proposes a proportionate safeguard."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_v2_safeguard_01",
+        "text": "That makes success plausible, but I would still add a short call when an update is challenged by two people. If we remove every live discussion, unresolved risks might remain hidden behind tidy text.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "I am more confident than you, but that trigger is inexpensive. We can remove the routine meeting and keep calls for contested issues."
+  },
+  {
+    "id": "itm_b2_b221_v3_initial",
+    "itemType": "functional_phrase",
+    "lemma": "b221 v3 initial",
+    "displayForm": "Combining the two support inboxes could reduce duplicate replies and give customers one clear address. If ownership is assigned by topic, it might also simplify handovers.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Объединение двух ящиков поддержки может сократить дубли и дать клиентам один адрес. При распределении ответственности по темам передача задач упростится.",
+      "usageNote": "Begins with plausible benefits before the hidden downside appears."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_v3_initial_01",
+        "text": "Combining the two support inboxes could reduce duplicate replies and give customers one clear address. If ownership is assigned by topic, it might also simplify handovers.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "There is one complication I had not mentioned: regional contracts require different response times, and the current inboxes separate those obligations."
+  },
+  {
+    "id": "itm_b2_b221_v3_revise",
+    "itemType": "functional_phrase",
+    "lemma": "b221 v3 revise",
+    "displayForm": "That changes the consequence. A single address may still help customers, but one undivided queue could cause us to miss the shorter regional deadline. We would need visible service labels and automatic priority rules before merging it.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "decision consequences",
+    "ru": {
+      "translation": "Это меняет последствия. Один адрес удобен клиентам, но единая очередь может привести к пропуску короткого регионального срока. До объединения нужны видимые метки и правила приоритета.",
+      "usageNote": "Revises the analysis when a downside emerges mid-conversation."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_b221_v3_revise_01",
+        "text": "That changes the consequence. A single address may still help customers, but one undivided queue could cause us to miss the shorter regional deadline. We would need visible service labels and automatic priority rules before merging it.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Agreed. We will test a shared front door while keeping the contractual queues separate behind it."
   }
 ]
