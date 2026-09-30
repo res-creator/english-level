@@ -2482,5 +2482,122 @@
     "role": "review",
     "order": 14,
     "required": false
+  },
+  {
+    "id": "li_sit_b2_health_01_01",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_side_effects",
+    "role": "introduce",
+    "order": 1,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_health_01_02",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_alternative",
+    "role": "introduce",
+    "order": 2,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_health_01_03",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_timing",
+    "role": "introduce",
+    "order": 3,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_health_01_04",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_weigh",
+    "role": "introduce",
+    "order": 4,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_health_01_05",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "grammar_pattern",
+    "contentId": "gr_b2_will_health_prediction",
+    "role": "target",
+    "order": 5,
+    "required": true
+  },
+  {
+    "id": "li_sit_b2_health_01_06",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_v1_other_treatment",
+    "role": "practice",
+    "order": 6,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_health_01_07",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_v1_timing",
+    "role": "practice",
+    "order": 7,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_health_01_08",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_v2_compare",
+    "role": "practice",
+    "order": 8,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_health_01_09",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_v2_choice",
+    "role": "practice",
+    "order": 9,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_health_01_10",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_v3_lifestyle",
+    "role": "practice",
+    "order": 10,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_health_01_11",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b2_hb2_v3_review",
+    "role": "practice",
+    "order": 11,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_health_01_12",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_hb1_tried",
+    "role": "review",
+    "order": 12,
+    "required": false
+  },
+  {
+    "id": "li_sit_b2_health_01_13",
+    "lessonId": "sit_b2_health_01",
+    "contentType": "learning_item",
+    "contentId": "itm_b1_b111_weigh_tradeoff",
+    "role": "review",
+    "order": 13,
+    "required": false
   }
 ]

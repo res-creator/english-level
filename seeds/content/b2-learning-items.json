@@ -4387,5 +4387,215 @@
       }
     ],
     "npcReplyCorrect": "Agreed. We will test a shared front door while keeping the contractual queues separate behind it."
+  },
+  {
+    "id": "itm_b2_hb2_side_effects",
+    "itemType": "functional_phrase",
+    "lemma": "ask about side effects and practical risk",
+    "displayForm": "Before I decide, what are the most common side effects, and are any of them likely to affect driving?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Прежде чем решить, какие побочные эффекты встречаются чаще всего и могут ли какие-либо из них повлиять на вождение?",
+      "usageNote": "Opens with a concrete risk question linked to the learner’s real constraint. “What are the side effects?” is functional question language, not a new grammar target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_side_effects_01",
+        "text": "Before I decide, what are the most common side effects, and are any of them likely to affect driving?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The most common ones are mild drowsiness and a dry mouth. Most people can drive, but if you feel drowsy, you should not drive and should contact the clinic."
+  },
+  {
+    "id": "itm_b2_hb2_alternative",
+    "itemType": "functional_phrase",
+    "lemma": "ask for a suitable alternative",
+    "displayForm": "Is there an alternative that is less likely to cause drowsiness? Driving is an important part of my job.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Есть ли альтернатива, которая с меньшей вероятностью вызовет сонливость? Вождение — важная часть моей работы.",
+      "usageNote": "Alternative-seeking question recycled from comparison language; the learner gives a reason rather than requesting a generic second option."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_alternative_01",
+        "text": "Is there an alternative that is less likely to cause drowsiness? Driving is an important part of my job.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A non-drowsy option is available. It may take longer to control your symptoms, and I would first check it against the rest of your medical history."
+  },
+  {
+    "id": "itm_b2_hb2_timing",
+    "itemType": "functional_phrase",
+    "lemma": "ask for a predictive time frame",
+    "displayForm": "How long will it take to work, and will I know within a week whether the alternative is helping?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Сколько времени потребуется, чтобы средство подействовало, и пойму ли я в течение недели, помогает ли альтернатива?",
+      "usageNote": "Predictive will-future is the genuine frozen grammar target."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_timing_01",
+        "text": "How long will it take to work, and will I know within a week whether the alternative is helping?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You will usually notice some improvement within three days, but it may take up to two weeks to judge the full effect. Keep a brief symptom record during that time."
+  },
+  {
+    "id": "itm_b2_hb2_weigh",
+    "itemType": "functional_phrase",
+    "lemma": "weigh the recommendation and ask when to seek help",
+    "displayForm": "Compared with the first option, the alternative may suit my work better, even if it takes longer. What warning signs should I watch for, and when should I contact you?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "По сравнению с первым вариантом альтернатива может лучше подходить для моей работы, даже если действует медленнее. На какие тревожные признаки мне обращать внимание и когда связаться с вами?",
+      "usageNote": "Uses recycled comparison language to evaluate the answer, then asks a precise safety follow-up."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_weigh_01",
+        "text": "Compared with the first option, the alternative may suit my work better, even if it takes longer. What warning signs should I watch for, and when should I contact you?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Contact the clinic promptly if you have a strong or unexpected reaction. For a mild effect that concerns you, call us so we can review the plan rather than changing it on your own."
+  },
+  {
+    "id": "itm_b2_hb2_v1_other_treatment",
+    "itemType": "functional_phrase",
+    "lemma": "ask about a different treatment format",
+    "displayForm": "Is there an alternative to taking a tablet every day, and how will it compare for controlling the symptoms?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Есть ли альтернатива ежедневному приёму таблеток и насколько хорошо она будет контролировать симптомы?",
+      "usageNote": "Variation v1 changes the question from side effects to an alternative treatment format."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_v1_other_treatment_01",
+        "text": "Is there an alternative to taking a tablet every day, and how will it compare for controlling the symptoms?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "A nasal spray is another option. It acts locally and can work well for nasal symptoms, although using it correctly every day matters."
+  },
+  {
+    "id": "itm_b2_hb2_v1_timing",
+    "itemType": "functional_phrase",
+    "lemma": "clarify timing for the alternative treatment",
+    "displayForm": "How long will the spray take to work, and will I need to use it every day before we know whether it suits me?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Сколько времени потребуется спрею, чтобы подействовать, и нужно ли пользоваться им каждый день, прежде чем мы поймём, подходит ли он мне?",
+      "usageNote": "Transfers predictive will and duration clarification to a different treatment format."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_v1_timing_01",
+        "text": "How long will the spray take to work, and will I need to use it every day before we know whether it suits me?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You will usually need to use it daily for about two weeks before we can assess it fairly. If it irritates your nose or your symptoms worsen, contact the clinic earlier."
+  },
+  {
+    "id": "itm_b2_hb2_v2_compare",
+    "itemType": "functional_phrase",
+    "lemma": "ask the doctor to compare two offered options",
+    "displayForm": "Could you explain how the non-drowsy tablet and the nasal spray differ in speed and convenience?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Не могли бы вы объяснить, чем неседативная таблетка и назальный спрей отличаются по скорости действия и удобству?",
+      "usageNote": "Variation v2 elicits two concrete options before the learner weighs them."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_v2_compare_01",
+        "text": "Could you explain how the non-drowsy tablet and the nasal spray differ in speed and convenience?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "The tablet will probably be easier to use while travelling and should act sooner. The spray avoids whole-body drowsiness, but it needs careful daily use and may take longer."
+  },
+  {
+    "id": "itm_b2_hb2_v2_choice",
+    "itemType": "functional_phrase",
+    "lemma": "weigh two medical options against a real constraint",
+    "displayForm": "The tablet will probably be easier when I travel, while the spray may avoid drowsiness. Because I drive most days, I would prefer to try the spray first if we can review it after two weeks.",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Таблетку, вероятно, проще использовать в поездках, а спрей может не вызывать сонливость. Поскольку я почти каждый день вожу машину, я бы предпочёл(ла) сначала попробовать спрей, если через две недели мы сможем оценить результат.",
+      "usageNote": "Requires an evidence-based comparison and a bounded choice; will remains predictive rather than a promise."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_v2_choice_01",
+        "text": "The tablet will probably be easier when I travel, while the spray may avoid drowsiness. Because I drive most days, I would prefer to try the spray first if we can review it after two weeks.",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "That is a reasonable choice for your priority. We will review your symptom record after two weeks and reconsider if the spray is not controlling them."
+  },
+  {
+    "id": "itm_b2_hb2_v3_lifestyle",
+    "itemType": "functional_phrase",
+    "lemma": "ask about a lifestyle-change alternative",
+    "displayForm": "Could reducing my exposure—keeping the windows closed on high-pollen days and changing clothes when I get home—be an alternative to changing medication?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Может ли снижение контакта с пыльцой — закрытые окна в дни высокой концентрации и смена одежды дома — стать альтернативой смене лекарства?",
+      "usageNote": "Variation v3 broadens the decision to a specific lifestyle change without treating it as guaranteed medical treatment."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_v3_lifestyle_01",
+        "text": "Could reducing my exposure—keeping the windows closed on high-pollen days and changing clothes when I get home—be an alternative to changing medication?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "Those changes can reduce your exposure, but they may not control the symptoms on their own. We can combine them with the current plan for a short trial."
+  },
+  {
+    "id": "itm_b2_hb2_v3_review",
+    "itemType": "functional_phrase",
+    "lemma": "set a time frame and criteria for reconsidering",
+    "displayForm": "If I start with those changes, how long will it take to know whether they are enough, and what should make me reconsider the medication option?",
+    "levelCode": "B2",
+    "partOfSpeech": null,
+    "topic": "clarifying medical recommendations",
+    "ru": {
+      "translation": "Если я начну с этих изменений, сколько времени потребуется, чтобы понять, достаточно ли их, и в каком случае стоит снова рассмотреть лекарство?",
+      "usageNote": "Transfers predictive timing and risk evaluation to a non-medication option."
+    },
+    "examples": [
+      {
+        "id": "ex_itm_b2_hb2_v3_review_01",
+        "text": "If I start with those changes, how long will it take to know whether they are enough, and what should make me reconsider the medication option?",
+        "isPrimary": true
+      }
+    ],
+    "npcReplyCorrect": "You will have a clearer picture after two weeks. If the symptoms still interrupt sleep or work, contact me and we will review the medication options together."
   }
 ]

@@ -93,6 +93,7 @@ const SITUATION_SCENES: Record<string, SituationScene> = {
   sit_b2_daily_02: { scene: "cafe", cast: "alex" },
   sit_b2_people_05: { scene: "cafe", cast: "alex" },
   sit_b2_work_06: { scene: "meeting", cast: "daniel" },
+  sit_b2_health_01: { scene: "clinic", cast: "drkim" },
 };
 
 export const FALLBACK_SCENE: SituationScene = {
@@ -227,6 +228,8 @@ const OPENING_LINES: Record<string, string> = {
     "You said Maya's café reopening felt exciting and uncomfortable at the same time. What happened at the exhibition?",
   sit_b2_work_06:
     "The meeting-summary pilot saved time, and leadership now wants to use the tool for every client call next month. Before they decide, what consequences do you see?",
+  sit_b2_health_01:
+    "At your last appointment, we discussed starting a new allergy treatment. Before you decide, what would you like to clarify?",
 };
 
 export function openingLine(episodeId: string): string {

@@ -4395,5 +4395,52 @@
         "chunkLabel": "real-time consequence revision"
       }
     ]
+  },
+  {
+    "situationId": "sit_b2_health_01",
+    "phrases": [
+      {
+        "text": "How long will it take to work",
+        "itemId": "itm_b2_hb2_timing",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_will_health_prediction"
+      },
+      {
+        "text": "will I know within a week",
+        "itemId": "itm_b2_hb2_timing",
+        "classification": "target",
+        "grammarPatternId": "gr_b2_will_health_prediction"
+      },
+      {
+        "text": "What are the most common side effects",
+        "itemId": "itm_b2_hb2_side_effects",
+        "classification": "chunk",
+        "chunkLabel": "medical risk clarification question"
+      },
+      {
+        "text": "Is there an alternative",
+        "itemId": "itm_b2_hb2_alternative",
+        "classification": "chunk",
+        "chunkLabel": "alternative-seeking question recycled from comparison language"
+      },
+      {
+        "text": "Compared with the first option",
+        "itemId": "itm_b2_hb2_weigh",
+        "classification": "chunk",
+        "chunkLabel": "recycled comparison frame from B1.11"
+      },
+      {
+        "text": "what warning signs should I watch for",
+        "itemId": "itm_b2_hb2_weigh",
+        "classification": "chunk",
+        "chunkLabel": "safety follow-up question"
+      },
+      {
+        "text": "if we can review it after two weeks",
+        "itemId": "itm_b2_hb2_v2_choice",
+        "classification": "chunk",
+        "chunkLabel": "bounded review condition"
+      }
+    ]
   }
 ]

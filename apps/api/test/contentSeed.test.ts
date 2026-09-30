@@ -25,11 +25,11 @@ test("the published catalogue includes A1 and authored A2/B1/B2 chapters", () =>
     (m) => (m.status ?? "published") === "published",
   );
   // The original mixed-practice chapters stay archived. The situational
-  // course now includes A1, authored A2/B1, and fifteen B2 modules.
-  assert.equal(published.length, 34);
+  // course now includes A1, authored A2/B1, and all sixteen B2 modules.
+  assert.equal(published.length, 35);
   assert.equal(published.filter((m) => m.levelCode === "A2").length, 9);
   assert.equal(published.filter((m) => m.levelCode === "B1").length, 9);
-  assert.equal(published.filter((m) => m.levelCode === "B2").length, 15);
+  assert.equal(published.filter((m) => m.levelCode === "B2").length, 16);
   assert.equal(bundle.modules.filter((m) => m.status === "archived").length, 6);
 
   const starter = bundle.lessons.filter((l) => l.moduleId === "mod_sie_a1_01");
@@ -393,6 +393,7 @@ test("A2, B1 and B2 plans keep semantic turns once and exclude variations from M
     "sit_b2_daily_02",
     "sit_b2_people_05",
     "sit_b2_work_06",
+    "sit_b2_health_01",
   ]) {
     const links = await listLessonItemsByLesson(db, situationId);
     const levelId = situationId.startsWith("sit_b2_")
@@ -1030,4 +1031,38 @@ test("B2 Batch 7 persuades respectfully, tells nuanced stories, and traces conse
   assert.deepEqual(links("sit_b2_daily_02", "review").map((x) => x.contentId), ["itm_b1_b113_request"]);
   assert.deepEqual(links("sit_b2_people_05", "review").map((x) => x.contentId), ["itm_b1_b18_ending"]);
   assert.deepEqual(links("sit_b2_work_06", "review").map((x) => x.contentId), ["itm_b2_b216_guardrail", "itm_b2_b26_balance"]);
+});
+
+test("H.B2 clarifies risks, alternatives, timing, and a reasoned choice", () => {
+  const bundle = loadSeedContent();
+  const itemById = new Map(bundle.learningItems.map((item) => [item.id, item]));
+  const links = (role: string) =>
+    bundle.lessonItems.filter(
+      (row) => row.lessonId === "sit_b2_health_01" && row.role === role,
+    );
+  assert.equal(links("introduce").length, 4);
+  assert.equal(links("practice").length, 6);
+  assert.deepEqual(
+    links("review").map((row) => row.contentId),
+    ["itm_b1_hb1_tried", "itm_b1_b111_weigh_tradeoff"],
+  );
+  for (const link of [...links("introduce"), ...links("practice")]) {
+    assert.ok(itemById.get(link.contentId)?.npcReplyCorrect, link.contentId);
+  }
+  assert.match(
+    itemById.get("itm_b2_hb2_timing")?.displayForm ?? "",
+    /How long will it take.*will I know within a week/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_hb2_v1_other_treatment")?.displayForm ?? "",
+    /alternative to taking a tablet.*compare/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_hb2_v2_choice")?.displayForm ?? "",
+    /tablet will probably.*spray may.*drive most days/i,
+  );
+  assert.match(
+    itemById.get("itm_b2_hb2_v3_lifestyle")?.displayForm ?? "",
+    /windows closed.*changing clothes.*alternative/i,
+  );
 });

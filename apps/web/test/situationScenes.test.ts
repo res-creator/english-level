@@ -226,6 +226,17 @@ test("B2 Batch 7 maps persuasion, narrative, and consequence discussions to recu
   assert.match(openingLine("sit_b2_work_06"), /pilot saved time.*consequences/i);
 });
 
+test("H.B2 returns to Dr. Kim in the clinic with a follow-up opener", () => {
+  assert.deepEqual(sceneForSituation("sit_b2_health_01"), {
+    scene: "clinic",
+    cast: "drkim",
+  });
+  assert.match(
+    openingLine("sit_b2_health_01"),
+    /last appointment.*allergy treatment.*clarify/i,
+  );
+});
+
 test("one chapter needs only a handful of places and people", () => {
   const episodes = [
     "les_sie_a1_e1",

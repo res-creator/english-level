@@ -418,5 +418,17 @@
     "ru": {
       "explanation": "Используйте эту условную рамку, чтобы связать решение с вероятным последствием без чрезмерной уверенности."
     }
+  },
+  {
+    "id": "gr_b2_will_health_prediction",
+    "levelCode": "B2",
+    "title": "will — уточнить ожидаемый эффект",
+    "patternKey": "will_health_prediction",
+    "formula": "How long will + subject + take...? / Subject will + predictive outcome",
+    "explanationEn": "Use will to ask about or state an expected future effect based on the clinician’s recommendation, without treating the outcome as guaranteed.",
+    "order": 36,
+    "ru": {
+      "explanation": "Используйте will, чтобы спросить об ожидаемом будущем эффекте рекомендации или описать его, не представляя результат как гарантированный."
+    }
   }
 ]
