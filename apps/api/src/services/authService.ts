@@ -105,6 +105,40 @@ export async function loginWithTelegramInitData(
 }
 
 /**
+ * Preview-only: creates (or finds) a demo user and returns a session for
+ * it, completely bypassing Telegram initData validation. The demo user has
+ * a fixed telegram_user_id so every browser demo gets the same account and
+ * can see accumulated progress.
+ *
+ * This must never be callable outside the preview environment — the route
+ * in `routes/auth.ts` gates on `isPreviewEnvironment` before calling this.
+ */
+const DEMO_TELEGRAM_USER_ID = 999_999_999;
+
+export async function loginDemoUser(
+  db: Db,
+  sessionTtlSeconds: number,
+): Promise<TelegramLoginResult> {
+  const existing = await findUserByTelegramUserId(db, DEMO_TELEGRAM_USER_ID);
+
+  let user: UserRow;
+  if (!existing) {
+    user = await createUser(db, {
+      telegramUserId: DEMO_TELEGRAM_USER_ID,
+      firstName: "Demo",
+      username: "demo_user",
+      interfaceLanguage: "ru",
+    });
+    await createDefaultUserSettings(db, user.id);
+  } else {
+    user = existing;
+  }
+
+  const { token } = await createSession(db, user.id, sessionTtlSeconds);
+  return { user, next: navigationIntentFor(user), sessionToken: token };
+}
+
+/**
  * Resolves the current user from a raw session token (as read from the
  * session cookie), or null if there isn't a valid session. Touches
  * `last_used_at` on the session as a side effect of a successful lookup.

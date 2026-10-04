@@ -5,7 +5,7 @@ import type {
 } from "@english-level/contracts";
 import { useTelegram } from "../telegram/useTelegram.ts";
 import { resolveInitData } from "./resolveInitData.ts";
-import { getMe, telegramLogin } from "./authClient.ts";
+import { demoLogin, getMe, telegramLogin } from "./authClient.ts";
 
 export type AuthStatus =
   "loading" | "authenticated" | "unauthenticated" | "error";
@@ -33,28 +33,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     async function bootstrap() {
       try {
-        const initData = await resolveInitData(
-          webApp,
-          isMock,
-          import.meta.env.DEV,
-        );
+        // Demo mode: ?demo=1 in the URL triggers a preview-only demo
+        // login that bypasses Telegram auth entirely, so the app can be
+        // shown to people outside Telegram for design review / feedback.
+        const isDemoMode =
+          new URLSearchParams(window.location.search).get("demo") === "1";
 
-        if (!initData) {
-          // No real Telegram session and no dev fixture available (e.g. a
-          // production build opened outside Telegram) — fail closed rather
-          // than attempting any kind of bypass.
-          if (!cancelled) {
-            setValue({
-              status: "unauthenticated",
-              user: null,
-              next: null,
-              error: null,
-            });
+        let login;
+        if (isDemoMode) {
+          login = await demoLogin();
+        } else {
+          const initData = await resolveInitData(
+            webApp,
+            isMock,
+            import.meta.env.DEV,
+          );
+
+          if (!initData) {
+            // No real Telegram session and no dev fixture available (e.g. a
+            // production build opened outside Telegram) — fail closed rather
+            // than attempting any kind of bypass.
+            if (!cancelled) {
+              setValue({
+                status: "unauthenticated",
+                user: null,
+                next: null,
+                error: null,
+              });
+            }
+            return;
           }
-          return;
-        }
 
-        const login = await telegramLogin(initData);
+          login = await telegramLogin(initData);
+        }
         if (cancelled) return;
         if (!login) {
           setValue({

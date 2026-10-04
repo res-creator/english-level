@@ -25,6 +25,24 @@ export async function telegramLogin(
   return TelegramAuthResponseSchema.parse(await res.json());
 }
 
+/**
+ * Preview-only: logs in as a demo user without Telegram auth. Used when the
+ * app is opened in a plain browser with `?demo=1` in the URL.
+ */
+export async function demoLogin(): Promise<TelegramAuthResponse | null> {
+  const res = await fetch(`${API_BASE_URL}/api/v1/auth/demo`, {
+    method: "POST",
+    credentials: CREDENTIALS,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({}),
+  });
+  if (res.status === 404 || res.status === 401) return null;
+  if (!res.ok) {
+    throw new Error(`Demo login failed with status ${res.status}`);
+  }
+  return TelegramAuthResponseSchema.parse(await res.json());
+}
+
 export async function getMe(): Promise<MeResponse | null> {
   const res = await fetch(`${API_BASE_URL}/api/v1/me`, {
     credentials: CREDENTIALS,

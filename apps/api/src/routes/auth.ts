@@ -6,7 +6,11 @@ import {
   LogoutResponseSchema,
 } from "@english-level/contracts";
 import { createD1Db } from "../db/d1Adapter.ts";
-import { loginWithTelegramInitData, logout } from "../services/authService.ts";
+import {
+  loginWithTelegramInitData,
+  loginDemoUser,
+  logout,
+} from "../services/authService.ts";
 import { toPublicUser } from "../dto/userDto.ts";
 import {
   SESSION_COOKIE_NAME,
@@ -14,6 +18,7 @@ import {
   DEFAULT_TELEGRAM_AUTH_MAX_AGE_SECONDS,
   cookieOptionsFor,
 } from "../auth/session.ts";
+import { isPreviewEnvironment } from "../previewMode.ts";
 import type { AppEnv } from "../types/appEnv.ts";
 
 const auth = new Hono<AppEnv>();
@@ -55,6 +60,34 @@ auth.post("/telegram", async (c) => {
   const response = TelegramAuthResponseSchema.parse({
     user: toPublicUser(login.result.user),
     next: login.result.next,
+  });
+  return c.json(response);
+});
+
+/**
+ * Preview-only: creates a demo session without Telegram auth, so the app
+ * can be opened in a plain browser for design review / external feedback.
+ * Outside preview this responds 404 — the endpoint does not even advertise
+ * its existence in production.
+ */
+auth.post("/demo", async (c) => {
+  if (!isPreviewEnvironment(c.env)) {
+    return c.json({ error: "not found" }, 404);
+  }
+
+  const db = createD1Db(c.env.DB);
+  const result = await loginDemoUser(db, SESSION_TTL_SECONDS);
+
+  setCookie(
+    c,
+    SESSION_COOKIE_NAME,
+    result.sessionToken,
+    cookieOptionsFor(isHttpsRequest(c.req.url)),
+  );
+
+  const response = TelegramAuthResponseSchema.parse({
+    user: toPublicUser(result.user),
+    next: result.next,
   });
   return c.json(response);
 });
